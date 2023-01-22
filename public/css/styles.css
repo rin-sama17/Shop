@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'wazin';
+  src: url('/fonts/Wazin.eot');
+  src: url('/fonts/Wazin.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Wazin.woff2') format('woff2'),
+    url('/fonts/Wazin.woff') format('woff'),
+    url('/fonts/Wazin.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'vazir';
+  src: url('/fonts/Vazir.eot');
+  src: url('/fonts/Vazir.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Vazir.woff2') format('woff2'),
+    url('/fonts/Vazir.woff') format('woff'),
+    url('/fonts/Vazir.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'roboto';
+  src: url('/fonts/Roboto-Regular.eot');
+  src: url('/fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Roboto-Regular.woff2') format('woff2'),
+    url('/fonts/Roboto-Regular.woff') format('woff'),
+    url('/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html {
+  overflow: -moz-scrollbars-none;
+}
+.MuiCard-root::-webkit-scrollbar {
+  display: none !important ;
+}
+
+.MuiChip-icon {
+  color: black !important;
+}
+
+/* react-slick */
+.slick-thumb {
+  bottom: 4vh !important;
+}
+.slick-thumb li {
+  width: 180px !important;
+  height: 50px !important;
+  margin-left: 20px !important;
+  filter: grayscale(100%);
+}
+.slick-thumb li.slick-active {
+  filter: grayscale(0%);
+}
+
+@media (max-width: 900px) {
+  .slick-thumb li {
+    width: auto !important;
+  }
+}
