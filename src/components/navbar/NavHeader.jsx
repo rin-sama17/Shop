@@ -35,7 +35,7 @@ const NavHeader = ({ setDrawerOpen }) => {
           <Typography variant="body1" color="text.primary">
             فروشگاه من
           </Typography>
-          <NavItems direction="row" width="auto" />
+          <NavItems direction="row" width="auto" width={100} />
         </Box>
       )}
     </>

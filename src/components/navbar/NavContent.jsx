@@ -20,7 +20,7 @@ const NavContent = ({ setDrawerOpen }) => {
 
   return (
     <>
-      <Grid xs={6} sm={3} md={10} lg={8} sx={{ display: 'flex' }}>
+      <Grid xs={6} sm={3} md={10} lg={7} sx={{ display: 'flex' }}>
         <NavHeader
           setDrawerOpen={setDrawerOpen}
           sx={{ display: 'flex', alignItems: 'center', ml: 1 }}
@@ -30,7 +30,7 @@ const NavContent = ({ setDrawerOpen }) => {
         xs={6}
         sm={9}
         md={2}
-        lg={4}
+        lg={5}
         sx={{
           display: 'flex',
           justifyContent: downLg ? 'flex-end' : 'space-between',

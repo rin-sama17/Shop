@@ -12,7 +12,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { DarkMode } from '@mui/icons-material'
 import { tabsData } from '../../constants/tabs.sidebar'
 import { useState, useEffect } from 'react'
-const NavItems = ({ direction }) => {
+const NavItems = ({ direction, width }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -23,7 +23,6 @@ const NavItems = ({ direction }) => {
     }
   }, [])
   return (
-    // <List disablePadding >
     <Stack
       direction={direction}
       divider={<Divider orientation="vertical" flexItem />}
@@ -46,7 +45,7 @@ const NavItems = ({ direction }) => {
             size="small"
             component={RouterLink}
             to={tab.to}
-            sx={{ width: 100 }}
+            sx={{ width: width }}
             color="secondary"
           >
             <Typography variant="caption">{tab.text}</Typography>
@@ -54,7 +53,6 @@ const NavItems = ({ direction }) => {
         </Slide>
       ))}
     </Stack>
-    // </List>
   )
 }
 export default NavItems
