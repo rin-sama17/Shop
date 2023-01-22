@@ -12,7 +12,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { DarkMode } from '@mui/icons-material'
 import { tabsData } from '../../constants/tabs.sidebar'
 import { useState, useEffect } from 'react'
-const NavItems = ({ direction, width }) => {
+const NavItems = ({ direction }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
