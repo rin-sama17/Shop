@@ -3,9 +3,9 @@ import { Link as RouterLink } from 'react-router-dom'
 import { useContext } from 'react'
 import MainContext from '../../context'
 import { AccountCircle } from '@mui/icons-material'
-const NavAvatar = () => {
-  const { user, singInModal, setSingInModal } = useContext(MainContext)
 
+const NavAvatar = () => {
+  const { user, setModal } = useContext(MainContext)
   function stringToColor(string) {
     let hash = 0
     let i
@@ -39,10 +39,7 @@ const NavAvatar = () => {
           />
         </Box>
       ) : (
-        <IconButton
-          onClick={() => setSingInModal((prev) => !prev)}
-          color="secondary"
-        >
+        <IconButton onClick={() => setModal(true)} color="secondary">
           <AccountCircle />
         </IconButton>
       )}

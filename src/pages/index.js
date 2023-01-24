@@ -9,3 +9,4 @@ export { default as SingIn } from "./SingIn";
 export { default as AddProduct } from "./AddProduct";
 export { default as AddPost } from "./AddPost";
 export { default as EditUser } from "./EditUser";
+export { default as Recovery } from "./Recovery";

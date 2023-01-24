@@ -16,6 +16,8 @@ import {
   AddProduct,
   AddPost,
   EditUser,
+  LogIn,
+  Recovery,
 } from './pages'
 import { Navbar } from './components/navbar'
 import Footer from './components/footer/Footer'
@@ -31,10 +33,20 @@ function App() {
   const [mode, setMode] = useState(0)
   const [secondaryColor, setSecondaryColor] = useState('#ce93d8')
   const [user, setUser] = useState(null)
-  const [singInModal, setSingInModal] = useState(false)
+  const [modal, setModal] = useState(false)
 
   const [cookies, setCookie] = useCookies(['user'])
+  // useEffect(() => {
+  //   console.log(modals)
+  // }, [modals])
 
+  const handleModalChange = (modal, open) => {
+    setModals({
+      ...modals,
+      [modal]: open,
+    })
+    console.log(modals)
+  }
   const handleColorChange = () => {
     setCookie('Secondary', secondaryColor, { path: '/' })
   }
@@ -99,8 +111,8 @@ function App() {
         handleColorChange,
         user,
         setUser,
-        singInModal,
-        setSingInModal,
+        modal,
+        setModal,
       }}
     >
       <MainLayout mode={mode}>
@@ -129,7 +141,7 @@ function App() {
           <Route path="/addPost" element={<AddPost />} />
           <Route path="/editUser" element={<EditUser />} />
 
-          <Route path="*" element={<div>page not found</div>} />
+          {/* <Route path="*" element={<div>page not found</div>} /> */}
         </Routes>
         <Footer />
       </MainLayout>
