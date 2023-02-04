@@ -16,12 +16,13 @@ import {
 import { useFormik } from 'formik'
 import { CustomDivider, SearchField } from '../components/common'
 import Grid from '@mui/material/Unstable_Grid2'
-import { AddAPhoto, BurstMode, Percent } from '@mui/icons-material'
+import { AddAPhoto, BookOnline, BurstMode, Percent } from '@mui/icons-material'
 import { productValidation } from '../components/product/addProduct/validation/productValidation'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { productAdded } from '../reducers/productSlice'
 import { toRial } from '../helpers'
+import { PatternFormat, NumericFormat } from 'react-number-format'
 
 const options = [
   'None',
@@ -85,11 +86,14 @@ const AddProduct = () => {
   }
 
   const convertPrice = (a, b) => {
+    console.log(typeof a)
+    console.log(a)
     a = Number(a.split(',').join(''))
+
     if (a > b) {
       return Math.round(a - (a * b) / 100)
     } else {
-      return 'invalid'
+      return '0'
     }
   }
   return (
@@ -150,7 +154,6 @@ const AddProduct = () => {
                       justifyContent: 'center',
                       alignItems: 'center',
                       bgcolor: 'bgblur',
-                      // backgroundImage: fo,
                     }}
                   >
                     <input
@@ -208,16 +211,19 @@ const AddProduct = () => {
                   />
                 </Grid>{' '}
                 <Grid xs={12} sm={4}>
-                  <TextField
+                  <NumericFormat
+                    allowLeadingZeros
+                    thousandSeparator=","
+                    customInput={TextField}
                     fullWidth
                     size="small"
                     name="price"
-                    value={toRial(formik.values?.price)}
+                    value={formik.values?.price}
                     error={Boolean(formik.touched.price && formik.errors.price)}
                     onChange={formik.handleChange}
                     label="قیمت"
                     placeholder="به ریال"
-                    type="text"
+                    displayType="input"
                     color="secondary"
                     variant="outlined"
                   />
@@ -235,13 +241,15 @@ const AddProduct = () => {
                     label="تخفیف"
                     helperText={
                       <Typography variant="caption">
-                        قیمت کالا بعد از تخفیف :{' '}
-                        {toRial(
-                          convertPrice(
-                            formik.values?.price,
-                            formik.values?.discount,
-                          ),
-                        )}
+                        قیمت کالا بعد از تخفیف :
+                        {formik.errors.discount
+                          ? formik.errors.discount
+                          : toRial(
+                              convertPrice(
+                                formik.values?.price,
+                                formik.values?.discount,
+                              ),
+                            )}
                       </Typography>
                     }
                     InputProps={{
@@ -251,6 +259,7 @@ const AddProduct = () => {
                         </InputAdornment>
                       ),
                     }}
+                    disabled={Boolean(!formik.values?.price.length > 0)}
                     type="number"
                     color="secondary"
                     variant="outlined"

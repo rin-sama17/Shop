@@ -10,7 +10,14 @@ const HomeNewProducts = () => {
   return (
     <Grid container sx={{ width: 1 }}>
       {products.slice(0, 12).map((product, index) => (
-        <Product product={product} key={index} sm={6} md={3} maxWidth={240} />
+        <Product
+          product={product}
+          key={index}
+          sm={6}
+          md={4}
+          lg={3}
+          maxWidth={240}
+        />
       ))}
     </Grid>
   )

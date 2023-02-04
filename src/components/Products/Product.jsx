@@ -9,12 +9,9 @@ import {
 import { CustomLoading } from '../common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link as RouterLink } from 'react-router-dom'
-import { useContext } from 'react'
-import MainContext from '../../context'
-import { ToRial } from '../common'
+import ProductPrice from './ProductPrice'
 
 const Product = ({ product, loading, maxWidth, ...props }) => {
-  // const { ToRial } = useContext(MainContext)
   return (
     <Grid
       xs={12}
@@ -75,8 +72,10 @@ const Product = ({ product, loading, maxWidth, ...props }) => {
                 width="50%"
                 style={{ marginBottom: 6 }}
               >
-                {' '}
-                <ToRial price={product.price} gutterBottom />
+                <ProductPrice
+                  price={product.price}
+                  discount={product.discount}
+                />
               </CustomLoading>
 
               <CustomLoading
@@ -90,6 +89,7 @@ const Product = ({ product, loading, maxWidth, ...props }) => {
                   color="secondary"
                   variant="body1"
                   textAlign="left"
+                  sx={{ height: 1 }}
                   gutterBottom
                 >
                   تومان{' '}

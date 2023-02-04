@@ -5,7 +5,7 @@ const initialState = {
         {
             name: 'sqas',
             price: '1999299',
-            discount: '',
+            discount: 12,
             details: '',
             stock: '',
             thumbnail: '',
