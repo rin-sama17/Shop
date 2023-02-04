@@ -43,7 +43,7 @@ export const themes = () => {
                 main: "#121212"
             },
             secondary: {
-                main: `${secondaryColor}`
+                main: secondaryColor ? `${secondaryColor}` : '#ce93d8'
             },
             bgBlur: {
                 main: "rgba(0, 0, 0, 0.9)"

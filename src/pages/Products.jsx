@@ -7,10 +7,13 @@ import MainContext from '../context'
 import { ProductsFilter, Product } from '../components/Products'
 import { CustomPagination } from '../components/common'
 
+import { useSelector } from 'react-redux'
+import { getAllProduct } from '../reducers/productSlice'
+
 const Products = () => {
   const [data, setData] = useState([])
 
-  const { products, loading } = useContext(MainContext)
+  const products = useSelector(getAllProduct)
 
   return (
     <Grid container sx={{ width: 1 }}>

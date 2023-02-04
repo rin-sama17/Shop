@@ -16,37 +16,26 @@ import {
   AddProduct,
   AddPost,
   EditUser,
-  LogIn,
-  Recovery,
 } from './pages'
 import { Navbar } from './components/navbar'
 import Footer from './components/footer/Footer'
 
 import { useCookies } from 'react-cookie'
 function App() {
-  const [products, setProducts] = useState([])
   const [product, setProduct] = useState({})
   const [productComments, setProductComments] = useState([])
   const [loading, setLoading] = useState(true)
+
   const [posts, setPosts] = useState([])
   const [post, setPost] = useState({})
+
   const [mode, setMode] = useState(0)
   const [secondaryColor, setSecondaryColor] = useState('#ce93d8')
   const [user, setUser] = useState(null)
   const [modal, setModal] = useState(false)
 
   const [cookies, setCookie] = useCookies(['user'])
-  // useEffect(() => {
-  //   console.log(modals)
-  // }, [modals])
 
-  const handleModalChange = (modal, open) => {
-    setModals({
-      ...modals,
-      [modal]: open,
-    })
-    console.log(modals)
-  }
   const handleColorChange = () => {
     setCookie('Secondary', secondaryColor, { path: '/' })
   }
@@ -54,54 +43,41 @@ function App() {
     handleColorChange()
   }, [secondaryColor])
 
-  useEffect(() => {
-    console.log(cookies.Secondary)
-    setSecondaryColor(cookies.Secondary)
+  // useEffect(() => {
+  //   console.log(cookies.Secondary)
+  //   setSecondaryColor(cookies.Secondary)
 
-    const fetchData = async () => {
-      try {
-        setLoading(true)
+  //   const fetchData = async () => {
+  //     try {
+  //       setLoading(true)
 
-        const { data: productsData } = await getAllProducts()
-        const { data: postsData } = await getAllPosts()
-        console.log(productsData)
-        console.log(postsData)
+  //       const { data: productsData } = await getAllProducts()
+  //       const { data: postsData } = await getAllPosts()
+  //       console.log(productsData)
+  //       console.log(postsData)
 
-        setProducts(productsData.products)
-        setPosts(postsData.posts)
+  //       setProducts(productsData.products)
+  //       setPosts(postsData.posts)
 
-        setLoading(false)
-      } catch (error) {
-        console.log(error)
+  //       setLoading(false)
+  //     } catch (error) {
+  //       console.log(error)
 
-        setLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
-  function ToRial(str) {
-    JSON.stringify(str)
-    str = str.replace(/\,/g, '')
-    var objRegex = new RegExp('(-?[0-9]+)([0-9]{3})')
+  //       setLoading(false)
+  //     }
+  //   }
+  //   fetchData()
+  // }, [])
 
-    while (objRegex.test(str)) {
-      str = str.replace(objRegex, '$1,$2')
-    }
-
-    return str
-  }
   return (
     <MainContext.Provider
       value={{
-        products,
-        product,
         setProduct,
         setLoading,
         loading,
         post,
         posts,
         setPost,
-        ToRial,
         productComments,
         setProductComments,
         secondaryColor,

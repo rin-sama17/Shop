@@ -6,16 +6,16 @@ import MainContext from '../../context'
 // import { productsData } from '../constants/products'
 import { Product } from '../Products'
 import { CustomPagination } from '../common'
-
+import { getAllProduct } from '../../reducers/productSlice'
+import { useSelector } from 'react-redux'
 const MarkedProducts = () => {
   const [data, setData] = useState([])
 
-  const { products, loading } = useContext(MainContext)
-
+  const product = useSelector(getAllProduct)
   return (
     <Grid container>
       {data.map((product, index) => (
-        <Product product={product} key={index} loading={loading} />
+        <Product product={product} key={index} />
       ))}
       <Box
         sx={{

@@ -1,21 +1,27 @@
 import {
   Typography,
   TextField,
-  InputAdornment,
   Button,
   CardActionArea,
   Box,
-  Card,
-  Menu,
   MenuItem,
   FormControl,
   Select,
   InputLabel,
+  CardMedia,
+  ImageListItem,
+  OutlinedInput,
+  InputAdornment,
 } from '@mui/material'
+import { useFormik } from 'formik'
 import { CustomDivider, SearchField } from '../components/common'
 import Grid from '@mui/material/Unstable_Grid2'
-import { AddAPhoto, BurstMode } from '@mui/icons-material'
-import { useState } from 'react'
+import { AddAPhoto, BurstMode, Percent } from '@mui/icons-material'
+import { productValidation } from '../components/product/addProduct/validation/productValidation'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { productAdded } from '../reducers/productSlice'
+import { toRial } from '../helpers'
 
 const options = [
   'None',
@@ -40,16 +46,52 @@ const options = [
   'Triton',
   'Umbriel',
 ]
-
-const ITEM_HEIGHT = 48
-
 const AddProduct = () => {
-  const [category, setCategory] = useState('')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const handleChange = (event) => {
-    setCategory(event.target.value)
+  const productFieldNames = {
+    name: '',
+    price: '',
+    discount: '',
+    details: '',
+    stock: '',
+    thumbnail: '',
+    photos: '',
+    category: '',
+    tags: '',
+  }
+  const formik = useFormik({
+    initialValues: productFieldNames,
+    validationSchema: productValidation,
+    onSubmit: (values) => {
+      dispatch(productAdded(values))
+      navigate('/')
+    },
+  })
+
+  const handleChange = (e) => {
+    const reader = new FileReader()
+    console.log(reader)
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        // setPhoto(reader.result)
+        formik.setFieldValue('thumbnail', reader.result)
+        console.log(reader.result)
+        console.log(formik.values.thumbnail)
+      }
+    }
+    reader.readAsDataURL(e.target.files[0])
   }
 
+  const convertPrice = (a, b) => {
+    a = Number(a.split(',').join(''))
+    if (a > b) {
+      return Math.round(a - (a * b) / 100)
+    } else {
+      return 'invalid'
+    }
+  }
   return (
     <Box
       sx={{
@@ -62,7 +104,7 @@ const AddProduct = () => {
         alignContent: 'center',
       }}
     >
-      <form autoComplete="off">
+      <form autoComplete="off" onSubmit={formik.handleSubmit}>
         <Grid container>
           <CustomDivider label="محصول جدید" color="warning" />
           <Grid
@@ -75,30 +117,79 @@ const AddProduct = () => {
               alignItems: 'center',
             }}
           >
-            <Card sx={{ width: 200, height: 200, mb: 1 }}>
-              <CardActionArea
-                sx={{
-                  height: 1,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <AddAPhoto />
-              </CardActionArea>
-            </Card>
-            <Card sx={{ width: 50, height: 50 }}>
-              <CardActionArea
-                sx={{
-                  height: 1,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <BurstMode />
-              </CardActionArea>
-            </Card>
+            <Box component="div" sx={{ height: 200, width: 200, mb: 2 }}>
+              <ImageListItem>
+                {formik.values?.thumbnail ? (
+                  <CardMedia
+                    component="img"
+                    image={formik.values?.thumbnail}
+                    alt=""
+                    sx={{ height: 200, width: 200 }}
+                  />
+                ) : (
+                  <Box sx={{ height: 200, width: 200 }} />
+                )}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: 0,
+                    width: 1,
+                    height: 1,
+                    bgcolor: 'bgBlur.main',
+                  }}
+                >
+                  <CardActionArea
+                    component="label"
+                    sx={{
+                      color:
+                        formik.touched.thumbnail && formik.errors.thumbnail
+                          ? 'error.main'
+                          : 'warning.main',
+                      height: 1,
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      bgcolor: 'bgblur',
+                      // backgroundImage: fo,
+                    }}
+                  >
+                    <input
+                      accept="image/*"
+                      hidden
+                      type="file"
+                      name="thumbnail"
+                      onChange={handleChange}
+                    />
+                    <AddAPhoto />
+                  </CardActionArea>
+                </Box>
+              </ImageListItem>
+            </Box>
+
+            <Button
+              component="label"
+              color="warning"
+              sx={{
+                width: 50,
+                height: 50,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                boxShadow:
+                  '2px 2px 2px 2px rgb(0 0 0 / 20%), 2px 2px 2px 2px rgb(0 0 0 / 19%)',
+              }}
+            >
+              <BurstMode />
+              <input
+                hidden
+                accept="image/*"
+                multiple
+                type="file"
+                name="photos"
+                value={formik.values?.photos}
+                onChange={formik.handleChange}
+              />
+            </Button>
           </Grid>
           <Grid xs={12} md={9}>
             <Box>
@@ -107,6 +198,10 @@ const AddProduct = () => {
                   <TextField
                     fullWidth
                     size="small"
+                    name="name"
+                    value={formik.values?.name}
+                    error={Boolean(formik.touched.name && formik.errors.name)}
+                    onChange={formik.handleChange}
                     label="نام محصول"
                     type="text"
                     color="secondary"
@@ -116,9 +211,13 @@ const AddProduct = () => {
                   <TextField
                     fullWidth
                     size="small"
+                    name="price"
+                    value={toRial(formik.values?.price)}
+                    error={Boolean(formik.touched.price && formik.errors.price)}
+                    onChange={formik.handleChange}
                     label="قیمت"
                     placeholder="به ریال"
-                    type="number"
+                    type="text"
                     color="secondary"
                     variant="outlined"
                   />
@@ -127,37 +226,68 @@ const AddProduct = () => {
                   <TextField
                     fullWidth
                     size="small"
-                    placeholder="به ریال"
+                    name="discount"
+                    value={formik.values?.discount}
+                    error={Boolean(
+                      formik.touched.discount && formik.errors.discount,
+                    )}
+                    onChange={formik.handleChange}
                     label="تخفیف"
                     helperText={
                       <Typography variant="caption">
-                        قیمت کالا بعد از تخفیف :
+                        قیمت کالا بعد از تخفیف :{' '}
+                        {toRial(
+                          convertPrice(
+                            formik.values?.price,
+                            formik.values?.discount,
+                          ),
+                        )}
                       </Typography>
                     }
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Percent />
+                        </InputAdornment>
+                      ),
+                    }}
                     type="number"
                     color="secondary"
                     variant="outlined"
                   />
                 </Grid>
                 <Grid xs={12} sm={5}>
-                  <FormControl fullWidth size="small">
-                    <InputLabel>دسته بندی</InputLabel>
+                  <FormControl
+                    fullWidth
+                    size="small"
+                    error={Boolean(
+                      formik.touched.category && formik.errors.category,
+                    )}
+                  >
+                    <InputLabel id="category-label">دسته بندی</InputLabel>
                     <Select
-                      value={category}
-                      label="دسته بندی"
-                      onChange={handleChange}
-                      PaperProps={{
-                        style: {
-                          maxHeight: ITEM_HEIGHT * 4.5,
-                          width: '30vh',
+                      name="category"
+                      value={formik.values?.category}
+                      onChange={formik.handleChange}
+                      labelId="category-label"
+                      input={<OutlinedInput label="دسته بندی" />}
+                      MenuProps={{
+                        PaperProps: {
+                          style: {
+                            maxHeight: 48 * 4.5 + 8,
+                            width: 250,
+                          },
                         },
                       }}
                     >
                       <MenuItem>
                         <SearchField small />
                       </MenuItem>
-                      {options.map((option) => (
-                        <MenuItem value={option}> {option}</MenuItem>
+                      {options.map((option, index) => (
+                        <MenuItem value={option} key={index}>
+                          {' '}
+                          {option}
+                        </MenuItem>
                       ))}
                     </Select>
                   </FormControl>
@@ -168,7 +298,26 @@ const AddProduct = () => {
                     label="برچسب ها"
                     multiline
                     size="small"
+                    name="tags"
+                    value={formik.values?.tags}
+                    error={Boolean(formik.touched.tags && formik.errors.tags)}
+                    onChange={formik.handleChange}
                     helperText="برچسب ها را با / از هم جدا کنید"
+                    type="number"
+                    color="secondary"
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid xs={12} sm={4}>
+                  <TextField
+                    fullWidth
+                    size="small"
+                    name="stock"
+                    value={formik.values?.stock}
+                    error={Boolean(formik.touched.stock && formik.errors.stock)}
+                    onChange={formik.handleChange}
+                    label="تعداد"
+                    helperText="موجودی کالا"
                     type="number"
                     color="secondary"
                     variant="outlined"
@@ -178,6 +327,12 @@ const AddProduct = () => {
                   <TextField
                     fullWidth
                     size="small"
+                    name="details"
+                    value={formik.values?.details}
+                    error={Boolean(
+                      formik.touched.details && formik.errors.details,
+                    )}
+                    onChange={formik.handleChange}
                     multiline
                     rows={4}
                     label="توضیحات"
@@ -185,20 +340,20 @@ const AddProduct = () => {
                     color="secondary"
                     variant="outlined"
                   />
-                  <Button
-                    fullWidth
-                    type="submit"
-                    color="warning"
-                    variant="contained"
-                    sx={{ mt: 2, color: 'black' }}
-                  >
-                    ارسال کن
-                  </Button>
                 </Grid>
               </Grid>
             </Box>
           </Grid>
-        </Grid>
+        </Grid>{' '}
+        <Button
+          fullWidth
+          type="submit"
+          color="warning"
+          variant="contained"
+          sx={{ mt: 2, color: 'black' }}
+        >
+          ارسال کن
+        </Button>
       </form>
     </Box>
   )

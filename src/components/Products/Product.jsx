@@ -11,9 +11,10 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Link as RouterLink } from 'react-router-dom'
 import { useContext } from 'react'
 import MainContext from '../../context'
+import { ToRial } from '../common'
 
 const Product = ({ product, loading, maxWidth, ...props }) => {
-  const { ToRial } = useContext(MainContext)
+  // const { ToRial } = useContext(MainContext)
   return (
     <Grid
       xs={12}
@@ -31,7 +32,7 @@ const Product = ({ product, loading, maxWidth, ...props }) => {
             <CardMedia
               component="img"
               sx={{ height: 240, width: 240 }}
-              alt={product.title}
+              alt={product.name}
               image={product.thumbnail}
             />
           </CustomLoading>
@@ -56,7 +57,7 @@ const Product = ({ product, loading, maxWidth, ...props }) => {
                   textAlign="left"
                   gutterBottom
                 >
-                  {product.title}
+                  {product.name}
                 </Typography>
               </CustomLoading>
             </Box>
@@ -75,14 +76,7 @@ const Product = ({ product, loading, maxWidth, ...props }) => {
                 style={{ marginBottom: 6 }}
               >
                 {' '}
-                <Typography
-                  color="text.primary"
-                  variant="body1"
-                  textAlign="left"
-                  gutterBottom
-                >
-                  {ToRial(String(product.price))}
-                </Typography>
+                <ToRial price={product.price} gutterBottom />
               </CustomLoading>
 
               <CustomLoading

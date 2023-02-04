@@ -138,10 +138,12 @@ const AddPost = () => {
                       value={category}
                       label="دسته بندی"
                       onChange={handleChange}
-                      PaperProps={{
-                        style: {
-                          maxHeight: ITEM_HEIGHT * 4.5,
-                          width: '30vh',
+                      MenuProps={{
+                        PaperProps: {
+                          style: {
+                            maxHeight: 48 * 4.5 + 8,
+                            width: 250,
+                          },
                         },
                       }}
                     >

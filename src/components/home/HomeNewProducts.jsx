@@ -1,32 +1,16 @@
 // import { productsData } from '../../constants/products'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Product } from '../Products'
-import { useEffect, useState, useContext } from 'react'
-import MainContext from '../../context'
 
+import { useSelector } from 'react-redux'
+import { getAllProduct } from '../../reducers/productSlice'
 const HomeNewProducts = () => {
-  const { products, loading } = useContext(MainContext)
-  // const [newProducts, setNewProducts] = useState([])
-
-  // useEffect(() => {
-  //   const filtredProducts = products.sort(
-  //     (objA, objB) => Number(objA.date) - Number(objB.date),
-  //   )
-  //   setNewProducts(filtredProducts)
-  //   console.log(filtredProducts)
-  // }, [])
+  const products = useSelector(getAllProduct)
 
   return (
-    <Grid container>
+    <Grid container sx={{ width: 1 }}>
       {products.slice(0, 12).map((product, index) => (
-        <Product
-          product={product}
-          key={index}
-          loading={loading}
-          sm={6}
-          md={3}
-          maxWidth={210}
-        />
+        <Product product={product} key={index} sm={6} md={3} maxWidth={240} />
       ))}
     </Grid>
   )

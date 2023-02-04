@@ -12,14 +12,13 @@ import {
 } from '.'
 import { CustomLoading } from '../../common'
 
-const ProductContent = () => {
+const ProductContent = ({ product }) => {
   const [open, setOpen] = useState(false)
-  const { product, loading } = useContext(MainContext)
 
   return (
     <Grid container sx={{ width: 1, p: 5 }}>
       <Grid xs={12} md={4} sx={{ p: 1, minHeight: '70vh' }}>
-        <CustomLoading loading={loading} height={40} width="20%" sx={{ mb: 1 }}>
+        <CustomLoading height={40} width="20%" sx={{ mb: 1 }}>
           <Typography color="text.primary" variant="h5" gutterBottom>
             {product.title}
           </Typography>

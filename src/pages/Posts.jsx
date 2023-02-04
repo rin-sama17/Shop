@@ -5,17 +5,18 @@ import { Pagination, Box, Container } from '@mui/material'
 import MainContext from '../context'
 import { PostsFilter, Post } from '../components/Posts'
 import { CustomPagination } from '../components/common'
+import { useSelector } from 'react-redux'
+import { getAllPosts } from '../reducers/postSlice'
 
 const Posts = () => {
   const [data, setData] = useState([])
-
-  const { posts, loading } = useContext(MainContext)
+  const posts = useSelector(getAllPosts)
 
   return (
     <Container maxWidth="md">
       <Grid container>
         {data.map((post, index) => (
-          <Post post={post} key={index} loading={loading} />
+          <Post post={post} key={index} />
         ))}
         <Box
           sx={{

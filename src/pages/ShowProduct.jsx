@@ -6,36 +6,39 @@ import { Container } from '@mui/material'
 import { ProductContent } from '../components/product/showProduct'
 import { getProduct, getProductComments } from '../../services/shopService'
 
+import { getProductById } from '../reducers/productSlice'
+import { useSelector } from 'react-redux'
 const ShowProduct = () => {
   const { productId } = useParams()
-  const { setProduct, setProductComments, setLoading } = useContext(MainContext)
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true)
+  const product = useSelector(() => getProductById(productId))
+  // const { setProduct, setProductComments, setLoading } = useContext(MainContext)
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       setLoading(true)
 
-        const { data: productData } = await getProduct(productId)
-        const { data: productCommentsData } = await getProductComments(
-          productId,
-        )
-        setProduct(productData)
-        setProductComments(productCommentsData.comments)
-        console.log(productCommentsData)
+  //       const { data: productData } = await getProduct(productId)
+  //       const { data: productCommentsData } = await getProductComments(
+  //         productId,
+  //       )
+  //       setProduct(productData)
+  //       setProductComments(productCommentsData.comments)
+  //       console.log(productCommentsData)
 
-        setLoading(false)
-      } catch (error) {
-        console.log(error)
+  //       setLoading(false)
+  //     } catch (error) {
+  //       console.log(error)
 
-        setLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
+  //       setLoading(false)
+  //     }
+  //   }
+  //   fetchData()
+  // }, [])
 
   return (
     <Container maxWidth="lg">
-      <ProductContent />
+      <ProductContent product={product} />
     </Container>
   )
 }
