@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, Badge } from '@mui/material'
+import { Box, Typography, Badge, Chip } from '@mui/material'
 import { Percent } from '@mui/icons-material'
 import { toRial } from '../../helpers'
 const ProductPrice = ({ price, discount }) => {
@@ -14,7 +14,7 @@ const ProductPrice = ({ price, discount }) => {
   console.log(finalPrice)
 
   return (
-    <Box sx={{ display: 'column' }}>
+    <Box sx={{ display: 'column', ml: 1 }}>
       <Typography
         variant="body1"
         color="text.primary"
@@ -22,25 +22,31 @@ const ProductPrice = ({ price, discount }) => {
         sx={{ display: 'flex' }}
       >
         {toRial(finalPrice)}
+        <Typography color="secondary" sx={{ ml: 1 }}>
+          تومان
+        </Typography>
       </Typography>
 
       {discount === 0 ? null : (
-        <Typography
-          color="text.primary"
-          variant="subtitle1"
-          sx={{
-            display: 'flex',
-            textDecoration: discount === 0 ? null : 'line-through',
-            color: discount === 0 ? 'none' : 'gray !important',
-            textDecorationColor: 'white',
-            mt: 1,
-          }}
-        >
-          <Badge
-            badgeContent={discount}
-            color="error"
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <Typography
+            color="text.primary"
+            variant="subtitle1"
             sx={{
-              mr: 1,
+              display: 'flex',
+              textDecoration: discount === 0 ? null : 'line-through',
+              color: discount === 0 ? 'none' : 'gray !important',
+              textDecorationColor: 'white',
+              mt: 1,
+            }}
+          >
+            {toRial(price)}
+
+            {/* <Badge
+            badgeContent={discount}
+        
+            sx={{
+              ml: 2,
               color: 'secondary.main',
               '& .MuiBadge-badge': {
                 left: -2,
@@ -55,9 +61,15 @@ const ProductPrice = ({ price, discount }) => {
             }}
           >
             <Percent />
-          </Badge>
-          {toRial(price)}
-        </Typography>
+          </Badge> */}
+          </Typography>{' '}
+          <Chip
+            label={`${discount}%`}
+            color="error"
+            size="small"
+            sx={{ ml: 1 }}
+          />
+        </Box>
       )}
     </Box>
   )

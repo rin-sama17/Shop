@@ -12,6 +12,7 @@ import {
   ImageListItem,
   OutlinedInput,
   InputAdornment,
+  AvatarGroup,
 } from '@mui/material'
 import { useFormik } from 'formik'
 import { CustomDivider, SearchField } from '../components/common'
@@ -23,6 +24,8 @@ import { useNavigate } from 'react-router-dom'
 import { productAdded } from '../reducers/productSlice'
 import { toRial } from '../helpers'
 import { PatternFormat, NumericFormat } from 'react-number-format'
+import { toast } from 'react-toastify'
+import { useEffect } from 'react'
 
 const options = [
   'None',
@@ -67,19 +70,29 @@ const AddProduct = () => {
     validationSchema: productValidation,
     onSubmit: (values) => {
       dispatch(productAdded(values))
+      toast.success('پست جدید با موفقیت ساخته شد')
       navigate('/')
     },
   })
 
-  const handleChange = (e) => {
+  const handleFileChange = (e) => {
     const reader = new FileReader()
     console.log(reader)
     reader.onload = () => {
       if (reader.readyState === 2) {
-        // setPhoto(reader.result)
         formik.setFieldValue('thumbnail', reader.result)
         console.log(reader.result)
         console.log(formik.values.thumbnail)
+      }
+    }
+    reader.readAsDataURL(e.target.files[0])
+  }
+
+  const handleFilesChange = (e) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        formik.setFieldValue('thumbnail', reader.result)
       }
     }
     reader.readAsDataURL(e.target.files[0])
@@ -161,7 +174,7 @@ const AddProduct = () => {
                       hidden
                       type="file"
                       name="thumbnail"
-                      onChange={handleChange}
+                      onChange={handleFileChange}
                     />
                     <AddAPhoto />
                   </CardActionArea>
@@ -184,15 +197,45 @@ const AddProduct = () => {
             >
               <BurstMode />
               <input
-                hidden
                 accept="image/*"
-                multiple
+                hidden
                 type="file"
-                name="photos"
-                value={formik.values?.photos}
-                onChange={formik.handleChange}
+                name="thumbnail"
+                onChange={handleFilesChange}
               />
             </Button>
+            <AvatarGroup
+              variant="rounded"
+              max={3}
+              sx={{ my: 2, px: 1, alignItems: 'center' }}
+              slotProps={{
+                additionalAvatar: {
+                  sx: {
+                    ml: '1px !important',
+                    bgcolor: 'secondary.main',
+                    height: 50,
+                    width: 50,
+                  },
+                },
+              }}
+            >
+              {formik.values?.photos &&
+                formik.values.photos.map((item, index) => (
+                  <Button
+                    sx={{ p: 0, width: 60, height: 60, mr: 1 }}
+                    key={index}
+                    // onClick={() => setOpen(true)}
+                  >
+                    <CardMedia
+                      component="img"
+                      alt=""
+                      image={item}
+                      width={60}
+                      height={60}
+                    />
+                  </Button>
+                ))}
+            </AvatarGroup>
           </Grid>
           <Grid xs={12} md={9}>
             <Box>
@@ -317,7 +360,7 @@ const AddProduct = () => {
                     variant="outlined"
                   />
                 </Grid>
-                <Grid xs={12} sm={4}>
+                <Grid xs={12} sm={5}>
                   <TextField
                     fullWidth
                     size="small"

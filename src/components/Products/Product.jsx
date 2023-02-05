@@ -9,9 +9,9 @@ import {
 import { CustomLoading } from '../common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link as RouterLink } from 'react-router-dom'
-import ProductPrice from './ProductPrice'
+import { ProductPrice } from '../common'
 
-const Product = ({ product, loading, maxWidth, ...props }) => {
+const Product = ({ product, maxWidth, ...props }) => {
   return (
     <Grid
       xs={12}
@@ -20,82 +20,24 @@ const Product = ({ product, loading, maxWidth, ...props }) => {
     >
       <Card sx={{ maxWidth: maxWidth }}>
         <CardActionArea component={RouterLink} to={`/product/${product.id}`}>
-          <CustomLoading
-            loading={loading}
-            height={maxWidth}
-            width={maxWidth}
-            variant="rectangular"
-          >
-            <CardMedia
-              component="img"
-              sx={{ height: 240, width: 240 }}
-              alt={product.name}
-              image={product.thumbnail}
-            />
-          </CustomLoading>
+          <CardMedia
+            component="img"
+            sx={{ height: 240, width: 240 }}
+            alt={product.name}
+            image={product.thumbnail}
+          />
 
           <CardContent>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
+            <Typography
+              color="text.primary"
+              variant="subtitle1"
+              textAlign="left"
+              gutterBottom
             >
-              <CustomLoading
-                loading={loading}
-                height={30}
-                width="30%"
-                style={{ marginBottom: 6 }}
-              >
-                <Typography
-                  color="text.primary"
-                  variant="subtitle1"
-                  textAlign="left"
-                  gutterBottom
-                >
-                  {product.name}
-                </Typography>
-              </CustomLoading>
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                mt: 2,
-              }}
-            >
-              <CustomLoading
-                loading={loading}
-                height={20}
-                width="50%"
-                style={{ marginBottom: 6 }}
-              >
-                <ProductPrice
-                  price={product.price}
-                  discount={product.discount}
-                />
-              </CustomLoading>
+              {product.name}
+            </Typography>
 
-              <CustomLoading
-                loading={loading}
-                height="30px"
-                width="40px"
-                style={{ marginBottom: 6 }}
-              >
-                {' '}
-                <Typography
-                  color="secondary"
-                  variant="body1"
-                  textAlign="left"
-                  sx={{ height: 1 }}
-                  gutterBottom
-                >
-                  تومان{' '}
-                </Typography>
-              </CustomLoading>
-            </Box>
+            <ProductPrice price={product.price} discount={product.discount} />
           </CardContent>
         </CardActionArea>
       </Card>

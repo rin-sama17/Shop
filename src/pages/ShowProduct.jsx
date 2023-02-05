@@ -11,35 +11,12 @@ import { useSelector } from 'react-redux'
 const ShowProduct = () => {
   const { productId } = useParams()
 
-  const product = useSelector(() => getProductById(productId))
-  // const { setProduct, setProductComments, setLoading } = useContext(MainContext)
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       setLoading(true)
-
-  //       const { data: productData } = await getProduct(productId)
-  //       const { data: productCommentsData } = await getProductComments(
-  //         productId,
-  //       )
-  //       setProduct(productData)
-  //       setProductComments(productCommentsData.comments)
-  //       console.log(productCommentsData)
-
-  //       setLoading(false)
-  //     } catch (error) {
-  //       console.log(error)
-
-  //       setLoading(false)
-  //     }
-  //   }
-  //   fetchData()
-  // }, [])
+  const product = useSelector((state) => getProductById(state, productId))
 
   return (
-    <Container maxWidth="lg">
-      <ProductContent product={product} />
-    </Container>
+    // <Container maxWidth="lg">
+    <ProductContent product={product} />
+    // </Container>
   )
 }
 

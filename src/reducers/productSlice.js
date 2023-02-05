@@ -3,15 +3,16 @@ import { createSlice, nanoid } from '@reduxjs/toolkit';
 const initialState = {
     products: [
         {
+            id: "A33k5GmVlnMlPo7ZM9Uaf",
             name: 'sqas',
             price: '1999299',
             discount: 12,
-            details: '',
-            stock: '',
+            details: 'لباس لباس',
+            stock: 3,
             thumbnail: '',
             photos: '',
-            category: '',
-            tags: '',
+            category: 'لباس',
+            tags: 'لباس/پوشاک/مد',
         }
     ],
     state: "idel",
