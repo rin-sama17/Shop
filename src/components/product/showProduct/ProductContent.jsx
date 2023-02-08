@@ -19,6 +19,12 @@ import {
 import { ReportGmailerrorred } from '@mui/icons-material'
 
 const ProductContent = ({ product }) => {
+  const [numOfProduct, setNumOfProduct] = useState(0)
+  // const handleNumOfProduct = (e) => {
+  //   if (e.target.name === "minus" && product.stock) {
+  //     setNumOfProduct(numOfProduct)
+  //   }
+  // }
   return (
     <Grid container sx={{ width: 1, p: 5 }}>
       <Grid xs={12} md={4} sx={{ p: 1, minHeight: '70vh' }}>
@@ -68,7 +74,16 @@ const ProductContent = ({ product }) => {
                 }
               />
             ) : (
-              <CustomDivider label="موجود در انبار" color="success" />
+              <>
+                <CustomDivider label="موجود در انبار" color="success" />{' '}
+                <Typography
+                  variant="subtitle2"
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  {product.stock} عدد موجود است
+                </Typography>
+              </>
             )}{' '}
           </Box>
           <Typography
@@ -86,7 +101,9 @@ const ProductContent = ({ product }) => {
             sx={{ mr: 1, display: 'flex' }}
           >
             فروشنده:
-            <Typography color="secondary">ممد</Typography>
+            <Typography color="secondary" sx={{ ml: 1 }}>
+              ممد
+            </Typography>
           </Typography>{' '}
           <Box
             sx={{
@@ -100,14 +117,16 @@ const ProductContent = ({ product }) => {
           >
             <Button
               color="secondary"
-              disabled={product.stock === 0 ? true : false}
+              onClick={() => setNumOfProduct(numOfProduct + 1)}
+              disabled={Boolean(product.stock <= numOfProduct)}
             >
               +
             </Button>
-            <Typography sx={{ mx: 1 }}>1</Typography>
+            <Typography sx={{ mx: 1 }}>{numOfProduct}</Typography>
             <Button
               color="secondary"
-              disabled={product.stock === 0 ? true : false}
+              onClick={() => setNumOfProduct(numOfProduct - 1)}
+              disabled={Boolean(numOfProduct < 1)}
             >
               -
             </Button>
@@ -125,7 +144,7 @@ const ProductContent = ({ product }) => {
         </Card>
       </Grid>
       <Grid xs={12}>
-        <ProductComments />
+        <ProductComments productId={product.id} />
       </Grid>
     </Grid>
   )

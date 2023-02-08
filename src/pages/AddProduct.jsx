@@ -17,7 +17,7 @@ import {
 import { useFormik } from 'formik'
 import { CustomDivider, SearchField } from '../components/common'
 import Grid from '@mui/material/Unstable_Grid2'
-import { AddAPhoto, BookOnline, BurstMode, Percent } from '@mui/icons-material'
+import { BookOnline, BurstMode, Percent } from '@mui/icons-material'
 import { productValidation } from '../components/product/addProduct/validation/productValidation'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -26,7 +26,7 @@ import { toRial } from '../helpers'
 import { PatternFormat, NumericFormat } from 'react-number-format'
 import { toast } from 'react-toastify'
 import { useEffect } from 'react'
-
+import { ImageUploader } from '../components/common'
 const options = [
   'None',
   'Atria',
@@ -75,32 +75,7 @@ const AddProduct = () => {
     },
   })
 
-  const handleFileChange = (e) => {
-    const reader = new FileReader()
-    console.log(reader)
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        formik.setFieldValue('thumbnail', reader.result)
-        console.log(reader.result)
-        console.log(formik.values.thumbnail)
-      }
-    }
-    reader.readAsDataURL(e.target.files[0])
-  }
-
-  const handleFilesChange = (e) => {
-    const reader = new FileReader()
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        formik.setFieldValue('thumbnail', reader.result)
-      }
-    }
-    reader.readAsDataURL(e.target.files[0])
-  }
-
   const convertPrice = (a, b) => {
-    console.log(typeof a)
-    console.log(a)
     a = Number(a.split(',').join(''))
 
     if (a > b) {
@@ -134,55 +109,13 @@ const AddProduct = () => {
               alignItems: 'center',
             }}
           >
-            <Box component="div" sx={{ height: 200, width: 200, mb: 2 }}>
-              <ImageListItem>
-                {formik.values?.thumbnail ? (
-                  <CardMedia
-                    component="img"
-                    image={formik.values?.thumbnail}
-                    alt=""
-                    sx={{ height: 200, width: 200 }}
-                  />
-                ) : (
-                  <Box sx={{ height: 200, width: 200 }} />
-                )}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: 0,
-                    width: 1,
-                    height: 1,
-                    bgcolor: 'bgBlur.main',
-                  }}
-                >
-                  <CardActionArea
-                    component="label"
-                    sx={{
-                      color:
-                        formik.touched.thumbnail && formik.errors.thumbnail
-                          ? 'error.main'
-                          : 'warning.main',
-                      height: 1,
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      bgcolor: 'bgblur',
-                    }}
-                  >
-                    <input
-                      accept="image/*"
-                      hidden
-                      type="file"
-                      name="thumbnail"
-                      onChange={handleFileChange}
-                    />
-                    <AddAPhoto />
-                  </CardActionArea>
-                </Box>
-              </ImageListItem>
-            </Box>
-
-            <Button
+            <ImageUploader
+              formik={formik}
+              name="thumbnail"
+              color="warning"
+              size={200}
+            />
+            {/* <Button
               component="label"
               color="warning"
               sx={{
@@ -224,7 +157,6 @@ const AddProduct = () => {
                   <Button
                     sx={{ p: 0, width: 60, height: 60, mr: 1 }}
                     key={index}
-                    // onClick={() => setOpen(true)}
                   >
                     <CardMedia
                       component="img"
@@ -235,7 +167,7 @@ const AddProduct = () => {
                     />
                   </Button>
                 ))}
-            </AvatarGroup>
+            </AvatarGroup> */}
           </Grid>
           <Grid xs={12} md={9}>
             <Box>

@@ -1,11 +1,11 @@
 import { Avatar, Box, IconButton } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
-import { useContext } from 'react'
-import MainContext from '../../context'
-import { AccountCircle } from '@mui/icons-material'
+import { SingIn } from '../../pages'
+import { useSelector } from 'react-redux'
 
 const NavAvatar = () => {
-  const { user, setModal } = useContext(MainContext)
+  const user = null
+
   function stringToColor(string) {
     let hash = 0
     let i
@@ -19,6 +19,7 @@ const NavAvatar = () => {
     }
     return color
   }
+
   function stringAvatar(name) {
     return {
       sx: {
@@ -39,9 +40,7 @@ const NavAvatar = () => {
           />
         </Box>
       ) : (
-        <IconButton onClick={() => setModal(true)} color="secondary">
-          <AccountCircle />
-        </IconButton>
+        <SingIn />
       )}
     </>
   )

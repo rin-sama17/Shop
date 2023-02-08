@@ -26,7 +26,6 @@ const Products = () => {
             <Product
               product={product}
               key={index}
-              loading={loading}
               sm={6}
               md={4}
               lg={3}

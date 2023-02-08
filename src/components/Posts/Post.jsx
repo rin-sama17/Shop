@@ -21,7 +21,7 @@ import LinesEllipsis from 'react-lines-ellipsis'
 }
 import { slider01 } from '../../assets'
 
-const Post = ({ post, loading }) => {
+const Post = ({ post }) => {
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('md'))
   return (
@@ -36,21 +36,13 @@ const Post = ({ post, loading }) => {
           to={`/posts/${post.id}`}
           sx={{ height: 1 }}
         >
-          <CustomLoading
-            loading={loading}
+          <CardMedia
+            component="img"
             height="200"
-            width="300"
-            variant="rectangular"
-          >
-            <CardMedia
-              component="img"
-              height="200"
-              width="200"
-              alt={post.title}
-              image={slider01}
-            />
-          </CustomLoading>
-
+            width="200"
+            alt={post.title}
+            image={slider01}
+          />
           <CardContent>
             <Box
               sx={{
@@ -59,34 +51,20 @@ const Post = ({ post, loading }) => {
                 alignItems: 'center',
               }}
             >
-              <CustomLoading
-                loading={loading}
-                height={30}
-                width="30%"
-                style={{ marginBottom: 6 }}
+              <Typography
+                color="text.primary"
+                variant="body1"
+                textAlign="left"
+                gutterBottom
               >
-                <Typography
-                  color="text.primary"
-                  variant="body1"
-                  textAlign="left"
-                  gutterBottom
-                >
-                  {post.title}
-                </Typography>
-              </CustomLoading>
+                {post.title}
+              </Typography>
 
-              <CustomLoading
-                loading={loading}
-                height="30px"
-                width="30px"
-                style={{ marginBottom: 6 }}
-              >
-                <CustomIconButton
-                  title="علامت گذاری"
-                  color="info"
-                  icon={<TurnedInNot />}
-                />
-              </CustomLoading>
+              <CustomIconButton
+                title="علامت گذاری"
+                color="info"
+                icon={<TurnedInNot />}
+              />
             </Box>
             <Typography color="text.primary" variant="body1" textAlign="left">
               <LinesEllipsis text={post.body} maxLine={downMd ? 3 : 5} />

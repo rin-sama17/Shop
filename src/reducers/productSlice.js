@@ -65,5 +65,9 @@ export const getAllProduct = (state) => state.products.products;
 export const getProductById = (state, productId) =>
     state.products.products.find((product) => product.id === productId);
 
+
+export const getProductComments = (state, productId) =>
+    state.comments.comments.filter(comment => comment.peoductId === productId);
+
 export const { productAdded } = productSlice.actions;
 export default productSlice.reducer;

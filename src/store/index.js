@@ -4,6 +4,7 @@ import productReducer from "../reducers/productSlice.js";
 import postReducer from "../reducers/postSlice.js";
 import userReducer from "../reducers/userSlice.js";
 import themeReducer from "../reducers/themeSlice.js";
+import commentReducer from "../reducers/commentSlice.js";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         posts: postReducer,
         users: userReducer,
         theme: themeReducer,
+        comments: commentReducer,
     },
 });
 

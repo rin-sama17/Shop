@@ -1,42 +1,38 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { Typography, Card } from '@mui/material'
-import { CustomDivider, CustomLoading } from '../../common'
-import { useContext } from 'react'
-import MainContext from '../../../context'
-const ProductComments = () => {
-  const { loading, productComments } = useContext(MainContext)
-  console.log(productComments)
+import { Typography, Card, Divider, Stack } from '@mui/material'
+import { CustomDivider } from '../../common'
+import { useSelector } from 'react-redux'
+import { getProductComments } from '../../../reducers/productSlice'
+import { ShowTime } from '../../common'
+const ProductComments = ({ productId }) => {
+  const comments = useSelector((state) => getProductComments(state, productId))
   return (
     <>
-      {loading ? null : <CustomDivider label="کامنت ها" />}
-      {productComments &&
-        productComments.map((comment, index) => (
+      <CustomDivider label="کامنت ها" />
+      {comments &&
+        comments.map((comment, index) => (
           <Card sx={{ display: 'flex', p: 4, mb: 3 }} key={index}>
             <Grid container sx={{ width: 1 }}>
               <Grid
-                xs={12}
                 md={1}
-                sx={{ display: 'flex', justifyContent: 'center' }}
+                sx={{
+                  display: { xs: 'none', md: 'flex' },
+                  justifyContent: 'center',
+                }}
               >
-                {/* user profile */}
-                {/* <CustomLoading
-                  loading={loading}
-                  variant="circular"
-                  width={60}
-                  height={60}
-                >
-                  <Avatar
+                {/*
+                    <Avatar
                     src={product.images[0]}
                     sx={{ width: 60, height: 60, mb: 2 }}
                   >
                     {' '}
                     {comment.user.username}
-                  </Avatar>
-                </CustomLoading> */}
+                  </Avatar> 
+                  */}
               </Grid>
               <Grid
                 xs={12}
-                md={10}
+                md={11}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -47,31 +43,22 @@ const ProductComments = () => {
                   px: 2,
                 }}
               >
-                {/* user name */}
-
-                <CustomLoading loading={loading} variant="text" width={100}>
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  spacing={2}
+                  divider={<Divider orientation="vertical" flexItem />}
+                  sx={{ ml: 1, width: 1 }}
+                >
                   <Typography variant="h6" color="text.primary" gutterBottom>
-                    {comment.user.username}
+                    {comment.title}
                   </Typography>
-                </CustomLoading>
+                  <ShowTime timestamp={comment.date} />
+                </Stack>
 
-                <CustomLoading loading={loading} variant="text">
-                  <Typography variant="body1" color="text.primary">
-                    {comment.body}
-                  </Typography>
-                </CustomLoading>
-              </Grid>
-              <Grid xs={12} md={1}>
-                {/* date of comment */}
-                <CustomLoading loading={loading} variant="text">
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    textAlign="center"
-                  >
-                    {1402 / 1 / 1}
-                  </Typography>
-                </CustomLoading>
+                <Typography variant="body1" color="text.primary">
+                  {comment.body}
+                </Typography>
               </Grid>
             </Grid>
           </Card>

@@ -22,17 +22,11 @@ import Footer from './components/footer/Footer'
 
 import { useCookies } from 'react-cookie'
 function App() {
-  const [product, setProduct] = useState({})
-  const [productComments, setProductComments] = useState([])
-  const [loading, setLoading] = useState(true)
-
   const [posts, setPosts] = useState([])
   const [post, setPost] = useState({})
 
   const [mode, setMode] = useState(0)
   const [secondaryColor, setSecondaryColor] = useState('#ce93d8')
-  const [user, setUser] = useState(null)
-  const [modal, setModal] = useState(false)
 
   const [cookies, setCookie] = useCookies(['user'])
 
@@ -43,52 +37,17 @@ function App() {
     handleColorChange()
   }, [secondaryColor])
 
-  // useEffect(() => {
-  //   console.log(cookies.Secondary)
-  //   setSecondaryColor(cookies.Secondary)
-
-  //   const fetchData = async () => {
-  //     try {
-  //       setLoading(true)
-
-  //       const { data: productsData } = await getAllProducts()
-  //       const { data: postsData } = await getAllPosts()
-  //       console.log(productsData)
-  //       console.log(postsData)
-
-  //       setProducts(productsData.products)
-  //       setPosts(postsData.posts)
-
-  //       setLoading(false)
-  //     } catch (error) {
-  //       console.log(error)
-
-  //       setLoading(false)
-  //     }
-  //   }
-  //   fetchData()
-  // }, [])
-
   return (
     <MainContext.Provider
       value={{
-        setProduct,
-        setLoading,
-        loading,
         post,
         posts,
         setPost,
-        productComments,
-        setProductComments,
         secondaryColor,
         setSecondaryColor,
         setMode,
         cookies,
         handleColorChange,
-        user,
-        setUser,
-        modal,
-        setModal,
       }}
     >
       <MainLayout mode={mode}>
@@ -105,7 +64,6 @@ function App() {
           theme="dark"
         />
         <Navbar />
-        <SingIn />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<Posts />} />
