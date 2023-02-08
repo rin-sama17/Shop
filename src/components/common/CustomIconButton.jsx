@@ -1,8 +1,10 @@
 import { IconButton, Tooltip } from '@mui/material'
-export const CustomIconButton = ({ title, icon, color }) => {
+export const CustomIconButton = ({ title, icon, color, ...props }) => {
   return (
     <Tooltip arrow title={title} placement="top">
-      <IconButton color={color}>{icon}</IconButton>
+      <IconButton color={color} {...props}>
+        {icon}
+      </IconButton>
     </Tooltip>
   )
 }

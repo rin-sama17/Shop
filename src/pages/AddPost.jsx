@@ -14,47 +14,29 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  CardMedia,
+  Avatar,
+  IconButton,
 } from '@mui/material'
 import {
   CustomDivider,
   SearchField,
-  CustomTextField,
+  CustomFields,
   ImageUploader,
+  CustomIconButton,
 } from '../components/common'
 import Grid from '@mui/material/Unstable_Grid2'
-import {
-  AddAPhoto,
-  BurstMode,
-  ExpandMore,
-  AddCircle,
-} from '@mui/icons-material'
-import { useState } from 'react'
+import { ExpandMore, Edit, Delete } from '@mui/icons-material'
+import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import { useImmer } from 'use-immer'
 import { postValidation } from '../components/posts/addPost/validation/postValidation'
 import AddParagraph from '../components/posts/addPost/AddParagraph'
-const samples = [
-  {
-    title: 'فروشگاه من',
-    body:
-      '"فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار"',
-  },
-  {
-    title: 'فروشگاه من',
-    body:
-      '"فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار"',
-  },
-  {
-    title: 'فروشگاه من',
-    body:
-      '"فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار"',
-  },
-  {
-    title: 'فروشگاه من',
-    body:
-      '"فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار""فروشگاه من یک فروشگاه فلان بیسار"',
-  },
-]
+import { toast } from 'react-toastify'
+import { Stack } from '@mui/system'
+import { useSelector } from 'react-redux'
+import { getAllParagraph } from '../reducers/postSlice'
+import ShowParagraphs from '../components/posts/addPost/ShowParagraphs'
 const options = [
   'None',
   'Atria',
@@ -81,14 +63,17 @@ const options = [
 
 const AddPost = () => {
   const [category, setCategory] = useState('')
-  const [paragraph, setParagraph] = useImmer([])
+  const [action, setAction] = useState('read')
 
+  const paragraph = useSelector(getAllParagraph)
+  console.log(paragraph)
   const postFields = {
     heading: '',
     Introduction: '',
     thumbnail: '',
     category: '',
     tags: '',
+    paragraph: paragraph,
   }
   const formik = useFormik({
     initialValues: postFields,
@@ -96,6 +81,11 @@ const AddPost = () => {
     //   onSubmit: (values) => {
     //   },
   })
+  useEffect(() => {
+    if (formik.errors.paragraph) {
+      toast.error(formik.errors.paragraph)
+    }
+  }, [formik.errors.paragraph])
 
   const handleChange = (event) => {
     setCategory(event.target.value)
@@ -134,7 +124,7 @@ const AddPost = () => {
           </Grid>
           <Grid xs={12} md={9}>
             <Grid container spacing={2} sx={{ direction: 'ltr' }}>
-              <CustomTextField
+              <CustomFields
                 sm={8}
                 name="heading"
                 formik={formik}
@@ -159,13 +149,16 @@ const AddPost = () => {
                     <MenuItem>
                       <SearchField small />
                     </MenuItem>
-                    {options.map((option) => (
-                      <MenuItem value={option}> {option}</MenuItem>
+                    {options.map((option, index) => (
+                      <MenuItem value={option} key={index}>
+                        {' '}
+                        {option}
+                      </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
               </Grid>{' '}
-              <CustomTextField
+              <CustomFields
                 sm={12}
                 name="tags"
                 formik={formik}
@@ -174,9 +167,9 @@ const AddPost = () => {
                 type="number"
                 multiline
               />
-              <CustomTextField
+              <CustomFields
                 sm={12}
-                name="tags"
+                name="Introduction"
                 formik={formik}
                 multiline
                 rows={4}
@@ -194,27 +187,13 @@ const AddPost = () => {
           >
             ارسال کن
           </Button>
-          <Grid xs={12} sx={{ mt: 2 }}>
-            <CustomDivider label="پاراگراف های شما" color="info" />
-
-            <AddParagraph />
-          </Grid>{' '}
-          {samples.map((paragraph, index) => (
-            <Accordion sx={{ mb: 2 }} key={index}>
-              <AccordionSummary
-                expandIcon={<ExpandMore />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>{paragraph.title}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography>{paragraph.body}</Typography>
-              </AccordionDetails>
-            </Accordion>
-          ))}
+          <Grid xs={12} sx={{ mt: 2 }}></Grid>{' '}
         </Grid>
       </form>
+      <Stack sx={{ width: 1 }}>
+        <CustomDivider label="پاراگراف های شما" color="info" />
+        <AddParagraph /> <ShowParagraphs />
+      </Stack>
     </Box>
   )
 }

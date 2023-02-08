@@ -2,30 +2,25 @@ import {
   Typography,
   TextField,
   Button,
-  CardActionArea,
   Box,
   MenuItem,
   FormControl,
   Select,
   InputLabel,
-  CardMedia,
-  ImageListItem,
   OutlinedInput,
   InputAdornment,
-  AvatarGroup,
 } from '@mui/material'
 import { useFormik } from 'formik'
-import { CustomDivider, SearchField } from '../components/common'
+import { CustomDivider, CustomFields, SearchField } from '../components/common'
 import Grid from '@mui/material/Unstable_Grid2'
-import { BookOnline, BurstMode, Percent } from '@mui/icons-material'
+import { Percent } from '@mui/icons-material'
 import { productValidation } from '../components/product/addProduct/validation/productValidation'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { productAdded } from '../reducers/productSlice'
 import { toRial } from '../helpers'
-import { PatternFormat, NumericFormat } from 'react-number-format'
+import { NumericFormat } from 'react-number-format'
 import { toast } from 'react-toastify'
-import { useEffect } from 'react'
 import { ImageUploader } from '../components/common'
 const options = [
   'None',
@@ -172,19 +167,12 @@ const AddProduct = () => {
           <Grid xs={12} md={9}>
             <Box>
               <Grid container spacing={2} sx={{ direction: 'ltr' }}>
-                <Grid xs={12} sm={4}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    name="name"
-                    value={formik.values?.name}
-                    error={Boolean(formik.touched.name && formik.errors.name)}
-                    onChange={formik.handleChange}
-                    label="نام محصول"
-                    type="text"
-                    color="secondary"
-                  />
-                </Grid>{' '}
+                <CustomFields
+                  sm={4}
+                  formik={formik}
+                  name="name"
+                  label="نام محصول"
+                />
                 <Grid xs={12} sm={4}>
                   <NumericFormat
                     allowLeadingZeros
@@ -203,43 +191,34 @@ const AddProduct = () => {
                     variant="outlined"
                   />
                 </Grid>
-                <Grid xs={12} sm={4}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    name="discount"
-                    value={formik.values?.discount}
-                    error={Boolean(
-                      formik.touched.discount && formik.errors.discount,
-                    )}
-                    onChange={formik.handleChange}
-                    label="تخفیف"
-                    helperText={
-                      <Typography variant="caption">
-                        قیمت کالا بعد از تخفیف :
-                        {formik.errors.discount
-                          ? formik.errors.discount
-                          : toRial(
-                              convertPrice(
-                                formik.values?.price,
-                                formik.values?.discount,
-                              ),
-                            )}
-                      </Typography>
-                    }
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Percent />
-                        </InputAdornment>
-                      ),
-                    }}
-                    disabled={Boolean(!formik.values?.price.length > 0)}
-                    type="number"
-                    color="secondary"
-                    variant="outlined"
-                  />
-                </Grid>
+                <CustomFields
+                  sm={4}
+                  formik={formik}
+                  name="discount"
+                  label="تخفیف"
+                  disabled={Boolean(!formik.values?.price.length > 0)}
+                  type="number"
+                  helperText={
+                    <Typography variant="caption">
+                      قیمت کالا بعد از تخفیف :
+                      {formik.errors.discount
+                        ? formik.errors.discount
+                        : toRial(
+                            convertPrice(
+                              formik.values?.price,
+                              formik.values?.discount,
+                            ),
+                          )}
+                    </Typography>
+                  }
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Percent />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
                 <Grid xs={12} sm={5}>
                   <FormControl
                     fullWidth
@@ -276,55 +255,29 @@ const AddProduct = () => {
                     </Select>
                   </FormControl>
                 </Grid>{' '}
-                <Grid xs={12} sm={7}>
-                  <TextField
-                    fullWidth
-                    label="برچسب ها"
-                    multiline
-                    size="small"
-                    name="tags"
-                    value={formik.values?.tags}
-                    error={Boolean(formik.touched.tags && formik.errors.tags)}
-                    onChange={formik.handleChange}
-                    helperText="برچسب ها را با / از هم جدا کنید"
-                    type="number"
-                    color="secondary"
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid xs={12} sm={5}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    name="stock"
-                    value={formik.values?.stock}
-                    error={Boolean(formik.touched.stock && formik.errors.stock)}
-                    onChange={formik.handleChange}
-                    label="تعداد"
-                    helperText="موجودی کالا"
-                    type="number"
-                    color="secondary"
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid xs={12}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    name="details"
-                    value={formik.values?.details}
-                    error={Boolean(
-                      formik.touched.details && formik.errors.details,
-                    )}
-                    onChange={formik.handleChange}
-                    multiline
-                    rows={4}
-                    label="توضیحات"
-                    type="text"
-                    color="secondary"
-                    variant="outlined"
-                  />
-                </Grid>
+                <CustomFields
+                  sm={7}
+                  formik={formik}
+                  name="tags"
+                  label="برچسب ها"
+                  helperText="برچسب ها را با / از هم جدا کنید"
+                />
+                <CustomFields
+                  sm={5}
+                  formik={formik}
+                  name="stock"
+                  label="تعداد"
+                  helperText="موجودی کالا"
+                  type="number"
+                />
+                <CustomFields
+                  sm={12}
+                  formik={formik}
+                  name="details"
+                  multiline
+                  rows={4}
+                  label="توضیحات"
+                />
               </Grid>
             </Box>
           </Grid>
