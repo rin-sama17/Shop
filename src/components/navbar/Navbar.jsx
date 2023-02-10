@@ -27,7 +27,7 @@ const Navbar = () => {
               ? theme.palette.bgBlur.main
               : 'rgba(0,0,0,0)'
             : theme.palette.bgBlur.main,
-        backdropFilter: trigger ? 'blur(4px)' : 'blur(0px)',
+        backdropFilter: trigger ? 'blur(1px)' : 'blur(0px)',
       },
     })
   }

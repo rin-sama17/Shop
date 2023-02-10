@@ -1,38 +1,20 @@
-import { useState, useContext } from 'react'
-import MainContext from '../../../context'
+import { useState } from 'react'
 
 import Grid from '@mui/material/Unstable_Grid2'
-import { Box, Typography, Card, Button, TextField } from '@mui/material'
-import {
-  ProductImages,
-  ProductModal,
-  ProductDetails,
-  ProductComments,
-  ProductIcons,
-} from '.'
-import {
-  CustomDivider,
-  CustomLoading,
-  CustomIconButton,
-  ProductPrice,
-} from '../../common'
+import { Box, Typography, Card, Button } from '@mui/material'
+import { ProductImages, ProductDetails, ProductComments, ProductIcons } from '.'
+import { CustomDivider, CustomIconButton, ProductPrice } from '../../common'
 import { ReportGmailerrorred } from '@mui/icons-material'
 
 const ProductContent = ({ product }) => {
   const [numOfProduct, setNumOfProduct] = useState(0)
-  // const handleNumOfProduct = (e) => {
-  //   if (e.target.name === "minus" && product.stock) {
-  //     setNumOfProduct(numOfProduct)
-  //   }
-  // }
+
   return (
     <Grid container sx={{ width: 1, p: 5 }}>
-      <Grid xs={12} md={4} sx={{ p: 1, minHeight: '70vh' }}>
-        <CustomLoading height={40} width="20%" sx={{ mb: 1 }}>
-          <Typography color="text.primary" variant="h5" gutterBottom>
-            {product.name}
-          </Typography>
-        </CustomLoading>
+      <Grid xs={12} md={4} sx={{ p: 1, minHeight: '50vh' }}>
+        <Typography color="text.primary" variant="h5" gutterBottom>
+          {product.name}
+        </Typography>
         <Box
           sx={{
             display: 'flex',
@@ -144,6 +126,14 @@ const ProductContent = ({ product }) => {
         </Card>
       </Grid>
       <Grid xs={12}>
+        <Box sx={{ display: 'flex', mb: 2 }}>
+          <Typography color="text.secondary" variant="body1" sx={{ mr: 1 }}>
+            توضیحات:
+          </Typography>{' '}
+          <Typography color="text.primary" variant="body1" sx={{ mr: 1 }}>
+            {product.details}
+          </Typography>
+        </Box>
         <ProductComments productId={product.id} />
       </Grid>
     </Grid>

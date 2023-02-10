@@ -1,42 +1,28 @@
 import {
-  Typography,
-  TextField,
-  InputAdornment,
   Button,
-  CardActionArea,
   Box,
-  Card,
-  Menu,
   MenuItem,
   FormControl,
   Select,
   InputLabel,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  CardMedia,
-  Avatar,
-  IconButton,
 } from '@mui/material'
 import {
   CustomDivider,
   SearchField,
   CustomFields,
   ImageUploader,
-  CustomIconButton,
 } from '../components/common'
 import Grid from '@mui/material/Unstable_Grid2'
-import { ExpandMore, Edit, Delete } from '@mui/icons-material'
 import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
-import { useImmer } from 'use-immer'
 import { postValidation } from '../components/posts/addPost/validation/postValidation'
 import AddParagraph from '../components/posts/addPost/AddParagraph'
 import { toast } from 'react-toastify'
 import { Stack } from '@mui/system'
-import { useSelector } from 'react-redux'
-import { getAllParagraph } from '../reducers/postSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllParagraph, postAdded } from '../reducers/postSlice'
 import ShowParagraphs from '../components/posts/addPost/ShowParagraphs'
+import { useNavigate } from 'react-router-dom'
 const options = [
   'None',
   'Atria',
@@ -62,34 +48,33 @@ const options = [
 ]
 
 const AddPost = () => {
-  const [category, setCategory] = useState('')
-  const [action, setAction] = useState('read')
+  const paragraphs = useSelector(getAllParagraph)
+  const dispatch = useDispatch()
 
-  const paragraph = useSelector(getAllParagraph)
-  console.log(paragraph)
+  const navigate = useNavigate()
+
   const postFields = {
     heading: '',
     Introduction: '',
     thumbnail: '',
     category: '',
     tags: '',
-    paragraph: paragraph,
+    paragraphs: paragraphs,
   }
   const formik = useFormik({
     initialValues: postFields,
     validationSchema: postValidation,
-    //   onSubmit: (values) => {
-    //   },
+    onSubmit: (values) => {
+      dispatch(postAdded(values))
+      navigate('/')
+    },
   })
+
   useEffect(() => {
     if (formik.errors.paragraph) {
-      toast.error(formik.errors.paragraph)
+      toast.error(formik.errors.paragraphs)
     }
-  }, [formik.errors.paragraph])
-
-  const handleChange = (event) => {
-    setCategory(event.target.value)
-  }
+  }, [formik.errors.paragraphs])
 
   return (
     <Box
@@ -134,9 +119,13 @@ const AddPost = () => {
                 <FormControl fullWidth size="small">
                   <InputLabel>دسته بندی</InputLabel>
                   <Select
-                    value={category}
+                    name="category"
+                    value={formik.values.category}
+                    error={Boolean(
+                      formik.touched.category && formik.errors.category,
+                    )}
+                    onChange={formik.handleChange}
                     label="دسته بندی"
-                    onChange={handleChange}
                     MenuProps={{
                       PaperProps: {
                         style: {
@@ -187,7 +176,6 @@ const AddPost = () => {
           >
             ارسال کن
           </Button>
-          <Grid xs={12} sx={{ mt: 2 }}></Grid>{' '}
         </Grid>
       </form>
       <Stack sx={{ width: 1 }}>

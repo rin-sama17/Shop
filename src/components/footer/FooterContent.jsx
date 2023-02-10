@@ -1,25 +1,25 @@
-import { Typography, Box } from '@mui/material'
-import { useEffect, useState } from 'react'
-import Grid from '@mui/material/Unstable_Grid2'
-import { magazineItems } from '../../constants/magazineItems'
+import { Typography, Box, Divider, Stack } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { getAllPosts } from '../../reducers/postSlice'
+import { ShowTime } from '../common'
+
+import { Link as RouterLink } from 'react-router-dom'
 const FooterContent = () => {
-  const [newMagazines, setNewMagazines] = useState([])
-
-  useEffect(() => {
-    const filtredMagazines = magazineItems.sort(
-      (objA, objB) => Number(objA.date) - Number(objB.date),
-    )
-
-    setNewMagazines(filtredMagazines.slice(0, 4))
-  }, [])
+  const posts = useSelector(getAllPosts)
   return (
-    <>
-      <Grid
-        xs={12}
-        md={4}
-        sx={{ display: 'flex', flexDirection: 'column', px: 3 }}
-      >
-        <Typography variant="h6" color="text.secondary" sx={{ mb: 1 }}>
+    <Stack
+      justifyContent="space-around"
+      spacing={2}
+      divider={<Divider orientation="vertical" flexItem />}
+      sx={{
+        ml: 1,
+        height: 1,
+        flexDirection: { xs: 'column', sm: 'row' },
+        alignItems: { xs: 'start', sm: 'center' },
+      }}
+    >
+      <Box sx={{ width: { xs: 4 / 5, sm: 1 / 3 } }}>
+        <Typography variant="h6" color="secondary" sx={{ mb: 1 }}>
           فروشگاه من
         </Typography>
         <Typography variant="caption" color="text.primary">
@@ -29,36 +29,28 @@ const FooterContent = () => {
           ای دیزاین شده استروشگاه من یک فروشگاه ساخته شده با ری اکت و لاراول است
           که با متریال یو ای دتریال یو ای دیزاین شده استر
         </Typography>
-      </Grid>
-      <Grid
-        xs={12}
-        md={4}
-        sx={{ display: 'flex', flexDirection: 'column', px: 3 }}
-      >
-        <Typography variant="h6" color="text.secondary" sx={{ mb: 1 }}>
+      </Box>
+      <Box>
+        <Typography variant="h6" color="secondary" sx={{ mb: 1 }}>
           جدیدترین مجله های ما
         </Typography>
-        {newMagazines.map((item, index) => (
-          <Box sx={{ display: 'flex', flexDirection: 'column' }} key={index}>
-            <Typography variant="subtitle2" color="text.primary">
-              {item.title}
-            </Typography>
+        {posts.slice(0, 4).map((item, index) => (
+          <Stack alignItems="start" key={index} sx={{ mb: 1 }}>
             <Typography
-              variant="caption"
-              color="text.secondary"
-              sx={{ my: 0.5 }}
+              component={RouterLink}
+              to={`/posts/${item.id}`}
+              color="primary"
+              sx={{ textDecoration: 'none' }}
             >
-              شهریور 1401/2/3
+              {item.heading}
             </Typography>
-          </Box>
+
+            <ShowTime timestamp={item.date} />
+          </Stack>
         ))}
-      </Grid>
-      <Grid
-        xs={12}
-        md={4}
-        sx={{ display: 'flex', flexDirection: 'column', px: 3 }}
-      >
-        <Typography variant="h6" color="text.secondary" sx={{ mb: 1 }}>
+      </Box>
+      <Box>
+        <Typography variant="h6" color="secondary" sx={{ mb: 1 }}>
           تماس با ما
         </Typography>
         <Typography variant="subtitle2" color="text.primary" sx={{ mb: 1 }}>
@@ -67,8 +59,8 @@ const FooterContent = () => {
         <Typography variant="subtitle2" color="text.primary" sx={{ mb: 1 }}>
           شماره تلفن: 021128182812
         </Typography>
-      </Grid>
-    </>
+      </Box>
+    </Stack>
   )
 }
 export default FooterContent

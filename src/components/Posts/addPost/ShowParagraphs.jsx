@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllParagraph } from '../../../reducers/postSlice'
+import { getAllParagraph, paragraphDeleted } from '../../../reducers/postSlice'
 import {
   Typography,
   Accordion,
@@ -14,9 +14,16 @@ import {
 import { Delete, Edit, ExpandMore } from '@mui/icons-material'
 import { CustomIconButton } from '../../common'
 import EditParagraph from './EditParagraph'
+import { toast } from 'react-toastify'
 
 const ShowParagraphs = () => {
   const paragraph = useSelector(getAllParagraph)
+  const dispatch = useDispatch()
+
+  const handleDelete = (paragraph) => {
+    dispatch(paragraphDeleted({ id: paragraph.id }))
+    toast.success(`پاراگراف ${paragraph.title} با موفقیت حذف شد`)
+  }
 
   return (
     <>
@@ -51,6 +58,7 @@ const ShowParagraphs = () => {
                   title="حذف پاراگراف"
                   color="error"
                   icon={<Delete />}
+                  onClick={() => handleDelete(paragraph)}
                 />
               </Box>
             </Box>

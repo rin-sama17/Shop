@@ -7,3 +7,4 @@ export { default as CustomFields } from "./CustomFields";
 export { default as ProductPrice } from "./ProductPrice";
 export { default as ShowTime } from "./ShowTime";
 export { default as ImageUploader } from "./ImageUploader";
+export { default as ShowCategory } from "./ShowCategory";

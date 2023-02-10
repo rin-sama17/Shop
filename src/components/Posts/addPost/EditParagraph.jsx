@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getParagraphById, paragraphUpdated } from '../../../reducers/postSlice'
 import { toast } from 'react-toastify'
 const EditParagraph = ({ patagraphId }) => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
   const paragraph = useSelector((state) => getParagraphById(state, patagraphId))

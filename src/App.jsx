@@ -22,9 +22,6 @@ import Footer from './components/footer/Footer'
 
 import { useCookies } from 'react-cookie'
 function App() {
-  const [posts, setPosts] = useState([])
-  const [post, setPost] = useState({})
-
   const [mode, setMode] = useState(0)
   const [secondaryColor, setSecondaryColor] = useState('#ce93d8')
 
@@ -40,9 +37,6 @@ function App() {
   return (
     <MainContext.Provider
       value={{
-        post,
-        posts,
-        setPost,
         secondaryColor,
         setSecondaryColor,
         setMode,

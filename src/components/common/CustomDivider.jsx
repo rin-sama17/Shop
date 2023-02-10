@@ -1,5 +1,5 @@
 import { Typography, Divider, Box } from '@mui/material'
-const CustomDivider = ({ label, color }) => {
+const CustomDivider = ({ label, color, ...props }) => {
   return (
     <Box
       sx={{
@@ -13,6 +13,7 @@ const CustomDivider = ({ label, color }) => {
           width: 1,
           mb: 2,
         }}
+        {...props}
       >
         <Typography
           variant="body1"

@@ -5,21 +5,14 @@ import {
   CardContent,
   CardMedia,
   CardActionArea,
-  IconButton,
-  Tooltip,
   useMediaQuery,
 } from '@mui/material'
-import { CustomLoading, CustomIconButton } from '../common'
-import { useEffect, useState } from 'react'
+import { CustomIconButton } from '../common'
 import { useTheme } from '@mui/material/styles'
 import { TurnedInNot } from '@mui/icons-material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
-{
-  /* عکس موقت */
-}
-import { slider01 } from '../../assets'
 
 const Post = ({ post }) => {
   const theme = useTheme()
@@ -28,7 +21,7 @@ const Post = ({ post }) => {
     <Grid
       xs={12}
       md={6}
-      sx={{ display: 'flex', justifyContent: 'center', mb: 2, width: 1 }}
+      sx={{ display: 'flex', justifyContent: 'center', my: 2, width: 1 }}
     >
       <Card sx={{ maxWidth: 350 }}>
         <CardActionArea
@@ -40,8 +33,8 @@ const Post = ({ post }) => {
             component="img"
             height="200"
             width="200"
-            alt={post.title}
-            image={slider01}
+            alt={post.heading}
+            image={post.thumbnail}
           />
           <CardContent>
             <Box
@@ -57,7 +50,7 @@ const Post = ({ post }) => {
                 textAlign="left"
                 gutterBottom
               >
-                {post.title}
+                {post.heading}
               </Typography>
 
               <CustomIconButton
@@ -67,7 +60,10 @@ const Post = ({ post }) => {
               />
             </Box>
             <Typography color="text.primary" variant="body1" textAlign="left">
-              <LinesEllipsis text={post.body} maxLine={downMd ? 3 : 5} />
+              <LinesEllipsis
+                text={post.introduction}
+                maxLine={downMd ? 3 : 5}
+              />
             </Typography>
           </CardContent>
         </CardActionArea>

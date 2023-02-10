@@ -5,27 +5,30 @@ import {
   Typography,
   ImageListItem,
   useMediaQuery,
+  CardActionArea,
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
-import { magazineItems } from '../../constants/magazineItems'
 import Slider from 'react-slick'
-import { useState, useEffect } from 'react'
-import { CustomLoading } from '../common'
+import { useSelector } from 'react-redux'
+import { getAllPosts } from '../../reducers/postSlice'
 
 const HomeSlider = () => {
-  const [newMagazines, setNewMagazines] = useState([])
+  // const [newMagazines, setNewMagazines] = useState([])
+
+  const posts = useSelector(getAllPosts)
+
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('md'))
 
-  useEffect(() => {
-    const filtredMagazines = magazineItems.sort(
-      (objA, objB) => Number(objA.date) - Number(objB.date),
-    )
+  // useEffect(() => {
+  //   const filtredMagazines = magazineItems.sort(
+  //     (objA, objB) => Number(objA.date) - Number(objB.date),
+  //   )
 
-    setNewMagazines(filtredMagazines.slice(0, 4))
-  }, [])
+  //   setNewMagazines(filtredMagazines.slice(0, 4))
+  // }, [])
 
   const settings = {
     dots: true,
@@ -41,7 +44,7 @@ const HomeSlider = () => {
           }}
         >
           <img
-            src={magazineItems[i].img}
+            src={posts[i].thumbnail}
             alt=""
             style={{
               width: '50px',
@@ -64,10 +67,7 @@ const HomeSlider = () => {
                 mx: 1,
               }}
             >
-              <LinesEllipsis
-                text={magazineItems[i].title}
-                maxLine={downMd ? 3 : 5}
-              />
+              <LinesEllipsis text={posts[i].heading} maxLine={downMd ? 3 : 5} />
             </Typography>
           )}
         </Card>
@@ -79,17 +79,17 @@ const HomeSlider = () => {
   return (
     <Box sx={{ mb: 1, width: 1 }}>
       <Slider {...settings}>
-        {newMagazines.map((slide, index) => (
+        {posts.slice(0, 4).map((slide, index) => (
           <Box component="div" key={index}>
             <ImageListItem>
               <img
-                src={slide.img}
-                srcSet={slide.img}
-                alt={slide.text}
+                src={slide.thumbnail}
+                srcSet={slide.thumbnail}
+                alt={slide.heading}
                 style={{ height: '70vh' }}
               />
 
-              <Card
+              <CardActionArea
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -101,6 +101,7 @@ const HomeSlider = () => {
                   bgcolor: 'bgBlur.main',
                   width: 1,
                   height: 1,
+                  borderRadius: 0,
                 }}
               >
                 <Box
@@ -108,21 +109,22 @@ const HomeSlider = () => {
                   sx={{ textAlign: 'end', ml: 3, width: '80%' }}
                 >
                   <Typography variant="h4" color="secondary" sx={{ mb: 2 }}>
-                    {slide.title}
+                    {slide.heading}
                   </Typography>
 
                   <Typography
                     variant="body2"
                     sx={{ direction: 'ltr' }}
                     textAlign="start"
+                    color="text.primary"
                   >
                     <LinesEllipsis
-                      text={slide.caption}
+                      text={slide.introduction}
                       maxLine={downMd ? 3 : 5}
                     />
                   </Typography>
                 </Box>
-              </Card>
+              </CardActionArea>
             </ImageListItem>
           </Box>
         ))}

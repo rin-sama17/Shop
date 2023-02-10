@@ -3,7 +3,6 @@ import { Box, Typography, Badge, Chip } from '@mui/material'
 import { Percent } from '@mui/icons-material'
 import { toRial } from '../../helpers'
 const ProductPrice = ({ price, discount }) => {
-  console.log(price, discount)
   let finalPrice
   price = Number(price.split(',').join(''))
   if (discount > 0) {
@@ -11,7 +10,6 @@ const ProductPrice = ({ price, discount }) => {
   } else {
     finalPrice = price
   }
-  console.log(finalPrice)
 
   return (
     <Box sx={{ display: 'column', ml: 1 }}>
