@@ -1,11 +1,11 @@
 import { Container, Skeleton, Typography, Box } from '@mui/material'
 import { Suspense } from 'react'
 import { useSelector } from 'react-redux'
-import { getPostById } from '../../../reducers/postSlice'
+import { selectPostById } from '../../../reducers/postSlice'
 import { ShowCategory } from '../../common'
 
 const ShowSinglePost = ({ postId }) => {
-  const post = useSelector((state) => getPostById(state, postId))
+  const post = useSelector((state) => selectPostById(state, postId))
   return (
     <Container maxWidth="md" sx={{ p: 3 }}>
       <ShowCategory category={post.category} tags={post.tags} />

@@ -1,10 +1,11 @@
-import { Avatar, Box, IconButton } from '@mui/material'
+import { Avatar, Box} from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
 import { SingIn } from '../../pages'
 import { useSelector } from 'react-redux'
+import { selectUserInfo } from '../../reducers/userSlice';
 
 const NavAvatar = () => {
-  const user = null
+  const user = useSelector(selectUserInfo)
 
   function stringToColor(string) {
     let hash = 0

@@ -10,7 +10,7 @@ export const store = configureStore({
     reducer: {
         products: productReducer,
         posts: postReducer,
-        users: userReducer,
+        user: userReducer,
         theme: themeReducer,
         comments: commentReducer,
     },

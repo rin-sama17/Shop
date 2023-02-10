@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 import { ToastContainer } from 'react-toastify'
-import { getAllProducts, getAllPosts } from '../services/shopService'
 import MainContext from './context'
 import MainLayout from './layouts/MainLayout'
 import {
@@ -21,19 +20,30 @@ import { Navbar } from './components/navbar'
 import Footer from './components/footer/Footer'
 
 import { useCookies } from 'react-cookie'
+import { fetchPosts } from './reducers/postSlice'
+import { useDispatch, useSelector } from 'react-redux'
 function App() {
   const [mode, setMode] = useState(0)
   const [secondaryColor, setSecondaryColor] = useState('#ce93d8')
 
   const [cookies, setCookie] = useCookies(['user'])
 
-  const handleColorChange = () => {
-    setCookie('Secondary', secondaryColor, { path: '/' })
-  }
+  const dispatch = useDispatch()
+  const { error, status } = useSelector((state) => state.posts)
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchPosts())
+    }
+  }, [status, dispatch])
+
   useEffect(() => {
     handleColorChange()
   }, [secondaryColor])
 
+  const handleColorChange = () => {
+    setCookie('Secondary', secondaryColor, { path: '/' })
+  }
   return (
     <MainContext.Provider
       value={{

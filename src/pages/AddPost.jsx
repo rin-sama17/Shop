@@ -20,9 +20,14 @@ import AddParagraph from '../components/posts/addPost/AddParagraph'
 import { toast } from 'react-toastify'
 import { Stack } from '@mui/system'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllParagraph, postAdded } from '../reducers/postSlice'
+import {
+  addNewPost,
+  selectAllParagraph,
+  postAdded,
+} from '../reducers/postSlice'
 import ShowParagraphs from '../components/posts/addPost/ShowParagraphs'
 import { useNavigate } from 'react-router-dom'
+import { nanoid } from '@reduxjs/toolkit'
 const options = [
   'None',
   'Atria',
@@ -48,33 +53,57 @@ const options = [
 ]
 
 const AddPost = () => {
-  const paragraphs = useSelector(getAllParagraph)
+  // const [paragraphs, setParagraphs] = useState([])
+
+  const paragraphs = useSelector(selectAllParagraph)
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
   const postFields = {
     heading: '',
-    Introduction: '',
+    introduction: '',
     thumbnail: '',
     category: '',
     tags: '',
-    paragraphs: paragraphs,
+    paragraphs: [],
   }
+
   const formik = useFormik({
     initialValues: postFields,
     validationSchema: postValidation,
     onSubmit: (values) => {
-      dispatch(postAdded(values))
+      const {
+        heading,
+        introduction,
+        thumbnail,
+        category,
+        tags,
+        paragraphs,
+      } = values
+      dispatch(
+        addNewPost({
+          id: nanoid(),
+          date: new Date().toISOString(),
+          heading,
+          introduction,
+          thumbnail,
+          category,
+          tags,
+          paragraphs,
+        }),
+      )
       navigate('/')
     },
   })
 
   useEffect(() => {
-    if (formik.errors.paragraph) {
-      toast.error(formik.errors.paragraphs)
-    }
-  }, [formik.errors.paragraphs])
+    formik.setFieldValue('paragraphs', paragraphs)
+  }, [paragraphs])
+
+  console.log(formik.errors.paragraphs)
+  console.log(formik.values.paragraphs)
+  console.log(paragraphs)
 
   return (
     <Box
@@ -158,7 +187,7 @@ const AddPost = () => {
               />
               <CustomFields
                 sm={12}
-                name="Introduction"
+                name="introduction"
                 formik={formik}
                 multiline
                 rows={4}

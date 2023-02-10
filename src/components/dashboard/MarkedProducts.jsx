@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux'
 const MarkedProducts = () => {
   const [data, setData] = useState([])
 
-  const product = useSelector(getAllProduct)
+  const products = useSelector(getAllProduct)
   return (
     <Grid container>
       {data.map((product, index) => (

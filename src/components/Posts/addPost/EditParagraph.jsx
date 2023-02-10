@@ -12,13 +12,18 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Edit } from '@mui/icons-material'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getParagraphById, paragraphUpdated } from '../../../reducers/postSlice'
+import {
+  selectParagraphById,
+  paragraphUpdated,
+} from '../../../reducers/postSlice'
 import { toast } from 'react-toastify'
 const EditParagraph = ({ patagraphId }) => {
   const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
-  const paragraph = useSelector((state) => getParagraphById(state, patagraphId))
+  const paragraph = useSelector((state) =>
+    selectParagraphById(state, patagraphId),
+  )
 
   const { id, title, body, photo } = paragraph
 

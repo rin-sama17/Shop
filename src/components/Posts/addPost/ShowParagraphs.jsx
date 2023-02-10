@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllParagraph, paragraphDeleted } from '../../../reducers/postSlice'
+import {
+  selectAllParagraph,
+  paragraphDeleted,
+} from '../../../reducers/postSlice'
 import {
   Typography,
   Accordion,
@@ -17,7 +20,7 @@ import EditParagraph from './EditParagraph'
 import { toast } from 'react-toastify'
 
 const ShowParagraphs = () => {
-  const paragraph = useSelector(getAllParagraph)
+  const paragraph = useSelector(selectAllParagraph)
   const dispatch = useDispatch()
 
   const handleDelete = (paragraph) => {

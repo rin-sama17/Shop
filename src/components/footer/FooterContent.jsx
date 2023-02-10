@@ -1,11 +1,11 @@
 import { Typography, Box, Divider, Stack } from '@mui/material'
 import { useSelector } from 'react-redux'
-import { getAllPosts } from '../../reducers/postSlice'
+import { selectAllPosts } from '../../reducers/postSlice'
 import { ShowTime } from '../common'
 
 import { Link as RouterLink } from 'react-router-dom'
 const FooterContent = () => {
-  const posts = useSelector(getAllPosts)
+  const posts = useSelector(selectAllPosts)
   return (
     <Stack
       justifyContent="space-around"

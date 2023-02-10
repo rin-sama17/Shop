@@ -1,77 +1,40 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit';
+import { createPost, getAllPosts } from '../../services/shopService';
 
 const initialState = {
-    posts: [
-        {
-            paragraphs: [
-                { id: "dqwdqwdqwdqwd", title: "پیدایش", body: "", photo: "" }
-            ],
-            category: "فروشگاه من",
-            tags: "افتخارات/تاریخچه/فروشگاه",
-            date: '2025-02-09T14:17:03.409Z',
-            id: "dqwdqwdqwsdqwd",
-            heading: "تاریخچه فروشگاه من",
-            introduction: "فروشگاه من یک فروشگاه ساخته شده با ری اکت و لاراول میباشد همچنین با متریال یو ای دیزاین شده است", photo: ""
-        }, {
-            paragraphs: [
-                { id: "dqwdqwddwqwdqwd", title: "پیدایش", body: "", photo: "" }
-            ],
-            category: "فروشگاه من",
-            tags: "افتخارات/تاریخچه/فروشگاه",
-            date: '2025-02-09T14:17:03.409Z',
-            id: "dqwdqwdqwsdqwd",
-            heading: "تاریخچه فروشگاه من",
-            introduction: "فروشگاه من یک فروشگاه ساخته شده با ری اکت و لاراول میباشد همچنین با متریال یو ای دیزاین شده است", photo: ""
-        },
-
-
-    ],
+    posts: [],
     paragraphs: [],
-    state: "idel",
-    error: ""
+    status: "idel",
+    error: null
 };
+
+
+export const fetchPosts = createAsyncThunk(
+    "/posts/fetchPosts",
+    async () => {
+        const response = await getAllPosts();
+        return response.data;
+    }
+);
+
+export const addNewPost = createAsyncThunk(
+    "/posts/addPost",
+    async (initialPost) => {
+        const response = await createPost(initialPost);
+        return response.data;
+    }
+);
+
 
 const postSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {
-        postAdded: {
-            reducer(state, action) {
-                state.posts.push(action.payload);
-            },
-            prepare(
-                values
-            ) {
-                const {
-                    heading,
-                    Introduction,
-                    thumbnail,
-                    category,
-                    tags,
-                    paragraphs,
-                } = values;
-                return {
-                    payload: {
-                        id: nanoid(),
-                        date: new Date().toISOString(),
-                        heading,
-                        Introduction,
-                        thumbnail,
-                        category,
-                        tags,
-                        paragraphs,
-                    }
-                };
-            }
-        },
-
         paragraphAdded: {
             reducer(state, action) {
                 state.paragraphs.push(action.payload);
             },
-            prepare(
-                values
-            ) {
+            prepare(values) {
                 const {
                     photo,
                     title,
@@ -103,15 +66,34 @@ const postSlice = createSlice({
             state.paragraphs = state.paragraphs.filter((paragraph) => paragraph.id !== id);
         }
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchPosts.pending, (state, _) => {
+                state.status = "loading";
+            })
+            .addCase(fetchPosts.fulfilled, (state, action) => {
+                state.status = "completed";
+                state.posts.push(action.payload);
+            })
+            .addCase(fetchPosts.rejected, (state, action) => {
+                state.status = "failed";
+                state.error = action.error.message;
+            })
+            .addCase(addNewPost.fulfilled, (state, action) => {
+                state.posts.push(action.payload);
+            });
+    }
 });
 
-export const getAllPosts = state => state.posts.posts;
+export const selectAllPosts = state => state.posts.posts;
 
-export const getAllParagraph = state => state.posts.paragraphs;
-export const getParagraphById =
+export const selectAllParagraph = state => state.posts.paragraphs;
+
+export const selectParagraphById =
     (state, paragraphId) => state.posts.paragraphs.find(paragraph => paragraph.id === paragraphId);
 
-export const getPostById = (state, postId) => state.posts.posts.find(post => post.id === postId);
+export const selectPostById = (state, postId) => state.posts.posts.find(post => post.id === postId);
 
 export const { paragraphAdded, paragraphDeleted, paragraphUpdated, postAdded } = postSlice.actions;
+
 export default postSlice.reducer;

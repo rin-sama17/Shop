@@ -6,11 +6,11 @@ import MainContext from '../context'
 import { PostsFilter, Post } from '../components/Posts'
 import { CustomPagination } from '../components/common'
 import { useSelector } from 'react-redux'
-import { getAllPosts } from '../reducers/postSlice'
+import { selectAllPosts } from '../reducers/postSlice'
 
 const Posts = () => {
   const [data, setData] = useState([])
-  const posts = useSelector(getAllPosts)
+  const posts = useSelector(selectAllPosts)
 
   return (
     <Container maxWidth="md">

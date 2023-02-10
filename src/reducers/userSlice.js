@@ -4,7 +4,9 @@ import { useCookies } from 'react-cookie';
 
 const initialState = {
   loading: false,
-  userInfo: null,
+  userInfo: {
+    fullName: "rin",
+  },
   userToken: null,
   error: null,
   success: false,
@@ -33,6 +35,7 @@ const userSlice = createSlice({
   }
 });
 
+export const selectUserInfo = state => state.user.userInfo;
 
 export const { signedIn } = userSlice.actions;
 

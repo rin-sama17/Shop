@@ -20,19 +20,20 @@ import DashboardHome from './DashboardHome'
 
 const DashboardHomeContainer = ({ user }) => {
   const [open, setOpen] = useState(false)
+
   const actions = [
     { color: 'error', to: '', icon: <Logout />, name: 'خروج' },
     { color: 'info', to: '/editUser', icon: <Face6 />, name: 'ویرایش اطلاعات' },
     {
-      color: 'success',
-      to: '/addPost',
-      icon: <LibraryBooks />,
-      name: 'مقاله جدید',
-    },
-    {
       color: 'warning',
       to: '/addProduct',
       icon: <AddToPhotos />,
+      name: 'محصول جدید',
+    },
+    {
+      color: 'primary',
+      to: '/addPost',
+      icon: <LibraryBooks />,
       name: 'پست جدید',
     },
   ]

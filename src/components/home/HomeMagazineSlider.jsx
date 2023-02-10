@@ -12,12 +12,12 @@ import { Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import Slider from 'react-slick'
 import { useSelector } from 'react-redux'
-import { getAllPosts } from '../../reducers/postSlice'
+import { selectAllPosts } from '../../reducers/postSlice'
 
 const HomeSlider = () => {
   // const [newMagazines, setNewMagazines] = useState([])
 
-  const posts = useSelector(getAllPosts)
+  const posts = useSelector(selectAllPosts)
 
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('md'))

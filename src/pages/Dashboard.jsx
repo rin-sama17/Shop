@@ -22,7 +22,7 @@ import { useTheme } from '@mui/styles'
 
 const Dashboard = () => {
   const [pageNumber, setPageNumber] = useState(0)
-
+  console.log(pageNumber)
   const theme = useTheme()
   const isMdDown = useMediaQuery(theme.breakpoints.down('md'))
   const handlePageNumber = (event, value) => {
@@ -115,7 +115,6 @@ const Dashboard = () => {
       </Grid>
       <Grid xs={12} md={9.5} lg={10}>
         <SwipeableViews
-          disableLazyLoading
           enableMouseEvents
           index={pageNumber}
           onChangeIndex={handleSwipeNumber}
