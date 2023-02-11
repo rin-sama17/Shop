@@ -6,24 +6,45 @@ import {
   CardMedia,
   CardActionArea,
   useMediaQuery,
+  CardHeader,
+  Avatar,
 } from '@mui/material'
-import { CustomIconButton } from '../common'
+import { CustomIconButton, ShowTime } from '../common'
 import { useTheme } from '@mui/material/styles'
 import { TurnedInNot } from '@mui/icons-material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
+import { useGetPostQuery } from '../../api'
+import PostLoading from '../loading/PostLoading'
 
-const Post = ({ post }) => {
-  const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('md'))
-  return (
-    <Grid
-      xs={12}
-      md={6}
-      sx={{ display: 'flex', justifyContent: 'center', my: 2, width: 1 }}
-    >
-      <Card sx={{ maxWidth: 350 }}>
+const Post = ({ postId }) => {
+  const { data: post, isLoading, isSuccess } = useGetPostQuery(postId)
+
+  console.log('aaaaaaaaaaaaaaa1')
+  let content
+  if (isLoading) {
+    content = <PostLoading />
+  } else if (isSuccess) {
+    content = (
+      <Card sx={{ maxWidth: 345, m: 2 }}>
+        <CardHeader
+          avatar={
+            <Avatar
+              alt="Ted talk"
+              src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg"
+            />
+          }
+          action={
+            <CustomIconButton
+              title="علامت گذاری"
+              color="info"
+              icon={<TurnedInNot />}
+            />
+          }
+          title="rin"
+          subheader={<ShowTime timestap={post.date} />}
+        />
         <CardActionArea
           component={RouterLink}
           to={`/posts/${post.id}`}
@@ -32,42 +53,36 @@ const Post = ({ post }) => {
           <CardMedia
             component="img"
             height="200"
-            width="200"
-            alt={post.heading}
             image={post.thumbnail}
+            alt={post.heading}
           />
-          <CardContent>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <Typography
-                color="text.primary"
-                variant="body1"
-                textAlign="left"
-                gutterBottom
-              >
-                {post.heading}
-              </Typography>
 
-              <CustomIconButton
-                title="علامت گذاری"
-                color="info"
-                icon={<TurnedInNot />}
-              />
-            </Box>
-            <Typography color="text.primary" variant="body1" textAlign="left">
-              <LinesEllipsis
-                text={post.introduction}
-                maxLine={downMd ? 3 : 5}
-              />
+          <CardContent>
+            <Typography
+              color="text.primary"
+              variant="body1"
+              textAlign="left"
+              gutterBottom
+            >
+              {post.heading}
+            </Typography>
+
+            <Typography variant="body2" color="text.secondary" component="p">
+              <LinesEllipsis text={post.introduction} maxLine={2} />
             </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
+    )
+  }
+
+  return (
+    <Grid
+      xs={12}
+      md={6}
+      sx={{ display: 'flex', justifyContent: 'center', my: 2, width: 1 }}
+    >
+      {content}
     </Grid>
   )
 }

@@ -4,8 +4,9 @@ import { selectAllPosts } from '../../reducers/postSlice'
 import { ShowTime } from '../common'
 
 import { Link as RouterLink } from 'react-router-dom'
+import { useGetPostsQuery } from '../../api'
 const FooterContent = () => {
-  const posts = useSelector(selectAllPosts)
+  const { data: posts = [] } = useGetPostsQuery()
   return (
     <Stack
       justifyContent="space-around"
@@ -30,7 +31,7 @@ const FooterContent = () => {
           که با متریال یو ای دتریال یو ای دیزاین شده استر
         </Typography>
       </Box>
-      <Box>
+      <Box sx={{ width: { xs: 4 / 5, sm: 1 / 4 } }}>
         <Typography variant="h6" color="secondary" sx={{ mb: 1 }}>
           جدیدترین مجله های ما
         </Typography>

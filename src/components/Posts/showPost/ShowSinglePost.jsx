@@ -1,15 +1,12 @@
 import { Container, Skeleton, Typography, Box } from '@mui/material'
 import { Suspense } from 'react'
-import { useSelector } from 'react-redux'
-import { selectPostById } from '../../../reducers/postSlice'
 import { ShowCategory } from '../../common'
 
-const ShowSinglePost = ({ postId }) => {
-  const post = useSelector((state) => selectPostById(state, postId))
+const ShowSinglePost = ({ post }) => {
   return (
     <Container maxWidth="md" sx={{ p: 3 }}>
       <ShowCategory category={post.category} tags={post.tags} />
-      <Typography color="text.primary" variant="h4" sx={{ my: 2 }}>
+      <Typography color="text.primary" variant="h6" sx={{ my: 2 }}>
         {post.heading}
       </Typography>
       <Suspense
@@ -30,16 +27,13 @@ const ShowSinglePost = ({ postId }) => {
           />
         )}
       </Suspense>
-      <Typography color="text.secondary" variant="body1" sx={{ mb: 3 }}>
+      <Typography color="text.secondary" component="p" sx={{ mb: 3 }}>
         {post.introduction}
       </Typography>
       {post.paragraphs.map((item, index) => (
-        <Box key={index} sx={{ mb: 3 }}>
-          <Typography variant="h5" color="text.primary">
+        <Box key={index} sx={{ my: 3 }}>
+          <Typography variant="h5" color="text.primary" sx={{ mb: 2 }}>
             {item.title}
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-            {item.body}
           </Typography>
           {item.photo && (
             <img
@@ -47,7 +41,10 @@ const ShowSinglePost = ({ postId }) => {
               alt={item.title}
               style={{ width: '100%', marginTop: '8px' }}
             />
-          )}
+          )}{' '}
+          <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
+            {item.body}
+          </Typography>
         </Box>
       ))}
       {/* <Comments /> */}

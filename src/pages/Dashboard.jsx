@@ -32,6 +32,7 @@ const Dashboard = () => {
     setPageNumber(value)
   }
   const data = ['خانه', 'علامت شده', 'محصولات من', 'فاکتور ها', 'کامنت ها']
+
   const user = {
     fullName: 'رین',
     phone: '09031234321',

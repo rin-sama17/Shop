@@ -9,7 +9,7 @@ const CustomPagination = ({ data, setData }) => {
     const firstPage = (currentPage - 1) * 12
     const lastPage = firstPage + 12
     return data.slice(firstPage, lastPage)
-  }, [currentPage])
+  }, [currentPage, data])
 
   useEffect(() => {
     setData(currentTableData)

@@ -1,12 +1,16 @@
-import { createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, nanoid, createEntityAdapter } from '@reduxjs/toolkit';
 import { createPost, getAllPosts } from '../../services/shopService';
 
-const initialState = {
-    posts: [],
+
+
+const postAdaptor = createEntityAdapter();
+
+const initialState = postAdaptor.getInitialState({
     paragraphs: [],
     status: "idel",
     error: null
-};
+});
+
 
 
 export const fetchPosts = createAsyncThunk(
@@ -35,11 +39,7 @@ const postSlice = createSlice({
                 state.paragraphs.push(action.payload);
             },
             prepare(values) {
-                const {
-                    photo,
-                    title,
-                    body
-                } = values;
+                const { photo, title, body } = values;
                 return {
                     payload: {
                         id: nanoid(),
@@ -55,9 +55,10 @@ const postSlice = createSlice({
             const existingParagraph = state.paragraphs.find((paragraph) => paragraph.id === id);
 
             if (existingParagraph) {
-                existingParagraph.title = title;
-                existingParagraph.body = body;
-                existingParagraph.photo = photo;
+                const { title: prevTitle, body: prevBody, photo: prevPhoto } = existingParagraph;
+                prevTitle = title;
+                prevBody = body;
+                prevPhoto = photo;
             }
 
         },
@@ -73,26 +74,28 @@ const postSlice = createSlice({
             })
             .addCase(fetchPosts.fulfilled, (state, action) => {
                 state.status = "completed";
-                state.posts.push(action.payload);
+                postAdaptor.upsertMany(action.payload);
             })
             .addCase(fetchPosts.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.error.message;
             })
-            .addCase(addNewPost.fulfilled, (state, action) => {
-                state.posts.push(action.payload);
-            });
+            .addCase(addNewPost.fulfilled, postAdaptor.addOne);
     }
 });
 
-export const selectAllPosts = state => state.posts.posts;
 
 export const selectAllParagraph = state => state.posts.paragraphs;
-
 export const selectParagraphById =
     (state, paragraphId) => state.posts.paragraphs.find(paragraph => paragraph.id === paragraphId);
 
-export const selectPostById = (state, postId) => state.posts.posts.find(post => post.id === postId);
+
+export const {
+    selectAll: selectAllPosts,
+    selectById: selectPostById,
+    selectIds: selectPostIds
+} = postAdaptor.getSelectors(state => state.posts);
+
 
 export const { paragraphAdded, paragraphDeleted, paragraphUpdated, postAdded } = postSlice.actions;
 

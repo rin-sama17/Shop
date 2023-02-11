@@ -1,4 +1,4 @@
-import HomeMagazineSlider from './HomeMagazineSlider'
+import HomePostsSlider from './HomePostsSlider'
 import HomeDescription from './HomeDescription'
 import HomeNewProducts from './HomeNewProducts'
 import { CustomDivider } from '../common'
@@ -14,7 +14,7 @@ const HomeContent = () => {
 
       <CustomDivider label="مجله فروشگاه من" />
 
-      <HomeMagazineSlider />
+      <HomePostsSlider />
     </>
   )
 }

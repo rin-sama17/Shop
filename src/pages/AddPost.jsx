@@ -28,6 +28,7 @@ import {
 import ShowParagraphs from '../components/posts/addPost/ShowParagraphs'
 import { useNavigate } from 'react-router-dom'
 import { nanoid } from '@reduxjs/toolkit'
+import { useAddNewPostMutation } from '../api'
 const options = [
   'None',
   'Atria',
@@ -56,9 +57,35 @@ const AddPost = () => {
   // const [paragraphs, setParagraphs] = useState([])
 
   const paragraphs = useSelector(selectAllParagraph)
-  const dispatch = useDispatch()
 
+  const [addNewPost] = useAddNewPostMutation()
   const navigate = useNavigate()
+
+  const handleSubmitForm = async (values) => {
+    try {
+      const {
+        heading,
+        introduction,
+        thumbnail,
+        category,
+        tags,
+        paragraphs,
+      } = values
+      await addNewPost({
+        id: nanoid(),
+        date: new Date().toISOString(),
+        heading,
+        introduction,
+        thumbnail,
+        category,
+        tags,
+        paragraphs,
+      }).unwrap(),
+        navigate('/')
+    } catch (error) {
+      console.error('Failed to save the post', error)
+    }
+  }
 
   const postFields = {
     heading: '',
@@ -73,37 +100,13 @@ const AddPost = () => {
     initialValues: postFields,
     validationSchema: postValidation,
     onSubmit: (values) => {
-      const {
-        heading,
-        introduction,
-        thumbnail,
-        category,
-        tags,
-        paragraphs,
-      } = values
-      dispatch(
-        addNewPost({
-          id: nanoid(),
-          date: new Date().toISOString(),
-          heading,
-          introduction,
-          thumbnail,
-          category,
-          tags,
-          paragraphs,
-        }),
-      )
-      navigate('/')
+      handleSubmitForm(values)
     },
   })
 
   useEffect(() => {
     formik.setFieldValue('paragraphs', paragraphs)
   }, [paragraphs])
-
-  console.log(formik.errors.paragraphs)
-  console.log(formik.values.paragraphs)
-  console.log(paragraphs)
 
   return (
     <Box

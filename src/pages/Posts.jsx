@@ -1,22 +1,23 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { useState, useMemo, useContext } from 'react'
-import { Pagination, Box, Container } from '@mui/material'
+import { useState } from 'react'
+import { Box, Container } from '@mui/material'
 
-import MainContext from '../context'
 import { PostsFilter, Post } from '../components/Posts'
 import { CustomPagination } from '../components/common'
 import { useSelector } from 'react-redux'
 import { selectAllPosts } from '../reducers/postSlice'
+import { useGetPostsQuery } from '../api'
 
 const Posts = () => {
   const [data, setData] = useState([])
-  const posts = useSelector(selectAllPosts)
-
+  const { data: posts = [] } = useGetPostsQuery()
+  console.log(posts)
+  console.log(data)
   return (
     <Container maxWidth="md">
       <Grid container>
         {data.map((post, index) => (
-          <Post post={post} key={index} />
+          <Post postId={post.id} key={index} />
         ))}
         <Box
           sx={{
