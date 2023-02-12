@@ -21,7 +21,6 @@ import PostLoading from '../loading/PostLoading'
 const Post = ({ postId }) => {
   const { data: post, isLoading, isSuccess } = useGetPostQuery(postId)
 
-  console.log('aaaaaaaaaaaaaaa1')
   let content
   if (isLoading) {
     content = <PostLoading />
@@ -43,7 +42,7 @@ const Post = ({ postId }) => {
             />
           }
           title="rin"
-          subheader={<ShowTime timestap={post.date} />}
+          subheader={<ShowTime timestamp={post.date} />}
         />
         <CardActionArea
           component={RouterLink}

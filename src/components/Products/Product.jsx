@@ -1,22 +1,32 @@
 import {
   Typography,
-  Box,
   Card,
   CardContent,
   CardMedia,
   CardActionArea,
 } from '@mui/material'
-import { CustomLoading } from '../common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link as RouterLink } from 'react-router-dom'
+import { useGetProductQuery } from '../../api'
 import { ProductPrice } from '../common'
+import ProductLoading from '../loading/ProductLoading'
 
-const Product = ({ product, maxWidth, ...props }) => {
+const Product = ({ productId, maxWidth }) => {
+  const { data: product, isLoading } = useGetProductQuery(productId)
+  if (productId === 'gGctqwQ4JB9t8uSeKhuSG') {
+    return <ProductLoading />
+  }
+  if (isLoading) {
+    return <ProductLoading />
+  }
+
   return (
     <Grid
       xs={12}
+      sm={6}
+      md={4}
+      lg={3}
       sx={{ display: 'flex', justifyContent: 'center', mb: 2, width: 1 }}
-      {...props}
     >
       <Card sx={{ maxWidth: maxWidth }}>
         <CardActionArea component={RouterLink} to={`/product/${product.id}`}>

@@ -2,22 +2,13 @@
 import Grid from '@mui/material/Unstable_Grid2'
 import { Product } from '../Products'
 
-import { useSelector } from 'react-redux'
-import { getAllProduct } from '../../reducers/productSlice'
+import { useGetProductsQuery } from '../../api'
 const HomeNewProducts = () => {
-  const products = useSelector(getAllProduct)
-
+  const { data: products = [] } = useGetProductsQuery()
   return (
     <Grid container sx={{ width: 1 }}>
       {products.slice(0, 12).map((product, index) => (
-        <Product
-          product={product}
-          key={index}
-          sm={6}
-          md={4}
-          lg={3}
-          maxWidth={240}
-        />
+        <Product productId={product.id} key={index} maxWidth={240} />
       ))}
     </Grid>
   )

@@ -8,9 +8,7 @@ import {
   ShoppingCart,
 } from '@mui/icons-material'
 import { Box } from '@mui/material'
-import MainContext from '../../../context'
-import { useContext } from 'react'
-import { CustomLoading, CustomIconButton } from '../../common'
+import { CustomIconButton } from '../../common'
 const ProductIcons = () => {
   return (
     <Box sx={{ mb: 1, display: 'flex' }}>

@@ -1,4 +1,4 @@
-import { Container, Skeleton, Typography } from '@mui/material'
+import { Container, Skeleton } from '@mui/material'
 import React from 'react'
 
 const ShowPostLoading = () => {

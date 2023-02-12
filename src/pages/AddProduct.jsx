@@ -22,6 +22,8 @@ import { toRial } from '../helpers'
 import { NumericFormat } from 'react-number-format'
 import { toast } from 'react-toastify'
 import { ImageUploader } from '../components/common'
+import { useAddNewProductMutation } from '../api'
+import { nanoid } from '@reduxjs/toolkit'
 const options = [
   'None',
   'Atria',
@@ -49,6 +51,41 @@ const AddProduct = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const [addNewProduct] = useAddNewProductMutation()
+
+  const handleSubmitForm = async (values) => {
+    try {
+      const {
+        name,
+        price,
+        discount,
+        details,
+        stock,
+        thumbnail,
+        photos,
+        category,
+        tags,
+      } = values
+      await addNewProduct({
+        id: nanoid(),
+        date: new Date().toISOString(),
+        name,
+        price,
+        discount,
+        details,
+        stock,
+        thumbnail,
+        photos,
+        category,
+        tags,
+      })
+      toast.success('پست جدید با موفقیت ساخته شد')
+      navigate('/')
+    } catch (error) {
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
+    }
+  }
+
   const productFieldNames = {
     name: '',
     price: '',
@@ -64,9 +101,7 @@ const AddProduct = () => {
     initialValues: productFieldNames,
     validationSchema: productValidation,
     onSubmit: (values) => {
-      dispatch(productAdded(values))
-      toast.success('پست جدید با موفقیت ساخته شد')
-      navigate('/')
+      handleSubmitForm(values)
     },
   })
 

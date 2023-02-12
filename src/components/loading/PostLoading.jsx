@@ -1,5 +1,4 @@
-import { Skeleton, Box, Card, CardHeader, CardContent } from '@mui/material'
-import React from 'react'
+import { Skeleton, Card, CardHeader, CardContent } from '@mui/material'
 
 const PostLoading = () => {
   return (

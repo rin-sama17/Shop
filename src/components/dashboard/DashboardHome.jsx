@@ -1,5 +1,4 @@
 import { useState, useContext } from 'react'
-import MainContext from '../../context'
 import {
   Box,
   CardMedia,
@@ -22,17 +21,6 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { CustomIconButton, CustomDivider } from '../common'
 
 const DashboardHome = ({ user }) => {
-  const {
-    secondaryColor,
-    setSecondaryColor,
-    setMode,
-    mode,
-    handleColorChange,
-  } = useContext(MainContext)
-  const handleRadioChange = (event) => {
-    setMode(event.target.value)
-  }
-
   const userData = [
     { title: 'نام', content: user.fullName },
     { title: 'محل سکونت', content: user.address },
@@ -96,37 +84,6 @@ const DashboardHome = ({ user }) => {
         </Box>
 
         <CustomDivider label="شخصی سازی" />
-        <Grid
-          xs={12}
-          sx={{
-            px: 2,
-            mb: 2,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <FormControl>
-            <RadioGroup
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-              value={mode}
-              onChange={handleRadioChange}
-            >
-              <FormControlLabel
-                value={1}
-                control={<Radio />}
-                label={<Typography color="text.primary">حالت روز</Typography>}
-              />
-              <FormControlLabel
-                value={0}
-                control={<Radio />}
-                label={<Typography color="text.primary">حالت شب</Typography>}
-              />
-            </RadioGroup>
-          </FormControl>
-        </Grid>
 
         <Grid
           xs={12}
@@ -146,7 +103,7 @@ const DashboardHome = ({ user }) => {
                 mr: 2,
               }}
             >
-              <Button
+              {/* <Button
                 sx={{ mb: 2, color: secondaryColor }}
                 onClick={handleColorChange}
               >
@@ -164,7 +121,7 @@ const DashboardHome = ({ user }) => {
                 }}
               >
                 رنگ پیشفرض
-              </Button>
+              </Button> */}
             </Box>
           </Card>
         </Grid>

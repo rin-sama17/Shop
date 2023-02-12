@@ -5,6 +5,7 @@ import {
   FormControl,
   Select,
   InputLabel,
+  Stack,
 } from '@mui/material'
 import {
   CustomDivider,
@@ -18,17 +19,12 @@ import { useFormik } from 'formik'
 import { postValidation } from '../components/posts/addPost/validation/postValidation'
 import AddParagraph from '../components/posts/addPost/AddParagraph'
 import { toast } from 'react-toastify'
-import { Stack } from '@mui/system'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  addNewPost,
-  selectAllParagraph,
-  postAdded,
-} from '../reducers/postSlice'
 import ShowParagraphs from '../components/posts/addPost/ShowParagraphs'
 import { useNavigate } from 'react-router-dom'
 import { nanoid } from '@reduxjs/toolkit'
 import { useAddNewPostMutation } from '../api'
+import { useSelector } from 'react-redux'
+import { selectAllParagraph } from '../reducers/postSlice'
 const options = [
   'None',
   'Atria',
@@ -54,8 +50,6 @@ const options = [
 ]
 
 const AddPost = () => {
-  // const [paragraphs, setParagraphs] = useState([])
-
   const paragraphs = useSelector(selectAllParagraph)
 
   const [addNewPost] = useAddNewPostMutation()

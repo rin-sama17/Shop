@@ -1,9 +1,7 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { useState, useMemo, useContext } from 'react'
-import { Pagination, Box, Container } from '@mui/material'
+import { useState } from 'react'
+import { Box } from '@mui/material'
 
-import MainContext from '../../context'
-// import { productsData } from '../constants/products'
 import { Product } from '../Products'
 import { CustomPagination } from '../common'
 import { getAllProduct } from '../../reducers/productSlice'

@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, nanoid, createEntityAdapter } from '@reduxjs/toolkit';
-import { createPost, getAllPosts } from '../../services/shopService';
 
 
 
-const postAdaptor = createEntityAdapter();
+const postAdaptor = createEntityAdapter({
+    sortComparer: (a, b) => b.date.localeCompare(a.date)
+});
 
 const initialState = postAdaptor.getInitialState({
     paragraphs: [],
@@ -13,21 +14,6 @@ const initialState = postAdaptor.getInitialState({
 
 
 
-export const fetchPosts = createAsyncThunk(
-    "/posts/fetchPosts",
-    async () => {
-        const response = await getAllPosts();
-        return response.data;
-    }
-);
-
-export const addNewPost = createAsyncThunk(
-    "/posts/addPost",
-    async (initialPost) => {
-        const response = await createPost(initialPost);
-        return response.data;
-    }
-);
 
 
 const postSlice = createSlice({
@@ -55,10 +41,9 @@ const postSlice = createSlice({
             const existingParagraph = state.paragraphs.find((paragraph) => paragraph.id === id);
 
             if (existingParagraph) {
-                const { title: prevTitle, body: prevBody, photo: prevPhoto } = existingParagraph;
-                prevTitle = title;
-                prevBody = body;
-                prevPhoto = photo;
+                existingParagraph.title = title;
+                existingParagraph.body = body;
+                existingParagraph.photo = photo;
             }
 
         },
@@ -67,21 +52,7 @@ const postSlice = createSlice({
             state.paragraphs = state.paragraphs.filter((paragraph) => paragraph.id !== id);
         }
     },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchPosts.pending, (state, _) => {
-                state.status = "loading";
-            })
-            .addCase(fetchPosts.fulfilled, (state, action) => {
-                state.status = "completed";
-                postAdaptor.upsertMany(action.payload);
-            })
-            .addCase(fetchPosts.rejected, (state, action) => {
-                state.status = "failed";
-                state.error = action.error.message;
-            })
-            .addCase(addNewPost.fulfilled, postAdaptor.addOne);
-    }
+
 });
 
 

@@ -6,18 +6,17 @@ import rtlPlugin from 'stylis-plugin-rtl'
 import createCache from '@emotion/cache'
 import Grid from '@mui/material/Unstable_Grid2'
 
-import { themes } from './theme/theme'
+import { darkTheme } from './theme/theme'
 
 const cacheRTL = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
 })
 
-const MainLayout = ({ children, mode }) => {
-  const appThemes = themes()
+const MainLayout = ({ children }) => {
   return (
     <CacheProvider value={cacheRTL}>
-      <ThemeProvider theme={appThemes[mode]}>
+      <ThemeProvider theme={darkTheme}>
         <HelmetProvider>
           <Helmet>
             <title>فروشگاه من</title>
