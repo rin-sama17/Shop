@@ -1,16 +1,13 @@
 import {
   Typography,
-  Box,
   Card,
   CardContent,
   CardMedia,
   CardActionArea,
-  useMediaQuery,
   CardHeader,
   Avatar,
 } from '@mui/material'
 import { CustomIconButton, ShowTime } from '../common'
-import { useTheme } from '@mui/material/styles'
 import { TurnedInNot } from '@mui/icons-material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link as RouterLink } from 'react-router-dom'

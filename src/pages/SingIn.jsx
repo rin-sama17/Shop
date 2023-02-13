@@ -28,8 +28,8 @@ import { useFormik } from 'formik'
 import { userValidation } from '../components/singIn/validation/userValidation'
 import { signedIn } from '../reducers/userSlice'
 import { useDispatch } from 'react-redux'
+import { CustomFields } from '../components/common'
 const SingIn = () => {
-  const [showPassword, setShowPassword] = useState(false)
   const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
@@ -48,21 +48,14 @@ const SingIn = () => {
     const { singInFullname, singInPhone, singInPwd } = formik.values
     dispatch(signedIn(singInFullname, singInPhone, singInPwd))
     toast.success('کاربر با موفقیت ساخته شد')
-    // if (formik.errors.fullname || formik.errors.phone) {
-    //   toast.error('لطفا تمام فیلد ها را کامل کنید')
-    // }
   }
 
   const handleLoginForm = () => {
     const { loginPhone, loginPwd } = formik.values
-    // if (formik.errors.fullname || formik.errors.phone) {
-    //   toast.error('لطفا تمام فیلد ها را کامل کنید')
-    // }
   }
 
   return (
     <>
-      {' '}
       <IconButton onClick={() => setOpen(true)} color="secondary">
         <AccountCircle />
       </IconButton>
@@ -78,7 +71,6 @@ const SingIn = () => {
           backdropFilter: 'blur(3px)',
         }}
       >
-        {/* <LogIn /> */}
         <Stack
           direction="row"
           spacing={3}
@@ -89,81 +81,36 @@ const SingIn = () => {
           <Box sx={{ width: 1 / 2, height: 1 / 2 }}>
             <form autoComplete="off">
               <Grid container spacing={2} sx={{ direction: 'ltr' }}>
-                <Grid xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    label="نام و نام خانوادگی"
-                    type="text"
-                    name="singInFullname"
-                    color="secondary"
-                    error={Boolean(
-                      formik.touched.singInFullname &&
-                        formik.errors.singInFullname,
-                    )}
-                    value={formik.values?.singInFullname}
-                    onChange={formik.handleChange}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Face />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Grid>{' '}
-                <Grid xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    label="شماره موبایل"
-                    type="number"
-                    name="singInPhone"
-                    color="secondary"
-                    variant="outlined"
-                    error={Boolean(
-                      formik.touched.singInPhone && formik.errors.singInPhone,
-                    )}
-                    value={formik.values?.singInPhone}
-                    onChange={formik.handleChange}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Phone />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Grid>
-                <Grid xs={12}>
-                  <FormControl
-                    sx={{ width: 1 }}
-                    variant="outlined"
-                    size="small"
-                  >
-                    <InputLabel>پسورد</InputLabel>
-                    <OutlinedInput
-                      name="singInPwd"
-                      value={formik.values?.singInPwd}
-                      onChange={formik.handleChange}
-                      type={showPassword ? 'text' : 'password'}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={() =>
-                              setShowPassword((prevShow) => !prevShow)
-                            }
-                            edge="end"
-                          >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      label="پسورد"
-                    />
-                  </FormControl>
-                </Grid>
+                <CustomFields
+                  md={6}
+                  name="singInFullname"
+                  label="نام و نام خانوادگی"
+                  formik={formik}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Face />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+
+                <CustomFields
+                  md={6}
+                  label="شماره موبایل"
+                  type="number"
+                  name="singInPhone"
+                  formik={formik}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Phone />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <CustomFields pwd name="singInPwd" formik={formik} />
+
                 <Button
                   size="small"
                   color="secondary"
@@ -180,56 +127,21 @@ const SingIn = () => {
           <Box sx={{ width: 1 / 2 }}>
             <form autoComplete="off" onSubmit={formik.handleSubmit}>
               <Grid container spacing={2} sx={{ direction: 'ltr' }}>
-                <Grid xs={12} md={6}>
-                  <TextField
-                    fullWidth
-                    size="small"
-                    label="شماره موبایل"
-                    type="number"
-                    name="phone"
-                    color="secondary"
-                    variant="outlined"
-                    error={Boolean(formik.touched.phone && formik.errors.phone)}
-                    value={formik.values?.phone}
-                    onChange={formik.handleChange}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Phone />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Grid>
-                <Grid xs={12} md={6}>
-                  <FormControl
-                    sx={{ width: 1 }}
-                    variant="outlined"
-                    size="small"
-                  >
-                    <InputLabel>پسورد</InputLabel>
-                    <OutlinedInput
-                      name="pwd"
-                      value={formik.values?.pwd}
-                      onChange={formik.handleChange}
-                      type={showPassword ? 'text' : 'password'}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={() =>
-                              setShowPassword((prevShow) => !prevShow)
-                            }
-                            edge="end"
-                          >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      label="پسورد"
-                    />
-                  </FormControl>
-                </Grid>
+                <CustomFields
+                  md={6}
+                  label="شماره موبایل"
+                  type="number"
+                  name="loginPhone"
+                  formik={formik}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <Phone />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <CustomFields md={6} pwd formik={formik} name="loginPwd" />
 
                 <Button
                   size="small"

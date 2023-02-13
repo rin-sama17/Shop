@@ -4,9 +4,7 @@ import { useCookies } from 'react-cookie';
 
 const initialState = {
   loading: false,
-  userInfo: {
-    fullName: "rin",
-  },
+  userInfo: null,
   userToken: null,
   error: null,
   success: false,

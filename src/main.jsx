@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import { BrowserRouter } from 'react-router-dom'
-import { CookiesProvider } from 'react-cookie'
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+
+import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
+
 //react-slick css
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
@@ -11,15 +11,12 @@ import 'slick-carousel/slick/slick-theme.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { store } from './store'
+import { router } from './routes'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
     <Provider store={store}>
-      <CookiesProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </CookiesProvider>
+      <RouterProvider router={router} />
     </Provider>
-  </BrowserRouter>,
+  </StrictMode>,
 )

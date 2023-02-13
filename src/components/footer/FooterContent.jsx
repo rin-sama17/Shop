@@ -1,6 +1,4 @@
 import { Typography, Box, Divider, Stack } from '@mui/material'
-import { useSelector } from 'react-redux'
-import { selectAllPosts } from '../../reducers/postSlice'
 import { ShowTime } from '../common'
 
 import { Link as RouterLink } from 'react-router-dom'
@@ -36,12 +34,13 @@ const FooterContent = () => {
           جدیدترین مجله های ما
         </Typography>
         {posts.slice(0, 4).map((item, index) => (
-          <Stack alignItems="start" key={index} sx={{ mb: 1 }}>
+          <Stack alignItems="start" key={index} sx={{ mb: 2 }}>
             <Typography
               component={RouterLink}
               to={`/posts/${item.id}`}
               color="primary"
               sx={{ textDecoration: 'none' }}
+              variant="caption"
             >
               {item.heading}
             </Typography>

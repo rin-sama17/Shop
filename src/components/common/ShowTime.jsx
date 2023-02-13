@@ -10,8 +10,8 @@ const ShowTime = ({ timestamp }) => {
   }
 
   return (
-    <Box sx={{ mt: 1 }}>
-      <Typography variant="subtitle2" color="text.secondary">
+    <Box>
+      <Typography variant="caption" color="text.secondary">
         {timeAgo}
       </Typography>{' '}
     </Box>

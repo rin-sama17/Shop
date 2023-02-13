@@ -11,18 +11,10 @@ import {
 import Grid from '@mui/material/Unstable_Grid2'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 
-const CustomFields = ({
-  fieldType = 'text',
-  xs,
-  sm,
-  name,
-  formik,
-  fieldLabel,
-  ...props
-}) => {
+const CustomFields = ({ pwd, xs, sm, md, name, formik, ...props }) => {
   const [showPassword, setShowPassword] = useState(false)
   let content
-  if (fieldType === 'text') {
+  if (!pwd) {
     content = (
       <TextField
         fullWidth
@@ -35,10 +27,10 @@ const CustomFields = ({
         {...props}
       />
     )
-  } else if (fieldType === 'pwd') {
+  } else if (pwd) {
     content = (
       <FormControl sx={{ width: 1 }} variant="outlined" size="small">
-        <InputLabel>{fieldLabel}</InputLabel>
+        <InputLabel>پسورد</InputLabel>
         <OutlinedInput
           name={name}
           value={formik.values[`${name}`]}
@@ -55,14 +47,14 @@ const CustomFields = ({
               </IconButton>
             </InputAdornment>
           }
-          label={fieldLabel}
+          label="پسورد"
           {...props}
         />
       </FormControl>
     )
   }
   return (
-    <Grid xs={xs ? xs : 12} sm={sm}>
+    <Grid xs={xs ? xs : 12} sm={sm ? sm : null} md={md ? md : null}>
       {content}
     </Grid>
   )

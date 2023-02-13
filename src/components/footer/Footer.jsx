@@ -26,7 +26,7 @@ const Footer = () => {
           <FooterContent />
         </Grid>
       </Box>
-      <Box sx={{ py: 3, px: 1 }}>
+      <Box sx={{ py: 3, px: 1, bgcolor: 'background.main' }}>
         <Typography
           variant="caption"
           color="text.secondary"
