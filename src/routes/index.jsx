@@ -11,6 +11,7 @@ import {
   EditUser,
   TrackOrders,
   Cart,
+  Checkout,
 } from '../pages'
 export const router = createBrowserRouter([
   {
@@ -55,12 +56,16 @@ export const router = createBrowserRouter([
         element: <EditUser />,
       },
       {
+        path: '/cart',
+        element: <Cart />,
+      },
+      {
         path: '/track-orders',
         element: <TrackOrders />,
       },
       {
-        path: '/cart',
-        element: <Cart />,
+        path: '/checkout',
+        element: <Checkout />,
       },
     ],
   },

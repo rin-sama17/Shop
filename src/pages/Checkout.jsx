@@ -9,10 +9,10 @@ import {
   Typography,
   CardActionArea,
 } from '@mui/material'
-import React from 'react'
+import { useEffect } from 'react'
 import { CustomFields, ProductPrice, CustomDivider } from '../components/common'
 import { useFormik } from 'formik'
-import { trackOrdersValidation } from '../components/validations/trackOrdersValidation'
+import { checkoutValidation } from '../components/validations/checkoutValidation.js'
 import { useGetProductQuery } from '../api'
 import Grid from '@mui/material/Unstable_Grid2'
 
@@ -62,48 +62,91 @@ const Product = ({ productId }) => {
     </Card>
   )
 }
-const TrackOrders = () => {
+const Checkout = () => {
   const products = [
     'tM_MOwtFcG4cqrIyDgDy_',
     'EfJZxbsylFHZwWZXnOzVN',
     'Q1cm65nQwUtF7b6r-DbaC',
   ]
 
-  const handleSubmitForm = async () => {
-    // try {
-    //     await
-    // } catch (error) {
-    // }
+  // useEffect(()=>{
+
+  //     products.map((product) => {
+
+  //         const { data: product, isSuccess } = useGetProductQuery(productId)
+  //         if (isSuccess) {
+
+  //         }
+  //     })
+  // },[products])
+
+  const checkoutFields = {
+    fullName: '',
+    phone: '',
+    address: '',
   }
 
   const formik = useFormik({
-    initialValues: { cartId: '' },
-    validationSchema: trackOrdersValidation,
+    initialValues: checkoutFields,
+    validationSchema: checkoutValidation,
     // onSubmit: (values) => {
     //   handleSubmitForm(values)
     // },
   })
-
   return (
     <Container maxWidth="md">
       <Stack alignItems="center" sx={{ width: 1 }}>
-        <Box sx={{ width: 2 / 3, mt: 4 }}>
-          <CustomFields formik={formik} name="cartId" label="کد پیگیری" />
-          <Button sx={{ mt: 1 }}>جستجو</Button>
-        </Box>
+        <CustomDivider label="مشخصات شما" color="info" />
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            width: 1,
+          }}
+        >
+          <CustomFields
+            formik={formik}
+            name="fullName"
+            label="نام و نام خانوادگی"
+            md={6}
+          />
+          <CustomFields formik={formik} name="phone" phone md={6} />
+          <CustomFields
+            formik={formik}
+            name="address"
+            label="ادرس"
+            multiline
+            rows={6}
+          />
+        </Grid>
+        <CustomDivider label="سبد خرید شما" />
+        <Grid container sx={{ width: 1 }} spacing={2}>
+          <Grid sx={12} md={8}>
+            <Box sx={{ width: 1 }}>
+              {products.map((productId) => (
+                <Product productId={productId} key={productId} />
+              ))}
+            </Box>
+          </Grid>
+          <Grid xs={12} md={4}>
+            <Card sx={{ p: 2 }}>
+              <Typography
+                color="text.secondary"
+                variant="body1"
+                sx={{ mr: 1, display: 'flex' }}
+                gutterBottom
+              >
+                مجموع کل:
+              </Typography>
 
-        <CustomDivider label="سبد خرید شما" color="primary" sx={{ my: 2 }} />
-        <Button fullWidth sx={{ mb: 2 }} component={RouterLink} to="/checkout">
-          جزئیات بیشتر و پرداخت
-        </Button>
-        <Box sx={{ width: 1 }}>
-          {products.map((productId) => (
-            <Product productId={productId} key={productId} />
-          ))}
-        </Box>
+              <Button color="secondary" fullWidth variant="contained">
+                پرداخت
+              </Button>
+            </Card>
+          </Grid>
+        </Grid>
       </Stack>
     </Container>
   )
 }
-
-export default TrackOrders
+export default Checkout

@@ -11,3 +11,4 @@ export { default as EditUser } from "./EditUser";
 export { default as Recovery } from "./Recovery";
 export { default as TrackOrders } from "./TrackOrders";
 export { default as Cart } from "./Cart";
+export { default as Checkout } from "./Checkout";
