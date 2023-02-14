@@ -17,18 +17,13 @@ import { Recovery } from './'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Grid from '@mui/material/Unstable_Grid2'
-import {
-  Phone,
-  Face,
-  Visibility,
-  VisibilityOff,
-  AccountCircle,
-} from '@mui/icons-material'
+import { Phone, Face, AccountCircle } from '@mui/icons-material'
 import { useFormik } from 'formik'
-import { userValidation } from '../components/singIn/validation/userValidation'
+import { userValidation } from '../components/validations/userValidation'
 import { signedIn } from '../reducers/userSlice'
 import { useDispatch } from 'react-redux'
 import { CustomFields } from '../components/common'
+
 const SingIn = () => {
   const [open, setOpen] = useState(false)
 
@@ -94,21 +89,8 @@ const SingIn = () => {
                     ),
                   }}
                 />
+                <CustomFields phone name="singInPhone" formik={formik} md={6} />
 
-                <CustomFields
-                  md={6}
-                  label="شماره موبایل"
-                  type="number"
-                  name="singInPhone"
-                  formik={formik}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Phone />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
                 <CustomFields pwd name="singInPwd" formik={formik} />
 
                 <Button
@@ -126,23 +108,9 @@ const SingIn = () => {
 
           <Box sx={{ width: 1 / 2 }}>
             <form autoComplete="off" onSubmit={formik.handleSubmit}>
-              <Grid container spacing={2} sx={{ direction: 'ltr' }}>
-                <CustomFields
-                  md={6}
-                  label="شماره موبایل"
-                  type="number"
-                  name="loginPhone"
-                  formik={formik}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Phone />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+              <Grid container spacing={2}>
+                <CustomFields phone name="loginPhone" formik={formik} md={6} />
                 <CustomFields md={6} pwd formik={formik} name="loginPwd" />
-
                 <Button
                   size="small"
                   type="submit"

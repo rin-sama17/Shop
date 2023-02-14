@@ -14,7 +14,9 @@ import { categoris } from '../../constants/categoris'
 import { CustomDivider } from '../common'
 import SearchField from '../common/SearchField'
 
-export default function ProductsFilter() {
+const ProductsFilter = ({ data, setData }) => {
+  const handleSearch = () => {}
+
   const [value, setValue] = useState([0, 37])
   const [open, setOpen] = useState(false)
 
@@ -27,7 +29,6 @@ export default function ProductsFilter() {
       sx={{
         justifyContent: 'center',
         textAlign: 'center',
-
         px: 2,
       }}
     >
@@ -62,6 +63,7 @@ export default function ProductsFilter() {
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <SearchField small />
+
           {categoris.map((item, index) => (
             <List component="div" key={index} disablePadding>
               <ListItemButton sx={{ pl: 4 }}>
@@ -74,3 +76,4 @@ export default function ProductsFilter() {
     </Box>
   )
 }
+export default ProductsFilter

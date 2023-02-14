@@ -2,7 +2,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { Box } from '@mui/material'
 
-import { ProductsFilter, Product } from '../components/Products'
+import { ProductsFilter, Product } from '../components/products'
 import { CustomPagination } from '../components/common'
 
 import { useGetProductsQuery } from '../api'
@@ -15,7 +15,7 @@ const Products = () => {
   return (
     <Grid container sx={{ width: 1 }}>
       <Grid xs={12} md={3} sx={{ m: 0 }}>
-        <ProductsFilter />
+        <ProductsFilter setData={setData} data={data} />
       </Grid>
       <Grid xs={12} md={9}>
         <Grid container>

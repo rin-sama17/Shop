@@ -14,7 +14,7 @@ import { toast } from 'react-toastify'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Phone } from '@mui/icons-material'
 import { useFormik } from 'formik'
-import { userValidation } from '../components/singIn/validation/userValidation'
+import { userValidation } from '../components/validations/userValidation'
 
 const Recovery = () => {
   const [open, setOpen] = useState(false)

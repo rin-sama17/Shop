@@ -9,7 +9,7 @@ import { darkTheme } from './theme/theme'
 import { Navbar } from '../components/navbar'
 import Footer from '../components/footer/Footer'
 import { ToastContainer } from 'react-toastify'
-
+import Grid from '@mui/material/Unstable_Grid2'
 const cacheRTL = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
@@ -24,7 +24,10 @@ const MainLayout = () => {
             <title>فروشگاه من</title>
           </Helmet>
           <Navbar />
-          <Box sx={{ bgcolor: 'background.main' }}>
+          <Grid
+            container
+            sx={{ bgcolor: 'background.main', minHeight: '70vh', py: 2 }}
+          >
             <ToastContainer
               position="top-right"
               autoClose={5000}
@@ -38,7 +41,7 @@ const MainLayout = () => {
               theme="dark"
             />
             <Outlet />
-          </Box>
+          </Grid>
           <Footer />
         </HelmetProvider>
       </ThemeProvider>

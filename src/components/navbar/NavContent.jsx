@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Grid from '@mui/material/Unstable_Grid2'
 import { NavHeader, NavAvatar, NavSearch } from './'
 
+import { Link as RouterLink } from 'react-router-dom'
 const NavContent = ({ setDrawerOpen }) => {
   const theme = useTheme()
   const downLg = useMediaQuery(theme.breakpoints.down('lg'))
@@ -51,6 +52,8 @@ const NavContent = ({ setDrawerOpen }) => {
         >
           <NavAvatar />
           <IconButton
+            component={RouterLink}
+            to="/cart"
             size="large"
             aria-label="show 4 new mails"
             color="text.primary"

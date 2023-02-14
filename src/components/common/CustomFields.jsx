@@ -9,21 +9,36 @@ import {
 } from '@mui/material'
 
 import Grid from '@mui/material/Unstable_Grid2'
-import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
 
-const CustomFields = ({ pwd, xs, sm, md, name, formik, ...props }) => {
+import { PatternFormat } from 'react-number-format'
+
+const CustomFields = ({ pwd, phone, xs, sm, md, name, formik, ...props }) => {
   const [showPassword, setShowPassword] = useState(false)
   let content
-  if (!pwd) {
+  if (phone) {
     content = (
-      <TextField
+      <PatternFormat
+        customInput={TextField}
         fullWidth
+        label="شماره موبایل"
         size="small"
         name={name}
         value={formik.values[`${name}`]}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
         onChange={formik.handleChange}
         color="secondary"
+        sx={{ direction: 'rtl' }}
+        format="+98 ### ### ####"
+        allowEmptyFormatting
+        mask="-"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <Phone />
+            </InputAdornment>
+          ),
+        }}
         {...props}
       />
     )
@@ -51,6 +66,19 @@ const CustomFields = ({ pwd, xs, sm, md, name, formik, ...props }) => {
           {...props}
         />
       </FormControl>
+    )
+  } else {
+    content = (
+      <TextField
+        fullWidth
+        size="small"
+        name={name}
+        value={formik.values[`${name}`]}
+        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+        onChange={formik.handleChange}
+        color="secondary"
+        {...props}
+      />
     )
   }
   return (

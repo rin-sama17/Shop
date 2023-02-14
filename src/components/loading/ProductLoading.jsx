@@ -1,6 +1,6 @@
 import { Box, Skeleton, Card } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-const ProductLoading = () => {
+const ProductLoading = ({ width }) => {
   return (
     <Grid
       xs={12}
@@ -15,7 +15,7 @@ const ProductLoading = () => {
     >
       <Card
         sx={{
-          width: 240,
+          width: width,
           height: 355,
         }}
       >

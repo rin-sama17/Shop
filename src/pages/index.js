@@ -10,3 +10,5 @@ export { default as AddProduct } from "./AddProduct";
 export { default as AddPost } from "./AddPost";
 export { default as EditUser } from "./EditUser";
 export { default as Recovery } from "./Recovery";
+export { default as TrackOrders } from "./TrackOrders";
+export { default as Cart } from "./Cart";

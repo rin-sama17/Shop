@@ -14,10 +14,8 @@ import { useFormik } from 'formik'
 import { CustomDivider, CustomFields, SearchField } from '../components/common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Percent } from '@mui/icons-material'
-import { productValidation } from '../components/product/addProduct/validation/productValidation'
-import { useDispatch } from 'react-redux'
+import { productValidation } from '../components/validations/productValidation'
 import { useNavigate } from 'react-router-dom'
-import { productAdded } from '../reducers/productSlice'
 import { toRial } from '../helpers'
 import { NumericFormat } from 'react-number-format'
 import { toast } from 'react-toastify'
@@ -48,7 +46,6 @@ const options = [
   'Umbriel',
 ]
 const AddProduct = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [addNewProduct] = useAddNewProductMutation()
@@ -93,7 +90,6 @@ const AddProduct = () => {
     details: '',
     stock: '',
     thumbnail: '',
-    photos: '',
     category: '',
     tags: '',
   }
@@ -145,59 +141,6 @@ const AddProduct = () => {
               color="warning"
               size={200}
             />
-            {/* <Button
-              component="label"
-              color="warning"
-              sx={{
-                width: 50,
-                height: 50,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                boxShadow:
-                  '2px 2px 2px 2px rgb(0 0 0 / 20%), 2px 2px 2px 2px rgb(0 0 0 / 19%)',
-              }}
-            >
-              <BurstMode />
-              <input
-                accept="image/*"
-                hidden
-                type="file"
-                name="thumbnail"
-                onChange={handleFilesChange}
-              />
-            </Button>
-            <AvatarGroup
-              variant="rounded"
-              max={3}
-              sx={{ my: 2, px: 1, alignItems: 'center' }}
-              slotProps={{
-                additionalAvatar: {
-                  sx: {
-                    ml: '1px !important',
-                    bgcolor: 'secondary.main',
-                    height: 50,
-                    width: 50,
-                  },
-                },
-              }}
-            >
-              {formik.values?.photos &&
-                formik.values.photos.map((item, index) => (
-                  <Button
-                    sx={{ p: 0, width: 60, height: 60, mr: 1 }}
-                    key={index}
-                  >
-                    <CardMedia
-                      component="img"
-                      alt=""
-                      image={item}
-                      width={60}
-                      height={60}
-                    />
-                  </Button>
-                ))}
-            </AvatarGroup> */}
           </Grid>
           <Grid xs={12} md={9}>
             <Box>

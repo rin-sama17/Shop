@@ -10,6 +10,8 @@ import {
   AddProduct,
   Dashboard,
   EditUser,
+  TrackOrders,
+  Cart,
 } from '../pages'
 export const router = createBrowserRouter([
   {
@@ -56,6 +58,14 @@ export const router = createBrowserRouter([
       {
         path: '/editUser',
         element: <EditUser />,
+      },
+      {
+        path: '/track-orders',
+        element: <TrackOrders />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
     ],
   },

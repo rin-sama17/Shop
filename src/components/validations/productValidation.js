@@ -7,7 +7,6 @@ export const productValidation = Yup.object().shape({
     details: Yup.string().required(),
     stock: Yup.number().required(),
     thumbnail: Yup.string().required(),
-    photos: Yup.string(),
     category: Yup.string().required(),
     tags: Yup.string().required(),
 });

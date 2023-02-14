@@ -5,7 +5,7 @@ import {
   CustomDivider,
   ImageUploader,
 } from '../../common'
-import { paragraphValidation } from './validation/postValidation'
+import { paragraphValidation } from '../../validations/postValidation'
 import { useFormik } from 'formik'
 
 import Grid from '@mui/material/Unstable_Grid2'

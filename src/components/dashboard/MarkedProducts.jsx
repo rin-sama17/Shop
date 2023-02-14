@@ -2,7 +2,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { Box } from '@mui/material'
 
-import { Product } from '../Products'
+import { Product } from '../products'
 import { CustomPagination } from '../common'
 import { getAllProduct } from '../../reducers/productSlice'
 import { useSelector } from 'react-redux'

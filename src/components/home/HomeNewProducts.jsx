@@ -1,6 +1,6 @@
 // import { productsData } from '../../constants/products'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Product } from '../Products'
+import { Product } from '../products'
 
 import { useGetProductsQuery } from '../../api'
 const HomeNewProducts = () => {

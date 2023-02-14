@@ -7,7 +7,7 @@ import {
   AccordionDetails,
 } from '@mui/material'
 import { CustomFields, ImageUploader } from '../../common'
-import { paragraphValidation } from './validation/postValidation'
+import { paragraphValidation } from '../../validations/postValidation'
 import { ExpandMore, AddCircle } from '@mui/icons-material'
 import { useFormik } from 'formik'
 import { useDispatch } from 'react-redux'

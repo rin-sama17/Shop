@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { ProductContent } from '../components/product/showProduct'
+import { ProductContent } from '../components/products/showProduct'
 import { useGetProductQuery } from '../api'
 import ShowProductLoading from '../components/loading/ShowProductLoading'
 

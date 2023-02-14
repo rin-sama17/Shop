@@ -16,7 +16,7 @@ import {
 import Grid from '@mui/material/Unstable_Grid2'
 import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
-import { postValidation } from '../components/posts/addPost/validation/postValidation'
+import { postValidation } from '../components/validations/postValidation'
 import AddParagraph from '../components/posts/addPost/AddParagraph'
 import { toast } from 'react-toastify'
 import ShowParagraphs from '../components/posts/addPost/ShowParagraphs'
