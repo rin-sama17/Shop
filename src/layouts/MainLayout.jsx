@@ -27,7 +27,7 @@ const MainLayout = () => {
           <Navbar />
           <Grid
             container
-            sx={{ bgcolor: 'background.main', minHeight: '70vh', py: 2 }}
+            sx={{ bgcolor: 'background.main', minHeight: '70vh' }}
           >
             <ToastContainer
               position="top-right"
