@@ -21,8 +21,6 @@ const HomeFAB = ({ user }) => {
   const [open, setOpen] = useState(false)
 
   const actions = [
-    { color: 'error', to: '', icon: <Logout />, name: 'خروج' },
-    { color: 'info', to: '/editUser', icon: <Face6 />, name: 'ویرایش اطلاعات' },
     {
       color: 'warning',
       to: '/addProduct',
@@ -30,21 +28,16 @@ const HomeFAB = ({ user }) => {
       name: 'محصول جدید',
     },
     {
-      color: 'primary',
+      color: 'info',
       to: '/addPost',
       icon: <LibraryBooks />,
       name: 'پست جدید',
     },
   ]
   return (
-    <Box
-      sx={{
-        transform: 'translateZ(0px)',
-        flexGrow: 1,
-      }}
-    >
+    <>
+      {' '}
       <Backdrop open={open} />
-
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
         icon={<SpeedDialIcon openIcon={<Edit />} />}
@@ -53,7 +46,9 @@ const HomeFAB = ({ user }) => {
         color="secondary"
         open={open}
         sx={{
-          position: 'absolute',
+          transform: 'translateZ(0px)',
+          flexGrow: 1,
+          position: 'fixed',
           bottom: 16,
           left: 16,
         }}
@@ -85,7 +80,7 @@ const HomeFAB = ({ user }) => {
           />
         ))}
       </SpeedDial>
-    </Box>
+    </>
   )
 }
 

@@ -10,6 +10,7 @@ import { Navbar } from '../components/navbar'
 import Footer from '../components/footer/Footer'
 import { ToastContainer } from 'react-toastify'
 import Grid from '@mui/material/Unstable_Grid2'
+import { HomeFAB } from '../components/home'
 const cacheRTL = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
@@ -42,6 +43,7 @@ const MainLayout = () => {
             />
             <Outlet />
           </Grid>
+
           <Footer />
         </HelmetProvider>
       </ThemeProvider>
