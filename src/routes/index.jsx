@@ -8,7 +8,6 @@ import {
   ShowProduct,
   AddPost,
   AddProduct,
-  Dashboard,
   EditUser,
   TrackOrders,
   Cart,
@@ -43,10 +42,6 @@ export const router = createBrowserRouter([
         element: <ShowProduct />,
       },
 
-      {
-        path: '/dashboard',
-        element: <Dashboard />,
-      },
       {
         path: '/addProduct',
         element: <AddProduct />,

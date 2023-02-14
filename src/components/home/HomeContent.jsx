@@ -1,11 +1,10 @@
-import HomePostsSlider from './HomePostsSlider'
-import HomeDescription from './HomeDescription'
-import HomeNewProducts from './HomeNewProducts'
+import { HomePostsSlider, HomeDescription, HomeNewProducts, HomeFAB } from '.'
 import { CustomDivider } from '../common'
 
 const HomeContent = () => {
   return (
     <>
+      <HomeFAB />
       <HomeDescription />
 
       <CustomDivider label="محصولات جدید ما" />

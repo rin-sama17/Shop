@@ -16,9 +16,8 @@ import {
   Edit,
   LibraryBooks,
 } from '@mui/icons-material'
-import DashboardHome from './DashboardHome'
 
-const DashboardHomeContainer = ({ user }) => {
+const HomeFAB = ({ user }) => {
   const [open, setOpen] = useState(false)
 
   const actions = [
@@ -45,7 +44,6 @@ const DashboardHomeContainer = ({ user }) => {
       }}
     >
       <Backdrop open={open} />
-      <DashboardHome user={user} />
 
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
@@ -91,4 +89,4 @@ const DashboardHomeContainer = ({ user }) => {
   )
 }
 
-export default DashboardHomeContainer
+export default HomeFAB

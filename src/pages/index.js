@@ -3,7 +3,6 @@ export { default as Products } from "./Products";
 export { default as ShowProduct } from "./ShowProduct";
 export { default as ShowPost } from "./ShowPost";
 export { default as Posts } from "./Posts";
-export { default as Dashboard } from "./Dashboard";
 export { default as Page } from "./Page";
 export { default as SingIn } from "./SingIn";
 export { default as AddProduct } from "./AddProduct";
