@@ -54,7 +54,7 @@ const AddProduct = () => {
     try {
       const {
         name,
-        price,
+        price: productPrice,
         discount,
         details,
         stock,
@@ -63,6 +63,9 @@ const AddProduct = () => {
         category,
         tags,
       } = values
+      let numberedPrice = Number(productPrice.split(',').join(''))
+      const price = Math.round(numberedPrice - (numberedPrice * discount) / 100)
+
       await addNewProduct({
         id: nanoid(),
         date: new Date().toISOString(),

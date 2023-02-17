@@ -6,23 +6,30 @@ import {
   cartItemDeleted,
   cartItemUpdated,
   selectCartProduct,
+  selectCartProducts,
 } from '../../../reducers/cartSlice'
 import { useEffect } from 'react'
-const AddToCart = ({ productId, prodyctStock }) => {
+const AddToCart = ({ productId, prodyctStock, productPrice, discount }) => {
   const productCount = useSelector((state) =>
     selectCartProduct(state, productId),
   )
-
+  const cartProducts = useSelector(selectCartProducts)
   const dispatch = useDispatch()
   let addToCartBtn
 
   const handleAdd = () => {
-    dispatch(cartItemAdded({ id: productId, count: 1 }))
+    dispatch(
+      cartItemAdded({ id: productId, count: 1, price: productPrice, discount }),
+    )
   }
 
   useEffect(() => {
+    console.log(productCount)
+
     if (productCount && productCount.count === 0) {
       dispatch(cartItemDeleted(productId))
+    } else if (productCount && productCount.count > 0) {
+      localStorage.setItem('cartProducts', JSON.stringify(cartProducts))
     }
   }, [productCount])
 

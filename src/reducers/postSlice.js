@@ -8,8 +8,6 @@ const postAdaptor = createEntityAdapter({
 
 const initialState = postAdaptor.getInitialState({
     paragraphs: [],
-    status: "idel",
-    error: null
 });
 
 

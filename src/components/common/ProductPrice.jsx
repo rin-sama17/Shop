@@ -2,13 +2,11 @@ import { Box, Typography, Chip } from '@mui/material'
 import { toRial } from '../../helpers'
 
 const ProductPrice = ({ price, discount }) => {
-  let finalPrice
-  price = Number(price.split(',').join(''))
+  let prevPrice
   if (discount > 0) {
-    finalPrice = Math.round(price - (price * discount) / 100)
-  } else {
-    finalPrice = price
+    prevPrice = Math.round(price + price * discount)
   }
+  //1 +( 1 * 99 )
 
   return (
     <Box sx={{ display: 'column', ml: 1 }}>
@@ -24,7 +22,7 @@ const ProductPrice = ({ price, discount }) => {
               textDecorationColor: 'white',
             }}
           >
-            {toRial(price)}
+            {toRial(prevPrice)}
           </Typography>
           <Chip
             label={
@@ -44,7 +42,7 @@ const ProductPrice = ({ price, discount }) => {
         textAlign="start"
         sx={{ display: 'flex' }}
       >
-        {toRial(finalPrice)}
+        {toRial(price)}
         <Typography color="secondary" sx={{ ml: 1 }}>
           تومان
         </Typography>

@@ -3,11 +3,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['BLOG', "PRODUCT"],
+    tagTypes: ['Posts', "Products"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
-            providesTags: ["BLOG"]
+            providesTags: ["Posts"]
         }),
         getPost: builder.query({
             query: (initialPostId) => `/posts/${initialPostId}`
@@ -18,12 +18,12 @@ export const apiSlice = createApi({
                 method: "POST",
                 body: initialPost
             }),
-            invalidatesTags: ["BLOG"]
+            invalidatesTags: ["Posts"]
         }),
 
         getProducts: builder.query({
             query: () => "/products",
-            providesTags: ["PRODUCT"]
+            providesTags: ["Products"]
         }),
         getProduct: builder.query({
             query: (initialProductId) => `/products/${initialProductId}`
@@ -34,7 +34,15 @@ export const apiSlice = createApi({
                 method: "POST",
                 body: initialProduct
             }),
-            invalidatesTags: ["PRODUCT"]
+            invalidatesTags: ["Products"]
+        }),
+        deleteProduct: builder.mutation({
+            query: (initialProductId) => ({
+
+                url: `/products/${initialProductId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Products"]
         })
     })
 });
@@ -45,5 +53,6 @@ export const {
     useAddNewPostMutation,
     useGetProductsQuery,
     useGetProductQuery,
-    useAddNewProductMutation
+    useAddNewProductMutation,
+    useDeleteProductMutation
 } = apiSlice;

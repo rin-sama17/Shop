@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { Box, Typography, Card } from '@mui/material'
+import { Box, Typography, Card, Stack } from '@mui/material'
 import { AddToCart } from '.'
 import {
   CustomDivider,
@@ -7,9 +7,24 @@ import {
   ProductPrice,
   ShowCategory,
 } from '../../common'
-import { ReportGmailerrorred } from '@mui/icons-material'
-
+import { ReportGmailerrorred, Edit, Delete } from '@mui/icons-material'
+import { useDeleteProductMutation } from '../../../api'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 const ProductDetails = ({ product }) => {
+  const navigate = useNavigate()
+
+  const [deleteProduct] = useDeleteProductMutation()
+
+  const handleProductDelete = async () => {
+    try {
+      await deleteProduct(product.id).unwrap()
+      navigate('/')
+    } catch (error) {
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
+      console.error('error: ', error)
+    }
+  }
   return (
     <Grid xs={12} md={4} sx={{ p: 1 }}>
       <Card sx={{ p: 2 }}>
@@ -49,17 +64,21 @@ const ProductDetails = ({ product }) => {
           قیمت:
           <ProductPrice price={product.price} discount={product.discount} />
         </Typography>
-        <Typography
-          color="text.secondary"
-          variant="body1"
-          sx={{ mr: 1, display: 'flex' }}
-        >
-          فروشنده:
-          <Typography color="secondary" sx={{ ml: 1 }}>
-            ممد
-          </Typography>
-        </Typography>{' '}
-        <AddToCart prodyctStock={product.stock} productId={product.id} />
+        <Stack sx={{ width: 1 }} justifyContent="center" direction="row">
+          <CustomIconButton title="ویرایش" icon={<Edit />} color="info" />
+          <CustomIconButton
+            title="حذف"
+            icon={<Delete />}
+            color="error"
+            onClick={handleProductDelete}
+          />
+        </Stack>
+        <AddToCart
+          prodyctStock={product.stock}
+          productId={product.id}
+          productPrice={product.price}
+          discount={product.discount}
+        />
       </Card>
     </Grid>
   )
