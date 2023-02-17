@@ -1,6 +1,5 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-import { useCookies } from 'react-cookie';
 
 const initialState = {
   loading: false,

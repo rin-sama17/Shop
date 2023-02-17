@@ -63,7 +63,7 @@ const Post = ({ postId }) => {
               {post.heading}
             </Typography>
 
-            <Typography variant="body2" color="text.secondary" component="p">
+            <Typography variant="body2" color="text.secondary">
               <LinesEllipsis text={post.introduction} maxLine={2} />
             </Typography>
           </CardContent>

@@ -9,7 +9,6 @@ import {
   Typography,
   CardActionArea,
 } from '@mui/material'
-import { useEffect } from 'react'
 import { CustomFields, ProductPrice, CustomDivider } from '../components/common'
 import { useFormik } from 'formik'
 import { checkoutValidation } from '../components/validations/checkoutValidation.js'
@@ -70,12 +69,9 @@ const Checkout = () => {
   ]
 
   // useEffect(()=>{
-
   //     products.map((product) => {
-
   //         const { data: product, isSuccess } = useGetProductQuery(productId)
   //         if (isSuccess) {
-
   //         }
   //     })
   // },[products])

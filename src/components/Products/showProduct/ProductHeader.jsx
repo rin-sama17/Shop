@@ -1,11 +1,13 @@
-import { Box, Skeleton } from '@mui/material'
+import { Box, Skeleton, Typography } from '@mui/material'
 import { Suspense } from 'react'
-import { ProductModal } from './'
-const ProductImages = ({ product }) => {
+import Grid from '@mui/material/Unstable_Grid2'
+const ProductHeader = ({ product }) => {
   return (
-    <>
-      {' '}
-      <Box sx={{ mb: 1, width: 1 }}>
+    <Grid xs={12} md={4} sx={{ p: 1, minHeight: '50vh' }}>
+      <Typography color="text.primary" variant="h5" gutterBottom>
+        {product.name}
+      </Typography>
+      <Box sx={{ width: 1 }}>
         <Suspense
           fallback={
             <Skeleton
@@ -20,9 +22,8 @@ const ProductImages = ({ product }) => {
           <img src={product.thumbnail} alt="" style={{ width: '100%' }} />
         </Suspense>
       </Box>
-      <ProductModal product={product} />
-    </>
+    </Grid>
   )
 }
 
-export default ProductImages
+export default ProductHeader

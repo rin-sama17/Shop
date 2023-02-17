@@ -3,7 +3,7 @@ import React from 'react'
 import Grid from '@mui/material/Unstable_Grid2'
 const ShowProductLoading = () => {
   return (
-    <Container mxWidth="md">
+    <Container maxWidth="md">
       <Grid
         container
         sx={{
