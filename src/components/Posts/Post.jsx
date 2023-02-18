@@ -20,7 +20,7 @@ const Post = ({ postId }) => {
 
   let content
   if (isLoading) {
-    content = <PostLoading />
+    content = <PostLoading postId={postId} />
   } else if (isSuccess) {
     content = (
       <Card sx={{ maxWidth: 345, m: 2 }}>

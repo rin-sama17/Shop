@@ -43,7 +43,18 @@ export const apiSlice = createApi({
                 method: "DELETE"
             }),
             invalidatesTags: ["Products"]
+        }),
+        getCart: builder.query({
+            query: (initialCartId) => `/carts/${initialCartId}`
+        }),
+        addNewCart: builder.mutation({
+            query: (initialCart) => ({
+                url: "/carts",
+                method: "POST",
+                body: initialCart
+            })
         })
+
     })
 });
 
@@ -54,5 +65,7 @@ export const {
     useGetProductsQuery,
     useGetProductQuery,
     useAddNewProductMutation,
-    useDeleteProductMutation
+    useDeleteProductMutation,
+    useGetCartQuery,
+    useAddNewCartMutation
 } = apiSlice;

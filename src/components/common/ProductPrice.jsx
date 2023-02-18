@@ -4,10 +4,8 @@ import { toRial } from '../../helpers'
 const ProductPrice = ({ price, discount }) => {
   let prevPrice
   if (discount > 0) {
-    prevPrice = Math.round(price + price * discount)
+    prevPrice = Math.round(price / (1 - discount / 100))
   }
-  //1 +( 1 * 99 )
-
   return (
     <Box sx={{ display: 'column', ml: 1 }}>
       {discount === 0 ? null : (

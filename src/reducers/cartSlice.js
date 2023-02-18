@@ -1,26 +1,8 @@
-import { createSlice, nanoid, createEntityAdapter, createAction } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
 const cartAdaptor = createEntityAdapter();
+const initialState = cartAdaptor.getInitialState();
 
-const setNewCart = () => {
-    const id = nanoid();
-    localStorage.setItem("cartId", id);
-    return id;
-};
-const cartId = localStorage.getItem("cartId") ? localStorage.getItem("cartId") : setNewCart();
-const cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
-
-
-const initialState = cartAdaptor.getInitialState({
-    cartId,
-});
-
-if (cartProducts) {
-
-    console.log(cartProducts);
-    console.log(cartAdaptor);
-
-}
 
 
 const cartSlice = createSlice({
@@ -46,7 +28,6 @@ export const {
 } = cartAdaptor.getSelectors(state => state.cart);
 
 
-
-
+export const selectCartId = state => state.cart.cartId;
 export const { cartItemAdded, cartItemDeleted, cartItemUpdated, cartItemsSeted } = cartSlice.actions;
 export default cartSlice.reducer;

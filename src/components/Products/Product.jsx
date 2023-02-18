@@ -13,11 +13,11 @@ import ProductLoading from '../loading/ProductLoading'
 
 const Product = ({ productId, maxWidth }) => {
   const { data: product, isLoading } = useGetProductQuery(productId)
-  if (productId === 'gGctqwQ4JB9t8uSeKhuSG') {
-    return <ProductLoading width={maxWidth} />
+  if (productId === 'AhqDOff-L42D2_cvVtmqY') {
+    return <ProductLoading width={maxWidth} productId={productId} />
   }
   if (isLoading) {
-    return <ProductLoading width={maxWidth} />
+    return <ProductLoading width={maxWidth} productId={productId} />
   }
 
   return (

@@ -24,8 +24,6 @@ const AddToCart = ({ productId, prodyctStock, productPrice, discount }) => {
   }
 
   useEffect(() => {
-    console.log(productCount)
-
     if (productCount && productCount.count === 0) {
       dispatch(cartItemDeleted(productId))
     } else if (productCount && productCount.count > 0) {

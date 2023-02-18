@@ -7,10 +7,13 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { NavHeader, NavAvatar, NavSearch } from './'
 
 import { Link as RouterLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectCartProducts } from '../../reducers/cartSlice'
 const NavContent = ({ setDrawerOpen }) => {
   const theme = useTheme()
   const downLg = useMediaQuery(theme.breakpoints.down('lg'))
   const [showSearchBox, setSearchBox] = useState(false)
+  const cartProducts = useSelector(selectCartProducts)
 
   useEffect(() => {
     if (!downLg) {
@@ -51,16 +54,21 @@ const NavContent = ({ setDrawerOpen }) => {
           }}
         >
           <NavAvatar />
+
           <IconButton
             component={RouterLink}
             to="/cart"
             size="large"
-            aria-label="show 4 new mails"
             color="text.primary"
           >
-            <Badge badgeContent={4} color="secondary">
+            {' '}
+            {cartProducts.length > 0 ? (
+              <Badge badgeContent={cartProducts.length} color="secondary">
+                <ShoppingCart />
+              </Badge>
+            ) : (
               <ShoppingCart />
-            </Badge>
+            )}
           </IconButton>
         </Box>
       </Grid>

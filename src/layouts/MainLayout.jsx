@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { prefixer } from 'stylis'
 import createCache from '@emotion/cache'
 import rtlPlugin from 'stylis-plugin-rtl'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { darkTheme } from './theme/theme'
 import { Navbar } from '../components/navbar'
@@ -11,7 +11,7 @@ import { CacheProvider } from '@emotion/react'
 import { ToastContainer } from 'react-toastify'
 import Grid from '@mui/material/Unstable_Grid2'
 import Footer from '../components/footer/Footer'
-import { cartItemsSeted } from '../reducers/cartSlice'
+import { cartItemsSeted, selectCartProducts } from '../reducers/cartSlice'
 import { HelmetProvider, Helmet } from 'react-helmet-async'
 
 const cacheRTL = createCache({
@@ -21,11 +21,13 @@ const cacheRTL = createCache({
 
 const MainLayout = () => {
   const dispatch = useDispatch()
-
   useEffect(() => {
-    const cartProducts = JSON.parse(localStorage.getItem('cartProducts'))
-    dispatch(cartItemsSeted(cartProducts))
+    const localCartProducts = JSON.parse(localStorage.getItem('cartProducts'))
+    console.log(localCartProducts)
+    console.log('deleted to cart')
+    dispatch(cartItemsSeted(localCartProducts))
   }, [])
+
   return (
     <CacheProvider value={cacheRTL}>
       <ThemeProvider theme={darkTheme}>
@@ -36,7 +38,7 @@ const MainLayout = () => {
           <Navbar />
           <Grid
             container
-            sx={{ bgcolor: 'background.main', minHeight: '70vh' }}
+            sx={{ bgcolor: 'background.main', minHeight: '70vh', pb: 2 }}
           >
             <ToastContainer
               position="top-right"
