@@ -6,9 +6,10 @@ const ProductPrice = ({ price, discount }) => {
   if (discount > 0) {
     prevPrice = Math.round(price / (1 - discount / 100))
   }
+  console.log(discount)
   return (
     <Box sx={{ display: 'column', ml: 1 }}>
-      {discount === 0 ? null : (
+      {discount ? (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography
             color="text.primary"
@@ -33,6 +34,8 @@ const ProductPrice = ({ price, discount }) => {
             sx={{ ml: 1 }}
           />
         </Box>
+      ) : (
+        <Box sx={{ mb: 4 }} />
       )}
       <Typography
         variant="body1"

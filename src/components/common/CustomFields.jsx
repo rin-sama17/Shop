@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo, useMemo } from 'react'
 import {
   TextField,
   InputAdornment,
@@ -6,15 +6,38 @@ import {
   IconButton,
   InputLabel,
   OutlinedInput,
+  Select,
+  MenuItem,
 } from '@mui/material'
 
+import { NumericFormat } from 'react-number-format'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
 
 import { PatternFormat } from 'react-number-format'
+import SearchField from './SearchField'
 
-const CustomFields = ({ pwd, phone, xs, sm, md, name, formik, ...props }) => {
+const CustomFields = ({
+  pwd,
+  phone,
+  price,
+  select,
+  selectOptions,
+  customLabel,
+  xs,
+  sm,
+  md,
+  name,
+  formik,
+  ...props
+}) => {
+  const [value, setValue] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+
+  const handleChange = (e) => setValue(e.target.value)
+  const handleBlur = () => {
+    formik.setFieldValue(name, value)
+  }
   let content
   if (phone) {
     content = (
@@ -24,6 +47,7 @@ const CustomFields = ({ pwd, phone, xs, sm, md, name, formik, ...props }) => {
         label="شماره موبایل"
         size="small"
         name={name}
+        onBlur
         value={formik.values[`${name}`]}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
         onChange={formik.handleChange}
@@ -42,15 +66,36 @@ const CustomFields = ({ pwd, phone, xs, sm, md, name, formik, ...props }) => {
         {...props}
       />
     )
+  } else if (price) {
+    content = (
+      <NumericFormat
+        allowLeadingZeros
+        thousandSeparator=","
+        customInput={TextField}
+        fullWidth
+        size="small"
+        name={name}
+        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        label="قیمت"
+        placeholder="به ریال"
+        displayType="input"
+        color="secondary"
+        variant="outlined"
+      />
+    )
   } else if (pwd) {
     content = (
       <FormControl sx={{ width: 1 }} variant="outlined" size="small">
         <InputLabel>پسورد</InputLabel>
         <OutlinedInput
           name={name}
-          value={formik.values[`${name}`]}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleBlur}
           error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
-          onChange={formik.handleChange}
           type={showPassword ? 'text' : 'password'}
           endAdornment={
             <InputAdornment position="end">
@@ -67,15 +112,52 @@ const CustomFields = ({ pwd, phone, xs, sm, md, name, formik, ...props }) => {
         />
       </FormControl>
     )
+  } else if (select) {
+    content = (
+      <FormControl
+        fullWidth
+        size="small"
+        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+      >
+        <InputLabel id={`${name}-label`}>{customLabel}</InputLabel>
+        <Select
+          name={name}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          labelId={`${name}-label`}
+          input={<OutlinedInput label={customLabel} />}
+          MenuProps={{
+            PaperProps: {
+              style: {
+                maxHeight: 48 * 4.5 + 8,
+                width: 250,
+              },
+            },
+          }}
+        >
+          <MenuItem>
+            <SearchField small />
+          </MenuItem>
+          {selectOptions.map((option, index) => (
+            <MenuItem value={option} key={index}>
+              {' '}
+              {option}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    )
   } else {
     content = (
       <TextField
         fullWidth
         size="small"
         name={name}
-        value={formik.values[`${name}`]}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
-        onChange={formik.handleChange}
+        value={value}
+        onChange={handleChange}
+        onBlur={handleBlur}
         color="secondary"
         {...props}
       />
@@ -87,5 +169,4 @@ const CustomFields = ({ pwd, phone, xs, sm, md, name, formik, ...props }) => {
     </Grid>
   )
 }
-
 export default CustomFields

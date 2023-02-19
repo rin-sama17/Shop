@@ -1,5 +1,10 @@
 export const toRial = (price) => {
     console.log(price);
+
+    if (!price) {
+        return;
+    }
+
     price = price.toString();
     JSON.stringify(price);
     price = price.replace(/\,/g, '');

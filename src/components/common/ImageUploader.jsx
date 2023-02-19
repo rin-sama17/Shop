@@ -6,6 +6,8 @@ import {
   Card,
 } from '@mui/material'
 import { AddAPhoto } from '@mui/icons-material'
+
+import Grid from '@mui/material/Unstable_Grid2'
 const ImageUploader = ({ formik, name, color, size }) => {
   const handleFileChange = (e) => {
     const reader = new FileReader()
@@ -18,53 +20,64 @@ const ImageUploader = ({ formik, name, color, size }) => {
   }
 
   return (
-    <Box component="div" sx={{ height: size, width: size, mb: 2 }}>
-      <ImageListItem>
-        {formik.values[`${name}`] ? (
-          <CardMedia
-            component="img"
-            image={formik.values[`${name}`]}
-            alt=""
-            sx={{ height: size, width: size }}
-          />
-        ) : (
-          <Card sx={{ height: size, width: size }} />
-        )}
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: 0,
-            width: 1,
-            height: 1,
-            bgcolor: 'bgBlur.main',
-          }}
-        >
-          <CardActionArea
-            component="label"
+    <Grid
+      xs={12}
+      md={3}
+      sx={{
+        mb: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Box component="div" sx={{ height: size, width: size, mb: 2 }}>
+        <ImageListItem>
+          {formik.values[`${name}`] ? (
+            <CardMedia
+              component="img"
+              image={formik.values[`${name}`]}
+              alt=""
+              sx={{ height: size, width: size }}
+            />
+          ) : (
+            <Card sx={{ height: size, width: size }} />
+          )}
+          <Box
             sx={{
-              color:
-                formik.touched[`${name}`] && formik.errors[`${name}`]
-                  ? 'error.main'
-                  : `${color}.main`,
+              position: 'absolute',
+              bottom: 0,
+              width: 1,
               height: 1,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              bgcolor: 'bgblur',
+              bgcolor: 'bgBlur.main',
             }}
           >
-            <input
-              accept="image/*"
-              hidden
-              type="file"
-              name={name}
-              onChange={handleFileChange}
-            />
-            <AddAPhoto />
-          </CardActionArea>
-        </Box>
-      </ImageListItem>
-    </Box>
+            <CardActionArea
+              component="label"
+              sx={{
+                color:
+                  formik.touched[`${name}`] && formik.errors[`${name}`]
+                    ? 'error.main'
+                    : `${color}.main`,
+                height: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                bgcolor: 'bgblur',
+              }}
+            >
+              <input
+                accept="image/*"
+                hidden
+                type="file"
+                name={name}
+                onChange={handleFileChange}
+              />
+              <AddAPhoto />
+            </CardActionArea>
+          </Box>
+        </ImageListItem>
+      </Box>
+    </Grid>
   )
 }
 
