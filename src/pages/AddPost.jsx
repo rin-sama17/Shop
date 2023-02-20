@@ -118,12 +118,7 @@ const AddPost = () => {
         <Grid container>
           <CustomDivider label="پست جدید" color="success" />
 
-          <ImageUploader
-            formik={formik}
-            name="thumbnail"
-            color="success"
-            size={200}
-          />
+          <ImageUploader formik={formik} name="thumbnail" color="success" />
           <Grid xs={12} md={9}>
             <Grid container spacing={2} sx={{ direction: 'ltr' }}>
               <CustomFields

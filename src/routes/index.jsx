@@ -12,6 +12,7 @@ import {
   TrackOrders,
   Cart,
   Checkout,
+  AdminPanel,
 } from '../pages'
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
       {
         path: '/checkout',
         element: <Checkout />,
+      },
+      {
+        path: '/admin-panel',
+        element: <AdminPanel />,
       },
     ],
   },

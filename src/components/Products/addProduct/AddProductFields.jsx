@@ -72,12 +72,7 @@ const AddProductFields = () => {
     <form autoComplete="off" onSubmit={formik.handleSubmit}>
       <Grid container>
         <CustomDivider label="محصول جدید" color="warning" />
-        <ImageUploader
-          formik={formik}
-          name="thumbnail"
-          color="warning"
-          size={200}
-        />
+        <ImageUploader formik={formik} name="thumbnail" color="warning" />
         <Grid xs={12} md={9}>
           <Box>
             <Grid container spacing={2} sx={{ direction: 'ltr' }}>

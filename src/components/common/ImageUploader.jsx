@@ -8,7 +8,7 @@ import {
 import { AddAPhoto } from '@mui/icons-material'
 
 import Grid from '@mui/material/Unstable_Grid2'
-const ImageUploader = ({ formik, name, color, size }) => {
+const ImageUploader = ({ formik, name, color, width, md }) => {
   const handleFileChange = (e) => {
     const reader = new FileReader()
     reader.onload = () => {
@@ -22,7 +22,7 @@ const ImageUploader = ({ formik, name, color, size }) => {
   return (
     <Grid
       xs={12}
-      md={3}
+      md={md ? md : 3}
       sx={{
         mb: 2,
         display: 'flex',
@@ -30,17 +30,20 @@ const ImageUploader = ({ formik, name, color, size }) => {
         alignItems: 'center',
       }}
     >
-      <Box component="div" sx={{ height: size, width: size, mb: 2 }}>
+      <Box
+        component="div"
+        sx={{ height: 200, width: width ? width : 200, mb: 2 }}
+      >
         <ImageListItem>
           {formik.values[`${name}`] ? (
             <CardMedia
               component="img"
               image={formik.values[`${name}`]}
               alt=""
-              sx={{ height: size, width: size }}
+              sx={{ height: 200, width: width ? width : 200 }}
             />
           ) : (
-            <Card sx={{ height: size, width: size }} />
+            <Card sx={{ height: 200, width: width ? width : 200 }} />
           )}
           <Box
             sx={{

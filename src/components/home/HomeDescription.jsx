@@ -26,7 +26,12 @@ const HomeDescription = () => {
 
   return (
     <>
-      <Typography variant="h4" ref={nameEl} color="text.primary"></Typography>
+      <Typography
+        variant="h4"
+        ref={nameEl}
+        color="text.primary"
+        sx={{ mt: 2 }}
+      ></Typography>
       <TextTransition springConfig={presets.wobbly}>
         <Typography
           color="secondary"

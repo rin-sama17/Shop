@@ -16,14 +16,13 @@ import { cartItemDeleted, selectCartProducts } from '../../reducers/cartSlice'
 import { useEffect } from 'react'
 
 const CartProduct = ({ productId, productCount }) => {
-  const { data: product, isLoading } = useGetProductQuery(productId)
+  const { data: product, isLoading, error } = useGetProductQuery(productId)
   const dispatch = useDispatch()
-  const cartProducts = useSelector(selectCartProducts)
-
+  console.log(error)
+  console.log(productId)
   const handleDelete = () => {
     dispatch(cartItemDeleted(productId))
   }
-
   if (isLoading) {
     return (
       <Card sx={{ mb: 2, p: 2 }}>

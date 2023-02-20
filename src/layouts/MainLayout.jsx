@@ -23,8 +23,6 @@ const MainLayout = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const localCartProducts = JSON.parse(localStorage.getItem('cartProducts'))
-    console.log(localCartProducts)
-    console.log('deleted to cart')
     dispatch(cartItemsSeted(localCartProducts))
   }, [])
 

@@ -1,8 +1,8 @@
-import { Avatar, Box} from '@mui/material'
+import { Avatar, Box } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
 import { SingIn } from '../../pages'
 import { useSelector } from 'react-redux'
-import { selectUserInfo } from '../../reducers/userSlice';
+import { selectUserInfo } from '../../reducers/userSlice'
 
 const NavAvatar = () => {
   const user = useSelector(selectUserInfo)
@@ -32,7 +32,7 @@ const NavAvatar = () => {
   return (
     <>
       {user ? (
-        <Box component={RouterLink} to="/dashboard">
+        <Box component={RouterLink} to="/admin-panel">
           <Avatar
             alt="Remy Sharp"
             src="https://mui.com/static/images/avatar/1.jpg"

@@ -15,8 +15,6 @@ import { CustomDivider } from '../common'
 import SearchField from '../common/SearchField'
 
 const ProductsFilter = ({ data, setData }) => {
-  const handleSearch = () => {}
-
   const [value, setValue] = useState([0, 37])
   const [open, setOpen] = useState(false)
 

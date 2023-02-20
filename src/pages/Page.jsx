@@ -11,7 +11,7 @@ const Page = (props) => {
       aria-labelledby={`sidebar-tab-${index}`}
       {...others}
     >
-      {pageNumber === index && <Box>{children}</Box>}
+      {pageNumber === index && <Box sx={{ width: 1 }}>{children}</Box>}
     </div>
   )
 }

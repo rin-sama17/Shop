@@ -76,12 +76,7 @@ const EditParagraph = ({ patagraphId }) => {
                   alignItems: 'center',
                 }}
               >
-                <ImageUploader
-                  formik={formik}
-                  name="photo"
-                  color="secondary"
-                  size={200}
-                />
+                <ImageUploader formik={formik} name="photo" color="secondary" />
               </Grid>
               <Grid xs={12} md={9}>
                 <CustomFields

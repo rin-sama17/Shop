@@ -46,12 +46,7 @@ const AddParagraph = () => {
       <AccordionDetails>
         <form onSubmit={formik.handleSubmit}>
           <Grid container>
-            <ImageUploader
-              formik={formik}
-              name="photo"
-              color="info"
-              size={200}
-            />
+            <ImageUploader formik={formik} name="photo" color="info" />
             <Grid xs={12} md={9}>
               <CustomFields
                 md={4}
