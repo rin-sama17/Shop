@@ -6,8 +6,8 @@ const AdminPanelTabs = ({ pageNumber, setPageNumber }) => {
   const isMdDown = useMediaQuery(theme.breakpoints.down('md'))
   const data = [
     'مدیریت اسلایدها',
-    'مدیریت کاربران',
     'مدیریت سفارشات',
+    'مدیریت کاربران',
     'مدیریت نظرات',
   ]
 

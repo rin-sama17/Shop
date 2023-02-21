@@ -24,16 +24,12 @@ const ImageUploader = ({ formik, name, color, width, md }) => {
       xs={12}
       md={md ? md : 3}
       sx={{
-        mb: 2,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
       }}
     >
-      <Box
-        component="div"
-        sx={{ height: 200, width: width ? width : 200, mb: 2 }}
-      >
+      <Box component="div" sx={{ height: 200, width: width ? width : 200 }}>
         <ImageListItem>
           {formik.values[`${name}`] ? (
             <CardMedia

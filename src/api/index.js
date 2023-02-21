@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products"],
+    tagTypes: ['Posts', "Products", "Slider"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
@@ -38,7 +38,6 @@ export const apiSlice = createApi({
         }),
         deleteProduct: builder.mutation({
             query: (initialProductId) => ({
-
                 url: `/products/${initialProductId}`,
                 method: "DELETE"
             }),
@@ -53,8 +52,29 @@ export const apiSlice = createApi({
                 method: "POST",
                 body: initialCart
             })
+        }),
+        getSliders: builder.query({
+            query: () => '/sliders',
+            providesTags: ["Slider"]
+        }),
+        getSlider: builder.query({
+            query: (initialSliderId) => `/sliders/${initialSliderId}`
+        }),
+        addNewSlider: builder.mutation({
+            query: (initialSlider) => ({
+                url: "/sliders",
+                method: "POST",
+                body: initialSlider
+            }),
+            invalidatesTags: ["Slider"]
+        }),
+        deleteSlider: builder.mutation({
+            query: (initialSliderId) => ({
+                url: `/sliders/${initialSliderId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Slider"]
         })
-
     })
 });
 
@@ -67,5 +87,9 @@ export const {
     useAddNewProductMutation,
     useDeleteProductMutation,
     useGetCartQuery,
-    useAddNewCartMutation
+    useAddNewCartMutation,
+    useGetSlidersQuery,
+    useGetSliderQuery,
+    useAddNewSliderMutation,
+    useDeleteSliderMutation
 } = apiSlice;

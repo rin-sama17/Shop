@@ -16,6 +16,7 @@ import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
 
 import { PatternFormat } from 'react-number-format'
 import SearchField from './SearchField'
+import { useEffect } from 'react'
 
 const CustomFields = ({
   pwd,
@@ -31,7 +32,17 @@ const CustomFields = ({
   formik,
   ...props
 }) => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState()
+
+  useEffect(() => {
+    setValue(formik.values[`${name}`])
+  }, [])
+
+  useEffect(() => {
+    if (formik.values[`${name}`] === '') {
+      setValue('')
+    }
+  }, [formik])
   const [showPassword, setShowPassword] = useState(false)
 
   const handleChange = (e) => setValue(e.target.value)
