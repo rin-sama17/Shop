@@ -8,10 +8,12 @@ import { selectCartProducts } from '../../reducers/cartSlice'
 import { useSelector } from 'react-redux'
 import CartProduct from './CartsProduct'
 import { useGetCartQuery } from '../../api'
+
 const CartDetails = ({ button, cartId, isLocal }) => {
   const { data: cart = [], isLoading, isSuccess } = useGetCartQuery(cartId)
 
-  let cartProducts
+  let cartProducts = []
+
   if (isSuccess) {
     cartProducts = cart.products
   } else if (isLocal) {

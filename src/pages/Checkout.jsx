@@ -10,9 +10,14 @@ import { useAddNewCartMutation } from '../api'
 import { nanoid } from '@reduxjs/toolkit'
 
 import { Link as RouterLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 const Checkout = () => {
   const cartProducts = useSelector(selectCartProducts)
-  let cartId = nanoid()
+  const [cartId, setCartId] = useState()
+  useEffect(() => {
+    const userCartId = nanoid()
+    setCartId(userCartId)
+  }, [])
   const checkoutFields = {
     fullName: '',
     phone: '',
