@@ -31,7 +31,7 @@ const Checkout = () => {
         products: cartProducts,
       })
       if (isSuccess) {
-        localStorage.setItem(JSON.stringify([]))
+        localStorage.setItem('cartProducts', JSON.stringify([]))
       }
     } catch (error) {
       console.log(error.massage)
@@ -70,7 +70,7 @@ const Checkout = () => {
   return (
     <>
       <CustomDivider label="سبد خرید شما" />
-      <CartDetails />
+      <CartDetails isLocal />
       <Container maxWidth="md" sx={{ mb: 2 }}>
         <Stack alignItems="center" sx={{ width: 1, mt: 4 }}>
           <CustomDivider label="پرداخت" color="success" />

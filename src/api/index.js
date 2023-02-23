@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products", "Carts", "Slider"],
+    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Slider"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
@@ -27,6 +27,8 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ["Posts"]
         }),
+
+
         getProducts: builder.query({
             query: () => "/products",
             providesTags: ["Products"]
@@ -49,6 +51,8 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ["Products"]
         }),
+
+
         getCarts: builder.query({
             query: () => `/carts`
         }),
@@ -62,6 +66,8 @@ export const apiSlice = createApi({
                 body: initialCart
             })
         }),
+
+
         getSliders: builder.query({
             query: () => '/sliders',
             providesTags: ["Slider"]
@@ -83,6 +89,29 @@ export const apiSlice = createApi({
                 method: "DELETE"
             }),
             invalidatesTags: ["Slider"]
+        }),
+
+
+        getDiscounts: builder.query({
+            query: () => '/discounts',
+            providesTags: ["Discounts"]
+        }),
+        getDiscount: builder.query({
+            query: (initialDiscountId) => `/discount/${initialDiscountId}`
+        }),
+        addNewDiscount: builder.mutation({
+            query: (initialDiscount) => ({
+                url: '/discounts',
+                method: "POST",
+                body: initialDiscount,
+            }),
+            invalidatesTags: ["Discounts"]
+        }),
+        deleteDiscount: builder.mutation({
+            query: (initialDiscountId) => ({
+                url: `/discount/${initialDiscountId}`,
+                method: "DELETE"
+            })
         })
     })
 });
@@ -92,15 +121,23 @@ export const {
     useGetPostQuery,
     useAddNewPostMutation,
     useDeletePostMutation,
+
     useGetProductsQuery,
     useGetProductQuery,
     useAddNewProductMutation,
     useDeleteProductMutation,
+
     useGetCartsQuery,
     useGetCartQuery,
     useAddNewCartMutation,
+
     useGetSlidersQuery,
     useGetSliderQuery,
     useAddNewSliderMutation,
-    useDeleteSliderMutation
+    useDeleteSliderMutation,
+
+    useGetDiscountsQuery,
+    useGetDiscountQuery,
+    useAddNewDiscountMutation,
+    useDeleteDiscountMutation
 } = apiSlice;

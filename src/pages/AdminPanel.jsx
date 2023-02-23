@@ -3,13 +3,13 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 
-import { useTheme } from '@mui/styles'
 import AdminPanelTabs from '../components/adminPanel/AdminPanelTabs'
 import Page from './Page'
 import SliderManagement from '../components/adminPanel/pages/SliderManagement'
 import OrderManagement from '../components/adminPanel/pages/OrderManagement.jsx'
 import ProductManagement from '../components/adminPanel/pages/ProductManagement.jsx'
 import PostManagement from '../components/adminPanel/pages/PostManagement.jsx'
+import DiscountManagement from '../components/adminPanel/pages/DiscountManagment.jsx'
 
 const AdminPanel = () => {
   const [pageNumber, setPageNumber] = useState(0)
@@ -48,6 +48,9 @@ const AdminPanel = () => {
           </Page>
           <Page pageNumber={pageNumber} index={3}>
             <PostManagement />
+          </Page>
+          <Page pageNumber={pageNumber} index={4}>
+            <DiscountManagement />
           </Page>
         </SwipeableViews>
       </Grid>

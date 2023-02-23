@@ -14,11 +14,15 @@ import { useDispatch } from 'react-redux'
 import { cartItemDeleted } from '../../reducers/cartSlice'
 
 const CartProduct = ({ productId, productCount }) => {
-  const { data: product, isLoading } = useGetProductQuery(productId)
+  const { data: product, isLoading, isError } = useGetProductQuery(productId)
   const dispatch = useDispatch()
   const handleDelete = () => {
     dispatch(cartItemDeleted(productId))
   }
+
+  const localCartProducts = JSON.parse(localStorage.getItem('cartProducts'))
+
+  // dispatch(cartItemsSeted(localCartProducts))
   if (isLoading) {
     return (
       <Card sx={{ mb: 2, p: 2 }}>
@@ -33,6 +37,27 @@ const CartProduct = ({ productId, productCount }) => {
           </Stack>
           <Skeleton animation="wave" width="20%" height={60} />
         </Stack>
+      </Card>
+    )
+  } else if (isError) {
+    const fixedCartProducts = localCartProducts.filter(
+      (product) => product.id !== productId,
+    )
+    localStorage.setItem('cartProducts', JSON.stringify(fixedCartProducts))
+    return (
+      <Card
+        sx={{
+          p: 2,
+          mb: 2,
+          height: 50,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography sx={{ color: 'tomato' }}>
+          مشکلی پیش امده لطفا با پشتیبانی تماس بگیرید
+        </Typography>
       </Card>
     )
   }

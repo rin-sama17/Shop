@@ -7,25 +7,23 @@ import { Link as RouterLink } from 'react-router-dom'
 import { selectCartProducts } from '../../reducers/cartSlice'
 import { useSelector } from 'react-redux'
 import CartProduct from './CartsProduct'
+import { useGetCartQuery } from '../../api'
+const CartDetails = ({ button, cartId, isLocal }) => {
+  const { data: cart = [], isLoading, isSuccess } = useGetCartQuery(cartId)
 
-const CartDetails = ({ button }) => {
-  const products = useSelector(selectCartProducts)
-  // let TPrice
-  // let TDiscount
-  // let TDiscountPersent
-  // if (products.length > 0) {
-  //   TPrice = products.reduce((a, b) => a + b.price * b.count, 0)
-  //   const prevPrice = Math.round(
-  //     products.reduce(
-  //       (a, b) => a + (b.price / (1 - b.discount / 100)) * b.count,
-  //       0,
-  //     ),
-  //   )
-  //   TDiscount = prevPrice - TPrice
-  //   TDiscountPersent = Math.round((100 * (prevPrice - TPrice)) / prevPrice)
-  // }
-  const { TPrice, TDiscount, TDiscountPersent } = totalProductsPrice(products)
-  if (products.length === 0) {
+  let cartProducts
+  if (isSuccess) {
+    cartProducts = cart.products
+  } else if (isLocal) {
+    const localProducts = useSelector(selectCartProducts)
+    cartProducts = localProducts
+  }
+
+  const { TPrice, TDiscount, TDiscountPersent } = totalProductsPrice(
+    cartProducts,
+  )
+
+  if (cartProducts.length === 0) {
     return (
       <Stack justifyContent="center" alignItems="center" sx={{ width: 1 }}>
         <Card sx={{ p: 3 }}>
@@ -44,12 +42,14 @@ const CartDetails = ({ button }) => {
         </Card>
       </Stack>
     )
+  } else if (isLoading) {
+    return <Typography color="text.primary">درحال دریافت اطلاعات...</Typography>
   }
   return (
     <Container maxWidth="lg" sx={{ pt: 2 }}>
       <Grid container sx={{ width: 1 }} spacing={2}>
         <Grid xs={12} md={8}>
-          {products.map((product) => (
+          {cartProducts.map((product) => (
             <CartProduct
               productId={product.id}
               productCount={product.count}

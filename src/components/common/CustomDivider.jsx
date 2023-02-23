@@ -18,7 +18,7 @@ const CustomDivider = ({ label, color, ...props }) => {
         <Typography
           variant="body1"
           sx={{
-            color: color ? `${color}.main` : 'text.secondary',
+            color: color ? `${color}.light` : 'text.secondary',
             textAlign: 'center',
           }}
         >
