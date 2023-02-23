@@ -10,16 +10,12 @@ import { Delete } from '@mui/icons-material'
 
 import { ProductPrice, CustomIconButton } from '../common'
 import { useGetProductQuery } from '../../api'
-import { Link as RouterLink } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { cartItemDeleted, selectCartProducts } from '../../reducers/cartSlice'
-import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { cartItemDeleted } from '../../reducers/cartSlice'
 
 const CartProduct = ({ productId, productCount }) => {
-  const { data: product, isLoading, error } = useGetProductQuery(productId)
+  const { data: product, isLoading } = useGetProductQuery(productId)
   const dispatch = useDispatch()
-  console.log(error)
-  console.log(productId)
   const handleDelete = () => {
     dispatch(cartItemDeleted(productId))
   }

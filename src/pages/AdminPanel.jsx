@@ -7,6 +7,10 @@ import { useTheme } from '@mui/styles'
 import AdminPanelTabs from '../components/adminPanel/AdminPanelTabs'
 import Page from './Page'
 import SliderManagement from '../components/adminPanel/pages/SliderManagement'
+import OrderManagement from '../components/adminPanel/pages/OrderManagement.jsx'
+import ProductManagement from '../components/adminPanel/pages/ProductManagement.jsx'
+import PostManagement from '../components/adminPanel/pages/PostManagement.jsx'
+
 const AdminPanel = () => {
   const [pageNumber, setPageNumber] = useState(0)
 
@@ -30,22 +34,20 @@ const AdminPanel = () => {
         <AdminPanelTabs pageNumber={pageNumber} setPageNumber={setPageNumber} />
       </Grid>
       <Grid xs={12} md={9.5} lg={10}>
-        <SwipeableViews
-          enableMouseEvents
-          index={pageNumber}
-          onChangeIndex={handleSwipeNumber}
-        >
+        <SwipeableViews index={pageNumber} onChangeIndex={handleSwipeNumber}>
           <Page pageNumber={pageNumber} index={0}>
             <SliderManagement />
           </Page>
+
           <Page pageNumber={pageNumber} index={1}>
-            2222
-          </Page>{' '}
+            <OrderManagement />
+          </Page>
+
           <Page pageNumber={pageNumber} index={2}>
-            3333
-          </Page>{' '}
+            <ProductManagement />
+          </Page>
           <Page pageNumber={pageNumber} index={3}>
-            4444
+            <PostManagement />
           </Page>
         </SwipeableViews>
       </Grid>

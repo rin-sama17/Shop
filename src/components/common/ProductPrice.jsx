@@ -6,7 +6,6 @@ const ProductPrice = ({ price, discount }) => {
   if (discount > 0) {
     prevPrice = Math.round(price / (1 - discount / 100))
   }
-  console.log(discount)
   return (
     <Box sx={{ display: 'column', ml: 1 }}>
       {discount ? (

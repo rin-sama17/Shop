@@ -23,7 +23,6 @@ const AddProductFields = () => {
         details,
         stock,
         thumbnail,
-        photos,
         category,
         tags,
       } = values
@@ -39,7 +38,6 @@ const AddProductFields = () => {
         details,
         stock,
         thumbnail,
-        photos,
         category,
         tags,
       })
@@ -76,10 +74,9 @@ const AddProductFields = () => {
         <Grid xs={12} md={9}>
           <Box>
             <Grid container spacing={2} sx={{ direction: 'ltr' }}>
-              {productFields.map((field, index) => {
-                console.log(field)
-                return <CustomFields {...field} key={index} />
-              })}
+              {productFields.map((field, index) => (
+                <CustomFields {...field} key={index} />
+              ))}
             </Grid>
           </Box>
         </Grid>

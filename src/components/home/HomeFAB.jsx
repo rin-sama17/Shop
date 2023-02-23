@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import {
-  Box,
   Backdrop,
   SpeedDial,
   SpeedDialIcon,
@@ -9,15 +8,9 @@ import {
   IconButton,
 } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
-import {
-  AddToPhotos,
-  Face6,
-  Logout,
-  Edit,
-  LibraryBooks,
-} from '@mui/icons-material'
+import { AddToPhotos, Edit, LibraryBooks } from '@mui/icons-material'
 
-const HomeFAB = ({ user }) => {
+const HomeFAB = () => {
   const [open, setOpen] = useState(false)
 
   const actions = [

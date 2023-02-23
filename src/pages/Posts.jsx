@@ -11,8 +11,6 @@ import { useGetPostsQuery } from '../api'
 const Posts = () => {
   const [data, setData] = useState([])
   const { data: posts = [] } = useGetPostsQuery()
-  console.log(posts)
-  console.log(data)
   return (
     <Container maxWidth="md">
       <Grid container>

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products", "Slider"],
+    tagTypes: ['Posts', "Products", "Carts", "Slider"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
@@ -20,7 +20,13 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ["Posts"]
         }),
-
+        deletePost: builder.mutation({
+            query: (initialPostId) => ({
+                url: `/posts/${initialPostId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Posts"]
+        }),
         getProducts: builder.query({
             query: () => "/products",
             providesTags: ["Products"]
@@ -42,6 +48,9 @@ export const apiSlice = createApi({
                 method: "DELETE"
             }),
             invalidatesTags: ["Products"]
+        }),
+        getCarts: builder.query({
+            query: () => `/carts`
         }),
         getCart: builder.query({
             query: (initialCartId) => `/carts/${initialCartId}`
@@ -82,10 +91,12 @@ export const {
     useGetPostsQuery,
     useGetPostQuery,
     useAddNewPostMutation,
+    useDeletePostMutation,
     useGetProductsQuery,
     useGetProductQuery,
     useAddNewProductMutation,
     useDeleteProductMutation,
+    useGetCartsQuery,
     useGetCartQuery,
     useAddNewCartMutation,
     useGetSlidersQuery,

@@ -30,6 +30,9 @@ const Checkout = () => {
         address,
         products: cartProducts,
       })
+      if (isSuccess) {
+        localStorage.setItem(JSON.stringify([]))
+      }
     } catch (error) {
       console.log(error.massage)
     }

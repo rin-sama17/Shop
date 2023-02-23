@@ -2,7 +2,6 @@ import { Box } from '@mui/material'
 
 const Page = (props) => {
   const { children, pageNumber, index, ...others } = props
-
   return (
     <div
       role="tabpanel"
@@ -11,7 +10,7 @@ const Page = (props) => {
       aria-labelledby={`sidebar-tab-${index}`}
       {...others}
     >
-      {pageNumber === index && <Box sx={{ width: 1 }}>{children}</Box>}
+      {pageNumber == index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   )
 }
