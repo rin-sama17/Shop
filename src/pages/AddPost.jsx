@@ -127,38 +127,7 @@ const AddPost = () => {
                 formik={formik}
                 label="عنوان"
               />
-              <Grid xs={12} md={4}>
-                <FormControl fullWidth size="small">
-                  <InputLabel>دسته بندی</InputLabel>
-                  <Select
-                    name="category"
-                    value={formik.values.category}
-                    error={Boolean(
-                      formik.touched.category && formik.errors.category,
-                    )}
-                    onChange={formik.handleChange}
-                    label="دسته بندی"
-                    MenuProps={{
-                      PaperProps: {
-                        style: {
-                          maxHeight: 48 * 4.5 + 8,
-                          width: 250,
-                        },
-                      },
-                    }}
-                  >
-                    <MenuItem>
-                      <SearchField small />
-                    </MenuItem>
-                    {options.map((option, index) => (
-                      <MenuItem value={option} key={index}>
-                        {' '}
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>{' '}
+              <CustomFields category name="category" formik={formik} md={4} />
               <CustomFields
                 sm={12}
                 name="tags"

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Slider"],
+    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Slider", "Categorys"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
@@ -111,8 +111,34 @@ export const apiSlice = createApi({
             query: (initialDiscountId) => ({
                 url: `/discount/${initialDiscountId}`,
                 method: "DELETE"
-            })
+            }),
+            invalidatesTags: ["Discounts"]
+        }),
+
+
+        getCategorys: builder.query({
+            query: () => "/categorys",
+            providesTags: ["Categorys"]
+        }),
+        getCategory: builder.query({
+            query: (initialCategoryId) => `/categorys/${initialCategoryId}`
+        }),
+        addNewCategory: builder.mutation({
+            query: (initialCategory) => ({
+                url: "/categorys",
+                method: "POST",
+                body: initialCategory
+            }),
+            invalidatesTags: ["Categorys"]
+        }),
+        deleteCategory: builder.mutation({
+            query: (initialCategoryId) => ({
+                url: `/categorys/${initialCategoryId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Categorys"]
         })
+
     })
 });
 
@@ -139,5 +165,10 @@ export const {
     useGetDiscountsQuery,
     useGetDiscountQuery,
     useAddNewDiscountMutation,
-    useDeleteDiscountMutation
+    useDeleteDiscountMutation,
+
+    useGetCategorysQuery,
+    useGetCategoryQuery,
+    useAddNewCategoryMutation,
+    useDeleteCategoryMutation
 } = apiSlice;

@@ -1,19 +1,19 @@
-import { useRef, useLayoutEffect } from 'react'
-import { useDeleteProductMutation, useGetProductsQuery } from '../../../api'
-import { toast } from 'react-toastify'
 import { DataGrid } from '@mui/x-data-grid'
+import { useDeleteCategoryMutation, useGetCategorysQuery } from '../../../api'
+import AddCategory from './AddCategory'
+import { useRef, useLayoutEffect } from 'react'
+import { toast } from 'react-toastify'
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
-
-const DeleteProduct = (props) => {
+const DeleteCategory = (props) => {
   const { hasFocus, value } = props
   const buttonElement = useRef(null)
   const rippleRef = useRef(null)
-  const [deleteProduct] = useDeleteProductMutation()
+  const [deleteCategory] = useDeleteCategoryMutation()
 
-  const handleProductDelete = async (productId) => {
+  const handleCategoryDelete = async (categoryId) => {
     try {
-      await deleteProduct(productId).unwrap()
+      await deleteCategory(categoryId).unwrap()
     } catch (error) {
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
       console.error('error: ', error)
@@ -23,7 +23,7 @@ const DeleteProduct = (props) => {
     if (hasFocus) {
       const input = buttonElement.current?.querySelector('input')
       input?.focus()
-      handleProductDelete(value)
+      handleCategoryDelete(value)
     } else if (rippleRef.current) {
       rippleRef.current.stop({})
     }
@@ -48,16 +48,11 @@ const DeleteProduct = (props) => {
     </strong>
   )
 }
-const ProductManagement = () => {
-  const { data: products = [] } = useGetProductsQuery()
 
+const CategoryManagement = () => {
+  const { data: categorys = [] } = useGetCategorysQuery()
   const columns = [
-    { field: 'id', headerName: 'ای دی', width: 100 },
-    { field: 'name', headerName: 'نام محصول', width: 100 },
-    { field: 'price', headerName: 'قیمت', width: 150 },
-    { field: 'discount', headerName: 'تخفیف(به درصد)', width: 150 },
-    { field: 'stock', headerName: 'موجودی', width: 100 },
-    { field: 'category', headerName: 'دسته بندی', width: 150 },
+    { field: 'name', headerName: 'نام دسته بندی', width: 300 },
     {
       field: 'edit',
       headerName: 'ویرایش',
@@ -76,20 +71,17 @@ const ProductManagement = () => {
       sortable: false,
       width: 150,
       valueGetter: (params) => params.row.id,
-      renderCell: DeleteProduct,
+      renderCell: DeleteCategory,
     },
   ]
-
   return (
     <>
-      <Button component={Link} to="/addProduct" sx={{ m: 2 }}>
-        ساخت محصول جدید
-      </Button>
+      <AddCategory />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={products} columns={columns} />
+        <DataGrid rows={categorys} columns={columns} />
       </div>
     </>
   )
 }
 
-export default ProductManagement
+export default CategoryManagement

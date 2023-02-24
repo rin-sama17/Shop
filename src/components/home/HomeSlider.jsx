@@ -6,7 +6,6 @@ import {
   ImageListItemBar,
 } from '@mui/material'
 import { useRef } from 'react'
-import { sliderItem } from '../../constants/sliderItems'
 import Slider from 'react-slick'
 import { useState, useEffect } from 'react'
 

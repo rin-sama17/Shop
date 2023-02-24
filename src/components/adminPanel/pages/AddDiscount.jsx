@@ -88,14 +88,7 @@ const AddDiscount = () => {
                   formik.errors.discount ? formik.errors.discount : null
                 }
               />
-              <CustomFields
-                formik={formik}
-                customLabel="دسته بندی"
-                name="category"
-                md={12}
-                select
-                selectOptions={options}
-              />
+              <CustomFields formik={formik} name="category" category md={12} />
               <Button fullWidth type="submit" sx={{ color: 'tomato' }}>
                 افزودن تخفیف
               </Button>

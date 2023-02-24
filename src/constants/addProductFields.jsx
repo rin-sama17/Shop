@@ -65,11 +65,9 @@ export const fields = (formik) => {
     },
     {
       sm: 5,
-      select: true,
-      selectOptions: options,
+      category: true,
       formik,
       name: 'category',
-      customLabel: 'دسته بندی',
     },
     {
       sm: 7,

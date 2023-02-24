@@ -19,29 +19,27 @@ const TrackOrders = () => {
   })
 
   return (
-    <Container maxWidth="md">
-      <Stack alignItems="center" sx={{ width: 1 }}>
-        <Box sx={{ width: 2 / 3, mt: 4 }}>
-          <form onSubmit={formik.handleSubmit}>
-            <CustomFields formik={formik} name="cartId" label="کد پیگیری" />
-            <Button type="submit" sx={{ mt: 1 }}>
-              جستجو
-            </Button>
-          </form>
-        </Box>
-        {userCartId && (
-          <>
-            <CustomDivider
-              label="سبد خرید شما"
-              color="primary"
-              sx={{ my: 2 }}
-            />
+    <>
+      <Container maxWidth="md">
+        <Stack alignItems="center" sx={{ width: 1 }}>
+          <Box sx={{ width: 2 / 3, mt: 4 }}>
+            <form onSubmit={formik.handleSubmit}>
+              <CustomFields formik={formik} name="cartId" label="کد پیگیری" />
+              <Button type="submit" sx={{ mt: 1 }}>
+                جستجو
+              </Button>
+            </form>
+          </Box>
+        </Stack>
+      </Container>
+      {userCartId && (
+        <>
+          <CustomDivider label="سبد خرید شما" color="primary" sx={{ my: 2 }} />
 
-            <CartDetails cartId={userCartId} />
-          </>
-        )}
-      </Stack>
-    </Container>
+          <CartDetails cartId={userCartId} />
+        </>
+      )}
+    </>
   )
 }
 

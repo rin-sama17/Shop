@@ -17,12 +17,13 @@ import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
 import { PatternFormat } from 'react-number-format'
 import SearchField from './SearchField'
 import { useEffect } from 'react'
+import { useGetCategorysQuery } from '../../api'
 
 const CustomFields = ({
   pwd,
   phone,
   price,
-  select,
+  category,
   selectOptions,
   customLabel,
   xs,
@@ -123,21 +124,23 @@ const CustomFields = ({
         />
       </FormControl>
     )
-  } else if (select) {
+  } else if (category) {
+    const { data: options = [], isLoading } = useGetCategorysQuery()
+    console.log(options)
     content = (
       <FormControl
         fullWidth
         size="small"
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
       >
-        <InputLabel id={`${name}-label`}>{customLabel}</InputLabel>
+        <InputLabel id={`${name}-label`}>دسته بندی</InputLabel>
         <Select
           name={name}
           value={value}
           onChange={handleChange}
           onBlur={handleBlur}
           labelId={`${name}-label`}
-          input={<OutlinedInput label={customLabel} />}
+          input={<OutlinedInput label="دسته بندی" />}
           MenuProps={{
             PaperProps: {
               style: {
@@ -150,10 +153,9 @@ const CustomFields = ({
           <MenuItem>
             <SearchField small />
           </MenuItem>
-          {selectOptions.map((option, index) => (
-            <MenuItem value={option} key={index}>
-              {' '}
-              {option}
+          {options.map((option, index) => (
+            <MenuItem value={option.name} key={index}>
+              {option.name}
             </MenuItem>
           ))}
         </Select>

@@ -11,7 +11,6 @@ import {
   Typography,
   Stack,
 } from '@mui/material'
-import { sliderItem } from '../../../constants/sliderItems'
 import { Suspense } from 'react'
 import SliderModal from './SliderModal'
 import { useAddNewSliderMutation } from '../../../api'
