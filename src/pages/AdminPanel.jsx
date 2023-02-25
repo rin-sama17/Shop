@@ -11,6 +11,7 @@ import ProductManagement from '../components/adminPanel/pages/ProductManagement.
 import PostManagement from '../components/adminPanel/pages/PostManagement.jsx'
 import DiscountManagement from '../components/adminPanel/pages/DiscountManagement.jsx'
 import CategoryManagement from '../components/adminPanel/pages/CategoryManagement.jsx'
+import CommentManagement from '../components/adminPanel/pages/CommentManagement.jsx'
 
 const AdminPanel = () => {
   const [pageNumber, setPageNumber] = useState(0)
@@ -39,11 +40,9 @@ const AdminPanel = () => {
           <Page pageNumber={pageNumber} index={0}>
             <SliderManagement />
           </Page>
-
           <Page pageNumber={pageNumber} index={1}>
             <OrderManagement />
           </Page>
-
           <Page pageNumber={pageNumber} index={2}>
             <ProductManagement />
           </Page>
@@ -55,6 +54,9 @@ const AdminPanel = () => {
           </Page>
           <Page pageNumber={pageNumber} index={5}>
             <CategoryManagement />
+          </Page>
+          <Page pageNumber={pageNumber} index={6}>
+            <CommentManagement />
           </Page>
         </SwipeableViews>
       </Grid>

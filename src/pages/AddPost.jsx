@@ -25,29 +25,6 @@ import { nanoid } from '@reduxjs/toolkit'
 import { useAddNewPostMutation } from '../api'
 import { useSelector } from 'react-redux'
 import { selectAllParagraph } from '../reducers/postSlice'
-const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Triton',
-  'Umbriel',
-]
 
 const AddPost = () => {
   const paragraphs = useSelector(selectAllParagraph)

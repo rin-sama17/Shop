@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Slider", "Categorys"],
+    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Slider", "Categorys", "Comments"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
@@ -137,6 +137,41 @@ export const apiSlice = createApi({
                 method: "DELETE"
             }),
             invalidatesTags: ["Categorys"]
+        }),
+
+
+        getComments: builder.query({
+            query: () => "comments",
+            providesTags: ["Comments"],
+        }),
+        getComment: builder.query({
+            query: (initialCommentId) => `/comments/${initialCommentId}`,
+            providesTags: ["Comments"],
+        }),
+        addNewComment: builder.mutation({
+            query: (initialComment) => ({
+                url: "/comments",
+                method: "POST",
+                body: initialComment
+            }),
+            invalidatesTags: ["Comments"]
+        }),
+        deleteComment: builder.mutation({
+            query: (initialCommentId) => ({
+                url: `/comments/${initialCommentId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Comments"]
+        }),
+        editComment: builder.mutation({
+            query: comment => {
+                return {
+                    url: `/comments/${comment.id}`,
+                    method: "PUT",
+                    body: comment
+                };
+            },
+            invalidatesTags: ["Comments"]
         })
 
     })
@@ -170,5 +205,11 @@ export const {
     useGetCategorysQuery,
     useGetCategoryQuery,
     useAddNewCategoryMutation,
-    useDeleteCategoryMutation
+    useDeleteCategoryMutation,
+
+    useGetCommentsQuery,
+    useGetCommentQuery,
+    useAddNewCommentMutation,
+    useDeleteCommentMutation,
+    useEditCommentMutation
 } = apiSlice;

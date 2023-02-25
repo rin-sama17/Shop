@@ -126,7 +126,6 @@ const CustomFields = ({
     )
   } else if (category) {
     const { data: options = [], isLoading } = useGetCategorysQuery()
-    console.log(options)
     content = (
       <FormControl
         fullWidth

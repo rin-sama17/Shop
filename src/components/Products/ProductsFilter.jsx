@@ -9,9 +9,8 @@ import {
   ListItemText,
 } from '@mui/material'
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
-import { categoris } from '../../constants/categoris'
 
-import { CustomDivider } from '../common'
+import { CustomDivider, CustomFields } from '../common'
 import SearchField from '../common/SearchField'
 
 const ProductsFilter = ({ data, setData }) => {
@@ -54,23 +53,7 @@ const ProductsFilter = ({ data, setData }) => {
         از {value[0]} تا {value[1]} تومان
       </Typography>
       <CustomDivider label="فیلتر بر اساس دسته بندی" />
-      <List sx={{ color: 'text.primary' }}>
-        <ListItemButton onClick={() => setOpen(!open)}>
-          <ListItemText primary="دسته بندی" />
-          {open ? <ExpandLess /> : <ExpandMore />}
-        </ListItemButton>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <SearchField small />
-
-          {categoris.map((item, index) => (
-            <List component="div" key={index} disablePadding>
-              <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </List>
-          ))}
-        </Collapse>
-      </List>
+      <CustomFields category />
     </Box>
   )
 }

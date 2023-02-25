@@ -3,15 +3,7 @@ import HomeSlider from '../../home/HomeSlider'
 import { ImageUploader, CustomDivider, CustomFields } from '../../common'
 import { useFormik } from 'formik'
 import { sliderValidation } from '../../validations/sliderValidation'
-import {
-  Box,
-  ImageListItem,
-  CardMedia,
-  Button,
-  Typography,
-  Stack,
-} from '@mui/material'
-import { Suspense } from 'react'
+import { Box, Button, Typography } from '@mui/material'
 import SliderModal from './SliderModal'
 import { useAddNewSliderMutation } from '../../../api'
 import { toast } from 'react-toastify'

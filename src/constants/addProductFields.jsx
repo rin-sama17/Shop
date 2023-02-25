@@ -2,29 +2,7 @@ import { Typography, InputAdornment } from '@mui/material'
 
 import { Percent } from '@mui/icons-material'
 import { toRial } from '../helpers'
-const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Triton',
-  'Umbriel',
-]
+
 const convertPrice = (a, b) => {
   a = Number(a.split(',').join(''))
 

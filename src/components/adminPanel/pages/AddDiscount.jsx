@@ -7,29 +7,7 @@ import { discountValidation } from '../../validations/discountValidation.js'
 
 import Grid from '@mui/material/Unstable_Grid2'
 import { useGetDiscountsQuery, useAddNewDiscountMutation } from '../../../api'
-const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Titania',
-  'Triton',
-  'Umbriel',
-]
+
 const AddDiscount = () => {
   const [open, setOpen] = useState(false)
 
