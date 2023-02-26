@@ -66,7 +66,6 @@ const CommentManagement = () => {
   const [deleteComment] = useDeleteCommentMutation()
 
   const handleCommentDelete = async (commentId) => {
-    console.log(commentId)
     try {
       await deleteComment(commentId).unwrap()
     } catch (error) {

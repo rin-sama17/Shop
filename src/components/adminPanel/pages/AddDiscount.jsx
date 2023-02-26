@@ -36,11 +36,11 @@ const AddDiscount = () => {
   })
   return (
     <>
-      <Button onClick={() => setOpen(true)} sx={{ m: 2 }}>
+      <Button onClick={() => setOpen(true)} color="success" sx={{ m: 2 }}>
         ساخت تخفیف جدید
       </Button>
       <CustomModal open={open} setOpen={setOpen}>
-        <CustomDivider label="تخفیف جدید" color="error" />
+        <CustomDivider label="تخفیف جدید" color="success" />
         <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>
             <CustomFields formik={formik} label="نام" name="name" md={7} />
@@ -55,7 +55,7 @@ const AddDiscount = () => {
               }
             />
             <CustomFields formik={formik} name="category" category md={12} />
-            <Button fullWidth type="submit" sx={{ color: 'tomato' }}>
+            <Button fullWidth type="submit" color="success">
               افزودن تخفیف
             </Button>
           </Grid>

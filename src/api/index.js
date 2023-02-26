@@ -109,8 +109,16 @@ export const apiSlice = createApi({
         }),
         deleteDiscount: builder.mutation({
             query: (initialDiscountId) => ({
-                url: `/discount/${initialDiscountId}`,
+                url: `/discounts/${initialDiscountId}`,
                 method: "DELETE"
+            }),
+            invalidatesTags: ["Discounts"]
+        }),
+        editDiscount: builder.mutation({
+            query: discount => ({
+                url: `/discounts/${discount.id}`,
+                method: "PUT",
+                body: discount
             }),
             invalidatesTags: ["Discounts"]
         }),
@@ -135,6 +143,14 @@ export const apiSlice = createApi({
             query: (initialCategoryId) => ({
                 url: `/categorys/${initialCategoryId}`,
                 method: "DELETE"
+            }),
+            invalidatesTags: ["Categorys"]
+        }),
+        editCategory: builder.mutation({
+            query: category => ({
+                url: `/categorys/${category.id}`,
+                method: "PUT",
+                body: category
             }),
             invalidatesTags: ["Categorys"]
         }),
@@ -201,11 +217,15 @@ export const {
     useGetDiscountQuery,
     useAddNewDiscountMutation,
     useDeleteDiscountMutation,
+    useEditDiscountMutation,
+
 
     useGetCategorysQuery,
     useGetCategoryQuery,
     useAddNewCategoryMutation,
     useDeleteCategoryMutation,
+    useEditCategoryMutation,
+
 
     useGetCommentsQuery,
     useGetCommentQuery,

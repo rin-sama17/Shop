@@ -4,7 +4,7 @@ import { Suspense, useState } from 'react'
 import { useGetSlidersQuery } from '../../../api'
 import SliderLoading from '../../loading/SliderLoading'
 import Slider from './Slider'
-
+import { CustomModal } from '../../common'
 const SliderModal = () => {
   const [open, setOpen] = useState(false)
   const [sliderId, setSliderId] = useState('')
