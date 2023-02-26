@@ -48,7 +48,7 @@ const CommentView = (props) => {
         touchRippleRef={rippleRef}
         style={{ marginLeft: 16 }}
         tabIndex={hasFocus ? 0 : -1}
-        disabled={comment.isShow}
+        disabled={comment?.isShow}
         onKeyDown={(event) => {
           if (event.key === ' ') {
             event.stopPropagation()

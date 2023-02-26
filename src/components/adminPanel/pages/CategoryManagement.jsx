@@ -1,4 +1,4 @@
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { useDeleteCategoryMutation, useGetCategorysQuery } from '../../../api'
 import AddCategory from './AddCategory'
 import { useRef, useLayoutEffect } from 'react'
@@ -52,7 +52,7 @@ const DeleteCategory = (props) => {
 const CategoryManagement = () => {
   const { data: categorys = [] } = useGetCategorysQuery()
   const columns = [
-    { field: 'name', headerName: 'نام دسته بندی', width: 300 },
+    { field: 'name', headerName: 'نام دسته بندی', width: 100 },
     {
       field: 'edit',
       headerName: 'ویرایش',
@@ -66,12 +66,17 @@ const CategoryManagement = () => {
       ),
     },
     {
-      field: 'delete',
-      headerName: 'حذف',
-      sortable: false,
-      width: 150,
-      valueGetter: (params) => params.row.id,
-      renderCell: DeleteCategory,
+      field: 'actions',
+      type: 'actions',
+      width: 40,
+      getActions: (params) => [
+        <GridActionsCellItem
+          icon={<Delete />}
+          sx={{ color: 'tomato' }}
+          label="حذف"
+          // onClick={() => handleCommentDelete(params.id)}
+        />,
+      ],
     },
   ]
   return (

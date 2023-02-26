@@ -1,7 +1,7 @@
-import { Modal, Card, Button } from '@mui/material'
+import { Button } from '@mui/material'
 import { useState } from 'react'
 
-import { CustomDivider, CustomFields } from '../../common'
+import { CustomDivider, CustomFields, CustomModal } from '../../common'
 import { useFormik } from 'formik'
 import { categoryValidation } from '../../validations/categoryValidation.js'
 
@@ -38,30 +38,17 @@ const AddCategory = () => {
       <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
         ساخت دسته بندی جدید
       </Button>
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backdropFilter: 'blur(3px)',
-        }}
-      >
-        <Card sx={{ width: '90%', p: 3 }}>
-          <CustomDivider label="دسته بندی جدید" color="secondary" />
-          <form onSubmit={formik.handleSubmit}>
-            <Grid container spacing={2}>
-              <CustomFields formik={formik} label="نام دسته بندی" name="name" />
-              <Button fullWidth type="submit" color="secondary">
-                افزودن دسته بندی
-              </Button>
-            </Grid>
-          </form>
-        </Card>
-      </Modal>
+      <CustomModal open={open} setOpen={setOpen}>
+        <CustomDivider label="دسته بندی جدید" color="secondary" />
+        <form onSubmit={formik.handleSubmit}>
+          <Grid container spacing={2}>
+            <CustomFields formik={formik} label="نام دسته بندی" name="name" />
+            <Button fullWidth type="submit" color="secondary">
+              افزودن دسته بندی
+            </Button>
+          </Grid>
+        </form>
+      </CustomModal>
     </>
   )
 }

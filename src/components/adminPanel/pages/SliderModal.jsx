@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { CardMedia, Button, Skeleton, Modal, Card } from '@mui/material'
+import { CardMedia, Button, Skeleton } from '@mui/material'
 import { Suspense, useState } from 'react'
 import { useGetSlidersQuery } from '../../../api'
 import SliderLoading from '../../loading/SliderLoading'
@@ -51,22 +51,9 @@ const SliderModal = () => {
           ))}
       </Grid>
 
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backdropFilter: 'blur(3px)',
-        }}
-      >
-        <Card sx={{ width: '90%', p: 1 }}>
-          <Slider sliderId={sliderId} setOpen={setOpen} />
-        </Card>
-      </Modal>
+      <CustomModal open={open} setOpen={setOpen}>
+        <Slider sliderId={sliderId} setOpen={setOpen} />
+      </CustomModal>
     </>
   )
 }
