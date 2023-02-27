@@ -19,7 +19,6 @@ const CommentView = (props) => {
   const { data: comment, isSuccess } = useGetCommentQuery(value)
 
   const handletCommentView = async () => {
-    console.log(value)
     if (isSuccess) {
       const updatedComment = { ...comment, isShow: true }
       try {

@@ -14,7 +14,8 @@ import { useDispatch } from 'react-redux'
 
 import Grid from '@mui/material/Unstable_Grid2'
 import { toast } from 'react-toastify'
-import { paragraphAdded } from '../../../reducers/postSlice'
+import { paragraphAdded } from '../../../reducers/paragraphSlice'
+import { nanoid } from '@reduxjs/toolkit'
 const AddParagraph = () => {
   const dispatch = useDispatch()
 
@@ -27,14 +28,22 @@ const AddParagraph = () => {
     initialValues: paragraphFields,
     validationSchema: paragraphValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(paragraphAdded(values))
+      const { photo, title, body } = values
+      dispatch(
+        paragraphAdded({
+          id: nanoid(),
+          photo,
+          title,
+          body,
+        }),
+      )
       toast.success(`پاراگراف ${values.title} با موفقیت ذخیره شد`)
       resetForm()
     },
   })
 
   return (
-    <Accordion sx={{ mb: 2 }}>
+    <Accordion sx={{ mb: 2, width: 1 }}>
       <AccordionSummary
         expandIcon={<ExpandMore />}
         aria-controls="panel1a-content"

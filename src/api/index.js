@@ -27,6 +27,13 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ["Posts"]
         }),
+        editPost: builder.mutation({
+            query: post => ({
+                url: `/posts/${post.id}`,
+                method: "PUT",
+                body: post
+            })
+        }),
 
 
         getProducts: builder.query({
@@ -51,6 +58,16 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: ["Products"]
         }),
+        editProduct: builder.mutation({
+            query: product => ({
+                url: `/products/${product.id}`,
+                method: "PUT",
+                body: product
+            }),
+            invalidatesTags: ["Products"]
+        }),
+
+
 
 
         getCarts: builder.query({
@@ -198,11 +215,13 @@ export const {
     useGetPostQuery,
     useAddNewPostMutation,
     useDeletePostMutation,
+    useEditPostMutation,
 
     useGetProductsQuery,
     useGetProductQuery,
     useAddNewProductMutation,
     useDeleteProductMutation,
+    useEditProductMutation,
 
     useGetCartsQuery,
     useGetCartQuery,

@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   selectParagraphById,
   paragraphUpdated,
-} from '../../../reducers/postSlice'
+} from '../../../reducers/paragraphSlice'
 import { toast } from 'react-toastify'
 const EditParagraph = ({ patagraphId }) => {
   const [open, setOpen] = useState(false)
@@ -26,19 +26,19 @@ const EditParagraph = ({ patagraphId }) => {
     selectParagraphById(state, patagraphId),
   )
 
-  const { id, title, body, photo } = paragraph
-
   const paragraphFields = {
-    id,
-    title,
-    body,
-    photo,
+    ...paragraph,
   }
   const formik = useFormik({
     initialValues: paragraphFields,
     validationSchema: paragraphValidation,
     onSubmit: (values) => {
-      dispatch(paragraphUpdated(values))
+      dispatch(
+        paragraphUpdated({
+          id: patagraphId,
+          changes: { ...values },
+        }),
+      )
       toast.success(`پاراگراف ${values.title} با موفقیت ویرایش شد`)
       setOpen(false)
     },

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   selectAllParagraph,
   paragraphDeleted,
-} from '../../../reducers/postSlice'
+} from '../../../reducers/paragraphSlice'
 import {
   Typography,
   Accordion,
@@ -24,14 +24,14 @@ const ShowParagraphs = () => {
   const dispatch = useDispatch()
 
   const handleDelete = (paragraph) => {
-    dispatch(paragraphDeleted({ id: paragraph.id }))
+    dispatch(paragraphDeleted(paragraph.id))
     toast.success(`پاراگراف ${paragraph.title} با موفقیت حذف شد`)
   }
 
   return (
     <>
       {paragraph.map((paragraph, index) => (
-        <Accordion sx={{ mb: 2 }} key={index}>
+        <Accordion sx={{ mb: 2, width: 1 }} key={index}>
           <AccordionSummary
             expandIcon={<ExpandMore />}
             aria-controls="panel1a-content"

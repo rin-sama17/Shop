@@ -3,16 +3,21 @@ import { Typography, InputAdornment } from '@mui/material'
 import { Percent } from '@mui/icons-material'
 import { toRial } from '../helpers'
 
-const convertPrice = (a, b) => {
-  a = Number(a.split(',').join(''))
-
-  if (a > b) {
-    return Math.round(a - (a * b) / 100)
-  } else {
-    return '0'
-  }
-}
 export const fields = (formik) => {
+  const convertPrice = (a, b) => {
+    console.log(typeof a, typeof b)
+    if (typeof a !== 'number') {
+      a = Number(a.split(',').join(''))
+    }
+    if (typeof b !== 'number') {
+      b = Number(b)
+    }
+    if (a > b) {
+      return Math.round(a - (a * b) / 100)
+    } else {
+      return '0'
+    }
+  }
   return [
     { sm: 4, formik, name: 'name', label: 'نام محصول' },
     { price: true, sm: 4, formik, name: 'price' },
@@ -21,7 +26,6 @@ export const fields = (formik) => {
       formik,
       name: 'discount',
       label: 'تخفیف',
-      disabled: Boolean(!formik.values?.price.length > 0),
       type: 'number',
       helperText: (
         <Typography variant="caption">

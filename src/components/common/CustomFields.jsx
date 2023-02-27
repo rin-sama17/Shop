@@ -24,7 +24,6 @@ const CustomFields = ({
   phone,
   price,
   category,
-  selectOptions,
   customLabel,
   xs,
   sm,
@@ -34,7 +33,6 @@ const CustomFields = ({
   ...props
 }) => {
   const [value, setValue] = useState()
-
   useEffect(() => {
     setValue(formik.values[`${name}`])
   }, [])
@@ -43,7 +41,7 @@ const CustomFields = ({
     if (formik.values[`${name}`] === '') {
       setValue('')
     }
-  }, [formik])
+  }, [formik.values[`${name}`]])
   const [showPassword, setShowPassword] = useState(false)
 
   const handleChange = (e) => setValue(e.target.value)
@@ -125,7 +123,7 @@ const CustomFields = ({
       </FormControl>
     )
   } else if (category) {
-    const { data: options = [], isLoading } = useGetCategorysQuery()
+    const { data: options = [] } = useGetCategorysQuery()
     content = (
       <FormControl
         fullWidth

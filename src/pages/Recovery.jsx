@@ -23,9 +23,7 @@ const Recovery = () => {
 
   const formik = useFormik({
     initialValues: contactFieldNames,
-    onSubmit: (values) => {
-      console.log(values)
-    },
+
     validationSchema: userValidation,
   })
   const handleUserForm = () => {

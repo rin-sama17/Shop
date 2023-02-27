@@ -9,10 +9,12 @@ import {
   AddPost,
   AddProduct,
   EditUser,
+  EditPost,
   TrackOrders,
   Cart,
   Checkout,
   AdminPanel,
+  EditProduct,
 } from '../pages'
 export const router = createBrowserRouter([
   {
@@ -48,9 +50,18 @@ export const router = createBrowserRouter([
         path: '/addProduct',
         element: <AddProduct />,
       },
+
+      {
+        path: '/editProduct/:productId',
+        element: <EditProduct />,
+      },
       {
         path: '/addPost',
         element: <AddPost />,
+      },
+      {
+        path: '/editPost/:postId',
+        element: <EditPost />,
       },
       {
         path: '/editUser',
