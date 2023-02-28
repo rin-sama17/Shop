@@ -47,7 +47,7 @@ const EditProductFields = ({ product }) => {
   return (
     <form autoComplete="off" onSubmit={formik.handleSubmit}>
       <Grid container>
-        <CustomDivider label="محصول جدید" color="warning" />
+        <CustomDivider label="ویرایش محصول" color="warning" />
         <ImageUploader formik={formik} name="thumbnail" color="warning" />
         <Grid xs={12} md={9}>
           <Box>

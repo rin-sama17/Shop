@@ -16,6 +16,7 @@ export const tabsData = () => {
         { title: 'مدیریت تخفیف ها', ...tabPanel(4) },
         { title: 'مدیریت دسته بندی ها', ...tabPanel(5) },
         { title: 'مدیریت کامنت ها', ...tabPanel(6) },
+        { title: 'توضیحات فروشگاه', ...tabPanel(7) },
     ];
     return tabs;
 };

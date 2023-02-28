@@ -37,13 +37,13 @@ export const darkTheme = createTheme({
         mode: "dark",
 
         background: {
-            main: "#121212"
+            main: "#212121"
         },
         // secondary: {
         //     main: secondaryColor ? `${secondaryColor}` : '#ce93d8'
         // },
         bgBlur: {
-            main: "rgba(0, 0, 0, 0.9)"
+            main: "rgba(0, 0, 0, 0.8)"
         }
     }
 

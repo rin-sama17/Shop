@@ -3,7 +3,9 @@ import { Typography, Button } from '@mui/material'
 import TextTransition, { presets } from 'react-text-transition'
 import { Link as RouterLink } from 'react-router-dom'
 import Typed from 'typed.js'
+import { useGetDescriptionQuery } from '../../api'
 const HomeDescription = () => {
+  const { data: description } = useGetDescriptionQuery()
   const [index, setIndex] = useState(0)
   const nameEl = useRef(null)
   const strings = ['محصولات متنوع', 'دسترسی راحت', 'پرداخت ایمن', 'تنوع بالا']
@@ -54,8 +56,7 @@ const HomeDescription = () => {
         }}
         color="text.secondary"
       >
-        فروشگاه من یک فروشگاه ساخته شده توسط ری اکت و لاراول میباشد همچنین
-        دیزاین این سایت توسط متریال یو ای انجام شده است و درحال توصعه میباشد
+        {description && description.aboutUs}
       </Typography>
 
       <Button

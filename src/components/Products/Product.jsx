@@ -28,7 +28,7 @@ const Product = ({ productId, maxWidth }) => {
       lg={3}
       sx={{ display: 'flex', justifyContent: 'center', mb: 2, width: 1 }}
     >
-      <Card sx={{ maxWidth: maxWidth }}>
+      <Card sx={{ maxWidth, bgcolor: 'background.dark' }}>
         <CardActionArea component={RouterLink} to={`/product/${product.id}`}>
           <CardMedia
             component="img"

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Slider", "Categorys", "Comments"],
+    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Slider", "Categorys", "Comments", "Description"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
@@ -205,6 +205,21 @@ export const apiSlice = createApi({
                 };
             },
             invalidatesTags: ["Comments"]
+        }),
+
+
+        getDescription: builder.query({
+            query: () => "/description",
+            providesTags: ["Description"]
+        }),
+        editDescription: builder.mutation({
+            query: description => ({
+                url: "/description",
+                method: "PUT",
+                body: description
+            }),
+            invalidatesTags: ["Description"]
+
         })
 
     })
@@ -250,5 +265,10 @@ export const {
     useGetCommentQuery,
     useAddNewCommentMutation,
     useDeleteCommentMutation,
-    useEditCommentMutation
+    useEditCommentMutation,
+
+
+    useGetDescriptionQuery,
+    useEditDescriptionMutation
+
 } = apiSlice;

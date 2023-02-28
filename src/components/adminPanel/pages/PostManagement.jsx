@@ -8,6 +8,7 @@ import { Delete, Edit } from '@mui/icons-material'
 
 const PostManagement = () => {
   const { data: posts = [] } = useGetPostsQuery()
+  const [deletePost] = useDeletePostMutation()
 
   const handlePostDelete = async (postId) => {
     try {

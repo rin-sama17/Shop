@@ -12,6 +12,7 @@ import PostManagement from '../components/adminPanel/pages/PostManagement.jsx'
 import DiscountManagement from '../components/adminPanel/pages/DiscountManagement.jsx'
 import CategoryManagement from '../components/adminPanel/pages/CategoryManagement.jsx'
 import CommentManagement from '../components/adminPanel/pages/CommentManagement.jsx'
+import DescriptionManagement from '../components/adminPanel/pages/DescriptionManagement.jsx'
 
 const AdminPanel = () => {
   const [pageNumber, setPageNumber] = useState(0)
@@ -57,6 +58,9 @@ const AdminPanel = () => {
           </Page>
           <Page pageNumber={pageNumber} index={6}>
             <CommentManagement />
+          </Page>
+          <Page pageNumber={pageNumber} index={7}>
+            <DescriptionManagement />
           </Page>
         </SwipeableViews>
       </Grid>
