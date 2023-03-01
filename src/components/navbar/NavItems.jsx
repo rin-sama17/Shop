@@ -1,17 +1,11 @@
-import {
-  Typography,
-  Slide,
-  Button,
-  List,
-  ListItem,
-  Stack,
-  Divider,
-} from '@mui/material'
+import { Typography, Slide, Button, Stack, Divider } from '@mui/material'
 
 import { Link as RouterLink } from 'react-router-dom'
 import { DarkMode } from '@mui/icons-material'
 import { tabsData } from '../../constants/tabs.sidebar'
 import { useState, useEffect } from 'react'
+import SecondaryButton from '../common/SecondaryButton'
+import ThemeButton from '../common/ThemeButton'
 const NavItems = ({ direction, width }) => {
   const [loading, setLoading] = useState(false)
 
@@ -24,14 +18,12 @@ const NavItems = ({ direction, width }) => {
   }, [])
   return (
     <Stack
-      direction={direction}
+      direction="row"
       divider={<Divider orientation="vertical" flexItem />}
       sx={{ ml: 1, height: 1 }}
     >
-      <Button color="primary" size="small">
-        <DarkMode />
-        <Typography variant="caption">حالت شب</Typography>
-      </Button>
+      <ThemeButton />
+      <SecondaryButton />
       {tabsData.map((tab, index) => (
         <Slide
           direction="down"
@@ -45,7 +37,7 @@ const NavItems = ({ direction, width }) => {
             size="small"
             component={RouterLink}
             to={tab.to}
-            sx={{ width: width }}
+            sx={{ width }}
             color="secondary"
           >
             <Typography variant="caption">{tab.text}</Typography>

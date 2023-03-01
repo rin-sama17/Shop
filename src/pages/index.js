@@ -15,3 +15,7 @@ export { default as Checkout } from "./Checkout";
 export { default as AdminPanel } from "./AdminPanel.jsx";
 export { default as EditPost } from "./EditPost.jsx";
 export { default as EditProduct } from "./EditProduct.jsx";
+export { default as SearchResult } from "./SearchResult.jsx";
+
+
+

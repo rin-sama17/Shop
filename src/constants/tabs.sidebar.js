@@ -3,5 +3,4 @@ export const tabsData = [
     { text: "فروشگاه", to: "/products" },
     { text: "پیگیری سفارشات", to: '/track-orders' },
     { text: "تماس با ما", to: "/" },
-    { text: "قوانین و مقررات", to: "/home" },
 ];

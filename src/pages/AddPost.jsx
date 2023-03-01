@@ -9,7 +9,6 @@ import {
 } from '@mui/material'
 import {
   CustomDivider,
-  SearchField,
   CustomFields,
   ImageUploader,
 } from '../components/common'

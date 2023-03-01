@@ -15,7 +15,6 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
 
 import { PatternFormat } from 'react-number-format'
-import SearchField from './SearchField'
 import { useEffect } from 'react'
 import { useGetCategorysQuery } from '../../api'
 
@@ -147,9 +146,6 @@ const CustomFields = ({
             },
           }}
         >
-          <MenuItem>
-            <SearchField small />
-          </MenuItem>
           {options.map((option, index) => (
             <MenuItem value={option.name} key={index}>
               {option.name}
@@ -161,6 +157,7 @@ const CustomFields = ({
   } else {
     content = (
       <TextField
+        sx={{ direction: 'ltr' }}
         fullWidth
         size="small"
         name={name}

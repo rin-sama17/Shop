@@ -11,7 +11,6 @@ import {
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
 
 import { CustomDivider, CustomFields } from '../common'
-import SearchField from '../common/SearchField'
 
 const ProductsFilter = ({ data, setData }) => {
   const [value, setValue] = useState([0, 37])

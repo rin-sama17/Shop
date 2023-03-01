@@ -15,6 +15,7 @@ import {
   Checkout,
   AdminPanel,
   EditProduct,
+  SearchResult,
 } from '../pages'
 export const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
       {
         path: '/admin-panel',
         element: <AdminPanel />,
+      },
+      {
+        path: '/search/:query',
+        element: <SearchResult />,
       },
     ],
   },

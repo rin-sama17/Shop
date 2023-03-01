@@ -1,9 +1,10 @@
-import { TextField, Slide, InputAdornment } from '@mui/material'
-
-import { Search, HighlightOff } from '@mui/icons-material'
+import { TextField, Slide, InputAdornment, Button } from '@mui/material'
+import { Search } from '@mui/icons-material'
 import { useState, useEffect } from 'react'
-const SearchField = ({ setSearchBox, closeable, small, ...props }) => {
+import { Link } from 'react-router-dom'
+const SearchField = () => {
   const [loading, setLoading] = useState(false)
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     setLoading(true)
@@ -18,11 +19,13 @@ const SearchField = ({ setSearchBox, closeable, small, ...props }) => {
       direction="down"
       in={loading}
       style={{ transitionDelay: loading ? '80ms' : '0ms' }}
-      {...props}
     >
       <TextField
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
         variant="outlined"
-        size={small ? 'small' : 'normal'}
+        size="small"
         sx={{ width: '95%', color: 'secondary.light' }}
         placeholder="جستجو"
         InputProps={{
@@ -32,11 +35,11 @@ const SearchField = ({ setSearchBox, closeable, small, ...props }) => {
             </InputAdornment>
           ),
 
-          endAdornment: closeable ? (
-            <InputAdornment position="end" onClick={() => setSearchBox(false)}>
-              <HighlightOff />
-            </InputAdornment>
-          ) : null,
+          endAdornment: query.length > 0 && (
+            <Button component={Link} to={`/search/${query}`}>
+              جستجو
+            </Button>
+          ),
         }}
       />
     </Slide>

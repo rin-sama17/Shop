@@ -4,7 +4,7 @@ import createCache from '@emotion/cache'
 import rtlPlugin from 'stylis-plugin-rtl'
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
-import { darkTheme } from './theme/theme'
+import { theme } from './theme/theme'
 import { Navbar } from '../components/navbar'
 import { ThemeProvider } from '@mui/material'
 import { CacheProvider } from '@emotion/react'
@@ -23,9 +23,12 @@ const MainLayout = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const localCartProducts = JSON.parse(localStorage.getItem('cartProducts'))
-    dispatch(cartItemsSeted(localCartProducts))
+    if (localCartProducts) {
+      dispatch(cartItemsSeted(localCartProducts))
+    }
   }, [])
 
+  const { darkTheme, lightTheme } = theme()
   return (
     <CacheProvider value={cacheRTL}>
       <ThemeProvider theme={darkTheme}>

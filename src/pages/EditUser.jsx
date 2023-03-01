@@ -12,7 +12,7 @@ import {
   Select,
   InputLabel,
 } from '@mui/material'
-import { CustomDivider, SearchField } from '../components/common'
+import { CustomDivider } from '../components/common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { AddAPhoto, BurstMode } from '@mui/icons-material'
 import { useState } from 'react'
