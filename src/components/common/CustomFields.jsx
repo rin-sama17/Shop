@@ -123,19 +123,20 @@ const CustomFields = ({
     )
   } else if (category) {
     const { data: options = [] } = useGetCategorysQuery()
+
     content = (
       <FormControl
         fullWidth
         size="small"
-        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+        error={Boolean(formik.touched['category'] && formik.errors['category'])}
       >
-        <InputLabel id={`${name}-label`}>دسته بندی</InputLabel>
+        <InputLabel id={`category-label`}>دسته بندی</InputLabel>
         <Select
-          name={name}
+          name="category"
           value={value}
           onChange={handleChange}
           onBlur={handleBlur}
-          labelId={`${name}-label`}
+          labelId={`category-label`}
           input={<OutlinedInput label="دسته بندی" />}
           MenuProps={{
             PaperProps: {

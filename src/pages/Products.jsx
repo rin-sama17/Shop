@@ -10,12 +10,12 @@ import { useGetProductsQuery } from '../api'
 const Products = () => {
   const [data, setData] = useState([])
 
-  const { data: products = [] } = useGetProductsQuery()
+  const { data: products = [], isSuccess } = useGetProductsQuery()
 
   return (
     <Grid container sx={{ width: 1 }}>
       <Grid xs={12} md={3} sx={{ m: 0 }}>
-        <ProductsFilter setData={setData} data={data} />
+        {isSuccess && <ProductsFilter setData={setData} data={products} />}
       </Grid>
       <Grid xs={12} md={9}>
         <Grid container>

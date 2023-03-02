@@ -21,7 +21,6 @@ const CartProduct = ({ productId, productCount }) => {
   }
 
   const localCartProducts = JSON.parse(localStorage.getItem('cartProducts'))
-
   // dispatch(cartItemsSeted(localCartProducts))
   if (isLoading) {
     return (
@@ -43,7 +42,9 @@ const CartProduct = ({ productId, productCount }) => {
     const fixedCartProducts = localCartProducts.filter(
       (product) => product.id !== productId,
     )
-    localStorage.setItem('cartProducts', JSON.stringify(fixedCartProducts))
+    if (fixedCartProducts) {
+      localStorage.setItem('cartProducts', JSON.stringify(fixedCartProducts))
+    }
     return (
       <Card
         sx={{

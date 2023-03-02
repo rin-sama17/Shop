@@ -1,13 +1,13 @@
 import { Search } from '@mui/icons-material'
-import { IconButton, Badge, Box, useMediaQuery } from '@mui/material'
+import { IconButton, Box } from '@mui/material'
 
 import SearchField from '../common/SearchField'
 
-const NavSearch = ({ downLg, setSearchBox }) => {
+const NavSearch = ({ downLg, setDrawerOpen }) => {
   return (
     <>
       {downLg ? (
-        <IconButton onClick={() => setSearchBox(true)}>
+        <IconButton onClick={() => setDrawerOpen(true)}>
           <Search />
         </IconButton>
       ) : (

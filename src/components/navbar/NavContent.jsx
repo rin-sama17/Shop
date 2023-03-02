@@ -41,11 +41,7 @@ const NavContent = ({ setDrawerOpen }) => {
           alignItems: 'center',
         }}
       >
-        <NavSearch
-          downLg={downLg}
-          setSearchBox={setSearchBox}
-          showSearchBox={showSearchBox}
-        />
+        <NavSearch downLg={downLg} setDrawerOpen={setDrawerOpen} />
         <Box
           sx={{
             display: showSearchBox ? 'none' : 'flex',

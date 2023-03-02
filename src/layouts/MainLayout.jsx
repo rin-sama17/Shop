@@ -22,9 +22,12 @@ const cacheRTL = createCache({
 const MainLayout = () => {
   const dispatch = useDispatch()
   useEffect(() => {
-    const localCartProducts = JSON.parse(localStorage.getItem('cartProducts'))
-    if (localCartProducts) {
-      dispatch(cartItemsSeted(localCartProducts))
+    const localCartProducts = localStorage.getItem('cartProducts')
+    if (!localCartProducts) {
+      localStorage.setItem('cartProducts', JSON.stringify([]))
+    } else {
+      const cartProducts = JSON.parse(localCartProducts)
+      dispatch(cartItemsSeted(cartProducts))
     }
   }, [])
 

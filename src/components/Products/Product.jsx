@@ -12,11 +12,9 @@ import { ProductPrice } from '../common'
 import ProductLoading from '../loading/ProductLoading'
 
 const Product = ({ productId, maxWidth }) => {
-  const { data: product, isLoading } = useGetProductQuery(productId)
-  if (productId === 'AhqDOff-L42D2_cvVtmqY') {
-    return <ProductLoading width={maxWidth} productId={productId} />
-  }
-  if (isLoading) {
+  const { data: product, isSuccess } = useGetProductQuery(productId)
+
+  if (!isSuccess) {
     return <ProductLoading width={maxWidth} productId={productId} />
   }
 
