@@ -7,10 +7,8 @@ import {
 } from '@mui/material'
 import { useRef } from 'react'
 import Slider from 'react-slick'
-import { useState, useEffect } from 'react'
 
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
-import { CustomLoading } from '../common'
 import { useGetSlidersQuery } from '../../api'
 import SliderLoading from '../loading/SliderLoading'
 

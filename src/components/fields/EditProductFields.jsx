@@ -1,15 +1,11 @@
 import { Button, Box } from '@mui/material'
 import { useFormik } from 'formik'
-import {
-  CustomDivider,
-  CustomFields,
-  ImageUploader,
-} from '../components/common'
+import { CustomDivider, CustomForm, ImageUploader } from '../common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useNavigate } from 'react-router-dom'
-import { fields } from '../constants/addProductFields'
-import { productValidation } from '../components/validations/productValidation'
-import { useEditProductMutation } from '../api'
+import { productFieldsData } from './data/productFieldsData'
+import { productValidation } from '../validations/productValidation'
+import { useEditProductMutation } from '../../api'
 import { toast } from 'react-toastify'
 const EditProductFields = ({ product }) => {
   const navigate = useNavigate()
@@ -43,32 +39,16 @@ const EditProductFields = ({ product }) => {
       handleSubmitForm(values)
     },
   })
-  const productFields = fields(formik)
+  const fields = productFieldsData(formik)
   return (
-    <form autoComplete="off" onSubmit={formik.handleSubmit}>
-      <Grid container>
-        <CustomDivider label="ویرایش محصول" color="warning" />
-        <ImageUploader formik={formik} name="thumbnail" color="warning" />
-        <Grid xs={12} md={9}>
-          <Box>
-            <Grid container spacing={2} sx={{ direction: 'ltr' }}>
-              {productFields.map((field, index) => (
-                <CustomFields {...field} key={index} />
-              ))}
-            </Grid>
-          </Box>
-        </Grid>
-      </Grid>{' '}
-      <Button
-        fullWidth
-        type="submit"
-        color="warning"
-        variant="contained"
-        sx={{ mt: 2, color: 'black' }}
-      >
-        ارسال کن
-      </Button>
-    </form>
+    <CustomForm
+      formik={formik}
+      fields={fields}
+      label="ویرایش محصول"
+      color="warning"
+      imageUploader
+      imageUploaderName="thumbnail"
+    />
   )
 }
 

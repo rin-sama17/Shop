@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { useGetProductQuery } from '../api'
-import EditProductFields from './EditProductFields'
+import EditProductFields from '../components/fields/EditProductFields'
 const EditProduct = () => {
   const { productId } = useParams()
   const { data: product, isLoading, isSuccess } = useGetProductQuery(productId)

@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 
-import AddProductFields from '../components/products/addProduct/AddProductFields'
+import AddProductFields from '../components/fields/AddProductFields'
 
 const AddProduct = () => {
   return (

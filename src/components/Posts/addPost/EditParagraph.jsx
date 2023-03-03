@@ -56,18 +56,7 @@ const EditParagraph = ({ patagraphId }) => {
         <CustomDivider label="ویرایش پاراگراف" color="secondary" />
         <form onSubmit={formik.handleSubmit}>
           <Grid container>
-            <Grid
-              xs={12}
-              md={3}
-              sx={{
-                mb: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <ImageUploader formik={formik} name="photo" color="secondary" />
-            </Grid>
+            <ImageUploader formik={formik} name="photo" color="secondary" />
             <Grid xs={12} md={9}>
               <CustomFields
                 md={4}

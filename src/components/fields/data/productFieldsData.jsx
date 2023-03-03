@@ -1,11 +1,10 @@
 import { Typography, InputAdornment } from '@mui/material'
 
 import { Percent } from '@mui/icons-material'
-import { toRial } from '../helpers'
+import { toRial } from '../../../helpers'
 
-export const fields = (formik) => {
+export const productFieldsData = (formik) => {
   const convertPrice = (a, b) => {
-    console.log(typeof a, typeof b)
     if (typeof a !== 'number') {
       a = Number(a.split(',').join(''))
     }

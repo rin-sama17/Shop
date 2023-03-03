@@ -27,7 +27,7 @@ const ShowSinglePost = ({ post }) => {
           />
         )}
       </Suspense>
-      <Typography color="text.secondary" component="p" sx={{ mb: 3 }}>
+      <Typography color="text.secondary" component="p" sx={{ my: 3 }}>
         {post.introduction}
       </Typography>
       {post.paragraphs.map((item, index) => (
@@ -35,19 +35,20 @@ const ShowSinglePost = ({ post }) => {
           <Typography variant="h5" color="text.primary" sx={{ mb: 2 }}>
             {item.title}
           </Typography>
-          {item.photo && (
-            <img
-              src={item.photo}
-              alt={item.title}
-              style={{ width: '100%', marginTop: '8px' }}
-            />
-          )}{' '}
-          <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
-            {item.body}
-          </Typography>
+          <Box sx={{ px: 3 }}>
+            {item.photo && (
+              <img
+                src={item.photo}
+                alt={item.title}
+                style={{ width: '100%', marginTop: '8px' }}
+              />
+            )}{' '}
+            <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
+              {item.body}
+            </Typography>
+          </Box>
         </Box>
       ))}
-      {/* <Comments /> */}
     </Container>
   )
 }

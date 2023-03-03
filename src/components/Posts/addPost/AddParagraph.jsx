@@ -1,21 +1,19 @@
-import { useState } from 'react'
 import {
   Typography,
-  Button,
   Accordion,
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material'
-import { CustomFields, ImageUploader } from '../../common'
+import { CustomForm } from '../../common'
 import { paragraphValidation } from '../../validations/postValidation'
 import { ExpandMore, AddCircle } from '@mui/icons-material'
 import { useFormik } from 'formik'
 import { useDispatch } from 'react-redux'
 
-import Grid from '@mui/material/Unstable_Grid2'
 import { toast } from 'react-toastify'
 import { paragraphAdded } from '../../../reducers/paragraphSlice'
 import { nanoid } from '@reduxjs/toolkit'
+import { paragraphFieldsData } from '../../fields/data/paragraphFieldsData'
 const AddParagraph = () => {
   const dispatch = useDispatch()
 
@@ -42,6 +40,7 @@ const AddParagraph = () => {
     },
   })
 
+  const fields = paragraphFieldsData(formik)
   return (
     <Accordion sx={{ mb: 2, width: 1 }}>
       <AccordionSummary
@@ -53,39 +52,14 @@ const AddParagraph = () => {
         <Typography sx={{ ml: 1 }}>پاراگراف جدید</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <form onSubmit={formik.handleSubmit}>
-          <Grid container>
-            <ImageUploader formik={formik} name="photo" color="info" />
-            <Grid xs={12} md={9}>
-              <CustomFields
-                md={4}
-                formik={formik}
-                name="title"
-                sx={{ mb: 2 }}
-                label="عنوان"
-                type="text"
-              />
-
-              <CustomFields
-                md={12}
-                formik={formik}
-                name="body"
-                label="توضیحات"
-                type="text"
-                multiline
-                rows={6}
-              />
-            </Grid>
-            <Button
-              fullWidth
-              type="submit"
-              variant="contained"
-              sx={{ mt: 2, color: 'black' }}
-            >
-              افزودن پاراگراف
-            </Button>
-          </Grid>
-        </form>
+        <CustomForm
+          formik={formik}
+          fields={fields}
+          label="افزودن پاراگراف جدید"
+          color="info"
+          imageUploader
+          imageUploaderName="photo"
+        />
       </AccordionDetails>
     </Accordion>
   )
