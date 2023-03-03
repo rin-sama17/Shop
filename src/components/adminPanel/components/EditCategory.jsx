@@ -1,13 +1,15 @@
-import { GridActionsCellItem } from '@mui/x-data-grid'
-import { useEditCategoryMutation } from '../../../api'
-import { Button } from '@mui/material'
-import Grid from '@mui/material/Unstable_Grid2'
-import { Edit } from '@mui/icons-material'
-import { CustomModal, CustomDivider, CustomFields } from '../../common'
 import { useState } from 'react'
-import { categoryValidation } from '../../validations/categoryValidation'
 import { useFormik } from 'formik'
+import { Button } from '@mui/material'
 import { toast } from 'react-toastify'
+import { Edit } from '@mui/icons-material'
+import { GridActionsCellItem } from '@mui/x-data-grid'
+import Grid from '@mui/material/Unstable_Grid2'
+
+import { categoryValidation } from '../../validations/categoryValidation'
+import { useEditCategoryMutation } from '../../../api'
+import { CustomModal, CustomDivider, CustomFields } from '../../common'
+
 const EditCategory = ({ category }) => {
   const [open, setOpen] = useState(false)
   const [updateCategotry] = useEditCategoryMutation()

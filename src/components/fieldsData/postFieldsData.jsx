@@ -1,4 +1,4 @@
-export const postFieldsData = (formik) => {
+const postFieldsData = (formik) => {
   return [
     {
       sm: 8,
@@ -32,3 +32,4 @@ export const postFieldsData = (formik) => {
     },
   ]
 }
+export default postFieldsData

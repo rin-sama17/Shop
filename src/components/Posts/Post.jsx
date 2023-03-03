@@ -13,7 +13,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import { useGetPostQuery } from '../../api'
-import PostLoading from '../loading/PostLoading'
+import { PostLoading } from '../loading'
 
 const Post = ({ postId }) => {
   const { data: post, isLoading, isSuccess } = useGetPostQuery(postId)

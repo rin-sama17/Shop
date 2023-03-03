@@ -1,7 +1,7 @@
 import { Search } from '@mui/icons-material'
 import { IconButton, Box } from '@mui/material'
 
-import SearchField from '../common/SearchField'
+import { SearchField } from '../common'
 
 const NavSearch = ({ downLg, setDrawerOpen }) => {
   return (

@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
-import { Typography, Button } from '@mui/material'
-import TextTransition, { presets } from 'react-text-transition'
-import { Link as RouterLink } from 'react-router-dom'
 import Typed from 'typed.js'
+import { Typography, Button } from '@mui/material'
+import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import TextTransition, { presets } from 'react-text-transition'
+
 import { useGetDescriptionQuery } from '../../api'
 const HomeDescription = () => {
   const { data: description } = useGetDescriptionQuery()
@@ -59,12 +60,7 @@ const HomeDescription = () => {
         {description && description.aboutUs}
       </Typography>
 
-      <Button
-        component={RouterLink}
-        to="/products"
-        color="secondary"
-        sx={{ my: 2 }}
-      >
+      <Button component={Link} to="/products" color="secondary" sx={{ my: 2 }}>
         ورود به فروشگاه من
       </Button>
     </>

@@ -6,6 +6,7 @@ import {
   CardActionArea,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
+
 const PostLoading = ({ postId }) => {
   return (
     <CardActionArea component={Link} to={`/posts/${postId}`}>

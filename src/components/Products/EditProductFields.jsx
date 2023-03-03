@@ -1,12 +1,11 @@
-import { Button, Box } from '@mui/material'
 import { useFormik } from 'formik'
-import { CustomDivider, CustomForm, ImageUploader } from '../common'
-import Grid from '@mui/material/Unstable_Grid2'
+import { CustomForm } from '../common'
 import { useNavigate } from 'react-router-dom'
-import { productFieldsData } from './data/productFieldsData'
 import { productValidation } from '../validations/productValidation'
 import { useEditProductMutation } from '../../api'
 import { toast } from 'react-toastify'
+import { productFieldsData } from '../fieldsData'
+
 const EditProductFields = ({ product }) => {
   const navigate = useNavigate()
 

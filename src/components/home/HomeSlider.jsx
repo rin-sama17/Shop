@@ -10,7 +10,7 @@ import Slider from 'react-slick'
 
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { useGetSlidersQuery } from '../../api'
-import SliderLoading from '../loading/SliderLoading'
+import { SliderLoading } from '../loading'
 
 const HomeSlider = () => {
   const { data: sliders = [], isLoading } = useGetSlidersQuery()

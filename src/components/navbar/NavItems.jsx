@@ -4,8 +4,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { DarkMode } from '@mui/icons-material'
 import { tabsData } from '../../constants/tabs.sidebar'
 import { useState, useEffect } from 'react'
-import SecondaryButton from '../common/SecondaryButton'
-import ThemeButton from '../common/ThemeButton'
+import { SecondaryButton, ThemeButton } from '../common'
 const NavItems = ({ direction, width }) => {
   const [loading, setLoading] = useState(false)
 

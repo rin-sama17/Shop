@@ -1,5 +1,6 @@
-import { Tab, Tabs, tabsClasses, useMediaQuery, useTheme } from '@mui/material'
+import { Tab, Tabs, useMediaQuery, useTheme } from '@mui/material'
 import { tabsData } from '../../constants/adminPanelTabs'
+
 const AdminPanelTabs = ({ pageNumber, setPageNumber }) => {
   const theme = useTheme()
 

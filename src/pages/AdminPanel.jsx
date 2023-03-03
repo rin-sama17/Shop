@@ -4,15 +4,17 @@ import { useState } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 
 import AdminPanelTabs from '../components/adminPanel/AdminPanelTabs'
-import Page from './Page'
-import SliderManagement from '../components/adminPanel/pages/SliderManagement'
-import OrderManagement from '../components/adminPanel/pages/OrderManagement.jsx'
-import ProductManagement from '../components/adminPanel/pages/ProductManagement.jsx'
-import PostManagement from '../components/adminPanel/pages/PostManagement.jsx'
-import DiscountManagement from '../components/adminPanel/pages/DiscountManagement.jsx'
-import CategoryManagement from '../components/adminPanel/pages/CategoryManagement.jsx'
-import CommentManagement from '../components/adminPanel/pages/CommentManagement.jsx'
-import DescriptionManagement from '../components/adminPanel/pages/DescriptionManagement.jsx'
+import { Page } from '.'
+import {
+  SliderManagement,
+  OrderManagement,
+  ProductManagement,
+  PostManagement,
+  DiscountManagement,
+  CategoryManagement,
+  CommentManagement,
+  DescriptionManagement,
+} from '../components/adminPanel/pages'
 
 const AdminPanel = () => {
   const [pageNumber, setPageNumber] = useState(0)

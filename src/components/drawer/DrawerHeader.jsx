@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material'
 import ThemeButton from '../common/ThemeButton'
-import { SearchField } from '../common'
-import SecondaryButton from '../common/SecondaryButton'
+import { SearchField, SecondaryButton } from '../common'
 
 const DrawerHeader = () => {
   return (

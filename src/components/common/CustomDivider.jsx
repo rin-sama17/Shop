@@ -1,4 +1,5 @@
 import { Typography, Divider, Box } from '@mui/material'
+
 const CustomDivider = ({ label, color, ...props }) => {
   return (
     <Box

@@ -1,9 +1,7 @@
 import Grid from '@mui/material/Unstable_Grid2'
 import { Box, Typography } from '@mui/material'
-import { ProductHeader, ProductDetails, ProductComments} from '.'
-import {
-  ShowCategory,
-} from '../../common'
+import { ProductHeader, ProductDetails, ProductComments } from '.'
+import { ShowCategory } from '../../common'
 
 const ProductContent = ({ product }) => {
   return (
@@ -13,7 +11,7 @@ const ProductContent = ({ product }) => {
         <ShowCategory category={product.category} tags={product.tags} />
       </Grid>
 
-        <ProductDetails product={ product} />
+      <ProductDetails product={product} />
       <Grid xs={12}>
         <Box sx={{ display: 'flex', mb: 2 }}>
           <Typography color="text.secondary" variant="body1" sx={{ mr: 1 }}>

@@ -8,7 +8,6 @@ import {
   ShowProduct,
   AddPost,
   AddProduct,
-  EditUser,
   EditPost,
   TrackOrders,
   Cart,
@@ -64,10 +63,7 @@ export const router = createBrowserRouter([
         path: '/editPost/:postId',
         element: <EditPost />,
       },
-      {
-        path: '/editUser',
-        element: <EditUser />,
-      },
+
       {
         path: '/cart',
         element: <Cart />,

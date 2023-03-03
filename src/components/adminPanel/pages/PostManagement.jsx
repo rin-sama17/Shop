@@ -1,10 +1,11 @@
-import { useRef, useLayoutEffect } from 'react'
-import { useDeletePostMutation, useGetPostsQuery } from '../../../api'
-import { toast } from 'react-toastify'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { Button } from '@mui/material'
+import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
+import { useRef, useLayoutEffect } from 'react'
 import { Delete, Edit } from '@mui/icons-material'
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
+
+import { useDeletePostMutation, useGetPostsQuery } from '../../../api'
 
 const PostManagement = () => {
   const { data: posts = [] } = useGetPostsQuery()

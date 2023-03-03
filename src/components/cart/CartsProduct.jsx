@@ -1,16 +1,9 @@
-import {
-  Card,
-  Stack,
-  Skeleton,
-  Typography,
-  CardMedia,
-  CardActionArea,
-} from '@mui/material'
-import { Delete } from '@mui/icons-material'
-
-import { ProductPrice, CustomIconButton } from '../common'
-import { useGetProductQuery } from '../../api'
 import { useDispatch } from 'react-redux'
+import { Delete } from '@mui/icons-material'
+import { Card, Stack, Skeleton, Typography, CardMedia } from '@mui/material'
+
+import { useGetProductQuery } from '../../api'
+import { ProductPrice, CustomIconButton } from '../common'
 import { cartItemDeleted } from '../../reducers/cartSlice'
 
 const CartProduct = ({ productId, productCount }) => {
@@ -21,7 +14,6 @@ const CartProduct = ({ productId, productCount }) => {
   }
 
   const localCartProducts = JSON.parse(localStorage.getItem('cartProducts'))
-  // dispatch(cartItemsSeted(localCartProducts))
   if (isLoading) {
     return (
       <Card sx={{ mb: 2, p: 2 }}>

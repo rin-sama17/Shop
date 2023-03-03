@@ -1,6 +1,7 @@
 import { Box, Skeleton, Typography } from '@mui/material'
 import { Suspense } from 'react'
 import Grid from '@mui/material/Unstable_Grid2'
+
 const ProductHeader = ({ product }) => {
   return (
     <Grid xs={12} md={4} sx={{ p: 1, minHeight: '50vh' }}>

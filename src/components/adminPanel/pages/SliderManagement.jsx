@@ -1,13 +1,15 @@
-import Grid from '@mui/material/Unstable_Grid2'
-import HomeSlider from '../../home/HomeSlider'
-import { ImageUploader, CustomDivider, CustomFields } from '../../common'
 import { useFormik } from 'formik'
-import { sliderValidation } from '../../validations/sliderValidation'
-import { Box, Button, Typography } from '@mui/material'
-import SliderModal from './SliderModal'
-import { useAddNewSliderMutation } from '../../../api'
 import { toast } from 'react-toastify'
 import { nanoid } from '@reduxjs/toolkit'
+import { Box, Button, Typography } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
+
+import { HomeSlider } from '../../home'
+import { SliderModal } from '../components'
+import { sliderValidation } from '../../validations/sliderValidation'
+import { useAddNewSliderMutation } from '../../../api'
+import { ImageUploader, CustomDivider, CustomFields } from '../../common'
+
 const SliderManagement = () => {
   const [addNewSlider] = useAddNewSliderMutation()
 

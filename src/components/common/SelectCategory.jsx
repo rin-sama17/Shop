@@ -5,8 +5,7 @@ import {
   OutlinedInput,
   MenuItem,
 } from '@mui/material'
-import { useState } from 'react'
-import { useGetCategorysQuery } from '../../../api'
+import { useGetCategorysQuery } from '../../api'
 
 const SelectCategory = ({ value, setValue }) => {
   const { data: options = [] } = useGetCategorysQuery()

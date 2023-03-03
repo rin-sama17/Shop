@@ -1,23 +1,18 @@
 import {
-  TextField,
   InputAdornment,
   Button,
   Modal,
   Box,
-  FormControl,
   IconButton,
-  InputLabel,
-  OutlinedInput,
   Stack,
   Divider,
-  Typography,
 } from '@mui/material'
 
 import { Recovery } from './'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Phone, Face, AccountCircle } from '@mui/icons-material'
+import { Face, AccountCircle } from '@mui/icons-material'
 import { useFormik } from 'formik'
 import { userValidation } from '../components/validations/userValidation'
 import { signedIn } from '../reducers/userSlice'

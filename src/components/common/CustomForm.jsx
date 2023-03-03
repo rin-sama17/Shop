@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { CustomDivider, CustomFields, ImageUploader } from '../common'
+import { CustomDivider, CustomFields, ImageUploader } from '.'
 
 const CustomForm = ({
   fields,

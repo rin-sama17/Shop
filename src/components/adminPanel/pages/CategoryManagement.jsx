@@ -1,10 +1,10 @@
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-import { useDeleteCategoryMutation, useGetCategorysQuery } from '../../../api'
-import AddCategory from './AddCategory'
 import { useMemo } from 'react'
 import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
-import EditCategory from './EditCategory'
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
+
+import { EditCategory, AddCategory } from '../components'
+import { useDeleteCategoryMutation, useGetCategorysQuery } from '../../../api'
 
 const CategoryManagement = () => {
   const { data: categorys = [] } = useGetCategorysQuery()

@@ -1,7 +1,6 @@
 import { Divider, Box } from '@mui/material'
 
-import DrawerHeader from './DrawerHeader'
-import DrawerItems from './DrawerItems'
+import { DrawerHeader, DrawerItems } from '.'
 
 const DrawerContent = () => {
   return (

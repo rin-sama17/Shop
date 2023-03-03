@@ -1,7 +1,7 @@
-import { Typography, Box, Divider, Stack } from '@mui/material'
-import { ShowTime } from '../common'
-
 import { Link as RouterLink } from 'react-router-dom'
+import { Typography, Box, Divider, Stack } from '@mui/material'
+
+import { ShowTime } from '../common'
 import { useGetPostsQuery, useGetDescriptionQuery } from '../../api'
 
 const FooterContent = () => {

@@ -1,14 +1,16 @@
-import { Box, Typography, Button, IconButton, Stack } from '@mui/material'
-import { Add, Remove, Delete } from '@mui/icons-material'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Add, Remove, Delete } from '@mui/icons-material'
+import { Box, Typography, Button, IconButton, Stack } from '@mui/material'
+
 import {
   cartItemAdded,
   cartItemDeleted,
   cartItemUpdated,
   selectCartProduct,
   selectCartProducts,
-} from '../../../reducers/cartSlice'
-import { useEffect } from 'react'
+} from '../../reducers/cartSlice'
+
 const AddToCart = ({ productId, prodyctStock, productPrice, discount }) => {
   const productCount = useSelector((state) =>
     selectCartProduct(state, productId),

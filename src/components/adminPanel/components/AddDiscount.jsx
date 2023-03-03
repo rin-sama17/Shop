@@ -1,12 +1,11 @@
-import { Button } from '@mui/material'
 import { useState } from 'react'
-
-import { CustomDivider, CustomFields, CustomModal } from '../../common'
 import { useFormik } from 'formik'
-import { discountValidation } from '../../validations/discountValidation.js'
-
+import { Button } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { useGetDiscountsQuery, useAddNewDiscountMutation } from '../../../api'
+
+import { discountValidation } from '../../validations/discountValidation'
+import { useAddNewDiscountMutation } from '../../../api'
+import { CustomDivider, CustomFields, CustomModal } from '../../common'
 
 const AddDiscount = () => {
   const [open, setOpen] = useState(false)

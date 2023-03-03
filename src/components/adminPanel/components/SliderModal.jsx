@@ -1,10 +1,12 @@
-import Grid from '@mui/material/Unstable_Grid2'
-import { CardMedia, Button, Skeleton } from '@mui/material'
 import { Suspense, useState } from 'react'
-import { useGetSlidersQuery } from '../../../api'
-import SliderLoading from '../../loading/SliderLoading'
-import Slider from './Slider'
+import { CardMedia, Button, Skeleton } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
+
+import { Slider } from '.'
 import { CustomModal } from '../../common'
+import { SliderLoading } from '../../loading'
+import { useGetSlidersQuery } from '../../../api'
+
 const SliderModal = () => {
   const [open, setOpen] = useState(false)
   const [sliderId, setSliderId] = useState('')

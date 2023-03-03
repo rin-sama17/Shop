@@ -1,4 +1,4 @@
-import CartDetails from '../components/cart/CartDetails'
+import { CartDetails } from '../components/cart'
 
 const Cart = () => {
   return <CartDetails button isLocal />

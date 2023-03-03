@@ -1,14 +1,11 @@
-import { Button } from '@mui/material'
-
-import { CustomDivider, CustomFields } from '../../common'
 import { useFormik } from 'formik'
-import { descriptionValidation } from '../../validations/descriptionValidation.js'
-import Grid from '@mui/material/Unstable_Grid2'
-import {
-  useGetDescriptionQuery,
-  useEditDescriptionMutation,
-} from '../../../api'
 import { toast } from 'react-toastify'
+import { Button } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
+
+import { descriptionValidation } from '../../validations/descriptionValidation'
+import { useEditDescriptionMutation } from '../../../api'
+import { CustomDivider, CustomFields } from '../../common'
 
 const EditDescription = ({ description }) => {
   const [updateDescription] = useEditDescriptionMutation()

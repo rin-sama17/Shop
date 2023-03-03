@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
-import { ProductContent } from '../components/products/showProduct'
+import { ProductContent } from '../components/products'
 import { useGetProductQuery } from '../api'
-import ShowProductLoading from '../components/loading/ShowProductLoading'
+import { ShowProductLoading } from '../components/loading'
 
 const ShowProduct = () => {
   const { productId } = useParams()

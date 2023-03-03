@@ -1,6 +1,6 @@
 import { Typography, Divider, Box, SwipeableDrawer } from '@mui/material'
 import { SearchField } from '../common'
-import DrawerContent from '../drawer/DrawerContent'
+import { DrawerContent } from '../drawer'
 
 import { NavItems } from './'
 const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {

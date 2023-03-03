@@ -4,7 +4,6 @@ import { CustomFields, CustomDivider } from '../components/common'
 import { useFormik } from 'formik'
 import { trackOrdersValidation } from '../components/validations/trackOrdersValidation'
 
-import { Link as RouterLink } from 'react-router-dom'
 import CartDetails from '../components/cart/CartDetails'
 
 const TrackOrders = () => {
@@ -35,7 +34,6 @@ const TrackOrders = () => {
       {userCartId && (
         <>
           <CustomDivider label="سبد خرید شما" color="primary" sx={{ my: 2 }} />
-
           <CartDetails cartId={userCartId} />
         </>
       )}

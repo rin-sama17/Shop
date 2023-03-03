@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react'
 import { Typography, Box, Slider, Button } from '@mui/material'
 
 import { toRial } from '../../helpers'
-import SelectCategory from '../adminPanel/pages/SelectCategory'
 import { Stack } from '@mui/system'
+import { SelectCategory } from '../common'
 
 const ProductsFilter = ({ data, setData, isLoading }) => {
   const expensiveProduct = useMemo(() => {

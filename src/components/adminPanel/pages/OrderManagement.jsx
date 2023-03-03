@@ -1,8 +1,7 @@
-import { useGetCartsQuery } from '../../../api'
-
 import { DataGrid } from '@mui/x-data-grid'
 
-import OrderProducts from './OrderProducts'
+import { OrderProducts } from '../components'
+import { useGetCartsQuery } from '../../../api'
 
 const OrderManagement = () => {
   const { data: carts = [] } = useGetCartsQuery()

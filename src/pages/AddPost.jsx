@@ -3,14 +3,13 @@ import { CustomDivider, CustomForm } from '../components/common'
 import { useEffect } from 'react'
 import { useFormik } from 'formik'
 import { postValidation } from '../components/validations/postValidation'
-import AddParagraph from '../components/posts/addPost/AddParagraph'
-import ShowParagraphs from '../components/posts/addPost/ShowParagraphs'
+import { AddParagraph, ShowParagraphs } from '../components/posts'
 import { useNavigate } from 'react-router-dom'
 import { nanoid } from '@reduxjs/toolkit'
 import { useAddNewPostMutation } from '../api'
 import { useSelector } from 'react-redux'
 import { selectAllParagraph } from '../reducers/paragraphSlice'
-import { postFieldsData } from '../components/fields/data/postFieldsData'
+import { postFieldsData } from '../components/fieldsData'
 const AddPost = () => {
   const paragraphs = useSelector(selectAllParagraph)
 

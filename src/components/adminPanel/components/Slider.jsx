@@ -1,11 +1,13 @@
-import Grid from '@mui/material/Unstable_Grid2'
-import { CustomDivider, CustomFields } from '../../common'
 import { useFormik } from 'formik'
-import { sliderValidation } from '../../validations/sliderValidation'
-import { CardMedia, Button } from '@mui/material'
-import { useDeleteSliderMutation, useGetSliderQuery } from '../../../api'
-import SliderLoading from '../../loading/SliderLoading'
 import { toast } from 'react-toastify'
+import { CardMedia, Button } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
+
+import { SliderLoading } from '../../loading'
+import { sliderValidation } from '../../validations/sliderValidation'
+import { CustomDivider, CustomFields } from '../../common'
+import { useDeleteSliderMutation, useGetSliderQuery } from '../../../api'
+
 const Slider = ({ sliderId, setOpen }) => {
   const { data: slider, isLoading } = useGetSliderQuery(sliderId)
   const [deleteSlider] = useDeleteSliderMutation()

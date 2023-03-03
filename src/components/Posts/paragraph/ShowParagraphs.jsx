@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   selectAllParagraph,
@@ -14,9 +13,9 @@ import {
   Avatar,
   CardMedia,
 } from '@mui/material'
-import { Delete, Edit, ExpandMore } from '@mui/icons-material'
+import { Delete, ExpandMore } from '@mui/icons-material'
 import { CustomIconButton } from '../../common'
-import EditParagraph from './EditParagraph'
+import { EditParagraph } from '../'
 import { toast } from 'react-toastify'
 
 const ShowParagraphs = () => {

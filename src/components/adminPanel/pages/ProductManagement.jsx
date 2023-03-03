@@ -1,10 +1,10 @@
-import { useRef, useLayoutEffect } from 'react'
-import { useDeleteProductMutation, useGetProductsQuery } from '../../../api'
 import { toast } from 'react-toastify'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { Delete, Edit } from '@mui/icons-material'
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
+
+import { useDeleteProductMutation, useGetProductsQuery } from '../../../api'
 
 const ProductManagement = () => {
   const { data: products = [] } = useGetProductsQuery()

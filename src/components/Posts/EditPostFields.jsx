@@ -2,7 +2,6 @@ import { CustomDivider, CustomForm } from '../common'
 import { useEffect } from 'react'
 import { useFormik } from 'formik'
 import { postValidation } from '../validations/postValidation'
-import AddParagraph from '../posts/addPost/AddParagraph'
 import { useNavigate } from 'react-router-dom'
 import { useEditPostMutation } from '../../api'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,9 +10,9 @@ import {
   paragraphsSeted,
   selectAllParagraph,
 } from '../../reducers/paragraphSlice'
-import ShowParagraphs from '../posts/addPost/ShowParagraphs'
+import { ShowParagraphs, AddParagraph } from '.'
 import { toast } from 'react-toastify'
-import { postFieldsData } from './data/postFieldsData'
+import { postFieldsData } from '../fieldsData'
 
 const EditPostFields = ({ post }) => {
   const dispatch = useDispatch()

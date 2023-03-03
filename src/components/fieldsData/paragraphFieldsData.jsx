@@ -1,4 +1,4 @@
-export const paragraphFieldsData = (formik) => {
+const paragraphFieldsData = (formik) => {
   return [
     {
       md: 4,
@@ -17,3 +17,4 @@ export const paragraphFieldsData = (formik) => {
     },
   ]
 }
+export default paragraphFieldsData

@@ -1,14 +1,16 @@
+import { toast } from 'react-toastify'
 import { Button } from '@mui/material'
+import { Delete } from '@mui/icons-material'
+import { useLayoutEffect, useMemo, useRef } from 'react'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-import React, { useLayoutEffect, useMemo, useRef } from 'react'
+
 import {
   useDeleteCommentMutation,
   useGetCommentQuery,
   useGetCommentsQuery,
   useEditCommentMutation,
 } from '../../../api'
-import { Delete } from '@mui/icons-material'
-import { toast } from 'react-toastify'
+
 const CommentView = (props) => {
   const { hasFocus, value } = props
 

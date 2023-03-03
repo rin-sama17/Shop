@@ -1,4 +1,3 @@
-// import { productsData } from '../../constants/products'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Product } from '../products'
 

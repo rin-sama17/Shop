@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import { useGetPostQuery } from '../api'
 import { useParams } from 'react-router-dom'
-import EditPostFields from '../components/fields/EditPostFields'
+import { EditPostFields } from '../components/Posts'
 
 const EditPost = () => {
   const { postId } = useParams()

@@ -1,13 +1,12 @@
-import { Button } from '@mui/material'
 import { useState } from 'react'
-
-import { CustomDivider, CustomFields, CustomModal } from '../../common'
 import { useFormik } from 'formik'
-import { categoryValidation } from '../../validations/categoryValidation.js'
-
-import Grid from '@mui/material/Unstable_Grid2'
-import { useAddNewCategoryMutation } from '../../../api'
+import { Button } from '@mui/material'
 import { nanoid } from '@reduxjs/toolkit'
+import Grid from '@mui/material/Unstable_Grid2'
+
+import { categoryValidation } from '../../validations/categoryValidation'
+import { useAddNewCategoryMutation } from '../../../api'
+import { CustomDivider, CustomFields, CustomModal } from '../../common'
 
 const AddCategory = () => {
   const [open, setOpen] = useState(false)

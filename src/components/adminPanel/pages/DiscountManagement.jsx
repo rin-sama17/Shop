@@ -1,11 +1,11 @@
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-import { useDeleteDiscountMutation, useGetDiscountsQuery } from '../../../api'
-import AddDiscount from './AddDiscount'
-import { Delete } from '@mui/icons-material'
 import { toast } from 'react-toastify'
-import EditDiscount from './EditDiscount'
+import { Delete } from '@mui/icons-material'
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-const DiscountManagment = () => {
+import { EditDiscount, AddDiscount } from '../components'
+import { useDeleteDiscountMutation, useGetDiscountsQuery } from '../../../api'
+
+const DiscountManagement = () => {
   const { data: discounts = [] } = useGetDiscountsQuery()
   const [deleteDiscount] = useDeleteDiscountMutation()
   const handleDiscountDelete = async (discountId) => {
@@ -45,4 +45,4 @@ const DiscountManagment = () => {
   )
 }
 
-export default DiscountManagment
+export default DiscountManagement

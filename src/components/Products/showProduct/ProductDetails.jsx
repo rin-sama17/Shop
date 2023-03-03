@@ -1,15 +1,9 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { Box, Typography, Card, Stack } from '@mui/material'
-import { AddToCart } from '.'
-import {
-  CustomDivider,
-  CustomIconButton,
-  ProductPrice,
-  ShowCategory,
-} from '../../common'
-import { ReportGmailerrorred, Edit, Delete } from '@mui/icons-material'
-import { useDeleteProductMutation } from '../../../api'
-import { toast } from 'react-toastify'
+import { Box, Typography, Card } from '@mui/material'
+import { CustomDivider, CustomIconButton, ProductPrice } from '../../common'
+import { ReportGmailerrorred } from '@mui/icons-material'
+import { AddToCart } from '../../cart'
+
 const ProductDetails = ({ product }) => {
   return (
     <Grid xs={12} md={4} sx={{ p: 1 }}>

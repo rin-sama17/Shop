@@ -1,6 +1,7 @@
 import { Box, Skeleton, Card, CardActionArea } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link } from 'react-router-dom'
+
 const ProductLoading = ({ width, productId }) => {
   return (
     <Grid

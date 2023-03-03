@@ -1,14 +1,16 @@
+import { Copyright } from '@mui/icons-material'
 import { Typography, Box } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
+
+import { FooterContent } from '.'
 import { footerBg } from '../../assets'
-import { Copyright } from '@mui/icons-material'
-import FooterContent from './FooterContent'
+
 const Footer = () => {
   return (
     <Box component="div">
       <Box
         sx={{
-          backgroundImage: `url(${footerBg} )`,
+          backgroundImage: `url(${footerBg})`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           backgroundSize: 'cover',

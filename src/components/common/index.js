@@ -11,3 +11,4 @@ export { default as ImageUploader } from "./ImageUploader";
 export { default as ShowCategory } from "./ShowCategory";
 export { default as ThemeButton } from "./ThemeButton";
 export { default as SecondaryButton } from "./SecondaryButton";
+export { default as SelectCategory } from "./SelectCategory";

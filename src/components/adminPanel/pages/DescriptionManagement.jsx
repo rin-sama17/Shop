@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material'
+
+import { EditDescription } from '../components'
 import { useGetDescriptionQuery } from '../../../api'
-import EditDescription from './EditDescription'
 
 const DescriptionManagement = () => {
   const { data: description, isLoading, isSuccess } = useGetDescriptionQuery()

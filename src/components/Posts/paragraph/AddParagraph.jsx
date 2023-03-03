@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { paragraphAdded } from '../../../reducers/paragraphSlice'
 import { nanoid } from '@reduxjs/toolkit'
-import { paragraphFieldsData } from '../../fields/data/paragraphFieldsData'
+import { paragraphFieldsData } from '../../fieldsData'
 const AddParagraph = () => {
   const dispatch = useDispatch()
 
@@ -26,13 +26,10 @@ const AddParagraph = () => {
     initialValues: paragraphFields,
     validationSchema: paragraphValidation,
     onSubmit: (values, { resetForm }) => {
-      const { photo, title, body } = values
       dispatch(
         paragraphAdded({
           id: nanoid(),
-          photo,
-          title,
-          body,
+          ...values,
         }),
       )
       toast.success(`پاراگراف ${values.title} با موفقیت ذخیره شد`)

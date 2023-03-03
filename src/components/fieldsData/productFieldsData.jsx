@@ -1,7 +1,7 @@
 import { Typography, InputAdornment } from '@mui/material'
 
 import { Percent } from '@mui/icons-material'
-import { toRial } from '../../../helpers'
+import { toRial } from '../../helpers'
 
 export const productFieldsData = (formik) => {
   const convertPrice = (a, b) => {
@@ -75,3 +75,5 @@ export const productFieldsData = (formik) => {
     },
   ]
 }
+
+export default productFieldsData

@@ -1,13 +1,12 @@
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { Card, Button, Container, Typography, Stack, Chip } from '@mui/material'
-
 import Grid from '@mui/material/Unstable_Grid2'
 
-import { toRial, totalProductsPrice } from '../../helpers'
-import { Link as RouterLink } from 'react-router-dom'
-import { selectCartProducts } from '../../reducers/cartSlice'
-import { useSelector } from 'react-redux'
-import CartProduct from './CartsProduct'
+import { CartsProduct } from '.'
 import { useGetCartQuery } from '../../api'
+import { toRial, totalProductsPrice } from '../../helpers'
+import { selectCartProducts } from '../../reducers/cartSlice'
 
 const CartDetails = ({ button, cartId, isLocal }) => {
   const { data: cart = [], isLoading, isSuccess } = useGetCartQuery(cartId)
@@ -33,12 +32,7 @@ const CartDetails = ({ button, cartId, isLocal }) => {
             سبد شما خالی میباشد
           </Typography>
 
-          <Button
-            fullWidth
-            sx={{ mt: 2 }}
-            component={RouterLink}
-            to="/products"
-          >
+          <Button fullWidth sx={{ mt: 2 }} component={Link} to="/products">
             رفتن به فروشگاه
           </Button>
         </Card>
@@ -52,7 +46,7 @@ const CartDetails = ({ button, cartId, isLocal }) => {
       <Grid container sx={{ width: 1 }} spacing={2}>
         <Grid xs={12} md={8}>
           {cartProducts.map((product) => (
-            <CartProduct
+            <CartsProduct
               productId={product.id}
               productCount={product.count}
               key={product.id}
@@ -124,7 +118,7 @@ const CartDetails = ({ button, cartId, isLocal }) => {
             )}
             {button ? (
               <Button
-                component={RouterLink}
+                component={Link}
                 to="/checkout"
                 color="secondary"
                 fullWidth

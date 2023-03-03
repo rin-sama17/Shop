@@ -4,7 +4,6 @@ import { Box, Container } from '@mui/material'
 
 import { Post } from '../components/Posts'
 import { CustomPagination } from '../components/common'
-import { useSelector } from 'react-redux'
 import { useGetPostsQuery } from '../api'
 
 const Posts = () => {

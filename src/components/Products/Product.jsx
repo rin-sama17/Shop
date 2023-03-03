@@ -9,7 +9,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Link as RouterLink } from 'react-router-dom'
 import { useGetProductQuery } from '../../api'
 import { ProductPrice } from '../common'
-import ProductLoading from '../loading/ProductLoading'
+import { ProductLoading } from '../loading'
 
 const Product = ({ productId, maxWidth }) => {
   const { data: product, isSuccess } = useGetProductQuery(productId)

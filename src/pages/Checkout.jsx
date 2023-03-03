@@ -1,15 +1,15 @@
 import { Stack, Button, Container, Card, Typography } from '@mui/material'
 import { CustomFields, CustomDivider } from '../components/common'
 import { useFormik } from 'formik'
-import { checkoutValidation } from '../components/validations/checkoutValidation.js'
+import { checkoutValidation } from '../components/validations/checkoutValidation'
 import Grid from '@mui/material/Unstable_Grid2'
-import CartDetails from '../components/cart/CartDetails'
+import { CartDetails } from '../components/cart'
 import { selectCartProducts } from '../reducers/cartSlice'
 import { useSelector } from 'react-redux'
 import { useAddNewCartMutation } from '../api'
 import { nanoid } from '@reduxjs/toolkit'
 
-import { Link as RouterLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 const Checkout = () => {
   const cartProducts = useSelector(selectCartProducts)
@@ -64,7 +64,7 @@ const Checkout = () => {
               {cartId}
             </Typography>
           </Typography>
-          <Button fullWidth sx={{ mt: 2 }} component={RouterLink} to="/">
+          <Button fullWidth sx={{ mt: 2 }} component={Link} to="/">
             بازگشت به خانه
           </Button>
         </Card>
