@@ -1,14 +1,14 @@
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
 import { nanoid } from '@reduxjs/toolkit'
-import { Box, Button, Typography } from '@mui/material'
-import Grid from '@mui/material/Unstable_Grid2'
+import { Box } from '@mui/material'
 
 import { HomeSlider } from '../../home'
 import { SliderModal } from '../components'
 import { sliderValidation } from '../../validations/sliderValidation'
 import { useAddNewSliderMutation } from '../../../api'
-import { ImageUploader, CustomDivider, CustomFields } from '../../common'
+import { CustomForm, CustomDivider } from '../../common'
+import { sliderFieldsData } from '../../fieldsData'
 
 const SliderManagement = () => {
   const [addNewSlider] = useAddNewSliderMutation()
@@ -36,37 +36,21 @@ const SliderManagement = () => {
       resetForm()
     },
   })
-
+  const fields = sliderFieldsData(formik)
   return (
     <>
-      <form autoComplete="off" onSubmit={formik.handleSubmit}>
-        <Grid container sx={{ px: 2, pt: 4 }} spacing={2}>
-          <CustomDivider label="اسلاید جدید" />
-          <ImageUploader
-            name="photo"
-            formik={formik}
-            width={1}
-            color="info"
-            md={12}
-          />
-          <Grid xs={12} sx={{ direction: 'ltr' }}>
-            <Typography variant="caption" color="text.secondary">
-              برای تجربه کاربری بهتر عکس هایی با ارتفاع یکسان وارد نمایید
-            </Typography>
-          </Grid>
-          <CustomFields formik={formik} name="title" label="عنوان" md={6} />
-          <CustomFields formik={formik} name="link" label="لینک" md={6} />
-          <Button
-            fullWidth
-            type="submit"
-            variant="contained"
-            size="large"
-            sx={{ my: 2 }}
-          >
-            افزودن
-          </Button>
-        </Grid>
-      </form>
+      <CustomForm
+        formik={formik}
+        fields={fields}
+        label="اسلایدر جدید"
+        color="info"
+        imageUploader
+        imageUploaderName="photo"
+        imageUploaderProps={{
+          md: 12,
+          width: 1,
+        }}
+      />
       <CustomDivider label="مدیریت اسلاید ها" />
       <SliderModal />
       <Box sx={{ px: 3 }}>

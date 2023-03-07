@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Unstable_Grid2'
 import { Typography, Card, Divider, Stack, Button } from '@mui/material'
-import { CustomDivider, CustomFields, ShowTime } from '../../common'
+import { CustomDivider, CustomFields, CustomForm, ShowTime } from '../../common'
 import { useFormik } from 'formik'
 import { commentValidation } from '../../validations/commentValidation'
 import { useAddNewCommentMutation, useGetCommentsQuery } from '../../../api'
@@ -8,6 +8,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify'
 import { useMemo } from 'react'
 import { createSelector } from '@mui/x-data-grid/internals'
+import { commentFieldData } from '../../fieldsData'
 
 const Comment = ({ comment }) => {
   return (
@@ -110,29 +111,15 @@ const ProductComments = ({ productId }) => {
       resetForm()
     },
   })
+  const fields = commentFieldData(formik)
   return (
     <>
-      <CustomDivider label="نظر جدید" color="success" />
-      <form onSubmit={formik.handleSubmit}>
-        <Grid container spacing={2}>
-          <CustomFields
-            formik={formik}
-            name="name"
-            label="نام شما (اختیاری)"
-            md={6}
-          />
-          <CustomFields
-            formik={formik}
-            name="body"
-            label="نظر شما"
-            multiline
-            rows={6}
-          />
-          <Button fullWidth size="large" type="submit" sx={{ mb: 4 }}>
-            ثبت نظر
-          </Button>
-        </Grid>
-      </form>
+      <CustomForm
+        label="نظر جدید"
+        formik={formik}
+        fields={fields}
+        color="success"
+      />
 
       <CustomDivider label="نظر ها" color="warning" />
       {comments.length > 0 ? (

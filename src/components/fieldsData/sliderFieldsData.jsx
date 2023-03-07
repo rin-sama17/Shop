@@ -11,7 +11,6 @@ const sliderFieldsData = (formik) => {
     {
       name: 'link',
       formik,
-
       label: 'لینک',
     },
   ]

@@ -17,12 +17,17 @@ import {
   SearchResult,
   Paid,
 } from '../pages'
+import { CustomMassage } from '../components/common'
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
     errorElement: (
-      <h3 className="text-center">چیزی پیدا نکردیم متاسفانه 🤗 ...</h3>
+      <CustomMassage
+        text="صفحه مورد نظر یافت نشد"
+        btnLabel="برگشت به خانه"
+        to="/"
+      />
     ),
     children: [
       {

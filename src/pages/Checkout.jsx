@@ -1,8 +1,7 @@
-import { Stack, Button, Container } from '@mui/material'
-import { CustomFields, CustomDivider } from '../components/common'
+import { Stack, Container } from '@mui/material'
+import { CustomDivider, CustomForm } from '../components/common'
 import { useFormik } from 'formik'
 import { checkoutValidation } from '../components/validations/checkoutValidation'
-import Grid from '@mui/material/Unstable_Grid2'
 import { CartDetails } from '../components/cart'
 import { selectCartProducts } from '../reducers/cartSlice'
 import { useSelector } from 'react-redux'
@@ -10,6 +9,7 @@ import { useAddNewCartMutation } from '../api'
 import { nanoid } from '@reduxjs/toolkit'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { checkoutFieldsData } from '../components/fieldsData'
 const Checkout = () => {
   const cartProducts = useSelector(selectCartProducts)
   const [cartId, setCartId] = useState()
@@ -54,49 +54,21 @@ const Checkout = () => {
   if (isSuccess) {
     navigate(`/checkout/${cartId}`)
   }
-
+  const fields = checkoutFieldsData(formik)
   return (
     <>
       <CustomDivider label="سبد خرید شما" />
       <CartDetails isLocal />
       <Container maxWidth="md" sx={{ mb: 2 }}>
         <Stack alignItems="center" sx={{ width: 1, mt: 4 }}>
-          <CustomDivider label="پرداخت" color="success" />
-          <form onSubmit={formik.handleSubmit}>
-            <Grid
-              container
-              spacing={2}
-              sx={{
-                width: 1,
-              }}
-            >
-              <CustomFields
-                formik={formik}
-                name="fullName"
-                label="نام و نام خانوادگی"
-                md={6}
-              />
-              <CustomFields formik={formik} name="phone" phone md={6} />
-              <CustomFields
-                formik={formik}
-                name="address"
-                label="ادرس"
-                multiline
-                rows={6}
-              />{' '}
-              <Button
-                type="submit"
-                color="success"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3 }}
-              >
-                پرداخت
-              </Button>
-            </Grid>
-          </form>
+          <CustomForm
+            fields={fields}
+            formik={formik}
+            label="پرداخت"
+            color="success"
+          />
         </Stack>
-      </Container>{' '}
+      </Container>
     </>
   )
 }
