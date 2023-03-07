@@ -16,6 +16,7 @@ import {
   EditProduct,
   SearchResult,
   Paid,
+  AboutUs,
 } from '../pages'
 import { CustomMassage } from '../components/common'
 export const router = createBrowserRouter([
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: '/search/:query',
         element: <SearchResult />,
+      },
+      {
+        path: '/about-us',
+        element: <AboutUs />,
       },
     ],
   },

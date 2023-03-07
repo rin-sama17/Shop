@@ -13,6 +13,7 @@ const ProductLoading = ({ width, productId }) => {
         display: 'flex',
         justifyContent: 'center',
         mb: 2,
+        width: 1,
       }}
     >
       <Card

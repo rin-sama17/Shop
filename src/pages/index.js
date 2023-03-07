@@ -16,6 +16,7 @@ export { default as EditPost } from "./EditPost";
 export { default as EditProduct } from "./EditProduct";
 export { default as SearchResult } from "./SearchResult";
 export { default as Paid } from "./Paid";
+export { default as AboutUs } from "./AboutUs";
 
 
 
