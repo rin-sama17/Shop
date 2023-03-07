@@ -4,11 +4,11 @@ import { Button } from '@mui/material'
 import { toast } from 'react-toastify'
 import { Edit } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
-import Grid from '@mui/material/Unstable_Grid2'
 
 import { discountValidation } from '../../validations/discountValidation'
 import { useEditDiscountMutation } from '../../../api'
-import { CustomModal, CustomDivider, CustomFields } from '../../common'
+import { CustomModal, CustomForm } from '../../common'
+import { discountFieldsData } from '../../fieldsData'
 
 const EditDiscount = ({ discountData }) => {
   const [open, setOpen] = useState(false)
@@ -42,7 +42,7 @@ const EditDiscount = ({ discountData }) => {
       handleEditDiscount(values)
     },
   })
-
+  const fields = discountFieldsData(formik)
   return (
     <>
       <GridActionsCellItem
@@ -52,26 +52,12 @@ const EditDiscount = ({ discountData }) => {
         onClick={() => setOpen(true)}
       />
       <CustomModal open={open} setOpen={setOpen}>
-        <CustomDivider label="ویرایش تخفیف" color="info" />
-        <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={2}>
-            <CustomFields formik={formik} label="نام" name="name" md={7} />
-            <CustomFields
-              formik={formik}
-              label="تخفیف(به درصد)"
-              name="discount"
-              type="number"
-              md={5}
-              helperText={
-                formik.errors.discount ? formik.errors.discount : null
-              }
-            />
-            <CustomFields formik={formik} name="category" category md={12} />
-            <Button fullWidth type="submit" color="info">
-              ویرایش تخفیف
-            </Button>
-          </Grid>
-        </form>
+        <CustomForm
+          formik={formik}
+          fields={fields}
+          color="info"
+          label="ویرایش تخفیف"
+        />
       </CustomModal>
     </>
   )

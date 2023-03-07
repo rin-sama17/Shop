@@ -4,11 +4,11 @@ import { Button } from '@mui/material'
 import { toast } from 'react-toastify'
 import { Edit } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
-import Grid from '@mui/material/Unstable_Grid2'
 
 import { categoryValidation } from '../../validations/categoryValidation'
 import { useEditCategoryMutation } from '../../../api'
-import { CustomModal, CustomDivider, CustomFields } from '../../common'
+import { CustomModal, CustomForm } from '../../common'
+import { categoryFieldsData } from '../../fieldsData'
 
 const EditCategory = ({ category }) => {
   const [open, setOpen] = useState(false)
@@ -33,6 +33,7 @@ const EditCategory = ({ category }) => {
     },
   })
 
+  const fields = categoryFieldsData(formik)
   return (
     <>
       <GridActionsCellItem
@@ -42,15 +43,12 @@ const EditCategory = ({ category }) => {
         onClick={() => setOpen(true)}
       />
       <CustomModal open={open} setOpen={setOpen}>
-        <CustomDivider label="ویرایش دسته بندی" color="info" />
-        <form onSubmit={formik.handleSubmit}>
-          <Grid container spacing={2}>
-            <CustomFields formik={formik} label="نام دسته بندی" name="name" />
-            <Button fullWidth type="submit" color="secondary">
-              ویرایش دسته بندی
-            </Button>
-          </Grid>
-        </form>
+        <CustomForm
+          label="ویرایش دسته بندی"
+          formik={formik}
+          fields={fields}
+          color="info"
+        />
       </CustomModal>
     </>
   )

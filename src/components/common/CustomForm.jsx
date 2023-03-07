@@ -23,7 +23,7 @@ const CustomForm = ({
             {...imageUploaderProps}
           />
         ) : null}
-        <Grid xs={12} md={9}>
+        <Grid xs={12} md={imageUploader ? 9 : 12}>
           <Grid container spacing={2} sx={{ direction: 'ltr' }}>
             {fields.map((field, index) => (
               <CustomFields {...field} key={index} />
