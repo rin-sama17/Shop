@@ -3,14 +3,18 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Slider", "Categorys", "Comments", "Description"],
+    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Sliders", "Categorys", "Comments", "Description"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
-            providesTags: ["Posts"]
+            providesTags: (result = []) => [
+                "Posts",
+                ...result.map(({ id }) => ({ type: "Posts", id }))
+            ]
         }),
         getPost: builder.query({
-            query: (initialPostId) => `/posts/${initialPostId}`
+            query: (initialPostId) => `/posts/${initialPostId}`,
+            providesTags: (result, err, arg) => [{ type: "Posts", id: arg }]
         }),
         addNewPost: builder.mutation({
             query: (initialPost) => ({
@@ -32,16 +36,23 @@ export const apiSlice = createApi({
                 url: `/posts/${post.id}`,
                 method: "PUT",
                 body: post
-            })
+            }),
+            invalidatesTags: (result, err, arg) => [{ typr: "Posts", id: arg.id }]
         }),
 
 
         getProducts: builder.query({
             query: () => "/products",
-            providesTags: ["Products"]
+            providesTags: (result = []) => [
+                "Products",
+                ...result.map(({ id }) => ({ type: "Products", id }))
+            ]
         }),
         getProduct: builder.query({
-            query: (initialProductId) => `/products/${initialProductId}`
+            query: (initialProductId) => `/products/${initialProductId}`,
+            providesTags: (result, err, arg) => [
+                { type: "Products", id: arg }
+            ]
         }),
         addNewProduct: builder.mutation({
             query: (initialProduct) => ({
@@ -64,14 +75,15 @@ export const apiSlice = createApi({
                 method: "PUT",
                 body: product
             }),
-            invalidatesTags: ["Products"]
+            invalidatesTags: (result, err, arg) => [{ type: "Products", id: arg.id }]
         }),
 
 
 
 
         getCarts: builder.query({
-            query: () => `/carts`
+            query: () => `/carts`,
+            providesTags: ["Carts"]
         }),
         getCart: builder.query({
             query: (initialCartId) => `/carts/${initialCartId}`
@@ -81,16 +93,21 @@ export const apiSlice = createApi({
                 url: "/carts",
                 method: "POST",
                 body: initialCart
-            })
+            }),
+            invalidatesTags: ["Carts"]
         }),
 
 
         getSliders: builder.query({
             query: () => '/sliders',
-            providesTags: ["Slider"]
+            providesTags: (result = [], error, arg) => [
+                "Sliders",
+                ...result.map(({ id }) => ({ type: "Sliders", id }))
+            ]
         }),
         getSlider: builder.query({
-            query: (initialSliderId) => `/sliders/${initialSliderId}`
+            query: (initialSliderId) => `/sliders/${initialSliderId}`,
+            providesTags: (result, err, arg) => [{ type: "Sliders", id: arg }]
         }),
         addNewSlider: builder.mutation({
             query: (initialSlider) => ({
@@ -98,23 +115,35 @@ export const apiSlice = createApi({
                 method: "POST",
                 body: initialSlider
             }),
-            invalidatesTags: ["Slider"]
+            invalidatesTags: ["Sliders"]
         }),
         deleteSlider: builder.mutation({
             query: (initialSliderId) => ({
                 url: `/sliders/${initialSliderId}`,
                 method: "DELETE"
             }),
-            invalidatesTags: ["Slider"]
+            invalidatesTags: ["Sliders"]
+        }),
+        editSlider: builder.mutation({
+            query: slider => ({
+                url: `/sliders/${slider.id}`,
+                method: "PUT",
+                body: slider
+            }),
+            invalidatesTags: (result, err, arg) => [{ type: "Sliders", id: arg.id }]
         }),
 
 
         getDiscounts: builder.query({
             query: () => '/discounts',
-            providesTags: ["Discounts"]
+            providesTags: (result = [], err, arg) => [
+                "Discounts",
+                ...result.map(({ id }) => [{ type: "Discounts", id }])
+            ]
         }),
         getDiscount: builder.query({
-            query: (initialDiscountId) => `/discount/${initialDiscountId}`
+            query: (initialDiscountId) => `/discount/${initialDiscountId}`,
+            providesTags: (result, err, arg) => [{ type: "Discounts", id: arg }]
         }),
         addNewDiscount: builder.mutation({
             query: (initialDiscount) => ({
@@ -123,6 +152,7 @@ export const apiSlice = createApi({
                 body: initialDiscount,
             }),
             invalidatesTags: ["Discounts"]
+
         }),
         deleteDiscount: builder.mutation({
             query: (initialDiscountId) => ({
@@ -137,16 +167,20 @@ export const apiSlice = createApi({
                 method: "PUT",
                 body: discount
             }),
-            invalidatesTags: ["Discounts"]
+            invalidatesTags: (result, err, arg) => [{ type: "Discounts", id: arg.id }]
         }),
 
 
         getCategorys: builder.query({
             query: () => "/categorys",
-            providesTags: ["Categorys"]
+            providesTags: (result = []) => [
+                "Categorys",
+                ...result.map(({ id }) => ({ type: "Categorys", id }))
+            ]
         }),
         getCategory: builder.query({
-            query: (initialCategoryId) => `/categorys/${initialCategoryId}`
+            query: (initialCategoryId) => `/categorys/${initialCategoryId}`,
+            providesTags: (result, err, arg) => [{ type: "Categorys", id: arg }]
         }),
         addNewCategory: builder.mutation({
             query: (initialCategory) => ({
@@ -169,17 +203,20 @@ export const apiSlice = createApi({
                 method: "PUT",
                 body: category
             }),
-            invalidatesTags: ["Categorys"]
+            invalidatesTags: (result, err, arg) => [{ type: "Categorys", id: arg.id }]
         }),
 
 
         getComments: builder.query({
             query: () => "comments",
-            providesTags: ["Comments"],
+            providesTags: (result = []) => [
+                "Comments",
+                ...result.map(({ id }) => ({ type: "Comments", id }))
+            ],
         }),
         getComment: builder.query({
             query: (initialCommentId) => `/comments/${initialCommentId}`,
-            providesTags: ["Comments"],
+            providesTags: (result, err, arg) => [{ type: "Comments", id: arg }]
         }),
         addNewComment: builder.mutation({
             query: (initialComment) => ({
@@ -204,7 +241,7 @@ export const apiSlice = createApi({
                     body: comment
                 };
             },
-            invalidatesTags: ["Comments"]
+            invalidatesTags: (result, err, arg) => [{ type: "Comments", id: arg.id }]
         }),
 
 
@@ -246,6 +283,7 @@ export const {
     useGetSliderQuery,
     useAddNewSliderMutation,
     useDeleteSliderMutation,
+    useEditSliderMutation,
 
     useGetDiscountsQuery,
     useGetDiscountQuery,

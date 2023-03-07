@@ -13,7 +13,6 @@ import Grid from '@mui/material/Unstable_Grid2'
 import Footer from '../components/footer/Footer'
 import { cartItemsSeted, selectCartProducts } from '../reducers/cartSlice'
 import { HelmetProvider, Helmet } from 'react-helmet-async'
-
 const cacheRTL = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],

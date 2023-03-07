@@ -3,16 +3,16 @@ import { Typography, Box, Slider, Button } from '@mui/material'
 
 import { toRial } from '../../helpers'
 import { Stack } from '@mui/system'
-import { SelectCategory } from '../common'
+import { SelectCategory, Spinner } from '../common'
 
 const ProductsFilter = ({ data, setData, isLoading }) => {
   const expensiveProduct = useMemo(() => {
-    const sortedData = data?.sort((a, b) => b.price.localCompare(a.price))
+    const sortedData = data?.slice().sort((a, b) => a.price - b.price)
     const costlyProduct = sortedData[sortedData.length - 1].price ?? null
     return costlyProduct
   }, [data])
 
-  const [value, setValue] = useState([0, expensiveProduct])
+  const [value, setValue] = useState([1, expensiveProduct])
   const [category, setCategory] = useState('')
 
   const handleFilter = () => {
@@ -28,9 +28,9 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
         }) ?? emptyArray
     } else {
       filteredProducts =
-        data?.filter((product) => {
-          value[0] <= product.price && product.price <= value[1]
-        }) ?? emptyArray
+        data?.filter(
+          (product) => value[0] <= product.price && product.price <= value[1],
+        ) ?? emptyArray
     }
 
     setData(filteredProducts)
@@ -40,7 +40,7 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
   }
 
   if (isLoading) {
-    return
+    return <Spinner />
   }
 
   return (
@@ -49,7 +49,7 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
         justifyContent: 'center',
         textAlign: 'center',
         px: 3,
-        mt: 3,
+        mt: 6,
       }}
     >
       <Box sx={{ px: 1, mb: 2 }}>
@@ -57,6 +57,7 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
           getAriaLabel={() => 'Temperature range'}
           value={value}
           max={expensiveProduct}
+          min={1}
           onChange={handleChange}
           valueLabelDisplay="auto"
         />

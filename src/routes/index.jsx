@@ -15,6 +15,7 @@ import {
   AdminPanel,
   EditProduct,
   SearchResult,
+  Paid,
 } from '../pages'
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
       {
         path: '/checkout',
         element: <Checkout />,
+      },
+      {
+        path: '/checkout/:cartId',
+        element: <Paid />,
       },
       {
         path: '/admin-panel',

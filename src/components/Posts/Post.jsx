@@ -31,13 +31,6 @@ const Post = ({ postId }) => {
               src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg"
             />
           }
-          action={
-            <CustomIconButton
-              title="علامت گذاری"
-              color="info"
-              icon={<TurnedInNot />}
-            />
-          }
           title="rin"
           subheader={<ShowTime timestamp={post.date} />}
         />

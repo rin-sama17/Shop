@@ -12,9 +12,9 @@ import { ProductPrice } from '../common'
 import { ProductLoading } from '../loading'
 
 const Product = ({ productId, maxWidth }) => {
-  const { data: product, isSuccess } = useGetProductQuery(productId)
+  const { data: product, isLoading } = useGetProductQuery(productId)
 
-  if (!isSuccess) {
+  if (isLoading || productId === 'loading') {
     return <ProductLoading width={maxWidth} productId={productId} />
   }
 

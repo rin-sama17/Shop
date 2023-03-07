@@ -15,6 +15,7 @@ export { default as AdminPanel } from "./AdminPanel";
 export { default as EditPost } from "./EditPost";
 export { default as EditProduct } from "./EditProduct";
 export { default as SearchResult } from "./SearchResult";
+export { default as Paid } from "./Paid";
 
 
 

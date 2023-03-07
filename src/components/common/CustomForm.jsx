@@ -31,6 +31,7 @@ const CustomForm = ({
         <Button
           fullWidth
           type="submit"
+          size="large"
           color={color ?? 'primary'}
           variant="contained"
           sx={{ mt: 2, color: 'black' }}

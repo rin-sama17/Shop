@@ -2,14 +2,14 @@ import { Box, Typography } from '@mui/material'
 import { useGetPostQuery } from '../api'
 import { useParams } from 'react-router-dom'
 import { EditPostFields } from '../components/Posts'
-
+import { Spinner } from '../components/common'
 const EditPost = () => {
   const { postId } = useParams()
   const { data: post, isLoading, isSuccess } = useGetPostQuery(postId)
 
   let content
   if (isLoading) {
-    content = <Typography>بارگذاری</Typography>
+    content = <Spinner />
   } else if (isSuccess) {
     content = <EditPostFields post={post} />
   }

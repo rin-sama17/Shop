@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { Card, Button, Container, Typography, Stack, Chip } from '@mui/material'
+import { Card, Button, Container, Typography, Chip } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 
 import { CartsProduct } from '.'
 import { useGetCartQuery } from '../../api'
 import { toRial, totalProductsPrice } from '../../helpers'
 import { selectCartProducts } from '../../reducers/cartSlice'
+import { CustomMassage, Spinner } from '../common'
 
 const CartDetails = ({ button, cartId, isLocal }) => {
   const { data: cart = [], isLoading, isSuccess } = useGetCartQuery(cartId)
@@ -23,23 +24,16 @@ const CartDetails = ({ button, cartId, isLocal }) => {
   const { TPrice, TDiscount, TDiscountPersent } = totalProductsPrice(
     cartProducts,
   )
-
-  if (cartProducts.length === 0) {
+  if (isLoading) {
+    return <Spinner />
+  } else if (cartProducts.length === 0) {
     return (
-      <Stack justifyContent="center" alignItems="center" sx={{ width: 1 }}>
-        <Card sx={{ p: 3 }}>
-          <Typography variant="h4" color="text.secondary" sx={{ mb: 3 }}>
-            سبد شما خالی میباشد
-          </Typography>
-
-          <Button fullWidth sx={{ mt: 2 }} component={Link} to="/products">
-            رفتن به فروشگاه
-          </Button>
-        </Card>
-      </Stack>
+      <CustomMassage
+        text="سبد شما خالی میباشد"
+        btnLabel="رفتن به فروشگاه"
+        to="/products"
+      />
     )
-  } else if (isLoading) {
-    return <Typography color="text.primary">درحال دریافت اطلاعات...</Typography>
   }
   return (
     <Container maxWidth="lg" sx={{ pt: 2 }}>
@@ -49,6 +43,7 @@ const CartDetails = ({ button, cartId, isLocal }) => {
             <CartsProduct
               productId={product.id}
               productCount={product.count}
+              button={isLocal}
               key={product.id}
             />
           ))}

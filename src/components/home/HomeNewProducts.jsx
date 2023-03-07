@@ -3,7 +3,7 @@ import { Product } from '../products'
 
 import { useGetProductsQuery } from '../../api'
 const HomeNewProducts = () => {
-  const { data: products = [] } = useGetProductsQuery()
+  const { data: products = [{ id: 'loading' }] } = useGetProductsQuery()
   return (
     <Grid container sx={{ width: 1 }}>
       {products.slice(0, 12).map((product, index) => (

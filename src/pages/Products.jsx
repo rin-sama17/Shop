@@ -3,17 +3,19 @@ import { useState } from 'react'
 import { Box } from '@mui/material'
 
 import { ProductsFilter, Product } from '../components/products'
-import { CustomPagination } from '../components/common'
+import { CustomPagination, Spinner } from '../components/common'
 
 import { useGetProductsQuery } from '../api'
 
 const Products = () => {
   const [data, setData] = useState([])
 
-  const { data: products = [], isSuccess } = useGetProductsQuery()
-
+  const { data: products = [], isSuccess, isLoading } = useGetProductsQuery()
+  if (isLoading) {
+    return <Spinner />
+  }
   return (
-    <Grid container sx={{ width: 1 }}>
+    <Grid container sx={{ width: 1, mt: 3 }}>
       <Grid xs={12} md={3} sx={{ m: 0 }}>
         {isSuccess && <ProductsFilter setData={setData} data={products} />}
       </Grid>

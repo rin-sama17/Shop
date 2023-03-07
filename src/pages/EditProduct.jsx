@@ -1,7 +1,8 @@
-import { Box, Container, Typography } from '@mui/material'
+import { Container } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { useGetProductQuery } from '../api'
 import { EditProductFields } from '../components/products'
+import { Spinner } from '../components/common'
 
 const EditProduct = () => {
   const { productId } = useParams()
@@ -9,7 +10,7 @@ const EditProduct = () => {
 
   let content
   if (isLoading) {
-    content = <Typography>بارگذاری</Typography>
+    content = <Spinner />
   } else if (isSuccess) {
     content = <EditProductFields product={product} />
   }

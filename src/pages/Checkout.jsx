@@ -1,4 +1,4 @@
-import { Stack, Button, Container, Card, Typography } from '@mui/material'
+import { Stack, Button, Container } from '@mui/material'
 import { CustomFields, CustomDivider } from '../components/common'
 import { useFormik } from 'formik'
 import { checkoutValidation } from '../components/validations/checkoutValidation'
@@ -8,12 +8,12 @@ import { selectCartProducts } from '../reducers/cartSlice'
 import { useSelector } from 'react-redux'
 import { useAddNewCartMutation } from '../api'
 import { nanoid } from '@reduxjs/toolkit'
-
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 const Checkout = () => {
   const cartProducts = useSelector(selectCartProducts)
   const [cartId, setCartId] = useState()
+  const navigate = useNavigate()
   useEffect(() => {
     const userCartId = nanoid()
     setCartId(userCartId)
@@ -52,24 +52,7 @@ const Checkout = () => {
   })
 
   if (isSuccess) {
-    return (
-      <Stack justifyContent="center" alignItems="center" sx={{ width: 1 }}>
-        <Card sx={{ p: 3 }}>
-          <Typography variant="h4" sx={{ mb: 3, color: 'success.main' }}>
-            سفارش شما ثبت شد
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            کد پیگیری:
-            <Typography variant="body1" color="text.primary">
-              {cartId}
-            </Typography>
-          </Typography>
-          <Button fullWidth sx={{ mt: 2 }} component={Link} to="/">
-            بازگشت به خانه
-          </Button>
-        </Card>
-      </Stack>
-    )
+    navigate(`/checkout/${cartId}`)
   }
 
   return (

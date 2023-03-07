@@ -1,13 +1,13 @@
 import { createSelector } from '@mui/x-data-grid/internals'
 import { useMemo } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useGetPostsQuery, useGetProductsQuery } from '../api'
 import Grid from '@mui/material/Unstable_Grid2'
-import { CustomDivider, SearchField } from '../components/common'
+import { CustomDivider, CustomMassage, SearchField } from '../components/common'
 import { Product } from '../components/products'
 import { Post } from '../components/Posts'
-import { Stack, Box } from '@mui/system'
-import { Button, Card, Typography } from '@mui/material'
+import { Stack } from '@mui/system'
+import { Typography } from '@mui/material'
 
 const SearchResult = () => {
   const { query } = useParams()
@@ -60,45 +60,32 @@ const SearchResult = () => {
       <Stack sx={{ width: 1, flexWrap: 'wrap' }} alignItems="center">
         <SearchField />
       </Stack>
+      <Typography
+        variant="h5"
+        color="secondary"
+        sx={{ my: 3, display: 'flex', justifyContent: 'center', width: 1 }}
+      >
+        نتایج جستجو برای "{query}"
+      </Typography>
       <CustomDivider label="محصولات" />
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => <Product productId={product.id} />)
       ) : (
-        <Stack
-          justifyContent="center"
-          alignItems="center"
-          sx={{ width: 1, mb: 5 }}
-        >
-          <Card sx={{ p: 3 }}>
-            <Typography variant="h4" color="text.secondary" sx={{ mb: 3 }}>
-              محصولی پیدا نشد
-            </Typography>
-
-            <Button fullWidth sx={{ mt: 2 }} component={Link} to="/products">
-              رفتن به فروشگاه
-            </Button>
-          </Card>
-        </Stack>
+        <CustomMassage
+          text="محصولی پیدا نشد"
+          btnLabel="رفتن به فروشگاه"
+          to="/products"
+        />
       )}
       <CustomDivider label="پست ها" />
       {filteredPosts.length > 0 ? (
         filteredPosts.map((post) => <Post postId={post.id} />)
       ) : (
-        <Stack
-          justifyContent="center"
-          alignItems="center"
-          sx={{ width: 1, mb: 5 }}
-        >
-          <Card sx={{ p: 3 }}>
-            <Typography variant="h4" color="text.secondary" sx={{ mb: 3 }}>
-              پستی پیدا نشد
-            </Typography>
-
-            <Button fullWidth sx={{ mt: 2 }} component={Link} to="/posts">
-              رفتن به وبلاگ
-            </Button>
-          </Card>
-        </Stack>
+        <CustomMassage
+          text="پستی پیدا نشد"
+          btnLabel="رفتن به وبلاگ"
+          to="/posts"
+        />
       )}
     </Grid>
   )

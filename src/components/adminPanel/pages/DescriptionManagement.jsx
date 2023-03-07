@@ -2,12 +2,13 @@ import { Typography } from '@mui/material'
 
 import { EditDescription } from '../components'
 import { useGetDescriptionQuery } from '../../../api'
+import { Spinner } from '../../common'
 
 const DescriptionManagement = () => {
   const { data: description, isLoading, isSuccess } = useGetDescriptionQuery()
   let content
   if (isLoading) {
-    content = <Typography>بارگذاری</Typography>
+    content = <Spinner />
   } else if (isSuccess) {
     content = <EditDescription description={description} />
   }

@@ -15,6 +15,9 @@ const AdminPanelTabs = ({ pageNumber, setPageNumber }) => {
       orientation={isMdDown ? 'horizontal' : 'vertical'}
       value={pageNumber}
       onChange={handlePageNumber}
+      allowScrollButtonsMobile
+      variant="scrollable"
+      scrollButtons
       textColor="secondary"
       indicatorColor="secondary"
       aria-label="tabs example"

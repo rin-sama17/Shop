@@ -27,6 +27,7 @@ const ImageUploader = ({ formik, name, color, width, md }) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        mb: 2,
       }}
     >
       <Box component="div" sx={{ height: 200, width: width ? width : 200 }}>
