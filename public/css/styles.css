@@ -20,7 +20,17 @@
   font-style: normal;
   font-display: swap;
 }
-
+@font-face {
+  font-family: 'tanha';
+  src: url('../fonts/Tanha.eot');
+  src: url('../fonts/Tanha.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Tanha.woff2') format('woff2'),
+    url('../fonts/Tanha.woff') format('woff'),
+    url('../fonts/Tanha.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 @font-face {
   font-family: 'roboto';
   src: url('/fonts/Roboto-Regular.eot');

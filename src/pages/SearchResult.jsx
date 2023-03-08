@@ -21,23 +21,23 @@ const SearchResult = () => {
       (data, query) =>
         data?.filter(
           (product) =>
-            product.name.toLowerCase().includes(query.toLowerCase()) ??
-            emptyArray,
+            product.name.toLowerCase().includes(query.toLowerCase()) ||
+            product.category.toLowerCase() === query ||
+            product.tags.toLowerCase().includes(query.toLowerCase()),
         ),
     )
   }, [])
 
   const selectPosts = useMemo(() => {
-    const emptyArray = []
-
     return createSelector(
       (res) => res.data,
       (res, query) => query,
       (data, query) =>
         data?.filter(
           (post) =>
-            post.heading.toLowerCase().includes(query.toLowerCase()) ??
-            emptyArray,
+            post.heading.toLowerCase().includes(query.toLowerCase()) ||
+            post.category.toLowerCase() === query ||
+            post.tags.toLowerCase().includes(query.toLowerCase()),
         ),
     )
   }, [])

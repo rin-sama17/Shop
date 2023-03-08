@@ -1,6 +1,6 @@
 import { Modal, Card } from '@mui/material'
 
-const CustomModal = ({ open, setOpen, children }) => {
+const CustomModal = ({ open, setOpen, width, children }) => {
   return (
     <Modal
       open={open}
@@ -14,7 +14,7 @@ const CustomModal = ({ open, setOpen, children }) => {
         backdropFilter: 'blur(3px)',
       }}
     >
-      <Card sx={{ width: '90%', p: 3 }}>{children}</Card>
+      <Card sx={{ width: width ? width : '90%', p: 3 }}>{children}</Card>
     </Modal>
   )
 }

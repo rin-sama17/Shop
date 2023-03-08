@@ -11,6 +11,7 @@ import Slider from 'react-slick'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { useGetSlidersQuery } from '../../api'
 import { SliderLoading } from '../loading'
+import { Link } from 'react-router-dom'
 
 const HomeSlider = () => {
   const { data: sliders = [], isLoading } = useGetSlidersQuery()
@@ -56,8 +57,14 @@ const HomeSlider = () => {
                         alignItems: 'center',
                       }}
                     >
-                      <Typography variant="h4">{slide.title}</Typography>
-                      <Button color="secondary">اطلاعات بیشتر</Button>
+                      <Typography variant="h4" color="text.primary">
+                        {slide.title}
+                      </Typography>
+                      <Button size="large" href={slide.link} target="_blank">
+                        <Typography variant="subtitle1" color="primary">
+                          اطلاعات بیشتر
+                        </Typography>
+                      </Button>
                       <Button
                         sx={{ left: 10, position: 'absolute' }}
                         onClick={() => slider.current.slickNext()}

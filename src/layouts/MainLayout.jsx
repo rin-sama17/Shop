@@ -11,15 +11,19 @@ import { CacheProvider } from '@emotion/react'
 import { ToastContainer } from 'react-toastify'
 import Grid from '@mui/material/Unstable_Grid2'
 import Footer from '../components/footer/Footer'
-import { cartItemsSeted, selectCartProducts } from '../reducers/cartSlice'
+import { cartItemsSeted } from '../reducers/cartSlice'
 import { HelmetProvider, Helmet } from 'react-helmet-async'
+import { getThemeMode } from '../reducers/themeSlice'
+
 const cacheRTL = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
 })
 
 const MainLayout = () => {
+  const currentThemeMode = useSelector(getThemeMode)
   const dispatch = useDispatch()
+
   useEffect(() => {
     const localCartProducts = localStorage.getItem('cartProducts')
     if (!localCartProducts) {
@@ -31,9 +35,10 @@ const MainLayout = () => {
   }, [])
 
   const { darkTheme, lightTheme } = theme()
+  const themeMode = currentThemeMode === 'dark' ? darkTheme : lightTheme
   return (
     <CacheProvider value={cacheRTL}>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={themeMode}>
         <HelmetProvider>
           <Helmet>
             <title>فروشگاه من</title>

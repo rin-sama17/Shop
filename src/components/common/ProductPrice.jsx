@@ -11,13 +11,13 @@ const ProductPrice = ({ price, discount }) => {
       {discount ? (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography
-            color="text.primary"
+            color="text.secondary"
             variant="subtitle2"
             sx={{
               display: 'flex',
               textDecoration: discount === 0 ? null : 'line-through',
               color: discount === 0 ? 'none' : 'gray !important',
-              textDecorationColor: 'white',
+              textDecorationColor: 'text.secondary',
             }}
           >
             {toRial(prevPrice)}

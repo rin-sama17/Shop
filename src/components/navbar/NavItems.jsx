@@ -1,11 +1,10 @@
 import { Typography, Slide, Button, Stack, Divider } from '@mui/material'
 
 import { Link as RouterLink } from 'react-router-dom'
-import { DarkMode } from '@mui/icons-material'
 import { tabsData } from '../../constants/tabs.sidebar'
 import { useState, useEffect } from 'react'
 import { SecondaryButton, ThemeButton } from '../common'
-const NavItems = ({ direction, width }) => {
+const NavItems = ({ width }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {

@@ -9,7 +9,7 @@ import {
   Skeleton,
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link, Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import Slider from 'react-slick'
 import { useGetPostsQuery } from '../../api'
@@ -40,7 +40,6 @@ const HomePostsSlider = () => {
               width: '50px',
               height: '50px',
               objectFit: 'cover',
-              borderRadius: '10px',
             }}
           />
           {downMd ? null : (
@@ -85,6 +84,8 @@ const HomePostsSlider = () => {
               />
 
               <CardActionArea
+                component={Link}
+                to={`/posts/${slide.id}`}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -103,7 +104,7 @@ const HomePostsSlider = () => {
                   component="div"
                   sx={{ textAlign: 'end', ml: 3, width: '80%' }}
                 >
-                  <Typography variant="h4" color="secondary" sx={{ mb: 2 }}>
+                  <Typography variant="h4" color="text.primary" sx={{ mb: 2 }}>
                     {slide.heading}
                   </Typography>
 
@@ -111,7 +112,7 @@ const HomePostsSlider = () => {
                     variant="body2"
                     sx={{ direction: 'ltr' }}
                     textAlign="start"
-                    color="text.primary"
+                    color="text.secondary"
                   >
                     <LinesEllipsis
                       text={slide.introduction}

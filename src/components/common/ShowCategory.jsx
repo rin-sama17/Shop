@@ -1,4 +1,5 @@
 import { Typography, Box, Button } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const ShowCategory = ({ category, tags }) => {
   const splitedTags = tags && tags.split('/')
@@ -11,7 +12,13 @@ const ShowCategory = ({ category, tags }) => {
         gutterBottom
       >
         دسته بندی:
-        <Button color="secondary" sx={{ ml: 1 }} size="small">
+        <Button
+          component={Link}
+          to={`/search/${category}`}
+          color="secondary"
+          sx={{ ml: 1 }}
+          size="small"
+        >
           {category}
         </Button>
       </Typography>
@@ -24,7 +31,13 @@ const ShowCategory = ({ category, tags }) => {
         تگ ها:
         {splitedTags.map((tag, index) => (
           <Box key={index}>
-            <Typography color="primary" variant="caption" sx={{ mx: 0.5 }}>
+            <Typography
+              component={Link}
+              to={`/search/${tag}`}
+              color="primary"
+              variant="caption"
+              sx={{ mx: 0.5 }}
+            >
               {tag}
             </Typography>
             /
