@@ -8,7 +8,6 @@ import { getFont, getSecondary } from '../../reducers/themeSlice';
 export const theme = () => {
     const secondary = useSelector(getSecondary);
     const font = useSelector(getFont);
-    console.log(secondary);
     const lightTheme = createTheme({
         direction: "rtl",
         typography: {
@@ -26,7 +25,7 @@ export const theme = () => {
 
             },
             bgBlur: {
-                main: "rgba(245,245,245,0.7)"
+                main: "rgba(227, 242, 253,0.7)"
             }
         }
     });

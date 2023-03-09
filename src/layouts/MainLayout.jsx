@@ -49,16 +49,16 @@ const MainLayout = () => {
             sx={{ bgcolor: 'background.main', minHeight: '70vh', pb: 2 }}
           >
             <ToastContainer
-              position="top-right"
+              position="bottom-left"
               autoClose={5000}
               hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
+              newestOnTop
+              closeOnClick={false}
               rtl
-              pauseOnFocusLoss
+              pauseOnFocusLoss={false}
               draggable
               pauseOnHover
-              theme="dark"
+              theme={currentThemeMode}
             />
             <Outlet />
           </Grid>

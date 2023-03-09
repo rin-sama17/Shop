@@ -78,18 +78,22 @@ const CartProduct = ({ productId, productCount, button }) => {
           </Stack>
         </Grid>
 
-        <Grid xs={12} sm={2}>
-          <ProductPrice price={product.price} discount={product.discount} />
+        <Grid xs={12} sm={4}>
+          <Stack direction="row" justifyContent="flex-end">
+            <ProductPrice price={product.price} discount={product.discount} />
+          </Stack>
         </Grid>
-        <Grid xs={12} sm={6}>
-          {button && (
-            <AddToCart
-              productId={productId}
-              prodyctStock={product.stock}
-              productPrice={product.price}
-              discount={product.discount}
-            />
-          )}
+        <Grid xs={12} sm={4}>
+          <Stack direction="row" justifyContent="flex-end">
+            {button && (
+              <AddToCart
+                productId={productId}
+                prodyctStock={product.stock}
+                productPrice={product.price}
+                discount={product.discount}
+              />
+            )}
+          </Stack>
         </Grid>
       </Grid>
     </Card>

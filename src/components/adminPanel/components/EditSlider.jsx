@@ -23,7 +23,6 @@ const EditSlider = ({ sliderId, setOpen }) => {
   if (isLoading) {
     content = <SliderLoading />
   } else if (isSuccess) {
-    console.log(slider)
     content = (
       <>
         <EditSliderFields slider={slider} setOpen={setOpen} />

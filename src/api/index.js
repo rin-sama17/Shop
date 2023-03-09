@@ -7,7 +7,7 @@ export const apiSlice = createApi({
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
-            providesTags: (result = []) => [
+            providesTags: (result = [], err, arg) => [
                 "Posts",
                 ...result.map(({ id }) => ({ type: "Posts", id }))
             ]
@@ -50,9 +50,7 @@ export const apiSlice = createApi({
         }),
         getProduct: builder.query({
             query: (initialProductId) => `/products/${initialProductId}`,
-            providesTags: (result, err, arg) => [
-                { type: "Products", id: arg }
-            ]
+            providesTags: (result, err, arg) => [{ type: "Products", id: arg }]
         }),
         addNewProduct: builder.mutation({
             query: (initialProduct) => ({

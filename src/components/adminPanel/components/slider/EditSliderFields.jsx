@@ -12,7 +12,6 @@ const EditSliderFields = ({ slider, setOpen }) => {
   const handleEditSlider = async (values) => {
     try {
       const updatedSlider = { ...values }
-      console.log(updatedSlider)
       await updateSlider(updatedSlider).unwrap()
       setOpen(false)
       toast.success(`اسلایدر ${values.title} با موفقیت ویرایش شد`)

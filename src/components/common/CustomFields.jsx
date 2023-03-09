@@ -133,9 +133,9 @@ const CustomFields = ({
         <InputLabel id={`category-label`}>دسته بندی</InputLabel>
         <Select
           name="category"
-          value={value}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          defaultValue
+          value={formik.values['category']}
+          onChange={formik.handleChange}
           labelId={`category-label`}
           input={<OutlinedInput label="دسته بندی" />}
           MenuProps={{
