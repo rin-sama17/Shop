@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Typography,
+  IconButton,
   ImageListItem,
   ImageListItemBar,
 } from '@mui/material'
@@ -60,23 +61,23 @@ const HomeSlider = () => {
                       <Typography variant="h4" color="text.primary">
                         {slide.title}
                       </Typography>
-                      <Button size="large" href={slide.link} target="_blank">
-                        <Typography variant="subtitle1" color="primary">
+                      <Button size="small" href={slide.link} target="_blank">
+                        <Typography variant="subtitle2" color="primary">
                           اطلاعات بیشتر
                         </Typography>
                       </Button>
-                      <Button
+                      <IconButton
                         sx={{ left: 10, position: 'absolute' }}
                         onClick={() => slider.current.slickNext()}
                       >
                         <KeyboardArrowRight />
-                      </Button>
-                      <Button
+                      </IconButton>
+                      <IconButton
                         sx={{ right: 10, position: 'absolute' }}
                         onClick={() => slider.current.slickPrev()}
                       >
                         <KeyboardArrowLeft />
-                      </Button>
+                      </IconButton>
                     </Box>
                   }
                 />

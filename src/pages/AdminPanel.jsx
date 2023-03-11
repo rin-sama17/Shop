@@ -14,6 +14,7 @@ import {
   CategoryManagement,
   CommentManagement,
   DescriptionManagement,
+  AdminManagement,
 } from '../components/adminPanel/pages'
 
 const AdminPanel = () => {
@@ -63,6 +64,9 @@ const AdminPanel = () => {
           </Page>
           <Page pageNumber={pageNumber} index={7}>
             <DescriptionManagement />
+          </Page>
+          <Page pageNumber={pageNumber} index={8}>
+            <AdminManagement />
           </Page>
         </SwipeableViews>
       </Grid>

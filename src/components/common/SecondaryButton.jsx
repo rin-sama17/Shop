@@ -47,7 +47,7 @@ const SecondaryButton = () => {
         <Typography variant="caption">شخصی سازی</Typography>
       </Button>
       <CustomModal open={open} setOpen={setOpen} width="50%">
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ height: '70vh', overflowY: 'auto' }}>
           <Grid xs={12} md={6}>
             <Button
               fullWidth

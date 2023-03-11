@@ -36,7 +36,7 @@ const EditPostFields = ({ post }) => {
       dispatch(paragraphsRemoved())
       navigate('/')
     } catch (error) {
-      console.error('Failed to save the post', error)
+      console.log(error)
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }

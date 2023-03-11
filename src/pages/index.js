@@ -7,7 +7,6 @@ export { default as Page } from "./Page";
 export { default as SingIn } from "./SingIn";
 export { default as AddProduct } from "./AddProduct";
 export { default as AddPost } from "./AddPost";
-export { default as Recovery } from "./Recovery";
 export { default as TrackOrders } from "./TrackOrders";
 export { default as Cart } from "./Cart";
 export { default as Checkout } from "./Checkout";

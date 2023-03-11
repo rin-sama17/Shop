@@ -1,8 +1,6 @@
-import { Typography, Divider, Box, SwipeableDrawer } from '@mui/material'
-import { SearchField } from '../common'
+import { SwipeableDrawer } from '@mui/material'
 import { DrawerContent } from '../drawer'
 
-import { NavItems } from './'
 const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {
   const toggleDrawer = (open) => (event) => {
     if (
@@ -31,7 +29,7 @@ const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {
         },
       }}
     >
-      <DrawerContent />
+      <DrawerContent setOpen={setDrawerOpen} />
     </SwipeableDrawer>
   )
 }

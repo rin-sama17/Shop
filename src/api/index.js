@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Sliders", "Categorys", "Comments", "Description"],
+    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Sliders", "Categorys", "Comments", "Description", "Admins"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
@@ -254,7 +254,42 @@ export const apiSlice = createApi({
                 body: description
             }),
             invalidatesTags: ["Description"]
+        }),
 
+
+        getAdmins: builder.query({
+            query: () => "/admins",
+            providesTags: (res = []) => [
+                "Admins",
+                ...res.map(({ id }) => ({ type: "Admins", id }))
+            ]
+        }),
+        getAdmin: builder.query({
+            query: (adminId) => `/admins/${adminId}`,
+            providesTags: (res, err, arg) => [{ type: "Admins", id: arg }]
+        }),
+        addNewAdmin: builder.mutation({
+            query: admin => ({
+                url: "/admins",
+                method: "POST",
+                body: admin
+            }),
+            invalidatesTags: ["Admins"]
+        }),
+        deleteAdmin: builder.mutation({
+            query: adminId => ({
+                url: `/admins/${adminId}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["Admins"]
+        }),
+        editAdmin: builder.mutation({
+            query: admin => ({
+                url: `/admins/${admin.id}`,
+                method: "PUT",
+                body: admin
+            }),
+            invalidatesTags: (res, err, arg) => [{ type: "Admins", id: arg.id }]
         })
 
     })
@@ -305,6 +340,13 @@ export const {
 
 
     useGetDescriptionQuery,
-    useEditDescriptionMutation
+    useEditDescriptionMutation,
+
+
+    useGetAdminsQuery,
+    useGetAdminQuery,
+    useAddNewAdminMutation,
+    useDeleteAdminMutation,
+    useEditAdminMutation
 
 } = apiSlice;

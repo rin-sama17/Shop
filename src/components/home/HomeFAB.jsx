@@ -29,12 +29,12 @@ const HomeFAB = () => {
   ]
   return (
     <>
-      {' '}
       <Backdrop open={open} />
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
         icon={<SpeedDialIcon openIcon={<Edit />} />}
-        onClose={() => setOpen(false)} //false
+        onClick={() => setOpen(true)}
+        onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         color="secondary"
         open={open}

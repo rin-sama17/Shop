@@ -2,7 +2,7 @@ import { Divider, Box } from '@mui/material'
 
 import { DrawerHeader, DrawerItems } from '.'
 
-const DrawerContent = () => {
+const DrawerContent = ({ setOpen }) => {
   return (
     <Box
       sx={{
@@ -16,7 +16,7 @@ const DrawerContent = () => {
         variant="middle"
         sx={{ my: 2, backgroundColor: 'secondary.main' }}
       />
-      <DrawerItems />
+      <DrawerItems setOpen={setOpen} />
     </Box>
   )
 }

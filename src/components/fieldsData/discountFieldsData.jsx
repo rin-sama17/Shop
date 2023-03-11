@@ -6,7 +6,6 @@ const discountFieldsData = (formik) => {
       name: 'name',
       md: 7,
     },
-
     {
       formik,
       label: 'تخفیف(به درصد)',
@@ -14,6 +13,12 @@ const discountFieldsData = (formik) => {
       type: 'number',
       md: 5,
       helperText: formik.errors.discount ? formik.errors.discount : null,
+    },
+    {
+      md: 6,
+      category: true,
+      formik,
+      name: 'category',
     },
   ]
 }

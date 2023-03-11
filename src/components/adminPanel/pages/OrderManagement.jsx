@@ -2,6 +2,7 @@ import { DataGrid } from '@mui/x-data-grid'
 
 import { OrderProducts } from '../components'
 import { useGetCartsQuery } from '../../../api'
+import { Box } from '@mui/material'
 
 const OrderManagement = () => {
   const { data: carts = [] } = useGetCartsQuery()
@@ -20,9 +21,26 @@ const OrderManagement = () => {
     },
   ]
   return (
-    <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-      <DataGrid rows={carts} columns={columns} />
-    </div>
+    <Box
+      sx={{
+        height: 600,
+        width: '100%',
+        direction: 'ltr',
+        '& .phone': {
+          direction: 'rtl',
+        },
+      }}
+    >
+      <DataGrid
+        rows={carts}
+        columns={columns}
+        getCellClassName={(params) => {
+          if (params.field === 'phone') {
+            return 'phone'
+          }
+        }}
+      />
+    </Box>
   )
 }
 

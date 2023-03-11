@@ -55,16 +55,16 @@ const CustomFields = ({
         fullWidth
         label="شماره موبایل"
         size="small"
+        allowEmptyFormatting
         name={name}
-        onBlur
-        value={formik.values[`${name}`]}
+        onBlur={handleBlur}
+        onChange={handleChange}
+        value={value}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
-        onChange={formik.handleChange}
         color="secondary"
         sx={{ direction: 'rtl' }}
         format="+98 ### ### ####"
-        allowEmptyFormatting
-        mask="-"
+        mask="_"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -83,6 +83,7 @@ const CustomFields = ({
         customInput={TextField}
         fullWidth
         size="small"
+        valueIsNumericString={true}
         name={name}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
         value={value}

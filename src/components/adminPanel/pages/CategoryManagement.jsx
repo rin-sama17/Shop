@@ -15,7 +15,7 @@ const CategoryManagement = () => {
       await deleteCategory(categoryId).unwrap()
     } catch (error) {
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-      console.error('error: ', error)
+      console.log(error)
     }
   }
 

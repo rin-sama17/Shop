@@ -8,7 +8,6 @@ import {
   Divider,
 } from '@mui/material'
 
-import { Recovery } from './'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Grid from '@mui/material/Unstable_Grid2'
@@ -68,39 +67,6 @@ const SingIn = () => {
           sx={{ width: '90%', py: 4, px: 2, bgcolor: 'background.main' }}
           divider={<Divider orientation="vertical" flexItem />}
         >
-          <Box sx={{ width: 1 / 2, height: 1 / 2 }}>
-            <form autoComplete="off">
-              <Grid container spacing={2} sx={{ direction: 'ltr' }}>
-                <CustomFields
-                  md={6}
-                  name="singInFullname"
-                  label="نام و نام خانوادگی"
-                  formik={formik}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <Face />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <CustomFields phone name="singInPhone" formik={formik} md={6} />
-
-                <CustomFields pwd name="singInPwd" formik={formik} />
-
-                <Button
-                  size="small"
-                  color="secondary"
-                  variant="contained"
-                  onClick={handleSingInForm}
-                  sx={{ mt: 2, color: 'text.primary' }}
-                >
-                  ثبت نام
-                </Button>
-              </Grid>
-            </form>
-          </Box>
-
           <Box sx={{ width: 1 / 2 }}>
             <form autoComplete="off" onSubmit={formik.handleSubmit}>
               <Grid container spacing={2}>
@@ -118,7 +84,6 @@ const SingIn = () => {
                 </Button>
               </Grid>
             </form>
-            <Recovery />
           </Box>
         </Stack>
       </Modal>

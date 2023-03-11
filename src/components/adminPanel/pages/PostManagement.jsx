@@ -16,7 +16,7 @@ const PostManagement = () => {
       await deletePost(postId).unwrap()
     } catch (error) {
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-      console.error('error: ', error)
+      console.log(error)
     }
   }
 

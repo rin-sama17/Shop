@@ -25,7 +25,7 @@ const AddPost = () => {
       }
       await addNewPost(newPost).unwrap(), navigate('/')
     } catch (error) {
-      console.error('Failed to save the post', error)
+      console.log(error)
     }
   }
 
