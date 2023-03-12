@@ -15,28 +15,10 @@ const initialState = {
 const userSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {
-    signedIn: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      prepare(fullName, phone, pwd) {
-        return {
-          payload: {
-            id: nanoid(),
-            date: new Date().toISOString(),
-            fullName,
-            phone,
-            pwd
-          },
-        };
-      },
-    },
-  }
+  reducers: {}
 });
 
 export const selectUserInfo = state => state.user.userInfo;
 
-export const { signedIn } = userSlice.actions;
 
 export default userSlice.reducer;

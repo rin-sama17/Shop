@@ -1,6 +1,6 @@
 import { Avatar, Box } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
-import { SingIn } from '../../pages'
+import { Login } from '../../pages'
 import { useSelector } from 'react-redux'
 import { selectUserInfo } from '../../reducers/userSlice'
 
@@ -37,11 +37,11 @@ const NavAvatar = () => {
             alt="Remy Sharp"
             src="https://mui.com/static/images/avatar/1.jpg"
             {...stringAvatar('rin sama')}
-            sx={{ width: 24, height: 24 }}
+            sx={{ mr: 1, width: 24, height: 24 }}
           />
         </Box>
       ) : (
-        <SingIn />
+        <Login />
       )}
     </>
   )

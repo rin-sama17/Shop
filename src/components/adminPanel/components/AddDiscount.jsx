@@ -29,8 +29,9 @@ const AddDiscount = () => {
   const formik = useFormik({
     initialValues: { name: '', discount: '', category: '' },
     validationSchema: discountValidation,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       handleAddNewDiscount(values)
+      resetForm()
     },
   })
   const fields = discountFieldsData(formik)

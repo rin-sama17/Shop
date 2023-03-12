@@ -45,7 +45,12 @@ const CustomFields = ({
 
   const handleChange = (e) => setValue(e.target.value)
   const handleBlur = () => {
-    formik.setFieldValue(name, value)
+    if (phone) {
+      const numberedPhone = value.split(' ').join('')
+      formik.setFieldValue(name, numberedPhone)
+    } else {
+      formik.setFieldValue(name, value)
+    }
   }
   let content
   if (phone) {
@@ -54,8 +59,6 @@ const CustomFields = ({
         customInput={TextField}
         fullWidth
         label="شماره موبایل"
-        size="small"
-        allowEmptyFormatting
         name={name}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -63,7 +66,7 @@ const CustomFields = ({
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
         color="secondary"
         sx={{ direction: 'rtl' }}
-        format="+98 ### ### ####"
+        format="098 ### ### ####"
         mask="_"
         InputProps={{
           startAdornment: (
@@ -82,7 +85,6 @@ const CustomFields = ({
         thousandSeparator=","
         customInput={TextField}
         fullWidth
-        size="small"
         valueIsNumericString={true}
         name={name}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
@@ -98,7 +100,7 @@ const CustomFields = ({
     )
   } else if (pwd) {
     content = (
-      <FormControl sx={{ width: 1 }} variant="outlined" size="small">
+      <FormControl sx={{ width: 1 }} variant="outlined">
         <InputLabel>پسورد</InputLabel>
         <OutlinedInput
           name={name}
@@ -128,7 +130,6 @@ const CustomFields = ({
     content = (
       <FormControl
         fullWidth
-        size="small"
         error={Boolean(formik.touched['category'] && formik.errors['category'])}
       >
         <InputLabel id={`category-label`}>دسته بندی</InputLabel>
@@ -161,7 +162,6 @@ const CustomFields = ({
       <TextField
         sx={{ direction: 'ltr' }}
         fullWidth
-        size="small"
         name={name}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
         value={value}

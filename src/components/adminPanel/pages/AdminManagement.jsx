@@ -51,6 +51,7 @@ const AdminManagement = () => {
           width: '100%',
           direction: 'ltr',
           mt: '8px',
+          overFlowX: 'auto',
           '& .phone': {
             direction: 'rtl',
           },

@@ -28,8 +28,9 @@ const AddCategory = () => {
   const formik = useFormik({
     initialValues: { name: '' },
     validationSchema: categoryValidation,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       handleAddNewCategory(values)
+      resetForm()
     },
   })
   const fields = categoryFieldsData(formik)

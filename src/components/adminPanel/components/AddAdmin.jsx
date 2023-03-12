@@ -15,10 +15,14 @@ const AddAdmin = () => {
 
   const handleSubmit = async (values) => {
     try {
+      const { fullName, phone, password } = values
       await addNewAdmin({
         id: nanoid(),
-        ...values,
+        fullName,
+        phone,
+        password,
       })
+      setOpen(false)
       toast.success(`ادمین ${values.fullName} با موفقیت اضافه شد`)
     } catch (error) {
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
@@ -32,12 +36,13 @@ const AddAdmin = () => {
       password: '',
     },
     validationSchema: adminValidation,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       console.log(values)
       handleSubmit(values)
+      resetForm()
     },
   })
-
+  console.log(formik)
   const fields = adminFieldsData(formik)
 
   return (
