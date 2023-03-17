@@ -48,14 +48,14 @@ const CartProduct = ({ productId, productCount, button }) => {
     )
   }
   return (
-    <Fade in={isSuccess}>
-      <Grid
-        xs={12}
-        sm={6}
-        md={4}
-        lg={3}
-        sx={{ display: 'flex', justifyContent: 'center', mb: 2, width: 1 }}
-      >
+    <Grid
+      xs={12}
+      sm={6}
+      md={4}
+      lg={3}
+      sx={{ display: 'flex', justifyContent: 'center', mb: 2, width: 1 }}
+    >
+      <Fade in={isSuccess}>
         <Card sx={{ maxWidth: 240, bgcolor: 'background.dark' }}>
           <CardMedia
             component="img"
@@ -96,8 +96,8 @@ const CartProduct = ({ productId, productCount, button }) => {
             </Button>
           </CardContent>
         </Card>
-      </Grid>
-    </Fade>
+      </Fade>
+    </Grid>
   )
 }
 

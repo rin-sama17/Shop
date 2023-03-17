@@ -61,7 +61,12 @@ const HomeSlider = () => {
                       <Typography variant="h4" color="text.primary">
                         {slide.title}
                       </Typography>
-                      <Button size="small" href={slide.link} target="_blank">
+                      <Button
+                        size="small"
+                        href={slide.link}
+                        target="_blank"
+                        sx={{ mt: 1 }}
+                      >
                         <Typography variant="subtitle2" color="primary">
                           اطلاعات بیشتر
                         </Typography>

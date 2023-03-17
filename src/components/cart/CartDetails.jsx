@@ -36,9 +36,86 @@ const CartDetails = ({ button, cartId, isLocal }) => {
     )
   }
   return (
-    <Container maxWidth="lg" sx={{ pt: 2 }}>
-      <Grid container sx={{ width: 1 }} spacing={2}>
-        <Grid xs={12} md={8}>
+    <Grid container sx={{ width: 1, p: 2 }} spacing={2}>
+      <Grid xs={12} md={4}>
+        <Card sx={{ p: 2 }}>
+          <Typography
+            color="text.secondary"
+            variant="body1"
+            sx={{ mr: 1, display: 'flex', justifyContent: 'space-between' }}
+            gutterBottom
+          >
+            مجموع کل:
+            <Typography
+              color="text.primary"
+              variant="body1"
+              sx={{ mr: 1, display: 'flex' }}
+            >
+              {TPrice && (
+                <Typography
+                  variant="body1"
+                  color="text.primary"
+                  textAlign="start"
+                  sx={{ display: 'flex' }}
+                >
+                  {toRial(TPrice)}
+                  <Typography color="secondary" sx={{ ml: 1 }}>
+                    تومان
+                  </Typography>
+                </Typography>
+              )}
+            </Typography>
+          </Typography>
+          {TPrice && TDiscount && (
+            <Typography
+              color="text.secondary"
+              variant="body1"
+              sx={{ mr: 1, display: 'flex', justifyContent: 'space-between' }}
+              gutterBottom
+            >
+              سود شما از این خرید:
+              <Typography
+                color="text.primary"
+                variant="body1"
+                sx={{ mr: 1, display: 'flex' }}
+              >
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  textAlign="start"
+                  sx={{ display: 'flex' }}
+                >
+                  {toRial(TDiscount)}
+                  <Chip
+                    label={
+                      <Typography color="text.primary" variant="caption">
+                        {`${TDiscountPersent}%`}
+                      </Typography>
+                    }
+                    color="error"
+                    size="small"
+                    sx={{ ml: 1 }}
+                  />
+                </Typography>
+              </Typography>
+            </Typography>
+          )}
+          {button ? (
+            <Button
+              component={Link}
+              to="/checkout"
+              color="secondary"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3 }}
+            >
+              پرداخت
+            </Button>
+          ) : null}
+        </Card>
+      </Grid>
+      <Grid xs={12} md={8}>
+        <Grid container sx={{ width: 1 }} spacing={1}>
           {cartProducts.map((product) => (
             <CartsProduct
               productId={product.id}
@@ -48,85 +125,8 @@ const CartDetails = ({ button, cartId, isLocal }) => {
             />
           ))}
         </Grid>
-        <Grid xs={12} md={4}>
-          <Card sx={{ p: 2 }}>
-            <Typography
-              color="text.secondary"
-              variant="body1"
-              sx={{ mr: 1, display: 'flex', justifyContent: 'space-between' }}
-              gutterBottom
-            >
-              مجموع کل:
-              <Typography
-                color="text.primary"
-                variant="body1"
-                sx={{ mr: 1, display: 'flex' }}
-              >
-                {TPrice && (
-                  <Typography
-                    variant="body1"
-                    color="text.primary"
-                    textAlign="start"
-                    sx={{ display: 'flex' }}
-                  >
-                    {toRial(TPrice)}
-                    <Typography color="secondary" sx={{ ml: 1 }}>
-                      تومان
-                    </Typography>
-                  </Typography>
-                )}
-              </Typography>
-            </Typography>
-            {TPrice && TDiscount && (
-              <Typography
-                color="text.secondary"
-                variant="body1"
-                sx={{ mr: 1, display: 'flex', justifyContent: 'space-between' }}
-                gutterBottom
-              >
-                سود شما از این خرید:
-                <Typography
-                  color="text.primary"
-                  variant="body1"
-                  sx={{ mr: 1, display: 'flex' }}
-                >
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    textAlign="start"
-                    sx={{ display: 'flex' }}
-                  >
-                    {toRial(TDiscount)}
-                    <Chip
-                      label={
-                        <Typography color="text.primary" variant="caption">
-                          {`${TDiscountPersent}%`}
-                        </Typography>
-                      }
-                      color="error"
-                      size="small"
-                      sx={{ ml: 1 }}
-                    />
-                  </Typography>
-                </Typography>
-              </Typography>
-            )}
-            {button ? (
-              <Button
-                component={Link}
-                to="/checkout"
-                color="secondary"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3 }}
-              >
-                پرداخت
-              </Button>
-            ) : null}
-          </Card>
-        </Grid>
       </Grid>
-    </Container>
+    </Grid>
   )
 }
 

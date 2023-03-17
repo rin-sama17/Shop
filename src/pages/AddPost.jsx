@@ -17,7 +17,7 @@ const AddPost = () => {
   const [addNewPost] = useAddNewPostMutation()
   const navigate = useNavigate()
 
-  const handleSubmitForm = async (values) => {
+  const handleSubmitForm = async (values, resetForm) => {
     try {
       const newPost = {
         id: nanoid(),
@@ -26,11 +26,11 @@ const AddPost = () => {
       }
       await addNewPost(newPost).unwrap()
       toast.success(`پست ${values.heading} با موفقیت ساخته شد`)
+
       navigate(-1)
     } catch (error) {
       console.log(error)
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-      navigate(-1)
     }
   }
 
@@ -46,8 +46,9 @@ const AddPost = () => {
   const formik = useFormik({
     initialValues: postFields,
     validationSchema: postValidation,
-    onSubmit: (values) => {
-      handleSubmitForm(values)
+    onSubmit: (values, { resetForm }) => {
+      handleSubmitForm(values, resetForm)
+      resetForm()
     },
   })
 

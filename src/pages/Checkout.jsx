@@ -58,8 +58,6 @@ const Checkout = () => {
   const fields = checkoutFieldsData(formik)
   return (
     <>
-      <CustomDivider label="سبد خرید شما" />
-      <CartDetails isLocal />
       <Container maxWidth="md" sx={{ mb: 2 }}>
         <Stack alignItems="center" sx={{ width: 1, mt: 4 }}>
           <CustomForm
@@ -70,6 +68,8 @@ const Checkout = () => {
           />
         </Stack>
       </Container>
+      <CustomDivider label="سبد خرید شما" />
+      <CartDetails isLocal />
     </>
   )
 }

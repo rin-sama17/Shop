@@ -1,5 +1,3 @@
-import { Typography } from '@mui/material'
-
 import { EditDescription } from '../components'
 import { useGetDescriptionQuery } from '../../../api'
 import { Spinner } from '../../common'
