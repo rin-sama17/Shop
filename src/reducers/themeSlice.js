@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const secondary = localStorage.getItem("secondary") ? localStorage.getItem("secondary") : '#ce93d8';
+const font = localStorage.getItem("font") ? localStorage.getItem("font") : "tanha";
 
 const initialState = {
     secondary,
     themeMode: 'dark',
-    font: "tanha"
+    font
 };
 
 const themeSlice = createSlice({
@@ -21,6 +22,7 @@ const themeSlice = createSlice({
         },
         fontChanged: (state, action) => {
             state.font = action.payload;
+            localStorage.setItem("font", action.payload);
         },
     },
 });

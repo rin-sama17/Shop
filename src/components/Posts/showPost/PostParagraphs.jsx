@@ -1,5 +1,4 @@
 import { Typography, Box } from '@mui/material'
-import { ShowCategory } from '../../common'
 
 const PostParagraphs = ({ post }) => {
   return (

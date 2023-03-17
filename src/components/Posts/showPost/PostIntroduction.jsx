@@ -4,7 +4,7 @@ import { ShowCategory } from '../../common'
 const PostIntroduction = ({ post }) => {
   return (
     <>
-      <ShowCategory category={post.category} tags={post.tags} />
+      <ShowCategory categoryId={post.category} tags={post.tags} />
       <Typography color="text.primary" variant="h6" sx={{ my: 2 }}>
         {post.heading}
       </Typography>

@@ -15,12 +15,9 @@ const EditDiscount = ({ discountData }) => {
   const [updateDiscount] = useEditDiscountMutation()
 
   const handleEditDiscount = async (values) => {
-    const { name, discount, category } = values
     const updatedDiscount = {
       id: discountData.id,
-      name,
-      discount,
-      category,
+      ...value,
     }
     try {
       await updateDiscount(updatedDiscount).unwrap()
@@ -33,9 +30,7 @@ const EditDiscount = ({ discountData }) => {
 
   const formik = useFormik({
     initialValues: {
-      name: discountData.name,
-      discount: discountData.discount,
-      category: discountData.category,
+      ...discountData,
     },
     validationSchema: discountValidation,
     onSubmit: (values) => {

@@ -17,8 +17,7 @@ const AddProduct = () => {
   const handleSubmitForm = async (values) => {
     try {
       const { price: productPrice, discount } = values
-      let numberedPrice = Number(productPrice.split(',').join(''))
-      const price = Math.round(numberedPrice - (numberedPrice * discount) / 100)
+      const price = Math.round(productPrice - (productPrice * discount) / 100)
       const newProduct = {
         id: nanoid(),
         date: new Date().toISOString(),
@@ -26,10 +25,11 @@ const AddProduct = () => {
         price,
       }
       await addNewProduct(newProduct).unwrap()
-      toast.success('پست جدید با موفقیت ساخته شد')
-      navigate('/')
+      toast.success(`محصول ${values.name} با موفقیت ساخته شد`)
+      navigate(-1)
     } catch (error) {
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
+      console.log(error)
     }
   }
 

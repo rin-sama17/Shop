@@ -1,5 +1,9 @@
 import { Box, Typography, Chip } from '@mui/material'
+import { createSelector } from '@reduxjs/toolkit'
+import { useMemo } from 'react'
+import { useGetDiscountsQuery } from '../../api'
 import { toRial } from '../../helpers'
+import Spinner from './Spinner'
 
 const ProductPrice = ({ price, discount }) => {
   let prevPrice
@@ -7,7 +11,7 @@ const ProductPrice = ({ price, discount }) => {
     prevPrice = Math.round(price / (1 - discount / 100))
   }
   return (
-    <Box sx={{ display: 'column', ml: 1 }}>
+    <Box sx={{ display: 'column', my: 1 }}>
       {discount ? (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography
@@ -33,9 +37,7 @@ const ProductPrice = ({ price, discount }) => {
             sx={{ ml: 1 }}
           />
         </Box>
-      ) : (
-        <Box sx={{ mb: 4 }} />
-      )}
+      ) : null}
       <Typography
         variant="body1"
         color="text.primary"

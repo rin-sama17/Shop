@@ -35,21 +35,23 @@ const ProductDetails = ({ product }) => {
             </>
           )}{' '}
         </Box>
-        <Typography
-          color="text.secondary"
-          variant="body1"
-          sx={{ mr: 1, display: 'flex' }}
-          gutterBottom
-        >
-          قیمت:
+        <Box sx={{ display: 'flex', mb: 1 }}>
+          <Typography
+            color="text.secondary"
+            variant="body1"
+            sx={{ mr: 1, display: 'flex' }}
+          >
+            قیمت:
+          </Typography>
           <ProductPrice price={product.price} discount={product.discount} />
-        </Typography>
+        </Box>
 
         <AddToCart
           prodyctStock={product.stock}
           productId={product.id}
           productPrice={product.price}
           discount={product.discount}
+          showCounter
         />
       </Card>
     </Grid>

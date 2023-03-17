@@ -29,14 +29,14 @@ const HomeSlider = () => {
     lazyLoad: true,
     rtl: true,
   }
-
-  if (isLoading) {
+  if (sliders.length === 0) {
+    return <Box sx={{ height: 60 }} />
+  } else if (isLoading) {
     return <SliderLoading />
   }
 
   return (
-    <Box>
-      {' '}
+    <Box sx={{ mt: sliders == [] ? 4 : 0 }}>
       <Slider {...settings} ref={slider}>
         {sliders.length > 0 &&
           sliders.map((slide, index) => (

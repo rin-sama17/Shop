@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Box } from '@mui/material'
 
 import { ProductsFilter, Product } from '../components/products'
-import { CustomPagination, Spinner } from '../components/common'
+import { CustomMassage, CustomPagination, Spinner } from '../components/common'
 
 import { useGetProductsQuery } from '../api'
 
@@ -13,6 +13,14 @@ const Products = () => {
   const { data: products = [], isSuccess, isLoading } = useGetProductsQuery()
   if (isLoading) {
     return <Spinner />
+  } else if (isSuccess && products.length === 0) {
+    return (
+      <CustomMassage
+        text="هیچ پستی برای نمایش وجود ندارد"
+        btnLabel="برگشتن به خانه"
+        to="/"
+      />
+    )
   }
   return (
     <Grid container sx={{ width: 1, mt: 3 }}>

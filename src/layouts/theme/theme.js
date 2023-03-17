@@ -17,8 +17,8 @@ export const theme = () => {
             mode: "light",
 
             background: {
-                main: "#f5f5f5",
-                paper: "#eceff1",
+                main: "#eceff1",
+                paper: "#bdbdbd",
             },
             secondary: {
                 main: `${secondary}`

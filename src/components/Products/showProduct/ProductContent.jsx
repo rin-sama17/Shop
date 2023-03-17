@@ -4,11 +4,12 @@ import { ProductHeader, ProductDetails, ProductComments } from '.'
 import { ShowCategory } from '../../common'
 
 const ProductContent = ({ product }) => {
+  console.log(product)
   return (
     <Grid container sx={{ width: 1, p: 5 }}>
       <ProductHeader product={product} />
       <Grid xs={12} md={4}>
-        <ShowCategory category={product.category} tags={product.tags} />
+        <ShowCategory categoryId={product.category} tags={product.tags} />
       </Grid>
 
       <ProductDetails product={product} />

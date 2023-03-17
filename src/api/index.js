@@ -290,7 +290,9 @@ export const apiSlice = createApi({
                 body: admin
             }),
             invalidatesTags: (res, err, arg) => [{ type: "Admins", id: arg.id }]
-        })
+        }),
+
+
 
     })
 });

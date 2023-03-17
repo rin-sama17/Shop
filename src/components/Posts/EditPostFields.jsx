@@ -34,7 +34,7 @@ const EditPostFields = ({ post }) => {
       await updatePost(editedPost).unwrap()
       toast.success(`پست ${values.heading} با موفقیت ویرایش شد`)
       dispatch(paragraphsRemoved())
-      navigate('/')
+      navigate(-1)
     } catch (error) {
       console.log(error)
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')

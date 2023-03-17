@@ -35,6 +35,7 @@ const Checkout = () => {
         address,
         products: cartProducts,
       })
+
       if (isSuccess) {
         localStorage.setItem('cartProducts', JSON.stringify([]))
       }

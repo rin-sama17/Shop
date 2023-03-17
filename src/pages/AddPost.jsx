@@ -10,6 +10,7 @@ import { useAddNewPostMutation } from '../api'
 import { useSelector } from 'react-redux'
 import { selectAllParagraph } from '../reducers/paragraphSlice'
 import { postFieldsData } from '../components/fieldsData'
+import { toast } from 'react-toastify'
 const AddPost = () => {
   const paragraphs = useSelector(selectAllParagraph)
 
@@ -23,9 +24,13 @@ const AddPost = () => {
         date: new Date().toISOString(),
         ...values,
       }
-      await addNewPost(newPost).unwrap(), navigate('/')
+      await addNewPost(newPost).unwrap()
+      toast.success(`پست ${values.heading} با موفقیت ساخته شد`)
+      navigate(-1)
     } catch (error) {
       console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
+      navigate(-1)
     }
   }
 

@@ -48,6 +48,9 @@ const CustomFields = ({
     if (phone) {
       const numberedPhone = value.split(' ').join('')
       formik.setFieldValue(name, numberedPhone)
+    } else if (price) {
+      const numbredPrice = Number(value.split(',').join(''))
+      formik.setFieldValue(name, numbredPrice)
     } else {
       formik.setFieldValue(name, value)
     }
@@ -126,17 +129,15 @@ const CustomFields = ({
     )
   } else if (category) {
     const { data: options = [] } = useGetCategorysQuery()
-
     content = (
       <FormControl
         fullWidth
-        error={Boolean(formik.touched['category'] && formik.errors['category'])}
+        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
       >
         <InputLabel id={`category-label`}>دسته بندی</InputLabel>
         <Select
-          name="category"
-          defaultValue
-          value={formik.values['category']}
+          name={name}
+          value={formik.values[`${name}`]}
           onChange={formik.handleChange}
           labelId={`category-label`}
           input={<OutlinedInput label="دسته بندی" />}
@@ -150,7 +151,7 @@ const CustomFields = ({
           }}
         >
           {options.map((option, index) => (
-            <MenuItem value={option.name} key={index}>
+            <MenuItem value={option.id} key={index}>
               {option.name}
             </MenuItem>
           ))}

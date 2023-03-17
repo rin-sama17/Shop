@@ -68,7 +68,7 @@ const SecondaryButton = () => {
               رنگ پیشفرض
             </Button>
             <FormControl fullWidth size="small">
-              <InputLabel id="category">فونت</InputLabel>
+              <InputLabel>فونت</InputLabel>
               <Select
                 value={font}
                 onChange={(e) => setFont(e.target.value)}

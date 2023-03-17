@@ -1,14 +1,24 @@
 import { useDispatch } from 'react-redux'
-import { Card, Stack, Typography, CardMedia } from '@mui/material'
+import {
+  Card,
+  Stack,
+  Typography,
+  CardMedia,
+  Fade,
+  Button,
+  CardContent,
+} from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 
 import { useGetProductQuery } from '../../api'
 import { ProductPrice } from '../common'
 import { AddToCart } from '.'
 import { CartProductLoading } from '../loading'
-
+import { Link } from 'react-router-dom'
 const CartProduct = ({ productId, productCount, button }) => {
-  const { data: product, isLoading, isError } = useGetProductQuery(productId)
+  const { data: product, isLoading, isError, isSuccess } = useGetProductQuery(
+    productId,
+  )
 
   const localCartProducts = JSON.parse(localStorage.getItem('cartProducts'))
   if (isLoading) {
@@ -38,53 +48,41 @@ const CartProduct = ({ productId, productCount, button }) => {
     )
   }
   return (
-    <Card sx={{ mb: 2, px: 2 }}>
+    <Fade in={isSuccess}>
       <Grid
-        container
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: 1,
-        }}
+        xs={12}
+        sm={6}
+        md={4}
+        lg={3}
+        sx={{ display: 'flex', justifyContent: 'center', mb: 2, width: 1 }}
       >
-        <Grid xs={12} sm={4}>
-          <Stack direction="row">
-            <CardMedia
-              component="img"
-              sx={{ height: 60, width: 60 }}
-              alt={product.name}
-              image={product.thumbnail}
-            />
-            <Stack justifyContent="space-between">
-              <Typography variant="body1" color="text.primary" sx={{ ml: 2 }}>
-                {product.name}{' '}
-                <Typography
-                  variant="body1"
-                  color="text.primary"
-                  sx={{ display: 'flex' }}
-                >
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    sx={{ mr: 1 }}
-                  >
-                    تعداد:
-                  </Typography>
-                  {productCount} عدد
-                </Typography>
-              </Typography>
-            </Stack>
-          </Stack>
-        </Grid>
+        <Card sx={{ maxWidth: 240, bgcolor: 'background.dark' }}>
+          <CardMedia
+            component="img"
+            sx={{ height: 240, width: 240 }}
+            alt={product.name}
+            image={product.thumbnail}
+          />
 
-        <Grid xs={12} sm={4}>
-          <Stack direction="row" justifyContent="flex-end">
+          <CardContent>
+            <Typography
+              color="text.primary"
+              variant="subtitle1"
+              textAlign="left"
+            >
+              {product.name}
+            </Typography>
             <ProductPrice price={product.price} discount={product.discount} />
-          </Stack>
-        </Grid>
-        <Grid xs={12} sm={4}>
-          <Stack direction="row" justifyContent="flex-end">
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ display: 'flex' }}
+            >
+              <Typography variant="body1" color="text.secondary" sx={{ mr: 1 }}>
+                تعداد:
+              </Typography>
+              {productCount} عدد
+            </Typography>
             {button && (
               <AddToCart
                 productId={productId}
@@ -93,10 +91,13 @@ const CartProduct = ({ productId, productCount, button }) => {
                 discount={product.discount}
               />
             )}
-          </Stack>
-        </Grid>
+            <Button fullWidth component={Link} to={`/product/${product.id}`}>
+              مشاهده محصول
+            </Button>
+          </CardContent>
+        </Card>
       </Grid>
-    </Card>
+    </Fade>
   )
 }
 

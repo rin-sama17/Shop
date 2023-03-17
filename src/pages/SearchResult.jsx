@@ -12,9 +12,8 @@ import { Typography } from '@mui/material'
 const SearchResult = () => {
   const { query } = useParams()
 
+  const categoryQuery = query.slice().split(';name:')
   const selectProducts = useMemo(() => {
-    const emptyArray = []
-
     return createSelector(
       (res) => res.data,
       (res, query) => query,
@@ -22,11 +21,11 @@ const SearchResult = () => {
         data?.filter(
           (product) =>
             product.name.toLowerCase().includes(query.toLowerCase()) ||
-            product.category.toLowerCase() === query ||
+            product.category === categoryQuery[0] ||
             product.tags.toLowerCase().includes(query.toLowerCase()),
         ),
     )
-  }, [])
+  }, [query])
 
   const selectPosts = useMemo(() => {
     return createSelector(
@@ -36,11 +35,11 @@ const SearchResult = () => {
         data?.filter(
           (post) =>
             post.heading.toLowerCase().includes(query.toLowerCase()) ||
-            post.category.toLowerCase() === query ||
+            post.category === categoryQuery[0] ||
             post.tags.toLowerCase().includes(query.toLowerCase()),
         ),
     )
-  }, [])
+  }, [query])
   const { filteredProducts = [] } = useGetProductsQuery(undefined, {
     selectFromResult: (result) => ({
       ...result,
@@ -65,11 +64,14 @@ const SearchResult = () => {
         color="secondary"
         sx={{ my: 3, display: 'flex', justifyContent: 'center', width: 1 }}
       >
-        نتایج جستجو برای "{query}"
+        نتایج جستجو برای "{categoryQuery[1] ? categoryQuery[1] : query}"
       </Typography>
       <CustomDivider label="محصولات" />
+
       {filteredProducts.length > 0 ? (
-        filteredProducts.map((product) => <Product productId={product.id} />)
+        filteredProducts.map((product, index) => (
+          <Product productId={product.id} maxWidth={240} key={index} />
+        ))
       ) : (
         <CustomMassage
           text="محصولی پیدا نشد"
@@ -79,7 +81,9 @@ const SearchResult = () => {
       )}
       <CustomDivider label="پست ها" />
       {filteredPosts.length > 0 ? (
-        filteredPosts.map((post) => <Post postId={post.id} />)
+        filteredPosts.map((post, index) => (
+          <Post postId={post.id} key={index} />
+        ))
       ) : (
         <CustomMassage
           text="پستی پیدا نشد"

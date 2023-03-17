@@ -24,7 +24,7 @@ const EditProductFields = ({ product }) => {
         price,
       })
       toast.success(`محصول ${values.name} با موفقیت ویرایش شد`)
-      navigate('/')
+      navigate(-1)
     } catch (error) {
       console.log(error.massage)
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')

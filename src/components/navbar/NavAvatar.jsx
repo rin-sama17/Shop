@@ -37,7 +37,7 @@ const NavAvatar = () => {
             alt="Remy Sharp"
             src="https://mui.com/static/images/avatar/1.jpg"
             {...stringAvatar('rin sama')}
-            sx={{ mr: 1, width: 24, height: 24 }}
+            sx={{ mx: 0.5, width: 24, height: 24 }}
           />
         </Box>
       ) : (

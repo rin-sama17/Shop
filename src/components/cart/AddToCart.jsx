@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Add, Remove, Delete } from '@mui/icons-material'
 import { Box, Typography, Button, IconButton, Stack } from '@mui/material'
-
+import { Link } from 'react-router-dom'
 import {
   cartItemAdded,
   cartItemDeleted,
@@ -11,17 +11,27 @@ import {
   selectCartProducts,
 } from '../../reducers/cartSlice'
 
-const AddToCart = ({ productId, prodyctStock, productPrice, discount }) => {
+const AddToCart = ({
+  productId,
+  prodyctStock,
+  productPrice,
+  discount,
+  showCounter,
+}) => {
+  const dispatch = useDispatch()
+  const cartProducts = useSelector(selectCartProducts)
   const productCount = useSelector((state) =>
     selectCartProduct(state, productId),
   )
-  const cartProducts = useSelector(selectCartProducts)
-  const dispatch = useDispatch()
-  let addToCartBtn
 
   const handleAdd = () => {
     dispatch(
-      cartItemAdded({ id: productId, count: 1, price: productPrice, discount }),
+      cartItemAdded({
+        id: productId,
+        count: 1,
+        price: productPrice,
+        discount,
+      }),
     )
   }
 
@@ -32,6 +42,8 @@ const AddToCart = ({ productId, prodyctStock, productPrice, discount }) => {
       localStorage.setItem('cartProducts', JSON.stringify(cartProducts))
     }
   }, [productCount])
+
+  let addToCartBtn
 
   if (!productCount) {
     addToCartBtn = (
@@ -69,13 +81,21 @@ const AddToCart = ({ productId, prodyctStock, productPrice, discount }) => {
 
     addToCartBtn = (
       <Stack>
-        <Typography sx={{ display: 'flex' }}>
-          {productCount.count} عدد در{' '}
-          <Typography color="primary" sx={{ mx: 0.5 }}>
-            سبد
-          </Typography>{' '}
-          شما
-        </Typography>
+        {showCounter ? (
+          <Typography sx={{ display: 'flex' }}>
+            {productCount.count} عدد در{' '}
+            <Typography
+              component={Link}
+              to="/cart"
+              color="primary"
+              sx={{ mx: 0.5 }}
+            >
+              سبد
+            </Typography>{' '}
+            شما
+          </Typography>
+        ) : null}
+
         <Stack direction="row" justifyContent="center">
           <IconButton
             color="success"
@@ -103,7 +123,7 @@ const AddToCart = ({ productId, prodyctStock, productPrice, discount }) => {
     )
   }
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2, mt: 5 }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center', my: 1 }}>
       {addToCartBtn}
     </Box>
   )
