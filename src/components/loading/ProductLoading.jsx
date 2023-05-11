@@ -28,7 +28,7 @@ const ProductLoading = ({ width, productId }) => {
           sx={{ height: 1 }}
         >
           <Skeleton
-            sx={{ height: 240, mb: 1 }}
+            sx={{ height: 350, mb: 2 }}
             animation="wave"
             variant="rectangular"
           />

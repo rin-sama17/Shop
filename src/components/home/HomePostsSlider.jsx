@@ -7,13 +7,16 @@ import {
   useMediaQuery,
   CardActionArea,
   Skeleton,
+  Stack,
+  Divider,
+  Paper,
 } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { Link, Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import Slider from 'react-slick'
 import { useGetPostsQuery } from '../../api'
-
+import Grid from '@mui/material/Unstable_Grid2'
 const HomePostsSlider = () => {
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('md'))
@@ -72,6 +75,9 @@ const HomePostsSlider = () => {
 
   return (
     <Box sx={{ mb: 1, width: 1 }}>
+      <Typography variant="h6" sx={{ color: 'gray', mb: 3 }}>
+        از مجله ما دیدن کنید
+      </Typography>
       <Slider {...settings}>
         {posts.slice(0, 4).map((slide, index) => (
           <Box component="div" key={index}>
@@ -80,7 +86,7 @@ const HomePostsSlider = () => {
                 src={slide.thumbnail}
                 srcSet={slide.thumbnail}
                 alt={slide.heading}
-                style={{ height: '70vh' }}
+                style={{ height: '60vh' }}
               />
 
               <CardActionArea
@@ -100,26 +106,46 @@ const HomePostsSlider = () => {
                   borderRadius: 0,
                 }}
               >
-                <Box
-                  component="div"
-                  sx={{ textAlign: 'end', ml: 3, width: '80%' }}
+                <Grid
+                  // component={Grid}
+                  container
+                  spacing={2}
+                  // direction="row"
+                  // divider={<Divider orientation="vertical" flexItem />}
+                  sx={{ width: 1, display: 'flex', justifyContent: 'center' }}
                 >
-                  <Typography variant="h4" color="text.primary" sx={{ mb: 2 }}>
-                    {slide.heading}
-                  </Typography>
-
-                  <Typography
-                    variant="body2"
-                    sx={{ direction: 'ltr' }}
-                    textAlign="start"
-                    color="text.secondary"
+                  <Grid
+                    xs={12}
+                    md={3}
+                    sx={{ display: 'flex', justifyContent: 'center' }}
                   >
-                    <LinesEllipsis
-                      text={slide.introduction}
-                      maxLine={downMd ? 3 : 5}
-                    />
-                  </Typography>
-                </Box>
+                    <Paper elevation={12} sx={{ p: 0.3 }}>
+                      <img
+                        src={slide.thumbnail}
+                        srcSet={slide.thumbnail}
+                        alt={slide.heading}
+                        style={{ width: '100%' }}
+                      />
+                    </Paper>
+                  </Grid>
+                  <Grid xs={12} md={8} sx={{ textAlign: 'end' }}>
+                    <Typography variant="h5" color="white" sx={{ mb: 2 }}>
+                      {slide.heading}
+                    </Typography>
+
+                    <Typography
+                      variant="body2"
+                      sx={{ direction: 'ltr' }}
+                      textAlign="start"
+                      color="whitesmoke"
+                    >
+                      <LinesEllipsis
+                        text={slide.introduction}
+                        maxLine={downMd ? 3 : 5}
+                      />
+                    </Typography>
+                  </Grid>
+                </Grid>
               </CardActionArea>
             </ImageListItem>
           </Box>

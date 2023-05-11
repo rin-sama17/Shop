@@ -2,9 +2,7 @@ import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 
 const initialState = {
-  userInfo: {
-    name: "rin",
-  },
+  userInfo: null,
 };
 
 const userSlice = createSlice({

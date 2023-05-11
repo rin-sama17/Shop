@@ -5,9 +5,6 @@ import Grid from '@mui/material/Unstable_Grid2'
 const ProductHeader = ({ product }) => {
   return (
     <Grid xs={12} md={4} sx={{ p: 1, minHeight: '50vh' }}>
-      <Typography color="text.primary" variant="h5" gutterBottom>
-        {product.name}
-      </Typography>
       <Box sx={{ width: 1 }}>
         <Suspense
           fallback={

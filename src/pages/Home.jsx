@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { Container } from '@mui/material'
+import { Box } from '@mui/material'
 
 import { HomeSlider, HomeContent } from '../components/home'
 
@@ -7,8 +7,7 @@ const Home = () => {
   return (
     <Grid xs={12}>
       <HomeSlider />
-      <Container
-        maxWidth="lg"
+      <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
@@ -19,7 +18,7 @@ const Home = () => {
         }}
       >
         <HomeContent />
-      </Container>
+      </Box>
     </Grid>
   )
 }

@@ -1,22 +1,135 @@
-import Grid from '@mui/material/Unstable_Grid2'
-import { Product } from '../products'
+import * as React from 'react'
+import PropTypes from 'prop-types'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 
 import { useGetProductsQuery } from '../../api'
 import { ProductLoading } from '../loading'
-const HomeNewProducts = () => {
-  const { data: products = [], isLoading } = useGetProductsQuery()
+import { ProductSlider } from '../products'
+import Countdown from 'react-countdown'
+import { Button } from '@mui/material'
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props
+
   return (
-    <Grid container sx={{ width: 1 }}>
-      {isLoading ? (
-        <ProductLoading width={240} />
-      ) : (
-        products
-          .slice(0, 12)
-          .map((product, index) => (
-            <Product productId={product.id} key={index} maxWidth={240} />
-          ))
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
       )}
-    </Grid>
+    </div>
   )
 }
-export default HomeNewProducts
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  }
+}
+
+export default function BasicTabs() {
+  const [value, setValue] = React.useState(0)
+  const { data: products = [], isLoading } = useGetProductsQuery()
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
+
+  return (
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+          <Tab label="تخفیفات شگفت انگیز" {...a11yProps(0)} />
+          <Tab label="جدیدترین ها" {...a11yProps(1)} />
+          <Tab label="پرفروش ترین ها" {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+      <TabPanel value={value} index={0}>
+        {isLoading ? (
+          <ProductLoading width={240} />
+        ) : (
+          <Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                mb: 2,
+                pl: '40px',
+              }}
+            >
+              <Typography variant="subtitle" color="primary">
+                زمان باقیمانده
+              </Typography>
+              <Typography variant="h6">
+                <Countdown date={Date.now() + 100000} />
+              </Typography>
+              <Button variant="contained" color="primary">
+                مشاهده همه
+              </Button>
+            </Box>
+            <ProductSlider products={products} />
+          </Box>
+        )}
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        {isLoading ? (
+          <ProductLoading width={240} />
+        ) : (
+          <ProductSlider products={products} />
+        )}
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        {isLoading ? (
+          <ProductLoading width={240} />
+        ) : (
+          <ProductSlider products={products} />
+        )}
+      </TabPanel>
+    </Box>
+  )
+}
+
+// import Grid from '@mui/material/Unstable_Grid2'
+// import { Product } from '../products'
+
+// import { useGetProductsQuery } from '../../api'
+// import { ProductLoading } from '../loading'
+// const HomeNewProducts = () => {
+//   const { data: products = [], isLoading } = useGetProductsQuery()
+//   return (
+//     <Grid container sx={{ width: 1 }}>
+//       {isLoading ? (
+//         <ProductLoading width={240} />
+//       ) : (
+//         products
+//           .slice(0, 12)
+//           .map((product, index) => (
+//             <Product productId={product.id} key={index} maxWidth={240} />
+//           ))
+//       )}
+//     </Grid>
+//   )
+// }
+// export default HomeNewProducts

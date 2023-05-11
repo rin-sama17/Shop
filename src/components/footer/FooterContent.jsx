@@ -27,7 +27,7 @@ const FooterContent = () => {
           <Typography variant="h6" color="secondary" sx={{ mb: 1 }}>
             فروشگاه من
           </Typography>
-          <Typography variant="caption" color="text.primary">
+          <Typography variant="caption" color="white">
             {description.aboutUs}
           </Typography>
         </Box>
@@ -55,7 +55,7 @@ const FooterContent = () => {
           <Typography variant="h6" color="secondary" sx={{ mb: 1 }}>
             تماس با ما
           </Typography>
-          <Typography variant="subtitle2" color="text.primary" sx={{ mb: 1 }}>
+          <Typography variant="subtitle2" color="white" sx={{ mb: 1 }}>
             {description.contactUs}
           </Typography>
         </Box>

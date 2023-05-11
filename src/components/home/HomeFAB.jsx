@@ -8,7 +8,11 @@ import {
   IconButton,
 } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
-import { AddToPhotos, Edit, LibraryBooks } from '@mui/icons-material'
+import {
+  SupportAgentOutlined,
+  AccountCircleOutlined,
+  InfoOutlined,
+} from '@mui/icons-material'
 
 const HomeFAB = () => {
   const [open, setOpen] = useState(false)
@@ -16,15 +20,15 @@ const HomeFAB = () => {
   const actions = [
     {
       color: 'warning',
-      to: '/addProduct',
-      icon: <AddToPhotos />,
-      name: 'محصول جدید',
+      to: '/addPost',
+      icon: <InfoOutlined />,
+      name: 'درباره ما',
     },
     {
       color: 'info',
-      to: '/addPost',
-      icon: <LibraryBooks />,
-      name: 'پست جدید',
+      to: '/addProduct',
+      icon: <SupportAgentOutlined />,
+      name: 'ارتباط با ما',
     },
   ]
   return (
@@ -32,7 +36,7 @@ const HomeFAB = () => {
       <Backdrop open={open} />
       <SpeedDial
         ariaLabel="SpeedDial tooltip example"
-        icon={<SpeedDialIcon openIcon={<Edit />} />}
+        icon={<SpeedDialIcon openIcon={<AccountCircleOutlined />} />}
         onClick={() => setOpen(true)}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}

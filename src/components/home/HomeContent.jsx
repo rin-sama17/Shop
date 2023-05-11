@@ -1,14 +1,20 @@
-import { HomePostsSlider, HomeDescription, HomeNewProducts, HomeFAB } from '.'
+import {
+  HomePostsSlider,
+  HomeDescription,
+  HomeNewProducts,
+  HomeFAB,
+  HomeContract,
+  HomeCategorys,
+} from '.'
 import { CustomDivider } from '../common'
 
 const HomeContent = () => {
   return (
     <>
-      {' '}
       <HomeDescription />
-      <CustomDivider label="محصولات جدید ما" />
       <HomeNewProducts />
-      <CustomDivider label="مجله فروشگاه من" />
+      <HomeContract />
+      <HomeCategorys />
       <HomePostsSlider />
       <HomeFAB />
     </>

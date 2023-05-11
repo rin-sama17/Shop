@@ -36,18 +36,20 @@ const HomeSlider = () => {
   }
 
   return (
-    <Box sx={{ mt: sliders == [] ? 4 : 0 }}>
+    <Box sx={{ width: 1, my: 2 }}>
       <Slider {...settings} ref={slider}>
         {sliders.length > 0 &&
           sliders.map((slide, index) => (
             <Box component="div" key={index}>
               <ImageListItem>
-                <img src={slide.photo} srcSet={slide.photo} alt={slide.title} />
+                <img
+                  src={slide.photo}
+                  srcSet={slide.photo}
+                  alt=""
+                  style={{ width: '100%' }}
+                />
                 <ImageListItemBar
-                  sx={{
-                    bgcolor: 'bgBlur.main',
-                    height: 1,
-                  }}
+                  sx={{ bgcolor: 'rgba(227, 242, 253,0)', height: 1 }}
                   title={
                     <Box
                       sx={{
@@ -58,30 +60,25 @@ const HomeSlider = () => {
                         alignItems: 'center',
                       }}
                     >
-                      <Typography variant="h4" color="text.primary">
-                        {slide.title}
-                      </Typography>
-                      <Button
-                        size="small"
-                        href={slide.link}
-                        target="_blank"
-                        sx={{ mt: 1 }}
-                      >
-                        <Typography variant="subtitle2" color="primary">
-                          اطلاعات بیشتر
-                        </Typography>
-                      </Button>
                       <IconButton
-                        sx={{ left: 10, position: 'absolute' }}
+                        sx={{
+                          left: 10,
+                          position: 'absolute',
+                          bgcolor: 'whitesmoke',
+                        }}
                         onClick={() => slider.current.slickNext()}
                       >
-                        <KeyboardArrowRight />
+                        <KeyboardArrowRight sx={{ color: 'black' }} />
                       </IconButton>
                       <IconButton
-                        sx={{ right: 10, position: 'absolute' }}
+                        sx={{
+                          right: 10,
+                          position: 'absolute',
+                          bgcolor: 'whitesmoke',
+                        }}
                         onClick={() => slider.current.slickPrev()}
                       >
-                        <KeyboardArrowLeft />
+                        <KeyboardArrowLeft sx={{ color: 'black' }} />
                       </IconButton>
                     </Box>
                   }

@@ -17,6 +17,8 @@ import {
   SearchResult,
   Paid,
   AboutUs,
+  Contracts,
+  ShowContract,
 } from '../pages'
 import { CustomMassage } from '../components/common'
 export const router = createBrowserRouter([
@@ -98,6 +100,14 @@ export const router = createBrowserRouter([
       {
         path: '/about-us',
         element: <AboutUs />,
+      },
+      {
+        path: '/contracts',
+        element: <Contracts />,
+      },
+      {
+        path: '/contracts/:contractId',
+        element: <ShowContract />,
       },
     ],
   },

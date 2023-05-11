@@ -1,73 +1,78 @@
-import { IconButton, Badge, Box, useMediaQuery } from '@mui/material'
+import { Box, Button, Divider, Stack, Typography } from '@mui/material'
+import {
+  ShoppingCartOutlined,
+  Search,
+  Person,
+  LanguageOutlined,
+  AppsOutlined,
+} from '@mui/icons-material'
+import CustomIconButton from '../common/CustomIconButton'
 
-import { ShoppingCart, Search } from '@mui/icons-material'
-import { useTheme } from '@mui/material/styles'
-import { useState, useEffect } from 'react'
-import Grid from '@mui/material/Unstable_Grid2'
-import { NavHeader, NavAvatar, NavSearch } from './'
-
-import { Link as RouterLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectCartProducts } from '../../reducers/cartSlice'
 const NavContent = ({ setDrawerOpen }) => {
-  const theme = useTheme()
-  const downLg = useMediaQuery(theme.breakpoints.down('lg'))
-  const [showSearchBox, setSearchBox] = useState(false)
-  const cartProducts = useSelector(selectCartProducts)
-
-  useEffect(() => {
-    if (!downLg) {
-      setSearchBox(false)
-      setDrawerOpen(false)
-    }
-  }, [downLg])
-
   return (
     <>
-      <Grid xs={6} sm={3} md={10} lg={7} sx={{ display: 'flex' }}>
-        <NavHeader
-          setDrawerOpen={setDrawerOpen}
-          sx={{ display: 'flex', alignItems: 'center', ml: 1 }}
-        />
-      </Grid>
-      <Grid
-        xs={6}
-        sm={9}
-        md={2}
-        lg={5}
+      <Box
         sx={{
+          width: 1,
           display: 'flex',
-          justifyContent: downLg ? 'flex-end' : 'space-between',
+          justifyContent: 'space-between',
           alignItems: 'center',
         }}
       >
-        <NavSearch downLg={downLg} setDrawerOpen={setDrawerOpen} />
-        <Box
-          sx={{
-            display: showSearchBox ? 'none' : 'flex',
-            alignItems: 'center',
-            mr: 1,
-          }}
-        >
-          <NavAvatar />
-
-          <IconButton
-            component={RouterLink}
-            to="/cart"
-            size="large"
-            color="text.primary"
-          >
-            {' '}
-            {cartProducts.length > 0 ? (
-              <Badge badgeContent={cartProducts.length} color="secondary">
-                <ShoppingCart />
-              </Badge>
-            ) : (
-              <ShoppingCart />
-            )}
-          </IconButton>
+        <Box>
+          <CustomIconButton
+            color="buttons"
+            icon={<AppsOutlined />}
+            title="گزینه های بیشتر"
+            onClick={() => setDrawerOpen(true)}
+          />
+          <CustomIconButton color="buttons" icon={<Person />} title="ورود" />
         </Box>
-      </Grid>
+
+        <Typography variant="h5" sx={{ color: '#437FC7' }}>
+          فروشگاه فرش
+        </Typography>
+
+        <Box>
+          <CustomIconButton
+            color="buttons"
+            icon={<LanguageOutlined />}
+            title="زبان"
+          />
+          <CustomIconButton color="buttons" icon={<Search />} title="جستجو" />
+        </Box>
+      </Box>
+      {/* <Box
+        sx={{
+          width: 1,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderTop: 1,
+          borderBottom: 1,
+          borderColor: 'warning.main',
+        }}
+      > */}
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        divider={
+          <Divider
+            orientation="vertical"
+            flexItem
+            sx={{ color: 'divider.main' }}
+          />
+        }
+        spacing={2}
+        sx={{ mt: 2 }}
+      >
+        <Button>فرش ماشینی</Button>
+        <Button>فرش دستبافت</Button>
+        <Button>تابلو فرش دستبافت</Button>
+        <Button>صنایع دستی</Button>
+        <Button>سایر</Button>
+      </Stack>
+      {/* </Box> */}
     </>
   )
 }

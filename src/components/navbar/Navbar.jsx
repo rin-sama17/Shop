@@ -1,49 +1,31 @@
-import { AppBar, useScrollTrigger } from '@mui/material'
-import { cloneElement, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Container } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
+import { useState } from 'react'
+
 import { NavContent, NavDrawer } from './'
 
-import { useTheme } from '@mui/material/styles'
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const theme = useTheme()
-  const location = useLocation().pathname
-  function ElevationScroll(props) {
-    const { children } = props
-
-    const trigger = useScrollTrigger({
-      disableHysteresis: true,
-      threshold: 0,
-    })
-
-    return cloneElement(children, {
-      elevation: trigger ? 4 : 0,
-
-      style: {
-        backgroundColor:
-          location === '/'
-            ? trigger
-              ? theme.palette.bgBlur.main
-              : 'rgba(0,0,0,0)'
-            : theme.palette.bgBlur.main,
-        backdropFilter: trigger ? 'blur(10px)' : 'blur(0px)',
-      },
-    })
-  }
   return (
     <>
       <NavDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
-      <ElevationScroll>
-        <AppBar
-          sx={{ py: 1 }}
-          position={location === '/' ? undefined : 'sticky'}
+      <Container
+        maxWidth="lg"
+        sx={{
+          py: 2,
+          alignItems: 'center',
+          bgcolor: 'navbarbg.main',
+          borderBottomRightRadius: 20,
+          borderBottomLeftRadius: 20,
+        }}
+      >
+        <Grid
+          container
+          sx={{ width: 1, justifyContent: 'center', alignItems: 'center' }}
         >
-          <Grid container sx={{ width: 1 }}>
-            <NavContent setDrawerOpen={setDrawerOpen} />
-          </Grid>
-        </AppBar>
-      </ElevationScroll>
+          <NavContent setDrawerOpen={setDrawerOpen} />
+        </Grid>
+      </Container>
     </>
   )
 }

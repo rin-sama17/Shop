@@ -4,27 +4,31 @@ import { ProductHeader, ProductDetails, ProductComments } from '.'
 import { ShowCategory } from '../../common'
 
 const ProductContent = ({ product }) => {
-  console.log(product)
   return (
-    <Grid container sx={{ width: 1, p: 5 }}>
-      <ProductHeader product={product} />
-      <Grid xs={12} md={4}>
-        <ShowCategory categoryId={product.category} tags={product.tags} />
-      </Grid>
+    <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
+      <Typography color="text.primary" variant="h5" gutterBottom>
+        {product.name}
+      </Typography>
+      <Grid container sx={{ width: 1, p: 5 }}>
+        <ProductHeader product={product} />
+        <Grid xs={12} md={4}>
+          <ShowCategory categoryId={product.category} tags={product.tags} />
+        </Grid>
 
-      <ProductDetails product={product} />
-      <Grid xs={12}>
-        <Box sx={{ display: 'flex', mb: 2 }}>
-          <Typography color="text.secondary" variant="body1" sx={{ mr: 1 }}>
-            توضیحات:
-          </Typography>{' '}
-          <Typography color="text.primary" variant="body1" sx={{ mr: 1 }}>
-            {product.details}
-          </Typography>
-        </Box>
-        <ProductComments productId={product.id} />
+        <ProductDetails product={product} />
+        <Grid xs={12}>
+          <Box sx={{ display: 'flex', mb: 2 }}>
+            <Typography color="text.secondary" variant="body1" sx={{ mr: 1 }}>
+              توضیحات:
+            </Typography>{' '}
+            <Typography color="text.primary" variant="body1" sx={{ mr: 1 }}>
+              {product.details}
+            </Typography>
+          </Box>
+          <ProductComments productId={product.id} />
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   )
 }
 

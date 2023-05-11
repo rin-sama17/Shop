@@ -19,15 +19,6 @@ const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {
       open={drawerOpen}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
-      sx={{
-        display: {
-          xs: 'block',
-          sm: 'block',
-          md: 'block',
-          lg: 'none',
-          xl: 'none',
-        },
-      }}
     >
       <DrawerContent setOpen={setDrawerOpen} />
     </SwipeableDrawer>

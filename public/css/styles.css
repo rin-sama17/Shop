@@ -179,3 +179,8 @@ html {
     transform: rotate(360deg);
   }
 }
+
+.MuiSvgIcon-fontSizeMedium {
+  width: 30px !important;
+  height: 30px !important;
+}

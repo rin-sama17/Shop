@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { Box, Typography, Card } from '@mui/material'
+import { Box, Typography, Card, Button } from '@mui/material'
 import { CustomDivider, CustomIconButton, ProductPrice } from '../../common'
 import { ReportGmailerrorred } from '@mui/icons-material'
 import { AddToCart } from '../../cart'
@@ -16,7 +16,6 @@ const ProductDetails = ({ product }) => {
                   موجود نیست
                   <CustomIconButton
                     color="warning"
-                    title="زمانی که موجود شد به من اطلاع بده"
                     icon={<ReportGmailerrorred />}
                   />
                 </>
@@ -46,13 +45,7 @@ const ProductDetails = ({ product }) => {
           <ProductPrice price={product.price} discount={product.discount} />
         </Box>
 
-        <AddToCart
-          prodyctStock={product.stock}
-          productId={product.id}
-          productPrice={product.price}
-          discount={product.discount}
-          showCounter
-        />
+        <Button variant="contained">تماس بگیرید</Button>
       </Card>
     </Grid>
   )
