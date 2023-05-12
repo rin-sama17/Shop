@@ -7,21 +7,26 @@ const DrawerItems = ({ setOpen }) => {
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       {tabsData.map((tab, index) => (
         <>
-          <Divider sx={{ bgcolor: 'gray' }} />
           <Button
             onClick={() => setOpen(false)}
             key={index}
             component={Link}
             to={tab.to}
             size="large"
-            color="secondary"
             sx={{
-              my: 0.5,
               mx: 1,
-              height: 30,
+              height: 50,
+              justifyContent: 'flex-start',
+              color: 'buttons.main',
+              '&:hover': {
+                color: 'primary.main',
+              },
             }}
           >
-            <Typography variant="caption">{tab.text}</Typography>
+            {tab.icon}
+            <Typography variant="subtitle2" textAlign="left" sx={{ ml: 1 }}>
+              {tab.text}
+            </Typography>
           </Button>
         </>
       ))}

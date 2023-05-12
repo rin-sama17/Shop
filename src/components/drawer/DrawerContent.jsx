@@ -1,4 +1,4 @@
-import { Divider, Box, Typography } from '@mui/material'
+import { Divider, Box, Typography, Link } from '@mui/material'
 
 import { DrawerItems } from '.'
 
@@ -6,15 +6,20 @@ const DrawerContent = ({ setOpen }) => {
   return (
     <Box
       sx={{
-        mt: 2,
-        justifyContent: 'center',
-        textAlign: 'center',
+        pt: 2,
+        justifyContent: 'left',
+        textAlign: 'left',
         px: 2,
+        bgcolor: 'title.main',
+        height: 1,
       }}
     >
-      <Typography color="text.primary" variant="h5" gutterBottom>
-        فروشگاه من
-      </Typography>
+      <Link href="/" underline="none">
+        <Typography variant="h5" sx={{ color: 'background.main' }}>
+          فروشگاه فرش
+        </Typography>
+      </Link>
+      <Divider sx={{ color: 'navbarbg.main', my: 2 }} />
 
       <DrawerItems setOpen={setOpen} />
     </Box>

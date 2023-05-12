@@ -1,12 +1,13 @@
-import { Box, Button, Divider, Stack, Typography } from '@mui/material'
+import { Box, Button, Divider, Link, Stack, Typography } from '@mui/material'
 import {
   ShoppingCartOutlined,
   Search,
-  Person,
   LanguageOutlined,
   AppsOutlined,
 } from '@mui/icons-material'
 import CustomIconButton from '../common/CustomIconButton'
+import { Login } from '../../pages'
+import NavSearch from './NavSearch'
 
 const NavContent = ({ setDrawerOpen }) => {
   return (
@@ -26,12 +27,14 @@ const NavContent = ({ setDrawerOpen }) => {
             title="گزینه های بیشتر"
             onClick={() => setDrawerOpen(true)}
           />
-          <CustomIconButton color="buttons" icon={<Person />} title="ورود" />
+          <Login />
         </Box>
 
-        <Typography variant="h5" sx={{ color: '#437FC7' }}>
-          فروشگاه فرش
-        </Typography>
+        <Link href="/" underline="none">
+          <Typography variant="h5" sx={{ color: 'title.main' }}>
+            فروشگاه فرش
+          </Typography>
+        </Link>
 
         <Box>
           <CustomIconButton
@@ -39,20 +42,10 @@ const NavContent = ({ setDrawerOpen }) => {
             icon={<LanguageOutlined />}
             title="زبان"
           />
-          <CustomIconButton color="buttons" icon={<Search />} title="جستجو" />
+          <NavSearch />
         </Box>
       </Box>
-      {/* <Box
-        sx={{
-          width: 1,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          borderTop: 1,
-          borderBottom: 1,
-          borderColor: 'warning.main',
-        }}
-      > */}
+
       <Stack
         direction="row"
         justifyContent="space-between"
@@ -72,7 +65,6 @@ const NavContent = ({ setDrawerOpen }) => {
         <Button>صنایع دستی</Button>
         <Button>سایر</Button>
       </Stack>
-      {/* </Box> */}
     </>
   )
 }

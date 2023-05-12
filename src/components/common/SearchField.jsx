@@ -31,8 +31,9 @@ const SearchField = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           variant="outlined"
-          size="small"
-          sx={{ width: '95%', color: 'secondary.light' }}
+          size="large"
+          fullWidth
+          sx={{ color: 'secondary.light' }}
           placeholder="جستجو"
           InputProps={{
             style: {

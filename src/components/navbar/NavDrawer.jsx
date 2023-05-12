@@ -19,6 +19,11 @@ const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {
       open={drawerOpen}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
+      sx={{
+        '& 	.MuiDrawer-paper': {
+          width: 300,
+        },
+      }}
     >
       <DrawerContent setOpen={setDrawerOpen} />
     </SwipeableDrawer>

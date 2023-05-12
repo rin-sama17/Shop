@@ -10,10 +10,7 @@ const Footer = () => {
     <Box component="div">
       <Box
         sx={{
-          backgroundImage: `url(${footerBg})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
+          bgcolor: 'navbarbg.main',
         }}
       >
         <Grid

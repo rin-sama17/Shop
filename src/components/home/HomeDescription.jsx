@@ -60,7 +60,12 @@ const HomeDescription = () => {
         {description && description.aboutUs}
       </Typography>
 
-      <Button component={Link} to="/products" color="secondary" sx={{ my: 2 }}>
+      <Button
+        component={Link}
+        to="/products"
+        color="secondary"
+        sx={{ mt: 4, mb: 2 }}
+      >
         ورود به فروشگاه من
       </Button>
     </>

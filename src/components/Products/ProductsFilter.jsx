@@ -5,6 +5,7 @@ import { toRial } from '../../helpers'
 import { Stack } from '@mui/system'
 import { SelectCategory, Spinner } from '../common'
 
+import Grid from '@mui/material/Unstable_Grid2'
 const ProductsFilter = ({ data, setData, isLoading }) => {
   const expensiveProduct = useMemo(() => {
     const sortedData = data?.slice().sort((a, b) => a.price - b.price)
@@ -44,15 +45,22 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
   }
 
   return (
-    <Box
+    <Grid
+      container
+      spacing={3}
       sx={{
-        justifyContent: 'center',
-        textAlign: 'center',
-        px: 3,
-        mt: 6,
+        mb: 2,
       }}
     >
-      <Box sx={{ px: 1, mb: 2 }}>
+      <Grid xs={12} md={5}>
+        <Stack>
+          <SelectCategory value={category} setValue={setCategory} />
+          <Button onClick={handleFilter} sx={{ mt: 1 }}>
+            اعمال تغییرات
+          </Button>
+        </Stack>
+      </Grid>
+      <Grid xs={12} md={7} sx={{ px: 1 }}>
         <Slider
           getAriaLabel={() => 'Temperature range'}
           value={value}
@@ -61,28 +69,22 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
           onChange={handleChange}
           valueLabelDisplay="auto"
         />
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          color: 'text.primary',
-        }}
-      >
-        <Typography variant="caption">ارزان ترین </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            color: 'text.primary',
+          }}
+        >
+          <Typography variant="caption">ارزان ترین </Typography>
+          <Typography variant="caption">گران ترین </Typography>
+        </Box>
 
-        <Typography variant="caption">گران ترین </Typography>
-      </Box>
-      <Typography variant="caption" color="secondary" sx={{ mb: 2 }}>
-        از {toRial(value[0])} تا {toRial(value[1])} تومان
-      </Typography>
-      <Stack sx={{ mt: 3 }}>
-        <SelectCategory value={category} setValue={setCategory} />
-        <Button onClick={handleFilter} sx={{ mt: 1 }}>
-          اعمال تغییرات
-        </Button>
-      </Stack>
-    </Box>
+        <Typography variant="caption" color="secondary">
+          از {toRial(value[0])} تا {toRial(value[1])} تومان
+        </Typography>
+      </Grid>
+    </Grid>
   )
 }
 export default ProductsFilter

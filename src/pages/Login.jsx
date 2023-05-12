@@ -1,14 +1,13 @@
-import { IconButton } from '@mui/material'
-
 import { useState } from 'react'
-import { toast } from 'react-toastify'
-import Grid from '@mui/material/Unstable_Grid2'
-import { Face, AccountCircle } from '@mui/icons-material'
+import { Person } from '@mui/icons-material'
 import { useFormik } from 'formik'
 import { loginValidation } from '../components/validations/loginValidation'
-import { CustomFields, CustomForm, CustomModal } from '../components/common'
-import { useGetAdminsQuery } from '../api'
-import { createSelector } from '@reduxjs/toolkit'
+import {
+  CustomFields,
+  CustomForm,
+  CustomIconButton,
+  CustomModal,
+} from '../components/common'
 import { loginFieldsData } from '../components/fieldsData/loginFieldsData'
 
 const Login = () => {
@@ -29,14 +28,17 @@ const Login = () => {
   const fields = loginFieldsData(formik)
   return (
     <>
-      <IconButton onClick={() => setOpen(true)} color="secondary">
-        <AccountCircle />
-      </IconButton>
+      <CustomIconButton
+        onClick={() => setOpen(true)}
+        color="buttons"
+        icon={<Person />}
+        title="ورود"
+      />
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           formik={formik}
           fields={fields}
-          color="success"
+          color="secondary"
           label="ورود"
         />
       </CustomModal>

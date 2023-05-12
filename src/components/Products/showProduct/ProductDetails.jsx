@@ -2,7 +2,6 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Box, Typography, Card, Button } from '@mui/material'
 import { CustomDivider, CustomIconButton, ProductPrice } from '../../common'
 import { ReportGmailerrorred } from '@mui/icons-material'
-import { AddToCart } from '../../cart'
 
 const ProductDetails = ({ product }) => {
   return (

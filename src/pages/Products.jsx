@@ -23,29 +23,27 @@ const Products = () => {
     )
   }
   return (
-    <Grid container sx={{ width: 1, mt: 3 }}>
-      <Grid xs={12} md={3} sx={{ m: 0 }}>
-        {isSuccess && <ProductsFilter setData={setData} data={products} />}
-      </Grid>
-      <Grid xs={12} md={9}>
-        <Grid container>
-          {data.map((product, index) => (
+    <Box sx={{ width: 1, mt: 3 }}>
+      {isSuccess && <ProductsFilter setData={setData} data={products} />}
+      <Grid container>
+        {data.map((product, index) => (
+          <Grid xs={12} sm={6} md={4} lg={4} sx={{ justifyContent: 'center' }}>
             <Product productId={product.id} key={index} maxWidth={220} />
-          ))}
+          </Grid>
+        ))}
 
-          <Box
-            sx={{
-              width: 1,
-              my: 1,
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <CustomPagination setData={setData} data={products} />
-          </Box>
-        </Grid>
+        <Box
+          sx={{
+            width: 1,
+            my: 1,
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+        >
+          <CustomPagination setData={setData} data={products} />
+        </Box>
       </Grid>
-    </Grid>
+    </Box>
   )
 }
 export default Products

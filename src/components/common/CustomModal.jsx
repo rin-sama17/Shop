@@ -14,7 +14,17 @@ const CustomModal = ({ open, setOpen, width, children }) => {
         backdropFilter: 'blur(3px)',
       }}
     >
-      <Card sx={{ width: width ? width : '90%', p: 3 }}>{children}</Card>
+      <Card
+        sx={{
+          width: width ? width : '90%',
+          p: 3,
+          bgcolor: 'background.main',
+          maxHeight: '80vh',
+          overflowY: 'scroll',
+        }}
+      >
+        {children}
+      </Card>
     </Modal>
   )
 }

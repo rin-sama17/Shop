@@ -14,7 +14,13 @@ const CustomForm = ({
 }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
-      <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Grid
+        container
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
         <CustomDivider label={label} color={color ?? 'primary'} />
         {imageUploader ? (
           <ImageUploader

@@ -22,7 +22,17 @@ const Product = ({ productId }) => {
   }
 
   return (
-    <Fade in={isSuccess}>
+    <Fade
+      in={isSuccess}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignContent: 'center',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
+        pt: 1,
+      }}
+    >
       <CardActionArea
         onClick={() => navigate(`/product/${product.id}`)}
         sx={{ py: 1 }}

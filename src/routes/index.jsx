@@ -9,13 +9,9 @@ import {
   AddPost,
   AddProduct,
   EditPost,
-  TrackOrders,
-  Cart,
-  Checkout,
   AdminPanel,
   EditProduct,
   SearchResult,
-  Paid,
   AboutUs,
   Contracts,
   ShowContract,
@@ -73,22 +69,6 @@ export const router = createBrowserRouter([
         element: <EditPost />,
       },
 
-      {
-        path: '/cart',
-        element: <Cart />,
-      },
-      {
-        path: '/track-orders',
-        element: <TrackOrders />,
-      },
-      {
-        path: '/checkout',
-        element: <Checkout />,
-      },
-      {
-        path: '/checkout/:cartId',
-        element: <Paid />,
-      },
       {
         path: '/admin-panel',
         element: <AdminPanel />,
