@@ -69,28 +69,7 @@ export default function BasicTabs() {
         {isLoading ? (
           <ProductLoading width={240} />
         ) : (
-          <Box>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                mb: 2,
-                pl: '40px',
-              }}
-            >
-              <Typography variant="subtitle" color="primary">
-                زمان باقیمانده
-              </Typography>
-              <Typography variant="h6">
-                <Countdown date={Date.now() + 100000} />
-              </Typography>
-              <Button variant="contained" color="primary">
-                مشاهده همه
-              </Button>
-            </Box>
-            <ProductSlider products={products} />
-          </Box>
+          <ProductSlider products={products} />
         )}
       </TabPanel>
       <TabPanel value={value} index={1}>

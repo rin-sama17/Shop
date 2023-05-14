@@ -67,7 +67,7 @@ const NavSearch = () => {
                     alt={product.name}
                     sx={{ height: 100, width: 100, mr: 2 }}
                   />
-                  <Typography color="primary" variant="subtitle1">
+                  <Typography color="secondary" variant="subtitle1">
                     {product.name}
                   </Typography>
                 </Box>
@@ -92,7 +92,7 @@ const NavSearch = () => {
             <Divider sx={{ color: 'primary.main', my: 1 }} />
             {posts.map((post, index) => (
               <Box key={index} sx={{ mb: 2 }}>
-                <Typography color="primary" variant="subtitle2">
+                <Typography color="secondary" variant="subtitle2">
                   {post.heading}
                 </Typography>
                 <Typography color="text.secondary" variant="caption">

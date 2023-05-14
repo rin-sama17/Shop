@@ -15,11 +15,11 @@ const DrawerContent = ({ setOpen }) => {
       }}
     >
       <Link href="/" underline="none">
-        <Typography variant="h5" sx={{ color: 'background.main' }}>
+        <Typography variant="h5" sx={{ color: 'bgcolor.main' }}>
           فروشگاه فرش
         </Typography>
       </Link>
-      <Divider sx={{ color: 'navbarbg.main', my: 2 }} />
+      <Divider sx={{ color: 'bgcolor.dark', my: 2 }} />
 
       <DrawerItems setOpen={setOpen} />
     </Box>

@@ -43,7 +43,7 @@ const ShowCategory = ({ categoryId, tags }) => {
               <Typography
                 component={Link}
                 to={`/search/${tag}`}
-                color="primary"
+                color="secondary"
                 variant="caption"
                 sx={{ mx: 0.5 }}
               >
@@ -69,7 +69,7 @@ const ShowCategory = ({ categoryId, tags }) => {
             <Typography
               component={Link}
               to={`/search/${tag}`}
-              color="primary"
+              color="secondary"
               variant="caption"
               sx={{ mx: 0.5 }}
             >

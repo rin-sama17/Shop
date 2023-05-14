@@ -11,7 +11,21 @@ import { useSelector } from 'react-redux'
 import { selectAllParagraph } from '../reducers/paragraphSlice'
 import { postFieldsData } from '../components/fieldsData'
 import { toast } from 'react-toastify'
+
+import React from 'react'
+
+import { useQuill } from 'react-quilljs'
+// or const { useQuill } = require('react-quilljs');
+
+import 'quill/dist/quill.snow.css' // Add css for snow theme
+// or import 'quill/dist/quill.bubble.css'; // Add css for bubble theme
+
 const AddPost = () => {
+  const { quill, quillRef } = useQuill()
+
+  console.log(quill) // undefined > Quill Object
+  console.log(quillRef) // { current: undefined } > { current: Quill Editor Reference }
+
   const paragraphs = useSelector(selectAllParagraph)
 
   const [addNewPost] = useAddNewPostMutation()
@@ -36,7 +50,6 @@ const AddPost = () => {
 
   const postFields = {
     heading: '',
-    introduction: '',
     thumbnail: '',
     category: '',
     tags: '',
@@ -73,14 +86,21 @@ const AddPost = () => {
         formik={formik}
         fields={fields}
         label="افزودن پست جدید"
-        color="success"
+        color="warning"
         imageUploader
         imageUploaderName="thumbnail"
       />
-      <Stack sx={{ width: 1 }}>
-        <CustomDivider label="پاراگراف های شما" color="info" />
-        <AddParagraph /> <ShowParagraphs />
-      </Stack>
+      <Box
+        sx={{
+          width: 1,
+          direction: 'ltr',
+          mb: 10,
+          mt: 3,
+          bgcolor: '#FFFF',
+        }}
+      >
+        <div ref={quillRef} />
+      </Box>
     </Box>
   )
 }

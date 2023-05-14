@@ -14,7 +14,7 @@ const Navbar = () => {
         sx={{
           py: 2,
           alignItems: 'center',
-          bgcolor: 'navbarbg.main',
+          bgcolor: 'bgcolor.dark',
           borderBottomRightRadius: 20,
           borderBottomLeftRadius: 20,
         }}

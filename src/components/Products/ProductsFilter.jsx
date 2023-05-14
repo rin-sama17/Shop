@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { Typography, Box, Slider, Button } from '@mui/material'
 
 import { toRial } from '../../helpers'
@@ -40,6 +40,15 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
     setValue(newValue)
   }
 
+  const handleClear = () => {
+    setCategory('')
+    setValue([1, expensiveProduct])
+  }
+
+  useEffect(() => {
+    handleFilter()
+  }, [category, value])
+
   if (isLoading) {
     return <Spinner />
   }
@@ -55,8 +64,8 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
       <Grid xs={12} md={5}>
         <Stack>
           <SelectCategory value={category} setValue={setCategory} />
-          <Button onClick={handleFilter} sx={{ mt: 1 }}>
-            اعمال تغییرات
+          <Button onClick={handleClear} color="error" sx={{ mt: 1 }}>
+            حذف تغییرات
           </Button>
         </Stack>
       </Grid>

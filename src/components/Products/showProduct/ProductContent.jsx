@@ -1,30 +1,60 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { Box, Typography } from '@mui/material'
-import { ProductHeader, ProductDetails, ProductComments } from '.'
+import { ProductDetails, ProductComments } from '.'
 import { ShowCategory } from '../../common'
-
+import { Box, Breadcrumbs, Link, Typography } from '@mui/material'
+import { ArrowLeft } from '@mui/icons-material'
 const ProductContent = ({ product }) => {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }}>
-      <Typography color="text.primary" variant="h5" gutterBottom>
-        {product.name}
-      </Typography>
-      <Grid container sx={{ width: 1, p: 5 }}>
-        <ProductHeader product={product} />
+    <Box pt={2}>
+      <Box
+        mb={3}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Typography
+          sx={{ mb: 2 }}
+          color="secondary"
+          textAlign="center"
+          variant="h6"
+        >
+          {product.name}
+        </Typography>
+        <Breadcrumbs
+          separator={<ArrowLeft fontSize="small" />}
+          aria-label="breadcrumb"
+        >
+          <Link underline="hover" key="1" color="secondary" href="/">
+            خانه
+          </Link>
+          <Link underline="hover" key="2" color="secondary" href="/products">
+            فروشگاه
+          </Link>
+          <Link underline="hover" key="3" color="secondary">
+            {product.category}
+          </Link>
+          <Typography key="4" color="text.primary">
+            {product.name}
+          </Typography>
+        </Breadcrumbs>
+      </Box>
+      <Grid container spacing={2} sx={{ width: 1 }}>
+        <Grid xs={12} md={4} sx={{ p: 1 }}>
+          <img
+            className="zoom"
+            src={product.thumbnail}
+            alt={product.name}
+            style={{ width: '100%' }}
+          />
+        </Grid>
         <Grid xs={12} md={4}>
           <ShowCategory categoryId={product.category} tags={product.tags} />
         </Grid>
 
         <ProductDetails product={product} />
         <Grid xs={12}>
-          <Box sx={{ display: 'flex', mb: 2 }}>
-            <Typography color="text.secondary" variant="body1" sx={{ mr: 1 }}>
-              توضیحات:
-            </Typography>{' '}
-            <Typography color="text.primary" variant="body1" sx={{ mr: 1 }}>
-              {product.details}
-            </Typography>
-          </Box>
           <ProductComments productId={product.id} />
         </Grid>
       </Grid>

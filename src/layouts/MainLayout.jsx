@@ -25,7 +25,7 @@ const MainLayout = () => {
           <Helmet>
             <title>فروشگاه فرش</title>
           </Helmet>{' '}
-          <Box sx={{ bgcolor: 'background.main' }}>
+          <Box sx={{ bgcolor: 'bgcolor.main' }}>
             <Navbar />
             <Container maxWidth="lg">
               <ToastContainer

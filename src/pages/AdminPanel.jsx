@@ -17,6 +17,17 @@ import {
   AdminManagement,
 } from '../components/adminPanel/pages'
 
+const pages = [
+  <SliderManagement />,
+  <ProductManagement />,
+  <PostManagement />,
+  <DiscountManagement />,
+  <CategoryManagement />,
+  <CommentManagement />,
+  <DescriptionManagement />,
+  <AdminManagement />,
+]
+
 const AdminPanel = () => {
   const [pageNumber, setPageNumber] = useState(0)
 
@@ -25,7 +36,7 @@ const AdminPanel = () => {
   }
 
   return (
-    <Grid container sx={{ width: 1 }}>
+    <Grid container sx={{ width: 1, position: 'relative' }}>
       <Grid
         xs={12}
         md={2.5}
@@ -41,33 +52,38 @@ const AdminPanel = () => {
       </Grid>
       <Grid xs={12} md={9.5} lg={10}>
         <SwipeableViews index={pageNumber} onChangeIndex={handleSwipeNumber}>
-          <Page pageNumber={pageNumber} index={0}>
+          {pages.map((page, index) => (
+            <Page pageNumber={pageNumber} name="adminPanel" index={index}>
+              {page}
+            </Page>
+          ))}
+          {/* <Page pageNumber={pageNumber} name="adminPanel" index={0}>
             <SliderManagement />
           </Page>
-          <Page pageNumber={pageNumber} index={1}>
+          <Page pageNumber={pageNumber} name="adminPanel" index={1}>
             <OrderManagement />
           </Page>
-          <Page pageNumber={pageNumber} index={2}>
+          <Page pageNumber={pageNumber} name="adminPanel" index={2}>
             <ProductManagement />
           </Page>
-          <Page pageNumber={pageNumber} index={3}>
+          <Page pageNumber={pageNumber} name="adminPanel" index={3}>
             <PostManagement />
           </Page>
-          <Page pageNumber={pageNumber} index={4}>
+          <Page pageNumber={pageNumber} name="adminPanel" index={4}>
             <DiscountManagement />
           </Page>
-          <Page pageNumber={pageNumber} index={5}>
+          <Page pageNumber={pageNumber} name="adminPanel" index={5}>
             <CategoryManagement />
           </Page>
-          <Page pageNumber={pageNumber} index={6}>
+          <Page pageNumber={pageNumber} name="adminPanel" index={6}>
             <CommentManagement />
           </Page>
-          <Page pageNumber={pageNumber} index={7}>
+          <Page pageNumber={pageNumber} name="adminPanel" index={7}>
             <DescriptionManagement />
           </Page>
-          <Page pageNumber={pageNumber} index={8}>
+          <Page pageNumber={pageNumber} name="adminPanel" index={8}>
             <AdminManagement />
-          </Page>
+          </Page> */}
         </SwipeableViews>
       </Grid>
     </Grid>

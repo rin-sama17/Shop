@@ -21,15 +21,6 @@ const postFieldsData = (formik) => {
       type: 'number',
       multiline: true,
     },
-    {
-      sm: 12,
-      name: 'introduction',
-      formik,
-      multiline: true,
-      rows: 4,
-      label: 'مقدمه',
-      type: 'text',
-    },
   ]
 }
 export default postFieldsData

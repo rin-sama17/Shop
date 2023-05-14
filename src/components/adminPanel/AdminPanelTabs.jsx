@@ -12,6 +12,7 @@ const AdminPanelTabs = ({ pageNumber, setPageNumber }) => {
   const tabs = tabsData()
   return (
     <Tabs
+      sx={{ position: 'sticky', top: '-30px' }}
       orientation={isMdDown ? 'horizontal' : 'vertical'}
       value={pageNumber}
       onChange={handlePageNumber}

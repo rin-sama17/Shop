@@ -24,7 +24,7 @@ const FooterContent = () => {
         }}
       >
         <Box sx={{ width: { xs: 4 / 5, sm: 1 / 3 } }}>
-          <Typography variant="h6" sx={{ mb: 1, color: 'title.main' }}>
+          <Typography variant="h6" color="secondary" sx={{ mb: 1 }}>
             فروشگاه من
           </Typography>
           <Typography variant="caption" color="white">
@@ -32,7 +32,7 @@ const FooterContent = () => {
           </Typography>
         </Box>
         <Box sx={{ width: { xs: 4 / 5, sm: 1 / 4 } }}>
-          <Typography variant="h6" sx={{ mb: 1, color: 'title.main' }}>
+          <Typography variant="h6" color="secondary" sx={{ mb: 1 }}>
             جدیدترین مجله های ما
           </Typography>
           {posts.slice(0, 4).map((item, index) => (
@@ -40,7 +40,7 @@ const FooterContent = () => {
               <Typography
                 component={RouterLink}
                 to={`/posts/${item.id}`}
-                color="primary"
+                color="secondary"
                 sx={{ textDecoration: 'none' }}
                 variant="caption"
               >
@@ -52,7 +52,7 @@ const FooterContent = () => {
           ))}
         </Box>
         <Box>
-          <Typography variant="h6" sx={{ mb: 1, color: 'title.main' }}>
+          <Typography variant="h6" sx={{ mb: 1 }} color="secondary">
             تماس با ما
           </Typography>
           <Typography variant="subtitle2" color="white" sx={{ mb: 1 }}>

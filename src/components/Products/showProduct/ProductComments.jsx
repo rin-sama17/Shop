@@ -41,7 +41,7 @@ const Comment = ({ comment }) => {
             divider={<Divider orientation="vertical" flexItem />}
             sx={{ ml: 1, width: 1 }}
           >
-            <Typography variant="body1" color="primary" gutterBottom>
+            <Typography variant="body1" color="secondary" gutterBottom>
               {comment.name === '' ? 'نویسنده ناشناس' : comment.name}
             </Typography>
             <ShowTime timestamp={comment.date} />

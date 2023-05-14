@@ -12,24 +12,19 @@ export const theme = createTheme({
         mode: "light",
 
         //p01
-        background: {
+        bgcolor: {
             main: "#E9E8EE",
+            dark: "#1E1E5C"
         },
         buttons: {
             main: "#D2D2DC"
         },
         primary: {
-            main: "#F97F12"
+            main: "#ff8400",
+            light: "#FFFFFF"
         },
         secondary: {
             main: "#F97F12"
-
-        },
-        divider: {
-            main: "#FFFFFF"
-        },
-        navbarbg: {
-            main: "#1E1E5C"
         },
         bgBlur: {
             main: "rgba(0, 0, 0, 0.4)"

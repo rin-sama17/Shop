@@ -162,7 +162,7 @@ const Contracts = () => {
               sx={{ display: 'flex', mt: 2 }}
             >
               تعداد نمایندگی های فعال :
-              <Typography variant="h5" color="primary" sx={{ ml: 1 }}>
+              <Typography variant="h5" color="secondary" sx={{ ml: 1 }}>
                 {data.length}
               </Typography>
             </Typography>

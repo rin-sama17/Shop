@@ -53,7 +53,7 @@ const NavContent = ({ setDrawerOpen }) => {
           <Divider
             orientation="vertical"
             flexItem
-            sx={{ color: 'divider.main' }}
+            sx={{ bgcolor: 'primary.light' }}
           />
         }
         spacing={2}

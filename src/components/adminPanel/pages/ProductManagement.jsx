@@ -3,13 +3,11 @@ import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-
 import { useDeleteProductMutation, useGetProductsQuery } from '../../../api'
 
 const ProductManagement = () => {
   const { data: products = [] } = useGetProductsQuery()
   const [deleteProduct] = useDeleteProductMutation()
-
   const handleProductDelete = async (productId) => {
     try {
       await deleteProduct(productId).unwrap()
@@ -53,7 +51,15 @@ const ProductManagement = () => {
         ساخت محصول جدید
       </Button>
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={products} columns={columns} />
+        <DataGrid
+          rows={products}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          disableSelectionOnClick
+          experimentalFeatures={{ newEditingApi: true }}
+        />
       </div>
     </>
   )

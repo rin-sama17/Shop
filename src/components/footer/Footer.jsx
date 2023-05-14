@@ -10,7 +10,7 @@ const Footer = () => {
     <Box component="div">
       <Box
         sx={{
-          bgcolor: 'navbarbg.main',
+          bgcolor: 'bgcolor.dark',
         }}
       >
         <Grid
@@ -25,7 +25,7 @@ const Footer = () => {
           <FooterContent />
         </Grid>
       </Box>
-      <Box sx={{ py: 3, px: 1, bgcolor: 'background.main' }}>
+      <Box sx={{ py: 3, px: 1, bgcolor: 'bgcolor.main' }}>
         <Typography
           variant="caption"
           color="text.secondary"

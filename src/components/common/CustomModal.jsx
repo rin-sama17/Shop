@@ -18,7 +18,7 @@ const CustomModal = ({ open, setOpen, width, children }) => {
         sx={{
           width: width ? width : '90%',
           p: 3,
-          bgcolor: 'background.main',
+          bgcolor: 'bgcolor.main',
           maxHeight: '80vh',
           overflowY: 'scroll',
         }}
