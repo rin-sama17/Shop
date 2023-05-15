@@ -29,7 +29,7 @@ const SliderManagement = () => {
   }
 
   const formik = useFormik({
-    initialValues: { photo: '', title: '', link: '' },
+    initialValues: { photo: '', link: '' },
     validationSchema: sliderValidation,
     onSubmit: (values, { resetForm }) => {
       handleAddNewSlider(values)
@@ -43,13 +43,10 @@ const SliderManagement = () => {
         formik={formik}
         fields={fields}
         label="اسلایدر جدید"
-        color="info"
+        color="warning"
         imageUploader
         imageUploaderName="photo"
-        imageUploaderProps={{
-          md: 12,
-          width: 1,
-        }}
+        imageUploaderProps={{ md: 9, width: 1 }}
       />
 
       <Box sx={{ my: 3 }}>

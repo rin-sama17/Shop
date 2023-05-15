@@ -5,6 +5,7 @@ import {
   IconButton,
   ImageListItem,
   ImageListItemBar,
+  CardActionArea,
 } from '@mui/material'
 import { useRef } from 'react'
 import Slider from 'react-slick'
@@ -22,8 +23,8 @@ const HomeSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     pauseOnHover: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
+    // autoplay: true,
+    // autoplaySpeed: 5000,
     arrows: false,
     dots: false,
     lazyLoad: true,
@@ -36,57 +37,47 @@ const HomeSlider = () => {
   }
 
   return (
-    <Box sx={{ width: 1, my: 2 }}>
+    <Box sx={{ width: 1, my: 2, position: 'relative' }}>
       <Slider {...settings} ref={slider}>
         {sliders.length > 0 &&
           sliders.map((slide, index) => (
             <Box component="div" key={index}>
-              <ImageListItem>
-                <img
-                  src={slide.photo}
-                  srcSet={slide.photo}
-                  alt=""
-                  style={{ width: '100%' }}
-                />
-                <ImageListItemBar
-                  sx={{ bgcolor: 'rgba(227, 242, 253,0)', height: 1 }}
-                  title={
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center',
-                        textAlign: 'center',
-                        alignItems: 'center',
-                      }}
-                    >
-                      <IconButton
-                        sx={{
-                          left: 10,
-                          position: 'absolute',
-                          bgcolor: 'whitesmoke',
-                        }}
-                        onClick={() => slider.current.slickNext()}
-                      >
-                        <KeyboardArrowRight sx={{ color: 'black' }} />
-                      </IconButton>
-                      <IconButton
-                        sx={{
-                          right: 10,
-                          position: 'absolute',
-                          bgcolor: 'whitesmoke',
-                        }}
-                        onClick={() => slider.current.slickPrev()}
-                      >
-                        <KeyboardArrowLeft sx={{ color: 'black' }} />
-                      </IconButton>
-                    </Box>
-                  }
-                />
-              </ImageListItem>
+              <CardActionArea component={Link} to={slide.link}>
+                <ImageListItem>
+                  <img
+                    src={slide.photo}
+                    srcSet={slide.photo}
+                    alt=""
+                    style={{ width: '100%' }}
+                  />
+                </ImageListItem>
+              </CardActionArea>
             </Box>
           ))}
       </Slider>
+
+      <IconButton
+        sx={{
+          top: '50%',
+          left: 10,
+          position: 'absolute',
+          bgcolor: 'whitesmoke',
+        }}
+        onClick={() => slider.current.slickNext()}
+      >
+        <KeyboardArrowRight sx={{ color: 'black' }} />
+      </IconButton>
+      <IconButton
+        sx={{
+          top: '50%',
+          right: 10,
+          position: 'absolute',
+          bgcolor: 'whitesmoke',
+        }}
+        onClick={() => slider.current.slickPrev()}
+      >
+        <KeyboardArrowLeft sx={{ color: 'black' }} />
+      </IconButton>
     </Box>
   )
 }

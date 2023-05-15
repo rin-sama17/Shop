@@ -1,10 +1,10 @@
 import { Modal, Card } from '@mui/material'
 
-const CustomModal = ({ open, setOpen, width, children }) => {
+const CustomModal = ({ open, setOpen, width, children, lock }) => {
   return (
     <Modal
       open={open}
-      onClose={() => setOpen(false)}
+      onClose={() => setOpen(lock)}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       sx={{
@@ -17,7 +17,7 @@ const CustomModal = ({ open, setOpen, width, children }) => {
       <Card
         sx={{
           width: width ? width : '90%',
-          p: 3,
+          p: 2,
           bgcolor: 'bgcolor.main',
           maxHeight: '80vh',
           overflowY: 'scroll',

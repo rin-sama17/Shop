@@ -1,6 +1,6 @@
 import { Box, Stack } from '@mui/material'
-import { CustomDivider, CustomForm } from '../components/common'
-import { useEffect } from 'react'
+import { CustomDivider, CustomForm, TextEditor } from '../components/common'
+import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import { postValidation } from '../components/validations/postValidation'
 import { AddParagraph, ShowParagraphs } from '../components/posts'
@@ -14,20 +14,10 @@ import { toast } from 'react-toastify'
 
 import React from 'react'
 
-import { useQuill } from 'react-quilljs'
-// or const { useQuill } = require('react-quilljs');
-
-import 'quill/dist/quill.snow.css' // Add css for snow theme
-// or import 'quill/dist/quill.bubble.css'; // Add css for bubble theme
-
+import ReactQuill from 'react-quill'
 const AddPost = () => {
-  const { quill, quillRef } = useQuill()
-
-  console.log(quill) // undefined > Quill Object
-  console.log(quillRef) // { current: undefined } > { current: Quill Editor Reference }
-
   const paragraphs = useSelector(selectAllParagraph)
-
+  const [value, setValue] = useState('')
   const [addNewPost] = useAddNewPostMutation()
   const navigate = useNavigate()
 
@@ -90,17 +80,7 @@ const AddPost = () => {
         imageUploader
         imageUploaderName="thumbnail"
       />
-      <Box
-        sx={{
-          width: 1,
-          direction: 'ltr',
-          mb: 10,
-          mt: 3,
-          bgcolor: '#FFFF',
-        }}
-      >
-        <div ref={quillRef} />
-      </Box>
+      <TextEditor value={value} setValue={setValue} />
     </Box>
   )
 }
