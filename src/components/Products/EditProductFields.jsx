@@ -47,6 +47,7 @@ const EditProductFields = ({ product }) => {
       color="warning"
       imageUploader
       imageUploaderName="thumbnail"
+      imageUploaderProps={{ aspect: 3 / 4 }}
     />
   )
 }

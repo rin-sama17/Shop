@@ -12,5 +12,9 @@ export const loginFieldsData = (formik) => {
       formik,
       name: 'password',
     },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
   ]
 }

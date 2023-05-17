@@ -7,7 +7,7 @@ export const apiSlice = createApi({
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
-            providesTags: (result = [], err, arg) => [
+            providesTags: (result = []) => [
                 "Posts",
                 ...result.map(({ id }) => ({ type: "Posts", id }))
             ]
@@ -37,7 +37,7 @@ export const apiSlice = createApi({
                 method: "PUT",
                 body: post
             }),
-            invalidatesTags: (result, err, arg) => [{ typr: "Posts", id: arg.id }]
+            invalidatesTags: (result, err, arg) => [{ type: "Posts", id: arg.id }]
         }),
 
 

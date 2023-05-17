@@ -1,7 +1,7 @@
 .zoom {
   transition: transform 0.2s; /* Animation */
-  width: 200px;
-  height: 200px;
+  width: 230px;
+  height: 333px;
   margin: 0 auto;
 }
 
@@ -12,4 +12,31 @@
 .ql-editor {
   direction: rtl;
   text-align: right;
+}
+
+.ql-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: whitesmoke;
+}
+.ql-container.ql-snow {
+  border: 0 !important;
+}
+.MuiSvgIcon-fontSizeMedium {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+@media screen and (max-width: 600px) {
+  .MuiSvgIcon-fontSizeMedium {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  h5 {
+    font-size: 1rem !important;
+  }
+  h4 {
+    font-size: 2rem !important;
+  }
 }

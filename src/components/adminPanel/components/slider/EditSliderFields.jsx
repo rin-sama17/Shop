@@ -39,6 +39,7 @@ const EditSliderFields = ({ slider, setOpen }) => {
       color="success"
       imageUploader
       imageUploaderName="photo"
+      imageUploaderProps={{ aspect: 16 / 5 }}
     />
   )
 }

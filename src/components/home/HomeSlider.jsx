@@ -23,8 +23,8 @@ const HomeSlider = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     pauseOnHover: true,
-    // autoplay: true,
-    // autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 5000,
     arrows: false,
     dots: false,
     lazyLoad: true,
@@ -42,7 +42,7 @@ const HomeSlider = () => {
         {sliders.length > 0 &&
           sliders.map((slide, index) => (
             <Box component="div" key={index}>
-              <CardActionArea component={Link} to={slide.link}>
+              <CardActionArea component="a" href={slide.link} target="_blank">
                 <ImageListItem>
                   <img
                     src={slide.photo}
@@ -57,26 +57,28 @@ const HomeSlider = () => {
       </Slider>
 
       <IconButton
+        size="small"
         sx={{
           top: '50%',
           left: 10,
           position: 'absolute',
-          bgcolor: 'whitesmoke',
+          bgcolor: 'bgBlur.main',
         }}
         onClick={() => slider.current.slickNext()}
       >
-        <KeyboardArrowRight sx={{ color: 'black' }} />
+        <KeyboardArrowRight sx={{ color: 'white' }} />
       </IconButton>
       <IconButton
+        size="small"
         sx={{
           top: '50%',
           right: 10,
           position: 'absolute',
-          bgcolor: 'whitesmoke',
+          bgcolor: 'bgBlur.main',
         }}
         onClick={() => slider.current.slickPrev()}
       >
-        <KeyboardArrowLeft sx={{ color: 'black' }} />
+        <KeyboardArrowLeft sx={{ color: 'white' }} />
       </IconButton>
     </Box>
   )

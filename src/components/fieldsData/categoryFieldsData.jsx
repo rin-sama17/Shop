@@ -5,6 +5,10 @@ const categoryFieldsData = (formik) => {
       label: 'نام دسته بندی',
       name: 'name',
     },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
   ]
 }
 

@@ -6,6 +6,7 @@ import {
   CardActionArea,
   Fade,
   Paper,
+  Box,
 } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useNavigate } from 'react-router-dom'
@@ -33,14 +34,11 @@ const Product = ({ productId }) => {
         pt: 1,
       }}
     >
-      <CardActionArea
-        onClick={() => navigate(`/product/${product.id}`)}
-        sx={{ py: 1 }}
-      >
+      <Box onClick={() => navigate(`/product/${product.id}`)} sx={{ py: 1 }}>
         <Paper elevation={9} sx={{ width: 250, p: 2 }}>
           <CardMedia
             component="img"
-            sx={{ height: 350, width: 250 }}
+            sx={{ height: 1, width: 1 }}
             alt={product.name}
             image={product.thumbnail}
           />
@@ -57,7 +55,7 @@ const Product = ({ productId }) => {
 
           <ProductPrice price={product.price} discount={product.discount} />
         </CardContent>
-      </CardActionArea>
+      </Box>
     </Fade>
   )
 }

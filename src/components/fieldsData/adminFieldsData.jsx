@@ -4,28 +4,35 @@ import { Face } from '@mui/icons-material'
 export const adminFieldsData = (formik) => {
   return [
     {
-      md: 6,
-      name: 'fullName',
-      label: 'نام و نام خانوادگی',
+      md: 5,
+      name: 'title',
+      label: 'عنوان',
       formik,
-      InputProps: {
-        endAdornment: (
-          <InputAdornment position="end">
-            <Face />
-          </InputAdornment>
-        ),
-      },
     },
     {
-      phone: true,
-      name: 'phone',
+      md: 5,
       formik,
-      md: 6,
+      name: 'details',
+      label: 'توضیحات',
     },
     {
-      pwd: true,
-      name: 'password',
+      md: 2,
+      submit: true,
+      customLabel: 'ثبت',
+    },
+    {
+      xs: 3,
+      checkbox: true,
+      name: 'addPost',
       formik,
+      label: 'افزودن پست',
+    },
+    {
+      xs: 3,
+      checkbox: true,
+      name: 'editPost',
+      formik,
+      label: 'ویرایش پست',
     },
   ]
 }

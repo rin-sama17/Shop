@@ -41,13 +41,12 @@ const ProductContent = ({ product }) => {
         </Breadcrumbs>
       </Box>
       <Grid container spacing={2} sx={{ width: 1 }}>
-        <Grid xs={12} md={4} sx={{ p: 1 }}>
-          <img
-            className="zoom"
-            src={product.thumbnail}
-            alt={product.name}
-            style={{ width: '100%' }}
-          />
+        <Grid
+          xs={12}
+          md={4}
+          sx={{ p: 1, display: 'flex', justifyContent: 'center' }}
+        >
+          <img className="zoom" src={product.thumbnail} alt={product.name} />
         </Grid>
         <Grid xs={12} md={4}>
           <ShowCategory categoryId={product.category} tags={product.tags} />

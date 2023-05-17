@@ -11,7 +11,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import CustomModal from './CustomModal'
 import { useRef, useState } from 'react'
 import CropImage from './imageUploader/CropImage.jsx'
-const ImageUploader = ({ formik, name, color, width, md }) => {
+const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
   const [open, setOpen] = useState(false)
 
   const setChanges = (changes) => {
@@ -94,6 +94,7 @@ const ImageUploader = ({ formik, name, color, width, md }) => {
           setChanges={setChanges}
           open={open}
           setOpen={setOpen}
+          aspect={aspect}
         />
       </CustomModal>
     </>

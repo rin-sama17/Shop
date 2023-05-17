@@ -20,6 +20,10 @@ const discountFieldsData = (formik) => {
       formik,
       name: 'category',
     },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
   ]
 }
 export default discountFieldsData

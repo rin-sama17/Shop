@@ -73,6 +73,10 @@ export const productFieldsData = (formik) => {
       rows: 4,
       label: 'توضیحات',
     },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
   ]
 }
 

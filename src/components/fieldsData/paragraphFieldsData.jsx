@@ -15,6 +15,10 @@ const paragraphFieldsData = (formik) => {
       rows: 6,
       label: 'توضیحات',
     },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
   ]
 }
 export default paragraphFieldsData

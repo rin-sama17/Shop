@@ -46,7 +46,7 @@ const SliderManagement = () => {
         color="warning"
         imageUploader
         imageUploaderName="photo"
-        imageUploaderProps={{ md: 9, width: 1 }}
+        imageUploaderProps={{ md: 9, width: 1, aspect: 16 / 5 }}
       />
 
       <Box sx={{ my: 3 }}>

@@ -37,11 +37,15 @@ const NavContent = ({ setDrawerOpen }) => {
         </Link>
 
         <Box>
-          <CustomIconButton
-            color="buttons"
-            icon={<LanguageOutlined />}
-            title="زبان"
-          />
+          <Button
+            sx={{
+              fontSize: { xs: 'none', md: '20px' },
+              borderRadius: 5,
+              color: 'buttons.main',
+            }}
+          >
+            FA
+          </Button>
           <NavSearch />
         </Box>
       </Box>
@@ -53,11 +57,19 @@ const NavContent = ({ setDrawerOpen }) => {
           <Divider
             orientation="vertical"
             flexItem
-            sx={{ bgcolor: 'primary.light' }}
+            sx={{
+              bgcolor: 'primary.light',
+            }}
           />
         }
         spacing={2}
-        sx={{ mt: 2 }}
+        sx={{
+          mt: 2,
+          display: {
+            xs: 'none',
+            sm: 'flex',
+          },
+        }}
       >
         <Button>فرش ماشینی</Button>
         <Button>فرش دستبافت</Button>

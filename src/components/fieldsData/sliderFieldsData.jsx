@@ -5,6 +5,10 @@ const sliderFieldsData = (formik) => {
       formik,
       label: 'لینک',
     },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
   ]
 }
 export default sliderFieldsData

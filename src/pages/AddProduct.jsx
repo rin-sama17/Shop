@@ -70,6 +70,7 @@ const AddProduct = () => {
         color="warning"
         imageUploader
         imageUploaderName="thumbnail"
+        imageUploaderProps={{ aspect: 3 / 4 }}
       />
     </Box>
   )

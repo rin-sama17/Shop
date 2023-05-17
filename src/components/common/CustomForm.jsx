@@ -7,7 +7,7 @@ const CustomForm = ({
   fields,
   formik,
   label,
-  color,
+  color = 'primary',
   imageUploader,
   imageUploaderName,
   imageUploaderProps,
@@ -21,12 +21,12 @@ const CustomForm = ({
           justifyContent: 'center',
         }}
       >
-        <CustomDivider label={label} color={color ?? 'primary'} />
+        <CustomDivider label={label} color={color} />
         {imageUploader ? (
           <ImageUploader
             formik={formik}
             name={imageUploaderName}
-            color={color ?? 'primary'}
+            color={color}
             {...imageUploaderProps}
           />
         ) : null}
@@ -37,16 +37,6 @@ const CustomForm = ({
             ))}
           </Grid>
         </Grid>
-        <Button
-          fullWidth
-          type="submit"
-          size="large"
-          color={color ?? 'primary'}
-          variant="contained"
-          sx={{ mt: 2, color: 'black' }}
-        >
-          ارسال
-        </Button>
       </Grid>
     </form>
   )

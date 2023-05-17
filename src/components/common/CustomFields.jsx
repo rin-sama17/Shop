@@ -8,6 +8,9 @@ import {
   OutlinedInput,
   Select,
   MenuItem,
+  FormControlLabel,
+  Checkbox,
+  Button,
 } from '@mui/material'
 
 import { NumericFormat } from 'react-number-format'
@@ -20,24 +23,44 @@ import { useGetCategorysQuery } from '../../api'
 
 const CustomFields = ({
   pwd,
+  name,
   phone,
   price,
+  formik,
+  submit,
+  checkbox,
   category,
-  customLabel,
   xs,
   sm,
   md,
-  name,
-  formik,
+  customLabel,
   ...props
 }) => {
   const [value, setValue] = useState()
+
+  if (submit === true) {
+    return (
+      <Grid xs={xs ? xs : 12} sm={sm ? sm : null} md={md ? md : null}>
+        <Button
+          fullWidth
+          type="submit"
+          size="small"
+          variant="contained"
+          sx={{ height: 1 }}
+          {...props}
+        >
+          {customLabel}
+        </Button>
+      </Grid>
+    )
+  }
+
   useEffect(() => {
     setValue(formik.values[`${name}`])
   }, [])
 
   useEffect(() => {
-    if (formik.values[`${name}`] === '') {
+    if (formik.values[`${name}`] && formik.values[`${name}`] === '') {
       setValue('')
     }
   }, [formik.values[`${name}`]])
@@ -61,6 +84,7 @@ const CustomFields = ({
       <PatternFormat
         customInput={TextField}
         fullWidth
+        size="small"
         label="شماره موبایل"
         name={name}
         onBlur={handleBlur}
@@ -88,6 +112,7 @@ const CustomFields = ({
         thousandSeparator=","
         customInput={TextField}
         fullWidth
+        size="small"
         valueIsNumericString={true}
         name={name}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
@@ -132,6 +157,7 @@ const CustomFields = ({
     content = (
       <FormControl
         fullWidth
+        size="small"
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
       >
         <InputLabel id={`category-label`}>دسته بندی</InputLabel>
@@ -158,11 +184,25 @@ const CustomFields = ({
         </Select>
       </FormControl>
     )
+  } else if (checkbox) {
+    content = (
+      <FormControlLabel
+        control={
+          <Checkbox
+            name={name}
+            value={formik.values[`${name}`]}
+            onChange={formik.handleChange}
+          />
+        }
+        {...props}
+      />
+    )
   } else {
     content = (
       <TextField
         sx={{ direction: 'ltr' }}
         fullWidth
+        size="small"
         name={name}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
         value={value}
@@ -173,6 +213,7 @@ const CustomFields = ({
       />
     )
   }
+
   return (
     <Grid xs={xs ? xs : 12} sm={sm ? sm : null} md={md ? md : null}>
       {content}

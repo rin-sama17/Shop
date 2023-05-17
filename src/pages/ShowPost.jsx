@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
-import { useGetPostQuery } from '../api/index.js'
+import { useGetPostQuery } from '../api'
 import { ShowPostLoading } from '../components/loading'
-import { PostContent } from '../components/Posts/index.js'
+import { PostContents } from '../components/Posts'
 const ShowPost = () => {
   const { postId } = useParams()
   const { data: post, isLoading, isSuccess } = useGetPostQuery(postId)
@@ -9,7 +9,8 @@ const ShowPost = () => {
   if (isLoading) {
     content = <ShowPostLoading />
   } else if (isSuccess) {
-    content = <PostContent post={post} />
+    console.log('llllll')
+    content = <PostContents post={post} />
   }
 
   return content

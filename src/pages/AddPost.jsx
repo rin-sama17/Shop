@@ -32,6 +32,7 @@ const AddPost = () => {
       toast.success(`پست ${values.heading} با موفقیت ساخته شد`)
 
       navigate(-1)
+      console.log(values)
     } catch (error) {
       console.log(error)
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
@@ -40,12 +41,12 @@ const AddPost = () => {
 
   const postFields = {
     heading: '',
+    introduction: '',
     thumbnail: '',
     category: '',
     tags: '',
-    paragraphs: [],
+    paragraphs: '',
   }
-
   const formik = useFormik({
     initialValues: postFields,
     validationSchema: postValidation,
@@ -54,6 +55,7 @@ const AddPost = () => {
       resetForm()
     },
   })
+  console.log(formik.values)
 
   useEffect(() => {
     formik.setFieldValue('paragraphs', paragraphs)
@@ -63,7 +65,6 @@ const AddPost = () => {
   return (
     <Box
       sx={{
-        width: 1,
         px: 3,
         py: 3,
         display: 'flex',
@@ -80,7 +81,7 @@ const AddPost = () => {
         imageUploader
         imageUploaderName="thumbnail"
       />
-      <TextEditor value={value} setValue={setValue} />
+      <TextEditor formik={formik} name="paragraphs" />
     </Box>
   )
 }

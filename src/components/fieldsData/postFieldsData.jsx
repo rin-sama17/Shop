@@ -18,8 +18,19 @@ const postFieldsData = (formik) => {
       formik,
       label: 'برچسب ها',
       helperText: 'برچسب ها را با / از هم جدا کنید',
-      type: 'number',
       multiline: true,
+    },
+    {
+      sm: 12,
+      name: 'introduction',
+      formik,
+      label: 'توضیحات',
+      multiline: true,
+      rows: 3,
+    },
+    {
+      submit: true,
+      customLabel: 'ثبت',
     },
   ]
 }

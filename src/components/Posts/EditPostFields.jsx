@@ -63,6 +63,7 @@ const EditPostFields = ({ post }) => {
         color="success"
         imageUploader
         imageUploaderName="thumbnail"
+        imageUploaderProps={{ aspect: 16 / 7 }}
       />
       <CustomDivider label="ویرایش پاراگراف ها" color="success" />
       <AddParagraph /> <ShowParagraphs />

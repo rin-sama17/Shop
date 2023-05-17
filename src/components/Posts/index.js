@@ -1,7 +1,7 @@
 export { default as Post } from "./Post";
 export { default as EditPostFields } from "./EditPostFields";
 
-export { default as PostContent } from "./showPost/PostContent";
+export { default as PostContents } from "./showPost/PostContents";
 export { default as PostIntroduction } from "./showPost/PostIntroduction";
 export { default as PostParagraphs } from "./showPost/PostParagraphs";
 

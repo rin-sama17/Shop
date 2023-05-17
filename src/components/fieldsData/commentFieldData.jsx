@@ -14,6 +14,10 @@ const commentFieldData = (formik) => {
       rows: 6,
       label: 'نظر شما',
     },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
   ]
 }
 export default commentFieldData

@@ -6,29 +6,27 @@ const DrawerItems = ({ setOpen }) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       {tabsData.map((tab, index) => (
-        <>
-          <Button
-            onClick={() => setOpen(false)}
-            key={index}
-            component={Link}
-            to={tab.to}
-            size="large"
-            sx={{
-              mx: 1,
-              height: 50,
-              justifyContent: 'flex-start',
-              color: 'buttons.main',
-              '&:hover': {
-                color: 'primary.main',
-              },
-            }}
-          >
-            {tab.icon}
-            <Typography variant="subtitle2" textAlign="left" sx={{ ml: 1 }}>
-              {tab.text}
-            </Typography>
-          </Button>
-        </>
+        <Button
+          onClick={() => setOpen(false)}
+          key={index}
+          component={Link}
+          to={tab.to}
+          size="large"
+          sx={{
+            mx: 1,
+            height: 50,
+            justifyContent: 'flex-start',
+            color: 'buttons.main',
+            '&:hover': {
+              color: 'primary.main',
+            },
+          }}
+        >
+          {tab.icon}
+          <Typography variant="subtitle2" textAlign="left" sx={{ ml: 1 }}>
+            {tab.text}
+          </Typography>
+        </Button>
       ))}
     </Box>
   )

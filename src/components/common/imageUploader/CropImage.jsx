@@ -3,8 +3,7 @@ import Cropper from 'react-easy-crop'
 import { Slider, Button } from '@mui/material'
 import getCroppedImg from './getCroppedImg'
 import Grid from '@mui/material/Unstable_Grid2'
-
-const CropImage = ({ img, setChanges, setOpen }) => {
+const CropImage = ({ img, setChanges, setOpen, aspect }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [rotation, setRotation] = useState(0)
   const [zoom, setZoom] = useState(1)
@@ -52,7 +51,7 @@ const CropImage = ({ img, setChanges, setOpen }) => {
           crop={crop}
           rotation={rotation}
           zoom={zoom}
-          aspect={16 / 6}
+          aspect={aspect}
           onCropChange={setCrop}
           onRotationChange={setRotation}
           onCropComplete={onCropComplete}
@@ -76,8 +75,8 @@ const CropImage = ({ img, setChanges, setOpen }) => {
           max={3}
           step={0.1}
           aria-labelledby="Zoom"
-          classes={{ root: classes.slider }}
           onChange={(e, zoom) => setZoom(zoom)}
+          sx={{ px: 2 }}
         />
         <Button sx={{ width: 150 }} onClick={showCroppedImage}>
           ثبت تغییرات

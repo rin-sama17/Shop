@@ -6,7 +6,6 @@ export const postValidation = Yup.object().shape({
     thumbnail: Yup.string().required(),
     category: Yup.string().required(),
     tags: Yup.string().required(),
-    paragraphs: Yup.array().length(1, "پست باید دارای حداقل یک پاراگراف باشد")
 });
 
 export const paragraphValidation = Yup.object().shape({

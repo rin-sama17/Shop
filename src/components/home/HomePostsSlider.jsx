@@ -104,6 +104,7 @@ const HomePostsSlider = () => {
                   width: 1,
                   height: 1,
                   borderRadius: 0,
+                  px: 1,
                 }}
               >
                 <Grid
@@ -117,7 +118,10 @@ const HomePostsSlider = () => {
                   <Grid
                     xs={12}
                     md={3}
-                    sx={{ display: 'flex', justifyContent: 'center' }}
+                    sx={{
+                      display: { xs: 'none', sm: 'flex' },
+                      justifyContent: 'center',
+                    }}
                   >
                     <Paper elevation={12} sx={{ p: 0.3 }}>
                       <img
@@ -129,12 +133,12 @@ const HomePostsSlider = () => {
                     </Paper>
                   </Grid>
                   <Grid xs={12} md={8} sx={{ textAlign: 'end' }}>
-                    <Typography variant="h5" color="white" sx={{ mb: 2 }}>
+                    <Typography variant="h6" color="white" sx={{ mb: 1 }}>
                       {slide.heading}
                     </Typography>
 
                     <Typography
-                      variant="body2"
+                      variant="caption"
                       sx={{ direction: 'ltr' }}
                       textAlign="start"
                       color="whitesmoke"
