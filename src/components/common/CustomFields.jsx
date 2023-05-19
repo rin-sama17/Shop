@@ -37,7 +37,6 @@ const CustomFields = ({
   ...props
 }) => {
   const [value, setValue] = useState()
-
   if (submit === true) {
     return (
       <Grid xs={xs ? xs : 12} sm={sm ? sm : null} md={md ? md : null}>
@@ -191,6 +190,7 @@ const CustomFields = ({
           <Checkbox
             name={name}
             value={formik.values[`${name}`]}
+            checked={formik.values[`${name}`]}
             onChange={formik.handleChange}
           />
         }

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Sliders", "Categorys", "Comments", "Description", "Admins"],
+    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Sliders", "Categorys", "Comments", "Description", "Admins", "Roles"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
@@ -292,7 +292,41 @@ export const apiSlice = createApi({
             invalidatesTags: (res, err, arg) => [{ type: "Admins", id: arg.id }]
         }),
 
+        getRoles: builder.query({
+            query: () => '/roles',
+            providesTags: (res = []) => [
+                "Roles",
+                ...res.map(({ id }) => ({ type: "Roles", id }))
+            ]
+        }),
+        getRole: builder.query({
+            query: (roleId) => `/roles/${roleId}`,
+            providesTags: (res, err, arg) => [{ type: "Roles", id: arg.id }]
+        }),
+        addRole: builder.mutation({
+            query: (role) => ({
+                url: "/roles",
+                method: "POST",
+                body: role
+            }),
+            invalidatesTags: ["Roles"]
+        }),
+        editRole: builder.mutation({
+            query: (role) => ({
+                url: `/roles/${role.id}`,
+                method: "PUT",
+                body: role
+            }),
+            invalidatesTags: (res, err, arg) => [{ type: "Roles", id: arg.id }]
+        }),
+        deleteRole: builder.mutation({
+            query: (roleId) => ({
 
+                url: `/roles/${roleId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Roles"]
+        })
 
     })
 });
@@ -349,6 +383,13 @@ export const {
     useGetAdminQuery,
     useAddNewAdminMutation,
     useDeleteAdminMutation,
-    useEditAdminMutation
+    useEditAdminMutation,
 
+
+
+    useGetRolesQuery,
+    useGetRoleQuery,
+    useAddRoleMutation,
+    useEditRoleMutation,
+    useDeleteRoleMutation
 } = apiSlice;

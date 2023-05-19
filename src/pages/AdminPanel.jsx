@@ -14,7 +14,7 @@ import {
   CategoryManagement,
   CommentManagement,
   DescriptionManagement,
-  AdminManagement,
+  RoleManagement,
 } from '../components/adminPanel/pages'
 
 const pages = [
@@ -25,7 +25,7 @@ const pages = [
   <CategoryManagement />,
   <CommentManagement />,
   <DescriptionManagement />,
-  <AdminManagement />,
+  <RoleManagement />,
 ]
 
 const AdminPanel = () => {
@@ -57,33 +57,6 @@ const AdminPanel = () => {
               {page}
             </Page>
           ))}
-          {/* <Page pageNumber={pageNumber} name="adminPanel" index={0}>
-            <SliderManagement />
-          </Page>
-          <Page pageNumber={pageNumber} name="adminPanel" index={1}>
-            <OrderManagement />
-          </Page>
-          <Page pageNumber={pageNumber} name="adminPanel" index={2}>
-            <ProductManagement />
-          </Page>
-          <Page pageNumber={pageNumber} name="adminPanel" index={3}>
-            <PostManagement />
-          </Page>
-          <Page pageNumber={pageNumber} name="adminPanel" index={4}>
-            <DiscountManagement />
-          </Page>
-          <Page pageNumber={pageNumber} name="adminPanel" index={5}>
-            <CategoryManagement />
-          </Page>
-          <Page pageNumber={pageNumber} name="adminPanel" index={6}>
-            <CommentManagement />
-          </Page>
-          <Page pageNumber={pageNumber} name="adminPanel" index={7}>
-            <DescriptionManagement />
-          </Page>
-          <Page pageNumber={pageNumber} name="adminPanel" index={8}>
-            <AdminManagement />
-          </Page> */}
         </SwipeableViews>
       </Grid>
     </Grid>

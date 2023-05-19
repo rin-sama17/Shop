@@ -4,19 +4,19 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
-import { useEditAdminMutation } from '../../../api'
+import { useEditRoleMutation } from '../../../api'
 import { CustomModal, CustomForm } from '../../common'
-import { adminFieldsData } from '../../fieldsData/adminFieldsData'
-import { adminValidation } from '../../validations/adminValidation'
+import { roleFieldsData } from '../../fieldsData/roleFieldsData'
+import { roleValidation } from '../../validations/roleValidation'
 
-const EditAdmin = ({ admin }) => {
-  const [editAdmin] = useEditAdminMutation()
+const EditRole = ({ role }) => {
+  const [editRole] = useEditRoleMutation()
   const [open, setOpen] = useState(false)
 
   const handleSubmit = async (values) => {
     try {
-      await editAdmin({ ...values })
-      toast.success(`اطلاعات ${values.fullName} با موفقیت ویرایش شد`)
+      await editRole({ ...values })
+      toast.success(`${values.title} با موفقیت ویرایش شد`)
       setOpen(false)
     } catch (error) {
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
@@ -24,25 +24,26 @@ const EditAdmin = ({ admin }) => {
     }
   }
   const formik = useFormik({
-    initialValues: { ...admin },
-    validationSchema: adminValidation,
-    onSubmit: (values) => {
+    initialValues: { ...role },
+    validationSchema: roleValidation,
+    onSubmit: (values, { resetForm }) => {
       handleSubmit(values)
+      resetForm()
     },
   })
 
-  const fields = adminFieldsData(formik)
+  const fields = roleFieldsData(formik)
   return (
     <>
       <GridActionsCellItem
         icon={<Edit />}
-        color="secondary"
+        color="info"
         label="ویرایش"
         onClick={() => setOpen(true)}
       />
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
-          label="ویرایش ادمین"
+          label="ویرایش نقش"
           formik={formik}
           fields={fields}
           color="info"
@@ -52,4 +53,4 @@ const EditAdmin = ({ admin }) => {
   )
 }
 
-export default EditAdmin
+export default EditRole

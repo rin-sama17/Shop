@@ -6,4 +6,4 @@ export { default as OrderManagement } from "./OrderManagement";
 export { default as PostManagement } from "./PostManagement";
 export { default as ProductManagement } from "./ProductManagement";
 export { default as SliderManagement } from "./SliderManagement";
-export { default as AdminManagement } from "./AdminManagement";
+export { default as RoleManagement } from "./RoleManagement";

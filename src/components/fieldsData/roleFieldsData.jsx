@@ -1,7 +1,4 @@
-import { InputAdornment } from '@mui/material'
-import { Face } from '@mui/icons-material'
-
-export const adminFieldsData = (formik) => {
+export const roleFieldsData = (formik) => {
   return [
     {
       md: 5,

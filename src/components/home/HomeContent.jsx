@@ -13,7 +13,7 @@ const HomeContent = () => {
     <>
       <HomeDescription />
       <HomeNewProducts />
-      {/* <HomeContract /> */}
+      <HomeContract />
       <HomeCategorys />
       <HomePostsSlider />
       <HomeFAB />

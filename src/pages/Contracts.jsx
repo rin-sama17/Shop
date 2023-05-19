@@ -78,8 +78,7 @@ const data = [
 
 const Contract = ({ contract }) => {
   return (
-    <Grid
-      xs={12}
+    <Box
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -130,7 +129,7 @@ const Contract = ({ contract }) => {
           </Box>
         </CardActionArea>
       </Paper>
-    </Grid>
+    </Box>
   )
 }
 
@@ -198,11 +197,9 @@ const Contracts = () => {
           </Grid>
         </Grid>
       </Paper>
-      <Grid container spacing={0.5} sx={{ width: 1 }}>
-        {data.map((contract, index) => (
-          <Contract contract={contract} key={index} />
-        ))}
-      </Grid>
+      {data.map((contract, index) => (
+        <Contract contract={contract} key={index} />
+      ))}
     </>
   )
 }
