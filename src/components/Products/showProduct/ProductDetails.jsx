@@ -37,14 +37,16 @@ const ProductDetails = ({ product }) => {
           <Typography
             color="text.secondary"
             variant="body1"
-            sx={{ mr: 1, display: 'flex' }}
+            sx={{ mr: 1, display: 'flex', alignItems: 'center' }}
           >
             قیمت:
           </Typography>
           <ProductPrice price={product.price} discount={product.discount} />
         </Box>
 
-        <Button variant="contained">تماس بگیرید</Button>
+        <Button fullWidth variant="outlined">
+          تماس بگیرید
+        </Button>
       </Card>
     </Grid>
   )

@@ -6,7 +6,7 @@ import { createTheme } from '@mui/material';
 export const theme = createTheme({
     direction: "rtl",
     typography: {
-        fontFamily: "tanha"
+        fontFamily: "tanha ,wazin"
     },
     palette: {
         mode: "light",

@@ -26,35 +26,36 @@ const Product = ({ productId }) => {
     <Fade
       in={isSuccess}
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignContent: 'center',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-        pt: 2,
+        width: 250,
+        m: 'auto',
       }}
     >
       <Box onClick={() => navigate(`/product/${product.id}`)} sx={{ py: 1 }}>
-        <Paper elevation={12} sx={{ width: 250 }}>
-          <CardMedia
-            component="img"
-            sx={{ height: 1, width: 1 }}
-            alt={product.name}
-            image={product.thumbnail}
+        <Box sx={{ width: 1, mb: 2 }}>
+          <Paper elevation={12} sx={{ width: 250, m: 'auto' }}>
+            <CardMedia
+              component="img"
+              sx={{ height: 1, width: 250 }}
+              alt={product.name}
+              image={product.thumbnail}
+            />
+          </Paper>
+        </Box>
+        <Typography
+          color="text.primary"
+          variant="subtitle1"
+          textAlign="left"
+          gutterBottom
+        >
+          {product.name}
+        </Typography>
+        <Box sx={{ width: 1 }}>
+          <ProductPrice
+            price={product.price}
+            discount={product.discount}
+            absolute
           />
-        </Paper>
-        <CardContent>
-          <Typography
-            color="text.primary"
-            variant="subtitle1"
-            textAlign="left"
-            gutterBottom
-          >
-            {product.name}
-          </Typography>
-
-          <ProductPrice price={product.price} discount={product.discount} />
-        </CardContent>
+        </Box>
       </Box>
     </Fade>
   )
