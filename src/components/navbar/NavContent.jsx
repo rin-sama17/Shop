@@ -20,7 +20,7 @@ const NavContent = ({ setDrawerOpen }) => {
           alignItems: 'center',
         }}
       >
-        <Box>
+        <Box sx={{ display: 'flex' }}>
           <CustomIconButton
             color="buttons"
             icon={<AppsOutlined />}
@@ -36,7 +36,7 @@ const NavContent = ({ setDrawerOpen }) => {
           </Typography>
         </Link>
 
-        <Box>
+        <Box sx={{ display: 'flex' }}>
           <Button
             sx={{
               fontSize: { xs: 'none', md: '20px' },

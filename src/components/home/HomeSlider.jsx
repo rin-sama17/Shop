@@ -16,7 +16,7 @@ import { SliderLoading } from '../loading'
 import { Link } from 'react-router-dom'
 
 const HomeSlider = () => {
-  const { data: sliders = [], isLoading } = useGetSlidersQuery()
+  const { data: sliders = [], isSuccess } = useGetSlidersQuery()
   const slider = useRef(null)
   const settings = {
     infinite: true,
@@ -30,9 +30,7 @@ const HomeSlider = () => {
     lazyLoad: true,
     rtl: true,
   }
-  if (sliders.length === 0) {
-    return <Box sx={{ height: 60 }} />
-  } else if (isLoading) {
+  if (!isSuccess || sliders.length === 0) {
     return <SliderLoading />
   }
 

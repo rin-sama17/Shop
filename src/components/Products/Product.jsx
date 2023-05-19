@@ -31,11 +31,11 @@ const Product = ({ productId }) => {
         alignContent: 'center',
         flexWrap: 'wrap',
         alignItems: 'flex-start',
-        pt: 1,
+        pt: 2,
       }}
     >
       <Box onClick={() => navigate(`/product/${product.id}`)} sx={{ py: 1 }}>
-        <Paper elevation={9} sx={{ width: 250, p: 2 }}>
+        <Paper elevation={12} sx={{ width: 250 }}>
           <CardMedia
             component="img"
             sx={{ height: 1, width: 1 }}

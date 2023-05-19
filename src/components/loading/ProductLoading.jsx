@@ -11,33 +11,26 @@ const ProductLoading = ({ width, productId }) => {
       lg={3}
       sx={{
         display: 'flex',
-        justifyContent: 'center',
-        mb: 2,
+        justifyContent: 'start',
+        m: 3,
         width: 1,
       }}
     >
-      <Card
-        sx={{
-          width: width,
-          height: 355,
-        }}
+      <Box
+        component={Link}
+        to={`/product/${productId}`}
+        sx={{ height: 1, width: 250 }}
       >
-        <CardActionArea
-          component={Link}
-          to={`/product/${productId}`}
-          sx={{ height: 1 }}
-        >
-          <Skeleton
-            sx={{ height: 350, mb: 2 }}
-            animation="wave"
-            variant="rectangular"
-          />
-          <Box sx={{ p: 1 }}>
-            <Skeleton animation="wave" height={30} width="40%" />
-            <Skeleton animation="wave" height={40} width="70%" />
-          </Box>
-        </CardActionArea>
-      </Card>
+        <Skeleton
+          sx={{ height: 330, my: 2 }}
+          animation="wave"
+          variant="rectangular"
+        />
+        <Box sx={{ p: 1 }}>
+          <Skeleton animation="wave" height={30} width="40%" />
+          <Skeleton animation="wave" height={40} width="70%" />
+        </Box>
+      </Box>
     </Grid>
   )
 }

@@ -27,7 +27,7 @@ const Products = () => {
       {isSuccess && <ProductsFilter setData={setData} data={products} />}
       <Grid container>
         {data.map((product, index) => (
-          <Grid xs={12} sm={6} md={4} lg={4} sx={{ justifyContent: 'center' }}>
+          <Grid xs={12} sm={6} md={4} sx={{ justifyContent: 'center' }}>
             <Product productId={product.id} key={index} maxWidth={220} />
           </Grid>
         ))}
