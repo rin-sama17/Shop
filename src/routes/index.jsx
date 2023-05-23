@@ -34,38 +34,38 @@ export const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: '/posts',
+        path: '/post/index',
         element: <Posts />,
       },
       {
-        path: '/posts/:postId',
+        path: '/post/read/:postId',
         element: <ShowPost />,
       },
 
       {
-        path: '/products',
+        path: '/product/index',
         element: <Products />,
       },
       {
-        path: '/product/:productId',
+        path: '/product/read/:productId',
         element: <ShowProduct />,
       },
 
       {
-        path: '/addProduct',
+        path: '/product/add',
         element: <AddProduct />,
       },
 
       {
-        path: '/editProduct/:productId',
+        path: '/product/edit/:productId',
         element: <EditProduct />,
       },
       {
-        path: '/addPost',
+        path: '/post/add',
         element: <AddPost />,
       },
       {
-        path: '/editPost/:postId',
+        path: '/post/edit/:postId',
         element: <EditPost />,
       },
 
@@ -82,11 +82,11 @@ export const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: '/contracts',
+        path: '/contract/index',
         element: <Contracts />,
       },
       {
-        path: '/contracts/:contractId',
+        path: '/contract/read/:contractId',
         element: <ShowContract />,
       },
     ],

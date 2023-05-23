@@ -12,74 +12,116 @@ export const theme = createTheme({
         mode: "light",
 
         //p01
+        // bgcolor: {
+        //     main: "#E9E8EE",
+        //     dark: "#1E1E5C"
+        // },
+        // buttons: {
+        //     main: "#D2D2DC"
+        // },
+        // primary: {
+        //     main: "#ff8400",
+        //     light: "#FFFFFF"
+        // },
+        // secondary: {
+        //     main: "#F97F12"
+        // },
+        // bgBlur: {
+        //     main: "rgba(0, 0, 0, 0.4)"
+        // },
+        // title: {
+        //     main: '#437FC7'
+        // }
+
+        //p02
+        // bgcolor: {
+        //     main: "#FFFFFF",
+        //     dark: "#692705"
+        // },
+        // buttons: {
+        //     main: "#FFEEE4"
+        // },
+        // primary: {
+        //     main: "#FF5700",
+        //     light: "#FFFFFF"
+        // },
+        // secondary: {
+        //     main: "#FF5700"
+        // },
+        // bgBlur: {
+        //     main: "rgba(0, 0, 0, 0.4)"
+        // },
+        // title: {
+        //     main: '#CF8B64'
+        // }
+
+
+        //p04
+        // bgcolor: {
+        //     main: "#FFFFFF",
+        //     dark: "#161B7E"
+        // },
+        // buttons: {
+        //     main: "#FFEEE4"
+        // },
+        // primary: {
+        //     main: "#ED3D63",
+        //     light: "#FFFFFF"
+        // },
+        // secondary: {
+        //     main: "#ED3D63"
+        // },
+        // bgBlur: {
+        //     main: "rgba(0, 0, 0, 0.4)"
+        // },
+        // title: {
+        //     main: '#8D3FD0'
+        // }
+
+        //p05
         bgcolor: {
             main: "#E9E8EE",
-            dark: "#1E1E5C"
+            dark: "#385068"
         },
         buttons: {
             main: "#D2D2DC"
         },
         primary: {
-            main: "#ff8400",
+            main: "#ED3D63",
             light: "#FFFFFF"
         },
         secondary: {
-            main: "#F97F12"
+            main: "#ED3D63"
         },
         bgBlur: {
-            main: "rgba(0, 0, 0, 0.4)"
+            main: "rgba(56,80,104, 0.5)"
         },
         title: {
-            main: '#437FC7'
+            light: "#FFFFFF",
+            main: '#4F598A'
         }
 
-        //p02
-        // background: {
-        //     main: "#FFFF",
+        //p06
+        // bgcolor: {
+        //     main: "#EDF6FF",
+        //     dark: "#B9732E"
         // },
         // buttons: {
-        //     main: "#D22D17"
+        //     main: "#FFFFFF"
         // },
         // primary: {
-        //     main: "#FFE672"
+        //     main: "#B9732E",
+        //     light: "#FFFFFF"
         // },
         // secondary: {
-        //     main: "#EB6C29"
-
-        // },
-        // divider: {
-        //     main: "#36A1D5"
-        // },
-        // navbarbg: {
-        //     main: "#77C0E3"
-        // },
-        //     bgBlur: {
-        //         main: "rgba(0, 0, 0, 0.4)"
-        //     },
-
-        //p03
-        // background: {
-        //     main: "#FFFFFF",
-        // },
-        // buttons: {
-        //     main: "#437FC7"
-        // },
-        // primary: {
         //     main: "#B9732E"
-        // },
-        // secondary: {
-        //     main: "#EB6C29"
-
-        // },
-        // divider: {
-        //     main: "#437FC7"
-        // },
-        // navbarbg: {
-        //     main: "#EDF6FF"
         // },
         // bgBlur: {
         //     main: "rgba(0, 0, 0, 0.4)"
         // },
-
+        // title: {
+        //     light: "#EDF6FF",
+        //     main: '#6DAEFE'
+        // }
     }
 });

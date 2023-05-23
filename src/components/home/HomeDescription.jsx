@@ -4,9 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import TextTransition, { presets } from 'react-text-transition'
 
-import { useGetDescriptionQuery } from '../../api'
 const HomeDescription = () => {
-  const { data: description } = useGetDescriptionQuery()
   const [index, setIndex] = useState(0)
   const nameEl = useRef(null)
   const strings = ['محصولات متنوع', 'دسترسی راحت', 'پرداخت ایمن', 'تنوع بالا']
@@ -57,12 +55,16 @@ const HomeDescription = () => {
         }}
         color="text.secondary"
       >
-        {description && description.aboutUs}
+        فروشگاه من یک فروشگاه ساخته شده با ری اکت و لاراول است که با متریال یو
+        ای دیزاین شدهروشگاه من یک فروشگاه ساخته شده با ری اکت و لاراول است که با
+        متریال یو ای دیزاین شده استروشگاه من یکلاراول است که با متریال یو ای
+        دیزاین شده استروشگاه من یک فروشگاه ساخته شده با ری اکت و لاراول است که
+        با متریال یو ای دتریال یو ای eeee
       </Typography>
 
       <Button
         component={Link}
-        to="/products"
+        to="/product/index"
         color="secondary"
         sx={{ mt: 4, mb: 2 }}
       >

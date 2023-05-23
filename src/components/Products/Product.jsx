@@ -30,7 +30,10 @@ const Product = ({ productId }) => {
         m: 'auto',
       }}
     >
-      <Box onClick={() => navigate(`/product/${product.id}`)} sx={{ py: 1 }}>
+      <Box
+        onClick={() => navigate(`/product/read/${product.id}`)}
+        sx={{ py: 1 }}
+      >
         <Box sx={{ width: 1, mb: 2 }}>
           <Paper elevation={12} sx={{ width: 250, m: 'auto' }}>
             <CardMedia

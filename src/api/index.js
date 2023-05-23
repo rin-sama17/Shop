@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:9000' }),
-    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Sliders", "Categorys", "Comments", "Description", "Admins", "Roles"],
+    tagTypes: ['Posts', "Products", "Discounts", "Carts", "Sliders", "Categorys", "Comments", "Description", "Admins", "Roles", "Access", "Contracts"],
     endpoints: (builder) => ({
         getPosts: builder.query({
             query: () => "/posts",
@@ -79,21 +79,6 @@ export const apiSlice = createApi({
 
 
 
-        getCarts: builder.query({
-            query: () => `/carts`,
-            providesTags: ["Carts"]
-        }),
-        getCart: builder.query({
-            query: (initialCartId) => `/carts/${initialCartId}`
-        }),
-        addNewCart: builder.mutation({
-            query: (initialCart) => ({
-                url: "/carts",
-                method: "POST",
-                body: initialCart
-            }),
-            invalidatesTags: ["Carts"]
-        }),
 
 
         getSliders: builder.query({
@@ -301,7 +286,7 @@ export const apiSlice = createApi({
         }),
         getRole: builder.query({
             query: (roleId) => `/roles/${roleId}`,
-            providesTags: (res, err, arg) => [{ type: "Roles", id: arg.id }]
+            providesTags: (res, err, arg) => [{ type: "Roles", id: arg }]
         }),
         addRole: builder.mutation({
             query: (role) => ({
@@ -326,7 +311,88 @@ export const apiSlice = createApi({
                 method: "DELETE"
             }),
             invalidatesTags: ["Roles"]
+        }),
+
+
+
+
+        getAllAccess: builder.query({
+            query: () => "/access",
+            providesTags: (res = []) => [
+                "Access",
+                ...res.map(({ id }) => ({ type: "Access", id }))
+            ]
+        }),
+        getAccess: builder.query({
+            query: (accessId) => `/access/${accessId}`,
+            providesTags: (res, err, arg) => ({ type: "Access", id: arg })
+        }),
+        addAccess: builder.mutation({
+            query: (access) => ({
+                url: "/access",
+                body: access,
+                method: "POST"
+            }),
+            invalidatesTags: ["Access"]
+
+        }),
+        editAccess: builder.mutation({
+            query: (access) => ({
+                url: `/access/${access.id}`,
+                body: access,
+                method: "PUT"
+            }),
+            invalidatesTags: (res, err, arg) => [{ type: "Access", id: arg.id }]
+        }),
+        deleteAccess: builder.mutation({
+            query: (accessId) => ({
+                url: `/access/${accessId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Access"]
+        }),
+
+
+
+
+
+
+        getContracts: builder.query({
+            query: () => "/contracts",
+            providesTags: (res = []) => [
+                "Contracts",
+                ...res.map(({ id }) => ({ type: "Contracts", id }))
+            ]
+        }),
+        getContract: builder.query({
+            query: (contractId) => `/contracts/${contractId}`,
+            providesTags: (res, err, arg) => ({ type: "Contracts", id: arg })
+        }),
+        addContract: builder.mutation({
+            query: (contract) => ({
+                url: "/contracts",
+                body: contract,
+                method: "POST"
+            }),
+            invalidatesTags: ["Contracts"]
+
+        }),
+        editContract: builder.mutation({
+            query: (contract) => ({
+                url: `/contracts/${contract.id}`,
+                body: contract,
+                method: "PUT"
+            }),
+            invalidatesTags: (res, err, arg) => [{ type: "Contracts", id: arg.id }]
+        }),
+        deleteContract: builder.mutation({
+            query: (contractId) => ({
+                url: `/contracts/${contractId}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Contracts"]
         })
+
 
     })
 });
@@ -343,10 +409,6 @@ export const {
     useAddNewProductMutation,
     useDeleteProductMutation,
     useEditProductMutation,
-
-    useGetCartsQuery,
-    useGetCartQuery,
-    useAddNewCartMutation,
 
     useGetSlidersQuery,
     useGetSliderQuery,
@@ -391,5 +453,17 @@ export const {
     useGetRoleQuery,
     useAddRoleMutation,
     useEditRoleMutation,
-    useDeleteRoleMutation
+    useDeleteRoleMutation,
+
+    useGetAllAccessQuery,
+    useGetAccessQuery,
+    useAddAccessMutation,
+    useEditAccessMutation,
+    useDeleteAccessMutation,
+
+    useGetContractsQuery,
+    useGetContractQuery,
+    useAddContractMutation,
+    useEditContractMutation,
+    useDeleteContractMutation
 } = apiSlice;

@@ -1,22 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { c07, c08, c09, c10, c11, c12, c13, c14 } from '../assets'
 
 import Grid from '@mui/material/Unstable_Grid2'
 import {
   CardActionArea,
-  CardMedia,
   Box,
   CardContent,
   Typography,
-  Card,
   Paper,
   InputAdornment,
   TextField,
-  Button,
+  Fade,
+  Collapse,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import { Search } from '@mui/icons-material'
+import { TransitionGroup } from 'react-transition-group'
 const data = [
   {
     id: 7,
@@ -69,7 +69,7 @@ const data = [
   },
   {
     id: 14,
-    name: 'نمایندگی',
+    name: 'نمایندگی اول ما',
     photo: c14,
     discription:
       'از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.',
@@ -77,36 +77,46 @@ const data = [
 ]
 
 const Contract = ({ contract }) => {
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setLoading(true)
+    return () => {
+      setLoading(false)
+    }
+  }, [])
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        mb: 3,
-      }}
-    >
-      <Paper elevation={8}>
-        <CardActionArea component={Link} to={`/contracts/${contract.id}`}>
-          <Box
-            sx={{
-              pb: 2,
-            }}
-          >
-            <CardContent>
-              <Grid container spacing={2}>
-                <Grid xs={12} md={4}>
-                  <img alt={contract.name} src={contract.photo} />
-                </Grid>
+    <Fade in={loading}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          mb: 3,
+          width: '80%',
+          m: '10px auto',
+        }}
+      >
+        <Paper elevation={8}>
+          <CardActionArea component={Link} to={`/contract/read/${contract.id}`}>
+            <Box
+              sx={{
+                pb: 2,
+              }}
+            >
+              <CardContent>
                 <Grid
-                  xs={12}
-                  md={8}
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                  }}
+                  container
+                  spacing={2}
+                  sx={{ justifyContent: 'space-between' }}
                 >
-                  <Box>
+                  <Grid xs={12} sm={4}>
+                    <img
+                      alt={contract.name}
+                      src={contract.photo}
+                      style={{ margin: 'auto', width: '100%' }}
+                    />
+                  </Grid>
+                  <Grid xs={12} sm={8}>
                     <Typography
                       color="secondary"
                       variant="subtitle1"
@@ -122,18 +132,30 @@ const Contract = ({ contract }) => {
                     >
                       <LinesEllipsis text={contract.discription} maxLine={6} />
                     </Typography>{' '}
-                  </Box>{' '}
+                  </Grid>
                 </Grid>
-              </Grid>
-            </CardContent>{' '}
-          </Box>
-        </CardActionArea>
-      </Paper>
-    </Box>
+              </CardContent>{' '}
+            </Box>
+          </CardActionArea>
+        </Paper>
+      </Box>
+    </Fade>
   )
 }
 
 const Contracts = () => {
+  const [query, setQuery] = useState('')
+  const [contracts, setContracts] = useState(data)
+
+  useEffect(() => {
+    if (query.length > 0) {
+      const filtredData = data.filter((contract) =>
+        contract.name.toLowerCase().includes(query),
+      )
+      setContracts(filtredData)
+    }
+  }, [query])
+
   return (
     <>
       <Paper elevation={5} sx={{ my: 5 }}>
@@ -183,6 +205,8 @@ const Contracts = () => {
             <TextField
               variant="outlined"
               placeholder="جستجو"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               InputProps={{
                 style: {
                   paddingLeft: 3,
@@ -197,9 +221,13 @@ const Contracts = () => {
           </Grid>
         </Grid>
       </Paper>
-      {data.map((contract, index) => (
-        <Contract contract={contract} key={index} />
-      ))}
+      <TransitionGroup>
+        {contracts.map((contract, index) => (
+          <Collapse key={index}>
+            <Contract contract={contract} />
+          </Collapse>
+        ))}
+      </TransitionGroup>
     </>
   )
 }

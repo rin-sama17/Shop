@@ -18,7 +18,7 @@ const ProductLoading = ({ width, productId }) => {
     >
       <Box
         component={Link}
-        to={`/product/${productId}`}
+        to={`/product/read/${productId}`}
         sx={{ height: 1, width: 250 }}
       >
         <Skeleton

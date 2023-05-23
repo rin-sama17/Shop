@@ -37,7 +37,7 @@ const EditCategory = ({ category }) => {
     <>
       <GridActionsCellItem
         icon={<Edit />}
-        color="secondary"
+        color="info"
         label="ویرایش"
         onClick={() => setOpen(true)}
       />

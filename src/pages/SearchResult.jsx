@@ -76,7 +76,7 @@ const SearchResult = () => {
         <CustomMassage
           text="محصولی پیدا نشد"
           btnLabel="رفتن به فروشگاه"
-          to="/products"
+          to="/product/index"
         />
       )}
       <CustomDivider label="پست ها" />
@@ -88,7 +88,7 @@ const SearchResult = () => {
         <CustomMassage
           text="پستی پیدا نشد"
           btnLabel="رفتن به وبلاگ"
-          to="/posts"
+          to="/post/index"
         />
       )}
     </Grid>

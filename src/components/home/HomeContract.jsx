@@ -90,7 +90,7 @@ const Contract = ({ contract }) => {
       }}
     >
       <Paper elevation={8}>
-        <CardActionArea component={Link} to={`/contracts/${contract.id}`}>
+        <CardActionArea component={Link} to={`/contract/read/${contract.id}`}>
           <Box
             sx={{
               pb: 2,
@@ -153,7 +153,7 @@ const HomeContract = () => {
       <Typography variant="h6" sx={{ color: 'gray', mt: 3 }} gutterBottom>
         نمایندگی های ما
       </Typography>
-      <Button component={Link} to="/contracts" sx={{ mb: 1 }}>
+      <Button component={Link} to="/contract/index" sx={{ mb: 1 }}>
         مشاهده همه
       </Button>
       <Box

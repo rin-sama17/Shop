@@ -7,14 +7,14 @@ import AdminPanelTabs from '../components/adminPanel/AdminPanelTabs'
 import { Page } from '.'
 import {
   SliderManagement,
-  OrderManagement,
   ProductManagement,
   PostManagement,
   DiscountManagement,
   CategoryManagement,
   CommentManagement,
-  DescriptionManagement,
   RoleManagement,
+  ContractManagement,
+  AccessManagement,
 } from '../components/adminPanel/pages'
 
 const pages = [
@@ -24,7 +24,8 @@ const pages = [
   <DiscountManagement />,
   <CategoryManagement />,
   <CommentManagement />,
-  <DescriptionManagement />,
+  <ContractManagement />,
+  <AccessManagement />,
   <RoleManagement />,
 ]
 

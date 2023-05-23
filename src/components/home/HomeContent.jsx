@@ -4,9 +4,7 @@ import {
   HomeNewProducts,
   HomeFAB,
   HomeContract,
-  HomeCategorys,
 } from '.'
-import { CustomDivider } from '../common'
 
 const HomeContent = () => {
   return (
@@ -14,7 +12,6 @@ const HomeContent = () => {
       <HomeDescription />
       <HomeNewProducts />
       <HomeContract />
-      <HomeCategorys />
       <HomePostsSlider />
       <HomeFAB />
     </>

@@ -43,7 +43,7 @@ const Post = ({ postId }) => {
           />
           <CardActionArea
             component={RouterLink}
-            to={`/posts/${post.id}`}
+            to={`/post/read/${post.id}`}
             sx={{ height: 1 }}
           >
             <CardMedia

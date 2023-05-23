@@ -1,26 +1,12 @@
 import { Link } from 'react-router-dom'
-import {
-  Typography,
-  Box,
-  Divider,
-  Stack,
-  Container,
-  IconButton,
-  Button,
-} from '@mui/material'
+import { Typography, Box, Container, IconButton, Button } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-
-import { ShowTime, Spinner } from '../common'
-import { useGetPostsQuery, useGetDescriptionQuery } from '../../api'
 
 import {
   Instagram,
   Telegram,
   LinkedIn,
   LocalPhone,
-  Newspaper,
-  InfoOutlined,
-  Apartment,
   FmdGood,
 } from '@mui/icons-material'
 
@@ -31,9 +17,9 @@ const socials = [
 ]
 
 const routes = [
-  { name: 'فروشگاه', to: '/products' },
-  { name: 'مجله', to: '/posts' },
-  { name: 'نمایندگی', to: '/contracts' },
+  { name: 'فروشگاه', to: '/product/index' },
+  { name: 'مجله', to: '/post/index' },
+  { name: 'نمایندگی', to: '/contract/index' },
   { name: 'درباره ما', to: 'about-us' },
 ]
 
@@ -42,10 +28,6 @@ const contacts = [
   { name: '+21 5539 0048', icon: <LocalPhone /> },
 ]
 const FooterContent = () => {
-  const { data: description, isLoading } = useGetDescriptionQuery()
-  if (isLoading) {
-    return <Spinner />
-  }
   return (
     <Container maxWidth="lg">
       <Grid
@@ -68,7 +50,11 @@ const FooterContent = () => {
               color="text.secondary"
               textAlign="left"
             >
-              {description.aboutUs}
+              فروشگاه من یک فروشگاه ساخته شده با ری اکت و لاراول است که با
+              متریال یو ای دیزاین شدهروشگاه من یک فروشگاه ساخته شده با ری اکت و
+              لاراول است که با متریال یو ای دیزاین شده استروشگاه من یکلاراول است
+              که با متریال یو ای دیزاین شده استروشگاه من یک فروشگاه ساخته شده با
+              ری اکت و لاراول است که با متریال یو ای دتریال یو ای eeee
             </Typography>
             <Box sx={{ mt: 1 }}>
               {socials.map((social, index) => (

@@ -41,7 +41,7 @@ const PostManagement = () => {
           color="info"
           label="ویرایش"
           component={Link}
-          to={`/editPost/${params.id}`}
+          to={`/post/edit/${params.id}`}
         />,
       ],
     },
@@ -49,7 +49,7 @@ const PostManagement = () => {
 
   return (
     <>
-      <Button component={Link} to="/addPost" sx={{ m: 2 }}>
+      <Button component={Link} to="/post/add" sx={{ m: 2 }}>
         ساخت پست جدید
       </Button>
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>

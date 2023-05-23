@@ -16,7 +16,7 @@ const PostLoading = ({ postId }) => {
       sx={{ display: 'flex', justifyContent: 'center', my: 2, width: 1 }}
     >
       <Card sx={{ width: 345, m: 2 }}>
-        <CardActionArea component={Link} to={`/posts/${postId}`}>
+        <CardActionArea component={Link} to={`/post/read/${postId}`}>
           <CardHeader
             avatar={
               <Skeleton

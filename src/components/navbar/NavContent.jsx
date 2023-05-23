@@ -9,6 +9,13 @@ import CustomIconButton from '../common/CustomIconButton'
 import { Login } from '../../pages'
 import NavSearch from './NavSearch'
 
+const buttons = [
+  { name: 'فرش ماشینی' },
+  { name: 'فرش دستبافت' },
+  { name: 'تابلو فرش دستبافت' },
+  { name: 'صنایع دستی' },
+  { name: 'سایر' },
+]
 const NavContent = ({ setDrawerOpen }) => {
   return (
     <>
@@ -31,7 +38,7 @@ const NavContent = ({ setDrawerOpen }) => {
         </Box>
 
         <Link href="/" underline="none">
-          <Typography variant="h5" sx={{ color: 'title.main' }}>
+          <Typography variant="h5" sx={{ color: 'title.light' }}>
             فروشگاه فرش
           </Typography>
         </Link>
@@ -71,11 +78,12 @@ const NavContent = ({ setDrawerOpen }) => {
           },
         }}
       >
-        <Button>فرش ماشینی</Button>
-        <Button>فرش دستبافت</Button>
-        <Button>تابلو فرش دستبافت</Button>
-        <Button>صنایع دستی</Button>
-        <Button>سایر</Button>
+        {buttons.map((btn, index) => (
+          <Button>
+            {' '}
+            <Typography variant="body1">{btn.name}</Typography>
+          </Button>
+        ))}
       </Stack>
     </>
   )

@@ -39,7 +39,7 @@ const ProductManagement = () => {
           color="info"
           label="ویرایش"
           component={Link}
-          to={`/editProduct/${params.id}`}
+          to={`/product/edit/${params.id}`}
         />,
       ],
     },
@@ -47,7 +47,7 @@ const ProductManagement = () => {
 
   return (
     <>
-      <Button component={Link} to="/addProduct" sx={{ m: 2 }}>
+      <Button component={Link} to="/product/add" sx={{ m: 2 }}>
         ساخت محصول جدید
       </Button>
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>

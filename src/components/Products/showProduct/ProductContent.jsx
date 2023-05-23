@@ -29,7 +29,12 @@ const ProductContent = ({ product }) => {
           <Link underline="hover" key="1" color="secondary" href="/">
             خانه
           </Link>
-          <Link underline="hover" key="2" color="secondary" href="/products">
+          <Link
+            underline="hover"
+            key="2"
+            color="secondary"
+            href="/product/index"
+          >
             فروشگاه
           </Link>
           <Link underline="hover" key="3" color="secondary">

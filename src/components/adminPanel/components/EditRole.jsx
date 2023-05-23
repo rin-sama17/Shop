@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 import { useEditRoleMutation } from '../../../api'
 import { CustomModal, CustomForm } from '../../common'
-import { roleFieldsData } from '../../fieldsData/roleFieldsData'
+import { roleFieldsData } from '../../fieldsData'
 import { roleValidation } from '../../validations/roleValidation'
 
 const EditRole = ({ role }) => {
