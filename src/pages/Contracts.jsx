@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import { Search } from '@mui/icons-material'
 import { TransitionGroup } from 'react-transition-group'
+import { Contract } from '../components/contract'
 const data = [
   {
     id: 7,
@@ -75,73 +76,6 @@ const data = [
       'از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.',
   },
 ]
-
-const Contract = ({ contract }) => {
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    setLoading(true)
-    return () => {
-      setLoading(false)
-    }
-  }, [])
-  return (
-    <Fade in={loading}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          mb: 3,
-          width: '80%',
-          m: '10px auto',
-        }}
-      >
-        <Paper elevation={8}>
-          <CardActionArea component={Link} to={`/contract/read/${contract.id}`}>
-            <Box
-              sx={{
-                pb: 2,
-              }}
-            >
-              <CardContent>
-                <Grid
-                  container
-                  spacing={2}
-                  sx={{ justifyContent: 'space-between' }}
-                >
-                  <Grid xs={12} sm={4}>
-                    <img
-                      alt={contract.name}
-                      src={contract.photo}
-                      style={{ margin: 'auto', width: '100%' }}
-                    />
-                  </Grid>
-                  <Grid xs={12} sm={8}>
-                    <Typography
-                      color="secondary"
-                      variant="subtitle1"
-                      textAlign="left"
-                      gutterBottom
-                    >
-                      {contract.name}
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      color="text.secondary"
-                      gutterBotton
-                    >
-                      <LinesEllipsis text={contract.discription} maxLine={6} />
-                    </Typography>{' '}
-                  </Grid>
-                </Grid>
-              </CardContent>{' '}
-            </Box>
-          </CardActionArea>
-        </Paper>
-      </Box>
-    </Fade>
-  )
-}
 
 const Contracts = () => {
   const [query, setQuery] = useState('')

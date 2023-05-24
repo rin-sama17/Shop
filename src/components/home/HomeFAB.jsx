@@ -48,6 +48,10 @@ const HomeFAB = () => {
           position: 'fixed',
           bottom: 16,
           left: 16,
+          '.MuiSvgIcon-fontSizeMedium': {
+            width: '26px !important',
+            height: '26px !important',
+          },
         }}
       >
         {actions.map((action, index) => (

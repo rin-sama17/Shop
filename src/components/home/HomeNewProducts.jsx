@@ -8,7 +8,6 @@ import Box from '@mui/material/Box'
 import { useGetProductsQuery } from '../../api'
 import { ProductLoading } from '../loading'
 import { ProductSlider } from '../products'
-import Countdown from 'react-countdown'
 import { Button } from '@mui/material'
 
 function TabPanel(props) {

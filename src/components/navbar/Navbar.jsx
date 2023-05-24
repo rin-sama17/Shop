@@ -13,7 +13,12 @@ const Navbar = () => {
     const trigger = useScrollTrigger()
 
     return (
-      <Slide appear={false} direction="down" in={!trigger}>
+      <Slide
+        appear={false}
+        direction="down"
+        in={!trigger}
+        style={{ transitionDelay: trigger ? '0ms' : '300ms' }}
+      >
         {children}
       </Slide>
     )

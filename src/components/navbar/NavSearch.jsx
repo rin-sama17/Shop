@@ -38,7 +38,7 @@ const NavSearch = () => {
       <CustomModal open={open} setOpen={setOpen}>
         <SearchField />
         <Grid container spacing={4} sx={{ mt: 3 }}>
-          <Grid xs={12} md={9}>
+          <Grid xs={12}>
             <Box
               sx={{
                 display: 'flex',
@@ -78,7 +78,7 @@ const NavSearch = () => {
               </Box>
             ))}
           </Grid>
-          <Grid xs={12} md={3}>
+          {/* <Grid xs={12} md={3}>
             <Box
               sx={{
                 display: 'flex',
@@ -100,7 +100,7 @@ const NavSearch = () => {
                 </Typography>
               </Box>
             ))}
-          </Grid>
+          </Grid> */}
         </Grid>
       </CustomModal>
     </>
