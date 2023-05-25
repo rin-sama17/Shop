@@ -20,6 +20,7 @@ import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
 import { PatternFormat } from 'react-number-format'
 import { useEffect } from 'react'
 import { useGetCategorysQuery } from '../../api'
+import TextEditor from './TextEditor'
 
 const CustomFields = ({
   pwd,
@@ -30,6 +31,7 @@ const CustomFields = ({
   submit,
   checkbox,
   category,
+  textEditor,
   xs,
   sm,
   md,
@@ -195,6 +197,14 @@ const CustomFields = ({
           />
         }
         {...props}
+      />
+    )
+  } else if (textEditor) {
+    content = (
+      <TextEditor
+        formik={formik}
+        name={name}
+        value={formik.values[`${name}`]}
       />
     )
   } else {

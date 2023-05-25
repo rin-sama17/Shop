@@ -26,10 +26,13 @@ const TextEditor = ({ formik, name, readOnly, value }) => {
   })
   useEffect(() => {
     if (quill) {
-      if (readOnly) {
-        quill.setContents(value)
+      if (value && value.length > 0) {
+        const paragraphs = JSON.parse(value)
+        quill.setContents(paragraphs)
+      } else if (readOnly) {
         quill.enable(false)
-      } else {
+      }
+      if (formik) {
         quill.on('text-change', () => {
           formik.setFieldValue(name, JSON.stringify(quill.getContents()))
         })
@@ -39,7 +42,6 @@ const TextEditor = ({ formik, name, readOnly, value }) => {
   return (
     <Box
       sx={{
-        mb: 10,
         mt: 3,
         direction: 'rtl',
         position: 'relative',

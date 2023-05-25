@@ -9,7 +9,7 @@ export const apiSlice = createApi({
             query: () => "/posts",
             providesTags: (res = []) => [
                 "Blogs",
-                ...res.map(({ id }) => ({ type: "Blogs", id }))
+                ...res.map(({ id }) => [{ type: "Blogs", id }])
             ]
         }),
         getPost: builder.query({
@@ -45,7 +45,7 @@ export const apiSlice = createApi({
             query: () => "/products",
             providesTags: (res = []) => [
                 "Products",
-                ...res.map(({ id }) => ({ type: "Products", id }))
+                ...res.map(({ id }) => [{ type: "Products", id }])
             ]
         }),
         getProduct: builder.query({
@@ -85,7 +85,7 @@ export const apiSlice = createApi({
             query: () => '/sliders',
             providesTags: (res = [], error, arg) => [
                 "Sliders",
-                ...res.map(({ id }) => ({ type: "Sliders", id }))
+                ...res.map(({ id }) => [{ type: "Sliders", id }])
             ]
         }),
         getSlider: builder.query({
@@ -158,7 +158,7 @@ export const apiSlice = createApi({
             query: () => "/categorys",
             providesTags: (res = []) => [
                 "Categorys",
-                ...res.map(({ id }) => ({ type: "Categorys", id }))
+                ...res.map(({ id }) => [{ type: "Categorys", id }])
             ]
         }),
         getCategory: builder.query({
@@ -194,7 +194,7 @@ export const apiSlice = createApi({
             query: () => "comments",
             providesTags: (res = []) => [
                 "Comments",
-                ...res.map(({ id }) => ({ type: "Comments", id }))
+                ...res.map(({ id }) => [{ type: "Comments", id }])
             ],
         }),
         getComment: builder.query({
@@ -246,7 +246,7 @@ export const apiSlice = createApi({
             query: () => "/admins",
             providesTags: (res = []) => [
                 "Admins",
-                ...res.map(({ id }) => ({ type: "Admins", id }))
+                ...res.map(({ id }) => [{ type: "Admins", id }])
             ]
         }),
         getAdmin: builder.query({
@@ -281,7 +281,7 @@ export const apiSlice = createApi({
             query: () => '/roles',
             providesTags: (res = []) => [
                 "Roles",
-                ...res.map(({ id }) => ({ type: "Roles", id }))
+                ...res.map(({ id }) => [{ type: "Roles", id }])
             ]
         }),
         getRole: builder.query({
@@ -320,12 +320,12 @@ export const apiSlice = createApi({
             query: () => "/access",
             providesTags: (res = []) => [
                 "Access",
-                ...res.map(({ id }) => ({ type: "Access", id }))
+                ...res.map(({ id }) => [{ type: "Access", id }])
             ]
         }),
         getAccess: builder.query({
             query: (accessId) => `/access/${accessId}`,
-            providesTags: (res, err, arg) => ({ type: "Access", id: arg })
+            providesTags: (res, err, arg) => [{ type: "Access", id: arg }]
         }),
         addAccess: builder.mutation({
             query: (access) => ({
@@ -361,12 +361,12 @@ export const apiSlice = createApi({
             query: () => "/contracts",
             providesTags: (res = []) => [
                 "Contracts",
-                ...res.map(({ id }) => ({ type: "Contracts", id }))
+                ...res.map(({ id }) => [{ type: "Contracts", id }])
             ]
         }),
         getContract: builder.query({
             query: (contractId) => `/contracts/${contractId}`,
-            providesTags: (res, err, arg) => ({ type: "Contracts", id: arg })
+            providesTags: (res, err, arg) => [{ type: "Contracts", id: arg }]
         }),
         addContract: builder.mutation({
             query: (contract) => ({

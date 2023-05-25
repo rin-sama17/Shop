@@ -1,37 +1,18 @@
-import { Box, Skeleton, Card, CardActionArea } from '@mui/material'
-import Grid from '@mui/material/Unstable_Grid2'
-import { Link } from 'react-router-dom'
+import { Box, Skeleton } from '@mui/material'
 
-const ProductLoading = ({ width, productId }) => {
+const ProductLoading = () => {
   return (
-    <Grid
-      xs={12}
-      sm={6}
-      md={4}
-      lg={3}
-      sx={{
-        display: 'flex',
-        justifyContent: 'start',
-        m: 3,
-        width: 1,
-      }}
-    >
-      <Box
-        component={Link}
-        to={`/product/read/${productId}`}
-        sx={{ height: 1, width: 250 }}
-      >
-        <Skeleton
-          sx={{ height: 330, my: 2 }}
-          animation="wave"
-          variant="rectangular"
-        />
-        <Box sx={{ p: 1 }}>
-          <Skeleton animation="wave" height={30} width="40%" />
-          <Skeleton animation="wave" height={40} width="70%" />
-        </Box>
+    <Box sx={{ height: 1, width: 250, m: 'auto' }}>
+      <Skeleton
+        sx={{ height: 330, mb: 2 }}
+        animation="wave"
+        variant="rectangular"
+      />
+      <Box sx={{ p: 1 }}>
+        <Skeleton animation="wave" height={30} width="40%" />
+        <Skeleton animation="wave" height={40} width="70%" />
       </Box>
-    </Grid>
+    </Box>
   )
 }
 

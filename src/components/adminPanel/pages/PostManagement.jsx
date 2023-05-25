@@ -1,11 +1,11 @@
 import { Button } from '@mui/material'
 import { toast } from 'react-toastify'
-import { Link } from 'react-router-dom'
-import { useRef, useLayoutEffect } from 'react'
 import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { useDeletePostMutation, useGetPostsQuery } from '../../../api'
+import AddPost from '../components/AddPost'
+import EditPost from '../components/EditPost'
 
 const PostManagement = () => {
   const { data: posts = [] } = useGetPostsQuery()
@@ -36,22 +36,14 @@ const PostManagement = () => {
           label="حذف"
           onClick={() => handlePostDelete(params.id)}
         />,
-        <GridActionsCellItem
-          icon={<Edit />}
-          color="info"
-          label="ویرایش"
-          component={Link}
-          to={`/post/edit/${params.id}`}
-        />,
+        <EditPost post={params.row} />,
       ],
     },
   ]
 
   return (
     <>
-      <Button component={Link} to="/post/add" sx={{ m: 2 }}>
-        ساخت پست جدید
-      </Button>
+      <AddPost />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
         <DataGrid rows={posts} columns={columns} />
       </div>

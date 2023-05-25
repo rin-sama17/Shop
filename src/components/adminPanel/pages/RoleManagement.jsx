@@ -5,7 +5,12 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { useDeleteRoleMutation, useGetRolesQuery } from '../../../api'
 import { AddRole, EditRole } from '../components'
 import { useMemo } from 'react'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
+
+const adminsRoles = {
+  addPost: 'افزودن پست',
+  editPost: 'ویرایش پست',
+}
 
 const RoleManagement = () => {
   const { data: roles = [] } = useGetRolesQuery()
@@ -25,11 +30,19 @@ const RoleManagement = () => {
       { field: 'id', headerName: 'ای دی', width: 10 },
       { field: 'title', headerName: 'نام', width: 150 },
       { field: 'details', headerName: 'توضیحات', width: 200 },
+
       {
-        field: 'addPost',
+        field: 'actions',
         headerName: 'افزودن پست',
         type: 'boolean',
         width: 120,
+        getActions: (params) => [
+          <Box sx={{ display: 'flex', dlexDirection: 'column' }}>
+            {adminsRoles.map((role, index) => {
+              console.log(params.row[role])
+            })}
+          </Box>,
+        ],
       },
       {
         field: 'editPost',

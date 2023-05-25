@@ -28,6 +28,7 @@ const postFieldsData = (formik) => {
       multiline: true,
       rows: 3,
     },
+    { sm: 12, formik, name: 'paragraphs', textEditor: true },
     {
       submit: true,
       customLabel: 'ثبت',

@@ -1,5 +1,4 @@
 export { default as CategoryManagement } from "./CategoryManagement";
-export { default as CommentManagement } from "./CommentManagement";
 export { default as DiscountManagement } from "./DiscountManagement";
 export { default as PostManagement } from "./PostManagement";
 export { default as ProductManagement } from "./ProductManagement";

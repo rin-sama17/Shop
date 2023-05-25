@@ -1,5 +1,15 @@
 import { useMemo, useState, useEffect } from 'react'
-import { Typography, Box, Slider, Button } from '@mui/material'
+import {
+  Typography,
+  Box,
+  Slider,
+  Button,
+  FormControl,
+  InputLabel,
+  Select,
+  OutlinedInput,
+  MenuItem,
+} from '@mui/material'
 
 import { toRial } from '../../helpers'
 import { Stack } from '@mui/system'
@@ -63,7 +73,7 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
           px: 5,
         }}
       >
-        <Grid xs={12} md={5} sx={{ pr: 2 }}>
+        <Grid xs={12} md={3} sx={{ pr: 2 }}>
           <Stack>
             <SelectCategory value={category} setValue={setCategory} />
             <Button onClick={handleClear} color="error" sx={{ mt: 1 }}>
@@ -71,7 +81,28 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
             </Button>
           </Stack>
         </Grid>
-        <Grid xs={12} md={7} sx={{ px: 1 }}>
+        <Grid xs={12} md={3}>
+          <FormControl fullWidth size="small">
+            <InputLabel>مرتب کردن براساس</InputLabel>
+            <Select
+              input={<OutlinedInput label="مرتب کردن براساس" />}
+              MenuProps={{
+                PaperProps: {
+                  style: {
+                    maxHeight: 48 * 4.5 + 8,
+                    width: 250,
+                  },
+                },
+              }}
+            >
+              <MenuItem>تازه ترین</MenuItem>
+              <MenuItem>تخفیف های ویژه</MenuItem>
+
+              <MenuItem>پرفروش ترین</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid xs={12} md={6} sx={{ px: 1 }}>
           <Slider
             getAriaLabel={() => 'Temperature range'}
             value={value}

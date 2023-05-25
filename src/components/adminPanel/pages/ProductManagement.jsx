@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { useDeleteProductMutation, useGetProductsQuery } from '../../../api'
+import { AddProduct } from '../components'
 
 const ProductManagement = () => {
   const { data: products = [] } = useGetProductsQuery()
@@ -47,9 +48,7 @@ const ProductManagement = () => {
 
   return (
     <>
-      <Button component={Link} to="/product/add" sx={{ m: 2 }}>
-        ساخت محصول جدید
-      </Button>
+      <AddProduct />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
         <DataGrid
           rows={products}

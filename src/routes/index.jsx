@@ -6,11 +6,7 @@ import {
   Products,
   ShowPost,
   ShowProduct,
-  AddPost,
-  AddProduct,
-  EditPost,
   AdminPanel,
-  EditProduct,
   SearchResult,
   AboutUs,
   Contracts,
@@ -50,25 +46,6 @@ export const router = createBrowserRouter([
         path: '/product/read/:productId',
         element: <ShowProduct />,
       },
-
-      {
-        path: '/product/add',
-        element: <AddProduct />,
-      },
-
-      {
-        path: '/product/edit/:productId',
-        element: <EditProduct />,
-      },
-      {
-        path: '/post/add',
-        element: <AddPost />,
-      },
-      {
-        path: '/post/edit/:postId',
-        element: <EditPost />,
-      },
-
       {
         path: '/admin-panel',
         element: <AdminPanel />,

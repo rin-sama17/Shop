@@ -20,7 +20,7 @@ import { PostLoading } from '../loading'
 const Post = ({ postId }) => {
   const { data: post, isLoading, isSuccess } = useGetPostQuery(postId)
 
-  if (isLoading) {
+  if (isLoading || postId === 'G6jZsUw4LVZZAjcdSMD-s') {
     return <PostLoading postId={postId} />
   }
 
@@ -83,47 +83,3 @@ const Post = ({ postId }) => {
   )
 }
 export default Post
-
-{
-  /* <Fade in={isSuccess}>
-        <Card sx={{ maxWidth: 345, m: 2 }}>
-          <CardHeader
-            avatar={
-              <Avatar
-                alt="Ted talk"
-                src="https://pbs.twimg.com/profile_images/877631054525472768/Xp5FAPD5_reasonably_small.jpg"
-              />
-            }
-            title="rin"
-            subheader={<ShowTime timestamp={post.date} />}
-          />
-          <CardActionArea
-            component={RouterLink}
-            to={`/post/read/${post.id}`}
-            sx={{ height: 1 }}
-          >
-            <CardMedia
-              component="img"
-              height="200"
-              image={post.thumbnail}
-              alt={post.heading}
-            />
-
-            <CardContent>
-              <Typography
-                color="text.primary"
-                variant="body1"
-                textAlign="left"
-                gutterBottom
-              >
-                {post.heading}
-              </Typography>
-
-              <Typography variant="body2" color="text.secondary">
-                <LinesEllipsis text={post.introduction} maxLine={2} />
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-        </Card>
-      </Fade> */
-}

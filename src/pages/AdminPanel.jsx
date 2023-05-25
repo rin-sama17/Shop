@@ -11,7 +11,6 @@ import {
   PostManagement,
   DiscountManagement,
   CategoryManagement,
-  CommentManagement,
   RoleManagement,
   ContractManagement,
   AccessManagement,
@@ -23,7 +22,6 @@ const pages = [
   <PostManagement />,
   <DiscountManagement />,
   <CategoryManagement />,
-  <CommentManagement />,
   <ContractManagement />,
   <AccessManagement />,
   <RoleManagement />,
@@ -54,7 +52,12 @@ const AdminPanel = () => {
       <Grid xs={12} md={9.5} lg={10}>
         <SwipeableViews index={pageNumber} onChangeIndex={handleSwipeNumber}>
           {pages.map((page, index) => (
-            <Page pageNumber={pageNumber} name="adminPanel" index={index}>
+            <Page
+              key={index}
+              pageNumber={pageNumber}
+              name="adminPanel"
+              index={index}
+            >
               {page}
             </Page>
           ))}

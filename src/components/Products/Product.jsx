@@ -18,7 +18,7 @@ const Product = ({ productId }) => {
   const { data: product, isLoading, isSuccess } = useGetProductQuery(productId)
   const navigate = useNavigate()
 
-  if (isLoading || productId === 'loading') {
+  if (isLoading) {
     return <ProductLoading width={250} productId={productId} />
   }
 

@@ -46,7 +46,7 @@ const AddContract = () => {
           fields={fields}
           imageUploader
           imageUploaderName="photo"
-          imageUploaderProps={{ aspect: 4 / 3 }}
+          imageUploaderProps={{ aspect: 5 / 3 }}
         />
       </CustomModal>
     </>

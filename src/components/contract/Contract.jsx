@@ -14,17 +14,19 @@ import {
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
-const Contract = ({ contract }) => {
-  const [loading, setLoading] = useState(false)
+import { PostLoading } from '../loading'
+import { useGetContractQuery } from '../../api'
+const Contract = ({ contractId }) => {
+  const { data: contract, isLoading, isSuccess } = useGetContractQuery(
+    contractId,
+  )
 
-  useEffect(() => {
-    setLoading(true)
-    return () => {
-      setLoading(false)
-    }
-  }, [])
+  if (isLoading) {
+    return <PostLoading />
+  }
+
   return (
-    <Fade in={loading}>
+    <Fade in={isSuccess}>
       <Box
         sx={{
           display: 'flex',

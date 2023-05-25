@@ -10,6 +10,10 @@ export { default as EditAccess } from "./EditAccess";
 export { default as AddAccess } from "./AddAccess";
 export { default as AddContract } from "./AddContract";
 export { default as EditContract } from "./EditContract";
+export { default as AddProduct } from "./AddProduct";
+export { default as EditProduct } from "./EditProduct";
+export { default as AddPost } from "./AddPost";
+export { default as EditPost } from "./EditPost";
 
 export { default as Slider } from "./slider/Slider";
 export { default as SliderModal } from "./slider/SliderModal";
