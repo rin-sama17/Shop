@@ -4,7 +4,7 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
-import { useEditRoleMutation } from '../../../api'
+import { useEditRoleMutation } from '../../../api/adminApi'
 import { CustomModal, CustomForm } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
 import { roleValidation } from '../../validations/roleValidation'

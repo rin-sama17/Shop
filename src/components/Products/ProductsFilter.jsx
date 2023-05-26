@@ -72,8 +72,9 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
           mb: 2,
           px: 5,
         }}
+        spacing={2}
       >
-        <Grid xs={12} md={3} sx={{ pr: 2 }}>
+        <Grid xs={12} md={3}>
           <Stack>
             <SelectCategory value={category} setValue={setCategory} />
             <Button onClick={handleClear} color="error" sx={{ mt: 1 }}>

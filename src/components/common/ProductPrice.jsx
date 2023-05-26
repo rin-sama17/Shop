@@ -1,7 +1,6 @@
 import { Box, Typography, Chip } from '@mui/material'
 import { createSelector } from '@reduxjs/toolkit'
 import { useMemo } from 'react'
-import { useGetDiscountsQuery } from '../../api'
 import { toRial } from '../../helpers'
 import Spinner from './Spinner'
 

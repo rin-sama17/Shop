@@ -4,7 +4,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 
 import { CustomModal } from '../../../common'
 import { SliderLoading } from '../../../loading'
-import { useGetSlidersQuery } from '../../../../api'
+import { useGetSlidersQuery } from '../../../../api/adminApi'
 import { EditSlider, Slider } from '..'
 
 const SliderModal = () => {

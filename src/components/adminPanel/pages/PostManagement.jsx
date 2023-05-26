@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { useDeletePostMutation, useGetPostsQuery } from '../../../api'
+import { useDeletePostMutation, useGetPostsQuery } from '../../../api/adminApi'
 import AddPost from '../components/AddPost'
 import EditPost from '../components/EditPost'
 

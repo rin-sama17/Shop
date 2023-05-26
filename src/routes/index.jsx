@@ -8,7 +8,6 @@ import {
   ShowProduct,
   AdminPanel,
   SearchResult,
-  AboutUs,
   Contracts,
   ShowContract,
 } from '../pages'
@@ -54,10 +53,7 @@ export const router = createBrowserRouter([
         path: '/search/:query',
         element: <SearchResult />,
       },
-      {
-        path: '/about-us',
-        element: <AboutUs />,
-      },
+
       {
         path: '/contract/index',
         element: <Contracts />,

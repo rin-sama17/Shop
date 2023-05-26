@@ -3,7 +3,7 @@ import { useFormik } from 'formik'
 import { Button } from '@mui/material'
 
 import { discountValidation } from '../../validations/discountValidation'
-import { useAddNewDiscountMutation } from '../../../api'
+import { useAddNewDiscountMutation } from '../../../api/adminApi'
 import { CustomForm, CustomModal } from '../../common'
 import { discountFieldsData } from '../../fieldsData'
 

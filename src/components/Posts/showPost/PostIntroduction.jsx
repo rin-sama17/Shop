@@ -8,13 +8,7 @@ const PostIntroduction = ({ post }) => {
       <Typography color="text.primary" variant="h6" sx={{ my: 2 }}>
         {post.heading}
       </Typography>
-      {post.thumbnail && (
-        <img
-          src={post.thumbnail}
-          alt={post.heading}
-          style={{ width: '100%' }}
-        />
-      )}
+      <img src={post.thumbnail} alt={post.heading} style={{ width: '100%' }} />
       <Typography color="text.secondary" component="p" sx={{ my: 3 }}>
         {post.introduction}
       </Typography>

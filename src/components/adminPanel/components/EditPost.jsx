@@ -1,6 +1,6 @@
 import { useFormik } from 'formik'
 import { postValidation } from '../../validations/postValidation'
-import { useEditPostMutation } from '../../../api'
+import { useEditPostMutation } from '../../../api/adminApi'
 import { toast } from 'react-toastify'
 import { postFieldsData } from '../../fieldsData'
 import { CustomModal, TextEditor, CustomForm } from '../../common'

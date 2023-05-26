@@ -2,7 +2,7 @@ import { Suspense, useState } from 'react'
 import { CardMedia, Button, Skeleton } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 
-import { useGetSliderQuery } from '../../../../api'
+import { useGetSliderQuery } from '../../../../api/adminApi'
 import { SliderLoading } from '../../../loading'
 
 const Slider = ({ sliderId, setSliderId, setOpen }) => {

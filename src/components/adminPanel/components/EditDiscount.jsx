@@ -6,7 +6,7 @@ import { Edit } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 
 import { discountValidation } from '../../validations/discountValidation'
-import { useEditDiscountMutation } from '../../../api'
+import { useEditDiscountMutation } from '../../../api/adminApi'
 import { CustomModal, CustomForm } from '../../common'
 import { discountFieldsData } from '../../fieldsData'
 

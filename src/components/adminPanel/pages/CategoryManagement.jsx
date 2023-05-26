@@ -4,10 +4,13 @@ import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { EditCategory, AddCategory } from '../components'
-import { useDeleteCategoryMutation, useGetCategorysQuery } from '../../../api'
+import {
+  useDeleteCategoryMutation,
+  useGetCategoriesQuery,
+} from '../../../api/adminApi'
 
 const CategoryManagement = () => {
-  const { data: categorys = [] } = useGetCategorysQuery()
+  const { data: categories = [] } = useGetCategoriesQuery()
 
   const [deleteCategory] = useDeleteCategoryMutation()
   const handleCategoryDelete = async (categoryId) => {
@@ -37,13 +40,13 @@ const CategoryManagement = () => {
         ],
       },
     ],
-    [categorys, EditCategory],
+    [categories, EditCategory],
   )
   return (
     <>
       <AddCategory />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={categorys} columns={columns} />
+        <DataGrid rows={categories} columns={columns} />
       </div>
     </>
   )

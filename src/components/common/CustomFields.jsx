@@ -19,7 +19,7 @@ import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
 
 import { PatternFormat } from 'react-number-format'
 import { useEffect } from 'react'
-import { useGetCategorysQuery } from '../../api'
+import { useGetCategoriesQuery } from '../../api'
 import TextEditor from './TextEditor'
 
 const CustomFields = ({
@@ -154,7 +154,7 @@ const CustomFields = ({
       </FormControl>
     )
   } else if (category) {
-    const { data: options = [] } = useGetCategorysQuery()
+    const { data: options = [] } = useGetCategoriesQuery()
     content = (
       <FormControl
         fullWidth

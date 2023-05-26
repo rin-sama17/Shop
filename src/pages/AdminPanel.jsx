@@ -13,7 +13,7 @@ import {
   CategoryManagement,
   RoleManagement,
   ContractManagement,
-  AccessManagement,
+  PremissionManagement,
 } from '../components/adminPanel/pages'
 
 const pages = [
@@ -23,7 +23,7 @@ const pages = [
   <DiscountManagement />,
   <CategoryManagement />,
   <ContractManagement />,
-  <AccessManagement />,
+  <PremissionManagement />,
   <RoleManagement />,
 ]
 

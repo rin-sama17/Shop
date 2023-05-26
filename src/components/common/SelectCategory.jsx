@@ -5,10 +5,10 @@ import {
   OutlinedInput,
   MenuItem,
 } from '@mui/material'
-import { useGetCategorysQuery } from '../../api'
+import { useGetCategoriesQuery } from '../../api'
 
 const SelectCategory = ({ value, setValue }) => {
-  const { data: options = [] } = useGetCategorysQuery()
+  const { data: options = [] } = useGetCategoriesQuery()
 
   return (
     <FormControl fullWidth size="small">

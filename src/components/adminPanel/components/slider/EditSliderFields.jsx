@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import { toast } from 'react-toastify'
 
-import { useEditSliderMutation } from '../../../../api'
+import { useEditSliderMutation } from '../../../../api/adminApi'
 import { CustomForm } from '../../../common'
 import { sliderFieldsData } from '../../../fieldsData'
 import { sliderValidation } from '../../../validations/sliderValidation'

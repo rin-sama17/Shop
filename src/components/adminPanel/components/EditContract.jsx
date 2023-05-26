@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 import { contractValidation } from '../../validations/contractValidation'
 import { contractFieldsData } from '../../fieldsData'
-import { useEditContractMutation } from '../../../api'
+import { useEditContractMutation } from '../../../api/adminApi'
 import { CustomForm, CustomModal } from '../../common'
 const EditContract = ({ contract }) => {
   const [open, setOpen] = useState(false)

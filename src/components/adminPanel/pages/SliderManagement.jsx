@@ -6,7 +6,7 @@ import { Box } from '@mui/material'
 import { HomeSlider } from '../../home'
 import { SliderModal } from '../components'
 import { sliderValidation } from '../../validations/sliderValidation'
-import { useAddNewSliderMutation } from '../../../api'
+import { useAddNewSliderMutation } from '../../../api/adminApi'
 import { CustomForm, CustomDivider } from '../../common'
 import { sliderFieldsData } from '../../fieldsData'
 

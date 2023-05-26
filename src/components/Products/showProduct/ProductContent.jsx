@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { ProductDetails, ProductComments } from '.'
+import { ProductDetails } from '.'
 import { ShowCategory } from '../../common'
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material'
 import { ArrowLeft } from '@mui/icons-material'
@@ -58,9 +58,6 @@ const ProductContent = ({ product }) => {
         </Grid>
 
         <ProductDetails product={product} />
-        <Grid xs={12}>
-          <ProductComments productId={product.id} />
-        </Grid>
       </Grid>
     </Box>
   )

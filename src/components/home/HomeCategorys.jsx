@@ -10,7 +10,7 @@ import Slider from 'react-slick'
 import Grid from '@mui/material/Unstable_Grid2'
 import { category01, category02, category03, category04 } from '../../assets'
 const HomeCategorys = () => {
-  const categorys = [
+  const categories = [
     {
       name: 'صنایع دستی',
       photo: category01,
@@ -35,8 +35,8 @@ const HomeCategorys = () => {
         دسته بندی
       </Typography>
       <Grid container spacing={2} sx={{ width: 1, mb: 10 }}>
-        {categorys.length > 0 &&
-          categorys.map((slide, index) => (
+        {categories.length > 0 &&
+          categories.map((slide, index) => (
             <Grid
               xs={12}
               md={3}
