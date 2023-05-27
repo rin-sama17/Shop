@@ -3,7 +3,7 @@ import { CustomForm, CustomModal, TextEditor } from '../../common'
 import { useState } from 'react'
 import { useFormik } from 'formik'
 import { postValidation } from '../../validations/postValidation'
-import { useAddNewPostMutation } from '../../../api/adminApi'
+import { useAddNewPostMutation } from '../../../api'
 import { postFieldsData } from '../../fieldsData'
 import { toast } from 'react-toastify'
 

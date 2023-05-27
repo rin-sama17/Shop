@@ -2,7 +2,7 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { useDeleteRoleMutation, useGetRolesQuery } from '../../../api/adminApi'
+import { useDeleteRoleMutation, useGetRolesQuery } from '../../../api'
 import { AddRole, EditRole } from '../components'
 import { useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
@@ -32,17 +32,10 @@ const RoleManagement = () => {
       { field: 'details', headerName: 'توضیحات', width: 200 },
 
       {
-        field: 'actions',
-        headerName: 'افزودن پست',
+        field: 'addPost',
+        headerName: 'ویرایش پست',
         type: 'boolean',
         width: 120,
-        getActions: (params) => [
-          <Box sx={{ display: 'flex', dlexDirection: 'column' }}>
-            {adminsRoles.map((role, index) => {
-              console.log(params.row[role])
-            })}
-          </Box>,
-        ],
       },
       {
         field: 'editPost',

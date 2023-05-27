@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 
 import { contractValidation } from '../../validations/contractValidation'
 import { contractFieldsData } from '../../fieldsData'
-import { useAddContractMutation } from '../../../api/adminApi'
+import { useAddContractMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
 const AddContract = () => {
   const [open, setOpen] = useState(false)

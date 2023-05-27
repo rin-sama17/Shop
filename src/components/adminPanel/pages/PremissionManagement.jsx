@@ -7,7 +7,7 @@ import { EditPremission, AddPremission } from '../components'
 import {
   useDeletePremissionMutation,
   useGetPremissionsQuery,
-} from '../../../api/adminApi'
+} from '../../../api'
 
 const PremissionManagement = () => {
   const { data: premission = [] } = useGetPremissionsQuery()

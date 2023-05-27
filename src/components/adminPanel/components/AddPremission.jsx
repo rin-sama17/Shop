@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useAddPremissionMutation } from '../../../api/adminApi'
+import { useAddPremissionMutation } from '../../../api'
 
 import { CustomForm, CustomModal } from '../../common'
 import { premissionFieldsData } from '../../fieldsData'

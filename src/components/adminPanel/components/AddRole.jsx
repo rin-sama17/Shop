@@ -3,7 +3,7 @@ import { nanoid } from '@reduxjs/toolkit'
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useAddRoleMutation } from '../../../api/adminApi'
+import { useAddRoleMutation } from '../../../api'
 
 import { CustomForm, CustomModal } from '../../common'
 import { roleFieldsData } from '../../fieldsData'

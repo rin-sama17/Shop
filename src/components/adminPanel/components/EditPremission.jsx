@@ -3,7 +3,7 @@ import { GridActionsCellItem } from '@mui/x-data-grid'
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { useEditPremissionMutation } from '../../../api/adminApi'
+import { useEditPremissionMutation } from '../../../api'
 
 import { CustomModal, CustomForm } from '../../common'
 import { premissionFieldsData } from '../../fieldsData'

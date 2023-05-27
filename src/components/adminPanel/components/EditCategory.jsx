@@ -5,7 +5,7 @@ import { Edit } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 
 import { categoryValidation } from '../../validations/categoryValidation'
-import { useEditCategoryMutation } from '../../../api/adminApi'
+import { useEditCategoryMutation } from '../../../api'
 import { CustomModal, CustomForm } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
 

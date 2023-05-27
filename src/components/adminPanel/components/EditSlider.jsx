@@ -2,10 +2,7 @@ import { toast } from 'react-toastify'
 import { Button } from '@mui/material'
 
 import { SliderLoading } from '../../loading'
-import {
-  useDeleteSliderMutation,
-  useGetSliderQuery,
-} from '../../../api/adminApi'
+import { useDeleteSliderMutation, useGetSliderQuery } from '../../../api'
 import { EditSliderFields } from '.'
 
 const EditSlider = ({ sliderId, setOpen }) => {
