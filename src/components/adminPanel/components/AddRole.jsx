@@ -13,13 +13,18 @@ const AddRole = () => {
   const [open, setOpen] = useState(false)
 
   const [addRole] = useAddRoleMutation()
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     try {
-      addRole(values)
+      console.log(values)
+
+      await addRole({
+        status: 1,
+        ...values,
+      })
       toast.success(`نقش ${values.title} با موفقیت اضافه شد`)
       setOpen(false)
     } catch (error) {
-      console.log(error.message)
+      console.log(error)
     }
   }
 
@@ -27,8 +32,6 @@ const AddRole = () => {
     initialValues: {
       title: '',
       details: '',
-      addPost: false,
-      editPost: false,
     },
     validationSchema: roleValidation,
     onSubmit: (values, { resetForm }) => {

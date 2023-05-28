@@ -73,7 +73,7 @@ export const productFieldsData = (formik) => {
       sm: 7,
       category: true,
       formik,
-      name: 'category',
+      name: 'category_id',
     },
     {
       sm: 5,

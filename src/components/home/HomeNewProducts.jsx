@@ -3,12 +3,11 @@ import PropTypes from 'prop-types'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Typography from '@mui/material/Typography'
-import Box from '@mui/material/Box'
+import { Box } from '@mui/material'
 
 import { useGetProductsQuery } from '../../api'
 import { ProductLoading } from '../loading'
 import { ProductSlider } from '../products'
-import { Button } from '@mui/material'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -21,11 +20,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box>{children}</Box>}
     </div>
   )
 }
@@ -45,7 +40,7 @@ function a11yProps(index) {
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0)
-  const { data: products = [], isLoading } = useGetProductsQuery()
+  const { data: products = [], isSuccess } = useGetProductsQuery()
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -65,22 +60,28 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        {isLoading ? (
-          <ProductLoading width={240} />
+        {!isSuccess ? (
+          <Box sx={{ width: 0, m: 2 }}>
+            <ProductLoading />
+          </Box>
         ) : (
           <ProductSlider products={products} />
         )}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {isLoading ? (
-          <ProductLoading width={240} />
+        {!isSuccess ? (
+          <Box sx={{ width: 0, m: 2 }}>
+            <ProductLoading />
+          </Box>
         ) : (
           <ProductSlider products={products} />
         )}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        {isLoading ? (
-          <ProductLoading width={240} />
+        {!isSuccess ? (
+          <Box sx={{ width: 0, m: 2 }}>
+            <ProductLoading />
+          </Box>
         ) : (
           <ProductSlider products={products} />
         )}

@@ -2,11 +2,13 @@ import { Suspense, useState } from 'react'
 import { CardMedia, Button, Skeleton } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 
-import { useGetSliderQuery } from '../../../../api'
+import { useGetAdminSliderQuery } from '../../../../api'
 import { SliderLoading } from '../../../loading'
 
 const Slider = ({ sliderId, setSliderId, setOpen }) => {
-  const { data: slider, isLoading, isSuccess } = useGetSliderQuery(sliderId)
+  const { data: slider, isLoading, isSuccess } = useGetAdminSliderQuery(
+    sliderId,
+  )
 
   let content
   if (isLoading) {

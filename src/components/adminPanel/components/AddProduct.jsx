@@ -41,7 +41,7 @@ const AddProduct = () => {
     details: '',
     stock: '',
     thumbnail: '',
-    category: '',
+    category_id: '',
     tags: '',
   }
   const formik = useFormik({

@@ -33,7 +33,7 @@ const AddPost = () => {
     heading: '',
     introduction: '',
     thumbnail: '',
-    category: '',
+    category_id: '',
     tags: '',
     paragraphs: '',
   }

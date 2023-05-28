@@ -3,10 +3,13 @@ import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { EditDiscount, AddDiscount } from '../components'
-import { useDeleteDiscountMutation, useGetDiscountsQuery } from '../../../api'
+import {
+  useDeleteDiscountMutation,
+  useGetAdminDiscountsQuery,
+} from '../../../api'
 
 const DiscountManagement = () => {
-  const { data: discounts = [] } = useGetDiscountsQuery()
+  const { data: discounts = [] } = useGetAdminDiscountsQuery()
   const [deleteDiscount] = useDeleteDiscountMutation()
   const handleDiscountDelete = async (discountId) => {
     try {

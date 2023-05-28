@@ -18,7 +18,7 @@ const discountFieldsData = (formik) => {
       md: 6,
       category: true,
       formik,
-      name: 'category',
+      name: 'category_id',
     },
     {
       submit: true,

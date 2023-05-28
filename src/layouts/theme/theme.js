@@ -12,76 +12,9 @@ export const theme = createTheme({
         mode: "light",
 
         //p01
-        // bgcolor: {
-        //     main: "#E9E8EE",
-        //     dark: "#1E1E5C"
-        // },
-        // buttons: {
-        //     main: "#D2D2DC"
-        // },
-        // primary: {
-        //     main: "#ff8400",
-        //     light: "#FFFFFF"
-        // },
-        // secondary: {
-        //     main: "#F97F12"
-        // },
-        // bgBlur: {
-        //     main: "rgba(0, 0, 0, 0.4)"
-        // },
-        // title: {
-        //     main: '#437FC7'
-        // }
-
-        //p02
-        // bgcolor: {
-        //     main: "#FFFFFF",
-        //     dark: "#692705"
-        // },
-        // buttons: {
-        //     main: "#FFEEE4"
-        // },
-        // primary: {
-        //     main: "#FF5700",
-        //     light: "#FFFFFF"
-        // },
-        // secondary: {
-        //     main: "#FF5700"
-        // },
-        // bgBlur: {
-        //     main: "rgba(0, 0, 0, 0.4)"
-        // },
-        // title: {
-        //     main: '#CF8B64'
-        // }
-
-
-        //p04
-        // bgcolor: {
-        //     main: "#FFFFFF",
-        //     dark: "#161B7E"
-        // },
-        // buttons: {
-        //     main: "#FFEEE4"
-        // },
-        // primary: {
-        //     main: "#ED3D63",
-        //     light: "#FFFFFF"
-        // },
-        // secondary: {
-        //     main: "#ED3D63"
-        // },
-        // bgBlur: {
-        //     main: "rgba(0, 0, 0, 0.4)"
-        // },
-        // title: {
-        //     main: '#8D3FD0'
-        // }
-
-        //p05
         bgcolor: {
             main: "#E9E8EE",
-            dark: "#385068"
+            dark: "#343434"
         },
         buttons: {
             main: "#D2D2DC"
@@ -101,27 +34,27 @@ export const theme = createTheme({
             main: '#4F598A'
         }
 
-        //p06
+        // p06
         // bgcolor: {
-        //     main: "#EDF6FF",
-        //     dark: "#B9732E"
+        //     main: "#E9E8EE",
+        //     dark: "#343434"
         // },
         // buttons: {
-        //     main: "#FFFFFF"
+        //     main: "#D5FFF3"
         // },
         // primary: {
-        //     main: "#B9732E",
-        //     light: "#FFFFFF"
+        //     main: "#D5FFF3",
+        //     light: "#99AA38"
         // },
         // secondary: {
-        //     main: "#B9732E"
+        //     main: "#FE5E41"
         // },
         // bgBlur: {
-        //     main: "rgba(0, 0, 0, 0.4)"
+        //     main: "rgba(56,80,104, 0.5)"
         // },
         // title: {
-        //     light: "#EDF6FF",
-        //     main: '#6DAEFE'
+        //     light: "#FFFFFF",
+        //     main: '#6A7FD8'
         // }
     }
 });

@@ -3,11 +3,14 @@ import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-import { useDeleteProductMutation, useGetProductsQuery } from '../../../api'
+import {
+  useDeleteProductMutation,
+  useGetAdminProductsQuery,
+} from '../../../api'
 import { AddProduct } from '../components'
 
 const ProductManagement = () => {
-  const { data: products = [] } = useGetProductsQuery()
+  const { data: products = [] } = useGetAdminProductsQuery()
   const [deleteProduct] = useDeleteProductMutation()
   const handleProductDelete = async (productId) => {
     try {

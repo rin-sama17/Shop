@@ -2,18 +2,14 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { useDeleteRoleMutation, useGetRolesQuery } from '../../../api'
+import { useDeleteRoleMutation, useGetAdminRolesQuery } from '../../../api'
 import { AddRole, EditRole } from '../components'
 import { useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 
-const adminsRoles = {
-  addPost: 'افزودن پست',
-  editPost: 'ویرایش پست',
-}
-
 const RoleManagement = () => {
-  const { data: roles = [] } = useGetRolesQuery()
+  const { data: roles = [] } = useGetAdminRolesQuery()
+  console.log(roles)
   const [deleteRole] = useDeleteRoleMutation()
 
   const handleRoleDelete = async (roleId) => {
@@ -33,14 +29,19 @@ const RoleManagement = () => {
 
       {
         field: 'addPost',
+        headerName: 'افزودن پست',
+        type: 'boolean',
+        width: 120,
+      },
+      {
+        field: 'addPost',
         headerName: 'ویرایش پست',
         type: 'boolean',
         width: 120,
       },
       {
-        field: 'editPost',
-        headerName: 'ویرایش پست',
-        type: 'boolean',
+        field: 'status',
+        headerName: 'وضعیت',
         width: 120,
       },
       {

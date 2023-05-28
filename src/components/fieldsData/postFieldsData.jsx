@@ -9,7 +9,7 @@ const postFieldsData = (formik) => {
     {
       md: 4,
       category: true,
-      name: 'category',
+      name: 'category_id',
       formik,
     },
     {

@@ -21,7 +21,7 @@ const HomePostsSlider = () => {
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('md'))
 
-  const { data: posts = [], isLoading } = useGetPostsQuery()
+  const { data: posts = [], isSuccess } = useGetPostsQuery()
 
   const settings = {
     dots: true,
@@ -69,7 +69,7 @@ const HomePostsSlider = () => {
     rtl: true,
   }
 
-  if (isLoading) {
+  if (!isSuccess) {
     return <Skeleton width="100%" height="90vh" />
   }
 

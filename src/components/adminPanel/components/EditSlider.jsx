@@ -1,8 +1,11 @@
 import { toast } from 'react-toastify'
-import { Button } from '@mui/material'
+import { Button, Box } from '@mui/material'
 
 import { SliderLoading } from '../../loading'
-import { useDeleteSliderMutation, useGetSliderQuery } from '../../../api'
+import {
+  useDeleteSliderMutation,
+  useGetSliderQuery,
+} from '../../../api'
 import { EditSliderFields } from '.'
 
 const EditSlider = ({ sliderId, setOpen }) => {
@@ -24,19 +27,21 @@ const EditSlider = ({ sliderId, setOpen }) => {
     content = <SliderLoading />
   } else if (isSuccess) {
     content = (
-      <>
+      <Box
+        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      >
         <EditSliderFields slider={slider} setOpen={setOpen} />
         <Button
           fullWidth
           color="error"
           variant="contained"
-          size="large"
+          size="small"
           onClick={handleDeleteSlider}
-          sx={{ mt: 1 }}
+          sx={{ mt: 1, width: '75%' }}
         >
           حذف
         </Button>
-      </>
+      </Box>
     )
   }
   return content

@@ -4,14 +4,14 @@ import Grid from '@mui/material/Unstable_Grid2'
 
 import { CustomModal } from '../../../common'
 import { SliderLoading } from '../../../loading'
-import { useGetSlidersQuery } from '../../../../api'
+import { useGetAdminSlidersQuery } from '../../../../api'
 import { EditSlider, Slider } from '..'
 
 const SliderModal = () => {
   const [open, setOpen] = useState(false)
   const [sliderId, setSliderId] = useState('')
 
-  const { data: sliders = [] } = useGetSlidersQuery()
+  const { data: sliders = [] } = useGetAdminSlidersQuery()
 
   return (
     <>
