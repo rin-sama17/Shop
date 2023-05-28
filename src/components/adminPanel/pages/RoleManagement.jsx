@@ -2,13 +2,13 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { useDeleteRoleMutation, useGetAdminRolesQuery } from '../../../api'
+import { useDeleteRoleMutation, useGetRolesQuery } from '../../../api'
 import { AddRole, EditRole } from '../components'
 import { useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 
 const RoleManagement = () => {
-  const { data: roles = [] } = useGetAdminRolesQuery()
+  const { data: roles = [] } = useGetRolesQuery({ prefix: '/admin' })
   console.log(roles)
   const [deleteRole] = useDeleteRoleMutation()
 

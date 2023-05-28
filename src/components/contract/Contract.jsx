@@ -17,9 +17,9 @@ import LinesEllipsis from 'react-lines-ellipsis'
 import { PostLoading } from '../loading'
 import { useGetContractQuery } from '../../api'
 const Contract = ({ contractId }) => {
-  const { data: contract, isLoading, isSuccess } = useGetContractQuery(
-    contractId,
-  )
+  const { data: contract, isLoading, isSuccess } = useGetContractQuery({
+    id: contractId,
+  })
 
   if (isLoading) {
     return <PostLoading />

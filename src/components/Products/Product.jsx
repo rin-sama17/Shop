@@ -15,7 +15,9 @@ import { ProductPrice } from '../common'
 import { ProductLoading } from '../loading'
 
 const Product = ({ productId }) => {
-  const { data: product, isLoading, isSuccess } = useGetProductQuery(productId)
+  const { data: product, isLoading, isSuccess } = useGetProductQuery({
+    idproductId,
+  })
   const navigate = useNavigate()
 
   if (isLoading) {

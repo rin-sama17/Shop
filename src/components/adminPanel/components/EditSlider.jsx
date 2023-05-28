@@ -2,14 +2,14 @@ import { toast } from 'react-toastify'
 import { Button, Box } from '@mui/material'
 
 import { SliderLoading } from '../../loading'
-import {
-  useDeleteSliderMutation,
-  useGetSliderQuery,
-} from '../../../api'
+import { useDeleteSliderMutation, useGetSliderQuery } from '../../../api'
 import { EditSliderFields } from '.'
 
 const EditSlider = ({ sliderId, setOpen }) => {
-  const { data: slider, isLoading, isSuccess } = useGetSliderQuery(sliderId)
+  const { data: slider, isLoading, isSuccess } = useGetSliderQuery({
+    id: sliderId,
+    prefix: '/admin',
+  })
   const [deleteSlider] = useDeleteSliderMutation()
 
   const handleDeleteSlider = async () => {

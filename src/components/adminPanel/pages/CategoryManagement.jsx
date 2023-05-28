@@ -4,13 +4,10 @@ import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { EditCategory, AddCategory } from '../components'
-import {
-  useDeleteCategoryMutation,
-  useGetAdminCategoriesQuery,
-} from '../../../api'
+import { useDeleteCategoryMutation, useGetCategoriesQuery } from '../../../api'
 
 const CategoryManagement = () => {
-  const { data: categories = [] } = useGetAdminCategoriesQuery()
+  const { data: categories = [] } = useGetCategoriesQuery({ prefix: '/admin' })
 
   const [deleteCategory] = useDeleteCategoryMutation()
   const handleCategoryDelete = async (categoryId) => {

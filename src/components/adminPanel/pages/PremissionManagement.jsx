@@ -6,11 +6,11 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { EditPremission, AddPremission } from '../components'
 import {
   useDeletePremissionMutation,
-  useGetAdminPremissionsQuery,
+  useGetPremissionsQuery,
 } from '../../../api'
 
 const PremissionManagement = () => {
-  const { data: premission = [] } = useGetAdminPremissionsQuery()
+  const { data: premission = [] } = useGetPremissionsQuery({ prefix: '/admin' })
 
   const [deletePremission] = useDeletePremissionMutation()
   const handlePremissionDelete = async (premissionId) => {

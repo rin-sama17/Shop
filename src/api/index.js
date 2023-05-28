@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api' }),
   tagTypes: [
     'Blogs',
     'Products',
@@ -16,82 +16,14 @@ export const apiSlice = createApi({
   ],
   endpoints: (builder) => ({
     getPosts: builder.query({
-      query: () => '/posts',
-    }),
-    getPost: builder.query({
-      query: (initialPostId) => `/posts/show/${initialPostId}`,
-    }),
-
-    getProducts: builder.query({
-      query: () => '/products',
-    }),
-    getProduct: builder.query({
-      query: (initialProductId) => `/products/show/${initialProductId}`,
-    }),
-
-    getSliders: builder.query({
-      query: () => '/sliders',
-    }),
-    getSlider: builder.query({
-      query: (initialSliderId) => `/sliders/show/${initialSliderId}`,
-    }),
-
-    getDiscounts: builder.query({
-      query: () => '/discounts',
-    }),
-    getDiscount: builder.query({
-      query: (initialDiscountId) => `/discounts/show/${initialDiscountId}`,
-    }),
-
-    getCategories: builder.query({
-      query: () => '/categories',
-    }),
-    getCategory: builder.query({
-      query: (initialCategoryId) => `/categories/show/${initialCategoryId}`,
-    }),
-
-    getAdmins: builder.query({
-      query: () => '/user',
-    }),
-    getAdmin: builder.query({
-      query: (adminId) => `/user/show/${adminId}`,
-    }),
-
-    getRoles: builder.query({
-      query: () => '/roles',
-    }),
-    getRole: builder.query({
-      query: (roleId) => `/roles/show/${roleId}`,
-    }),
-
-    getPremissions: builder.query({
-      query: () => '/premission',
-    }),
-    getPremission: builder.query({
-      query: (PremissionId) => `/premission/show/${PremissionId}`,
-    }),
-
-    getContracts: builder.query({
-      query: () => '/contracts',
-    }),
-    getContract: builder.query({
-      query: (contractId) => `/contracts/show/${contractId}`,
-    }),
-
-
-
-
-    //admin requests
-
-    getAdminPosts: builder.query({
-      query: () => '/admin/posts',
+      query: ({ prefix = "" }) => `${prefix}/posts`,
       providesTags: (res = []) => [
         'Blogs',
         ...res.map(({ id }) => [{ type: 'Blogs', id }]),
       ],
     }),
-    getAdminPost: builder.query({
-      query: (initialPostId) => `/admin/posts/show/${initialPostId}`,
+    getPost: builder.query({
+      query: ({ id, prefix = "" }) => `${prefix}/posts/show/${id}`,
       providesTags: (res, err, arg) => [{ type: 'Blogs', id: arg }],
     }),
     addNewPost: builder.mutation({
@@ -118,15 +50,15 @@ export const apiSlice = createApi({
       invalidatesTags: (res, err, arg) => [{ type: 'Blogs', id: arg.id }],
     }),
 
-    getAdminProducts: builder.query({
-      query: () => '/admin/products',
+    getProducts: builder.query({
+      query: ({ prefix = "" }) => `${prefix}/products`,
       providesTags: (res = []) => [
         'Products',
         ...res.map(({ id }) => [{ type: 'Products', id }]),
       ],
     }),
-    getAdminProduct: builder.query({
-      query: (initialProductId) => `/admin/products/show/${initialProductId}`,
+    getProduct: builder.query({
+      query: ({ id, prefix = "" }) => `${prefix}/products/show/${id}`,
       providesTags: (res, err, arg) => [{ type: 'Products', id: arg }],
     }),
     addNewProduct: builder.mutation({
@@ -153,22 +85,22 @@ export const apiSlice = createApi({
       invalidatesTags: (res, err, arg) => [{ type: 'Products', id: arg.id }],
     }),
 
-    getAdminSliders: builder.query({
-      query: () => '/admin/sliders',
+    getSliders: builder.query({
+      query: ({ prefix = "" }) => `${prefix}/sliders`,
       providesTags: (res = [], error, arg) => [
         'Sliders',
         ...res.map(({ id }) => [{ type: 'Sliders', id }]),
       ],
     }),
-    getAdminSlider: builder.query({
-      query: (initialSliderId) => `/admin/sliders/show/${initialSliderId}`,
+    getSlider: builder.query({
+      query: ({ id, prefix = "" }) => `${prefix}/sliders/show/${id}`,
       providesTags: (res, err, arg) => [{ type: 'Sliders', id: arg }],
     }),
     addNewSlider: builder.mutation({
-      query: (initialSlider) => ({
+      query: (slider) => ({
         url: '/admin/sliders/store',
         method: 'POST',
-        body: initialSlider,
+        body: slider,
       }),
       invalidatesTags: ['Sliders'],
     }),
@@ -188,15 +120,15 @@ export const apiSlice = createApi({
       invalidatesTags: (res, err, arg) => [{ type: 'Sliders', id: arg.id }],
     }),
 
-    getAdminDiscounts: builder.query({
-      query: () => '/admin/discounts',
+    getDiscounts: builder.query({
+      query: ({ prefix = "" }) => `${prefix}/discounts`,
       providesTags: (res = [], err, arg) => [
         'Discounts',
         ...res.map(({ id }) => [{ type: 'Discounts', id }]),
       ],
     }),
-    getAdminDiscount: builder.query({
-      query: (initialDiscountId) => `/admin/discounts/show/${initialDiscountId}`,
+    getDiscount: builder.query({
+      query: ({ id, prefix = "" }) => `${prefix}/discounts/show/${id}`,
       providesTags: (res, err, arg) => [{ type: 'Discounts', id: arg }],
     }),
     addNewDiscount: builder.mutation({
@@ -223,15 +155,15 @@ export const apiSlice = createApi({
       invalidatesTags: (res, err, arg) => [{ type: 'Discounts', id: arg.id }],
     }),
 
-    getAdminCategories: builder.query({
-      query: () => '/admin/categories',
+    getCategories: builder.query({
+      query: ({ prefix = "" }) => `${prefix}/categories`,
       providesTags: (res = []) => [
         'Categorys',
         ...res.map(({ id }) => [{ type: 'Categorys', id }]),
       ],
     }),
-    getAdminCategory: builder.query({
-      query: (initialCategoryId) => `/admin/categories/show/${initialCategoryId}`,
+    getCategory: builder.query({
+      query: ({ id, prefix = "" }) => `${prefix}/admin/categories/show/${id}`,
       providesTags: (res, err, arg) => [{ type: 'Categorys', id: arg }],
     }),
     addNewCategory: builder.mutation({
@@ -293,14 +225,14 @@ export const apiSlice = createApi({
       invalidatesTags: (res, err, arg) => [{ type: 'Admins', id: arg.id }],
     }),
 
-    getAdminRoles: builder.query({
-      query: () => '/role/index',
+    getRoles: builder.query({
+      query: () => '/admin/role/index',
       providesTags: (res = []) => [
         'Roles',
         ...res.map(({ id }) => [{ type: 'Roles', id }]),
       ],
     }),
-    getAdminRole: builder.query({
+    getRole: builder.query({
       query: (roleId) => `/admin/role/show/${roleId}`,
       providesTags: (res, err, arg) => [{ type: 'Roles', id: arg }],
     }),
@@ -328,14 +260,14 @@ export const apiSlice = createApi({
       invalidatesTags: ['Roles'],
     }),
 
-    getAdminPremissions: builder.query({
+    getPremissions: builder.query({
       query: () => '/admin/premission',
       providesTags: (res = []) => [
         'Premission',
         ...res.map(({ id }) => [{ type: 'Premission', id }]),
       ],
     }),
-    getAdminPremission: builder.query({
+    getPremission: builder.query({
       query: (PremissionId) => `/admin/premission/show/${PremissionId}`,
       providesTags: (res, err, arg) => [{ type: 'Premission', id: arg }],
     }),
@@ -363,15 +295,15 @@ export const apiSlice = createApi({
       invalidatesTags: ['Premission'],
     }),
 
-    getAdminContracts: builder.query({
-      query: () => '/admin/contracts',
+    getContracts: builder.query({
+      query: ({ prefix = "" }) => `${prefix}/admin/contracts`,
       providesTags: (res = []) => [
         'Contracts',
         ...res.map(({ id }) => [{ type: 'Contracts', id }]),
       ],
     }),
-    getAdminContract: builder.query({
-      query: (contractId) => `/admin/contracts/show/${contractId}`,
+    getContract: builder.query({
+      query: ({ id, prefix = "" }) => `${prefix}/admin/contracts/show/${id}`,
       providesTags: (res, err, arg) => [{ type: 'Contracts', id: arg }],
     }),
     addContract: builder.mutation({
@@ -401,85 +333,57 @@ export const apiSlice = createApi({
 });
 
 export const {
+
   useGetPostsQuery,
   useGetPostQuery,
-
-  useGetProductsQuery,
-  useGetProductQuery,
-
-  useGetSlidersQuery,
-  useGetSliderQuery,
-
-  useGetDiscountsQuery,
-  useGetDiscountQuery,
-
-  useGetCategoriesQuery,
-  useGetCategoryQuery,
-
-  useGetAdminsQuery,
-  useGetAdminQuery,
-
-  useGetRolesQuery,
-  useGetRoleQuery,
-
-  useGetPremissionsQuery,
-  useGetPremissionQuery,
-
-  useGetContractsQuery,
-  useGetContractQuery,
-
-  //admin requests
-
-  useGetAdminPostsQuery,
-  useGetAdminPostQuery,
   useAddNewPostMutation,
   useDeletePostMutation,
   useEditPostMutation,
 
-  useGetAdminProductsQuery,
-  useGetAdminProductQuery,
+  useGetProductsQuery,
+  useGetProductQuery,
   useAddNewProductMutation,
   useDeleteProductMutation,
   useEditProductMutation,
 
-  useGetAdminSlidersQuery,
-  useGetAdminSliderQuery,
+  useGetSlidersQuery,
+  useGetSliderQuery,
   useAddNewSliderMutation,
   useDeleteSliderMutation,
   useEditSliderMutation,
 
-  useGetAdminDiscountsQuery,
-  useGetAdminDiscountQuery,
+  useGetDiscountsQuery,
+  useGetDiscountQuery,
   useAddNewDiscountMutation,
   useDeleteDiscountMutation,
   useEditDiscountMutation,
 
-  useGetAdminCategoriesQuery,
-  useGetAdminCategoryQuery,
+  useGetCategoriesQuery,
+  useGetCategoryQuery,
   useAddNewCategoryMutation,
   useDeleteCategoryMutation,
   useEditCategoryMutation,
 
-  useGetAdminAdminsQuery,
-  useGetAdminAdminQuery,
+  useGetAdminsQuery,
+  useGetAdminQuery,
   useAddNewAdminMutation,
   useDeleteAdminMutation,
   useEditAdminMutation,
 
-  useGetAdminRolesQuery,
-  useGetAdminRoleQuery,
+  useGetRolesQuery,
+  useGetRoleQuery,
   useAddRoleMutation,
   useEditRoleMutation,
   useDeleteRoleMutation,
 
-  useGetAdminPremissionsQuery,
-  useGetAdminPremissionQuery,
+  useGetPremissionsQuery,
+  useGetPremissionQuery,
   useAddPremissionMutation,
   useEditPremissionMutation,
   useDeletePremissionMutation,
 
-  useGetAdminContractsQuery,
-  useGetAdminContractQuery,
+  useGetContractsQuery,
+  useGetContractQuery,
   useAddContractMutation,
   useEditContractMutation,
   useDeleteContractMutation,

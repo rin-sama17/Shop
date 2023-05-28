@@ -14,11 +14,7 @@ const AddCategory = () => {
 
   const handleAddNewCategory = async (values) => {
     try {
-      const { name } = values
-      await addNewCategory({
-        id: nanoid(),
-        name,
-      })
+      await addNewCategory(values)
       setOpen(false)
     } catch (error) {
       console.log(error.massage)

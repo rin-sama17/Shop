@@ -18,7 +18,7 @@ import { useGetPostQuery } from '../../api'
 import { PostLoading } from '../loading'
 
 const Post = ({ postId }) => {
-  const { data: post, isLoading, isSuccess } = useGetPostQuery(postId)
+  const { data: post, isLoading, isSuccess } = useGetPostQuery({ idpostId })
 
   if (isLoading || postId === 'G6jZsUw4LVZZAjcdSMD-s') {
     return <PostLoading postId={postId} />

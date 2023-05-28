@@ -4,7 +4,7 @@ import { ShowPostLoading } from '../components/loading'
 import { PostContents } from '../components/Posts'
 const ShowPost = () => {
   const { postId } = useParams()
-  const { data: post, isLoading, isSuccess } = useGetPostQuery(postId)
+  const { data: post, isLoading, isSuccess } = useGetPostQuery({ id: postId })
   let content
   if (isLoading) {
     content = <ShowPostLoading />

@@ -6,13 +6,10 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { EditContract, AddContract } from '../components'
 import { contractValidation } from '../../validations/contractValidation'
 import { contractFieldsData } from '../../fieldsData'
-import {
-  useDeleteContractMutation,
-  useGetAdminContractsQuery,
-} from '../../../api'
+import { useDeleteContractMutation, useGetContractsQuery } from '../../../api'
 
 const ContractManagement = () => {
-  const { data: contracts = [] } = useGetAdminContractsQuery()
+  const { data: contracts = [] } = useGetContractsQuery({ prefix: '/admin' })
 
   const [deleteContract] = useDeleteContractMutation()
   const handleContractDelete = async (contractId) => {

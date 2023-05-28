@@ -5,7 +5,7 @@ import { ShowProductLoading } from '../components/loading'
 
 const ShowProduct = () => {
   const { productId } = useParams()
-  const { data: product, isLoading } = useGetProductQuery(productId)
+  const { data: product, isLoading } = useGetProductQuery({ id: productId })
   if (isLoading) {
     return <ShowProductLoading />
   }

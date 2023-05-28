@@ -3,12 +3,12 @@ import { toast } from 'react-toastify'
 import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { useDeletePostMutation, useGetAdminPostsQuery } from '../../../api'
+import { useDeletePostMutation, useGetPostsQuery } from '../../../api'
 import AddPost from '../components/AddPost'
 import EditPost from '../components/EditPost'
 
 const PostManagement = () => {
-  const { data: posts = [] } = useGetAdminPostsQuery()
+  const { data: posts = [] } = useGetPostsQuery({ prefix: '/admin' })
   const [deletePost] = useDeletePostMutation()
 
   const handlePostDelete = async (postId) => {

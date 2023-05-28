@@ -12,7 +12,7 @@ import { roleValidation } from '../../validations/roleValidation'
 const AddRole = () => {
   const [open, setOpen] = useState(false)
 
-  const [addRole] = useAddRoleMutation()
+  const [addRole, { isSuccess }] = useAddRoleMutation()
   const handleSubmit = async (values) => {
     try {
       console.log(values)
@@ -21,8 +21,10 @@ const AddRole = () => {
         status: 1,
         ...values,
       })
-      toast.success(`نقش ${values.title} با موفقیت اضافه شد`)
-      setOpen(false)
+      if (isSuccess) {
+        toast.success(`نقش ${values.title} با موفقیت اضافه شد`)
+        setOpen(false)
+      }
     } catch (error) {
       console.log(error)
     }
