@@ -1,7 +1,21 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+
+const myMiddleware = (next) => (args) => {
+  if (!args.headers) {
+    args.headers = {};
+  }
+
+  args.headers['Accept'] = 'application/json';
+  return next(args);
+};
+
+
+
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api' }),
+
   tagTypes: [
     'Blogs',
     'Products',
@@ -225,28 +239,32 @@ export const apiSlice = createApi({
       invalidatesTags: (res, err, arg) => [{ type: 'Admins', id: arg.id }],
     }),
 
+
     getRoles: builder.query({
-      query: () => '/admin/role/index',
+      query: () => '/admin/roles',
       providesTags: (res = []) => [
         'Roles',
         ...res.map(({ id }) => [{ type: 'Roles', id }]),
       ],
     }),
     getRole: builder.query({
-      query: (roleId) => `/admin/role/show/${roleId}`,
+      query: (roleId) => `/admin/roles/show/${roleId}`,
       providesTags: (res, err, arg) => [{ type: 'Roles', id: arg }],
     }),
     addRole: builder.mutation({
       query: (role) => ({
-        url: '/role/store',
+        url: '/admin/roles/store',
         method: 'POST',
         body: role,
       }),
+      headers: {
+        Accept: 'application/json'
+      },
       invalidatesTags: ['Roles'],
     }),
     editRole: builder.mutation({
       query: (role) => ({
-        url: `/admin/role/update/${role.id}`,
+        url: `/admin/roles/update/${role.id}`,
         method: 'PUT',
         body: role,
       }),

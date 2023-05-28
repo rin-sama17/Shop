@@ -19,6 +19,7 @@ const AddRole = () => {
 
       await addRole({
         status: 1,
+        lang:"fa",
         ...values,
       })
       if (isSuccess) {
@@ -32,8 +33,8 @@ const AddRole = () => {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      details: '',
+      name: '',
+      description: '',
     },
     validationSchema: roleValidation,
     onSubmit: (values, { resetForm }) => {

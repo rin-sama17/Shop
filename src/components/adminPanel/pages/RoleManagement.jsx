@@ -8,8 +8,7 @@ import { useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 
 const RoleManagement = () => {
-  const { data: roles = [] } = useGetRolesQuery({ prefix: '/admin' })
-  console.log(roles)
+  const { data: roles = [], isSuccess } = useGetRolesQuery({ prefix: '/admin' })
   const [deleteRole] = useDeleteRoleMutation()
 
   const handleRoleDelete = async (roleId) => {
@@ -61,6 +60,7 @@ const RoleManagement = () => {
     ],
     [handleRoleDelete, roles],
   )
+
   return (
     <>
       <AddRole />
