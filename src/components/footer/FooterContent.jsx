@@ -11,9 +11,9 @@ import {
 } from '@mui/icons-material'
 
 const socials = [
-  { icon: <Instagram />, to: 'https://t.me/rin_sama' },
-  { icon: <Telegram />, to: 'https://t.me/rin_sama' },
-  { icon: <LinkedIn />, to: 'https://t.me/rin_sama' },
+  { icon: <Instagram />, to: 'https://t.me/rin_sama', color: 'secondary' },
+  { icon: <Telegram />, to: 'https://t.me/rin_sama', color: 'info' },
+  { icon: <LinkedIn />, to: 'https://t.me/rin_sama', color: 'title' },
 ]
 
 const routes = [
@@ -65,7 +65,7 @@ const FooterContent = () => {
                   href={social.to}
                   target="_blank"
                   sx={{
-                    ':hover': { color: 'primary.main' },
+                    ':hover': { color: `${social.color}.main` },
                   }}
                 >
                   {social.icon}
@@ -86,11 +86,12 @@ const FooterContent = () => {
                 size="small"
                 component={Link}
                 to={route.to}
+                color="secondary"
                 sx={{
                   mb: 0.5,
                   justifyContent: 'left',
                   color: 'text.secondary',
-                  ':hover': { color: 'primary.main' },
+                  ':hover': { color: 'secondary.main' },
                 }}
               >
                 {route.name}

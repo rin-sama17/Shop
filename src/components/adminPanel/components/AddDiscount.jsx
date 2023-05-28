@@ -37,14 +37,14 @@ const AddDiscount = () => {
   const fields = discountFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)} color="success" sx={{ m: 2 }}>
+      <Button onClick={() => setOpen(true)} color="secondary" sx={{ m: 2 }}>
         ساخت تخفیف جدید
       </Button>
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           formik={formik}
           fields={fields}
-          color="success"
+          color="secondary"
           label="ساخت تخفیف جدید"
         />
       </CustomModal>

@@ -54,7 +54,7 @@ const AddProduct = () => {
   const fields = productFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)} sx={{ m: 2 }}>
+      <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
         ساخت محصول جدید
       </Button>
       <CustomModal open={open} setOpen={setOpen}>

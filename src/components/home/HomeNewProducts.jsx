@@ -53,6 +53,8 @@ export default function BasicTabs() {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          textColor="secondary"
+          indicatorColor="secondary"
         >
           <Tab label="تخفیفات شگفت انگیز" {...a11yProps(0)} />
           <Tab label="جدیدترین ها" {...a11yProps(1)} />

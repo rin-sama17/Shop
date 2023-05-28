@@ -44,7 +44,9 @@ const AddRole = () => {
   const fields = roleFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)}>افزودن نقش جدید</Button>
+      <Button onClick={() => setOpen(true)} color="secondary">
+        افزودن نقش جدید
+      </Button>
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm formik={formik} fields={fields} label="افزودن نقش جدید" />
       </CustomModal>
