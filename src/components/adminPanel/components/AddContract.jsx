@@ -8,14 +8,18 @@ import { useAddContractMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
 const AddContract = () => {
   const [open, setOpen] = useState(false)
-  const [addNewContract] = useAddContractMutation()
+  const [addNewContract, { isSuccess }] = useAddContractMutation()
 
   const handleSubmit = async (values) => {
     try {
       await addNewContract(values)
-      setOpen(false)
+      if (isSuccess) {
+        setOpen(false)
+        toast.success('با موفقیت ثبت شد')
+      }
     } catch (error) {
-      console.log(error.massage)
+      console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
 

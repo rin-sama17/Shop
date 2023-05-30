@@ -16,13 +16,17 @@ const EditRole = ({ role }) => {
   const handleSubmit = async (values) => {
     try {
       await editRole({ ...values })
-      toast.success(`${values.name} با موفقیت ویرایش شد`)
-      setOpen(false)
+
+      if (isSuccess) {
+        setOpen(false)
+        toast.success('با موفقیت ثبت شد')
+      }
     } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
       console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
+
   const formik = useFormik({
     initialValues: { ...role },
     validationSchema: roleValidation,

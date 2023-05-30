@@ -15,7 +15,10 @@ const myMiddleware = (next) => (args) => {
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api' }),
-
+  prepareHeaders: (headers) => {
+    headers.set("Accept", 'application/json');
+    return headers;
+  },
   tagTypes: [
     'Blogs',
     'Products',
@@ -33,7 +36,7 @@ export const apiSlice = createApi({
       query: ({ prefix = "" }) => `${prefix}/posts`,
       providesTags: (res = []) => [
         'Blogs',
-        ...res.map(({ id }) => [{ type: 'Blogs', id }]),
+        ...res.data?.map(({ id }) => [{ type: 'Blogs', id }]),
       ],
     }),
     getPost: builder.query({
@@ -66,14 +69,10 @@ export const apiSlice = createApi({
 
     getProducts: builder.query({
       query: ({ prefix = "" }) => `${prefix}/products`,
-      providesTags: (res = []) => [
-        'Products',
-        ...res.map(({ id }) => [{ type: 'Products', id }]),
-      ],
+      providesTags: ['Products'],
     }),
     getProduct: builder.query({
       query: ({ id, prefix = "" }) => `${prefix}/products/show/${id}`,
-      providesTags: (res, err, arg) => [{ type: 'Products', id: arg }],
     }),
     addNewProduct: builder.mutation({
       query: (initialProduct) => ({
@@ -96,7 +95,7 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: product,
       }),
-      invalidatesTags: (res, err, arg) => [{ type: 'Products', id: arg.id }],
+      invalidatesTags: ['Products'],
     }),
 
     getSliders: builder.query({
@@ -253,9 +252,6 @@ export const apiSlice = createApi({
         method: 'POST',
         body: role,
       }),
-      headers: {
-        Accept: 'application/json'
-      },
       invalidatesTags: ['Roles'],
     }),
     editRole: builder.mutation({
@@ -264,9 +260,6 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: role,
       }),
-      headers: {
-        Accept: 'application/json'
-      },
       invalidatesTags: ['Roles'],
     }),
     deleteRole: builder.mutation({

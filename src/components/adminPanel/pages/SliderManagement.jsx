@@ -50,7 +50,6 @@ const SliderManagement = () => {
       />
 
       <Box sx={{ my: 3 }}>
-        <CustomDivider label="مدیریت اسلاید ها" />
         <SliderModal />
       </Box>
       <Box sx={{ px: 3 }}>

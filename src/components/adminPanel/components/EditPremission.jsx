@@ -18,12 +18,12 @@ const EditPremission = ({ premission }) => {
       await editPremission(values).unwrap()
 
       if (isSuccess) {
-        toast.success(`دسترسی ${values.title} با موفقیت ویرایش شد`)
+        setOpen(false)
+        toast.success('با موفقیت ثبت شد')
       }
-      setOpen(false)
     } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
       console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
   const formik = useFormik({

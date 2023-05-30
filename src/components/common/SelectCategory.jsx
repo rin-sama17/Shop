@@ -15,6 +15,7 @@ const SelectCategory = ({ value, setValue }) => {
       <InputLabel id="category">دسته بندی</InputLabel>
       <Select
         name="category"
+        color="secondary"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         labelId="category"

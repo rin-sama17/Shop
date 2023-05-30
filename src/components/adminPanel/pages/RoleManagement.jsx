@@ -78,9 +78,6 @@ const RoleManagement = () => {
     ],
     [handleRoleDelete, roles.data[0]],
   )
-  if (isSuccess) {
-    console.log('roles.data[0]', roles.data[0])
-  }
 
   return (
     <>

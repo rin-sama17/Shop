@@ -10,7 +10,7 @@ import { discountFieldsData } from '../../fieldsData'
 const AddDiscount = () => {
   const [open, setOpen] = useState(false)
 
-  const [addNewDiscount] = useAddNewDiscountMutation()
+  const [addNewDiscount, { isSuccess }] = useAddNewDiscountMutation()
 
   const handleAddNewDiscount = async (values) => {
     try {
@@ -20,9 +20,13 @@ const AddDiscount = () => {
         discount,
         category,
       })
-      setOpen(false)
+      if (isSuccess) {
+        setOpen(false)
+        toast.success('با موفقیت ثبت شد')
+      }
     } catch (error) {
       console.log(error.massage)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
 

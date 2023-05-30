@@ -25,12 +25,12 @@ const AddProduct = () => {
       }
       await addNewProduct(newProduct).unwrap()
       if (isSuccess) {
-        toast.success(`محصول ${values.name} با موفقیت ساخته شد`)
         setOpen(false)
+        toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
       console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
 
@@ -38,9 +38,9 @@ const AddProduct = () => {
     name: '',
     price: '',
     discount: '',
-    details: '',
-    stock: '',
-    thumbnail: '',
+    description: '',
+    remainig: '',
+    pictures: '',
     category_id: '',
     tags: '',
   }
@@ -64,7 +64,7 @@ const AddProduct = () => {
           label="افزودن محصول جدید"
           color="warning"
           imageUploader
-          imageUploaderName="thumbnail"
+          imageUploaderName="pictures"
           imageUploaderProps={{ aspect: 3 / 4 }}
         />
       </CustomModal>

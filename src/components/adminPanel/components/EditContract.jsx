@@ -17,14 +17,15 @@ const EditContract = ({ contract }) => {
       await editContract(values).unwrap()
 
       if (isSuccess) {
-        toast.success(`نمایندگی ${values.name} با موفقیت ویرایش شد`)
+        setOpen(false)
+        toast.success('با موفقیت ثبت شد')
       }
-      setOpen(false)
     } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
       console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
+
   const formik = useFormik({
     initialValues: { ...contract },
     validationSchema: contractValidation,

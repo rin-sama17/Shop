@@ -17,10 +17,13 @@ const EditCategory = ({ category }) => {
     const updatedCategory = { ...category, name: values.name }
     try {
       await updateCategotry(updatedCategory).unwrap()
-      setOpen(false)
+      if (isSuccess) {
+        setOpen(false)
+        toast.success('با موفقیت ثبت شد')
+      }
     } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
       console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
 

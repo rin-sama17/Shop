@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { nanoid } from '@reduxjs/toolkit'
 import { useFormik } from 'formik'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useAddRoleMutation } from '../../../api'
 
@@ -12,7 +12,7 @@ import { roleValidation } from '../../validations/roleValidation'
 const AddRole = () => {
   const [open, setOpen] = useState(false)
 
-  const [addRole, { isSuccess }] = useAddRoleMutation()
+  const [addRole, isSuccess] = useAddRoleMutation()
   const handleSubmit = async (values) => {
     try {
       await addRole({
@@ -21,12 +21,12 @@ const AddRole = () => {
         ...values,
       })
       if (isSuccess) {
-        console.log(addRole)
-        toast.success(`نقش ${values.title} با موفقیت اضافه شد`)
         setOpen(false)
+        toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
       console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
 
@@ -38,9 +38,11 @@ const AddRole = () => {
     // validationSchema: roleValidation,
     onSubmit: (values, { resetForm }) => {
       handleSubmit(values)
-      // resetForm()
+      resetForm()
+      // setOpen(flase)
     },
   })
+
   const fields = roleFieldsData(formik)
   return (
     <>

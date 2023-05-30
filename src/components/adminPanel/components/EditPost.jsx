@@ -16,9 +16,8 @@ const EditPost = ({ post }) => {
     try {
       await updatePost(values).unwrap()
       if (isSuccess) {
-        toast.success(`پست ${values.heading} با موفقیت ویرایش شد`)
         setOpen(false)
-        resetForm()
+        toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
       console.log(error)

@@ -6,12 +6,13 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { useDeletePostMutation, useGetPostsQuery } from '../../../api'
 import AddPost from '../components/AddPost'
 import EditPost from '../components/EditPost'
+import { useMemo } from 'react'
 
 const PostManagement = () => {
-  const { data: posts = [] } = useGetPostsQuery({ prefix: '/admin' })
+  const { data = { posts: [] } } = useGetPostsQuery({ prefix: '/admin' })
   const [deletePost] = useDeletePostMutation()
 
-  const handlePostDelete = async (postId) => {
+  const handleDelete = async (postId) => {
     try {
       await deletePost(postId).unwrap()
     } catch (error) {
@@ -20,32 +21,35 @@ const PostManagement = () => {
     }
   }
 
-  const columns = [
-    { field: 'id', headerName: 'ای دی', width: 100 },
-    { field: 'heading', headerName: 'نام پست', width: 150 },
-    { field: 'introduction', headerName: 'مقدمه', width: 200 },
-    { field: 'category', headerName: 'دسته بندی', width: 100 },
-    {
-      field: 'actions',
-      type: 'actions',
-      width: 80,
-      getActions: (params) => [
-        <GridActionsCellItem
-          icon={<Delete />}
-          sx={{ color: 'tomato' }}
-          label="حذف"
-          onClick={() => handlePostDelete(params.id)}
-        />,
-        <EditPost post={params.row} />,
-      ],
-    },
-  ]
+  const columns = useMemo(
+    () => [
+      { field: 'id', headerName: 'ای دی', width: 100 },
+      { field: 'heading', headerName: 'نام پست', width: 150 },
+      { field: 'introduction', headerName: 'مقدمه', width: 200 },
+      { field: 'category', headerName: 'دسته بندی', width: 100 },
+      {
+        field: 'actions',
+        type: 'actions',
+        width: 80,
+        getActions: (params) => [
+          <GridActionsCellItem
+            icon={<Delete />}
+            sx={{ color: 'tomato' }}
+            label="حذف"
+            onClick={() => handleDelete(params.id)}
+          />,
+          <EditPost post={params.row} />,
+        ],
+      },
+    ],
+    [handleDelete, data.posts],
+  )
 
   return (
     <>
       <AddPost />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={posts} columns={columns} />
+        <DataGrid rows={data.posts} columns={columns} />
       </div>
     </>
   )

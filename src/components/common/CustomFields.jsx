@@ -46,6 +46,7 @@ const CustomFields = ({
           fullWidth
           type="submit"
           size="small"
+          color="secondary"
           variant="contained"
           sx={{ height: 1 }}
           {...props}
@@ -159,6 +160,7 @@ const CustomFields = ({
       <FormControl
         fullWidth
         size="small"
+        color="secondary"
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
       >
         <InputLabel id={`category-label`}>دسته بندی</InputLabel>
@@ -190,6 +192,7 @@ const CustomFields = ({
       <FormControlLabel
         control={
           <Checkbox
+            color="secondary"
             name={name}
             value={formik.values[`${name}`]}
             checked={formik.values[`${name}`]}

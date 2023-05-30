@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom'
 import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { useDeleteProductMutation, useGetProductsQuery } from '../../../api'
-import { AddProduct } from '../components'
+import { AddProduct, EditProduct } from '../components'
+import { useMemo } from 'react'
 
 const ProductManagement = () => {
-  const { data: products = [] } = useGetProductsQuery({ prefix: '/admin' })
+  const { data: products = [] } = useGetProductsQuery({
+    prefix: '/admin',
+  })
   const [deleteProduct] = useDeleteProductMutation()
-  const handleProductDelete = async (productId) => {
+  const handleDelete = async (productId) => {
     try {
       await deleteProduct(productId).unwrap()
     } catch (error) {
@@ -17,35 +20,31 @@ const ProductManagement = () => {
       console.log(error)
     }
   }
-  const columns = [
-    { field: 'id', headerName: 'ای دی', width: 100 },
-    { field: 'name', headerName: 'نام محصول', width: 100 },
-    { field: 'price', headerName: 'قیمت', width: 100 },
-    { field: 'discount', headerName: 'تخفیف(به درصد)', width: 120 },
-    { field: 'stock', headerName: 'موجودی', width: 100 },
-    { field: 'category', headerName: 'دسته بندی', width: 100 },
-    {
-      field: 'actions',
-      type: 'actions',
-      width: 80,
-      getActions: (params) => [
-        <GridActionsCellItem
-          icon={<Delete />}
-          sx={{ color: 'tomato' }}
-          label="حذف"
-          onClick={() => handleProductDelete(params.id)}
-        />,
-        <GridActionsCellItem
-          icon={<Edit />}
-          color="info"
-          label="ویرایش"
-          component={Link}
-          to={`/product/edit/${params.id}`}
-        />,
-      ],
-    },
-  ]
-
+  const columns = useMemo(
+    () => [
+      { field: 'id', headerName: 'ای دی', width: 100 },
+      { field: 'name', headerName: 'نام محصول', width: 100 },
+      { field: 'price', headerName: 'قیمت', width: 100 },
+      { field: 'discount', headerName: 'تخفیف(به درصد)', width: 120 },
+      { field: 'stock', headerName: 'موجودی', width: 100 },
+      { field: 'category', headerName: 'دسته بندی', width: 100 },
+      {
+        field: 'actions',
+        type: 'actions',
+        width: 80,
+        getActions: (params) => [
+          <GridActionsCellItem
+            icon={<Delete />}
+            sx={{ color: 'tomato' }}
+            label="حذف"
+            onClick={() => handleDelete(params.id)}
+          />,
+          <EditProduct product={params.row} />,
+        ],
+      },
+    ],
+    [handleDelete, products],
+  )
   return (
     <>
       <AddProduct />

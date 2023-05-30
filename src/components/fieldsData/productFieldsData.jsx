@@ -47,7 +47,7 @@ export const productFieldsData = (formik) => {
     {
       sm: 12,
       formik,
-      name: 'details',
+      name: 'description',
       multiline: true,
       helperText: 'توضیح مختصری درباره محصول خود ارائه دهید',
       rows: 4,
@@ -56,7 +56,7 @@ export const productFieldsData = (formik) => {
     {
       sm: 5,
       formik,
-      name: 'stock',
+      name: 'remainig',
       label: 'تعداد',
       helperText: 'موجودی کالا',
       type: 'number',

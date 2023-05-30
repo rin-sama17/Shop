@@ -7,7 +7,7 @@ const CustomForm = ({
   fields,
   formik,
   label,
-  color = 'primary',
+  color = 'secondary',
   imageUploader,
   imageUploaderName,
   imageUploaderProps,
@@ -21,12 +21,12 @@ const CustomForm = ({
           justifyContent: 'center',
         }}
       >
-        <CustomDivider label={label} color={color} />
+        <CustomDivider label={label} />
         {imageUploader ? (
           <ImageUploader
             formik={formik}
             name={imageUploaderName}
-            color={color}
+            color="secondary"
             {...imageUploaderProps}
           />
         ) : null}

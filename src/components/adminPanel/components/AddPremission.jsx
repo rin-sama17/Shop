@@ -17,8 +17,8 @@ const AddPremission = () => {
     try {
       await addPremission(values).unwrap()
       if (isSuccess) {
-        toast.success(`دسترسی ${values.title} با موفقیت اضافه شد`)
         setOpen(false)
+        toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
       console.log(error)

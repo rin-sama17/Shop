@@ -15,10 +15,13 @@ const EditSlider = ({ sliderId, setOpen }) => {
   const handleDeleteSlider = async () => {
     try {
       await deleteSlider(slider.id).unwrap()
-      toast.success(`اسلایدر ${slider.title} با موفقیت حذف شد`)
-      setOpen(false)
+      if (isSuccess) {
+        setOpen(false)
+        toast.success('با موفقیت ثبت شد')
+      }
     } catch (error) {
-      console.log(error.massage)
+      console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
 

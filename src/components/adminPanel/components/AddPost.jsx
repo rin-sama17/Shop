@@ -11,7 +11,7 @@ import React from 'react'
 
 const AddPost = () => {
   const [open, setOpen] = useState(false)
-  const [addNewPost] = useAddNewPostMutation()
+  const [addNewPost, { isSuccess }] = useAddNewPostMutation()
 
   const handleSubmitForm = async (values) => {
     try {
@@ -20,18 +20,18 @@ const AddPost = () => {
         ...values,
       }
       await addNewPost(newPost).unwrap()
-      toast.success(`پست ${values.heading} با موفقیت ساخته شد`)
-
-      setOpen(false)
+      if (isSuccess) {
+        setOpen(false)
+        toast.success('با موفقیت ثبت شد')
+      }
     } catch (error) {
       console.log(error)
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
-
   const postFields = {
-    heading: '',
-    introduction: '',
+    name: '',
+    description: '',
     thumbnail: '',
     category_id: '',
     tags: '',
@@ -39,7 +39,7 @@ const AddPost = () => {
   }
   const formik = useFormik({
     initialValues: postFields,
-    validationSchema: postValidation,
+    // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
       handleSubmitForm(values, resetForm)
       resetForm()

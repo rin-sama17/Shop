@@ -10,14 +10,18 @@ import { categoryFieldsData } from '../../fieldsData'
 
 const AddCategory = () => {
   const [open, setOpen] = useState(false)
-  const [addNewCategory] = useAddNewCategoryMutation()
+  const [addNewCategory, { isSuccess }] = useAddNewCategoryMutation()
 
   const handleAddNewCategory = async (values) => {
     try {
       await addNewCategory(values)
-      setOpen(false)
+      if (isSuccess) {
+        setOpen(false)
+        toast.success('با موفقیت ثبت شد')
+      }
     } catch (error) {
-      console.log(error.massage)
+      console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
 

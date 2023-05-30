@@ -6,7 +6,6 @@ import Grid from '@mui/material/Unstable_Grid2'
 const CropImage = ({ img, setChanges, setOpen, aspect }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [rotation, setRotation] = useState(0)
-  const [zoom, setZoom] = useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
@@ -50,12 +49,10 @@ const CropImage = ({ img, setChanges, setOpen, aspect }) => {
           image={img}
           crop={crop}
           rotation={rotation}
-          zoom={zoom}
           aspect={aspect}
           onCropChange={setCrop}
           onRotationChange={setRotation}
           onCropComplete={onCropComplete}
-          onZoomChange={setZoom}
         />
       </Grid>
       <Grid
@@ -69,16 +66,7 @@ const CropImage = ({ img, setChanges, setOpen, aspect }) => {
           borderRadius: '17px   17px 0 0',
         }}
       >
-        <Slider
-          value={zoom}
-          min={1}
-          max={3}
-          step={0.1}
-          aria-labelledby="Zoom"
-          onChange={(e, zoom) => setZoom(zoom)}
-          sx={{ px: 2 }}
-        />
-        <Button sx={{ width: 150 }} onClick={showCroppedImage}>
+        <Button fullWidth onClick={showCroppedImage}>
           ثبت تغییرات
         </Button>
       </Grid>
