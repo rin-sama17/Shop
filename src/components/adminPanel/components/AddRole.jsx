@@ -15,14 +15,13 @@ const AddRole = () => {
   const [addRole, { isSuccess }] = useAddRoleMutation()
   const handleSubmit = async (values) => {
     try {
-      console.log(values)
-
       await addRole({
         status: 1,
-        lang:"fa",
+        lang: 'fa',
         ...values,
       })
       if (isSuccess) {
+        console.log(addRole)
         toast.success(`نقش ${values.title} با موفقیت اضافه شد`)
         setOpen(false)
       }
@@ -36,10 +35,10 @@ const AddRole = () => {
       name: '',
       description: '',
     },
-    validationSchema: roleValidation,
+    // validationSchema: roleValidation,
     onSubmit: (values, { resetForm }) => {
       handleSubmit(values)
-      resetForm()
+      // resetForm()
     },
   })
   const fields = roleFieldsData(formik)

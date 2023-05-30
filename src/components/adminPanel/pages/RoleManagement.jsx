@@ -8,7 +8,25 @@ import { useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 
 const RoleManagement = () => {
-  const { data: roles = [], isSuccess } = useGetRolesQuery({ prefix: '/admin' })
+  const {
+    data: roles = { data: [[]] },
+    isSuccess,
+    isLoading,
+    isError,
+    error,
+  } = useGetRolesQuery({ prefix: '/admin' })
+  console.log(
+    'roles',
+    roles,
+    'isSuccess',
+    isSuccess,
+    'isLoading',
+    isLoading,
+    'isError',
+    isError,
+    'error',
+    error,
+  )
   const [deleteRole] = useDeleteRoleMutation()
 
   const handleRoleDelete = async (roleId) => {
@@ -23,21 +41,21 @@ const RoleManagement = () => {
   const columns = useMemo(
     () => [
       { field: 'id', headerName: 'ای دی', width: 10 },
-      { field: 'title', headerName: 'نام', width: 150 },
-      { field: 'details', headerName: 'توضیحات', width: 200 },
+      { field: 'name', headerName: 'نام', width: 150 },
+      { field: 'description', headerName: 'توضیحات', width: 200 },
 
-      {
-        field: 'addPost',
-        headerName: 'افزودن پست',
-        type: 'boolean',
-        width: 120,
-      },
-      {
-        field: 'addPost',
-        headerName: 'ویرایش پست',
-        type: 'boolean',
-        width: 120,
-      },
+      // {
+      //   field: 'addPost',
+      //   headerName: 'افزودن پست',
+      //   type: 'boolean',
+      //   width: 120,
+      // },
+      // {
+      //   field: 'addPost',
+      //   headerName: 'ویرایش پست',
+      //   type: 'boolean',
+      //   width: 120,
+      // },
       {
         field: 'status',
         headerName: 'وضعیت',
@@ -58,8 +76,11 @@ const RoleManagement = () => {
         ],
       },
     ],
-    [handleRoleDelete, roles],
+    [handleRoleDelete, roles.data[0]],
   )
+  if (isSuccess) {
+    console.log('roles.data[0]', roles.data[0])
+  }
 
   return (
     <>
@@ -78,7 +99,7 @@ const RoleManagement = () => {
       >
         <DataGrid
           columns={columns}
-          rows={roles}
+          rows={roles.data[0]}
           getCellClassName={(params) => {
             if (params.field === 'phone') {
               return 'phone'

@@ -242,14 +242,10 @@ export const apiSlice = createApi({
 
     getRoles: builder.query({
       query: () => '/admin/roles',
-      providesTags: (res = []) => [
-        'Roles',
-        ...res.map(({ id }) => [{ type: 'Roles', id }]),
-      ],
+      providesTags: ['Roles']
     }),
     getRole: builder.query({
       query: (roleId) => `/admin/roles/show/${roleId}`,
-      providesTags: (res, err, arg) => [{ type: 'Roles', id: arg }],
     }),
     addRole: builder.mutation({
       query: (role) => ({
@@ -268,11 +264,14 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: role,
       }),
-      invalidatesTags: (res, err, arg) => [{ type: 'Roles', id: arg.id }],
+      headers: {
+        Accept: 'application/json'
+      },
+      invalidatesTags: ['Roles'],
     }),
     deleteRole: builder.mutation({
       query: (roleId) => ({
-        url: `/admin/role/delete/${roleId}`,
+        url: `/admin/roles/delete/${roleId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Roles'],

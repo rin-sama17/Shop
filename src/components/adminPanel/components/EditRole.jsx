@@ -16,7 +16,7 @@ const EditRole = ({ role }) => {
   const handleSubmit = async (values) => {
     try {
       await editRole({ ...values })
-      toast.success(`${values.title} با موفقیت ویرایش شد`)
+      toast.success(`${values.name} با موفقیت ویرایش شد`)
       setOpen(false)
     } catch (error) {
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
