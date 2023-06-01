@@ -22,7 +22,6 @@ const EditDiscount = ({ discountData }) => {
     try {
       await updateDiscount(updatedDiscount).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -36,8 +35,10 @@ const EditDiscount = ({ discountData }) => {
       ...discountData,
     },
     validationSchema: discountValidation,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       handleEditDiscount(values)
+      resetForm()
+      setOpen(false)
     },
   })
   const fields = discountFieldsData(formik)

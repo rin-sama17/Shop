@@ -14,9 +14,8 @@ const AddCategory = () => {
 
   const handleAddNewCategory = async (values) => {
     try {
-      await addNewCategory(values)
+      await addNewCategory(values).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -31,6 +30,7 @@ const AddCategory = () => {
     onSubmit: (values, { resetForm }) => {
       handleAddNewCategory(values)
       resetForm()
+      setOpen(false)
     },
   })
   const fields = categoryFieldsData(formik)

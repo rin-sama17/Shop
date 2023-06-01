@@ -18,7 +18,6 @@ const EditCategory = ({ category }) => {
     try {
       await updateCategotry(updatedCategory).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -30,8 +29,10 @@ const EditCategory = ({ category }) => {
   const formik = useFormik({
     initialValues: { name: category.name },
     validationSchema: categoryValidation,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       handleEditCategory(values)
+      resetForm()
+      setOpen(false)
     },
   })
 

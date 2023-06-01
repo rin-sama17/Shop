@@ -19,9 +19,8 @@ const AddDiscount = () => {
         name,
         discount,
         category,
-      })
+      }).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -36,6 +35,7 @@ const AddDiscount = () => {
     onSubmit: (values, { resetForm }) => {
       handleAddNewDiscount(values)
       resetForm()
+      setOpen(false)
     },
   })
   const fields = discountFieldsData(formik)

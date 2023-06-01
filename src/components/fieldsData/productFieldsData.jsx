@@ -56,7 +56,7 @@ export const productFieldsData = (formik) => {
     {
       sm: 5,
       formik,
-      name: 'remainig',
+      name: 'remaining',
       label: 'تعداد',
       helperText: 'موجودی کالا',
       type: 'number',

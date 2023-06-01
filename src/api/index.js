@@ -169,15 +169,11 @@ export const apiSlice = createApi({
     }),
 
     getCategories: builder.query({
-      query: ({ prefix = "" }) => `${prefix}/categories`,
-      providesTags: (res = []) => [
-        'Categorys',
-        ...res.map(({ id }) => [{ type: 'Categorys', id }]),
-      ],
+      query: () => `/admin/categories`,
+      providesTags: ['Categorys']
     }),
     getCategory: builder.query({
-      query: ({ id, prefix = "" }) => `${prefix}/admin/categories/show/${id}`,
-      providesTags: (res, err, arg) => [{ type: 'Categorys', id: arg }],
+      query: ({ id, prefix = "" }) => `${prefix}/categories/show/${id}`,
     }),
     addNewCategory: builder.mutation({
       query: (initialCategory) => ({
@@ -200,7 +196,7 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: category,
       }),
-      invalidatesTags: (res, err, arg) => [{ type: 'Categorys', id: arg.id }],
+      invalidatesTags: ['Categorys']
     }),
 
     getAdminAdmins: builder.query({
@@ -272,14 +268,10 @@ export const apiSlice = createApi({
 
     getPremissions: builder.query({
       query: () => '/admin/premission',
-      providesTags: (res = []) => [
-        'Premission',
-        ...res.map(({ id }) => [{ type: 'Premission', id }]),
-      ],
+      providesTags: ['Premission']
     }),
     getPremission: builder.query({
       query: (PremissionId) => `/admin/premission/show/${PremissionId}`,
-      providesTags: (res, err, arg) => [{ type: 'Premission', id: arg }],
     }),
     addPremission: builder.mutation({
       query: (premission) => ({
@@ -295,7 +287,7 @@ export const apiSlice = createApi({
         body: premission,
         method: 'PUT',
       }),
-      invalidatesTags: (res, err, arg) => [{ type: 'Premission', id: arg.id }],
+      invalidatesTags: ['Premission']
     }),
     deletePremission: builder.mutation({
       query: (PremissionId) => ({
@@ -306,19 +298,15 @@ export const apiSlice = createApi({
     }),
 
     getContracts: builder.query({
-      query: ({ prefix = "" }) => `${prefix}/admin/contracts`,
-      providesTags: (res = []) => [
-        'Contracts',
-        ...res.map(({ id }) => [{ type: 'Contracts', id }]),
-      ],
+      query: ({ prefix = "" }) => `${prefix}/agencies`,
+      providesTags: ['Contracts']
     }),
     getContract: builder.query({
-      query: ({ id, prefix = "" }) => `${prefix}/admin/contracts/show/${id}`,
-      providesTags: (res, err, arg) => [{ type: 'Contracts', id: arg }],
+      query: ({ id, prefix = "" }) => `${prefix}/admin/agencies/show/${id}`,
     }),
     addContract: builder.mutation({
       query: (contract) => ({
-        url: '/admin/contracts/store',
+        url: '/admin/agencies/store',
         body: contract,
         method: 'POST',
       }),
@@ -326,15 +314,15 @@ export const apiSlice = createApi({
     }),
     editContract: builder.mutation({
       query: (contract) => ({
-        url: `/admin/contracts/update/${contract.id}`,
+        url: `/admin/agencies/update/${contract.id}`,
         body: contract,
         method: 'PUT',
       }),
-      invalidatesTags: (res, err, arg) => [{ type: 'Contracts', id: arg.id }],
+      invalidatesTags: ['Contracts'],
     }),
     deleteContract: builder.mutation({
       query: (contractId) => ({
-        url: `/admin/contracts/delete/${contractId}`,
+        url: `/admin/agencies/delete/${contractId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Contracts'],

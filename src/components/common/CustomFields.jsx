@@ -155,7 +155,13 @@ const CustomFields = ({
       </FormControl>
     )
   } else if (category) {
-    const { data: options = [] } = useGetCategoriesQuery()
+    const {
+      data: options = { data: [] },
+      isError,
+      error,
+    } = useGetCategoriesQuery()
+    console.log('optionswdqwdq', options, isError, error)
+
     content = (
       <FormControl
         fullWidth
@@ -179,7 +185,7 @@ const CustomFields = ({
             },
           }}
         >
-          {options.map((option, index) => (
+          {options.data.map((option, index) => (
             <MenuItem value={option.id} key={index}>
               {option.name}
             </MenuItem>

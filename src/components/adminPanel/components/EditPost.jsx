@@ -12,11 +12,10 @@ const EditPost = ({ post }) => {
   const [updatePost, { isSuccess }] = useEditPostMutation()
   const [open, setOpen] = useState(false)
 
-  const handleSubmitForm = async (values, resetForm) => {
+  const handleSubmitForm = async (values) => {
     try {
       await updatePost(values).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -28,7 +27,9 @@ const EditPost = ({ post }) => {
     initialValues: { ...post },
     validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
-      handleSubmitForm(values, resetForm)
+      handleSubmitForm(values)
+      resetForm()
+      setOpen(false)
     },
   })
 

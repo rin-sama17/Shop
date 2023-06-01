@@ -17,7 +17,6 @@ const AddPremission = () => {
     try {
       await addPremission(values).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -35,6 +34,7 @@ const AddPremission = () => {
     onSubmit: (values, { resetForm }) => {
       handleSubmit(values)
       resetForm()
+      setOpen(false)
     },
   })
   const fields = premissionFieldsData(formik)

@@ -15,10 +15,9 @@ const EditRole = ({ role }) => {
 
   const handleSubmit = async (values) => {
     try {
-      await editRole({ ...values })
+      await editRole({ ...values }).unwrap()
 
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -33,6 +32,7 @@ const EditRole = ({ role }) => {
     onSubmit: (values, { resetForm }) => {
       handleSubmit(values)
       resetForm()
+      setOpen(false)
     },
   })
 

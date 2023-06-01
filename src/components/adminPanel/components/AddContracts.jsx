@@ -8,13 +8,12 @@ import { useAddContractMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
 const AddContract = () => {
   const [open, setOpen] = useState(false)
-  const [addNewContract, { isSuccess }] = useAddContractMutation()
-
+  const [addNewContract, { isSuccess, error }] = useAddContractMutation()
+  console.log(error)
   const handleSubmit = async (values) => {
     try {
-      await addNewContract(values)
+      await addNewContract(values).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -26,15 +25,17 @@ const AddContract = () => {
   const formik = useFormik({
     initialValues: {
       name: '',
-      photo: '',
+      image: '',
       address: '',
       phone: '',
+      email: '',
       discription: '',
     },
     validationSchema: contractValidation,
     onSubmit: (values, { resetForm }) => {
       handleSubmit(values)
       resetForm()
+      setOpen(false)
     },
   })
   const fields = contractFieldsData(formik)
@@ -49,7 +50,7 @@ const AddContract = () => {
           formik={formik}
           fields={fields}
           imageUploader
-          imageUploaderName="photo"
+          imageUploaderName="image"
           imageUploaderProps={{ aspect: 5 / 3 }}
         />
       </CustomModal>

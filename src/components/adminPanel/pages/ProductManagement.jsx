@@ -8,7 +8,7 @@ import { AddProduct, EditProduct } from '../components'
 import { useMemo } from 'react'
 
 const ProductManagement = () => {
-  const { data: products = [] } = useGetProductsQuery({
+  const { data: products = { data: [] } } = useGetProductsQuery({
     prefix: '/admin',
   })
   const [deleteProduct] = useDeleteProductMutation()
@@ -26,8 +26,8 @@ const ProductManagement = () => {
       { field: 'name', headerName: 'نام محصول', width: 100 },
       { field: 'price', headerName: 'قیمت', width: 100 },
       { field: 'discount', headerName: 'تخفیف(به درصد)', width: 120 },
-      { field: 'stock', headerName: 'موجودی', width: 100 },
-      { field: 'category', headerName: 'دسته بندی', width: 100 },
+      { field: 'remaining', headerName: 'موجودی', width: 100 },
+      { field: 'category_id', headerName: 'دسته بندی', width: 100 },
       {
         field: 'actions',
         type: 'actions',
@@ -43,21 +43,13 @@ const ProductManagement = () => {
         ],
       },
     ],
-    [handleDelete, products],
+    [handleDelete, products.data],
   )
   return (
     <>
       <AddProduct />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid
-          rows={products}
-          columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-          disableSelectionOnClick
-          experimentalFeatures={{ newEditingApi: true }}
-        />
+        <DataGrid rows={products.data} columns={columns} />
       </div>
     </>
   )

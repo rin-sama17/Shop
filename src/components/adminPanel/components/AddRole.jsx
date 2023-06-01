@@ -19,9 +19,8 @@ const AddRole = () => {
         status: 1,
         lang: 'fa',
         ...values,
-      })
+      }).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -39,7 +38,7 @@ const AddRole = () => {
     onSubmit: (values, { resetForm }) => {
       handleSubmit(values)
       resetForm()
-      // setOpen(flase)
+      setOpen(flase)
     },
   })
 

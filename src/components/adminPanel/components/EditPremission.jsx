@@ -18,7 +18,6 @@ const EditPremission = ({ premission }) => {
       await editPremission(values).unwrap()
 
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -32,6 +31,7 @@ const EditPremission = ({ premission }) => {
     onSubmit: (values, { resetForm }) => {
       handleEditPremission(values)
       resetForm()
+      setOpen(false)
     },
   })
 

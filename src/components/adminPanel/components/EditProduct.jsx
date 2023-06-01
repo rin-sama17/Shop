@@ -22,9 +22,8 @@ const EditProduct = ({ product }) => {
         id,
         date,
         price,
-      })
+      }).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -35,10 +34,11 @@ const EditProduct = ({ product }) => {
 
   const formik = useFormik({
     initialValues: { ...product },
-    validationSchema: productValidation,
+    // validationSchema: productValidation,
     onSubmit: (values, { resetForm }) => {
       handleSubmitForm(values)
       resetForm()
+      setOpen(false)
     },
   })
   const fields = productFieldsData(formik)

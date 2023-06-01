@@ -7,7 +7,7 @@ export { default as AddRole } from "./AddRole";
 export { default as EditRole } from "./EditRole";
 export { default as EditPremission } from "./EditPremission";
 export { default as AddPremission } from "./AddPremission";
-export { default as AddContract } from "./AddContract";
+export { default as AddContract } from "./AddContracts";
 export { default as EditContract } from "./EditContract";
 export { default as AddProduct } from "./AddProduct";
 export { default as EditProduct } from "./EditProduct";

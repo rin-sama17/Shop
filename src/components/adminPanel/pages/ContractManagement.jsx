@@ -9,7 +9,9 @@ import { contractFieldsData } from '../../fieldsData'
 import { useDeleteContractMutation, useGetContractsQuery } from '../../../api'
 
 const ContractManagement = () => {
-  const { data: contracts = [] } = useGetContractsQuery({ prefix: '/admin' })
+  const { data: contracts = { agencies: [] } } = useGetContractsQuery({
+    prefix: '/admin',
+  })
 
   const [deleteContract] = useDeleteContractMutation()
   const handleContractDelete = async (contractId) => {
@@ -42,13 +44,13 @@ const ContractManagement = () => {
         ],
       },
     ],
-    [contracts, EditContract],
+    [contracts.agencies, EditContract],
   )
   return (
     <>
       <AddContract />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={contracts} columns={columns} />
+        <DataGrid rows={contracts.agencies} columns={columns} />
       </div>
     </>
   )

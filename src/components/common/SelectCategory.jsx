@@ -8,7 +8,7 @@ import {
 import { useGetCategoriesQuery } from '../../api'
 
 const SelectCategory = ({ value, setValue }) => {
-  const { data: options = [] } = useGetCategoriesQuery()
+  const { data: options = { data: [] } } = useGetCategoriesQuery()
 
   return (
     <FormControl fullWidth size="small">
@@ -29,7 +29,7 @@ const SelectCategory = ({ value, setValue }) => {
           },
         }}
       >
-        {options.map((option, index) => (
+        {options.data.map((option, index) => (
           <MenuItem value={option.name} key={index}>
             {option.name}
           </MenuItem>

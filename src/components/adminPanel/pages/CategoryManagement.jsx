@@ -7,7 +7,9 @@ import { EditCategory, AddCategory } from '../components'
 import { useDeleteCategoryMutation, useGetCategoriesQuery } from '../../../api'
 
 const CategoryManagement = () => {
-  const { data: categories = [] } = useGetCategoriesQuery({ prefix: '/admin' })
+  const { data: categories = { data: [] } } = useGetCategoriesQuery({
+    prefix: '/admin',
+  })
 
   const [deleteCategory] = useDeleteCategoryMutation()
   const handleCategoryDelete = async (categoryId) => {
@@ -37,13 +39,13 @@ const CategoryManagement = () => {
         ],
       },
     ],
-    [categories, EditCategory],
+    [categories.data, EditCategory],
   )
   return (
     <>
       <AddCategory />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={categories} columns={columns} />
+        <DataGrid rows={categories.data} columns={columns} />
       </div>
     </>
   )

@@ -21,7 +21,6 @@ const AddPost = () => {
       }
       await addNewPost(newPost).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -43,6 +42,7 @@ const AddPost = () => {
     onSubmit: (values, { resetForm }) => {
       handleSubmitForm(values, resetForm)
       resetForm()
+      setOpen(false)
     },
   })
 

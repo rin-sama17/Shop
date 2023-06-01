@@ -9,14 +9,20 @@ const contractFieldsData = (formik) => {
     {
       md: 6,
       formik,
-      label: 'ادرس',
-      name: 'address',
+      label: 'ایمیل',
+      name: 'email',
     },
+
     {
       md: 3,
       formik,
       label: 'شماره موبایل',
       name: 'phone',
+    },
+    {
+      formik,
+      label: 'ادرس',
+      name: 'address',
     },
     {
       multiline: true,
@@ -25,6 +31,7 @@ const contractFieldsData = (formik) => {
       label: 'توضیحات',
       name: 'discription',
     },
+
     {
       submit: true,
       customLabel: 'ثبت',

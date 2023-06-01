@@ -17,7 +17,6 @@ const EditContract = ({ contract }) => {
       await editContract(values).unwrap()
 
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -32,6 +31,7 @@ const EditContract = ({ contract }) => {
     onSubmit: (values, { resetForm }) => {
       handleEditContract(values)
       resetForm()
+      setOpen(false)
     },
   })
 

@@ -13,11 +13,10 @@ const EditSliderFields = ({ slider, setOpen }) => {
     try {
       const updatedSlider = { ...values }
       await updateSlider(updatedSlider).unwrap()
-      setOpen(false)
-      toast.success(`اسلایدر ${values.title} با موفقیت ویرایش شد`)
+      toast.success('با موفقیت ثبت شد')
     } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
       console.log(error)
+      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
 
@@ -26,8 +25,10 @@ const EditSliderFields = ({ slider, setOpen }) => {
       ...slider,
     },
     validationSchema: sliderValidation,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       handleEditSlider(values)
+      resetForm()
+      setOpen(false)
     },
   })
   const fields = sliderFieldsData(formik)

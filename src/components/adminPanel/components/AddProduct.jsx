@@ -11,11 +11,12 @@ import { useState } from 'react'
 
 const AddProduct = () => {
   const [open, setOpen] = useState(false)
-  const [addNewProduct, { isSuccess }] = useAddNewProductMutation()
-
+  const [addNewProduct, { isSuccess, error }] = useAddNewProductMutation()
+  console.log(error)
   const handleSubmitForm = async (values) => {
     try {
       const { price: productPrice, discount } = values
+      console.log(values.image)
       const price = Math.round(productPrice - (productPrice * discount) / 100)
       const newProduct = {
         id: nanoid(),
@@ -25,7 +26,6 @@ const AddProduct = () => {
       }
       await addNewProduct(newProduct).unwrap()
       if (isSuccess) {
-        setOpen(false)
         toast.success('با موفقیت ثبت شد')
       }
     } catch (error) {
@@ -39,16 +39,17 @@ const AddProduct = () => {
     price: '',
     discount: '',
     description: '',
-    remainig: '',
-    pictures: '',
+    remaining: '',
+    image: '',
     category_id: '',
     tags: '',
   }
   const formik = useFormik({
     initialValues: productFieldNames,
-    validationSchema: productValidation,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       handleSubmitForm(values)
+      resetForm()
+      setOpen(false)
     },
   })
   const fields = productFieldsData(formik)
@@ -64,7 +65,7 @@ const AddProduct = () => {
           label="افزودن محصول جدید"
           color="warning"
           imageUploader
-          imageUploaderName="pictures"
+          imageUploaderName="image"
           imageUploaderProps={{ aspect: 3 / 4 }}
         />
       </CustomModal>
