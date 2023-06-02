@@ -48,7 +48,7 @@ const AddPost = () => {
   return (
     <>
       <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
-        ساخت محصول جدید
+        ساخت پست جدید
       </Button>
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm

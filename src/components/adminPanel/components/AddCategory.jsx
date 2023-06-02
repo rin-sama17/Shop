@@ -15,14 +15,13 @@ const AddCategory = () => {
 
   const handleAddNewCategory = async (values) => {
     try {
-      console.log(values)
-      let newCategory
-      if (values.category_id.length === 0) {
-        newCategory = { name: values.name }
+      let category
+      if (!values.category_id) {
+        category = { name: values.name }
       } else {
-        newCategory = values
+        category = values
       }
-      await addNewCategory(newCategory).unwrap()
+      await addNewCategory(category).unwrap()
       if (isSuccess) {
         toast.success('با موفقیت ثبت شد')
       }
@@ -33,7 +32,7 @@ const AddCategory = () => {
   }
 
   const formik = useFormik({
-    initialValues: { name: '', category_id: null },
+    initialValues: { name: '', category_id: '' },
     validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
       handleAddNewCategory(values)

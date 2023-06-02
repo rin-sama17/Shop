@@ -35,26 +35,50 @@ export const theme = createTheme({
         // }
 
         // p06
+        // bgcolor: {
+        //     main: "#E9E8EE",
+        //     dark: "#343434"
+        // },
+        // buttons: {
+        //     main: "#D5FFF3"
+        // },
+        // primary: {
+        //     main: "#D5FFF3",
+        //     light: "#99AA38"
+        // },
+        // secondary: {
+        //     main: "#FE5E41"
+        // },
+        // bgBlur: {
+        //     main: "rgba(56,80,104, 0.5)"
+        // },
+        // title: {
+        //     light: "#FFFFFF",
+        //     main: '#6A7FD8'
+        // }
+
+
+        //p07
         bgcolor: {
             main: "#E9E8EE",
-            dark: "#343434"
+            dark: "#212E50"
         },
         buttons: {
-            main: "#D5FFF3"
+            main: "#ADB9E3"
         },
         primary: {
-            main: "#D5FFF3",
-            light: "#99AA38"
+            main: "#F6B537",
+            light: "#ADB9E3"
         },
         secondary: {
-            main: "#FE5E41"
+            main: "#BB4430"
         },
         bgBlur: {
             main: "rgba(56,80,104, 0.5)"
         },
         title: {
             light: "#FFFFFF",
-            main: '#6A7FD8'
+            main: '#A0EDBF'
         }
     }
 });

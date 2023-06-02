@@ -27,7 +27,7 @@ const EditContract = ({ contract }) => {
 
   const formik = useFormik({
     initialValues: { ...contract },
-    validationSchema: contractValidation,
+    // validationSchema: contractValidation,
     onSubmit: (values, { resetForm }) => {
       handleEditContract(values)
       resetForm()

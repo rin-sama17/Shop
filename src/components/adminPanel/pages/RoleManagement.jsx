@@ -40,7 +40,7 @@ const RoleManagement = () => {
 
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: 'ای دی', width: 10 },
+      { field: 'id', headerName: 'شماره', width: 10 },
       { field: 'name', headerName: 'نام', width: 150 },
       { field: 'description', headerName: 'توضیحات', width: 200 },
 

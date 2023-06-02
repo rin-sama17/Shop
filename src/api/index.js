@@ -263,15 +263,15 @@ export const apiSlice = createApi({
     }),
 
     getPremissions: builder.query({
-      query: () => '/admin/premission',
+      query: () => '/admin/premissions',
       providesTags: ['Premission']
     }),
     getPremission: builder.query({
-      query: (PremissionId) => `/admin/premission/show/${PremissionId}`,
+      query: (PremissionId) => `/admin/premissions/show/${PremissionId}`,
     }),
     addPremission: builder.mutation({
       query: (premission) => ({
-        url: '/admin/premission/store',
+        url: '/admin/premissions/store',
         body: premission,
         method: 'POST',
       }),
@@ -279,7 +279,7 @@ export const apiSlice = createApi({
     }),
     editPremission: builder.mutation({
       query: (premission) => ({
-        url: `/admin/premission/update/${premission.id}`,
+        url: `/admin/premissions/update/${premission.id}`,
         body: premission,
         method: 'PUT',
       }),
@@ -287,7 +287,7 @@ export const apiSlice = createApi({
     }),
     deletePremission: builder.mutation({
       query: (PremissionId) => ({
-        url: `/admin/premission/delete/${PremissionId}`,
+        url: `/admin/premissions/delete/${PremissionId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Premission'],
@@ -311,8 +311,8 @@ export const apiSlice = createApi({
     editContract: builder.mutation({
       query: (contract) => ({
         url: `/admin/agencies/update/${contract.id}`,
-        body: contract,
         method: 'PUT',
+        body: contract,
       }),
       invalidatesTags: ['Contracts'],
     }),

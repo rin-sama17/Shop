@@ -22,7 +22,7 @@ const ProductManagement = () => {
   }
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: 'ای دی', width: 100 },
+      { field: 'id', headerName: 'شماره', width: 100 },
       { field: 'name', headerName: 'نام محصول', width: 100 },
       { field: 'price', headerName: 'قیمت', width: 100 },
       { field: 'discount', headerName: 'تخفیف(به درصد)', width: 120 },

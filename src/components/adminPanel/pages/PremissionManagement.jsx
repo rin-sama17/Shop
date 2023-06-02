@@ -10,8 +10,8 @@ import {
 } from '../../../api'
 
 const PremissionManagement = () => {
-  const { data: premission = [] } = useGetPremissionsQuery({ prefix: '/admin' })
-
+  // const { data: premission = [] } = useGetPremissionsQuery({ prefix: '/admin' })
+  const premission = []
   const [deletePremission] = useDeletePremissionMutation()
   const handlePremissionDelete = async (premissionId) => {
     try {

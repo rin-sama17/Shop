@@ -10,7 +10,7 @@ import { roleFieldsData } from '../../fieldsData'
 import { roleValidation } from '../../validations/roleValidation'
 
 const EditRole = ({ role }) => {
-  const [editRole] = useEditRoleMutation()
+  const [editRole, { isSuccess }] = useEditRoleMutation()
   const [open, setOpen] = useState(false)
 
   const handleSubmit = async (values) => {

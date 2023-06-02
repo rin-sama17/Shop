@@ -40,7 +40,7 @@ const AddPremission = () => {
   const fields = premissionFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)} color="secondary">
+      <Button onClick={() => setOpen(true)} color="secondary" sx={{ m: 2 }}>
         افزودن دسترسی جدید
       </Button>
       <CustomModal open={open} setOpen={setOpen}>
