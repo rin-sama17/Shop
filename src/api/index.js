@@ -34,14 +34,10 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getPosts: builder.query({
       query: ({ prefix = "" }) => `${prefix}/posts`,
-      providesTags: (res = []) => [
-        'Blogs',
-        ...res.data?.map(({ id }) => [{ type: 'Blogs', id }]),
-      ],
+      providesTags: ["Blogs"]
     }),
     getPost: builder.query({
       query: ({ id, prefix = "" }) => `${prefix}/posts/show/${id}`,
-      providesTags: (res, err, arg) => [{ type: 'Blogs', id: arg }],
     }),
     addNewPost: builder.mutation({
       query: (initialPost) => ({
@@ -64,7 +60,7 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: post,
       }),
-      invalidatesTags: (res, err, arg) => [{ type: 'Blogs', id: arg.id }],
+      invalidatesTags: ["Blogs"]
     }),
 
     getProducts: builder.query({

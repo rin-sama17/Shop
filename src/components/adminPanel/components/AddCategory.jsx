@@ -7,14 +7,22 @@ import { categoryValidation } from '../../validations/categoryValidation'
 import { useAddNewCategoryMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
+import { toast } from 'react-toastify'
 
 const AddCategory = () => {
   const [open, setOpen] = useState(false)
-  const [addNewCategory, { isSuccess }] = useAddNewCategoryMutation()
+  const [addNewCategory, { isSuccess, error }] = useAddNewCategoryMutation()
 
   const handleAddNewCategory = async (values) => {
     try {
-      await addNewCategory(values).unwrap()
+      console.log(values)
+      let newCategory
+      if (values.category_id.length === 0) {
+        newCategory = { name: values.name }
+      } else {
+        newCategory = values
+      }
+      await addNewCategory(newCategory).unwrap()
       if (isSuccess) {
         toast.success('با موفقیت ثبت شد')
       }
@@ -25,7 +33,7 @@ const AddCategory = () => {
   }
 
   const formik = useFormik({
-    initialValues: { name: '' },
+    initialValues: { name: '', category_id: null },
     validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
       handleAddNewCategory(values)

@@ -2,7 +2,7 @@ const postFieldsData = (formik) => {
   return [
     {
       sm: 8,
-      name: 'heading',
+      name: 'name',
       formik,
       label: 'عنوان',
     },
@@ -22,13 +22,13 @@ const postFieldsData = (formik) => {
     },
     {
       sm: 12,
-      name: 'introduction',
+      name: 'description',
       formik,
       label: 'توضیحات',
       multiline: true,
       rows: 3,
     },
-    { sm: 12, formik, name: 'paragraphs', textEditor: true },
+    { sm: 12, formik, name: 'summary', textEditor: true },
     {
       submit: true,
       customLabel: 'ثبت',

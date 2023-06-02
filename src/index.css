@@ -43,3 +43,7 @@
 a {
   text-decoration: none !important;
 }
+
+ul {
+  padding: 0 !important;
+}

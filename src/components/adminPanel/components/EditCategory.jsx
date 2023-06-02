@@ -6,15 +6,15 @@ import { GridActionsCellItem } from '@mui/x-data-grid'
 
 import { categoryValidation } from '../../validations/categoryValidation'
 import { useEditCategoryMutation } from '../../../api'
-import { CustomModal, CustomForm } from '../../common'
+import { CustomModal, CustomForm, CustomIconButton } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
 
 const EditCategory = ({ category }) => {
   const [open, setOpen] = useState(false)
-  const [updateCategotry] = useEditCategoryMutation()
+  const [updateCategotry, { isSuccess }] = useEditCategoryMutation()
 
   const handleEditCategory = async (values) => {
-    const updatedCategory = { ...category, name: values.name }
+    const updatedCategory = { ...values }
     try {
       await updateCategotry(updatedCategory).unwrap()
       if (isSuccess) {
@@ -27,7 +27,7 @@ const EditCategory = ({ category }) => {
   }
 
   const formik = useFormik({
-    initialValues: { name: category.name },
+    initialValues: { ...category },
     validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
       handleEditCategory(values)
@@ -39,7 +39,7 @@ const EditCategory = ({ category }) => {
   const fields = categoryFieldsData(formik)
   return (
     <>
-      <GridActionsCellItem
+      <CustomIconButton
         icon={<Edit />}
         color="info"
         label="ویرایش"

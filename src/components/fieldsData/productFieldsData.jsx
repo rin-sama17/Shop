@@ -54,7 +54,7 @@ export const productFieldsData = (formik) => {
       label: 'توضیحات',
     },
     {
-      sm: 5,
+      sm: 3,
       formik,
       name: 'remaining',
       label: 'تعداد',
@@ -62,7 +62,13 @@ export const productFieldsData = (formik) => {
       type: 'number',
     },
     {
-      sm: 7,
+      sm: 4,
+      category: true,
+      formik,
+      name: 'category_id',
+    },
+    {
+      sm: 5,
       formik,
       name: 'tags',
       label: 'برچسب ها',
@@ -70,13 +76,6 @@ export const productFieldsData = (formik) => {
     },
 
     {
-      sm: 7,
-      category: true,
-      formik,
-      name: 'category_id',
-    },
-    {
-      sm: 5,
       submit: true,
       customLabel: 'ثبت',
     },

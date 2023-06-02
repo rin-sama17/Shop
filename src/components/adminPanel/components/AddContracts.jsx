@@ -31,7 +31,7 @@ const AddContract = () => {
       email: '',
       discription: '',
     },
-    validationSchema: contractValidation,
+    // validationSchema: contractValidation,
     onSubmit: (values, { resetForm }) => {
       handleSubmit(values)
       resetForm()

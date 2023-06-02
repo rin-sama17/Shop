@@ -14,12 +14,9 @@ const AddPost = () => {
   const [addNewPost, { isSuccess }] = useAddNewPostMutation()
 
   const handleSubmitForm = async (values) => {
+    console.log(values)
     try {
-      const newPost = {
-        date: new Date().toISOString(),
-        ...values,
-      }
-      await addNewPost(newPost).unwrap()
+      await addNewPost(values).unwrap()
       if (isSuccess) {
         toast.success('با موفقیت ثبت شد')
       }
@@ -31,10 +28,11 @@ const AddPost = () => {
   const postFields = {
     name: '',
     description: '',
-    thumbnail: '',
+    image: '',
     category_id: '',
     tags: '',
-    paragraphs: '',
+    user_id: 1,
+    summary: '',
   }
   const formik = useFormik({
     initialValues: postFields,
@@ -59,7 +57,7 @@ const AddPost = () => {
           label="افزودن پست جدید"
           color="warning"
           imageUploader
-          imageUploaderName="thumbnail"
+          imageUploaderName="image"
         />
       </CustomModal>
     </>

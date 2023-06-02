@@ -1,4 +1,4 @@
-import { useState, memo, useMemo } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import {
   TextField,
   InputAdornment,
@@ -11,11 +11,17 @@ import {
   FormControlLabel,
   Checkbox,
   Button,
+  ListSubheader,
 } from '@mui/material'
 
 import { NumericFormat } from 'react-number-format'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
+import {
+  Visibility,
+  VisibilityOff,
+  Phone,
+  ExpandMore,
+} from '@mui/icons-material'
 
 import { PatternFormat } from 'react-number-format'
 import { useEffect } from 'react'
@@ -31,7 +37,9 @@ const CustomFields = ({
   submit,
   checkbox,
   category,
+  categoryParents,
   textEditor,
+
   xs,
   sm,
   md,
@@ -48,7 +56,7 @@ const CustomFields = ({
           size="small"
           color="secondary"
           variant="contained"
-          sx={{ height: 1 }}
+          sx={{ height: 40 }}
           {...props}
         >
           {customLabel}
@@ -155,12 +163,7 @@ const CustomFields = ({
       </FormControl>
     )
   } else if (category) {
-    const {
-      data: options = { data: [] },
-      isError,
-      error,
-    } = useGetCategoriesQuery()
-    console.log('optionswdqwdq', options, isError, error)
+    const { data: categories = { data: [] } } = useGetCategoriesQuery()
 
     content = (
       <FormControl
@@ -169,13 +172,17 @@ const CustomFields = ({
         color="secondary"
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
       >
-        <InputLabel id={`category-label`}>دسته بندی</InputLabel>
+        <InputLabel id={`category-label`}>
+          {customLabel ? customLabel : 'دسته بندی'}
+        </InputLabel>
         <Select
           name={name}
           value={formik.values[`${name}`]}
           onChange={formik.handleChange}
           labelId={`category-label`}
-          input={<OutlinedInput label="دسته بندی" />}
+          input={
+            <OutlinedInput label={customLabel ? customLabel : 'دسته بندی'} />
+          }
           MenuProps={{
             PaperProps: {
               style: {
@@ -185,11 +192,15 @@ const CustomFields = ({
             },
           }}
         >
-          {options.data.map((option, index) => (
-            <MenuItem value={option.id} key={index}>
-              {option.name}
-            </MenuItem>
-          ))}
+          {categories.data.map((parent) => {
+            if (parent.category_id === null) {
+              if (categoryParents) {
+                return <MenuItem value={parent.id}>{parent.name}</MenuItem>
+              }
+            } else {
+              return <MenuItem value={parent.id}>{parent.name}</MenuItem>
+            }
+          })}
         </Select>
       </FormControl>
     )

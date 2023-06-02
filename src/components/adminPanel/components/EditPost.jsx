@@ -13,6 +13,7 @@ const EditPost = ({ post }) => {
   const [open, setOpen] = useState(false)
 
   const handleSubmitForm = async (values) => {
+    console.log(values)
     try {
       await updatePost(values).unwrap()
       if (isSuccess) {
@@ -25,7 +26,7 @@ const EditPost = ({ post }) => {
   }
   const formik = useFormik({
     initialValues: { ...post },
-    validationSchema: postValidation,
+    // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
       handleSubmitForm(values)
       resetForm()

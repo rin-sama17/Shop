@@ -11,6 +11,7 @@ import { useMemo } from 'react'
 const PostManagement = () => {
   const { data = { posts: [] } } = useGetPostsQuery({ prefix: '/admin' })
   const [deletePost] = useDeletePostMutation()
+  console.log(data)
 
   const handleDelete = async (postId) => {
     try {
@@ -24,9 +25,9 @@ const PostManagement = () => {
   const columns = useMemo(
     () => [
       { field: 'id', headerName: 'ای دی', width: 100 },
-      { field: 'heading', headerName: 'نام پست', width: 150 },
-      { field: 'introduction', headerName: 'مقدمه', width: 200 },
-      { field: 'category', headerName: 'دسته بندی', width: 100 },
+      { field: 'name', headerName: 'نام پست', width: 150 },
+      { field: 'description', headerName: 'مقدمه', width: 200 },
+      { field: 'category_id', headerName: 'دسته بندی', width: 100 },
       {
         field: 'actions',
         type: 'actions',
