@@ -12,28 +12,40 @@ import { useState } from 'react'
 const AddProduct = () => {
   const [open, setOpen] = useState(false)
   const [addNewProduct, { isSuccess, error }] = useAddNewProductMutation()
-  console.log(error)
   const handleSubmitForm = async (values) => {
     try {
-      const { price: productPrice, discount } = values
-      console.log(values.image)
+      const {
+        price: productPrice,
+        discount,
+        name,
+        description,
+        remaining,
+        image,
+        category_id,
+        tags,
+      } = values
       const price = Math.round(productPrice - (productPrice * discount) / 100)
       const newProduct = {
-        id: nanoid(),
-        date: new Date().toISOString(),
-        ...values,
+        discount,
+        name,
+        description,
+        remaining,
+        image,
+        category_id,
+        tags,
         price,
       }
-      await addNewProduct(newProduct).unwrap()
+      console.log(newProduct, typeof newProduct)
+      await addNewProduct(newProduct)
       if (isSuccess) {
         toast.success('با موفقیت ثبت شد')
       }
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(error.error)
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
-
+  console.log(isSuccess, error?.error)
   const productFieldNames = {
     name: '',
     price: '',

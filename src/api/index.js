@@ -76,6 +76,10 @@ export const apiSlice = createApi({
         method: 'POST',
         body: initialProduct,
       }),
+      headers: {
+        'Accept': 'application/json',
+      },
+
       invalidatesTags: ['Products'],
     }),
     deleteProduct: builder.mutation({
