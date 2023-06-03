@@ -64,7 +64,7 @@ export const theme = createTheme({
             dark: "#212E50"
         },
         buttons: {
-            main: "#F6B537"
+            main: "#ADB9E3"
         },
         primary: {
             main: "#F6B537",

@@ -18,7 +18,7 @@ const DrawerItems = ({ setOpen }) => {
             justifyContent: 'flex-start',
             color: 'secondary.main',
             '&:hover': {
-              color: 'buttons.main',
+              color: 'bgcolor.dark',
             },
           }}
         >
