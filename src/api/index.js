@@ -293,7 +293,7 @@ export const apiSlice = createApi({
     deletePremission: builder.mutation({
       query: (PremissionId) => ({
         url: `/admin/premissions/delete/${PremissionId}`,
-        method: 'DELETE',
+        method: 'POST',
       }),
       invalidatesTags: ['Premission'],
     }),

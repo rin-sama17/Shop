@@ -16,6 +16,7 @@ const PremissionManagement = () => {
   const [deletePremission] = useDeletePremissionMutation()
   const handlePremissionDelete = async (premissionId) => {
     try {
+      console.log(premissionId)
       await deletePremission(premissionId).unwrap()
     } catch (error) {
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
