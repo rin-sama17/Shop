@@ -192,15 +192,11 @@ const CustomFields = ({
             },
           }}
         >
-          {categories.data.map((parent) => {
-            if (parent.category_id === null) {
-              if (categoryParents) {
-                return <MenuItem value={parent.id}>{parent.name}</MenuItem>
-              }
-            } else if (!categoryParents) {
-              return <MenuItem value={parent.id}>{parent.name}</MenuItem>
-            }
-          })}
+          {categories.data.map((category, index) => (
+            <MenuItem value={category.id} key={index}>
+              {category.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     )

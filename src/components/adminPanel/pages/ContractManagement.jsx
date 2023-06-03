@@ -28,7 +28,7 @@ const ContractManagement = () => {
       { field: 'name', headerName: 'نام', width: 100 },
       { field: 'address', headerName: 'ادرس', width: 150 },
       { field: 'phone', headerName: 'شماره تلفن', width: 150 },
-      { field: 'discription', headerName: 'توضیحات', width: 200 },
+      { field: 'email', headerName: 'ایمیل', width: 200 },
       {
         field: 'actions',
         type: 'actions',
