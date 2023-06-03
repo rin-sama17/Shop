@@ -10,8 +10,9 @@ import {
 } from '../../../api'
 
 const PremissionManagement = () => {
-  // const { data: premission = [] } = useGetPremissionsQuery({ prefix: '/admin' })
-  const premission = []
+  const { data = { premission: [] } } = useGetPremissionsQuery({
+    prefix: '/admin',
+  })
   const [deletePremission] = useDeletePremissionMutation()
   const handlePremissionDelete = async (premissionId) => {
     try {
@@ -24,8 +25,8 @@ const PremissionManagement = () => {
 
   const columns = useMemo(
     () => [
-      { field: 'title', headerName: 'نام دسترسی', width: 150 },
-      { field: 'details', headerName: 'توضیحات', width: 150 },
+      { field: 'name', headerName: 'نام دسترسی', width: 150 },
+      { field: 'description', headerName: 'توضیحات', width: 150 },
       {
         field: 'actions',
         type: 'actions',
@@ -41,13 +42,13 @@ const PremissionManagement = () => {
         ],
       },
     ],
-    [premission, EditPremission],
+    [data.premission, EditPremission],
   )
   return (
     <>
       <AddPremission />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={premission} columns={columns} />
+        <DataGrid rows={data.premission} columns={columns} />
       </div>
     </>
   )

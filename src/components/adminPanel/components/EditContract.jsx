@@ -12,6 +12,7 @@ const EditContract = ({ contract }) => {
   const [open, setOpen] = useState(false)
   const [editContract, { isSuccess }] = useEditContractMutation()
 
+  console.log(contract)
   const handleEditContract = async (values) => {
     try {
       await editContract(values).unwrap()
@@ -26,7 +27,7 @@ const EditContract = ({ contract }) => {
   }
 
   const formik = useFormik({
-    initialValues: { ...contract },
+    initialValues: contract,
     // validationSchema: contractValidation,
     onSubmit: (values, { resetForm }) => {
       handleEditContract(values)

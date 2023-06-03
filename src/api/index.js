@@ -319,6 +319,9 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: contract,
       }),
+      headers: {
+        'Accept': 'application/json',
+      },
       invalidatesTags: ['Contracts'],
     }),
     deleteContract: builder.mutation({

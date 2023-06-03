@@ -2,14 +2,14 @@ const premissionFieldsData = (formik) => {
   return [
     {
       md: 5,
-      name: 'title',
+      name: 'name',
       label: 'عنوان',
       formik,
     },
     {
       md: 5,
       formik,
-      name: 'details',
+      name: 'description',
       label: 'توضیحات',
     },
     {

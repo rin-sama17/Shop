@@ -27,8 +27,8 @@ const AddPremission = () => {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      details: '',
+      name: '',
+      description: '',
     },
     validationSchema: premissionValidation,
     onSubmit: (values, { resetForm }) => {

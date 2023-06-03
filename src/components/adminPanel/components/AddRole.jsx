@@ -38,7 +38,7 @@ const AddRole = () => {
     onSubmit: (values, { resetForm }) => {
       handleSubmit(values)
       resetForm()
-      setOpen(flase)
+      setOpen(false)
     },
   })
 
