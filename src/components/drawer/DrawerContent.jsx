@@ -15,7 +15,7 @@ const DrawerContent = ({ setOpen }) => {
       }}
     >
       <Link href="/" underline="none">
-        <Typography variant="h5" sx={{ color: 'bgcolor.main' }}>
+        <Typography variant="h5" sx={{ color: 'black' }}>
           فروشگاه فرش
         </Typography>
       </Link>
