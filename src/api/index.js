@@ -95,6 +95,7 @@ export const apiSlice = createApi({
         method: 'PUT',
         body: product,
       }),
+
       invalidatesTags: ['Products'],
     }),
 

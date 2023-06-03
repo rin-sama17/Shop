@@ -8,6 +8,7 @@ import { useAddNewProductMutation } from '../../../api'
 import { nanoid } from '@reduxjs/toolkit'
 import { productFieldsData } from '../../fieldsData'
 import { useState } from 'react'
+import axios from 'axios'
 
 const AddProduct = () => {
   const [open, setOpen] = useState(false)
@@ -20,7 +21,6 @@ const AddProduct = () => {
         name,
         description,
         remaining,
-        image,
         category_id,
         tags,
       } = values
@@ -30,22 +30,19 @@ const AddProduct = () => {
         name,
         description,
         remaining,
-        image,
         category_id,
         tags,
         price,
       }
-      console.log(newProduct, typeof newProduct)
       await addNewProduct(newProduct)
       if (isSuccess) {
         toast.success('با موفقیت ثبت شد')
       }
-    } catch (err) {
-      console.log(error.error)
+    } catch (error) {
+      console.log(error)
       toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
     }
   }
-  console.log(isSuccess, error?.error)
   const productFieldNames = {
     name: '',
     price: '',

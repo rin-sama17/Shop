@@ -16,7 +16,10 @@ const AddPost = () => {
   const handleSubmitForm = async (values) => {
     console.log(values)
     try {
-      await addNewPost(values).unwrap()
+      const { name, description, category_id, tags, user_id, summary } = values
+      const newPost = { name, description, category_id, tags, user_id, summary }
+      console.log(newPost)
+      await addNewPost(newPost).unwrap()
       if (isSuccess) {
         toast.success('با موفقیت ثبت شد')
       }

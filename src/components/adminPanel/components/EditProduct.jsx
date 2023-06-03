@@ -13,16 +13,7 @@ const EditProduct = ({ product }) => {
   const [updateProduct, { isSuccess }] = useEditProductMutation()
   const handleSubmitForm = async (values) => {
     try {
-      const { id, date } = product
-      const { price: productPrice, discount } = values
-
-      const price = Math.round(productPrice - (productPrice * discount) / 100)
-      await updateProduct({
-        ...values,
-        id,
-        date,
-        price,
-      }).unwrap()
+      await updateProduct(values).unwrap()
       if (isSuccess) {
         toast.success('با موفقیت ثبت شد')
       }
