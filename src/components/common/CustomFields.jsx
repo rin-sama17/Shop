@@ -197,7 +197,7 @@ const CustomFields = ({
               if (categoryParents) {
                 return <MenuItem value={parent.id}>{parent.name}</MenuItem>
               }
-            } else {
+            } else if (!categoryParents) {
               return <MenuItem value={parent.id}>{parent.name}</MenuItem>
             }
           })}
