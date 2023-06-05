@@ -16,9 +16,9 @@ const DrawerItems = ({ setOpen }) => {
             mx: 1,
             height: 50,
             justifyContent: 'flex-start',
-            color: 'secondary.main',
+            color: 'btnSidebar.main',
             '&:hover': {
-              color: 'bgcolor.dark',
+              color: 'btnSidebar.light',
             },
           }}
         >

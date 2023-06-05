@@ -29,7 +29,7 @@ const NavContent = ({ setDrawerOpen }) => {
       >
         <Box sx={{ display: 'flex' }}>
           <CustomIconButton
-            color="buttons"
+            color="btnNav"
             icon={<AppsOutlined />}
             title="گزینه های بیشتر"
             onClick={() => setDrawerOpen(true)}
@@ -48,7 +48,7 @@ const NavContent = ({ setDrawerOpen }) => {
             sx={{
               fontSize: { xs: 'none', md: '20px' },
               borderRadius: 5,
-              color: 'buttons.main',
+              color: 'btnNav.main',
             }}
           >
             FA
@@ -79,8 +79,7 @@ const NavContent = ({ setDrawerOpen }) => {
         }}
       >
         {buttons.map((btn, index) => (
-          <Button>
-            {' '}
+          <Button sx={{ color: 'btnNav.dark' }} key={index}>
             <Typography variant="body1">{btn.name}</Typography>
           </Button>
         ))}

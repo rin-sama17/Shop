@@ -67,7 +67,7 @@ const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
                   color:
                     formik.touched[`${name}`] && formik.errors[`${name}`]
                       ? 'error.main'
-                      : `primary.main`,
+                      : 'textBox.main',
                   height: 1,
                   display: 'flex',
                   justifyContent: 'center',

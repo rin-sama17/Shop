@@ -66,7 +66,12 @@ const CropImage = ({ img, setChanges, setOpen, aspect }) => {
           borderRadius: '17px   17px 0 0',
         }}
       >
-        <Button fullWidth onClick={showCroppedImage}>
+        <Button
+          fullWidth
+          onClick={showCroppedImage}
+          variant="contained"
+          sx={{ bgcolor: 'btnSubmit.main', color: 'btnSubmit.light' }}
+        >
           ثبت تغییرات
         </Button>
       </Grid>

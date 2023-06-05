@@ -35,7 +35,13 @@ const AdminPanel = () => {
   }
 
   return (
-    <Grid container sx={{ width: 1, position: 'relative' }}>
+    <Grid
+      container
+      sx={{
+        width: 1,
+        position: 'relative',
+      }}
+    >
       <Grid
         xs={12}
         md={2.5}
@@ -45,6 +51,9 @@ const AdminPanel = () => {
           display: 'flex',
           flexDirection: 'column',
           textAlign: 'center',
+          bgcolor: 'bgSidebar.main',
+          position: 'inherit',
+          top: '-15px',
         }}
       >
         <AdminPanelTabs pageNumber={pageNumber} setPageNumber={setPageNumber} />

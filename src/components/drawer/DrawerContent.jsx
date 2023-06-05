@@ -10,12 +10,12 @@ const DrawerContent = ({ setOpen }) => {
         justifyContent: 'left',
         textAlign: 'left',
         px: 2,
-        bgcolor: 'title.main',
+        bgcolor: 'bgSidebar.main',
         height: 1,
       }}
     >
       <Link href="/" underline="none">
-        <Typography variant="h5" sx={{ color: 'black' }}>
+        <Typography variant="h5" sx={{ color: 'title.dark' }}>
           فروشگاه فرش
         </Typography>
       </Link>

@@ -59,12 +59,30 @@ export const theme = createTheme({
 
 
         //p07
+
+        btnSidebar: {
+            main: "#ADB9E3",
+            light: "#BB4430"
+        },
+        bgSidebar: {
+            main: "#F6B537",
+        },
+        btnNav: {
+            main: "#E9E8EE",
+            dark: "#ADB9E3"
+        },
+        btnSubmit: {
+            main: "#212E50",
+            light: "#E9E8EE"
+        },
         bgcolor: {
             main: "#E9E8EE",
             dark: "#212E50"
         },
-        buttons: {
-            main: "#ADB9E3"
+        textBox: {
+            light: "#BB4430",
+            main: "#212E50",
+            dark: "#F6B537"
         },
         primary: {
             main: "#F6B537",
@@ -73,12 +91,12 @@ export const theme = createTheme({
         secondary: {
             main: "#BB4430"
         },
+        title: {
+            light: "#FFFFFF",
+            dark: "#000"
+        },
         bgBlur: {
             main: "rgba(56,80,104, 0.5)"
         },
-        title: {
-            light: "#FFFFFF",
-            main: '#A0EDBF'
-        }
     }
 });

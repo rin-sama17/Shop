@@ -31,7 +31,7 @@ const NavSearch = () => {
     <>
       <CustomIconButton
         onClick={() => setOpen(true)}
-        color="buttons"
+        color="btnNav"
         icon={<Search />}
         title="جستجو"
       />

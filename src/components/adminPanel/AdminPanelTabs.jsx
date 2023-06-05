@@ -12,15 +12,27 @@ const AdminPanelTabs = ({ pageNumber, setPageNumber }) => {
   const tabs = tabsData()
   return (
     <Tabs
-      sx={{ position: 'sticky', top: '-30px' }}
+      sx={{
+        position: 'sticky',
+        top: '-30px',
+        '& .MuiTabs-indicator': {
+          backgroundColor: 'btnSidebar.light',
+          height: 3,
+          width: '3px',
+        },
+        '& .MuiTab-root': {
+          color: 'btnSidebar.main',
+        },
+        '& .MuiTab-root.Mui-selected': {
+          color: 'btnSidebar.light',
+        },
+      }}
       orientation={isMdDown ? 'horizontal' : 'vertical'}
       value={pageNumber}
       onChange={handlePageNumber}
       allowScrollButtonsMobile
       variant="scrollable"
       scrollButtons
-      textColor="secondary"
-      indicatorColor="secondary"
       aria-label="tabs example"
     >
       {tabs.map((tab, index) => (

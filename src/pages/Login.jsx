@@ -30,7 +30,7 @@ const Login = () => {
     <>
       <CustomIconButton
         onClick={() => setOpen(true)}
-        color="buttons"
+        color="btnNav"
         icon={<Person />}
         title="ورود"
       />
@@ -38,7 +38,7 @@ const Login = () => {
         <CustomForm
           formik={formik}
           fields={fields}
-          color="secondary"
+          color="btnNav"
           label="ورود"
         />
       </CustomModal>

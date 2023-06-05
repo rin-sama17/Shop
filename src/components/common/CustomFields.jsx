@@ -28,6 +28,25 @@ import { useEffect } from 'react'
 import { useGetCategoriesQuery } from '../../api'
 import TextEditor from './TextEditor'
 
+const fieldColor = {
+  '& label.Mui-focused': {
+    color: 'textBox.dark',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'textBox.main',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'textBox.main',
+    },
+    '&:hover fieldset': {
+      borderColor: 'textBox.light',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'textBox.dark',
+    },
+  },
+}
 const CustomFields = ({
   pwd,
   name,
@@ -54,9 +73,12 @@ const CustomFields = ({
           fullWidth
           type="submit"
           size="small"
-          color="secondary"
           variant="contained"
-          sx={{ height: 40 }}
+          sx={{
+            height: 40,
+            bgcolor: 'btnSubmit.main',
+            color: 'btnSubmit.light',
+          }}
           {...props}
         >
           {customLabel}
@@ -101,8 +123,7 @@ const CustomFields = ({
         onChange={handleChange}
         value={value}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
-        color="secondary"
-        sx={{ direction: 'rtl' }}
+        sx={{ direction: 'rtl', ...fieldColor }}
         format="098 ### ### ####"
         mask="_"
         InputProps={{
@@ -132,13 +153,17 @@ const CustomFields = ({
         label="قیمت"
         placeholder="به ریال"
         displayType="input"
-        color="secondary"
+        sx={{ color: 'textBox.main', ...fieldColor }}
         variant="outlined"
       />
     )
   } else if (pwd) {
     content = (
-      <FormControl sx={{ width: 1 }} variant="outlined">
+      <FormControl
+        sx={{ width: 1, ...fieldColor }}
+        variant="outlined"
+        size="small"
+      >
         <InputLabel>پسورد</InputLabel>
         <OutlinedInput
           name={name}
@@ -147,6 +172,7 @@ const CustomFields = ({
           onBlur={handleBlur}
           error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
           type={showPassword ? 'text' : 'password'}
+          size="small"
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -169,7 +195,7 @@ const CustomFields = ({
       <FormControl
         fullWidth
         size="small"
-        color="secondary"
+        sx={fieldColor}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
       >
         <InputLabel id={`category-label`}>
@@ -205,7 +231,7 @@ const CustomFields = ({
       <FormControlLabel
         control={
           <Checkbox
-            color="secondary"
+            sx={{ color: 'textBox.dark' }}
             name={name}
             value={formik.values[`${name}`]}
             checked={formik.values[`${name}`]}
@@ -226,7 +252,7 @@ const CustomFields = ({
   } else {
     content = (
       <TextField
-        sx={{ direction: 'ltr' }}
+        sx={{ direction: 'ltr', ...fieldColor }}
         fullWidth
         size="small"
         name={name}
@@ -234,7 +260,6 @@ const CustomFields = ({
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
-        color="secondary"
         {...props}
       />
     )
