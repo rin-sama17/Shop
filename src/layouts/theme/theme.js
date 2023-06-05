@@ -61,25 +61,25 @@ export const theme = createTheme({
         //p07
 
         btnSidebar: {
-            main: "#ADB9E3",
-            light: "#BB4430"
+            main: "#ffffff",
+            light: "#fffc41"
         },
         bgSidebar: {
-            main: "#F6B537",
-            dark: "#212E50",
+            main: "#09bfb0",
+            dark: "#a32798"
         },
         btnNav: {
-            main: "#E9E8EE",
-            dark: "#ADB9E3"
+            main: "#ffffff",
+            dark: "#fffc41"
         },
         btnSubmit: {
-            main: "#212E50",
-            dark: "#ADB9E3",
-            light: "#E9E8EE"
+            main: "#d04d05",
+            light: "#E9E8eE",
+            dark: "#a32798"
         },
         bgcolor: {
-            main: "#E9E8EE",
-            dark: "#212E50"
+            main: "#d8e6e6",
+            dark: "#068ad2"
         },
         textBox: {
             light: "#BB4430",
@@ -87,8 +87,8 @@ export const theme = createTheme({
             dark: "#F6B537"
         },
         primary: {
-            main: "#F6B537",
-            light: "#ADB9E3"
+            main: "#ffbe22",
+            light: "#ffbe22"
         },
         secondary: {
             main: "#BB4430"
