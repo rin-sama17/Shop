@@ -51,7 +51,7 @@ const AdminPanel = () => {
           display: 'flex',
           flexDirection: 'column',
           textAlign: 'center',
-          bgcolor: 'bgSidebar.main',
+          bgcolor: 'bgSidebar.dark',
           position: 'inherit',
           top: '-15px',
         }}

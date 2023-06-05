@@ -66,6 +66,7 @@ export const theme = createTheme({
         },
         bgSidebar: {
             main: "#F6B537",
+            dark: "#212E50",
         },
         btnNav: {
             main: "#E9E8EE",
