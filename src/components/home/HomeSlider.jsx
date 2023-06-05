@@ -7,7 +7,7 @@ import {
   ImageListItemBar,
   CardActionArea,
 } from '@mui/material'
-import { useRef } from 'react'
+import { Suspense, useRef } from 'react'
 import Slider from 'react-slick'
 
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
@@ -15,8 +15,32 @@ import { useGetSlidersQuery } from '../../api'
 import { SliderLoading } from '../loading'
 import { Link } from 'react-router-dom'
 
+import { category01, category02, category03 } from '../../assets'
+const sliders = [
+  {
+    id: 7,
+    name: 'پست اول',
+    photo: category01,
+    summery:
+      'از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفیبا همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفیبا همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفیبا همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.',
+  },
+  {
+    id: 8,
+    name: 'پست دوم',
+    photo: category02,
+    summery:
+      'از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.',
+  },
+  {
+    id: 9,
+    name: 'پست سوم',
+    photo: category03,
+    summery:
+      'از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.',
+  },
+]
 const HomeSlider = () => {
-  const { data: sliders = [], isSuccess } = useGetSlidersQuery()
+  // const { data: sliders = [], isSuccess } = useGetSlidersQuery()
   const slider = useRef(null)
   const settings = {
     infinite: true,
@@ -30,9 +54,9 @@ const HomeSlider = () => {
     lazyLoad: true,
     rtl: true,
   }
-  if (!isSuccess || sliders.length === 0) {
-    return <SliderLoading />
-  }
+  // if (!isSuccess || sliders.length === 0) {
+  //   return <SliderLoading />
+  // }
 
   return (
     <Box sx={{ width: 1, my: 2, position: 'relative' }}>
@@ -42,12 +66,18 @@ const HomeSlider = () => {
             <Box component="div" key={index}>
               <CardActionArea component="a" href={slide.link} target="_blank">
                 <ImageListItem>
-                  <img
-                    src={slide.photo}
-                    srcSet={slide.photo}
-                    alt=""
-                    style={{ width: '100%' }}
-                  />
+                  <Suspense fallback={<SliderLoading />}>
+                    <img
+                      src={slide.photo}
+                      srcSet={slide.photo}
+                      alt=""
+                      style={{
+                        width: '100%',
+                        height: '30vh',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  </Suspense>
                 </ImageListItem>
               </CardActionArea>
             </Box>
