@@ -1,6 +1,5 @@
 .zoom {
   transition: transform 0.2s; /* Animation */
-  height: 333px;
   margin: 0 auto;
 }
 

@@ -14,12 +14,8 @@ const AddPost = () => {
   const [addNewPost, { isSuccess }] = useAddNewPostMutation()
 
   const handleSubmitForm = async (values) => {
-    console.log(values)
     try {
-      const { name, description, category_id, tags, user_id, summary } = values
-      const newPost = { name, description, category_id, tags, user_id, summary }
-      console.log(newPost)
-      await addNewPost(newPost).unwrap()
+      await addNewPost(values).unwrap()
       if (isSuccess) {
         toast.success('با موفقیت ثبت شد')
       }

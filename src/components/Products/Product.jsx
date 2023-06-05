@@ -13,10 +13,10 @@ import { useNavigate } from 'react-router-dom'
 import { useGetProductQuery } from '../../api'
 import { ProductPrice } from '../common'
 import { ProductLoading } from '../loading'
-
+import { c11 } from '../../assets'
 const Product = ({ productId }) => {
-  const { data: product, isLoading, isSuccess } = useGetProductQuery({
-    idproductId,
+  const { data = { product: {} }, isLoading, isSuccess } = useGetProductQuery({
+    id: productId,
   })
   const navigate = useNavigate()
 
@@ -33,16 +33,16 @@ const Product = ({ productId }) => {
       }}
     >
       <Box
-        onClick={() => navigate(`/product/read/${product.id}`)}
+        onClick={() => navigate(`/product/read/${data.product.id}`)}
         sx={{ py: 1 }}
       >
         <Box sx={{ width: 1, mb: 2 }}>
           <Paper elevation={12} sx={{ width: 250, m: 'auto' }}>
             <CardMedia
               component="img"
-              sx={{ height: 1, width: 250 }}
-              alt={product.name}
-              image={product.thumbnail}
+              sx={{ height: 330, width: 250 }}
+              alt={data.product.name}
+              image={c11}
             />
           </Paper>
         </Box>
@@ -52,12 +52,12 @@ const Product = ({ productId }) => {
           textAlign="left"
           gutterBottom
         >
-          {product.name}
+          {data.product.name}
         </Typography>
         <Box sx={{ width: 1 }}>
           <ProductPrice
-            price={product.price}
-            discount={product.discount}
+            price={data.product.price}
+            discount={data.product.discount}
             absolute
           />
         </Box>

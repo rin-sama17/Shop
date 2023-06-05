@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useGetCategoryQuery } from '../../api'
 import Spinner from './Spinner'
 
-const ShowCategory = ({ categoryId, tags }) => {
+const ShowCategory = ({ categoryId, tags = 'اشپزی/ملاقه' }) => {
   const splitedTags = tags && tags.split('/')
   const { data: category, isSuccess, isLoading, isError } = useGetCategoryQuery(
     {
