@@ -78,6 +78,9 @@ const CustomFields = ({
             height: 40,
             bgcolor: 'btnSubmit.main',
             color: 'btnSubmit.light',
+            '&:hover': {
+              bgcolor: 'btnSubmit.dark',
+            },
           }}
           {...props}
         >

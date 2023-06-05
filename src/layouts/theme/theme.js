@@ -74,6 +74,7 @@ export const theme = createTheme({
         },
         btnSubmit: {
             main: "#212E50",
+            dark: "#ADB9E3",
             light: "#E9E8EE"
         },
         bgcolor: {
