@@ -1,8 +1,10 @@
+'use client'
+
 import Typed from 'typed.js'
 import { Typography, Button } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import TextTransition, { presets } from 'react-text-transition'
+import Link from 'next/link'
 
 const HomeDescription = () => {
   const [index, setIndex] = useState(0)
@@ -64,7 +66,7 @@ const HomeDescription = () => {
 
       <Button
         component={Link}
-        to="/product/index"
+        to="/products"
         color="secondary"
         sx={{ mt: 4, mb: 2 }}
       >

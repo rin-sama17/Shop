@@ -1,13 +1,7 @@
 import { Box, Button, Divider, Link, Stack, Typography } from '@mui/material'
-import {
-  ShoppingCartOutlined,
-  Search,
-  LanguageOutlined,
-  AppsOutlined,
-} from '@mui/icons-material'
+import { AppsOutlined } from '@mui/icons-material'
 import CustomIconButton from '../common/CustomIconButton'
-import { Login } from '../../pages'
-import NavSearch from './NavSearch'
+import { Login, NavSearch } from '.'
 
 const buttons = [
   { name: 'فرش ماشینی' },
@@ -79,8 +73,7 @@ const NavContent = ({ setDrawerOpen }) => {
         }}
       >
         {buttons.map((btn, index) => (
-          <Button>
-            {' '}
+          <Button key={index}>
             <Typography variant="body1">{btn.name}</Typography>
           </Button>
         ))}

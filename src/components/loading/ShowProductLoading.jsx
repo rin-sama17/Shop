@@ -1,5 +1,4 @@
-import { Skeleton, Card, Container, Box } from '@mui/material'
-import React from 'react'
+import { Skeleton, Card, Box } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 const ShowProductLoading = () => {
   return (

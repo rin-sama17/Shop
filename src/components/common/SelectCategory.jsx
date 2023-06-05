@@ -1,3 +1,4 @@
+import { getCategories } from '@/api'
 import {
   FormControl,
   InputLabel,
@@ -5,10 +6,9 @@ import {
   OutlinedInput,
   MenuItem,
 } from '@mui/material'
-import { useGetCategoriesQuery } from '../../api'
 
-const SelectCategory = ({ value, setValue }) => {
-  const { data: options = { data: [] } } = useGetCategoriesQuery()
+const SelectCategory = async ({ value, setValue }) => {
+  const { data } = await getCategories()
 
   return (
     <FormControl fullWidth size="small">
@@ -29,7 +29,7 @@ const SelectCategory = ({ value, setValue }) => {
           },
         }}
       >
-        {options.data.map((option, index) => (
+        {data.map((option, index) => (
           <MenuItem value={option.name} key={index}>
             {option.name}
           </MenuItem>

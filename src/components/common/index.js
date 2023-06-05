@@ -13,4 +13,5 @@ export { default as ShowCategory } from "./ShowCategory";
 export { default as SelectCategory } from "./SelectCategory";
 export { default as Spinner } from "./Spinner";
 export { default as TextEditor } from "./TextEditor";
+export { default as Page } from "./Page";
 

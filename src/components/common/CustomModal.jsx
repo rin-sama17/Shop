@@ -4,6 +4,7 @@ const CustomModal = ({ open, setOpen, width, children, lock }) => {
   return (
     <Modal
       open={open}
+      keepMounted
       onClose={() => setOpen(lock)}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"

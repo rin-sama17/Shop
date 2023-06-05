@@ -1,17 +1,18 @@
+'use client'
+
 import {
   CardActionArea,
   Box,
   CardMedia,
   ImageListItem,
   Card,
-  Button,
 } from '@mui/material'
 import { AddAPhoto } from '@mui/icons-material'
 import Grid from '@mui/material/Unstable_Grid2'
 import CustomModal from './CustomModal'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import CropImage from './imageUploader/CropImage.jsx'
-const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
+const ImageUploader = ({ formik, name, width, md, aspect }) => {
   const [open, setOpen] = useState(false)
 
   const setChanges = (changes) => {

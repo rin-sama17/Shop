@@ -1,8 +1,5 @@
 import { Box, Typography, Chip } from '@mui/material'
-import { createSelector } from '@reduxjs/toolkit'
-import { useMemo } from 'react'
 import { toRial } from '../../helpers'
-import Spinner from './Spinner'
 
 const ProductPrice = ({ price, discount, absolute }) => {
   let prevPrice

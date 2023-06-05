@@ -1,22 +1,10 @@
-import { TextField, InputAdornment, Button } from '@mui/material'
+import { TextField, InputAdornment } from '@mui/material'
 import { Search } from '@mui/icons-material'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 const SearchField = () => {
-  const [query, setQuery] = useState('')
-  const navigate = useNavigate()
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    navigate(`/search/${query}`)
-  }
-
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form>
       <TextField
         type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
         variant="outlined"
         size="large"
         fullWidth
@@ -30,10 +18,6 @@ const SearchField = () => {
             <InputAdornment position="start">
               <Search />
             </InputAdornment>
-          ),
-
-          endAdornment: query.length > 0 && (
-            <Button type="submit">جستجو</Button>
           ),
         }}
       />

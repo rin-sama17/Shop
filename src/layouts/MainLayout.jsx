@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { prefixer } from 'stylis'
 import createCache from '@emotion/cache'
 import rtlPlugin from 'stylis-plugin-rtl'
@@ -10,7 +9,6 @@ import { CacheProvider } from '@emotion/react'
 import { ToastContainer } from 'react-toastify'
 import { Container, Box } from '@mui/material'
 import Footer from '../components/footer/Footer'
-import { HelmetProvider, Helmet } from 'react-helmet-async'
 
 const cacheRTL = createCache({
   key: 'muirtl',
@@ -21,29 +19,24 @@ const MainLayout = () => {
   return (
     <CacheProvider value={cacheRTL}>
       <ThemeProvider theme={theme}>
-        <HelmetProvider>
-          <Helmet>
-            <title>فروشگاه فرش</title>
-          </Helmet>{' '}
-          <Box sx={{ bgcolor: 'bgcolor.main' }}>
-            <Navbar />
-            <Container maxWidth="lg" sx={{ p: { xs: 0 }, minHeight: '40vh' }}>
-              <ToastContainer
-                position="bottom-left"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick={false}
-                rtl
-                pauseOnFocusLoss={false}
-                draggable
-                pauseOnHover
-              />
-              <Outlet />
-            </Container>
-            <Footer />
-          </Box>
-        </HelmetProvider>
+        <Box sx={{ bgcolor: 'bgcolor.main' }}>
+          <Navbar />
+          <Container maxWidth="lg" sx={{ p: { xs: 0 }, minHeight: '40vh' }}>
+            <ToastContainer
+              position="bottom-left"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop
+              closeOnClick={false}
+              rtl
+              pauseOnFocusLoss={false}
+              draggable
+              pauseOnHover
+            />
+            <Outlet />
+          </Container>
+          <Footer />
+        </Box>
       </ThemeProvider>
     </CacheProvider>
   )

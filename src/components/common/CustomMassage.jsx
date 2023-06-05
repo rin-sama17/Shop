@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { Card, Button, Typography, Stack } from '@mui/material'
+import Link from 'next/link'
 
 const CustomMassage = ({ text, btnLabel, to }) => {
   return (

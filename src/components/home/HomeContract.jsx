@@ -1,14 +1,16 @@
+'use client'
+
 import Slider from 'react-slick'
 import { Box, Typography, Button, IconButton } from '@mui/material'
-import { Link } from 'react-router-dom'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { useRef } from 'react'
-import Contract from '../contract/Contract'
-import { useGetContractsQuery } from '../../api'
-import { PostLoading } from '../loading'
+import Link from 'next/link'
+import { getAgencies } from '@/api'
+import Agency from '../agency'
 
-const HomeContract = () => {
-  const { data: contracts = [], isSuccess } = useGetContractsQuery()
+const HomeContract = async () => {
+  const { agencies } = await getAgencies()
+
   const slider = useRef(null)
   const settings = {
     infinite: true,
@@ -21,22 +23,12 @@ const HomeContract = () => {
     lazyLoad: true,
     rtl: true,
   }
-  if (!isSuccess) {
-    return (
-      <>
-        <Typography variant="h6" sx={{ color: 'gray', mt: 3 }} gutterBottom>
-          نمایندگی های ما
-        </Typography>
-        <PostLoading />
-      </>
-    )
-  }
   return (
     <>
       <Typography variant="h6" sx={{ color: 'gray', mt: 3 }} gutterBottom>
         نمایندگی های ما
       </Typography>
-      <Button component={Link} to="/contract/index" sx={{ mb: 1 }}>
+      <Button component={Link} to="/contract" sx={{ mb: 1 }}>
         مشاهده همه
       </Button>
       <Box
@@ -47,10 +39,10 @@ const HomeContract = () => {
         }}
       >
         <Slider {...settings} ref={slider}>
-          {contracts.length > 0 &&
-            contracts.map((contract, index) => (
+          {agencies.length > 0 &&
+            agencies.map((agency, index) => (
               <Box component="div" key={index} sx={{ direction: 'ltr' }}>
-                <Contract contractId={contract.id} />
+                <Agency agencyId={agency.id} />
               </Box>
             ))}
         </Slider>

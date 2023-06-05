@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { Typography, Box, Container, IconButton, Button } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 
@@ -9,6 +8,7 @@ import {
   LocalPhone,
   FmdGood,
 } from '@mui/icons-material'
+import Link from 'next/link'
 
 const socials = [
   { icon: <Instagram />, to: 'https://t.me/rin_sama', color: 'secondary' },

@@ -7,21 +7,18 @@ import {
   useMediaQuery,
   CardActionArea,
   Skeleton,
-  Stack,
-  Divider,
   Paper,
 } from '@mui/material'
 import { useTheme } from '@mui/styles'
-import { Link, Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import Slider from 'react-slick'
-import { useGetPostsQuery } from '../../api'
 import Grid from '@mui/material/Unstable_Grid2'
-const HomePostsSlider = () => {
+import Link from 'next/link'
+import { getPosts } from '@/api'
+const HomePostsSlider = async () => {
+  const { posts } = await getPosts()
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('md'))
-
-  const { data: posts = [], isSuccess } = useGetPostsQuery()
 
   const settings = {
     dots: true,
@@ -69,10 +66,6 @@ const HomePostsSlider = () => {
     rtl: true,
   }
 
-  if (!isSuccess) {
-    return <Skeleton width="100%" height="90vh" />
-  }
-
   return (
     <Box sx={{ mb: 1, width: 1 }}>
       <Typography variant="h6" sx={{ color: 'gray', mb: 3 }}>
@@ -91,7 +84,7 @@ const HomePostsSlider = () => {
 
               <CardActionArea
                 component={Link}
-                to={`/post/read/${slide.id}`}
+                to={`/post/${slide.id}`}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -108,11 +101,8 @@ const HomePostsSlider = () => {
                 }}
               >
                 <Grid
-                  // component={Grid}
                   container
                   spacing={2}
-                  // direction="row"
-                  // divider={<Divider orientation="vertical" flexItem />}
                   sx={{ width: 1, display: 'flex', justifyContent: 'center' }}
                 >
                   <Grid
@@ -157,8 +147,8 @@ const HomePostsSlider = () => {
       </Slider>
 
       <Button
-        component={RouterLink}
-        to="/post/index"
+        component={Link}
+        to="/post"
         color="secondary"
         sx={{ my: 2 }}
         size="large"

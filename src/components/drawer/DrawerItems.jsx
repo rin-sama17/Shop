@@ -1,6 +1,6 @@
-import { Typography, Button, Box, Divider } from '@mui/material'
-import { tabsData } from '../../constants/tabs.sidebar'
-import { Link } from 'react-router-dom'
+import { tabsData } from '@/constants/homeProductsTabs'
+import { Typography, Button, Box } from '@mui/material'
+import Link from 'next/link'
 
 const DrawerItems = ({ setOpen }) => {
   return (

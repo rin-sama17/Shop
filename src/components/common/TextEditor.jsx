@@ -1,5 +1,7 @@
+'use client'
+
 import { useEffect } from 'react'
-import { Box, Button, Stack, Paper } from '@mui/material'
+import { Box } from '@mui/material'
 import { useQuill } from 'react-quilljs'
 var toolbarOptions = [
   [{ font: [] }],

@@ -1,22 +1,14 @@
-import {
-  Box,
-  Button,
-  Typography,
-  IconButton,
-  ImageListItem,
-  ImageListItemBar,
-  CardActionArea,
-} from '@mui/material'
+'use client'
+
+import { Box, IconButton, ImageListItem, CardActionArea } from '@mui/material'
 import { useRef } from 'react'
 import Slider from 'react-slick'
 
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
-import { useGetSlidersQuery } from '../../api'
-import { SliderLoading } from '../loading'
-import { Link } from 'react-router-dom'
+import { getSliders } from '@/api'
 
-const HomeSlider = () => {
-  const { data: sliders = [], isSuccess } = useGetSlidersQuery()
+const HomeSlider = async () => {
+  const { sliders } = await getSliders()
   const slider = useRef(null)
   const settings = {
     infinite: true,

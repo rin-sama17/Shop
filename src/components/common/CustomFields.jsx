@@ -1,4 +1,6 @@
-import { useState, useRef, useMemo } from 'react'
+'use client'
+
+import { useState } from 'react'
 import {
   TextField,
   InputAdornment,
@@ -11,24 +13,18 @@ import {
   FormControlLabel,
   Checkbox,
   Button,
-  ListSubheader,
 } from '@mui/material'
 
 import { NumericFormat } from 'react-number-format'
 import Grid from '@mui/material/Unstable_Grid2'
-import {
-  Visibility,
-  VisibilityOff,
-  Phone,
-  ExpandMore,
-} from '@mui/icons-material'
+import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
 
 import { PatternFormat } from 'react-number-format'
 import { useEffect } from 'react'
-import { useGetCategoriesQuery } from '../../api'
+import { getCategories, useGetCategoriesQuery } from '../../api'
 import TextEditor from './TextEditor'
 
-const CustomFields = ({
+const CustomFields = async ({
   pwd,
   name,
   phone,
@@ -163,8 +159,7 @@ const CustomFields = ({
       </FormControl>
     )
   } else if (category) {
-    const { data: categories = { data: [] } } = useGetCategoriesQuery()
-
+    const { data: categories } = await getCategories()
     content = (
       <FormControl
         fullWidth
@@ -192,7 +187,7 @@ const CustomFields = ({
             },
           }}
         >
-          {categories.data.map((category, index) => (
+          {categories.map((category, index) => (
             <MenuItem value={category.id} key={index}>
               {category.name}
             </MenuItem>

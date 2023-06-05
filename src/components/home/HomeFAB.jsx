@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import {
   Backdrop,
@@ -7,12 +9,12 @@ import {
   Typography,
   IconButton,
 } from '@mui/material'
-import { Link as RouterLink } from 'react-router-dom'
 import {
   SupportAgentOutlined,
   AccountCircleOutlined,
   InfoOutlined,
 } from '@mui/icons-material'
+import Link from 'next/link'
 
 const HomeFAB = () => {
   const [open, setOpen] = useState(false)
@@ -20,13 +22,13 @@ const HomeFAB = () => {
   const actions = [
     {
       color: 'warning',
-      to: '/post/add',
+      to: '/about-us',
       icon: <InfoOutlined />,
       name: 'درباره ما',
     },
     {
       color: 'info',
-      to: '/product/add',
+      to: '/contract-us',
       icon: <SupportAgentOutlined />,
       name: 'ارتباط با ما',
     },
@@ -58,11 +60,7 @@ const HomeFAB = () => {
           <SpeedDialAction
             key={index}
             icon={
-              <IconButton
-                component={RouterLink}
-                to={action.to}
-                color={action.color}
-              >
+              <IconButton component={Link} to={action.to} color={action.color}>
                 {action.icon}
               </IconButton>
             }
