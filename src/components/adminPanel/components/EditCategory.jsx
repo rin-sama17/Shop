@@ -8,31 +8,31 @@ import { categoryValidation } from '../../validations/categoryValidation'
 import { useEditCategoryMutation } from '../../../api'
 import { CustomModal, CustomForm, CustomIconButton } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
+import { editCategory } from '../../../reducers/categorySlice'
+import { useDispatch } from 'react-redux'
 
 const EditCategory = ({ category }) => {
   const [open, setOpen] = useState(false)
   const [updateCategotry, { isSuccess }] = useEditCategoryMutation()
 
-  const handleEditCategory = async (values) => {
-    const updatedCategory = { ...values }
-    try {
-      await updateCategotry(updatedCategory).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
+  const dispatch = useDispatch()
+
+  const handleAddNewCategory = (values) => {
+    let category
+    if (!values.category_id) {
+      category = { id: values.id, name: values.name }
+    } else {
+      category = values
     }
+    dispatch(editCategory({ category, setOpen }))
   }
 
   const formik = useFormik({
-    initialValues: { ...category },
+    initialValues: category,
     validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
-      handleEditCategory(values)
+      handleAddNewCategory(values)
       resetForm()
-      setOpen(false)
     },
   })
 

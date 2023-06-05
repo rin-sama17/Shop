@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import paragraphReducer from "../reducers/paragraphSlice.js";
-import userReducer from "../reducers/userSlice.js";
-import { apiSlice } from "../api/index.js";
+import categoryReducer from "../reducers/categorySlice";
+import userReducer from "../reducers/userSlice";
+import { apiSlice } from "../api/index";
 export const store = configureStore({
     reducer: {
-        paragraphs: paragraphReducer,
+        category: categoryReducer,
         user: userReducer,
         [apiSlice.reducerPath]: apiSlice.reducer
     },

@@ -14,6 +14,13 @@ import {
 import { EditCategory, AddCategory } from '../components'
 import { useDeleteCategoryMutation, useGetCategoriesQuery } from '../../../api'
 import { CustomIconButton } from '../../common'
+import axios from 'axios'
+import {
+  deleteCategory,
+  fetchCategories,
+  selectAllCategories,
+} from '../../../reducers/categorySlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const CategoryHewder = ({ parent }) => {
   return (
@@ -26,26 +33,17 @@ const CategoryHewder = ({ parent }) => {
         m: '0 0 0 auto',
       }}
     >
-      <Typography textAlign="center">شماره</Typography>
-      <Divider orientation="vertical" flexItems sx={{ mx: 1.4 }} />
       <Typography>نام</Typography>
     </Box>
   )
 }
 
 const ParentCategory = ({ parent, children }) => {
-  const [deleteCategory] = useDeleteCategoryMutation()
-  const handleCategoryDelete = async (categoryId) => {
-    try {
-      await deleteCategory(categoryId).unwrap()
-    } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-      console.log(error)
-    }
-  }
+  const dispatch = useDispatch()
+
   return (
     <Accordion>
-      <AccordionSummary expandIcon={<ExpandMore />} sx={{ pl: 0 }}>
+      <AccordionSummary expandIcon={<ExpandMore />}>
         <Box
           sx={{
             width: 1,
@@ -54,11 +52,8 @@ const ParentCategory = ({ parent, children }) => {
           }}
         >
           <Box sx={{ display: 'flex' }}>
-            <Typography sx={{ width: 40 }} textAlign="center">
-              {parent.id}
-            </Typography>
-            <Divider orientation="vertical" flexItems sx={{ mx: 2 }} />
-            <Typography>{parent.name}</Typography>
+            <Typography sx={{ ml: 2 }}>{parent.name}</Typography>
+            <Divider orientation="vertical" sx={{ mx: 2 }} />
           </Box>
           <Box>
             <EditCategory category={parent} />
@@ -66,14 +61,13 @@ const ParentCategory = ({ parent, children }) => {
               icon={<Delete />}
               sx={{ color: 'tomato' }}
               label="حذف"
-              onClick={() => handleCategoryDelete(parent.id)}
+              onClick={() => dispatch(deleteCategory(parent.id))}
             />
           </Box>
         </Box>
       </AccordionSummary>
 
       <AccordionDetails sx={{ bgcolor: 'bgcolor.main', p: 0.2 }}>
-        <CategoryHewder />
         {children}
       </AccordionDetails>
     </Accordion>
@@ -81,15 +75,6 @@ const ParentCategory = ({ parent, children }) => {
 }
 
 const ChildCategory = ({ child }) => {
-  const [deleteCategory] = useDeleteCategoryMutation()
-  const handleCategoryDelete = async (categoryId) => {
-    try {
-      await deleteCategory(categoryId).unwrap()
-    } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-      console.log(error)
-    }
-  }
   return (
     <Box
       sx={{
@@ -97,6 +82,7 @@ const ChildCategory = ({ child }) => {
         width: '90%',
         justifyContent: 'space-between',
         m: '0 0 0 auto',
+        p: 1,
         '.MuiSvgIcon-fontSizeMedium': {
           width: '20px !important',
           height: '20px !important',
@@ -104,11 +90,8 @@ const ChildCategory = ({ child }) => {
       }}
     >
       <Box sx={{ display: 'flex' }}>
-        <Typography sx={{ width: 40 }} textAlign="center">
-          {child.id}
-        </Typography>
+        <Typography sx={{ ml: 2 }}>{child.name}</Typography>
         <Divider orientation="vertical" flexItems sx={{ mx: 2 }} />
-        <Typography>{child.name}</Typography>
       </Box>
       <Box>
         <EditCategory category={child} />
@@ -116,22 +99,18 @@ const ChildCategory = ({ child }) => {
           icon={<Delete />}
           sx={{ color: 'tomato' }}
           label="حذف"
-          onClick={() => handleCategoryDelete(child.id)}
+          onClick={() => dispatch(deleteCategory(child.id))}
         />
       </Box>
     </Box>
   )
 }
 
-const FindParents = ({ parent }) => {
-  const { data: categories = { data: [] } } = useGetCategoriesQuery()
-  const [children, setChildern] = useState([])
-  useEffect(() => {
-    const filteredChild = categories.data.filter(
-      (child) => child.category_id === parent.id,
-    )
-    setChildern(filteredChild)
-  }, [categories])
+const FindParents = ({ parent, categories }) => {
+  const children = useMemo(
+    () => categories.filter((child) => child.category_id === parent.id),
+    [categories, parent],
+  )
   return (
     <>
       {children.length > 0 ? (
@@ -147,8 +126,8 @@ const FindParents = ({ parent }) => {
           }}
         >
           <ParentCategory parent={parent}>
-            {children.map((child) => (
-              <ChildCategory child={child} />
+            {children.map((child, index) => (
+              <ChildCategory child={child} key={index} />
             ))}
           </ParentCategory>
         </Box>
@@ -160,24 +139,31 @@ const FindParents = ({ parent }) => {
 }
 
 const CategoryManagement = () => {
-  const { data: categories = { data: [] } } = useGetCategoriesQuery()
+  const dispatch = useDispatch()
+  const categories = useSelector(selectAllCategories)
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  }, [])
 
   return (
     <>
       <AddCategory />
       <Box sx={{ direction: 'ltr', minHeight: '50vh' }}>
         <CategoryHewder parent />
-        {categories.data.map((parent, index) => (
+        {categories.map((parent, index) => (
           <Box key={index}>
             {parent.category_id === null && (
               <ParentCategory parent={parent}>
-                {categories.data.map((child) => (
-                  <>
-                    {child.category_id === parent.id && (
-                      <FindParents parent={child} />
-                    )}
-                  </>
-                ))}
+                {categories.map((child, index) => {
+                  child.category_id === parent.id && (
+                    <FindParents
+                      parent={child}
+                      categories={categories}
+                      key={index}
+                    />
+                  )
+                })}
               </ParentCategory>
             )}
           </Box>

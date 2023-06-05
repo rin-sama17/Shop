@@ -7,39 +7,32 @@ import { categoryValidation } from '../../validations/categoryValidation'
 import { useAddNewCategoryMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
-import { toast } from 'react-toastify'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { addCategory } from '../../../reducers/categorySlice'
 
 const AddCategory = () => {
   const [open, setOpen] = useState(false)
-  const [addNewCategory, { isSuccess, error }] = useAddNewCategoryMutation()
+  const dispatch = useDispatch()
 
-  const handleAddNewCategory = async (values) => {
-    try {
-      let category
-      if (!values.category_id) {
-        category = { name: values.name }
-      } else {
-        category = values
-      }
-      await addNewCategory(category).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
+  const handleAddNewCategory = (values) => {
+    let category
+    if (!values.category_id) {
+      category = { name: values.name }
+    } else {
+      category = values
     }
+    dispatch(addCategory({ category, setOpen }))
   }
 
   const formik = useFormik({
     initialValues: { name: '', category_id: '' },
-    validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
       handleAddNewCategory(values)
       resetForm()
-      setOpen(false)
     },
   })
+  console.log(formik.errors)
   const fields = categoryFieldsData(formik)
   return (
     <>
