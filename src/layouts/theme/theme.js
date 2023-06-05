@@ -61,43 +61,43 @@ export const theme = createTheme({
         //p07
 
         btnSidebar: {
-            main: "#ADB9E3",
-            light: "#BB4430"
-        },
-        bgSidebar: {
-            main: "#F6B537",
-            dark: "#212E50",
-        },
-        btnNav: {
-            main: "#E9E8EE",
-            dark: "#ADB9E3"
-        },
-        btnSubmit: {
-            main: "#212E50",
-            light: "#E9E8EE"
-        },
-        bgcolor: {
-            main: "#E9E8EE",
-            dark: "#212E50"
-        },
-        textBox: {
+            main: "#ffffff",
+            light: "#fffc41"
+          },
+          bgSidebar: {
+            main: "#09bfb0",
+            dark: "#a32798"
+          },
+          btnNav: {
+            main: "#ffffff",
+            dark: "#fffc41"
+          },
+          btnSubmit: {
+            main: "#d04d05",
+            light: "#E9E8eE"
+          },
+          bgcolor: {
+            main: "#d8e6e6",
+            dark: "#068ad2"
+          },
+          textBox: {
             light: "#BB4430",
             main: "#212E50",
             dark: "#F6B537"
-        },
-        primary: {
-            main: "#F6B537",
-            light: "#ADB9E3"
-        },
-        secondary: {
+          },
+          primary: {
+            main: "#ffbe22",
+            light: "#ffbe22"
+          },
+          secondary: {
             main: "#BB4430"
-        },
-        title: {
+          },
+          title: {
             light: "#FFFFFF",
             dark: "#000"
-        },
-        bgBlur: {
+          },
+          bgBlur: {
             main: "rgba(56,80,104, 0.5)"
-        },
-    }
-});
+          },
+          }
+          });
