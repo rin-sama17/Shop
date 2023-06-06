@@ -9,40 +9,13 @@ import { nanoid } from '@reduxjs/toolkit'
 import { productFieldsData } from '../../fieldsData'
 import { useState } from 'react'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { addProduct } from '../../../reducers/productSlice'
 
 const AddProduct = () => {
   const [open, setOpen] = useState(false)
-  const [addNewProduct, { isSuccess, error }] = useAddNewProductMutation()
-  const handleSubmitForm = async (values) => {
-    try {
-      const {
-        price: productPrice,
-        discount,
-        name,
-        description,
-        remaining,
-        category_id,
-        tags,
-      } = values
-      const price = Math.round(productPrice - (productPrice * discount) / 100)
-      const newProduct = {
-        discount,
-        name,
-        description,
-        remaining,
-        category_id,
-        tags,
-        price,
-      }
-      await addNewProduct(newProduct)
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
+
   const productFieldNames = {
     name: '',
     price: '',
@@ -56,9 +29,8 @@ const AddProduct = () => {
   const formik = useFormik({
     initialValues: productFieldNames,
     onSubmit: (values, { resetForm }) => {
-      handleSubmitForm(values)
+      dispatch(addProduct({ values, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
   const fields = productFieldsData(formik)

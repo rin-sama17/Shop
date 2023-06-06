@@ -40,6 +40,7 @@ const AdminPanel = () => {
       sx={{
         width: 1,
         position: 'relative',
+        minHeight: '100vh',
       }}
     >
       <Grid

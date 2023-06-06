@@ -1,8 +1,10 @@
 import { Button } from '@mui/material'
 import { useFormik } from 'formik'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { useAddPremissionMutation } from '../../../api'
+import { addPremission } from '../../../reducers/premissionSlice'
 
 import { CustomForm, CustomModal } from '../../common'
 import { premissionFieldsData } from '../../fieldsData'
@@ -10,31 +12,17 @@ import { premissionValidation } from '../../validations/premissionValidation'
 
 const AddPremission = () => {
   const [open, setOpen] = useState(false)
-
-  const [addPremission, { isSuccess }] = useAddPremissionMutation()
-
-  const handleSubmit = async (values) => {
-    try {
-      await addPremission(values).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: {
       name: '',
       description: '',
     },
-    validationSchema: premissionValidation,
+    // validationSchema: premissionValidation,
     onSubmit: (values, { resetForm }) => {
-      handleSubmit(values)
+      dispatch(addPremission({ values, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
   const fields = premissionFieldsData(formik)

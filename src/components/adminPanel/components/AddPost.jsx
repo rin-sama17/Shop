@@ -3,27 +3,18 @@ import { CustomForm, CustomModal, TextEditor } from '../../common'
 import { useState } from 'react'
 import { useFormik } from 'formik'
 import { postValidation } from '../../validations/postValidation'
-import { useAddNewPostMutation } from '../../../api'
 import { postFieldsData } from '../../fieldsData'
 import { toast } from 'react-toastify'
 
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addPost } from '../../../reducers/postSlice'
 
 const AddPost = () => {
   const [open, setOpen] = useState(false)
-  const [addNewPost, { isSuccess }] = useAddNewPostMutation()
 
-  const handleSubmitForm = async (values) => {
-    try {
-      await addNewPost(values).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
+
   const postFields = {
     name: '',
     description: '',
@@ -37,9 +28,8 @@ const AddPost = () => {
     initialValues: postFields,
     // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
-      handleSubmitForm(values, resetForm)
+      dispatch(addPost({ value, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
 

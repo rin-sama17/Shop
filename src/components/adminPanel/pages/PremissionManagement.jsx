@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
@@ -8,21 +8,19 @@ import {
   useDeletePremissionMutation,
   useGetPremissionsQuery,
 } from '../../../api'
+import {
+  deletePremission,
+  fetchPremissions,
+  selectAllPremissions,
+} from '../../../reducers/premissionSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const PremissionManagement = () => {
-  const { data = { premission: [] } } = useGetPremissionsQuery({
-    prefix: '/admin',
-  })
-  const [deletePremission] = useDeletePremissionMutation()
-  const handlePremissionDelete = async (premissionId) => {
-    try {
-      console.log(premissionId)
-      await deletePremission(premissionId).unwrap()
-    } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-      console.log(error)
-    }
-  }
+  const dispatch = useDispatch()
+  const premissions = useSelector(selectAllPremissions)
+  useEffect(() => {
+    dispatch(fetchPremissions())
+  }, [])
 
   const columns = useMemo(
     () => [
@@ -37,19 +35,19 @@ const PremissionManagement = () => {
             icon={<Delete />}
             sx={{ color: 'tomato' }}
             label="حذف"
-            onClick={() => handlePremissionDelete(params.id)}
+            onClick={() => dispatch(deletePremission(params.id))}
           />,
           <EditPremission premission={params.row} />,
         ],
       },
     ],
-    [data.premission, EditPremission],
+    [premissions, EditPremission],
   )
   return (
     <>
       <AddPremission />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={data.premission} columns={columns} />
+        <DataGrid rows={premissions} columns={columns} />
       </div>
     </>
   )

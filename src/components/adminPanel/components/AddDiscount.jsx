@@ -6,36 +6,20 @@ import { discountValidation } from '../../validations/discountValidation'
 import { useAddNewDiscountMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
 import { discountFieldsData } from '../../fieldsData'
+import { useDispatch } from 'react-redux'
+import { addDiscount } from '../../../reducers/discountSlice'
 
 const AddDiscount = () => {
   const [open, setOpen] = useState(false)
 
-  const [addNewDiscount, { isSuccess }] = useAddNewDiscountMutation()
-
-  const handleAddNewDiscount = async (values) => {
-    try {
-      const { name, discount, category } = values
-      await addNewDiscount({
-        name,
-        discount,
-        category,
-      }).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error.massage)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: { name: '', discount: '', category_id: '' },
     validationSchema: discountValidation,
     onSubmit: (values, { resetForm }) => {
-      handleAddNewDiscount(values)
+      dispatch(addDiscount({ values, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
   const fields = discountFieldsData(formik)

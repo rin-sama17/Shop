@@ -17,7 +17,7 @@ const EditCategory = ({ category }) => {
 
   const dispatch = useDispatch()
 
-  const handleAddNewCategory = (values) => {
+  const handelEditCategory = (values) => {
     let category
     if (!values.category_id) {
       category = { id: values.id, name: values.name }
@@ -31,7 +31,7 @@ const EditCategory = ({ category }) => {
     initialValues: category,
     validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
-      handleAddNewCategory(values)
+      handelEditCategory(values)
       resetForm()
     },
   })

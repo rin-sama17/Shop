@@ -2,8 +2,10 @@ import { Button } from '@mui/material'
 import { nanoid } from '@reduxjs/toolkit'
 import { useFormik } from 'formik'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 import { useAddRoleMutation } from '../../../api'
+import { addRole } from '../../../reducers/roleSlice'
 
 import { CustomForm, CustomModal } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
@@ -12,22 +14,7 @@ import { roleValidation } from '../../validations/roleValidation'
 const AddRole = () => {
   const [open, setOpen] = useState(false)
 
-  const [addRole, isSuccess] = useAddRoleMutation()
-  const handleSubmit = async (values) => {
-    try {
-      await addRole({
-        status: 1,
-        lang: 'fa',
-        ...values,
-      }).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: {
@@ -36,9 +23,8 @@ const AddRole = () => {
     },
     // validationSchema: roleValidation,
     onSubmit: (values, { resetForm }) => {
-      handleSubmit(values)
+      dispatch(addRole({ values, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
 

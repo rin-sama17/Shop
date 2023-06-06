@@ -8,31 +8,19 @@ import { contractValidation } from '../../validations/contractValidation'
 import { contractFieldsData } from '../../fieldsData'
 import { useEditContractMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
+import { editContract } from '../../../reducers/contractSlice'
+import { useDispatch } from 'react-redux'
 const EditContract = ({ contract }) => {
   const [open, setOpen] = useState(false)
-  const [editContract, { isSuccess }] = useEditContractMutation()
 
-  console.log(contract)
-  const handleEditContract = async (values) => {
-    try {
-      await editContract(values).unwrap()
-
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: contract,
     // validationSchema: contractValidation,
     onSubmit: (values, { resetForm }) => {
-      handleEditContract(values)
+      dispatch(editContract({ values, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
 

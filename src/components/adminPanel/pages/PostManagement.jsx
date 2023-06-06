@@ -6,21 +6,20 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { useDeletePostMutation, useGetPostsQuery } from '../../../api'
 import AddPost from '../components/AddPost'
 import EditPost from '../components/EditPost'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  deletePost,
+  fetchPosts,
+  selectAllPosts,
+} from '../../../reducers/postSlice'
 
 const PostManagement = () => {
-  const { data = { posts: [] } } = useGetPostsQuery({ prefix: '/admin' })
-  const [deletePost] = useDeletePostMutation()
-  console.log(data)
-
-  const handleDelete = async (postId) => {
-    try {
-      await deletePost(postId).unwrap()
-    } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-      console.log(error)
-    }
-  }
+  const dispatch = useDispatch()
+  const posts = useSelector(selectAllPosts)
+  useEffect(() => {
+    dispatch(fetchPosts())
+  }, [])
 
   const columns = useMemo(
     () => [
@@ -37,20 +36,20 @@ const PostManagement = () => {
             icon={<Delete />}
             sx={{ color: 'tomato' }}
             label="حذف"
-            onClick={() => handleDelete(params.id)}
+            onClick={() => dispatch(deletePost(params.id))}
           />,
           <EditPost post={params.row} />,
         ],
       },
     ],
-    [handleDelete, data.posts],
+    [EditPost, posts],
   )
 
   return (
     <>
       <AddPost />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={data.posts} columns={columns} />
+        <DataGrid rows={posts} columns={columns} />
       </div>
     </>
   )

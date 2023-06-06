@@ -5,21 +5,20 @@ import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { useDeleteProductMutation, useGetProductsQuery } from '../../../api'
 import { AddProduct, EditProduct } from '../components'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
+import {
+  deleteProduct,
+  fetchProducts,
+  selectAllProducts,
+} from '../../../reducers/productSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ProductManagement = () => {
-  const { data: products = { data: [] } } = useGetProductsQuery({
-    prefix: '/admin',
-  })
-  const [deleteProduct] = useDeleteProductMutation()
-  const handleDelete = async (productId) => {
-    try {
-      await deleteProduct(productId).unwrap()
-    } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-      console.log(error)
-    }
-  }
+  const dispatch = useDispatch()
+  const products = useSelector(selectAllProducts)
+  useEffect(() => {
+    dispatch(fetchProducts())
+  }, [])
   const columns = useMemo(
     () => [
       { field: 'id', headerName: 'شماره', width: 100 },
@@ -37,19 +36,19 @@ const ProductManagement = () => {
             icon={<Delete />}
             sx={{ color: 'tomato' }}
             label="حذف"
-            onClick={() => handleDelete(params.id)}
+            onClick={() => dispatch(deleteProduct(params.id))}
           />,
           <EditProduct product={params.row} />,
         ],
       },
     ],
-    [handleDelete, products.data],
+    [EditProduct, products],
   )
   return (
     <>
       <AddProduct />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={products.data} columns={columns} />
+        <DataGrid rows={products} columns={columns} />
       </div>
     </>
   )

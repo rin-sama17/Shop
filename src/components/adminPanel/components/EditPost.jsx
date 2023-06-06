@@ -7,30 +7,19 @@ import { CustomModal, TextEditor, CustomForm } from '../../common'
 import { useState } from 'react'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import { Edit } from '@mui/icons-material'
+import { useDispatch } from 'react-redux'
+import { editPost } from '../../../reducers/postSlice'
 
 const EditPost = ({ post }) => {
-  const [updatePost, { isSuccess }] = useEditPostMutation()
   const [open, setOpen] = useState(false)
 
-  const handleSubmitForm = async (values) => {
-    console.log(values)
-    try {
-      await updatePost(values).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
   const formik = useFormik({
-    initialValues: { ...post },
+    initialValues: post,
     // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
-      handleSubmitForm(values)
+      dispatch(editPost({ values, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
 

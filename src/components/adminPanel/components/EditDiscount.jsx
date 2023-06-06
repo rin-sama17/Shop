@@ -9,36 +9,20 @@ import { discountValidation } from '../../validations/discountValidation'
 import { useEditDiscountMutation } from '../../../api'
 import { CustomModal, CustomForm } from '../../common'
 import { discountFieldsData } from '../../fieldsData'
+import { editDiscount } from '../../../reducers/discountSlice'
+import { useDispatch } from 'react-redux'
 
 const EditDiscount = ({ discountData }) => {
   const [open, setOpen] = useState(false)
-  const [updateDiscount] = useEditDiscountMutation()
 
-  const handleEditDiscount = async (values) => {
-    const updatedDiscount = {
-      id: discountData.id,
-      ...value,
-    }
-    try {
-      await updateDiscount(updatedDiscount).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
 
   const formik = useFormik({
-    initialValues: {
-      ...discountData,
-    },
+    initialValues: discountData,
     validationSchema: discountValidation,
     onSubmit: (values, { resetForm }) => {
-      handleEditDiscount(values)
+      dispatch(editDiscount({ values, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
   const fields = discountFieldsData(formik)

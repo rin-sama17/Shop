@@ -4,23 +4,12 @@ import { Button } from '@mui/material'
 
 import { contractValidation } from '../../validations/contractValidation'
 import { contractFieldsData } from '../../fieldsData'
-import { useAddContractMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
+import { addContract } from '../../../reducers/contractSlice'
+import { useDispatch } from 'react-redux'
 const AddContract = () => {
   const [open, setOpen] = useState(false)
-  const [addNewContract, { isSuccess, error }] = useAddContractMutation()
-  console.log(error)
-  const handleSubmit = async (values) => {
-    try {
-      await addNewContract(values).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: {
@@ -33,9 +22,8 @@ const AddContract = () => {
     },
     // validationSchema: contractValidation,
     onSubmit: (values, { resetForm }) => {
-      handleSubmit(values)
+      dispatch(addContract({ values, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
   const fields = contractFieldsData(formik)

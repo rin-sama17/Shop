@@ -7,29 +7,18 @@ import { productFieldsData } from '../../fieldsData'
 import { useState } from 'react'
 import { Edit } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
+import { editProduct } from '../../../reducers/productSlice'
 
 const EditProduct = ({ product }) => {
   const [open, setOpen] = useState(false)
-  const [updateProduct, { isSuccess }] = useEditProductMutation()
-  const handleSubmitForm = async (values) => {
-    try {
-      await updateProduct(values).unwrap()
-      if (isSuccess) {
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
+  const dispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: { ...product },
     // validationSchema: productValidation,
     onSubmit: (values, { resetForm }) => {
-      handleSubmitForm(values)
+      dispatch(editProduct({ values, setOpen }))
       resetForm()
-      setOpen(false)
     },
   })
   const fields = productFieldsData(formik)

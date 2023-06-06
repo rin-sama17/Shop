@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
@@ -7,21 +7,20 @@ import { EditContract, AddContract } from '../components'
 import { contractValidation } from '../../validations/contractValidation'
 import { contractFieldsData } from '../../fieldsData'
 import { useDeleteContractMutation, useGetContractsQuery } from '../../../api'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  deleteContract,
+  fetchContracts,
+  selectAllContracts,
+} from '../../../reducers/contractSlice'
 
 const ContractManagement = () => {
-  const { data: contracts = { agencies: [] } } = useGetContractsQuery({
-    prefix: '/admin',
-  })
+  const dispatch = useDispatch()
+  const contracts = useSelector(selectAllContracts)
 
-  const [deleteContract] = useDeleteContractMutation()
-  const handleContractDelete = async (contractId) => {
-    try {
-      await deleteContract(contractId).unwrap()
-    } catch (error) {
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-      console.log(error)
-    }
-  }
+  useEffect(() => {
+    dispatch(fetchContracts())
+  }, [])
 
   const columns = useMemo(
     () => [
@@ -38,19 +37,19 @@ const ContractManagement = () => {
             icon={<Delete />}
             sx={{ color: 'tomato' }}
             label="حذف"
-            onClick={() => handleContractDelete(params.id)}
+            onClick={() => dispatch(deleteContract(params.id))}
           />,
           <EditContract contract={params.row} />,
         ],
       },
     ],
-    [contracts.agencies, EditContract],
+    [contracts, EditContract],
   )
   return (
     <>
       <AddContract />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={contracts.agencies} columns={columns} />
+        <DataGrid rows={contracts} columns={columns} />
       </div>
     </>
   )
