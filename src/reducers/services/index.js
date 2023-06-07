@@ -97,39 +97,6 @@ export const removePost = (postId) => {
 
 
 
-
-export const getAllDiscounts = (prefix = "") => {
-    const url = `${SERVER_URL}${prefix}/discounts`;
-    return axios.get(url);
-};
-
-export const getOneDiscount = (discountId, prefix = "") => {
-    const url = `${SERVER_URL}${prefix}/discounts/show/${discountId}`;
-    return axios.get(url);
-};
-
-export const createDiscount = (discount) => {
-    const url = `${ADMIN_SERVER_URL}/discounts/store`;
-    return axios.post(url, discount, headers);
-};
-
-export const updateDiscount = (discount) => {
-    const url = `${ADMIN_SERVER_URL}/discounts/update/${discount.id}`;
-    return axios.put(url, discount, headers);
-};
-
-export const removeDiscount = (discountId) => {
-    const url = `${ADMIN_SERVER_URL}/discounts/delete/${discountId}`;
-    return axios.delete(url);
-};
-
-
-
-
-
-
-
-
 export const getAllContracts = (prefix = "") => {
     const url = `${SERVER_URL}${prefix}/contracts`;
     return axios.get(url);

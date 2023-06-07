@@ -81,7 +81,11 @@ export const deleteCategory = createAsyncThunk(
 const categorySlice = createSlice({
   name: 'categories',
   initialState,
-  reducers: {},
+  reducers: {
+    getChildren: (state, action) => {
+      state.entities.filter(c => c.id === action.payload);
+    }
+  },
   extraReducers: {
     [fetchCategories.fulfilled]: categoryAdaptor.setAll,
     [addCategory.fulfilled]: categoryAdaptor.addOne,

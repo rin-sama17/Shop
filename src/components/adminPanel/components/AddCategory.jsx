@@ -22,7 +22,7 @@ const AddCategory = () => {
     } else {
       category = values
     }
-    dispatch(addCategory({ category, setOpen }))
+    dispatch(addCategory({ values: category, setOpen }))
   }
 
   const formik = useFormik({

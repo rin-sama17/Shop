@@ -10,11 +10,11 @@ import { Login } from '../../pages'
 import NavSearch from './NavSearch'
 
 const buttons = [
-  { name: 'فرش ماشینی' },
-  { name: 'فرش دستبافت' },
-  { name: 'تابلو فرش دستبافت' },
-  { name: 'صنایع دستی' },
-  { name: 'سایر' },
+  { name: 'دسته بندی ها' },
+  { name: 'نمایندگی' },
+  { name: 'وبلاگ' },
+  { name: 'فروشگاه' },
+  { name: 'درباره ما' },
 ]
 const NavContent = ({ setDrawerOpen }) => {
   return (
