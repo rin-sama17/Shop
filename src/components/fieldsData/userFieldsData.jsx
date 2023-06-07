@@ -1,17 +1,36 @@
 const userFieldsData = (formik) => {
   return [
     {
-      md: 5,
-      name: 'name',
-      label: 'عنوان',
+      md: 3.5,
+      name: 'firstname',
+      label: 'نام',
+      formik,
+    },
+    {
+      md: 3.5,
+      name: 'lastname',
+      label: 'نام خانوادگی',
       formik,
     },
     {
       md: 5,
+      name: 'email',
+      label: 'ایمیل',
       formik,
-      name: 'description',
-      label: 'توضیحات',
     },
+    {
+      phone: true,
+      name: 'phone',
+      formik,
+      md: 5,
+    },
+    {
+      md: 5,
+      pwd: true,
+      formik,
+      name: 'password',
+    },
+
     {
       md: 2,
       submit: true,

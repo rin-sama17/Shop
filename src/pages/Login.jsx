@@ -19,7 +19,7 @@ const Login = () => {
   }
   const formik = useFormik({
     initialValues: contactFieldNames,
-    validationSchema: loginValidation,
+    // validationSchema: loginValidation,
     onSubmit: (values) => {
       handleSubmit(values)
     },

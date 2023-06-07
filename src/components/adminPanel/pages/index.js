@@ -6,4 +6,4 @@ export { default as SliderManagement } from "./SliderManagement";
 export { default as RoleManagement } from "./RoleManagement";
 export { default as PremissionManagement } from "./PremissionManagement.jsx";
 export { default as ContractManagement } from "./ContractManagement.jsx";
-;
+export { default as UserManagement } from "./UserManagement.jsx";

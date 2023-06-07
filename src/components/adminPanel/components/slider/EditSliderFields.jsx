@@ -24,7 +24,7 @@ const EditSliderFields = ({ slider, setOpen }) => {
     initialValues: {
       ...slider,
     },
-    validationSchema: sliderValidation,
+    // validationSchema: sliderValidation,
     onSubmit: (values, { resetForm }) => {
       handleEditSlider(values)
       resetForm()

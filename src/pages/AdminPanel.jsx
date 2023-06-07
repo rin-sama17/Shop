@@ -14,6 +14,7 @@ import {
   RoleManagement,
   ContractManagement,
   PremissionManagement,
+  UserManagement,
 } from '../components/adminPanel/pages'
 
 const pages = [
@@ -25,6 +26,7 @@ const pages = [
   <ContractManagement />,
   <PremissionManagement />,
   <RoleManagement />,
+  <UserManagement />,
 ]
 
 const AdminPanel = () => {

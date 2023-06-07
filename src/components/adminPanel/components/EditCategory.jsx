@@ -29,7 +29,7 @@ const EditCategory = ({ category }) => {
 
   const formik = useFormik({
     initialValues: category,
-    validationSchema: categoryValidation,
+    // validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
       handelEditCategory(values)
       resetForm()

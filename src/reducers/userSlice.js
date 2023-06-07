@@ -19,7 +19,7 @@ export const fetchUsers = createAsyncThunk(
   async () => {
     try {
       const res = await getAllUsers();
-      return res.data.data;
+      return res.data.data[0];
     } catch (error) {
       console.error(error);
     }

@@ -16,7 +16,7 @@ const AddDiscount = () => {
 
   const formik = useFormik({
     initialValues: { name: '', discount: '', category_id: '' },
-    validationSchema: discountValidation,
+    // validationSchema: discountValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(addDiscount({ values, setOpen }))
       resetForm()

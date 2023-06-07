@@ -3,28 +3,26 @@ import { GridActionsCellItem } from '@mui/x-data-grid'
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { toast } from 'react-toastify'
-import { useEditPremissionMutation } from '../../../api'
-import { editPremission } from '../../../reducers/premissionSlice'
 
+import { editUser } from '../../../reducers/userSlice'
 import { CustomModal, CustomForm } from '../../common'
-import { premissionFieldsData } from '../../fieldsData'
-import { premissionValidation } from '../../validations/premissionValidation.js'
+import { userFieldsData } from '../../fieldsData'
+import { userValidation } from '../../validations/userValidation'
 
-const EditPremission = ({ premission }) => {
+const EditUser = ({ user }) => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
 
   const formik = useFormik({
-    initialValues: premission,
-    // validationSchema: premissionValidation,
+    initialValues: user,
+    // validationSchema: userValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editPremission({ values, setOpen }))
+      dispatch(editUser({ values, setOpen }))
       resetForm()
     },
   })
 
-  const fields = premissionFieldsData(formik)
+  const fields = userFieldsData(formik)
   return (
     <>
       <GridActionsCellItem
@@ -35,7 +33,7 @@ const EditPremission = ({ premission }) => {
       />
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
-          label="ویرایش دسترسی"
+          label="ویرایش ادمین"
           formik={formik}
           fields={fields}
           color="info"
@@ -45,4 +43,4 @@ const EditPremission = ({ premission }) => {
   )
 }
 
-export default EditPremission
+export default EditUser

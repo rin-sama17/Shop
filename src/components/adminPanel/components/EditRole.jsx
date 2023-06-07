@@ -17,7 +17,7 @@ const EditRole = ({ role }) => {
 
   const formik = useFormik({
     initialValues: role,
-    validationSchema: roleValidation,
+    // validationSchema: roleValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(editRole({ values, setOpen }))
       resetForm()

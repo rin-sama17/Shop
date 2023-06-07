@@ -30,7 +30,7 @@ const SliderManagement = () => {
 
   const formik = useFormik({
     initialValues: { photo: '', link: '' },
-    validationSchema: sliderValidation,
+    // validationSchema: sliderValidation,
     onSubmit: (values, { resetForm }) => {
       handleAddNewSlider(values)
       resetForm()
