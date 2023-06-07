@@ -1,4 +1,4 @@
-const roleFieldsData = (formik) => {
+const userFieldsData = (formik) => {
   return [
     {
       md: 5,
@@ -19,4 +19,4 @@ const roleFieldsData = (formik) => {
     },
   ]
 }
-export default roleFieldsData
+export default userFieldsData

@@ -3,7 +3,7 @@ import Cropper from 'react-easy-crop'
 import { Slider, Button } from '@mui/material'
 import getCroppedImg from './getCroppedImg'
 import Grid from '@mui/material/Unstable_Grid2'
-const CropImage = ({ img, setChanges, setOpen, aspect }) => {
+const CropImage = ({ img, setChanges, setOpen, setPhotoURL, aspect }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [rotation, setRotation] = useState(0)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
@@ -12,29 +12,18 @@ const CropImage = ({ img, setChanges, setOpen, aspect }) => {
     setCroppedAreaPixels(croppedAreaPixels)
   }, [])
 
-  function toDataUrl(url, callback) {
-    var xhr = new XMLHttpRequest()
-    xhr.onload = function () {
-      var reader = new FileReader()
-      reader.onloadend = function () {
-        callback(reader.result)
-      }
-      reader.readAsDataURL(xhr.response)
-    }
-    xhr.open('GET', url)
-    xhr.responseType = 'blob'
-    xhr.send()
-  }
-
-  const showCroppedImage = async () => {
+  const cropImage = async () => {
     try {
-      const croppedImage = await getCroppedImg(img, croppedAreaPixels, rotation)
-      toDataUrl(croppedImage, function (myBase64) {
-        setChanges(myBase64)
-        setOpen(false)
-      })
-    } catch (e) {
-      console.error(e)
+      const { file, url } = await getCroppedImg(
+        img,
+        croppedAreaPixels,
+        rotation,
+      )
+      setPhotoURL(url)
+      setChanges(file)
+      setOpen(false)
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -68,7 +57,7 @@ const CropImage = ({ img, setChanges, setOpen, aspect }) => {
       >
         <Button
           fullWidth
-          onClick={showCroppedImage}
+          onClick={cropImage}
           variant="contained"
           sx={{ bgcolor: 'btnSubmit.main', color: 'btnSubmit.light' }}
         >

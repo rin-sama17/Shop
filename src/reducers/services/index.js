@@ -4,7 +4,7 @@ const SERVER_URL = "http://localhost:8000/api";
 const ADMIN_SERVER_URL = "http://localhost:8000/api/admin";
 const headers = { headers: { Accept: 'application/json' } };
 
-
+export { default as handleErrors } from "./handleErrors";
 export const getAllCategories = (prefix = "") => {
     const url = `${SERVER_URL}${prefix}/categories`;
     return axios.get(url);

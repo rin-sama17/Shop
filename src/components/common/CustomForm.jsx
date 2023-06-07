@@ -8,6 +8,7 @@ const CustomForm = ({
   formik,
   label,
   color = 'secondary',
+  extraFields,
   imageUploader,
   imageUploaderName,
   imageUploaderProps,
@@ -33,6 +34,9 @@ const CustomForm = ({
         <Grid xs={12} md={imageUploader ? 9 : 12}>
           <Grid container spacing={2} sx={{ direction: 'ltr' }}>
             {fields.map((field, index) => (
+              <CustomFields {...field} key={index} />
+            ))}
+            {extraFields?.map((field, index) => (
               <CustomFields {...field} key={index} />
             ))}
           </Grid>

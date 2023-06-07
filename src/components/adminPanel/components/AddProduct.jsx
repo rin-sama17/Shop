@@ -22,15 +22,16 @@ const AddProduct = () => {
     discount: '',
     description: '',
     remaining: '',
-    image: '',
+    image: null,
     category_id: '',
     tags: '',
+    lang: 'fa',
   }
   const formik = useFormik({
     initialValues: productFieldNames,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addProduct({ values, setOpen }))
-      resetForm()
+      console.log(values)
+      dispatch(addProduct({ values, setOpen, resetForm }))
     },
   })
   const fields = productFieldsData(formik)

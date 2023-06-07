@@ -28,11 +28,13 @@ export const fetchProducts = createAsyncThunk(
 
 export const addProduct = createAsyncThunk(
     'product/addProduct',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         try {
             const res = await createProduct(values);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
+
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.product;
             }

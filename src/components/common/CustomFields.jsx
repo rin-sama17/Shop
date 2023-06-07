@@ -58,7 +58,6 @@ const CustomFields = ({
   category,
   categoryParents,
   textEditor,
-
   xs,
   sm,
   md,
@@ -232,16 +231,8 @@ const CustomFields = ({
   } else if (checkbox) {
     content = (
       <FormControlLabel
-        control={
-          <Checkbox
-            sx={{ color: 'textBox.dark' }}
-            name={name}
-            value={formik.values[`${name}`]}
-            checked={formik.values[`${name}`]}
-            onChange={formik.handleChange}
-          />
-        }
-        {...props}
+        control={<Checkbox sx={{ color: 'textBox.dark' }} {...props} />}
+        label={customLabel}
       />
     )
   } else if (textEditor) {

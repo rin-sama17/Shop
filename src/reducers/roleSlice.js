@@ -12,7 +12,9 @@ import {
 } from './services';
 
 const roleAdaptor = createEntityAdapter();
-const initialState = roleAdaptor.getInitialState();
+const initialState = roleAdaptor.getInitialState({
+    premission_id: []
+});
 
 export const fetchRoles = createAsyncThunk(
     'role/fetchRoles',
@@ -41,6 +43,7 @@ export const addRole = createAsyncThunk(
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
+            handleErrors(error);
         }
     },
 );
@@ -81,7 +84,18 @@ export const deleteRole = createAsyncThunk(
 const roleSlice = createSlice({
     name: 'role',
     initialState,
-    reducers: {},
+    reducers: {
+        premissionIdAdded: (state, action) => {
+            state.premission_id.push(action.payload);
+        },
+        premissionIdDeleted: (state, action) => {
+            const premissionIndex = state.premission_id.findIndex(p => p === action.payload);
+            state.premission_id.splice(premissionIndex, 1);
+        },
+        premissionIdsCleared: (state, action) => {
+            state.premission_id.splice(0, state.premission_id.length);
+        }
+    },
     extraReducers: {
         [fetchRoles.fulfilled]: roleAdaptor.setAll,
         [addRole.fulfilled]: roleAdaptor.addOne,
@@ -95,5 +109,6 @@ export const {
     selectById: selectRoleById,
 } = roleAdaptor.getSelectors((state) => state.role);
 
-
+export const selectPremission_id = state => state.role.premission_id;
+export const { premissionIdDeleted, premissionIdAdded, premissionIdsCleared } = roleSlice.actions;
 export default roleSlice.reducer;

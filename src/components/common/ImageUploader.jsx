@@ -13,6 +13,7 @@ import { useRef, useState } from 'react'
 import CropImage from './imageUploader/CropImage.jsx'
 const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
   const [open, setOpen] = useState(false)
+  const [photoURL, setPhotoURL] = useState()
 
   const setChanges = (changes) => {
     formik.setFieldValue(name, changes)
@@ -21,7 +22,7 @@ const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
     const reader = new FileReader()
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setChanges(reader.result)
+        setPhotoURL(reader.result)
         setOpen(true)
       }
     }
@@ -42,10 +43,10 @@ const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
       >
         <Box component="div" sx={{ height: 200, width: width ? width : 200 }}>
           <ImageListItem>
-            {formik.values[`${name}`] ? (
+            {photoURL ? (
               <CardMedia
                 component="img"
-                image={formik.values[`${name}`]}
+                image={photoURL}
                 alt=""
                 sx={{ height: 200, width: width ? width : 200 }}
               />
@@ -90,8 +91,9 @@ const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
       </Grid>
       <CustomModal open={open} setOpen={setOpen} lock>
         <CropImage
-          img={formik.values[`${name}`]}
+          img={photoURL}
           setChanges={setChanges}
+          setPhotoURL={setPhotoURL}
           open={open}
           setOpen={setOpen}
           aspect={aspect}
