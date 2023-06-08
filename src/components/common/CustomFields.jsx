@@ -25,8 +25,12 @@ import {
 
 import { PatternFormat } from 'react-number-format'
 import { useEffect } from 'react'
-import { useGetCategoriesQuery } from '../../api'
 import TextEditor from './TextEditor'
+import {
+  fetchCategories,
+  selectAllCategories,
+} from '../../reducers/categorySlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 const fieldColor = {
   '& label.Mui-focused': {
@@ -65,6 +69,8 @@ const CustomFields = ({
   ...props
 }) => {
   const [value, setValue] = useState()
+  const dispatch = useDispatch()
+
   if (submit === true) {
     return (
       <Grid xs={xs ? xs : 12} sm={sm ? sm : null} md={md ? md : null}>
@@ -88,9 +94,11 @@ const CustomFields = ({
       </Grid>
     )
   }
-
   useEffect(() => {
     setValue(formik.values[`${name}`])
+    if (category) {
+      dispatch(fetchCategories())
+    }
   }, [])
 
   useEffect(() => {
@@ -191,8 +199,7 @@ const CustomFields = ({
       </FormControl>
     )
   } else if (category) {
-    const { data: categories = { data: [] } } = useGetCategoriesQuery()
-
+    const categories = useSelector(selectAllCategories)
     content = (
       <FormControl
         fullWidth
@@ -220,7 +227,7 @@ const CustomFields = ({
             },
           }}
         >
-          {categories.data.map((category, index) => (
+          {categories.map((category, index) => (
             <MenuItem value={category.id} key={index}>
               {category.name}
             </MenuItem>

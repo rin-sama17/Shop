@@ -18,7 +18,6 @@ import axios from 'axios'
 import {
   deleteCategory,
   fetchCategories,
-  getChildren,
   selectAllCategories,
 } from '../../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -77,7 +76,6 @@ const ParentCategory = ({ parent, children }) => {
 
 const ChildCategory = ({ child }) => {
   const dispatch = useDispatch()
-
   return (
     <Box
       sx={{
@@ -109,9 +107,15 @@ const ChildCategory = ({ child }) => {
   )
 }
 
-const FindParents = ({ parent }) => {
-  const children = getChildren(parent.id)
-  console.log('children', children)
+const FindParents = ({ parent, categories }) => {
+  console.log('parent', parent)
+
+  const children = useMemo(
+    () => categories.filter((child) => child.category_id === parent.id),
+    [categories, parent],
+  )
+  console.log(children)
+
   return (
     <>
       {children.length > 0 ? (
@@ -157,11 +161,15 @@ const CategoryManagement = () => {
             {parent.category_id === null && (
               <ParentCategory parent={parent}>
                 {categories.map((child, index) => (
-                  <FindParents
-                    parent={child}
-                    categories={categories}
-                    key={index}
-                  />
+                  <>
+                    {child.category_id === parent.id && (
+                      <FindParents
+                        parent={child}
+                        categories={categories}
+                        key={index}
+                      />
+                    )}
+                  </>
                 ))}
               </ParentCategory>
             )}

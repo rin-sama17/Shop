@@ -4,7 +4,6 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { useEditPremissionMutation } from '../../../api'
 import { editPremission } from '../../../reducers/premissionSlice'
 
 import { CustomModal, CustomForm } from '../../common'

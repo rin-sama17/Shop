@@ -12,6 +12,7 @@ const myMiddleware = (next) => (args) => {
 
 
 
+
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api' }),
@@ -20,7 +21,6 @@ export const apiSlice = createApi({
     return headers;
   },
   tagTypes: [
-    'Blogs',
     'Products',
     'Discounts',
     'Carts',
@@ -32,36 +32,6 @@ export const apiSlice = createApi({
     'Contracts',
   ],
   endpoints: (builder) => ({
-    getPosts: builder.query({
-      query: ({ prefix = "" }) => `${prefix}/posts`,
-      providesTags: ["Blogs"]
-    }),
-    getPost: builder.query({
-      query: ({ id, prefix = "" }) => `${prefix}/posts/show/${id}`,
-    }),
-    addNewPost: builder.mutation({
-      query: (initialPost) => ({
-        url: '/admin/posts/store',
-        method: 'POST',
-        body: initialPost,
-      }),
-      invalidatesTags: ['Blogs'],
-    }),
-    deletePost: builder.mutation({
-      query: (initialPostId) => ({
-        url: `/admin/posts/delete/${initialPostId}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['Blogs'],
-    }),
-    editPost: builder.mutation({
-      query: (post) => ({
-        url: `/admin/posts/update/${post.id}`,
-        method: 'PUT',
-        body: post,
-      }),
-      invalidatesTags: ["Blogs"]
-    }),
 
     getProducts: builder.query({
       query: ({ prefix = "" }) => `${prefix}/products`,
@@ -336,12 +306,8 @@ export const apiSlice = createApi({
 
 export const {
 
-  useGetPostsQuery,
-  useGetPostQuery,
-  useAddNewPostMutation,
-  useDeletePostMutation,
-  useEditPostMutation,
 
+  
   useGetProductsQuery,
   useGetProductQuery,
   useAddNewProductMutation,

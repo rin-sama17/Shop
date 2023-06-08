@@ -10,8 +10,8 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 
-console.log('post')
 const Post = ({ post }) => {
+  console.log(`http://localhost:8000/${post.image}`)
   return (
     <Box
       sx={{
@@ -22,7 +22,7 @@ const Post = ({ post }) => {
         m: '10px auto',
       }}
     >
-      <Paper elevation={8}>
+      <Paper elevation={8} sx={{ width: 1 }}>
         <CardActionArea component={Link} to={`/post/read/${post.id}`}>
           <Box
             sx={{
@@ -38,7 +38,7 @@ const Post = ({ post }) => {
                 <Grid xs={12} sm={4}>
                   <img
                     alt={post.name}
-                    src={post.image}
+                    src={`http://localhost:8000/${post.image}`}
                     style={{ margin: 'auto', width: '100%' }}
                   />
                 </Grid>

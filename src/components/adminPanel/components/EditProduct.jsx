@@ -1,7 +1,6 @@
 import { useFormik } from 'formik'
 import { CustomForm, CustomModal } from '../../common'
 import { productValidation } from '../../validations/productValidation'
-import { useEditProductMutation } from '../../../api'
 import { toast } from 'react-toastify'
 import { productFieldsData } from '../../fieldsData'
 import { useState } from 'react'

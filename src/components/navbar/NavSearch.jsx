@@ -19,14 +19,12 @@ import {
   ProductPrice,
   SearchField,
 } from '../common'
-import { useGetPostsQuery, useGetProductsQuery } from '../../api'
+import { useGetProductsQuery } from '../../api'
 
 const NavSearch = () => {
   const [open, setOpen] = useState(false)
 
   const { data: products = [] } = useGetProductsQuery()
-  const { data: posts = [] } = useGetPostsQuery()
-  console.log(posts)
   return (
     <>
       <CustomIconButton

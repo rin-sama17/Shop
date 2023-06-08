@@ -1,7 +1,7 @@
 import { createSelector } from '@mui/x-data-grid/internals'
 import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import { useGetPostsQuery, useGetProductsQuery } from '../api'
+import { useGetProductsQuery } from '../api'
 import Grid from '@mui/material/Unstable_Grid2'
 import { CustomDivider, CustomMassage, SearchField } from '../components/common'
 import { Product } from '../components/products'
@@ -27,30 +27,10 @@ const SearchResult = () => {
     )
   }, [query])
 
-  const selectPosts = useMemo(() => {
-    return createSelector(
-      (res) => res.data,
-      (res, query) => query,
-      (data, query) =>
-        data?.filter(
-          (post) =>
-            post.heading.toLowerCase().includes(query.toLowerCase()) ||
-            post.category === categoryQuery[0] ||
-            post.tags.toLowerCase().includes(query.toLowerCase()),
-        ),
-    )
-  }, [query])
   const { filteredProducts = [] } = useGetProductsQuery(undefined, {
     selectFromResult: (result) => ({
       ...result,
       filteredProducts: selectProducts(result, query),
-    }),
-  })
-
-  const { filteredPosts = [] } = useGetPostsQuery(undefined, {
-    selectFromResult: (result) => ({
-      ...result,
-      filteredPosts: selectPosts(result, query),
     }),
   })
 
@@ -77,18 +57,6 @@ const SearchResult = () => {
           text="محصولی پیدا نشد"
           btnLabel="رفتن به فروشگاه"
           to="/product/index"
-        />
-      )}
-      <CustomDivider label="پست ها" />
-      {filteredPosts.length > 0 ? (
-        filteredPosts.map((post, index) => (
-          <Post postId={post.id} key={index} />
-        ))
-      ) : (
-        <CustomMassage
-          text="پستی پیدا نشد"
-          btnLabel="رفتن به وبلاگ"
-          to="/post/index"
         />
       )}
     </Grid>

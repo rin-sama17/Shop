@@ -4,7 +4,6 @@ import { Button } from '@mui/material'
 import { nanoid } from '@reduxjs/toolkit'
 
 import { categoryValidation } from '../../validations/categoryValidation'
-import { useAddNewCategoryMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
 import axios from 'axios'

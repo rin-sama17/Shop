@@ -82,7 +82,7 @@ const postSlice = createSlice({
     reducers: {},
     extraReducers: {
         [fetchPosts.fulfilled]: postAdaptor.setAll,
-        [addPost.fulfilled]: postAdaptor.addOne,
+        // [addPost.fulfilled]: postAdaptor.addOne,
         [editPost.fulfilled]: postAdaptor.setOne,
         [deletePost.fulfilled]: postAdaptor.removeOne,
     },

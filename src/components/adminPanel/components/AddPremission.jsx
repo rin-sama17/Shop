@@ -3,7 +3,6 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { useAddPremissionMutation } from '../../../api'
 import { addPremission } from '../../../reducers/premissionSlice'
 
 import { CustomForm, CustomModal } from '../../common'

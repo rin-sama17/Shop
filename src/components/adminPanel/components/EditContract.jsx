@@ -6,7 +6,6 @@ import { toast } from 'react-toastify'
 
 import { contractValidation } from '../../validations/contractValidation'
 import { contractFieldsData } from '../../fieldsData'
-import { useEditContractMutation } from '../../../api'
 import { CustomForm, CustomModal } from '../../common'
 import { editContract } from '../../../reducers/contractSlice'
 import { useDispatch } from 'react-redux'

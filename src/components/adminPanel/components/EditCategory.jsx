@@ -5,7 +5,6 @@ import { Edit } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 
 import { categoryValidation } from '../../validations/categoryValidation'
-import { useEditCategoryMutation } from '../../../api'
 import { CustomModal, CustomForm, CustomIconButton } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
 import { editCategory } from '../../../reducers/categorySlice'
@@ -13,7 +12,6 @@ import { useDispatch } from 'react-redux'
 
 const EditCategory = ({ category }) => {
   const [open, setOpen] = useState(false)
-  const [updateCategotry, { isSuccess }] = useEditCategoryMutation()
 
   const dispatch = useDispatch()
 

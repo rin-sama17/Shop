@@ -15,7 +15,6 @@ import { useTheme } from '@mui/styles'
 import { Link, Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import Slider from 'react-slick'
-import { useGetPostsQuery } from '../../api'
 import Grid from '@mui/material/Unstable_Grid2'
 import { category01, category02, category03 } from '../../assets'
 const posts = [
@@ -44,8 +43,6 @@ const posts = [
 const HomePostsSlider = () => {
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('md'))
-
-  // const { data: posts = [], isSuccess } = useGetPostsQuery()
 
   const settings = {
     dots: true,

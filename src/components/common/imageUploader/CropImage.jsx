@@ -7,6 +7,7 @@ const CropImage = ({ img, setChanges, setOpen, setPhotoURL, aspect }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [rotation, setRotation] = useState(0)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+  const [blobFile, setBlobFile] = useState()
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels)
@@ -20,7 +21,8 @@ const CropImage = ({ img, setChanges, setOpen, setPhotoURL, aspect }) => {
         rotation,
       )
       setPhotoURL(url)
-      setChanges(file)
+      console.log(file, typeof file)
+      setBlobFile(file)
       setOpen(false)
     } catch (error) {
       console.log(error)

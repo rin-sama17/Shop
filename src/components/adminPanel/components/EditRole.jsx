@@ -5,7 +5,6 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 
-import { useEditRoleMutation } from '../../../api'
 import { editRole } from '../../../reducers/roleSlice'
 import { CustomModal, CustomForm } from '../../common'
 import { roleFieldsData } from '../../fieldsData'

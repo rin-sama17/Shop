@@ -18,7 +18,7 @@ const AddPost = () => {
   const postFields = {
     name: '',
     description: '',
-    image: '',
+    image: null,
     category_id: '',
     tags: '',
     user_id: 1,
@@ -28,6 +28,7 @@ const AddPost = () => {
     initialValues: postFields,
     // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
+      console.log(values)
       dispatch(addPost({ values, setOpen }))
       resetForm()
     },
