@@ -65,11 +65,7 @@ const Contract = ({ contract }) => {
                   >
                     {contract.name}
                   </Typography>
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    gutterBotton
-                  >
+                  <Typography variant="caption" color="text.secondary">
                     <LinesEllipsis text={contract.discription} maxLine={6} />
                   </Typography>{' '}
                 </Grid>

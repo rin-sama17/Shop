@@ -19,7 +19,7 @@ export const fetchPosts = createAsyncThunk(
     async () => {
         try {
             const res = await getAllPosts();
-            return res.data.data;
+            return res.data.posts;
         } catch (error) {
             console.error(error);
         }

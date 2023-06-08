@@ -1,30 +1,17 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { useState } from 'react'
-import { Box, Container } from '@mui/material'
+import { useEffect, useState } from 'react'
 
 import { Post } from '../components/Posts'
-import { CustomPagination } from '../components/common'
-import { useGetPostsQuery } from '../api'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchPosts, selectAllPosts } from '../reducers/postSlice'
 
 const Posts = () => {
-  const [data, setData] = useState([])
-  const { data: posts = [] } = useGetPostsQuery()
-  return (
-    <Grid container>
-      {data.map((post, index) => (
-        <Post postId={post.id} key={index} />
-      ))}
-      <Box
-        sx={{
-          width: 1,
-          my: 1,
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <CustomPagination setData={setData} data={posts} />
-      </Box>
-    </Grid>
-  )
+  const myPosts = useSelector(selectAllPosts)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchPosts())
+  }, [])
+  console.log(myPosts)
+  return myPosts.map((post, index) => <Post post={post} key={index} />)
 }
 export default Posts

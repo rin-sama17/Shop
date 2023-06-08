@@ -66,8 +66,8 @@ export const removeProduct = (productId) => {
 
 
 
-export const getAllPosts = (prefix = "") => {
-    const url = `${SERVER_URL}${prefix}/posts`;
+export const getAllPosts = () => {
+    const url = `${SERVER_URL}/posts`;
     return axios.get(url);
 };
 

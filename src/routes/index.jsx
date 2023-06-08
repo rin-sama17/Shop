@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
         element: <App />,
       },
       {
-        path: '/post/index',
+        path: '/posts',
         element: <Posts />,
       },
       {
