@@ -6,7 +6,6 @@ import { nanoid } from '@reduxjs/toolkit'
 import { categoryValidation } from '../../validations/categoryValidation'
 import { CustomForm, CustomModal } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
-import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { addCategory } from '../../../reducers/categorySlice'
 

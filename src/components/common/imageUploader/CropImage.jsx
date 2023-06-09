@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Cropper from 'react-easy-crop'
 import { Slider, Button } from '@mui/material'
 import getCroppedImg from './getCroppedImg'
@@ -7,7 +7,6 @@ const CropImage = ({ img, setChanges, setOpen, setPhotoURL, aspect }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [rotation, setRotation] = useState(0)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
-  const [blobFile, setBlobFile] = useState()
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels)
@@ -21,8 +20,17 @@ const CropImage = ({ img, setChanges, setOpen, setPhotoURL, aspect }) => {
         rotation,
       )
       setPhotoURL(url)
-      console.log(file, typeof file)
-      setBlobFile(file)
+      // const formData = new FormData()
+      // formData.append('image', file)
+      // const image = formData.get('image')
+      // console.log(formData)
+      // console.log(file) //Blob {size: 4988, type: 'image/jpeg'}
+      // console.log(formData.get('image'))
+      // console.log({ ...formData })
+      // console.log({ ...formData.get('image') })
+      // console.log(image)
+
+      setChanges(file)
       setOpen(false)
     } catch (error) {
       console.log(error)

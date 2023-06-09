@@ -29,8 +29,20 @@ export const fetchPosts = createAsyncThunk(
 export const addPost = createAsyncThunk(
     'post/addPost',
     async ({ values, setOpen }) => {
+        const formData = new FormData();
+        formData.append('name', values.name);
+        formData.append('description', values.description);
+        formData.append('category_id', values.category_id);
+        formData.append('tags', values.tags);
+        formData.append('user_id', values.user_id);
+        formData.append('summary', values.summary);
+
+        if (values.image) {
+            formData.append('image', values.image);
+        }
         try {
-            const res = await createPost(values);
+            console.log(formData);
+            const res = await createPost(formData);
             if (res.status === 200) {
                 setOpen(false);
                 toast.success(res.data.message, { position: 'bottom-right' });

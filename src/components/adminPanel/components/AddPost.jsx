@@ -27,8 +27,8 @@ const AddPost = () => {
   const formik = useFormik({
     initialValues: postFields,
     // validationSchema: postValidation,
+
     onSubmit: (values, { resetForm }) => {
-      console.log(values)
       dispatch(addPost({ values, setOpen }))
       resetForm()
     },
