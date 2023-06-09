@@ -6,7 +6,6 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import { EditContract, AddContract } from '../components'
 import { contractValidation } from '../../validations/contractValidation'
 import { contractFieldsData } from '../../fieldsData'
-import { useDeleteContractMutation, useGetContractsQuery } from '../../../api'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   deleteContract,

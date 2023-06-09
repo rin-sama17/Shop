@@ -4,10 +4,7 @@ import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { EditPremission, AddPremission } from '../components'
-import {
-  useDeletePremissionMutation,
-  useGetPremissionsQuery,
-} from '../../../api'
+
 import {
   deletePremission,
   fetchPremissions,

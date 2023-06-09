@@ -112,7 +112,7 @@ const HomePostsSlider = () => {
 
               <CardActionArea
                 component={Link}
-                to={`/post/read/${slide.id}`}
+                to={`/posts/${slide.id}`}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -179,7 +179,7 @@ const HomePostsSlider = () => {
 
       <Button
         component={RouterLink}
-        to="/post/index"
+        to="/posts"
         color="secondary"
         sx={{ my: 2 }}
         size="large"

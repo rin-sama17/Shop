@@ -1,17 +1,12 @@
-import Grid from '@mui/material/Unstable_Grid2'
-import { useEffect, useState } from 'react'
-
 import { Post } from '../components/Posts'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchPosts, selectAllPosts } from '../reducers/postSlice'
+import { useGetPostsQuery } from '../api'
+import { PostLoading } from '../components/loading'
 
 const Posts = () => {
-  const myPosts = useSelector(selectAllPosts)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(fetchPosts())
-  }, [])
-  console.log(myPosts)
-  return myPosts.map((post, index) => <Post post={post} key={index} />)
+  const { data = { posts: [] }, isSuccess } = useGetPostsQuery()
+  if (!isSuccess) {
+    return <PostLoading />
+  }
+  return data.posts.map((post, index) => <Post postId={post.id} key={index} />)
 }
 export default Posts

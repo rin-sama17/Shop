@@ -33,7 +33,7 @@ const Product = ({ productId }) => {
       }}
     >
       <Box
-        onClick={() => navigate(`/product/read/${data.product.id}`)}
+        onClick={() => navigate(`/products/${data.product.id}`)}
         sx={{ py: 1 }}
       >
         <Box sx={{ width: 1, mb: 2 }}>

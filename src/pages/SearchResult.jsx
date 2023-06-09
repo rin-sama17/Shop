@@ -56,7 +56,7 @@ const SearchResult = () => {
         <CustomMassage
           text="محصولی پیدا نشد"
           btnLabel="رفتن به فروشگاه"
-          to="/product/index"
+          to="/products"
         />
       )}
     </Grid>

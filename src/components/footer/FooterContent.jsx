@@ -17,9 +17,9 @@ const socials = [
 ]
 
 const routes = [
-  { name: 'فروشگاه', to: '/product/index' },
-  { name: 'مجله', to: '/post/index' },
-  { name: 'نمایندگی', to: '/contract/index' },
+  { name: 'فروشگاه', to: '/products' },
+  { name: 'مجله', to: '/posts' },
+  { name: 'نمایندگی', to: '/contracts' },
   { name: 'درباره ما', to: 'about-us' },
 ]
 

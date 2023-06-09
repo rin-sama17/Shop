@@ -33,16 +33,16 @@ export const router = createBrowserRouter([
         element: <Posts />,
       },
       {
-        path: '/post/read/:postId',
+        path: '/posts/:postId',
         element: <ShowPost />,
       },
 
       {
-        path: '/product/index',
+        path: '/products',
         element: <Products />,
       },
       {
-        path: '/product/read/:productId',
+        path: '/products/:productId',
         element: <ShowProduct />,
       },
       {
@@ -55,11 +55,11 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: '/contract/index',
+        path: '/contracts',
         element: <Contracts />,
       },
       {
-        path: '/contract/read/:contractId',
+        path: '/contracts/read/:contractId',
         element: <ShowContract />,
       },
     ],

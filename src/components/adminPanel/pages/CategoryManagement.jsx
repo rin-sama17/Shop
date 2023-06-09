@@ -12,7 +12,6 @@ import {
   Divider,
 } from '@mui/material'
 import { EditCategory, AddCategory } from '../components'
-import { useDeleteCategoryMutation, useGetCategoriesQuery } from '../../../api'
 import { CustomIconButton } from '../../common'
 import axios from 'axios'
 import {

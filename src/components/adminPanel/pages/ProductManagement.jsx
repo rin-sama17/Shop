@@ -3,7 +3,6 @@ import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-import { useDeleteProductMutation, useGetProductsQuery } from '../../../api'
 import { AddProduct, EditProduct } from '../components'
 import { useEffect, useMemo } from 'react'
 import {

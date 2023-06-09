@@ -20,15 +20,6 @@ const CropImage = ({ img, setChanges, setOpen, setPhotoURL, aspect }) => {
         rotation,
       )
       setPhotoURL(url)
-      // const formData = new FormData()
-      // formData.append('image', file)
-      // const image = formData.get('image')
-      // console.log(formData)
-      // console.log(file) //Blob {size: 4988, type: 'image/jpeg'}
-      // console.log(formData.get('image'))
-      // console.log({ ...formData })
-      // console.log({ ...formData.get('image') })
-      // console.log(image)
 
       setChanges(file)
       setOpen(false)

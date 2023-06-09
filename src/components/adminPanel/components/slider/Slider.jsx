@@ -6,10 +6,7 @@ import { useGetSliderQuery } from '../../../../api'
 import { SliderLoading } from '../../../loading'
 
 const Slider = ({ sliderId, setSliderId, setOpen }) => {
-  const { data: slider, isLoading, isSuccess } = useGetSliderQuery({
-    id: sliderId,
-    prefix: '/admin',
-  })
+  const { data: slider, isLoading, isSuccess } = useGetSliderQuery()
 
   let content
   if (isLoading) {

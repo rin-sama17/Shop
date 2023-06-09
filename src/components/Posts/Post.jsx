@@ -9,9 +9,15 @@ import { ShowTime } from '../common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
+import { useGetPostQuery } from '../../api'
+import PostLoading from '../loading/PostLoading'
 
-const Post = ({ post }) => {
-  console.log(`http://localhost:8000/${post.image}`)
+const Post = ({ postId }) => {
+  const { data = { post: {} }, isSuccess } = useGetPostQuery(postId)
+  const post = data.post
+  if (!isSuccess) {
+    return <PostLoading />
+  }
   return (
     <Box
       sx={{
@@ -23,7 +29,7 @@ const Post = ({ post }) => {
       }}
     >
       <Paper elevation={8} sx={{ width: 1 }}>
-        <CardActionArea component={Link} to={`/post/read/${post.id}`}>
+        <CardActionArea component={Link} to={`/posts/${post.id}`}>
           <Box
             sx={{
               pb: 2,

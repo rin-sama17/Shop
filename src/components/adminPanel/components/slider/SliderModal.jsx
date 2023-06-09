@@ -9,9 +9,7 @@ const SliderModal = () => {
   const [open, setOpen] = useState(false)
   const [sliderId, setSliderId] = useState('')
 
-  const { data: sliders = [], isSuccess } = useGetSlidersQuery({
-    prefix: '/admin',
-  })
+  const { data: sliders = [], isSuccess } = useGetSlidersQuery()
 
   if (!isSuccess) {
     return

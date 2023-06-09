@@ -64,7 +64,7 @@ const HomeDescription = () => {
 
       <Button
         component={Link}
-        to="/product/index"
+        to="/products"
         color="secondary"
         sx={{ mt: 4, mb: 2 }}
       >

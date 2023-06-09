@@ -22,13 +22,13 @@ const postFieldsData = (formik) => {
     },
     {
       sm: 12,
-      name: 'description',
+      name: 'summary',
       formik,
       label: 'توضیحات',
       multiline: true,
       rows: 3,
     },
-    { sm: 12, formik, name: 'summary', textEditor: true },
+    { sm: 12, formik, name: 'description', textEditor: true },
     {
       submit: true,
       customLabel: 'ثبت',

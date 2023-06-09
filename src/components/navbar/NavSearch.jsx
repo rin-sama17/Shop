@@ -24,7 +24,7 @@ import { useGetProductsQuery } from '../../api'
 const NavSearch = () => {
   const [open, setOpen] = useState(false)
 
-  const { data: products = [] } = useGetProductsQuery()
+  const { data: products = { data: [] } } = useGetProductsQuery()
   return (
     <>
       <CustomIconButton
@@ -48,7 +48,7 @@ const NavSearch = () => {
               <Button>مشاهده همه</Button>
             </Box>
             <Divider sx={{ color: 'primary.main', my: 1 }} />
-            {products.map((product, index) => (
+            {products.data?.map((product, index) => (
               <Box
                 sx={{
                   display: 'flex',
