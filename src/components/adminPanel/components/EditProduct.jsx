@@ -36,7 +36,7 @@ const EditProduct = ({ product }) => {
           label="ویرایش محصول"
           color="warning"
           imageUploader
-          imageUploaderName="thumbnail"
+          imageUploaderName="image"
           imageUploaderProps={{ aspect: 3 / 4 }}
         />
       </CustomModal>

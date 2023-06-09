@@ -9,15 +9,23 @@ import {
 import { AddAPhoto } from '@mui/icons-material'
 import Grid from '@mui/material/Unstable_Grid2'
 import CustomModal from './CustomModal'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CropImage from './imageUploader/CropImage.jsx'
 const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
   const [open, setOpen] = useState(false)
   const [photoURL, setPhotoURL] = useState()
 
+  useEffect(() => {
+    console.log(formik, name)
+    if (formik.values[`${name}`]) {
+      setPhotoURL(`http://localhost:8000/${formik.values[`${name}`]}`)
+    }
+  }, [])
+
   const setChanges = (changes) => {
     formik.setFieldValue(name, changes)
   }
+
   const handleFileChange = (e) => {
     const reader = new FileReader()
     reader.onload = () => {

@@ -37,7 +37,7 @@ const EditPost = ({ post }) => {
           label="ویرایش پست"
           color="success"
           imageUploader
-          imageUploaderName="thumbnail"
+          imageUploaderName="image"
           imageUploaderProps={{ aspect: 16 / 7 }}
         />
       </CustomModal>

@@ -38,7 +38,7 @@ const EditAgency = ({ agency }) => {
           fields={fields}
           color="info"
           imageUploader
-          imageUploaderName="photo"
+          imageUploaderName="image"
           imageUploaderProps={{ aspect: 4 / 3 }}
         />
       </CustomModal>
