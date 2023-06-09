@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify'
 import { Container, Box } from '@mui/material'
 import Footer from '../components/footer/Footer'
 import { HelmetProvider, Helmet } from 'react-helmet-async'
+import { bg } from '../assets'
 
 const cacheRTL = createCache({
   key: 'muirtl',
@@ -25,12 +26,16 @@ const MainLayout = () => {
           <Helmet>
             <title>فروشگاه فرش</title>
           </Helmet>{' '}
-          <Box sx={{ bgcolor: 'bgcolor.main' }}>
+          <Box
+            sx={{
+              backgroundImage: `url(${bg} )`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+            }}
+          >
             <Navbar />
-            <Container
-              maxWidth="lg"
-              sx={{ px: { xs: 0 }, minHeight: '40vh', pt: 3 }}
-            >
+            <Container maxWidth="lg" sx={{ px: { xs: 0 }, minHeight: '40vh' }}>
               <ToastContainer
                 position="bottom-left"
                 autoClose={5000}

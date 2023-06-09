@@ -24,7 +24,7 @@ const PostManagement = () => {
     () => [
       { field: 'id', headerName: 'شماره', width: 100 },
       { field: 'name', headerName: 'نام پست', width: 150 },
-      { field: 'description', headerName: 'مقدمه', width: 200 },
+      { field: 'summary', headerName: 'مقدمه', width: 200 },
       { field: 'category_id', headerName: 'دسته بندی', width: 100 },
       {
         field: 'actions',

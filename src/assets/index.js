@@ -1,4 +1,5 @@
 export { default as footerBg } from "./footerBg.jpg";
+export { default as bg } from "./bg.jpg";
 
 
 

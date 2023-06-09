@@ -27,28 +27,19 @@ const Navbar = () => {
     <>
       <NavDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
       <HideOnScroll>
-        <Container
-          maxWidth="lg"
+        <Grid
+          container
           sx={{
-            py: 2,
+            width: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
             position: 'sticky',
             top: 0,
             zIndex: 2,
-            alignItems: 'center',
-            bgcolor: 'bgcolor.dark',
-            borderRadius: {
-              xs: 'none',
-              md: '0 0 20px  20px ',
-            },
           }}
         >
-          <Grid
-            container
-            sx={{ width: 1, justifyContent: 'center', alignItems: 'center' }}
-          >
-            <NavContent setDrawerOpen={setDrawerOpen} />
-          </Grid>
-        </Container>
+          <NavContent setDrawerOpen={setDrawerOpen} />
+        </Grid>
       </HideOnScroll>
     </>
   )

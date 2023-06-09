@@ -8,6 +8,7 @@ import {
 import CustomIconButton from '../common/CustomIconButton'
 import { Login } from '../../pages'
 import NavSearch from './NavSearch'
+import { bg } from '../../assets'
 
 const buttons = [
   { name: 'دسته بندی ها' },
@@ -21,29 +22,31 @@ const NavContent = ({ setDrawerOpen }) => {
     <>
       <Box
         sx={{
+          backgroundImage: `url(${bg} )`,
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
           width: 1,
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
         }}
       >
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <CustomIconButton
             color="btnNav"
             icon={<AppsOutlined />}
             title="گزینه های بیشتر"
             onClick={() => setDrawerOpen(true)}
           />
-          <Login />
+          <Link href="/" underline="none">
+            <Typography variant="h5" sx={{ color: 'title.light' }}>
+              فروشگاه فرش
+            </Typography>
+          </Link>
         </Box>
 
-        <Link href="/" underline="none">
-          <Typography variant="h5" sx={{ color: 'title.light' }}>
-            فروشگاه فرش
-          </Typography>
-        </Link>
-
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', py: 2 }}>
           <Button
             sx={{
               fontSize: { xs: 'none', md: '20px' },
@@ -54,36 +57,50 @@ const NavContent = ({ setDrawerOpen }) => {
             FA
           </Button>
           <NavSearch />
+          <Login />
         </Box>
       </Box>
-
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        divider={
-          <Divider
-            orientation="vertical"
-            flexItem
-            sx={{
-              bgcolor: 'primary.light',
-            }}
-          />
-        }
-        spacing={2}
+      <Box
         sx={{
-          mt: 2,
-          display: {
+          width: 1,
+          py: 2,
+          borderRadius: {
             xs: 'none',
-            sm: 'flex',
+            md: '0 0 20px  20px ',
           },
+          bgcolor: 'bgcolor.dark',
         }}
       >
-        {buttons.map((btn, index) => (
-          <Button sx={{ color: 'btnNav.dark' }} key={index}>
-            <Typography variant="body1">{btn.name}</Typography>
-          </Button>
-        ))}
-      </Stack>
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          divider={
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{
+                bgcolor: 'primary.light',
+              }}
+            />
+          }
+          spacing={2}
+          sx={{
+            width: '70%',
+            m: 'auto',
+
+            display: {
+              xs: 'none',
+              sm: 'flex',
+            },
+          }}
+        >
+          {buttons.map((btn, index) => (
+            <Button sx={{ color: 'btnNav.dark' }} key={index}>
+              <Typography variant="body1">{btn.name}</Typography>
+            </Button>
+          ))}
+        </Stack>
+      </Box>
     </>
   )
 }

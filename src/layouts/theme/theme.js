@@ -66,10 +66,10 @@ export const theme = createTheme({
         },
         bgSidebar: {
             main: "#09bfb0",
-            dark: "#a32798"
+            dark: "#373B72"
         },
         btnNav: {
-            main: "#ffffff",
+            main: "#343434",
             dark: "#fffc41"
         },
         btnSubmit: {
@@ -94,11 +94,11 @@ export const theme = createTheme({
             main: "#BB4430"
         },
         title: {
-            light: "#FFFFFF",
+            light: "#BB4430",
             dark: "#000"
         },
         bgBlur: {
-            main: "rgba(56,80,104, 0.5)"
+            main: "rgba(56,80,104, 0.7)"
         },
     }
 });

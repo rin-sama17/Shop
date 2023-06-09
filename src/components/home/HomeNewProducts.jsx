@@ -7,7 +7,7 @@ import { Box } from '@mui/material'
 
 import { useGetProductsQuery } from '../../api'
 import { ProductLoading } from '../loading'
-import { ProductSlider } from '../products'
+import { ProductsSlider } from '../products'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -40,9 +40,7 @@ function a11yProps(index) {
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0)
-  const { data: products = { data: [] }, isSuccess } = useGetProductsQuery(
-    '/admin',
-  )
+  const { data: products = { data: [] }, isSuccess } = useGetProductsQuery()
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
@@ -57,9 +55,8 @@ export default function BasicTabs() {
           textColor="secondary"
           indicatorColor="secondary"
         >
-          <Tab label="تخفیفات شگفت انگیز" {...a11yProps(0)} />
-          <Tab label="جدیدترین ها" {...a11yProps(1)} />
-          <Tab label="پرفروش ترین ها" {...a11yProps(2)} />
+          <Tab label="جدیدترین ها" {...a11yProps(0)} />
+          <Tab label="پرفروش ترین ها" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -68,7 +65,7 @@ export default function BasicTabs() {
             <ProductLoading />
           </Box>
         ) : (
-          <ProductSlider products={products.data} />
+          <ProductsSlider products={products.data} />
         )}
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -77,16 +74,7 @@ export default function BasicTabs() {
             <ProductLoading />
           </Box>
         ) : (
-          <ProductSlider products={products.data} />
-        )}
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        {!isSuccess ? (
-          <Box sx={{ width: 0, m: 2 }}>
-            <ProductLoading />
-          </Box>
-        ) : (
-          <ProductSlider products={products.data} />
+          <ProductsSlider products={products.data} />
         )}
       </TabPanel>
     </Box>

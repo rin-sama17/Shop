@@ -1,6 +1,6 @@
 const tabPanel = (index) => {
     return {
-        id: `homeProductSlider-${index}`,
+        id: `homeProductsSlider-${index}`,
         'aria-labelledby': `sidebar-tab-${index}`,
     };
 };
