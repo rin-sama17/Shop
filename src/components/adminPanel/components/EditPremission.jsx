@@ -18,8 +18,7 @@ const EditPremission = ({ premission }) => {
     initialValues: premission,
     // validationSchema: premissionValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editPremission({ values, setOpen }))
-      resetForm()
+      dispatch(editPremission({ values, setOpen, resetForm }))
     },
   })
 

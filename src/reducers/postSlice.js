@@ -29,12 +29,13 @@ export const fetchPosts = createAsyncThunk(
 
 export const addPost = createAsyncThunk(
     'post/addPost',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         const formData = convertToForm(values);
         try {
             const res = await createPost(formData);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.post;
             }
@@ -47,11 +48,12 @@ export const addPost = createAsyncThunk(
 
 export const editPost = createAsyncThunk(
     'post/editPost',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         try {
             const res = await updatePost(values);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.post;
             }

@@ -28,11 +28,12 @@ export const fetchPremissions = createAsyncThunk(
 
 export const addPremission = createAsyncThunk(
     'premission/addPremission',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         try {
             const res = await createPremission(values);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.premission;
             }
@@ -45,11 +46,12 @@ export const addPremission = createAsyncThunk(
 
 export const editPremission = createAsyncThunk(
     'premission/editPremission',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         try {
             const res = await updatePremission(values);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.premission;
             }

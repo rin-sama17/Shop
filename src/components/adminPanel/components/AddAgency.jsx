@@ -21,8 +21,7 @@ const AddAgency = () => {
     },
     // validationSchema: agencyValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addAgency({ values, setOpen }))
-      resetForm()
+      dispatch(addAgency({ values, setOpen, resetForm }))
     },
   })
   const fields = agencyFieldsData(formik)

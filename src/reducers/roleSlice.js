@@ -30,11 +30,12 @@ export const fetchRoles = createAsyncThunk(
 
 export const addRole = createAsyncThunk(
     'role/addRole',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         try {
             const res = await createRole(values);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 console.log(res);
 
@@ -50,11 +51,12 @@ export const addRole = createAsyncThunk(
 
 export const editRole = createAsyncThunk(
     'role/editRole',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         try {
             const res = await updateRole(values);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.role;
             }

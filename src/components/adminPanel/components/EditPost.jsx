@@ -17,8 +17,7 @@ const EditPost = ({ post }) => {
     initialValues: post,
     // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editPost({ values, setOpen }))
-      resetForm()
+      dispatch(editPost({ values, setOpen, resetForm }))
     },
   })
 

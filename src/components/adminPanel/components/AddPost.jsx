@@ -29,8 +29,7 @@ const AddPost = () => {
     // validationSchema: postValidation,
 
     onSubmit: (values, { resetForm }) => {
-      dispatch(addPost({ values, setOpen }))
-      resetForm()
+      dispatch(addPost({ values, setOpen, resetForm }))
     },
   })
 

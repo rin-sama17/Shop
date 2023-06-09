@@ -49,11 +49,12 @@ export const addProduct = createAsyncThunk(
 
 export const editProduct = createAsyncThunk(
     'product/editProduct',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         try {
             const res = await updateProduct(values);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.product;
             }

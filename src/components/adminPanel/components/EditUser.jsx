@@ -17,8 +17,7 @@ const EditUser = ({ user }) => {
     initialValues: user,
     // validationSchema: userValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editUser({ values, setOpen }))
-      resetForm()
+      dispatch(editUser({ values, setOpen, resetForm }))
     },
   })
 

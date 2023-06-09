@@ -13,21 +13,20 @@ const AddCategory = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
 
-  const handleAddNewCategory = (values) => {
+  const handleAddNewCategory = (values, resetForm) => {
     let category
     if (!values.category_id) {
       category = { name: values.name }
     } else {
       category = values
     }
-    dispatch(addCategory({ values: category, setOpen }))
+    dispatch(addCategory({ values: category, setOpen, resetForm }))
   }
 
   const formik = useFormik({
     initialValues: { name: '', category_id: '' },
     onSubmit: (values, { resetForm }) => {
-      handleAddNewCategory(values)
-      resetForm()
+      handleAddNewCategory(values, resetForm)
     },
   })
   console.log(formik.errors)

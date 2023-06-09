@@ -15,22 +15,21 @@ const EditCategory = ({ category }) => {
 
   const dispatch = useDispatch()
 
-  const handelEditCategory = (values) => {
+  const handelEditCategory = (values, resetForm) => {
     let category
     if (!values.category_id) {
       category = { id: values.id, name: values.name }
     } else {
       category = values
     }
-    dispatch(editCategory({ category, setOpen }))
+    dispatch(editCategory({ category, setOpen, resetForm }))
   }
 
   const formik = useFormik({
     initialValues: category,
     // validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
-      handelEditCategory(values)
-      resetForm()
+      handelEditCategory(values, resetForm)
     },
   })
 

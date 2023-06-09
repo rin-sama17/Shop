@@ -30,11 +30,12 @@ export const fetchCategories = createAsyncThunk(
 
 export const addCategory = createAsyncThunk(
   'categories/addCategory',
-  async ({ values, setOpen }) => {
+  async ({ values, setOpen, resetForm }) => {
     try {
       const res = await createCategory(values);
       if (res.status === 200) {
         setOpen(false);
+        resetForm();
         toast.success(res.data.message, { position: 'bottom-right' });
         return res.data.category;
       }
@@ -47,11 +48,12 @@ export const addCategory = createAsyncThunk(
 
 export const editCategory = createAsyncThunk(
   'categories/editCategory',
-  async ({ values, setOpen }) => {
+  async ({ values, setOpen, resetForm }) => {
     try {
       const res = await updateCategory(values);
       if (res.status === 200) {
         setOpen(false);
+        resetForm();
         toast.success(res.data.message, { position: 'bottom-right' });
         return res.data.category;
       }

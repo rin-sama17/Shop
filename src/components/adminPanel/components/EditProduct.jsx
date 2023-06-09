@@ -16,8 +16,7 @@ const EditProduct = ({ product }) => {
     initialValues: { ...product },
     // validationSchema: productValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editProduct({ values, setOpen }))
-      resetForm()
+      dispatch(editProduct({ values, setOpen, resetForm }))
     },
   })
   const fields = productFieldsData(formik)

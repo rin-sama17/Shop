@@ -28,11 +28,12 @@ export const fetchUsers = createAsyncThunk(
 
 export const addUser = createAsyncThunk(
   'user/addUser',
-  async ({ values, setOpen }) => {
+  async ({ values, setOpen, resetForm }) => {
     try {
       const res = await createUser(values);
       if (res.status === 200) {
         setOpen(false);
+        resetForm();
         toast.success(res.data.message, { position: 'bottom-right' });
         return res.data.user;
       }
@@ -45,11 +46,12 @@ export const addUser = createAsyncThunk(
 
 export const editUser = createAsyncThunk(
   'user/editUser',
-  async ({ values, setOpen }) => {
+  async ({ values, setOpen, resetForm }) => {
     try {
       const res = await updateUser(values);
       if (res.status === 200) {
         setOpen(false);
+        resetForm();
         toast.success(res.data.message, { position: 'bottom-right' });
         return res.data.user;
       }

@@ -29,7 +29,6 @@ const AddProduct = () => {
   const formik = useFormik({
     initialValues: productFieldNames,
     onSubmit: (values, { resetForm }) => {
-      console.log(values)
       dispatch(addProduct({ values, setOpen, resetForm }))
     },
   })

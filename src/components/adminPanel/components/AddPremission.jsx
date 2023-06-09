@@ -20,8 +20,7 @@ const AddPremission = () => {
     },
     // validationSchema: premissionValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addPremission({ values, setOpen }))
-      resetForm()
+      dispatch(addPremission({ values, setOpen, resetForm }))
     },
   })
   const fields = premissionFieldsData(formik)

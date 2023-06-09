@@ -18,8 +18,7 @@ const EditRole = ({ role }) => {
     initialValues: role,
     // validationSchema: roleValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editRole({ values, setOpen }))
-      resetForm()
+      dispatch(editRole({ values, setOpen, resetForm }))
     },
   })
 

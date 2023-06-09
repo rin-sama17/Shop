@@ -18,8 +18,7 @@ const EditAgency = ({ agency }) => {
     initialValues: agency,
     // validationSchema: agencyValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editAgency({ values, setOpen }))
-      resetForm()
+      dispatch(editAgency({ values, setOpen, resetForm }))
     },
   })
 

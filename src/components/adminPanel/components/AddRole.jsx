@@ -28,8 +28,6 @@ const AddRole = () => {
   const premissionIds = useSelector(selectPremission_id)
 
   const handleCheck = (e, premissionId) => {
-    console.log('premissionIds', premissionIds)
-    console.log(e.target.checked)
     if (e.target.checked === true) {
       dispatch(premissionIdAdded(premissionId))
     } else {
@@ -57,11 +55,9 @@ const AddRole = () => {
         premissions: premissionIds,
       }
       console.log(newRole)
-      dispatch(addRole({ values: newRole, setOpen }))
-      resetForm()
+      dispatch(addRole({ values: newRole, setOpen, resetForm }))
     },
   })
-  console.log(premissionIds)
 
   const fields = useMemo(() => roleFieldsData(formik), [])
   const extraFields = useMemo(

@@ -28,11 +28,12 @@ export const fetchAgencies = createAsyncThunk(
 
 export const addAgency = createAsyncThunk(
     'agencys/addAgency',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         try {
             const res = await createAgency(values);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
                 toast.success(res.data.data.message, { position: 'bottom-right' });
                 return res.data.data.agency;
             }
@@ -45,11 +46,12 @@ export const addAgency = createAsyncThunk(
 
 export const editAgency = createAsyncThunk(
     'agencys/editAgency',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, resetForm }) => {
         try {
             const res = await updateAgency(values);
             if (res.status === 200) {
                 setOpen(false);
+                resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.agency;
             }
