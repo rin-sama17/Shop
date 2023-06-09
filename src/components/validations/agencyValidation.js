@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-export const contractValidation = Yup.object().shape({
+export const agencyValidation = Yup.object().shape({
     name: Yup.string().required(),
     image: Yup.string().required(),
     address: Yup.string().required(),

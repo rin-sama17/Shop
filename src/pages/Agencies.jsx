@@ -10,23 +10,13 @@ import {
 } from '@mui/material'
 import { Search } from '@mui/icons-material'
 import { TransitionGroup } from 'react-transition-group'
-import { Contract } from '../components/contract'
-import { useGetContractsQuery } from '../api'
+import { Agency } from '../components/agency'
+import { useGetAgenciesQuery } from '../api'
 import { PostLoading } from '../components/loading'
 
-const Contracts = () => {
+const Agencies = () => {
   const [query, setQuery] = useState('')
-  const { data: contracts = [], isLoading } = useGetContractsQuery()
-  // const [contracts, setContracts] = useState(data)
-
-  // useEffect(() => {
-  //   if (query.length > 0) {
-  //     const filtredData = data.filter((contract) =>
-  //       contract.name.toLowerCase().includes(query),
-  //     )
-  //     setContracts(filtredData)
-  //   }
-  // }, [query])
+  const { data: agencies = [], isSuccess } = useGetAgenciesQuery()
 
   return (
     <>
@@ -56,7 +46,7 @@ const Contracts = () => {
             >
               تعداد نمایندگی های فعال :
               <Typography variant="h5" color="secondary" sx={{ ml: 1 }}>
-                {contracts.length}
+                {agencies.length}
               </Typography>
             </Typography>
           </Grid>
@@ -93,13 +83,13 @@ const Contracts = () => {
           </Grid>
         </Grid>
       </Paper>
-      {isLoading ? (
+      {!isSuccess ? (
         <PostLoading />
       ) : (
         <TransitionGroup>
-          {contracts.map((contract, index) => (
+          {agencies.map((agency, index) => (
             <Collapse key={index}>
-              <Contract contractId={contract.id} />
+              <Agency agencyId={agency.id} />
             </Collapse>
           ))}
         </TransitionGroup>
@@ -108,4 +98,4 @@ const Contracts = () => {
   )
 }
 
-export default Contracts
+export default Agencies

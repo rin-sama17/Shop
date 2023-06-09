@@ -1,4 +1,4 @@
-const contractFieldsData = (formik) => {
+const agencyFieldsData = (formik) => {
   return [
     {
       md: 3,
@@ -7,29 +7,22 @@ const contractFieldsData = (formik) => {
       name: 'name',
     },
     {
-      md: 6,
+      md: 5,
       formik,
       label: 'ایمیل',
       name: 'email',
     },
 
     {
-      md: 3,
-      formik,
-      label: 'شماره موبایل',
+      phone: true,
       name: 'phone',
+      formik,
+      md: 4,
     },
     {
       formik,
       label: 'ادرس',
       name: 'address',
-    },
-    {
-      multiline: true,
-      rows: 3,
-      formik,
-      label: 'توضیحات',
-      name: 'discription',
     },
 
     {
@@ -39,4 +32,4 @@ const contractFieldsData = (formik) => {
   ]
 }
 
-export default contractFieldsData
+export default agencyFieldsData

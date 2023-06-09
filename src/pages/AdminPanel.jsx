@@ -11,7 +11,7 @@ import {
   PostManagement,
   CategoryManagement,
   RoleManagement,
-  ContractManagement,
+  AgencyManagement,
   PremissionManagement,
   UserManagement,
 } from '../components/adminPanel/pages'
@@ -21,7 +21,7 @@ const pages = [
   <ProductManagement />,
   <PostManagement />,
   <CategoryManagement />,
-  <ContractManagement />,
+  <AgencyManagement />,
   <PremissionManagement />,
   <RoleManagement />,
   <UserManagement />,

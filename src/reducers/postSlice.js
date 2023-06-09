@@ -32,7 +32,6 @@ export const addPost = createAsyncThunk(
     async ({ values, setOpen }) => {
         const formData = convertToForm(values);
         try {
-            console.log(formData);
             const res = await createPost(formData);
             if (res.status === 200) {
                 setOpen(false);

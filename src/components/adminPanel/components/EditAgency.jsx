@@ -4,26 +4,26 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
-import { contractValidation } from '../../validations/contractValidation'
-import { contractFieldsData } from '../../fieldsData'
+import { agencyValidation } from '../../validations/agencyValidation'
+import { agencyFieldsData } from '../../fieldsData'
 import { CustomForm, CustomModal } from '../../common'
-import { editContract } from '../../../reducers/contractSlice'
+import { editAgency } from '../../../reducers/agencySlice'
 import { useDispatch } from 'react-redux'
-const EditContract = ({ contract }) => {
+const EditAgency = ({ agency }) => {
   const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
 
   const formik = useFormik({
-    initialValues: contract,
-    // validationSchema: contractValidation,
+    initialValues: agency,
+    // validationSchema: agencyValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editContract({ values, setOpen }))
+      dispatch(editAgency({ values, setOpen }))
       resetForm()
     },
   })
 
-  const fields = contractFieldsData(formik)
+  const fields = agencyFieldsData(formik)
   return (
     <>
       <GridActionsCellItem
@@ -47,4 +47,4 @@ const EditContract = ({ contract }) => {
   )
 }
 
-export default EditContract
+export default EditAgency

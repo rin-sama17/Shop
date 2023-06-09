@@ -5,36 +5,36 @@ import {
 } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import {
-    createContract,
-    getAllContracts,
-    removeContract,
-    updateContract,
+    createAgency,
+    getAllAgencies,
+    removeAgency,
+    updateAgency,
 } from './services';
 
-const contractAdaptor = createEntityAdapter();
-const initialState = contractAdaptor.getInitialState();
+const agencyAdaptor = createEntityAdapter();
+const initialState = agencyAdaptor.getInitialState();
 
-export const fetchContracts = createAsyncThunk(
-    'contracts/fetchContracts',
+export const fetchAgencies = createAsyncThunk(
+    'agencys/fetchAgencies',
     async () => {
         try {
-            const res = await getAllContracts();
-            return res.data.data;
+            const res = await getAllAgencies();
+            return res.data.agencies;
         } catch (error) {
             console.error(error);
         }
     },
 );
 
-export const addContract = createAsyncThunk(
-    'contracts/addContract',
+export const addAgency = createAsyncThunk(
+    'agencys/addAgency',
     async ({ values, setOpen }) => {
         try {
-            const res = await createContract(values);
+            const res = await createAgency(values);
             if (res.status === 200) {
                 setOpen(false);
-                toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data.contract;
+                toast.success(res.data.data.message, { position: 'bottom-right' });
+                return res.data.data.agency;
             }
         } catch (error) {
             console.log(error);
@@ -43,15 +43,15 @@ export const addContract = createAsyncThunk(
     },
 );
 
-export const editContract = createAsyncThunk(
-    'contracts/editContract',
+export const editAgency = createAsyncThunk(
+    'agencys/editAgency',
     async ({ values, setOpen }) => {
         try {
-            const res = await updateContract(values);
+            const res = await updateAgency(values);
             if (res.status === 200) {
                 setOpen(false);
                 toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data.contract;
+                return res.data.agency;
             }
         } catch (error) {
             console.log(error);
@@ -60,11 +60,11 @@ export const editContract = createAsyncThunk(
     },
 );
 
-export const deleteContract = createAsyncThunk(
-    'contracts/deleteContract',
+export const deleteAgency = createAsyncThunk(
+    'agencys/deleteAgency',
     async (discountId) => {
         try {
-            const res = await removeContract(discountId);
+            const res = await removeAgency(discountId);
             if (res.status === 200) {
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return discountId;
@@ -76,22 +76,22 @@ export const deleteContract = createAsyncThunk(
     },
 );
 
-const contractSlice = createSlice({
-    name: 'contracts',
+const agencySlice = createSlice({
+    name: 'agencys',
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchContracts.fulfilled]: contractAdaptor.setAll,
-        [addContract.fulfilled]: contractAdaptor.addOne,
-        [editContract.fulfilled]: contractAdaptor.setOne,
-        [deleteContract.fulfilled]: contractAdaptor.removeOne,
+        [fetchAgencies.fulfilled]: agencyAdaptor.setAll,
+        [addAgency.fulfilled]: agencyAdaptor.addOne,
+        [editAgency.fulfilled]: agencyAdaptor.setOne,
+        [deleteAgency.fulfilled]: agencyAdaptor.removeOne,
     },
 });
 
 export const {
-    selectAll: selectAllContracts,
-    selectById: selectContractById,
-} = contractAdaptor.getSelectors((state) => state.contract);
+    selectAll: selectAllAgencies,
+    selectById: selectAgencyById,
+} = agencyAdaptor.getSelectors((state) => state.agency);
 
 
-export default contractSlice.reducer;
+export default agencySlice.reducer;

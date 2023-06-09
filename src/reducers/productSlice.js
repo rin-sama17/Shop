@@ -29,8 +29,10 @@ export const fetchProducts = createAsyncThunk(
 export const addProduct = createAsyncThunk(
     'product/addProduct',
     async ({ values, setOpen, resetForm }) => {
+        const formData = convertToForm(values);
         try {
-            const res = await createProduct(values);
+            const res = await createProduct(formData);
+            console.log(res);
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();

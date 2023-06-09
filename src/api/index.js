@@ -59,10 +59,11 @@ export const apiSlice = createApi({
       query: (id) => `/categories/show/${id}`,
     }),
 
-    getContracts: builder.query({
+
+    getAgencies: builder.query({
       query: () => `/agencies`,
     }),
-    getContract: builder.query({
+    getAgency: builder.query({
       query: (id) => `/admin/agencies/show/${id}`,
     }),
 
@@ -95,7 +96,7 @@ export const {
   useGetPremissionQuery,
 
 
-  useGetContractsQuery,
-  useGetContractQuery,
+  useGetAgenciesQuery,
+  useGetAgencyQuery,
 
 } = apiSlice;

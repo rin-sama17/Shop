@@ -3,22 +3,20 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { EditContract, AddContract } from '../components'
-import { contractValidation } from '../../validations/contractValidation'
-import { contractFieldsData } from '../../fieldsData'
+import { EditAgency, AddAgency } from '../components'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  deleteContract,
-  fetchContracts,
-  selectAllContracts,
-} from '../../../reducers/contractSlice'
+  deleteAgency,
+  fetchAgencies,
+  selectAllAgencies,
+} from '../../../reducers/agencySlice'
 
-const ContractManagement = () => {
+const AgencyManagement = () => {
   const dispatch = useDispatch()
-  const contracts = useSelector(selectAllContracts)
+  const agencies = useSelector(selectAllAgencies)
 
   useEffect(() => {
-    dispatch(fetchContracts())
+    dispatch(fetchAgencies())
   }, [])
 
   const columns = useMemo(
@@ -36,22 +34,22 @@ const ContractManagement = () => {
             icon={<Delete />}
             sx={{ color: 'tomato' }}
             label="حذف"
-            onClick={() => dispatch(deleteContract(params.id))}
+            onClick={() => dispatch(deleteAgency(params.id))}
           />,
-          <EditContract contract={params.row} />,
+          <EditAgency agency={params.row} />,
         ],
       },
     ],
-    [contracts, EditContract],
+    [agencies, EditAgency],
   )
   return (
     <>
-      <AddContract />
+      <AddAgency />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={contracts} columns={columns} />
+        <DataGrid rows={agencies} columns={columns} />
       </div>
     </>
   )
 }
 
-export default ContractManagement
+export default AgencyManagement

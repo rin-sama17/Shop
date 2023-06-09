@@ -15,16 +15,14 @@ import {
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import { PostLoading } from '../loading'
-import { useGetContractQuery } from '../../api'
+import { useGetAgencyQuery } from '../../api'
 
-const Contract = ({ contract }) => {
-  // const { data: contract, isLoading, isSuccess } = useGetContractQuery({
-  //   id: contractId,
-  // })
+const Agency = ({ agencyId }) => {
+  const { data: agency, isSuccess } = useGetAgencyQuery(agencyId)
 
-  // if (isLoading) {
-  //   return <PostLoading />
-  // }
+  if (!isSuccess) {
+    return <PostLoading />
+  }
 
   return (
     <Box
@@ -37,7 +35,7 @@ const Contract = ({ contract }) => {
       }}
     >
       <Paper elevation={8}>
-        <CardActionArea component={Link} to={`/contract/read/${contract.id}`}>
+        <CardActionArea component={Link} to={`/agency/${agency.id}`}>
           <Box
             sx={{
               pb: 2,
@@ -51,8 +49,8 @@ const Contract = ({ contract }) => {
               >
                 <Grid xs={12} sm={4}>
                   <img
-                    alt={contract.name}
-                    src={contract.photo}
+                    alt={agency.name}
+                    src={agency.photo}
                     style={{ margin: 'auto', width: '100%' }}
                   />
                 </Grid>
@@ -63,10 +61,10 @@ const Contract = ({ contract }) => {
                     textAlign="left"
                     gutterBottom
                   >
-                    {contract.name}
+                    {agency.name}
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    <LinesEllipsis text={contract.discription} maxLine={6} />
+                    <LinesEllipsis text={agency.discription} maxLine={6} />
                   </Typography>{' '}
                 </Grid>
               </Grid>
@@ -78,4 +76,4 @@ const Contract = ({ contract }) => {
   )
 }
 
-export default Contract
+export default Agency

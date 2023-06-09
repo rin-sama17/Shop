@@ -3,11 +3,11 @@ import { Box, Typography, Button, IconButton } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { useRef } from 'react'
-import Contract from '../contract/Contract'
-import { useGetContractsQuery } from '../../api'
+import { Agency } from '../agency'
+import { useGetAgenciesQuery } from '../../api'
 import { PostLoading } from '../loading'
 import { c07, c08, c09, c10, c11, c12, c13, c14 } from '../../assets'
-const contracts = [
+const agencies = [
   {
     id: 7,
     name: 'نمایندگی',
@@ -65,8 +65,8 @@ const contracts = [
       'از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.',
   },
 ]
-const HomeContract = () => {
-  // const { data: contracts = [], isSuccess } = useGetContractsQuery()
+const HomeAgencies = () => {
+  // const { data: agencies = [], isSuccess } = ageGetAgenciesQuery()
   const slider = useRef(null)
   const settings = {
     infinite: true,
@@ -94,7 +94,7 @@ const HomeContract = () => {
       <Typography variant="h6" sx={{ color: 'gray', mt: 3 }} gutterBottom>
         نمایندگی های ما
       </Typography>
-      <Button component={Link} to="/contracts" sx={{ mb: 1 }}>
+      <Button component={Link} to="/agencies" sx={{ mb: 1 }}>
         مشاهده همه
       </Button>
       <Box
@@ -105,10 +105,10 @@ const HomeContract = () => {
         }}
       >
         <Slider {...settings} ref={slider}>
-          {contracts.length > 0 &&
-            contracts.map((contract, index) => (
+          {agencies.length > 0 &&
+            agencies.map((agency, index) => (
               <Box component="div" key={index} sx={{ direction: 'ltr' }}>
-                <Contract contract={contract} />
+                <Agency agencyId={agency.id} />
               </Box>
             ))}
         </Slider>
@@ -142,4 +142,4 @@ const HomeContract = () => {
   )
 }
 
-export default HomeContract
+export default HomeAgencies

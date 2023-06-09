@@ -99,28 +99,28 @@ export const removePost = (postId) => {
 
 
 
-export const getAllContracts = (prefix = "") => {
-    const url = `${SERVER_URL}${prefix}/contracts`;
+export const getAllAgencies = (prefix = "") => {
+    const url = `${SERVER_URL}${prefix}/agencies`;
     return axios.get(url);
 };
 
-export const getOneContract = (contractId, prefix = "") => {
-    const url = `${SERVER_URL}${prefix}/contracts/show/${contractId}`;
+export const getAgency = (agencyId, prefix = "") => {
+    const url = `${SERVER_URL}${prefix}/agencies/show/${agencyId}`;
     return axios.get(url);
 };
 
-export const createContract = (contract) => {
-    const url = `${ADMIN_SERVER_URL}/contracts/store`;
-    return axios.post(url, contract, headers);
+export const createAgency = (agency) => {
+    const url = `${ADMIN_SERVER_URL}/agencies/store`;
+    return axios.post(url, agency, headers);
 };
 
-export const updateContract = (contract) => {
-    const url = `${ADMIN_SERVER_URL}/contracts/update/${contract.id}`;
-    return axios.put(url, contract, headers);
+export const updateAgency = (agency) => {
+    const url = `${ADMIN_SERVER_URL}/agencies/update/${agency.id}`;
+    return axios.put(url, agency, headers);
 };
 
-export const removeContract = (contractId) => {
-    const url = `${ADMIN_SERVER_URL}/contracts/delete/${contractId}`;
+export const removeAgency = (agencyId) => {
+    const url = `${ADMIN_SERVER_URL}/agencies/delete/${agencyId}`;
     return axios.delete(url);
 };
 

@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { useFormik } from 'formik'
 import { Button } from '@mui/material'
 
-import { contractValidation } from '../../validations/contractValidation'
-import { contractFieldsData } from '../../fieldsData'
+import { agencyValidation } from '../../validations/agencyValidation'
+import { agencyFieldsData } from '../../fieldsData'
 import { CustomForm, CustomModal } from '../../common'
-import { addContract } from '../../../reducers/contractSlice'
+import { addAgency } from '../../../reducers/agencySlice'
 import { useDispatch } from 'react-redux'
-const AddContract = () => {
+const AddAgency = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
 
@@ -18,15 +18,14 @@ const AddContract = () => {
       address: '',
       phone: '',
       email: '',
-      discription: '',
     },
-    // validationSchema: contractValidation,
+    // validationSchema: agencyValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addContract({ values, setOpen }))
+      dispatch(addAgency({ values, setOpen }))
       resetForm()
     },
   })
-  const fields = contractFieldsData(formik)
+  const fields = agencyFieldsData(formik)
   return (
     <>
       <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
@@ -46,4 +45,4 @@ const AddContract = () => {
   )
 }
 
-export default AddContract
+export default AddAgency

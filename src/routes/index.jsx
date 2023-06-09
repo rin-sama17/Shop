@@ -8,8 +8,8 @@ import {
   ShowProduct,
   AdminPanel,
   SearchResult,
-  Contracts,
-  ShowContract,
+  Agencies,
+  ShowAgency,
 } from '../pages'
 import { CustomMassage } from '../components/common'
 export const router = createBrowserRouter([
@@ -55,12 +55,12 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: '/contracts',
-        element: <Contracts />,
+        path: '/agencies',
+        element: <Agencies />,
       },
       {
-        path: '/contracts/read/:contractId',
-        element: <ShowContract />,
+        path: '/agencies/:contractId',
+        element: <ShowAgency />,
       },
     ],
   },
