@@ -54,7 +54,7 @@ const AdminPanel = () => {
           textAlign: 'center',
           bgcolor: 'bgSidebar.dark',
           position: 'inherit',
-          top: '-15px',
+          top: '-37px',
         }}
       >
         <AdminPanelTabs pageNumber={pageNumber} setPageNumber={setPageNumber} />

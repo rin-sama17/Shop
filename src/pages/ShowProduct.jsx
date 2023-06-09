@@ -5,11 +5,11 @@ import { ShowProductLoading } from '../components/loading'
 
 const ShowProduct = () => {
   const { productId } = useParams()
-  const { data: product, isLoading } = useGetProductQuery({ id: productId })
-  if (isLoading) {
+  const { data = { product: {} }, isSuccess } = useGetProductQuery(productId)
+  if (!isSuccess) {
     return <ShowProductLoading />
   }
-  return <ProductContent product={product} />
+  return <ProductContent product={data.product} />
 }
 
 export default ShowProduct

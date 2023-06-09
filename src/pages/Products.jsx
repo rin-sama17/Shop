@@ -6,25 +6,18 @@ import { ProductsFilter, Product } from '../components/products'
 import { CustomMassage, CustomPagination, Spinner } from '../components/common'
 
 import { useGetProductsQuery } from '../api'
+import { ProductLoading } from '../components/loading'
 
 const Products = () => {
   const [data, setData] = useState([])
+  const { data: products = { data: [] }, isSuccess } = useGetProductsQuery()
 
-  const { data: products = [], isSuccess, isLoading } = useGetProductsQuery()
-  if (isLoading) {
-    return <Spinner />
-  } else if (isSuccess && products.length === 0) {
-    return (
-      <CustomMassage
-        text="هیچ پستی برای نمایش وجود ندارد"
-        btnLabel="برگشتن به خانه"
-        to="/"
-      />
-    )
+  if (!isSuccess) {
+    return <ProductLoading />
   }
   return (
     <Box sx={{ mt: 3 }}>
-      {isSuccess && <ProductsFilter setData={setData} data={products} />}
+      <ProductsFilter setData={setData} data={products.data} />
       <Grid container spacing={2} sx={{ width: 1 }}>
         {data.map((product, index) => (
           <Grid xs={12} sm={6} md={4} lg={3} sx={{ justifyContent: 'center' }}>
@@ -40,7 +33,7 @@ const Products = () => {
           justifyContent: 'center',
         }}
       >
-        <CustomPagination setData={setData} data={products} />
+        <CustomPagination setData={setData} data={products.data} />
       </Box>
     </Box>
   )

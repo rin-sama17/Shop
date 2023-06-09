@@ -12,7 +12,11 @@ const ProductContent = ({ product }) => {
         md={4}
         sx={{ p: 1, mt: 2, display: 'flex', justifyContent: 'center' }}
       >
-        <img className="zoom" src={c11} alt={product.name} />
+        <img
+          className="zoom"
+          src={`http://localhost:8000/${product.image}`}
+          alt={product.name}
+        />
       </Grid>
       <Grid xs={12} md={4}>
         <ShowCategory categoryId={product.category_id} tags={product.tags} />

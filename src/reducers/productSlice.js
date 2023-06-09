@@ -9,6 +9,7 @@ import {
     createProduct,
     removeProduct,
     updateProduct,
+    convertToForm,
 } from './services';
 
 const productAdaptor = createEntityAdapter();
@@ -30,6 +31,8 @@ export const addProduct = createAsyncThunk(
     'product/addProduct',
     async ({ values, setOpen, resetForm }) => {
         const formData = convertToForm(values);
+        console.log(formData);
+
         try {
             const res = await createProduct(formData);
             console.log(res);

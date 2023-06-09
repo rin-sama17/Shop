@@ -1,4 +1,5 @@
 .zoom {
+  width: 100%;
   transition: transform 0.2s; /* Animation */
   margin: 0 auto;
 }

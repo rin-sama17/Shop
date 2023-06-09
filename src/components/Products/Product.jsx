@@ -15,12 +15,10 @@ import { ProductPrice } from '../common'
 import { ProductLoading } from '../loading'
 import { c11 } from '../../assets'
 const Product = ({ productId }) => {
-  const { data = { product: {} }, isLoading, isSuccess } = useGetProductQuery({
-    id: productId,
-  })
+  const { data = { product: {} }, isSuccess } = useGetProductQuery(productId)
   const navigate = useNavigate()
-
-  if (isLoading) {
+  const product = data.product
+  if (!isSuccess) {
     return <ProductLoading width={250} productId={productId} />
   }
 
@@ -32,17 +30,14 @@ const Product = ({ productId }) => {
         m: 'auto',
       }}
     >
-      <Box
-        onClick={() => navigate(`/products/${data.product.id}`)}
-        sx={{ py: 1 }}
-      >
+      <Box onClick={() => navigate(`/products/${product.id}`)} sx={{ py: 1 }}>
         <Box sx={{ width: 1, mb: 2 }}>
           <Paper elevation={12} sx={{ width: 250, m: 'auto' }}>
             <CardMedia
               component="img"
               sx={{ height: 330, width: 250 }}
               alt={data.product.name}
-              image={c11}
+              image={`http://localhost:8000/${product.image}`}
             />
           </Paper>
         </Box>
@@ -52,12 +47,12 @@ const Product = ({ productId }) => {
           textAlign="left"
           gutterBottom
         >
-          {data.product.name}
+          {product.name}
         </Typography>
         <Box sx={{ width: 1 }}>
           <ProductPrice
-            price={data.product.price}
-            discount={data.product.discount}
+            price={product.price}
+            discount={product.discount}
             absolute
           />
         </Box>

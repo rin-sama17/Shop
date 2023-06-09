@@ -8,7 +8,7 @@ const ProductDetails = ({ product }) => {
     <Grid xs={12} md={4} sx={{ p: 1 }}>
       <Card sx={{ p: 2 }}>
         <Box sx={{ px: 2 }}>
-          {product.stock === 0 ? (
+          {product.remaining === 0 ? (
             <CustomDivider
               label={
                 <>
@@ -28,7 +28,7 @@ const ProductDetails = ({ product }) => {
                 color="text.secondary"
                 gutterBottom
               >
-                {product.stock} عدد موجود است
+                {product.remaining} عدد موجود است
               </Typography>
             </>
           )}{' '}

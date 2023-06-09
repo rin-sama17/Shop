@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { Edit } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import { editProduct } from '../../../reducers/productSlice'
+import { useDispatch } from 'react-redux'
 
 const EditProduct = ({ product }) => {
   const [open, setOpen] = useState(false)
