@@ -3,6 +3,7 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import { userLogin } from './services';
 
 
 const initialState = {
@@ -18,12 +19,12 @@ export const login = createAsyncThunk(
   async ({ values, setOpen, resetForm }) => {
     try {
       const res = await userLogin(values);
-      if (res.status === 200) {
+      if (res.status === 403) {
         setOpen(false);
         resetForm();
         toast.success(res.data.data.Message, { position: 'bottom-right' });
-        return res.data.data;
       }
+      return res.data.data;
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
@@ -39,6 +40,7 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: {
     [login.fulfilled]: (state, { payload }) => {
+      console.log(payload);
       state.token = payload.token;
       state.userInfo = payload.user;
       state.success = true;
