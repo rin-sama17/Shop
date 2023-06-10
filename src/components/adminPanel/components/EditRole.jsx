@@ -21,32 +21,26 @@ import {
 import { CustomModal, CustomForm } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
 import { roleValidation } from '../../validations/roleValidation'
+const handleCheck = (dispatch, premissionId) => (e) => {
+  if (e.target.checked === true) {
+    dispatch(premissionIdAdded(premissionId))
+  } else {
+    dispatch(premissionIdDeleted(premissionId))
+  }
+}
 
 const EditRole = ({ role }) => {
   const [open, setOpen] = useState(false)
-
   const dispatch = useDispatch()
-  const premissions = useSelector(selectAllPremissions)
+
   const rolePremissions = useSelector(selectPremission_id)
+  const allPremissions = useSelector(selectAllPremissions)
 
-  const handleCheck = (e, premissionId) => {
-    if (e.target.checked === true) {
-      dispatch(premissionIdAdded(premissionId))
+  useEffect(() => {
+    if (open) {
+      console.log(role)
+      dispatch(premissionsIdFinded(role.premissions))
     } else {
-      dispatch(premissionIdDeleted(premissionId))
-    }
-  }
-
-  useEffect(() => {
-    dispatch(premissionsIdFinded(role))
-  }, [role])
-
-  useEffect(() => {
-    dispatch(premissionsIdFinded())
-  }, [role.id])
-
-  useEffect(() => {
-    if (!open) {
       dispatch(premissionIdsCleared())
     }
   }, [open])
@@ -63,16 +57,18 @@ const EditRole = ({ role }) => {
       dispatch(editRole({ values: newRole, setOpen, resetForm }))
     },
   })
-  console.log(premissions)
-  const fields = roleFieldsData(formik)
-  const extraFields = premissions?.map((premission) => ({
-    xs: 3,
-    checkbox: true,
-    formik,
-    name: premission.name,
-    customLabel: premission.name,
-    onChange: (e) => handleCheck(e, premission.id),
-  }))
+  const fields = useMemo(() => roleFieldsData(formik), [formik])
+  const extraFields = useMemo(() => {
+    return allPremissions?.map((premission) => ({
+      xs: 3,
+      checkbox: true,
+      formik,
+      name: premission.name,
+      customLabel: premission.name,
+      defaultChecked: rolePremissions.includes(premission.id),
+      onChange: handleCheck(dispatch, premission.id),
+    }))
+  }, [rolePremissions, dispatch, open])
   return (
     <>
       <GridActionsCellItem

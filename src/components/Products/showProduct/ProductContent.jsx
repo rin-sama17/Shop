@@ -7,11 +7,7 @@ import ReactImageMagnify from 'react-image-magnify'
 import { c11 } from '../../../assets'
 const ProductContent = ({ product }) => {
   return (
-    <Grid container spacing={2} sx={{ width: 1 }}>
-      <Grid xs={12} md={4}>
-        <ShowCategory categoryId={product.category_id} tags={product.tags} />
-      </Grid>
-
+    <Grid container spacing={2} sx={{ width: 1, mt: 2 }}>
       <ProductDetails product={product} />
       <Grid
         xs={12}
@@ -26,21 +22,6 @@ const ProductContent = ({ product }) => {
       >
         <ReactImageMagnify
           {...{
-            // smallImage: {
-            //   alt: 'Wristwatch by Ted Baker London',
-            //   isFluidWidth: true,
-            //   src: `http://localhost:8000/${product.image}`,
-            // },
-            // largeImage: {
-            //   src: `http://localhost:8000/${product.image}`,
-            //   width: 1200,
-            //   height: 1800,
-            //   background: 'hsla(0, 0%, 100%, .3)',
-            //   border: '1px solid #ccc',
-            // },
-            // hintTextMouse: ' ',
-            // isHintEnabled: true,
-            // shouldHideHintAfterFirstActivation: false,
             smallImage: {
               alt: 'Wristwatch by Versace',
               isFluidWidth: true,

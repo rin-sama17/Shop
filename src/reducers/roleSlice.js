@@ -14,6 +14,7 @@ import {
 const roleAdaptor = createEntityAdapter();
 const initialState = roleAdaptor.getInitialState({
     premission_id: []
+
 });
 
 export const fetchRoles = createAsyncThunk(
@@ -98,9 +99,11 @@ const roleSlice = createSlice({
             state.premission_id.splice(0, state.premission_id.length);
         },
         premissionsIdFinded: (state, action) => {
-            const role = action.payload;
-            const premissionIds = role?.premissions.map(premission => premission.id);
-            state.premission_id.push(premissionIds);
+            const rolePremissions = action.payload;
+            const premissionIds = rolePremissions?.map(premission => premission.id);
+            if (premissionIds) {
+                state.premission_id = premissionIds;
+            }
 
         }
     },

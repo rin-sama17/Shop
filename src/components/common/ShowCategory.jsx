@@ -5,11 +5,13 @@ import Spinner from './Spinner'
 
 const ShowCategory = ({ categoryId, tags = 'اشپزی/ملاقه' }) => {
   const splitedTags = tags && tags.split('/')
-  const { data: category, isSuccess, isLoading, isError } = useGetCategoryQuery(
-    {
-      id: categoryId,
-    },
-  )
+  const {
+    data = { category: {} },
+    isSuccess,
+    isLoading,
+    isError,
+  } = useGetCategoryQuery(categoryId)
+  const category = data.category
 
   if (isLoading) {
     return <Spinner />

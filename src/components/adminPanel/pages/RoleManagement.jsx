@@ -9,13 +9,19 @@ import {
   deleteRole,
   fetchRoles,
   selectAllRoles,
+  selectPremission_id,
 } from '../../../reducers/roleSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPremissions } from '../../../reducers/premissionSlice'
+import {
+  fetchPremissions,
+  selectAllPremissions,
+} from '../../../reducers/premissionSlice'
 
 const RoleManagement = () => {
   const dispatch = useDispatch()
+
   const roles = useSelector(selectAllRoles)
+
   useEffect(() => {
     dispatch(fetchPremissions())
     dispatch(fetchRoles())

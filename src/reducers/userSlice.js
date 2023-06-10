@@ -12,7 +12,9 @@ import {
 } from './services';
 
 const userAdaptor = createEntityAdapter();
-const initialState = userAdaptor.getInitialState();
+const initialState = userAdaptor.getInitialState({
+  roles: []
+});
 
 export const fetchUsers = createAsyncThunk(
   'user/fetchUsers',
@@ -53,7 +55,7 @@ export const editUser = createAsyncThunk(
         setOpen(false);
         resetForm();
         toast.success(res.data.message, { position: 'bottom-right' });
-        return res.data.user;
+        return res.data.product;
       }
     } catch (error) {
       console.log(error);
@@ -81,7 +83,26 @@ export const deleteUser = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    roleIdAdded: (state, action) => {
+      state.roles.push(action.payload);
+    },
+    roleIdDeleted: (state, action) => {
+      const roleIndex = state.roles.findIndex(p => p === action.payload);
+      state.roles.splice(roleIndex, 1);
+    },
+    roleIdsCleared: (state, action) => {
+      state.roles.splice(0, state.roles.length);
+    },
+    rolesIdFinded: (state, action) => {
+      const role = action.payload;
+      const roleIds = role?.roles?.map(role => role.id);
+      if (roleIds) {
+        state.roles = roleIds;
+      }
+
+    }
+  },
   extraReducers: {
     [fetchUsers.fulfilled]: userAdaptor.setAll,
     [addUser.fulfilled]: userAdaptor.addOne,
@@ -95,5 +116,7 @@ export const {
   selectById: selectUserById,
 } = userAdaptor.getSelectors((state) => state.user);
 
+export const selectRoleIds = state => state.user.roles;
+export const { roleIdDeleted, roleIdAdded, roleIdsCleared, rolesIdFinded } = userSlice.actions;
 
 export default userSlice.reducer;
