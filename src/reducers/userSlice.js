@@ -95,8 +95,8 @@ const userSlice = createSlice({
       state.roles.splice(0, state.roles.length);
     },
     rolesIdFinded: (state, action) => {
-      const role = action.payload;
-      const roleIds = role?.roles?.map(role => role.id);
+      const userRoles = action.payload;
+      const roleIds = userRoles?.map(role => role.id);
       if (roleIds) {
         state.roles = roleIds;
       }

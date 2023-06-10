@@ -38,7 +38,6 @@ const EditRole = ({ role }) => {
 
   useEffect(() => {
     if (open) {
-      console.log(role)
       dispatch(premissionsIdFinded(role.premissions))
     } else {
       dispatch(premissionIdsCleared())

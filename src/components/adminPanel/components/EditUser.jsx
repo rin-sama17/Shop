@@ -32,20 +32,22 @@ const EditUser = ({ user }) => {
   const roles = useSelector(selectAllRoles)
   const userRoleIds = useSelector(selectRoleIds)
   useEffect(() => {
-    if (!open) {
+    if (open) {
+      console.log(user.roles)
+
+      dispatch(rolesIdFinded(user.roles))
+    } else {
       dispatch(roleIdsCleared())
     }
-  }, [dispatch, open])
-  useEffect(() => {
-    dispatch(fetchRoles())
-  }, [])
+  }, [open])
+
   const formik = useFormik({
     initialValues: user,
     // validationSchema: userValidation,
     onSubmit: (values, { resetForm }) => {
       const editedUser = {
         ...values,
-        role: userRoleIds,
+        roles: userRoleIds,
       }
       console.log(editedUser)
       dispatch(editUser({ values: editedUser, setOpen, resetForm }))
@@ -60,9 +62,10 @@ const EditUser = ({ user }) => {
       formik,
       name: role.name,
       customLabel: role.name,
+      defaultChecked: userRoleIds.includes(role.id),
       onChange: handleCheck(dispatch, role.id),
     }))
-  }, [roles])
+  }, [roles, userRoleIds])
   return (
     <>
       <GridActionsCellItem

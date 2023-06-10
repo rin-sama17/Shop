@@ -11,12 +11,14 @@ import {
   selectAllUsers,
 } from '../../../reducers/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetchRoles } from '../../../reducers/roleSlice'
 
 const UserManagement = () => {
   const dispatch = useDispatch()
   const users = useSelector(selectAllUsers)
   useEffect(() => {
     dispatch(fetchUsers())
+    dispatch(fetchRoles())
   }, [])
 
   const columns = useMemo(
