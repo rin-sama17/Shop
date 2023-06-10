@@ -11,18 +11,19 @@ import {
   TextField,
   Fade,
   Collapse,
+  CardMedia,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import { PostLoading } from '../loading'
 import { useGetAgencyQuery } from '../../api'
 
-const Agency = ({ agencyId }) => {
-  const { data: agency, isSuccess } = useGetAgencyQuery(agencyId)
+const Agency = ({ agency }) => {
+  // const { data: agency, isSuccess } = useGetAgencyQuery(agencyId)
 
-  if (!isSuccess) {
-    return <PostLoading />
-  }
+  // if (!isSuccess) {
+  //   return <PostLoading />
+  // }
 
   return (
     <Box
@@ -34,41 +35,79 @@ const Agency = ({ agencyId }) => {
         m: '10px auto',
       }}
     >
-      <Paper elevation={8}>
-        <CardActionArea component={Link} to={`/agency/${agency.id}`}>
-          <Box
-            sx={{
-              pb: 2,
-            }}
-          >
-            <CardContent>
-              <Grid
-                container
-                spacing={2}
-                sx={{ justifyContent: 'space-between' }}
-              >
-                <Grid xs={12} sm={4}>
-                  <img
-                    alt={agency.name}
-                    src={agency.photo}
-                    style={{ margin: 'auto', width: '100%' }}
-                  />
-                </Grid>
-                <Grid xs={12} sm={8}>
-                  <Typography
-                    color="secondary"
-                    variant="subtitle1"
-                    textAlign="left"
-                    gutterBottom
-                  >
-                    {agency.name}
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    <LinesEllipsis text={agency.discription} maxLine={6} />
-                  </Typography>{' '}
-                </Grid>
+      <Paper
+        elevation={8}
+        sx={{
+          width: 1,
+          borderRadius: 10,
+          bgcolor: '#068AD2',
+        }}
+      >
+        <CardActionArea
+          component={Link}
+          to={`/agency/${agency.id}`}
+          sx={{
+            borderRadius: 10,
+          }}
+        >
+          <Box sx={{}}>
+            <Grid container sx={{ justifyContent: 'space-between' }}>
+              <Grid xs={12} sm={4}>
+                <CardMedia
+                  component="img"
+                  sx={{
+                    height: 200,
+                    width: 250,
+                    borderRadius: 10,
+                    borderRight: 13,
+                    borderColor: '#FB9D23',
+                  }}
+                  alt={agency.name}
+                  image={agency.photo}
+                />
               </Grid>
-            </CardContent>{' '}
+              <Grid
+                xs={12}
+                sm={8}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  textAlign: 'left',
+                  justifyContent: 'space-between',
+                  py: 1,
+                }}
+              >
+                <Box>
+                  <Typography sx={{ color: 'white' }} variant="h6" gutterBottom>
+                    {agency.name} :
+                  </Typography>
+                  <Typography variant="subtitle1" sx={{ color: 'whitesmoke' }}>
+                    {agency.address}
+                  </Typography>
+                </Box>
+
+                <Box sx={{ display: 'flex' }}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: 'whitesmoke',
+                    }}
+                  >
+                    شماره تماس:
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      color: 'whitesmoke',
+                      direction: 'rtl',
+                      ml: 1,
+                    }}
+                  >
+                    {agency.phone}
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
           </Box>
         </CardActionArea>
       </Paper>

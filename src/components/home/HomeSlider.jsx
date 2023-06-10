@@ -111,11 +111,15 @@ const HomeSlider = () => {
                       justifyContent: 'center',
                     }}
                   >
-                    <Paper elevation={12} sx={{ borderRadius: 20 }}>
+                    <Paper elevation={12} sx={{ borderRadius: 15 }}>
                       <img
                         src={`${slide.image}`}
                         alt={slide.name}
-                        style={{ width: 200, height: 200, borderRadius: 20 }}
+                        style={{
+                          width: 200,
+                          height: 200,
+                          borderRadius: '60px',
+                        }}
                       />
                     </Paper>
                   </Grid>

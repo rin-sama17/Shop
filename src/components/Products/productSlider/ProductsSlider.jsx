@@ -28,6 +28,7 @@ function ProductsSlider({ products }) {
     slidesToScroll: 1,
     arrows: false,
     dots: true,
+    Infinity: true,
     lazyLoad: true,
     rtl: true,
   }

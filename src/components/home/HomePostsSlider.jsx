@@ -10,6 +10,7 @@ import {
   Stack,
   Divider,
   Paper,
+  CardMedia,
 } from '@mui/material'
 import { useTheme } from '@mui/styles'
 import { Link, Link as RouterLink } from 'react-router-dom'
@@ -35,6 +36,7 @@ const HomePostsSlider = () => {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            borderRadius: 4,
           }}
         >
           <img
@@ -44,6 +46,7 @@ const HomePostsSlider = () => {
               width: '50px',
               height: '50px',
               objectFit: 'cover',
+              borderRadius: '10px',
             }}
           />
           {downMd ? null : (
@@ -86,7 +89,7 @@ const HomePostsSlider = () => {
               <img
                 src={`http://localhost:8000/${slide.image}`}
                 alt={slide.name}
-                style={{ height: '60vh' }}
+                style={{ height: '60vh', borderRadius: '20px' }}
               />
 
               <CardActionArea
@@ -103,7 +106,7 @@ const HomePostsSlider = () => {
                   bgcolor: 'bgBlur.main',
                   width: 1,
                   height: 1,
-                  borderRadius: 0,
+                  borderRadius: '20px',
                   px: 1,
                 }}
               >
@@ -123,11 +126,16 @@ const HomePostsSlider = () => {
                       justifyContent: 'center',
                     }}
                   >
-                    <Paper elevation={12} sx={{ p: 0.3 }}>
-                      <img
-                        src={`http://localhost:8000/${slide.image}`}
+                    <Paper elevation={12} sx={{ borderRadius: 7 }}>
+                      <CardMedia
+                        component="img"
+                        image={`http://localhost:8000/${slide.image}`}
                         alt={slide.name}
-                        style={{ width: '100%' }}
+                        sx={{
+                          width: 300,
+                          height: 200,
+                          borderRadius: 7,
+                        }}
                       />
                     </Paper>
                   </Grid>
