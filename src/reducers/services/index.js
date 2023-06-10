@@ -219,3 +219,10 @@ export const removeUser = (userId) => {
     const url = `${ADMIN_SERVER_URL}/users/delete/${userId}`;
     return axios.delete(url);
 };
+
+
+
+export const userLogin = (user) => {
+    const url = `${SERVER_URL}/login`;
+    return axios.post(url, user, headers);
+};

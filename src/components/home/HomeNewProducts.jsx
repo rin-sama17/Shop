@@ -46,7 +46,7 @@ export default function BasicTabs() {
   }
   console.log(products)
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: 1 }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs
           value={value}

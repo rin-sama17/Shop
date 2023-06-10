@@ -11,9 +11,9 @@ import {
 } from '@mui/icons-material'
 
 const socials = [
-  { icon: <Instagram />, to: 'https://t.me/rin_sama', color: 'secondary' },
-  { icon: <Telegram />, to: 'https://t.me/rin_sama', color: 'info' },
-  { icon: <LinkedIn />, to: 'https://t.me/rin_sama', color: 'title' },
+  { icon: <Instagram />, to: 'https://t.me/rin_sama', color: 'primary' },
+  { icon: <Telegram />, to: 'https://t.me/rin_sama', color: 'primary' },
+  { icon: <LinkedIn />, to: 'https://t.me/rin_sama', color: 'primary' },
 ]
 
 const routes = [
@@ -41,13 +41,13 @@ const FooterContent = () => {
         }}
       >
         <Grid xs={12} md={4}>
-          <Typography variant="h6" color="text.primary" sx={{ mb: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
             فروشگاه من
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography
               variant="caprion"
-              color="text.secondary"
+              sx={{ color: 'whtesmoke' }}
               textAlign="left"
             >
               فروشگاه من یک فروشگاه ساخته شده با ری اکت و لاراول است که با
@@ -65,6 +65,7 @@ const FooterContent = () => {
                   href={social.to}
                   target="_blank"
                   sx={{
+                    color: 'white',
                     ':hover': { color: `${social.color}.main` },
                   }}
                 >
@@ -76,7 +77,7 @@ const FooterContent = () => {
         </Grid>
 
         <Grid xs={12} md={3}>
-          <Typography variant="h6" color="text.primary" sx={{ mb: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
             دسترسی سریع
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', pl: 1 }}>
@@ -90,8 +91,8 @@ const FooterContent = () => {
                 sx={{
                   mb: 0.5,
                   justifyContent: 'left',
-                  color: 'text.secondary',
-                  ':hover': { color: 'secondary.main' },
+                  color: 'white',
+                  ':hover': { color: 'primary.main' },
                 }}
               >
                 {route.name}
@@ -101,16 +102,13 @@ const FooterContent = () => {
         </Grid>
 
         <Grid xs={12} md={4}>
-          <Typography variant="h6" color="text.primary" sx={{ mb: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
             ارتباط با ما
           </Typography>
           {contacts.map((contact, index) => (
             <Box key={index} sx={{ display: 'flex', mb: 2 }}>
               {contact.icon}
-              <Typography
-                color="text.secondary"
-                sx={{ direction: 'rtl', ml: 1 }}
-              >
+              <Typography sx={{ direction: 'rtl', ml: 1, color: 'whtesmoke' }}>
                 {contact.name}
               </Typography>
             </Box>

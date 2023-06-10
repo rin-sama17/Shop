@@ -28,7 +28,10 @@ const MainLayout = () => {
           </Helmet>{' '}
           <Box>
             <Navbar />
-            <Container maxWidth="lg" sx={{ px: { xs: 0 }, minHeight: '40vh' }}>
+            <Container
+              maxWidth="lg"
+              sx={{ px: { xs: 0 }, mb: 2, minHeight: '40vh' }}
+            >
               <ToastContainer
                 position="bottom-left"
                 autoClose={5000}

@@ -8,7 +8,11 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        bgcolor: 'bgcolor.light',
+        bgcolor: 'bgcolor.dark',
+        color: 'white',
+        borderRadius: '40px 40px 0 0',
+        borderTop: 10,
+        borderColor: 'warning.main',
       }}
     >
       <Grid

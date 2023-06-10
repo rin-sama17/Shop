@@ -27,6 +27,7 @@ const NavContent = ({ setDrawerOpen }) => {
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           width: 1,
+          px: 1,
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -40,7 +41,7 @@ const NavContent = ({ setDrawerOpen }) => {
             onClick={() => setDrawerOpen(true)}
           />
           <Link href="/" underline="none">
-            <Typography variant="h5" sx={{ color: 'title.light' }}>
+            <Typography variant="h5" sx={{ ml: 1, color: 'title.light' }}>
               فروشگاه فرش
             </Typography>
           </Link>

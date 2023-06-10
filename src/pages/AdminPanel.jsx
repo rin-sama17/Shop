@@ -15,6 +15,7 @@ import {
   PremissionManagement,
   UserManagement,
 } from '../components/adminPanel/pages'
+import { useNavigate } from 'react-router-dom'
 
 const pages = [
   <SliderManagement />,
@@ -28,6 +29,11 @@ const pages = [
 ]
 
 const AdminPanel = () => {
+  // const token = localStorage.getItem('token')
+  // const navigate = useNavigate()
+  // if (!token) {
+  //   navigate('/')
+  // }
   const [pageNumber, setPageNumber] = useState(0)
 
   const handleSwipeNumber = (e) => {

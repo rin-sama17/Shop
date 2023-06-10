@@ -9,10 +9,15 @@ import {
   CustomModal,
 } from '../components/common'
 import { loginFieldsData } from '../components/fieldsData/loginFieldsData'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, selectAuth } from '../reducers/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const [open, setOpen] = useState(false)
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { success, token } = useSelector(selectAuth)
   const contactFieldNames = {
     phone: '',
     password: '',
@@ -20,8 +25,11 @@ const Login = () => {
   const formik = useFormik({
     initialValues: contactFieldNames,
     // validationSchema: loginValidation,
-    onSubmit: (values) => {
-      handleSubmit(values)
+    onSubmit: (values, { resetForm }) => {
+      dispatch(login({ values, setOpen, resetForm }))
+      if (success && token) {
+        navigate('/admin-panel')
+      }
     },
   })
 

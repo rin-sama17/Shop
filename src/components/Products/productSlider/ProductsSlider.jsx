@@ -1,84 +1,55 @@
-import {
-  Box,
-  Card,
-  Button,
-  Typography,
-  ImageListItem,
-  useMediaQuery,
-  CardActionArea,
-  IconButton,
-  Skeleton,
-  Stack,
-  Divider,
-  Paper,
-} from '@mui/material'
-import { useTheme } from '@mui/styles'
-import { Link, Link as RouterLink } from 'react-router-dom'
-import LinesEllipsis from 'react-lines-ellipsis'
-import Slider from 'react-slick'
-import Grid from '@mui/material/Unstable_Grid2'
-import SlideProduct from './SlideProduct'
+import Product from '../Product'
 import { useRef } from 'react'
+import { Box } from '@mui/material'
+import './horizontalSlider.css'
+function ProductSlider({ products }) {
+  let isDown = false
+  let startX
+  let scrollLeft
 
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
-function ProductsSlider({ products }) {
   const slider = useRef(null)
-  const settings = {
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    arrows: false,
-    dots: true,
-    Infinity: true,
-    lazyLoad: true,
-    rtl: true,
+  const whenmousedown = (e) => {
+    isDown = true
+    e.target.classList.add('active')
+    startX = e.pageX - slider.current.offsetLeft
+    scrollLeft = slider.current.scrollLeft
   }
-  // if (!isSuccess || sliders.length === 0) {
-  //   return <SliderLoading />
-  // }
+  const whenmouseleave = () => {
+    isDown = false
+    slider.current.classList.remove('active')
+  }
+  const whenmouseup = () => {
+    isDown = false
+    slider.current.classList.remove('active')
+  }
+  const whenmousemove = (e) => {
+    if (!isDown) return
+    e.preventDefault()
 
+    const x = e.pageX - slider.current.offsetLeft
+    const walk = (x - startX) * 3 //scroll-fast
+    slider.current.scrollLeft = scrollLeft - walk
+    // e.target.classList.add(`transform: translate3d(${scrollLeft}, 0px, 0px)`)
+  }
   return (
-    <Box
-      sx={{
-        py: 3,
-        width: '90%',
-        mx: 'auto',
-        position: 'relative',
-      }}
-    >
-      <Slider {...settings} ref={slider}>
-        {products.map((slide, index) => (
-          <SlideProduct productId={slide.id} key={index} />
-        ))}
-      </Slider>
-
-      <IconButton
-        size="small"
-        sx={{
-          top: '50%',
-          left: -40,
-          position: 'absolute',
-          bgcolor: 'bgBlur.main',
-          border: 1,
-        }}
-        onClick={() => slider.current.slickNext()}
+    <dev className="horizontal-scroll ">
+      <div
+        className="media-scroller snaps-inline 'drag-animation"
+        ref={slider}
+        onMouseDown={whenmousedown}
+        onMouseLeave={whenmouseleave}
+        onMouseUp={whenmouseup}
+        onMouseMove={whenmousemove}
       >
-        <KeyboardArrowRight sx={{ color: 'white' }} />
-      </IconButton>
-      <IconButton
-        size="small"
-        sx={{
-          top: '50%',
-          right: -40,
-          position: 'absolute',
-          bgcolor: 'bgBlur.main',
-          border: 1,
-        }}
-        onClick={() => slider.current.slickPrev()}
-      >
-        <KeyboardArrowLeft sx={{ color: 'white' }} />
-      </IconButton>
-    </Box>
+        {products &&
+          products.map((product, index) => (
+            <Box component="dev" key={index}>
+              <Product productId={product.id} />
+            </Box>
+          ))}
+      </div>
+    </dev>
   )
 }
 
-export default ProductsSlider
+export default ProductSlider
