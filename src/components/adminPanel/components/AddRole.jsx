@@ -34,9 +34,6 @@ const AddRole = () => {
       dispatch(premissionIdDeleted(premissionId))
     }
   }
-  useEffect(() => {
-    dispatch(fetchPremissions())
-  }, [])
 
   useEffect(() => {
     if (!open) {
@@ -59,7 +56,7 @@ const AddRole = () => {
     },
   })
 
-  const fields = useMemo(() => roleFieldsData(formik), [])
+  const fields = roleFieldsData(formik)
   const extraFields = useMemo(
     () =>
       premissions?.map((premission) => ({

@@ -2,6 +2,7 @@ import {
     createEntityAdapter,
     createAsyncThunk,
     createSlice,
+    createSelector,
 } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import {
@@ -93,6 +94,7 @@ const premissionSlice = createSlice({
 export const {
     selectAll: selectAllPremissions,
     selectById: selectPremissionById,
+    selectIds: selectPremissionIds
 } = premissionAdaptor.getSelectors((state) => state.premission);
 
 

@@ -96,14 +96,21 @@ const roleSlice = createSlice({
         },
         premissionIdsCleared: (state, action) => {
             state.premission_id.splice(0, state.premission_id.length);
+        },
+        premissionsIdFinded: (state, action) => {
+            const role = action.payload;
+            const premissionIds = role?.premissions.map(premission => premission.id);
+            state.premission_id.push(premissionIds);
+
         }
     },
+
     extraReducers: {
         [fetchRoles.fulfilled]: roleAdaptor.setAll,
         [addRole.fulfilled]: roleAdaptor.addOne,
         [editRole.fulfilled]: roleAdaptor.setOne,
         [deleteRole.fulfilled]: roleAdaptor.removeOne,
-    },
+    }
 });
 
 export const {
@@ -112,5 +119,5 @@ export const {
 } = roleAdaptor.getSelectors((state) => state.role);
 
 export const selectPremission_id = state => state.role.premission_id;
-export const { premissionIdDeleted, premissionIdAdded, premissionIdsCleared } = roleSlice.actions;
+export const { premissionIdDeleted, premissionIdAdded, premissionIdsCleared, premissionsIdFinded } = roleSlice.actions;
 export default roleSlice.reducer;

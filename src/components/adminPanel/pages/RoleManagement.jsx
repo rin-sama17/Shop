@@ -11,14 +11,18 @@ import {
   selectAllRoles,
 } from '../../../reducers/roleSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetchPremissions } from '../../../reducers/premissionSlice'
 
 const RoleManagement = () => {
   const dispatch = useDispatch()
   const roles = useSelector(selectAllRoles)
   useEffect(() => {
+    dispatch(fetchPremissions())
     dispatch(fetchRoles())
   }, [])
-
+  const handleDelete = (roleId) => {
+    dispatch(deleteRole(roleId))
+  }
   const columns = useMemo(
     () => [
       { field: 'id', headerName: 'شماره', width: 10 },
@@ -38,15 +42,14 @@ const RoleManagement = () => {
             icon={<Delete />}
             sx={{ color: 'tomato' }}
             label="حذف"
-            onClick={() => dispatch(deleteRole(params.id))}
+            onClick={() => handleDelete(params.id)}
           />,
           <EditRole role={params.row} />,
         ],
       },
     ],
-    [EditRole, roles],
+    [roles],
   )
-
   return (
     <>
       <AddRole />
@@ -62,15 +65,7 @@ const RoleManagement = () => {
           },
         }}
       >
-        <DataGrid
-          columns={columns}
-          rows={roles}
-          getCellClassName={(params) => {
-            if (params.field === 'phone') {
-              return 'phone'
-            }
-          }}
-        />
+        <DataGrid columns={columns} rows={roles} />
       </Box>
     </>
   )

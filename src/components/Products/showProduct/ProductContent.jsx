@@ -3,6 +3,7 @@ import { ProductDetails } from '.'
 import { ShowCategory } from '../../common'
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material'
 import { ArrowLeft } from '@mui/icons-material'
+import ReactImageMagnify from 'react-image-magnify'
 import { c11 } from '../../../assets'
 const ProductContent = ({ product }) => {
   return (
@@ -12,11 +13,25 @@ const ProductContent = ({ product }) => {
         md={4}
         sx={{ p: 1, mt: 2, display: 'flex', justifyContent: 'center' }}
       >
-        <img
-          className="zoom"
-          src={`http://localhost:8000/${product.image}`}
-          alt={product.name}
+        <ReactImageMagnify
+          {...{
+            smallImage: {
+              alt: 'Wristwatch by Ted Baker London',
+              isFluidWidth: true,
+              src: `http://localhost:8000/${product.image}`,
+            },
+            largeImage: {
+              src: `http://localhost:8000/${product.image}`,
+              width: 1200,
+              height: 1800,
+            },
+          }}
         />
+        {/* <img
+          className="zoom"
+          
+          alt={product.name}
+        /> */}
       </Grid>
       <Grid xs={12} md={4}>
         <ShowCategory categoryId={product.category_id} tags={product.tags} />

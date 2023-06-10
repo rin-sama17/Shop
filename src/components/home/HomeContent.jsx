@@ -1,10 +1,4 @@
-import {
-  HomePostsSlider,
-  HomeDescription,
-  HomeNewProducts,
-  HomeFAB,
-  HomeContract,
-} from '.'
+import { HomeDescription, HomeNewProducts, HomeFAB, HomeContract } from '.'
 
 const HomeContent = () => {
   return (
@@ -12,7 +6,6 @@ const HomeContent = () => {
       <HomeDescription />
       <HomeNewProducts />
       <HomeContract />
-      <HomePostsSlider />
       <HomeFAB />
     </>
   )

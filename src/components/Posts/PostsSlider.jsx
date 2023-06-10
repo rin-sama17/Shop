@@ -20,7 +20,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { category01, category02, category03 } from '../../assets'
 import { useGetPostsQuery } from '../../api'
 
-const HomePostsSlider = () => {
+const PostsSlider = () => {
   const { data = { posts: [] }, isSuccess } = useGetPostsQuery()
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('md'))
@@ -78,10 +78,7 @@ const HomePostsSlider = () => {
   }
 
   return (
-    <Box sx={{ mb: 1, width: 1 }}>
-      <Typography variant="h6" sx={{ color: 'gray', mb: 3 }}>
-        از مجله ما دیدن کنید
-      </Typography>
+    <Box sx={{ mb: 1, width: 1, my: 2 }}>
       <Slider {...settings}>
         {data.posts.slice(0, 4).map((slide, index) => (
           <Box component="div" key={index}>
@@ -162,17 +159,7 @@ const HomePostsSlider = () => {
           </Box>
         ))}
       </Slider>
-
-      <Button
-        component={RouterLink}
-        to="/posts"
-        color="secondary"
-        sx={{ my: 2 }}
-        size="large"
-      >
-        ورود به مجله فروشگاه من
-      </Button>
     </Box>
   )
 }
-export default HomePostsSlider
+export default PostsSlider
