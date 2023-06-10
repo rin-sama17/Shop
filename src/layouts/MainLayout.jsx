@@ -26,14 +26,7 @@ const MainLayout = () => {
           <Helmet>
             <title>فروشگاه فرش</title>
           </Helmet>{' '}
-          <Box
-            sx={{
-              backgroundImage: `url(${bg} )`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-            }}
-          >
+          <Box>
             <Navbar />
             <Container maxWidth="lg" sx={{ px: { xs: 0 }, minHeight: '40vh' }}>
               <ToastContainer
