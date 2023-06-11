@@ -134,7 +134,7 @@ const CustomFields = ({
         value={value}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
         sx={{ direction: 'rtl', ...fieldColor }}
-        format="09## ### ####"
+        format="#### ### ####"
         mask="_"
         InputProps={{
           startAdornment: (

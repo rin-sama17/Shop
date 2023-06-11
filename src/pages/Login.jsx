@@ -12,12 +12,14 @@ import { loginFieldsData } from '../components/fieldsData/loginFieldsData'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, selectAuth } from '../reducers/authSlice'
 import { useNavigate, Link } from 'react-router-dom'
+import LoginMenu from '../components/login/LoginMenu'
 
 const Login = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { token } = useSelector(selectAuth)
+  const { token, userInfo } = useSelector(selectAuth)
+
   const contactFieldNames = {
     phone: '',
     password: '',
@@ -34,12 +36,7 @@ const Login = () => {
   return (
     <>
       {token ? (
-        <CustomIconButton
-          title="پنل ادمین"
-          component={Link}
-          to="/admin-panel"
-          icon={<Person />}
-        />
+        <LoginMenu user={userInfo} />
       ) : (
         <CustomIconButton
           onClick={() => setOpen(true)}
