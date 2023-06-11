@@ -16,16 +16,19 @@ const initialState = {
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ values, setOpen, resetForm }) => {
+  async ({ values, setOpen, resetForm, navigate }) => {
     try {
       const res = await userLogin(values);
-      if (res.status === 403) {
+
+    } catch (error) {
+      if (error.response.status === 403) {
         setOpen(false);
         resetForm();
-        toast.success(res.data.data.Message, { position: 'bottom-right' });
+        toast.success(error.response.data.data.Message, { position: 'bottom-right' });
+        navigate("/admin-panel");
+        return error.response.data.data;
+
       }
-      return res.data.data;
-    } catch (error) {
       console.log(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
     }
@@ -39,12 +42,12 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [login.fulfilled]: (state, { payload }) => {
-      console.log(payload);
-      state.token = payload.token;
-      state.userInfo = payload.user;
+    [login.fulfilled]: (state, action) => {
+      console.log(action);
+      state.token = action.payload.token;
+      state.userInfo = action.payload.user;
       state.success = true;
-      localStorage.setItem("token", payload.token);
+      localStorage.setItem("token", action.payload.token);
     }
   },
 });

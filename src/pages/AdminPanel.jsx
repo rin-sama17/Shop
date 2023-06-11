@@ -29,11 +29,11 @@ const pages = [
 ]
 
 const AdminPanel = () => {
-  // const token = localStorage.getItem('token')
-  // const navigate = useNavigate()
-  // if (!token) {
-  //   navigate('/')
-  // }
+  const token = localStorage.getItem('token')
+  const navigate = useNavigate()
+  if (!token) {
+    navigate('/')
+  }
   const [pageNumber, setPageNumber] = useState(0)
 
   const handleSwipeNumber = (e) => {

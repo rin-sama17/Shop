@@ -11,13 +11,13 @@ import {
 import { loginFieldsData } from '../components/fieldsData/loginFieldsData'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, selectAuth } from '../reducers/authSlice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Login = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { success, token } = useSelector(selectAuth)
+  const { token } = useSelector(selectAuth)
   const contactFieldNames = {
     phone: '',
     password: '',
@@ -26,22 +26,28 @@ const Login = () => {
     initialValues: contactFieldNames,
     // validationSchema: loginValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(login({ values, setOpen, resetForm }))
-      if (success && token) {
-        navigate('/admin-panel')
-      }
+      dispatch(login({ values, setOpen, resetForm, navigate }))
     },
   })
 
   const fields = loginFieldsData(formik)
   return (
     <>
-      <CustomIconButton
-        onClick={() => setOpen(true)}
-        color="btnNav"
-        icon={<Person />}
-        title="ورود"
-      />
+      {token ? (
+        <CustomIconButton
+          title="پنل ادمین"
+          component={Link}
+          to="/admin-panel"
+          icon={<Person />}
+        />
+      ) : (
+        <CustomIconButton
+          onClick={() => setOpen(true)}
+          color="btnNav"
+          icon={<Person />}
+          title="ورود"
+        />
+      )}
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           formik={formik}
