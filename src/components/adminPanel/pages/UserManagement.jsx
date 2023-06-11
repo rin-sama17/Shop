@@ -2,9 +2,9 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { AddUser, EditUser } from '../components'
+import { AddUser, EditUser, ShowOptions } from '../components'
 import { useEffect, useMemo } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import {
   deleteUser,
   fetchUsers,
@@ -28,6 +28,14 @@ const UserManagement = () => {
       { field: 'lastname', headerName: 'نام خانوادگی', width: 110 },
       { field: 'email', headerName: 'ایمیل', width: 150 },
       { field: 'phone', headerName: 'شماره موبایل', width: 110 },
+      {
+        field: 'roles',
+        type: 'actions',
+        width: 10,
+        getActions: (params) => [
+          <ShowOptions options={params.row.roles} name="نقش ها" />,
+        ],
+      },
       {
         field: 'actions',
         type: 'actions',

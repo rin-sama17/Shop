@@ -6,3 +6,4 @@ export { default as RoleManagement } from "./RoleManagement";
 export { default as PremissionManagement } from "./PremissionManagement.jsx";
 export { default as AgencyManagement } from "./AgencyManagement.jsx";
 export { default as UserManagement } from "./UserManagement.jsx";
+export { default as Dashboard } from "./Dashboard.jsx";

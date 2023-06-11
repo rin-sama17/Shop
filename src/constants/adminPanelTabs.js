@@ -9,14 +9,15 @@ const tabPanel = (index) => {
 
 export const tabsData = () => {
     const tabs = [
-        { title: 'مدیریت اسلاید', ...tabPanel(0) },
-        { title: 'مدیریت محصولات', ...tabPanel(1) },
-        { title: 'مدیریت پست', ...tabPanel(2) },
-        { title: 'مدیریت دسته بندی', ...tabPanel(3) },
-        { title: 'مدیریت نمایندگی', ...tabPanel(4) },
-        { title: 'مدیریت دسترسی', ...tabPanel(5) },
-        { title: "مدیریت نقش", ...tabPanel(6) },
-        { title: "مدیریت ادمین ها", ...tabPanel(7) },
+        { title: 'ویرایش اطلاعات', ...tabPanel(0) },
+        { title: 'مدیریت اسلاید', ...tabPanel(1) },
+        { title: 'مدیریت محصولات', ...tabPanel(2) },
+        { title: 'مدیریت پست', ...tabPanel(3) },
+        { title: 'مدیریت دسته بندی', ...tabPanel(4) },
+        { title: 'مدیریت نمایندگی', ...tabPanel(5) },
+        { title: 'مدیریت دسترسی', ...tabPanel(6) },
+        { title: "مدیریت نقش", ...tabPanel(7) },
+        { title: "مدیریت ادمین ها", ...tabPanel(8) },
     ];
     return tabs;
 };

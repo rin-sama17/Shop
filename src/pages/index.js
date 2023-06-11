@@ -9,5 +9,6 @@ export { default as AdminPanel } from "./AdminPanel";
 export { default as SearchResult } from "./SearchResult";
 export { default as Agencies } from "./Agencies";
 export { default as ShowAgency } from "./ShowAgency";
+export { default as RouteProtection } from "./RouteProtection";
 
 

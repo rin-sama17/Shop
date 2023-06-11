@@ -28,7 +28,7 @@ const LoginMenu = ({ user }) => {
   return (
     <div>
       <CustomIconButton
-        title="پنل ادمین"
+        title={user?.firstname}
         to="/admin-panel"
         icon={<Person />}
         id="basic-button"

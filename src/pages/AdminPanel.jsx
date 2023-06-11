@@ -6,6 +6,7 @@ import SwipeableViews from 'react-swipeable-views'
 import AdminPanelTabs from '../components/adminPanel/AdminPanelTabs'
 import { Page } from '.'
 import {
+  Dashboard,
   SliderManagement,
   ProductManagement,
   PostManagement,
@@ -18,6 +19,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 
 const pages = [
+  <Dashboard />,
   <SliderManagement />,
   <ProductManagement />,
   <PostManagement />,

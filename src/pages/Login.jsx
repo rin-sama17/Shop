@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Person } from '@mui/icons-material'
 import { useFormik } from 'formik'
 import { loginValidation } from '../components/validations/loginValidation'
@@ -18,7 +18,13 @@ const Login = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { token, userInfo } = useSelector(selectAuth)
+  const { token, userInfo, success } = useSelector(selectAuth)
+
+  useEffect(() => {
+    if (token && success) {
+      navigate('/admin-panel')
+    }
+  }, [token, success])
 
   const contactFieldNames = {
     phone: '',

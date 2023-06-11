@@ -2,7 +2,7 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { AddRole, EditRole } from '../components'
+import { AddRole, EditRole, ShowOptions } from '../components'
 import { useEffect, useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 import {
@@ -38,6 +38,14 @@ const RoleManagement = () => {
         field: 'status',
         headerName: 'وضعیت',
         width: 120,
+      },
+      {
+        field: 'premissions',
+        type: 'actions',
+        width: 10,
+        getActions: (params) => [
+          <ShowOptions options={params.row.premissions} name="دسترسی ها" />,
+        ],
       },
       {
         field: 'actions',

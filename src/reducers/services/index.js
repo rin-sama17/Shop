@@ -226,3 +226,8 @@ export const userLogin = (user) => {
     const url = `${SERVER_URL}/login`;
     return axios.post(url, user, headers);
 };
+
+export const updateUserInfo = (user) => {
+    const url = `${SERVER_URL}/user/update/${user.id}`;
+    return axios.post(url, user, headers);
+};

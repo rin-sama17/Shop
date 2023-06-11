@@ -13,6 +13,7 @@ export { default as AddPost } from "./AddPost";
 export { default as EditPost } from "./EditPost";
 export { default as AddUser } from "./AddUser";
 export { default as EditUser } from "./EditUser";
+export { default as ShowOptions } from "./ShowOptions";
 
 export { default as Slider } from "./slider/Slider";
 export { default as SliderModal } from "./slider/SliderModal";
