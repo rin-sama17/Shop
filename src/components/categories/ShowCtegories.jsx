@@ -25,7 +25,7 @@ export default function ShowCtegories() {
             <Card
               sx={{
                 m: '0 auto',
-                width: '90%',
+                width: '70%',
                 p: 2,
                 bgcolor: 'bgcolor.main',
                 maxHeight: '80vh',

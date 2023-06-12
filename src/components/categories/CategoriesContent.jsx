@@ -95,7 +95,7 @@ const CategoriesContent = ({ parent }) => {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '66vh',
+        height: '57vh',
         alignContent: 'flex-start',
       }}
     >
