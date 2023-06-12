@@ -65,7 +65,6 @@ const NavContent = ({ setDrawerOpen }) => {
         sx={{
           width: 1,
           py: 2,
-
           bgcolor: 'bgcolor.dark',
           position: 'relative',
         }}
@@ -76,6 +75,7 @@ const NavContent = ({ setDrawerOpen }) => {
           divider={
             <Divider
               orientation="vertical"
+              variant="middle"
               flexItem
               sx={{
                 bgcolor: 'primary.light',

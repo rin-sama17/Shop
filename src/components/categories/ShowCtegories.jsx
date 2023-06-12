@@ -1,17 +1,13 @@
 import { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { Button, Card, Box } from '@mui/material'
-import CategoriesContent from './CategoriesContent'
 import CategoriesPopover from './CategoriesPopover'
-import Popper from '@mui/material/Popper'
 import Fade from '@mui/material/Fade'
-import { CustomModal } from '../common'
 export default function ShowCtegories() {
   const [open, setOpen] = useState(null)
-
   return (
     <div>
-      <Button sx={{ color: 'btnNav.dark' }} onMouseEnter={() => setOpen(true)}>
+      <Button sx={{ color: 'btnNav.dark' }} onMouseOver={() => setOpen(true)}>
         <Typography>دسته بندی ها</Typography>
       </Button>
       {open && (
@@ -27,7 +23,6 @@ export default function ShowCtegories() {
             }}
           >
             <Card
-              onMouseLeave={() => setOpen(false)}
               sx={{
                 m: '0 auto',
                 width: '90%',
@@ -36,6 +31,8 @@ export default function ShowCtegories() {
                 maxHeight: '80vh',
                 overflowY: 'scroll',
               }}
+              onMouseOver={() => setOpen(true)}
+              onMouseOut={() => setOpen(false)}
             >
               <CategoriesPopover />
             </Card>

@@ -12,8 +12,28 @@ import { KeyboardArrowLeft } from '@mui/icons-material'
 const ParentCategory = ({ parent, children }) => {
   return (
     <>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Typography variant="h6">{parent.name}</Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '20%',
+          mr: 2,
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            '&:hover': {
+              color: 'tomato',
+              cursor: 'pointer',
+            },
+          }}
+        >
+          {parent.name}
+        </Typography>
         <KeyboardArrowLeft />
       </Box>
 
@@ -24,11 +44,23 @@ const ParentCategory = ({ parent, children }) => {
 
 const ChildCategory = ({ child }) => {
   return (
-    <Box>
-      <Typography sx={{ ml: 2 }} color="text.secondary" variant="subtitle1">
-        {child.name}
-      </Typography>
-    </Box>
+    <Typography
+      color="text.secondary"
+      variant="subtitle1"
+      sx={{
+        mr: 2,
+        width: '20%',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        '&:hover': {
+          color: 'tomato',
+          cursor: 'pointer',
+        },
+      }}
+    >
+      {child.name}
+    </Typography>
   )
 }
 
@@ -41,13 +73,11 @@ const FindParents = ({ parent, categories }) => {
   return (
     <>
       {children.length > 0 ? (
-        <Box>
-          <ParentCategory parent={parent}>
-            {children.map((child, index) => (
-              <ChildCategory child={child} key={index} />
-            ))}
-          </ParentCategory>
-        </Box>
+        <ParentCategory parent={parent}>
+          {children.map((child, index) => (
+            <ChildCategory child={child} key={index} />
+          ))}
+        </ParentCategory>
       ) : (
         <ChildCategory child={parent} />
       )}
@@ -59,7 +89,16 @@ const CategoriesContent = ({ parent }) => {
   const categories = useSelector(selectAllCategories)
   console.log(categories)
   return (
-    <Box sx={{ direction: 'ltr' }}>
+    <Box
+      sx={{
+        direction: 'ltr',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        height: '66vh',
+        alignContent: 'flex-start',
+      }}
+    >
       {categories?.map((child, index) => (
         <>
           {child.category_id === parent?.id && (
