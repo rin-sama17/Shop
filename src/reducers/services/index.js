@@ -250,7 +250,7 @@ export const removeSlider = (sliderId) => {
 
 
 export const userLogin = (user) => {
-    const url = `${ADMIN_SERVER_URL}/login`;
+    const url = 'http://localhost:8000/api/login';
     return axios.post(url, user, headers);
 };
 
