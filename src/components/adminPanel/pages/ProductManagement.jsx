@@ -3,7 +3,7 @@ import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { Delete, Edit } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-import { AddProduct, EditProduct } from '../components'
+import { AddProduct, CustomNoRowsOverlay, EditProduct } from '../components'
 import { useEffect, useMemo } from 'react'
 import {
   deleteProduct,
@@ -47,7 +47,13 @@ const ProductManagement = () => {
     <>
       <AddProduct />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={products} columns={columns} />
+        <DataGrid
+          rows={products}
+          columns={columns}
+          components={{
+            NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+        />
       </div>
     </>
   )

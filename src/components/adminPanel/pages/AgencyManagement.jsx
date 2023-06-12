@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { EditAgency, AddAgency } from '../components'
+import { EditAgency, AddAgency, CustomNoRowsOverlay } from '../components'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   deleteAgency,
@@ -46,7 +46,13 @@ const AgencyManagement = () => {
     <>
       <AddAgency />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={agencies} columns={columns} />
+        <DataGrid
+          rows={agencies}
+          columns={columns}
+          components={{
+            NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+        />
       </div>
     </>
   )

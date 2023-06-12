@@ -2,7 +2,12 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { AddUser, EditUser, ShowOptions } from '../components'
+import {
+  AddUser,
+  CustomNoRowsOverlay,
+  EditUser,
+  ShowOptions,
+} from '../components'
 import { useEffect, useMemo } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import {
@@ -76,6 +81,9 @@ const UserManagement = () => {
             if (params.field === 'phone') {
               return 'phone'
             }
+          }}
+          components={{
+            NoRowsOverlay: () => <CustomNoRowsOverlay />,
           }}
         />
       </Box>

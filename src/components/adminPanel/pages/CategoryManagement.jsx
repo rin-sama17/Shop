@@ -11,7 +11,7 @@ import {
   MenuItem,
   Divider,
 } from '@mui/material'
-import { EditCategory, AddCategory } from '../components'
+import { EditCategory, AddCategory, CustomNoRowsOverlay } from '../components'
 import { CustomIconButton } from '../../common'
 import axios from 'axios'
 import {
@@ -153,28 +153,32 @@ const CategoryManagement = () => {
   return (
     <>
       <AddCategory />
-      <Box sx={{ direction: 'ltr', minHeight: '50vh' }}>
-        <CategoryHewder parent />
-        {categories.map((parent, index) => (
-          <Box key={index}>
-            {parent.category_id === null && (
-              <ParentCategory parent={parent}>
-                {categories.map((child, index) => (
-                  <>
-                    {child.category_id === parent.id && (
-                      <FindParents
-                        parent={child}
-                        categories={categories}
-                        key={index}
-                      />
-                    )}
-                  </>
-                ))}
-              </ParentCategory>
-            )}
-          </Box>
-        ))}
-      </Box>
+      {categories.length > 0 ? (
+        <Box sx={{ direction: 'ltr', minHeight: '50vh' }}>
+          <CategoryHewder parent />
+          {categories.map((parent, index) => (
+            <Box key={index}>
+              {parent.category_id === null && (
+                <ParentCategory parent={parent}>
+                  {categories.map((child, index) => (
+                    <>
+                      {child.category_id === parent.id && (
+                        <FindParents
+                          parent={child}
+                          categories={categories}
+                          key={index}
+                        />
+                      )}
+                    </>
+                  ))}
+                </ParentCategory>
+              )}
+            </Box>
+          ))}
+        </Box>
+      ) : (
+        <CustomNoRowsOverlay />
+      )}
     </>
   )
 }

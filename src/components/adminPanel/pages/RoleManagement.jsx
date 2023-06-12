@@ -2,7 +2,12 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { AddRole, EditRole, ShowOptions } from '../components'
+import {
+  AddRole,
+  CustomNoRowsOverlay,
+  EditRole,
+  ShowOptions,
+} from '../components'
 import { useEffect, useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 import {
@@ -79,7 +84,13 @@ const RoleManagement = () => {
           },
         }}
       >
-        <DataGrid columns={columns} rows={roles} />
+        <DataGrid
+          columns={columns}
+          rows={roles}
+          components={{
+            NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+        />
       </Box>
     </>
   )

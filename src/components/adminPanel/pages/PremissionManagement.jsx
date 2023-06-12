@@ -3,7 +3,11 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { EditPremission, AddPremission } from '../components'
+import {
+  EditPremission,
+  AddPremission,
+  CustomNoRowsOverlay,
+} from '../components'
 
 import {
   deletePremission,
@@ -44,7 +48,13 @@ const PremissionManagement = () => {
     <>
       <AddPremission />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={premissions} columns={columns} />
+        <DataGrid
+          rows={premissions}
+          columns={columns}
+          components={{
+            NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+        />
       </div>
     </>
   )

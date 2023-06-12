@@ -4,7 +4,7 @@ import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { HomeSlider } from '../../home'
-import { EditSlider, AddSlider } from '../components'
+import { EditSlider, AddSlider, CustomNoRowsOverlay } from '../components'
 
 import {
   deleteSlider,
@@ -47,7 +47,13 @@ const SliderManagement = () => {
     <>
       <AddSlider />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={sliders} columns={columns} />
+        <DataGrid
+          rows={sliders}
+          columns={columns}
+          components={{
+            NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+        />
       </div>
       <CustomDivider label="پیش نمایش" />
       <HomeSlider />

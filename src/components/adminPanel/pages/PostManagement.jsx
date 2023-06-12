@@ -12,6 +12,7 @@ import {
   fetchPosts,
   selectAllPosts,
 } from '../../../reducers/postSlice'
+import { CustomNoRowsOverlay } from '../components'
 
 const PostManagement = () => {
   const dispatch = useDispatch()
@@ -48,7 +49,13 @@ const PostManagement = () => {
     <>
       <AddPost />
       <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
-        <DataGrid rows={posts} columns={columns} />
+        <DataGrid
+          rows={posts}
+          columns={columns}
+          components={{
+            NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+        />
       </div>
     </>
   )
