@@ -41,7 +41,7 @@ export default function ShowOptions({ options, name }) {
           },
         }}
       >
-        {options.length > 0 ? (
+        {options?.length > 0 ? (
           <>
             <Typography
               color="text.secondary"

@@ -1,19 +1,23 @@
 import axios from "axios";
 
 const ADMIN_SERVER_URL = "http://localhost:8000/api/admin";
-const headers = { headers: { Accept: 'application/json' } };
+const headers = {
+    headers: {
+        Accept: 'application/json'
+    }
+};
 
 export { default as handleErrors } from "./handleErrors";
 export { default as convertToForm } from "./convertToForm";
 
 export const getAllCategories = () => {
-    const url = `${ADMIN_SERVER_URL}/categories`;
+    const url = `http://localhost:8000/api/categories`;
     return axios.get(url);
 };
 
 export const getOneCategory = (categoryId) => {
     const url = `${ADMIN_SERVER_URL}/categories/show/${categoryId}`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const createCategory = (category) => {
@@ -28,7 +32,7 @@ export const updateCategory = (category) => {
 
 export const removeCategory = (categoryId) => {
     const url = `${ADMIN_SERVER_URL}/categories/delete/${categoryId}`;
-    return axios.delete(url);
+    return axios.delete(url, headers);
 };
 
 

@@ -9,9 +9,9 @@ import CustomIconButton from '../common/CustomIconButton'
 import { Login } from '../../pages'
 import NavSearch from './NavSearch'
 import { bg } from '../../assets'
+import ShowCtegories from '../categories/ShowCtegories'
 
 const buttons = [
-  { name: 'دسته بندی ها' },
   { name: 'نمایندگی' },
   { name: 'وبلاگ' },
   { name: 'فروشگاه' },
@@ -65,16 +65,14 @@ const NavContent = ({ setDrawerOpen }) => {
         sx={{
           width: 1,
           py: 2,
-          borderRadius: {
-            xs: 'none',
-            md: '0 0 20px  20px ',
-          },
+
           bgcolor: 'bgcolor.dark',
+          position: 'relative',
         }}
       >
         <Stack
           direction="row"
-          justifyContent="space-between"
+          justifyContent="center"
           divider={
             <Divider
               orientation="vertical"
@@ -95,6 +93,7 @@ const NavContent = ({ setDrawerOpen }) => {
             },
           }}
         >
+          <ShowCtegories />
           {buttons.map((btn, index) => (
             <Button sx={{ color: 'btnNav.dark' }} key={index}>
               <Typography variant="body1">{btn.name}</Typography>

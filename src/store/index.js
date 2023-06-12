@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import premissionReducer from "../reducers/premissionSlice";
-import categoryReducer from "../reducers/categorySlice";
+import categoryReducer, { fetchCategories } from "../reducers/categorySlice";
 import agencyReducer from "../reducers/agencySlice";
 import productReducer from "../reducers/productSlice";
 import postReducer from "../reducers/postSlice";
@@ -26,3 +26,6 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(apiSlice.middleware)
 });
+
+
+store.dispatch(fetchCategories());

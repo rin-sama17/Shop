@@ -1,19 +1,15 @@
-import { useEffect, useMemo, useState } from 'react'
-import { toast } from 'react-toastify'
+import { useEffect, useMemo } from 'react'
 import { Delete, ExpandMore } from '@mui/icons-material'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 import {
   Box,
   Accordion,
   AccordionSummary,
   Typography,
   AccordionDetails,
-  MenuItem,
   Divider,
 } from '@mui/material'
 import { EditCategory, AddCategory, CustomNoRowsOverlay } from '../components'
 import { CustomIconButton } from '../../common'
-import axios from 'axios'
 import {
   deleteCategory,
   fetchCategories,
@@ -107,8 +103,6 @@ const ChildCategory = ({ child }) => {
 }
 
 const FindParents = ({ parent, categories }) => {
-  console.log('parent', parent)
-
   const children = useMemo(
     () => categories.filter((child) => child.category_id === parent.id),
     [categories, parent],
@@ -143,12 +137,7 @@ const FindParents = ({ parent, categories }) => {
 }
 
 const CategoryManagement = () => {
-  const dispatch = useDispatch()
   const categories = useSelector(selectAllCategories)
-
-  useEffect(() => {
-    dispatch(fetchCategories())
-  }, [])
 
   return (
     <>

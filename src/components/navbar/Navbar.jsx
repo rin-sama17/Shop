@@ -35,7 +35,7 @@ const Navbar = () => {
             alignItems: 'center',
             position: 'sticky',
             top: 0,
-            zIndex: 2,
+            zIndex: 20,
           }}
         >
           <NavContent setDrawerOpen={setDrawerOpen} />

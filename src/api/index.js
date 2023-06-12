@@ -67,6 +67,12 @@ export const apiSlice = createApi({
       query: (id) => `/admin/agencies/show/${id}`,
     }),
 
+    getUserDetails: builder.query({
+      query: () => ({
+        url: 'admin/user',
+        method: 'GET',
+      }),
+    })
   }),
 });
 
