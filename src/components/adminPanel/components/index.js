@@ -1,6 +1,7 @@
 export { default as AddCategory } from "./AddCategory";
 export { default as EditCategory } from "./EditCategory";
 export { default as EditSlider } from "./EditSlider";
+export { default as AddSlider } from "./AddSlider";
 export { default as AddRole } from "./AddRole";
 export { default as EditRole } from "./EditRole";
 export { default as EditPremission } from "./EditPremission";
@@ -14,8 +15,3 @@ export { default as EditPost } from "./EditPost";
 export { default as AddUser } from "./AddUser";
 export { default as EditUser } from "./EditUser";
 export { default as ShowOptions } from "./ShowOptions";
-
-export { default as Slider } from "./slider/Slider";
-export { default as SliderModal } from "./slider/SliderModal";
-export { default as EditSliderFields } from "./slider/EditSliderFields";
-

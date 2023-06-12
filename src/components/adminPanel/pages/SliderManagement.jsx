@@ -1,61 +1,56 @@
-import { useFormik } from 'formik'
+import { useEffect, useMemo } from 'react'
 import { toast } from 'react-toastify'
-import { nanoid } from '@reduxjs/toolkit'
-import { Box } from '@mui/material'
+import { Delete } from '@mui/icons-material'
+import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { HomeSlider } from '../../home'
-import { SliderModal } from '../components'
-import { sliderValidation } from '../../validations/sliderValidation'
-import { useAddNewSliderMutation } from '../../../api'
-import { CustomForm, CustomDivider } from '../../common'
-import { sliderFieldsData } from '../../fieldsData'
+import { EditSlider, AddSlider } from '../components'
+
+import {
+  deleteSlider,
+  fetchSliders,
+  selectAllSliders,
+} from '../../../reducers/sliderSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { CustomDivider } from '../../common'
 
 const SliderManagement = () => {
-  const [addNewSlider] = useAddNewSliderMutation()
+  const dispatch = useDispatch()
+  const sliders = useSelector(selectAllSliders)
+  useEffect(() => {
+    dispatch(fetchSliders())
+  }, [])
 
-  const handleAddNewSlider = async (values) => {
-    try {
-      const { photo, title, link } = values
-      await addNewSlider({
-        id: nanoid(),
-        photo,
-        title,
-        link,
-      })
-      toast.success('اسلاید با موفقیت اضافه شد')
-    } catch (error) {
-      console.log(error.massage)
-    }
-  }
-
-  const formik = useFormik({
-    initialValues: { photo: '', link: '' },
-    // validationSchema: sliderValidation,
-    onSubmit: (values, { resetForm }) => {
-      handleAddNewSlider(values)
-      resetForm()
-    },
-  })
-  const fields = sliderFieldsData(formik)
+  const columns = useMemo(
+    () => [
+      { field: 'name', headerName: 'نام', width: 150 },
+      { field: 'description', headerName: 'توضیحات', width: 150 },
+      { field: 'url', headerName: 'لینک', width: 150 },
+      {
+        field: 'actions',
+        type: 'actions',
+        width: 80,
+        getActions: (params) => [
+          <GridActionsCellItem
+            icon={<Delete />}
+            sx={{ color: 'tomato' }}
+            label="حذف"
+            onClick={() => dispatch(deleteSlider(params.id))}
+          />,
+          <EditSlider slider={params.row} />,
+        ],
+      },
+    ],
+    [sliders, EditSlider],
+  )
   return (
     <>
-      <CustomForm
-        formik={formik}
-        fields={fields}
-        label="اسلایدر جدید"
-        color="warning"
-        imageUploader
-        imageUploaderName="photo"
-        imageUploaderProps={{ md: 9, width: 1, aspect: 16 / 5 }}
-      />
-
-      <Box sx={{ my: 3 }}>
-        <SliderModal />
-      </Box>
-      <Box sx={{ px: 3 }}>
-        <CustomDivider label="پیش نمایش" />
-        <HomeSlider />
-      </Box>
+      <AddSlider />
+      <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
+        <DataGrid rows={sliders} columns={columns} />
+      </div>
+      <CustomDivider label="پیش نمایش" />
+      <HomeSlider />
     </>
   )
 }

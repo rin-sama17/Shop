@@ -8,6 +8,7 @@ import postReducer from "../reducers/postSlice";
 import roleReducer from "../reducers/roleSlice";
 import userReducer from "../reducers/userSlice";
 import authReducer from "../reducers/authSlice";
+import sliderReducer from "../reducers/sliderSlice";
 import { apiSlice } from "../api/index";
 export const store = configureStore({
     reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
         role: roleReducer,
         user: userReducer,
         auth: authReducer,
+        slider: sliderReducer,
         product: productReducer,
         agency: agencyReducer,
         category: categoryReducer,

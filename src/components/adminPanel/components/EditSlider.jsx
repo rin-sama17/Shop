@@ -1,53 +1,41 @@
+import { Button } from '@mui/material'
+import { useFormik } from 'formik'
+import { useState } from 'react'
 import { toast } from 'react-toastify'
-import { Button, Box } from '@mui/material'
 
-import { SliderLoading } from '../../loading'
-import { useDeleteSliderMutation, useGetSliderQuery } from '../../../api'
-import { EditSliderFields } from '.'
+import { CustomForm, CustomModal } from '../../common'
+import { sliderValidation } from '../../validations/sliderValidation'
 
-const EditSlider = ({ sliderId, setOpen }) => {
-  const { data: slider, isLoading, isSuccess } = useGetSliderQuery({
-    id: sliderId,
-    prefix: '/admin',
+const EditSliderFields = ({ slider }) => {
+  const [open, setOpem] = useState(false)
+  const dispatch = useDispatch()
+
+  const formik = useFormik({
+    initialValues: slider,
+    // validationSchema: sliderValidation,
+    onSubmit: (values, { resetForm }) => {
+      dispatch(editSlider({ values, setOpen, resetForm }))
+    },
   })
-  const [deleteSlider] = useDeleteSliderMutation()
-
-  const handleDeleteSlider = async () => {
-    try {
-      await deleteSlider(slider.id).unwrap()
-      if (isSuccess) {
-        setOpen(false)
-        toast.success('با موفقیت ثبت شد')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('مشکلی پیش امده بعدا دوباره امتحان کنید')
-    }
-  }
-
-  let content
-  if (isLoading) {
-    content = <SliderLoading />
-  } else if (isSuccess) {
-    content = (
-      <Box
-        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-      >
-        <EditSliderFields slider={slider} setOpen={setOpen} />
-        <Button
-          fullWidth
-          color="error"
-          variant="contained"
-          size="small"
-          onClick={handleDeleteSlider}
-          sx={{ mt: 1, width: '75%' }}
-        >
-          حذف
-        </Button>
-      </Box>
-    )
-  }
-  return content
+  const fields = sliderFieldsData(formik)
+  return (
+    <>
+      <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
+        ساخت اسلایدر جدید
+      </Button>
+      <CustomModal open={open} setOpen={setOpen}>
+        <CustomForm
+          formik={formik}
+          fields={fields}
+          label="ویرایش اسلایدر"
+          color="success"
+          imageUploader
+          imageUploaderName="photo"
+          imageUploaderProps={{ md: 9, width: 1, aspect: 16 / 5 }}
+        />
+      </CustomModal>
+    </>
+  )
 }
 
-export default EditSlider
+export default EditSliderFields

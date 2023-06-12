@@ -1,53 +1,48 @@
-import {  Button } from '@mui/material'
+import { Button } from '@mui/material'
 
 import { useFormik } from 'formik'
 import { CustomForm, CustomModal } from '../../common'
-import { productValidation } from '../../validations/productValidation'
-import { productFieldsData } from '../../fieldsData'
+import { sliderValidation } from '../../validations/sliderValidation'
+import { sliderFieldsData } from '../../fieldsData'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addProduct } from '../../../reducers/productSlice'
+import { addSlider } from '../../../reducers/sliderSlice'
 
-const AddProduct = () => {
+const AddSlider = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
 
-  const productFieldNames = {
+  const sliderFieldNames = {
     name: '',
-    price: '',
-    discount: '',
     description: '',
-    remaining: '',
     image: null,
-    category_id: '',
-    tags: '',
-    lang: 'fa',
+    url: '',
   }
   const formik = useFormik({
-    initialValues: productFieldNames,
+    initialValues: sliderFieldNames,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addProduct({ values, setOpen, resetForm }))
+      dispatch(addSlider({ values, setOpen, resetForm }))
     },
   })
-  const fields = productFieldsData(formik)
+  const fields = sliderFieldsData(formik)
   return (
     <>
       <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
-        ساخت محصول جدید
+        ساخت اسلایدر جدید
       </Button>
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           formik={formik}
           fields={fields}
-          label="افزودن محصول جدید"
+          label="اسلایدر جدید"
           color="warning"
           imageUploader
           imageUploaderName="image"
-          imageUploaderProps={{ aspect: 3 / 4 }}
+          imageUploaderProps={{ aspect: 16 / 5 }}
         />
       </CustomModal>
     </>
   )
 }
 
-export default AddProduct
+export default AddSlider
