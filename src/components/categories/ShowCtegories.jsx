@@ -25,10 +25,10 @@ export default function ShowCtegories() {
             <Card
               sx={{
                 m: '0 auto',
-                width: '70%',
+                width: '50%',
                 p: 2,
                 bgcolor: 'bgcolor.main',
-                maxHeight: '80vh',
+                maxHeight: '70vh',
                 overflowY: 'scroll',
               }}
               onMouseOver={() => setOpen(true)}

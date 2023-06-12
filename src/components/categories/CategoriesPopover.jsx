@@ -20,7 +20,7 @@ const CategoriesPopover = () => {
       sx={{
         width: 1,
         flexWrap: 'nowrap',
-        minHeight: '60vh',
+        minHeight: '50vh',
       }}
     >
       <Grid

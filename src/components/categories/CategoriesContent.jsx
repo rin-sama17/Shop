@@ -16,7 +16,7 @@ const ParentCategory = ({ parent, children }) => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          width: '20%',
+          width: '30%',
           mr: 2,
         }}
       >
@@ -49,7 +49,7 @@ const ChildCategory = ({ child }) => {
       variant="subtitle1"
       sx={{
         mr: 2,
-        width: '20%',
+        width: '30%',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
@@ -95,7 +95,7 @@ const CategoriesContent = ({ parent }) => {
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
-        height: '57vh',
+        height: '47vh',
         alignContent: 'flex-start',
       }}
     >
