@@ -2,6 +2,8 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { Box } from '@mui/material'
 
 import { HomeSlider, HomeContent } from '../components/home'
+import { useGetSlidersQuery } from '../api'
+import { SliderLoading } from '../components/loading'
 
 const Home = () => {
   const { data = { data: [] }, isSuccess } = useGetSlidersQuery()
