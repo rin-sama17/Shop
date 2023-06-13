@@ -9,6 +9,7 @@ import {
     getAllAgencies,
     removeAgency,
     updateAgency,
+    convertToForm
 } from './services';
 
 const agencyAdaptor = createEntityAdapter();
@@ -31,6 +32,8 @@ export const addAgency = createAsyncThunk(
     async ({ values, setOpen, resetForm }) => {
         const formData = convertToForm(values);
         try {
+
+
             const res = await createAgency(formData);
             if (res.status === 200) {
                 setOpen(false);

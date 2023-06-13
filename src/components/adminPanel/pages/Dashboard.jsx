@@ -13,7 +13,7 @@ const Dashboard = () => {
     initialValues: userInfo,
     // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editUserInfo({ values, setOpen, resetForm }))
+      dispatch(editUserInfo({ values, resetForm }))
     },
   })
 

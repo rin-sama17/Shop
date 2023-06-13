@@ -102,12 +102,11 @@ const ChildCategory = ({ child }) => {
   )
 }
 
-const FindParents = ({ parent, categories }) => {
+const Layer4 = ({ parent, categories }) => {
   const children = useMemo(
     () => categories.filter((child) => child.category_id === parent.id),
     [categories, parent],
   )
-  console.log(children)
 
   return (
     <>
@@ -135,6 +134,39 @@ const FindParents = ({ parent, categories }) => {
     </>
   )
 }
+const FindParents = ({ parent, categories }) => {
+  const children = useMemo(
+    () => categories.filter((child) => child.category_id === parent.id),
+    [categories, parent],
+  )
+  console.log(children)
+
+  return (
+    <>
+      {children.length > 0 ? (
+        <Box
+          sx={{
+            width: '90%',
+            m: '0 0 0 auto',
+            my: 1,
+            '.MuiSvgIcon-fontSizeMedium': {
+              width: '20px !important',
+              height: '20px !important',
+            },
+          }}
+        >
+          <ParentCategory parent={parent}>
+            {children.map((child, index) => (
+              <Layer4 parent={child} key={index} categories={categories} />
+            ))}
+          </ParentCategory>
+        </Box>
+      ) : (
+        <ChildCategory child={parent} />
+      )}
+    </>
+  )
+}
 
 const CategoryManagement = () => {
   const categories = useSelector(selectAllCategories)
@@ -145,13 +177,13 @@ const CategoryManagement = () => {
       {categories.length > 0 ? (
         <Box sx={{ direction: 'ltr', minHeight: '50vh' }}>
           <CategoryHewder parent />
-          {categories.map((parent, index) => (
+          {categories.map((layer1, index) => (
             <Box key={index}>
-              {parent.category_id === null && (
-                <ParentCategory parent={parent}>
+              {layer1.category_id === null && (
+                <ParentCategory parent={layer1}>
                   {categories.map((child, index) => (
                     <>
-                      {child.category_id === parent.id && (
+                      {child.category_id === layer1.id && (
                         <FindParents
                           parent={child}
                           categories={categories}

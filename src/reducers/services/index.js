@@ -42,17 +42,16 @@ export const removeCategory = (categoryId) => {
 
 export const getAllProducts = () => {
     const url = `${ADMIN_SERVER_URL}/products`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const getOneProduct = (productId) => {
     const url = `${ADMIN_SERVER_URL}/products/show/${productId}`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const createProduct = (product) => {
     const url = `${ADMIN_SERVER_URL}/products/store`;
-    console.log(product);
     return axios.post(url, product, headers);
 };
 
@@ -63,7 +62,7 @@ export const updateProduct = (product, productId) => {
 
 export const removeProduct = (productId) => {
     const url = `${ADMIN_SERVER_URL}/products/delete/${productId}`;
-    return axios.delete(url);
+    return axios.delete(url, headers);
 };
 
 
@@ -75,12 +74,12 @@ export const removeProduct = (productId) => {
 
 export const getAllPosts = () => {
     const url = `${ADMIN_SERVER_URL}/posts`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const getOnePost = (postId,) => {
     const url = `${ADMIN_SERVER_URL}/posts/show/${postId}`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const createPost = (post) => {
@@ -95,7 +94,7 @@ export const updatePost = (post, postId) => {
 
 export const removePost = (postId) => {
     const url = `${ADMIN_SERVER_URL}/posts/delete/${postId}`;
-    return axios.delete(url);
+    return axios.delete(url, headers);
 };
 
 
@@ -106,16 +105,17 @@ export const removePost = (postId) => {
 
 export const getAllAgencies = () => {
     const url = `${ADMIN_SERVER_URL}/agencies`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const getAgency = (agencyId) => {
     const url = `${ADMIN_SERVER_URL}/agencies/show/${agencyId}`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const createAgency = (agency) => {
     const url = `${ADMIN_SERVER_URL}/agencies/store`;
+    console.log(agency);
     return axios.post(url, agency, headers);
 };
 
@@ -126,7 +126,7 @@ export const updateAgency = (agency, agencyId) => {
 
 export const removeAgency = (agencyId) => {
     const url = `${ADMIN_SERVER_URL}/agencies/delete/${agencyId}`;
-    return axios.delete(url);
+    return axios.delete(url, headers);
 };
 
 
@@ -138,12 +138,12 @@ export const removeAgency = (agencyId) => {
 
 export const getAllPremissions = () => {
     const url = `${ADMIN_SERVER_URL}/premissions`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const getOnePremission = (premissionId) => {
     const url = `${ADMIN_SERVER_URL}/premissions/show/${premissionId}`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const createPremission = (premission) => {
@@ -170,12 +170,12 @@ export const removePremission = (premissionId) => {
 
 export const getAllRoles = () => {
     const url = `${ADMIN_SERVER_URL}/roles`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const getOneRole = (roleId) => {
     const url = `${ADMIN_SERVER_URL}/roles/show/${roleId}`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const createRole = (role) => {
@@ -190,7 +190,7 @@ export const updateRole = (role) => {
 
 export const removeRole = (roleId) => {
     const url = `${ADMIN_SERVER_URL}/roles/delete/${roleId}`;
-    return axios.delete(url);
+    return axios.delete(url, headers);
 };
 
 
@@ -202,12 +202,12 @@ export const removeRole = (roleId) => {
 
 export const getAllUsers = () => {
     const url = `${ADMIN_SERVER_URL}/users`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const getOneUser = (userId) => {
     const url = `${ADMIN_SERVER_URL}/users/show/${userId}`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const createUser = (user) => {
@@ -222,19 +222,19 @@ export const updateUser = (user) => {
 
 export const removeUser = (userId) => {
     const url = `${ADMIN_SERVER_URL}/users/delete/${userId}`;
-    return axios.delete(url);
+    return axios.delete(url, headers);
 };
 
 
 
 export const getAllSliders = () => {
     const url = `${ADMIN_SERVER_URL}/sliders`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const getOneSlider = (sliderId,) => {
     const url = `${ADMIN_SERVER_URL}/sliders/show/${sliderId}`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const createSlider = (slider) => {
@@ -249,7 +249,7 @@ export const updateSlider = (slider, sliderId) => {
 
 export const removeSlider = (sliderId) => {
     const url = `${ADMIN_SERVER_URL}/sliders/delete/${sliderId}`;
-    return axios.delete(url);
+    return axios.delete(url, headers);
 };
 
 

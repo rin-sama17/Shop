@@ -21,7 +21,7 @@ export const fetchSliders = createAsyncThunk(
     async () => {
         try {
             const res = await getAllSliders();
-            return res.data.data;
+            return res.data.data.sliders;
         } catch (error) {
             console.error(error);
         }

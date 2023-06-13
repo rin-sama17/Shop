@@ -22,6 +22,8 @@ import { useGetSlidersQuery } from '../../api'
 import { SliderLoading } from '../loading'
 
 const HomeSlider = ({ sliders }) => {
+  console.log(sliders)
+
   const slider = useRef(null)
   const settings = {
     infinite: true,
@@ -45,7 +47,7 @@ const HomeSlider = ({ sliders }) => {
       }}
     >
       <Slider {...settings} ref={slider}>
-        {sliders.slice(0, 4).map((slide, index) => (
+        {sliders.map((slide, index) => (
           <Box component="div" key={index}>
             <ImageListItem>
               <img
