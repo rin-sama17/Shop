@@ -28,17 +28,6 @@ const SearchResult = () => {
     setBase((prev) => (prev === 'product' ? 'post' : 'product'))
   }
 
-  let result
-  if (base === 'product') {
-    result = searchResult.map((item, index) => (
-      <Product productId={item.id} key={index} />
-    ))
-  } else {
-    result = searchResult.map((item, index) => (
-      <post postId={item.id} key={index} />
-    ))
-  }
-
   return (
     <Box sx={{ width: 1, mt: 3 }}>
       <Stack sx={{ width: 1, flexWrap: 'wrap' }} alignItems="center">
@@ -55,7 +44,19 @@ const SearchResult = () => {
           {base === 'product' ? 'جستجو در پست' : 'جستجو در محصول'}
         </Button>
       </Box>
-      {searchResult.length > 0 ? { result } : <CustomNoRowsOverlay />}
+      {searchResult.length > 0 ? (
+        searchResult.map((item, index) => (
+          <>
+            {base === 'product' ? (
+              <Product productId={item.id} key={index} />
+            ) : (
+              <Post postId={item.id} key={index} />
+            )}
+          </>
+        ))
+      ) : (
+        <CustomNoRowsOverlay />
+      )}
     </Box>
   )
 }

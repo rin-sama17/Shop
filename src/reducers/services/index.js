@@ -270,9 +270,9 @@ export const getUserInfo = () => {
     return axios.get(url, headers);
 };
 
-export const searchQuery = ({ query, base }) => {
+export const searchQuery = (query, base) => {
     const url = `http://localhost:8000/api/search-${base}`;
-    axios.get(url, {
+    return axios.get(url, {
         params: {
             search: query
         }

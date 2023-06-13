@@ -16,8 +16,9 @@ export const fetchSearchResult = createAsyncThunk(
     async ({ query, base }) => {
         try {
             const res = await searchQuery(query, base);
+            console.log(res);
             if (res.status === 200) {
-                return res.data[`${base}`];
+                return res.data.product;
             }
         } catch (error) {
             console.log(error);
