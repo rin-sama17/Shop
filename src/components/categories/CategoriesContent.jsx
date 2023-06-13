@@ -9,7 +9,7 @@ import {
 import { useSelector } from 'react-redux'
 import { selectAllCategories } from '../../reducers/categorySlice'
 import { KeyboardArrowLeft } from '@mui/icons-material'
-const ParentCategory = ({ parent, children, layer4 }) => {
+const ParentCategory = ({ parent, children }) => {
   return (
     <>
       <Box
@@ -23,7 +23,7 @@ const ParentCategory = ({ parent, children, layer4 }) => {
         <Typography
           variant="h6"
           sx={{
-            color: layer4 ? 'text.secondary' : 'black',
+            color: 'black',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -35,7 +35,7 @@ const ParentCategory = ({ parent, children, layer4 }) => {
         >
           {parent.name}
         </Typography>
-        {!layer4 && <KeyboardArrowLeft />}
+        <KeyboardArrowLeft />
       </Box>
 
       {children}
@@ -64,26 +64,6 @@ const ChildCategory = ({ child }) => {
     </Typography>
   )
 }
-const Layer4 = ({ parent, categories }) => {
-  const children = useMemo(
-    () => categories.filter((child) => child.category_id === parent.id),
-    [categories, parent],
-  )
-
-  return (
-    <>
-      {children.length > 0 ? (
-        <ParentCategory parent={parent} layer4>
-          {children.map((child, index) => (
-            <ChildCategory child={child} key={index} />
-          ))}
-        </ParentCategory>
-      ) : (
-        <ChildCategory child={parent} />
-      )}
-    </>
-  )
-}
 
 const FindParents = ({ parent, categories }) => {
   const children = useMemo(
@@ -96,7 +76,7 @@ const FindParents = ({ parent, categories }) => {
       {children.length > 0 ? (
         <ParentCategory parent={parent}>
           {children.map((child, index) => (
-            <Layer4 parent={child} categories={categories} key={index} />
+            <ChildCategory child={child} key={index} />
           ))}
         </ParentCategory>
       ) : (

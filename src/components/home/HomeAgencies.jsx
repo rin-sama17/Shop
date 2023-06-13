@@ -5,68 +5,11 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { useRef } from 'react'
 import { Agency } from '../agency'
 import { useGetAgenciesQuery } from '../../api'
-import { PostLoading } from '../loading'
-import { c07, c08, c09, c10, c11, c12, c13, c14 } from '../../assets'
-const agencies = [
-  {
-    id: 7,
-    name: 'نمایندگی',
-    photo: c07,
-    address: 'نعمت اباد خیابان شگکوفه جنب پارک شریعتی پلاک 3',
-    phone: '021 9328 49384',
-  },
-  {
-    id: 8,
-    name: 'نمایندگی',
-    photo: c08,
-    address: 'نعمت اباد خیابان شگکوفه جنب پارک شریعتی پلاک 3',
-    phone: '021 9328 49384',
-  },
-  {
-    id: 9,
-    name: 'نمایندگی',
-    photo: c09,
-    address: 'نعمت اباد خیابان شگکوفه جنب پارک شریعتی پلاک 3',
-    phone: '021 9328 49384',
-  },
-  {
-    id: 10,
-    name: 'نمایندگی',
-    photo: c10,
-    address: 'نعمت اباد خیابان شگکوفه جنب پارک شریعتی پلاک 3',
-    phone: '021 9328 49384',
-  },
-  {
-    id: 11,
-    name: 'نمایندگی',
-    photo: c11,
-    address: 'نعمت اباد خیابان شگکوفه جنب پارک شریعتی پلاک 3',
-    phone: '021 9328 49384',
-  },
-  {
-    id: 12,
-    name: 'نمایندگی',
-    photo: c12,
-    address: 'نعمت اباد خیابان شگکوفه جنب پارک شریعتی پلاک 3',
-    phone: '021 9328 49384',
-  },
-  {
-    id: 13,
-    name: 'نمایندگی',
-    photo: c13,
-    address: 'نعمت اباد خیابان شگکوفه جنب پارک شریعتی پلاک 3',
-    phone: '021 9328 49384',
-  },
-  {
-    id: 14,
-    name: 'نمایندگی',
-    photo: c14,
-    address: 'نعمت اباد خیابان شگکوفه جنب پارک شریعتی پلاک 3',
-    phone: '021 9328 49384',
-  },
-]
+import { AgencyLoading } from '../loading'
+
 const HomeAgencies = () => {
-  // const { data: agencies = [], isSuccess } = ageGetAgenciesQuery()
+  const { data = { agencies: [] }, isSuccess } = useGetAgenciesQuery()
+  const agencies = data.agencies
   const slider = useRef(null)
   const settings = {
     infinite: true,
@@ -79,16 +22,16 @@ const HomeAgencies = () => {
     lazyLoad: true,
     rtl: true,
   }
-  // if (!isSuccess) {
-  //   return (
-  //     <>
-  //       <Typography variant="h6" sx={{ color: 'gray', mt: 3 }} gutterBottom>
-  //         نمایندگی های ما
-  //       </Typography>
-  //       <PostLoading />
-  //     </>
-  //   )
-  // }
+  if (!isSuccess) {
+    return (
+      <>
+        <Typography variant="h6" sx={{ color: 'gray', mt: 3 }} gutterBottom>
+          نمایندگی های ما
+        </Typography>
+        <AgencyLoading />
+      </>
+    )
+  }
   return (
     <>
       <Typography variant="h6" sx={{ color: 'gray', mt: 3 }} gutterBottom>
@@ -108,7 +51,7 @@ const HomeAgencies = () => {
           {agencies.length > 0 &&
             agencies.map((agency, index) => (
               <Box component="div" key={index} sx={{ direction: 'ltr' }}>
-                <Agency agency={agency} />
+                <Agency agencyId={agency.id} />
               </Box>
             ))}
         </Slider>

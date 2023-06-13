@@ -6,8 +6,8 @@ import { useGetSlidersQuery } from '../api'
 import { SliderLoading } from '../components/loading'
 
 const Home = () => {
-  const { data = { data: [] }, isSuccess } = useGetSlidersQuery()
-  const sliders = data.data
+  const { data = { data: { sliders: [] } }, isSuccess } = useGetSlidersQuery()
+  const sliders = data.data.sliders
 
   return (
     <Grid xs={12}>

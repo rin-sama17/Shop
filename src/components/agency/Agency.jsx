@@ -15,15 +15,15 @@ import {
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
-import { PostLoading } from '../loading'
+import { AgencyLoading } from '../loading'
 import { useGetAgencyQuery } from '../../api'
 
-const Agency = ({ agency }) => {
-  // const { data: agency, isSuccess } = useGetAgencyQuery(agencyId)
-
-  // if (!isSuccess) {
-  //   return <PostLoading />
-  // }
+const Agency = ({ agencyId }) => {
+  const { data = { agency: [] }, isSuccess } = useGetAgencyQuery(agencyId)
+  const agency = data.agency
+  if (!isSuccess) {
+    return <AgencyLoading />
+  }
 
   return (
     <Box
@@ -45,7 +45,7 @@ const Agency = ({ agency }) => {
       >
         <CardActionArea
           component={Link}
-          to={`/agency/${agency.id}`}
+          to={`/agencies/${agency.id}`}
           sx={{
             borderRadius: 10,
           }}
@@ -63,7 +63,7 @@ const Agency = ({ agency }) => {
                     borderColor: '#FB9D23',
                   }}
                   alt={agency.name}
-                  image={agency.photo}
+                  image={`http://localhost:8000/${agency.image}`}
                 />
               </Grid>
               <Grid

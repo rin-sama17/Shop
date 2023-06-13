@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api/admin' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api' }),
   tagTypes: ["Sliders"],
   endpoints: (builder) => ({
     getPosts: builder.query({
@@ -25,7 +25,6 @@ export const apiSlice = createApi({
 
     getSliders: builder.query({
       query: () => `/sliders`,
-      providesTags: ['Sliders']
     }),
     getSlider: builder.query({
       query: (id) => `/sliders/show/${id}`,
@@ -35,7 +34,7 @@ export const apiSlice = createApi({
 
 
     getCategories: builder.query({
-      query: () => `/admin/categories`,
+      query: () => `/categories`,
     }),
     getCategory: builder.query({
       query: (id) => `/categories/show/${id}`,
@@ -46,7 +45,7 @@ export const apiSlice = createApi({
       query: () => `/agencies`,
     }),
     getAgency: builder.query({
-      query: (id) => `/admin/agencies/show/${id}`,
+      query: (id) => `/agencies/show/${id}`,
     }),
 
 
