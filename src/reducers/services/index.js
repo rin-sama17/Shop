@@ -58,7 +58,7 @@ export const createProduct = (product) => {
 
 export const updateProduct = (product) => {
     const url = `${ADMIN_SERVER_URL}/products/update/${product.id}`;
-    return axios.put(url, product, headers);
+    return axios.post(url, product, headers);
 };
 
 export const removeProduct = (productId) => {
@@ -90,7 +90,7 @@ export const createPost = (post) => {
 
 export const updatePost = (post) => {
     const url = `${ADMIN_SERVER_URL}/posts/update/${post.id}`;
-    return axios.put(url, post, headers);
+    return axios.post(url, post, headers);
 };
 
 export const removePost = (postId) => {
@@ -121,7 +121,7 @@ export const createAgency = (agency) => {
 
 export const updateAgency = (agency) => {
     const url = `${ADMIN_SERVER_URL}/agencies/update/${agency.id}`;
-    return axios.put(url, agency, headers);
+    return axios.post(url, agency, headers);
 };
 
 export const removeAgency = (agencyId) => {
@@ -242,9 +242,9 @@ export const createSlider = (slider) => {
     return axios.post(url, slider, headers);
 };
 
-export const updateSlider = (slider) => {
-    const url = `${ADMIN_SERVER_URL}/sliders/update/${slider.id}`;
-    return axios.put(url, slider, headers);
+export const updateSlider = (slider, sliderId) => {
+    const url = `${ADMIN_SERVER_URL}/sliders/update/${sliderId}`;
+    return axios.post(url, slider, headers);
 };
 
 export const removeSlider = (sliderId) => {

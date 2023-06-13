@@ -21,7 +21,7 @@ export const fetchSliders = createAsyncThunk(
     async () => {
         try {
             const res = await getAllSliders();
-            return res.data.slider;
+            return res.data.data;
         } catch (error) {
             console.error(error);
         }
@@ -37,8 +37,8 @@ export const addSlider = createAsyncThunk(
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();
-                toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data.slider;
+                toast.success(res.data.data.message, { position: 'bottom-right' });
+                return res.data.data.slider;
             }
         } catch (error) {
             console.log(error);
@@ -52,13 +52,13 @@ export const editSlider = createAsyncThunk(
     async ({ values, setOpen, resetForm }) => {
         const formData = convertToForm(values);
         try {
-            const res = await updateSlider(formData);
+            const res = await updateSlider(formData, values.id);
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 console.log(res);
-                return res.data.slider;
+                return res.data.post;
             }
         } catch (error) {
             console.log(error);

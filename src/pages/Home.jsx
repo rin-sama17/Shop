@@ -4,9 +4,17 @@ import { Box } from '@mui/material'
 import { HomeSlider, HomeContent } from '../components/home'
 
 const Home = () => {
+  const { data = { data: [] }, isSuccess } = useGetSlidersQuery()
+  const sliders = data.data
+
   return (
     <Grid xs={12}>
-      <HomeSlider />
+      {isSuccess || sliders.length > 0 ? (
+        <HomeSlider sliders={sliders} />
+      ) : (
+        <SliderLoading />
+      )}
+
       <Box
         sx={{
           display: 'flex',

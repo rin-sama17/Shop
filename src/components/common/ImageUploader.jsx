@@ -34,6 +34,7 @@ const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
         setOpen(true)
       }
     }
+    console.log(e.target.files)
     reader.readAsDataURL(e.target.files[0])
   }
 

@@ -53,7 +53,6 @@ export const addProduct = createAsyncThunk(
 export const editProduct = createAsyncThunk(
     'product/editProduct',
     async ({ values, setOpen, resetForm }) => {
-        console.log(values);
         const formData = convertToForm(values);
         try {
             const res = await updateProduct(formData);

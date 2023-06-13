@@ -56,7 +56,7 @@ const SliderManagement = () => {
         />
       </div>
       <CustomDivider label="پیش نمایش" />
-      <HomeSlider />
+      <HomeSlider sliders={sliders} />
     </>
   )
 }

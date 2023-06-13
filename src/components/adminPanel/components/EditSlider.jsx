@@ -1,15 +1,21 @@
+import { Edit } from '@mui/icons-material'
 import { Button } from '@mui/material'
+import { GridActionsCellItem } from '@mui/x-data-grid'
 import { useFormik } from 'formik'
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
+import { editSlider } from '../../../reducers/sliderSlice'
 
 import { CustomForm, CustomModal } from '../../common'
+import { sliderFieldsData } from '../../fieldsData'
 import { sliderValidation } from '../../validations/sliderValidation'
 
-const EditSliderFields = ({ slider }) => {
-  const [open, setOpem] = useState(false)
+const EditSlider = ({ slider }) => {
+  const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
 
+  console.log(slider)
   const formik = useFormik({
     initialValues: slider,
     // validationSchema: sliderValidation,
@@ -20,9 +26,12 @@ const EditSliderFields = ({ slider }) => {
   const fields = sliderFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
-        ساخت اسلایدر جدید
-      </Button>
+      <GridActionsCellItem
+        icon={<Edit />}
+        color="info"
+        label="ویرایش"
+        onClick={() => setOpen(true)}
+      />
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           formik={formik}
@@ -30,12 +39,12 @@ const EditSliderFields = ({ slider }) => {
           label="ویرایش اسلایدر"
           color="success"
           imageUploader
-          imageUploaderName="photo"
-          imageUploaderProps={{ md: 9, width: 1, aspect: 16 / 5 }}
+          imageUploaderName="image"
+          imageUploaderProps={{ aspect: 1 / 1 }}
         />
       </CustomModal>
     </>
   )
 }
 
-export default EditSliderFields
+export default EditSlider

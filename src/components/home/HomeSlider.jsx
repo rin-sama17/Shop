@@ -20,34 +20,8 @@ import Slider from 'react-slick'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { useGetSlidersQuery } from '../../api'
 import { SliderLoading } from '../loading'
-import { Link } from 'react-router-dom'
 
-import { category01, category02, category03 } from '../../assets'
-const sliders = [
-  {
-    id: 7,
-    name: 'پست اول',
-    image: category01,
-    summery:
-      'از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفیبا همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفیبا همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفیبا همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.',
-  },
-  {
-    id: 8,
-    name: 'پست دوم',
-    image: category02,
-    summery:
-      'از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.',
-  },
-  {
-    id: 9,
-    name: 'پست سوم',
-    image: category03,
-    summery:
-      'از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.از این رو با همکاری سازمانها، تعاونی ها و ارگانها و همچنین پشتیبانی شبکه بانکی کشور، روشهای مناسبی برای هر کدام از صنوف مختلف را در نظر گرفته که در ادامه معرفی شده اند.',
-  },
-]
-const HomeSlider = () => {
-  // const { data: sliders = [], isSuccess } = useGetSlidersQuery()
+const HomeSlider = ({ sliders }) => {
   const slider = useRef(null)
   const settings = {
     infinite: true,
@@ -61,9 +35,6 @@ const HomeSlider = () => {
     lazyLoad: true,
     rtl: true,
   }
-  // if (!isSuccess || sliders.length === 0) {
-  //   return <SliderLoading />
-  // }
 
   return (
     <Box
@@ -78,7 +49,7 @@ const HomeSlider = () => {
           <Box component="div" key={index}>
             <ImageListItem>
               <img
-                src={`${slide.image}`}
+                src={`http://localhost:8000/${slide.image}`}
                 alt={slide.name}
                 style={{ height: '40vh', borderRadius: '0 0 20px  20px ' }}
               />
@@ -113,7 +84,7 @@ const HomeSlider = () => {
                   >
                     <Paper elevation={12} sx={{ borderRadius: 15 }}>
                       <img
-                        src={`${slide.image}`}
+                        src={`http://localhost:8000/${slide.image}`}
                         alt={slide.name}
                         style={{
                           width: 200,
@@ -123,21 +94,35 @@ const HomeSlider = () => {
                       />
                     </Paper>
                   </Grid>
-                  <Grid xs={7} sx={{ textAlign: 'end' }}>
-                    <Typography variant="h6" color="white" sx={{ mb: 1 }}>
-                      {slide.name}
-                    </Typography>
+                  <Grid
+                    xs={7}
+                    sx={{
+                      textAlign: 'end',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-end',
+                    }}
+                  >
+                    <Box>
+                      <Typography variant="h6" color="white" sx={{ mb: 1 }}>
+                        {slide.name}
+                      </Typography>
 
-                    <Typography
-                      variant="caption"
-                      sx={{ direction: 'ltr' }}
-                      textAlign="start"
-                      color="whitesmoke"
-                    >
-                      <LinesEllipsis text={slide.summery} maxLine={4} />
-                    </Typography>
+                      <Typography
+                        variant="caption"
+                        sx={{ direction: 'ltr' }}
+                        textAlign="start"
+                        color="whitesmoke"
+                      >
+                        <LinesEllipsis text={slide.description} maxLine={4} />
+                      </Typography>
+                    </Box>
                     <Button
                       variant="contained"
+                      component="a"
+                      href={slide.url}
+                      target="_blank"
                       sx={{ borderRadius: '0  20px  0 20px ', mt: 1 }}
                     >
                       اطلاعات بیشتر

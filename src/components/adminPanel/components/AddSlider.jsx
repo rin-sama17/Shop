@@ -38,7 +38,7 @@ const AddSlider = () => {
           color="warning"
           imageUploader
           imageUploaderName="image"
-          imageUploaderProps={{ aspect: 16 / 5 }}
+          imageUploaderProps={{ aspect: 1 / 1 }}
         />
       </CustomModal>
     </>

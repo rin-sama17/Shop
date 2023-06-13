@@ -25,30 +25,12 @@ export const apiSlice = createApi({
 
     getSliders: builder.query({
       query: () => `/sliders`,
-      providesTags: (res = [], error, arg) => [
-        'Sliders',
-        ...res.map(({ id }) => [{ type: 'Sliders', id }]),
-      ],
+      providesTags: ['Sliders']
     }),
     getSlider: builder.query({
       query: (id) => `/sliders/show/${id}`,
-      providesTags: (res, err, arg) => [{ type: 'Sliders', id: arg }],
     }),
-    addNewSlider: builder.mutation({
-      query: (slider) => ({
-        url: '/admin/sliders/store',
-        method: 'POST',
-        body: slider,
-      }),
-      invalidatesTags: ['Sliders'],
-    }),
-    deleteSlider: builder.mutation({
-      query: (initialSliderId) => ({
-        url: `/admin/sliders/delete/${initialSliderId}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['Sliders'],
-    }),
+
 
 
 
@@ -87,9 +69,7 @@ export const {
 
   useGetSlidersQuery,
   useGetSliderQuery,
-  useAddNewSliderMutation,
-  useDeleteSliderMutation,
-  useEditSliderMutation,
+
 
   useGetDiscountsQuery,
   useGetDiscountQuery,

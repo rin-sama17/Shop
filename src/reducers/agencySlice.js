@@ -29,8 +29,9 @@ export const fetchAgencies = createAsyncThunk(
 export const addAgency = createAsyncThunk(
     'agencys/addAgency',
     async ({ values, setOpen, resetForm }) => {
+        const formData = convertToForm(values);
         try {
-            const res = await createAgency(values);
+            const res = await createAgency(formData);
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();
@@ -47,8 +48,9 @@ export const addAgency = createAsyncThunk(
 export const editAgency = createAsyncThunk(
     'agencys/editAgency',
     async ({ values, setOpen, resetForm }) => {
+        const formData = convertToForm(values);
         try {
-            const res = await updateAgency(values);
+            const res = await updateAgency(formData);
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();
