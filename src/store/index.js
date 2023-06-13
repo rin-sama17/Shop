@@ -8,6 +8,7 @@ import postReducer from "../reducers/postSlice";
 import roleReducer from "../reducers/roleSlice";
 import userReducer from "../reducers/userSlice";
 import authReducer, { fetchUserInfo } from "../reducers/authSlice";
+import searchReducer from "../reducers/searchSlice";
 import sliderReducer from "../reducers/sliderSlice";
 import { apiSlice } from "../api/index";
 export const store = configureStore({
@@ -19,6 +20,7 @@ export const store = configureStore({
         slider: sliderReducer,
         product: productReducer,
         agency: agencyReducer,
+        search: searchReducer,
         category: categoryReducer,
         premission: premissionReducer,
         [apiSlice.reducerPath]: apiSlice.reducer

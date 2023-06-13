@@ -101,39 +101,6 @@ const ChildCategory = ({ child }) => {
     </Box>
   )
 }
-
-const Layer4 = ({ parent, categories }) => {
-  const children = useMemo(
-    () => categories.filter((child) => child.category_id === parent.id),
-    [categories, parent],
-  )
-
-  return (
-    <>
-      {children.length > 0 ? (
-        <Box
-          sx={{
-            width: '90%',
-            m: '0 0 0 auto',
-            my: 1,
-            '.MuiSvgIcon-fontSizeMedium': {
-              width: '20px !important',
-              height: '20px !important',
-            },
-          }}
-        >
-          <ParentCategory parent={parent}>
-            {children.map((child, index) => (
-              <ChildCategory child={child} key={index} />
-            ))}
-          </ParentCategory>
-        </Box>
-      ) : (
-        <ChildCategory child={parent} />
-      )}
-    </>
-  )
-}
 const FindParents = ({ parent, categories }) => {
   const children = useMemo(
     () => categories.filter((child) => child.category_id === parent.id),
@@ -157,7 +124,7 @@ const FindParents = ({ parent, categories }) => {
         >
           <ParentCategory parent={parent}>
             {children.map((child, index) => (
-              <Layer4 parent={child} key={index} categories={categories} />
+              <ChildCategory child={child} key={index} />
             ))}
           </ParentCategory>
         </Box>

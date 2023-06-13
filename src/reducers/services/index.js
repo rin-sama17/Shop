@@ -269,3 +269,12 @@ export const getUserInfo = () => {
     const url = `${ADMIN_SERVER_URL}/user`;
     return axios.get(url, headers);
 };
+
+export const searchQuery = ({ query, base }) => {
+    const url = `http://localhost:8000/api/search-${base}`;
+    axios.get(url, {
+        params: {
+            search: query
+        }
+    });
+};

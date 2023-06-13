@@ -9,6 +9,7 @@ import {
     createRole,
     removeRole,
     updateRole,
+    handleErrors
 } from './services';
 
 const roleAdaptor = createEntityAdapter();
@@ -31,7 +32,7 @@ export const fetchRoles = createAsyncThunk(
 
 export const addRole = createAsyncThunk(
     'role/addRole',
-    async ({ values, setOpen, resetForm }) => {
+    async ({ values, setOpen, resetForm, setErrors }) => {
         try {
             const res = await createRole(values);
             if (res.status === 200) {
@@ -45,7 +46,7 @@ export const addRole = createAsyncThunk(
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
-            handleErrors(error);
+            handleErrors(error, setErrors);
         }
     },
 );

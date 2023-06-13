@@ -46,16 +46,16 @@ const AddRole = () => {
       description: '',
     },
     // validationSchema: roleValidation,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values, { resetForm, setErrors }) => {
       const newRole = {
         ...values,
         premissions: premissionIds,
       }
       console.log(newRole)
-      dispatch(addRole({ values: newRole, setOpen, resetForm }))
+      dispatch(addRole({ values: newRole, setOpen, resetForm, setErrors }))
     },
   })
-
+  console.log(formik.errors)
   const fields = roleFieldsData(formik)
   const extraFields = useMemo(
     () =>
