@@ -21,6 +21,7 @@ export default function ShowCtegories() {
               height: '100vh',
               bgcolor: 'bgBlur.main',
             }}
+            onClick={() => setOpen(false)}
           >
             <Card
               sx={{

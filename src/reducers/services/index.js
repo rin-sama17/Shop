@@ -56,8 +56,8 @@ export const createProduct = (product) => {
     return axios.post(url, product, headers);
 };
 
-export const updateProduct = (product) => {
-    const url = `${ADMIN_SERVER_URL}/products/update/${product.id}`;
+export const updateProduct = (product, productId) => {
+    const url = `${ADMIN_SERVER_URL}/products/update/${productId}`;
     return axios.post(url, product, headers);
 };
 
@@ -88,8 +88,8 @@ export const createPost = (post) => {
     return axios.post(url, post, headers);
 };
 
-export const updatePost = (post) => {
-    const url = `${ADMIN_SERVER_URL}/posts/update/${post.id}`;
+export const updatePost = (post, postId) => {
+    const url = `${ADMIN_SERVER_URL}/posts/update/${postId}`;
     return axios.post(url, post, headers);
 };
 
@@ -109,7 +109,7 @@ export const getAllAgencies = () => {
     return axios.get(url);
 };
 
-export const getAgency = (agencyId,) => {
+export const getAgency = (agencyId) => {
     const url = `${ADMIN_SERVER_URL}/agencies/show/${agencyId}`;
     return axios.get(url);
 };
@@ -119,8 +119,8 @@ export const createAgency = (agency) => {
     return axios.post(url, agency, headers);
 };
 
-export const updateAgency = (agency) => {
-    const url = `${ADMIN_SERVER_URL}/agencies/update/${agency.id}`;
+export const updateAgency = (agency, agencyId) => {
+    const url = `${ADMIN_SERVER_URL}/agencies/update/${agencyId}`;
     return axios.post(url, agency, headers);
 };
 
@@ -263,4 +263,9 @@ export const userLogin = (user) => {
 export const updateUserInfo = (user) => {
     const url = `${ADMIN_SERVER_URL}/user/update/${user.id}`;
     return axios.post(url, user, headers);
+};
+
+export const getUserInfo = () => {
+    const url = `${ADMIN_SERVER_URL}/user`;
+    return axios.get(url, headers);
 };

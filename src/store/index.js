@@ -7,7 +7,7 @@ import productReducer from "../reducers/productSlice";
 import postReducer from "../reducers/postSlice";
 import roleReducer from "../reducers/roleSlice";
 import userReducer from "../reducers/userSlice";
-import authReducer from "../reducers/authSlice";
+import authReducer, { fetchUserInfo } from "../reducers/authSlice";
 import sliderReducer from "../reducers/sliderSlice";
 import { apiSlice } from "../api/index";
 export const store = configureStore({
@@ -29,3 +29,4 @@ export const store = configureStore({
 
 
 store.dispatch(fetchCategories());
+store.dispatch(fetchUserInfo());

@@ -51,7 +51,7 @@ export const editPost = createAsyncThunk(
     async ({ values, setOpen, resetForm }) => {
         const formData = convertToForm(values);
         try {
-            const res = await updatePost(formData);
+            const res = await updatePost(formData, values.id);
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();

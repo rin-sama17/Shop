@@ -50,7 +50,7 @@ export const editAgency = createAsyncThunk(
     async ({ values, setOpen, resetForm }) => {
         const formData = convertToForm(values);
         try {
-            const res = await updateAgency(formData);
+            const res = await updateAgency(formData, values.id);
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();

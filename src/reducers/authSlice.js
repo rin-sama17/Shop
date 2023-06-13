@@ -3,7 +3,7 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { userLogin, updateUserInfo } from './services';
+import { userLogin, updateUserInfo, getUserInfo } from './services';
 
 
 const initialState = {
@@ -12,6 +12,20 @@ const initialState = {
   success: false
 };
 
+export const fetchUserInfo = createAsyncThunk(
+  'auth/fetchUserInfo',
+  async () => {
+    try {
+      const res = await getUserInfo();
+      if (res.status === 200) {
+        return res.data;
+      }
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+);
 
 export const login = createAsyncThunk(
   'auth/login',
@@ -37,7 +51,6 @@ export const editUserInfo = createAsyncThunk(
   async ({ values, setOpen, resetForm }) => {
     try {
       const res = await updateUserInfo(values);
-
       if (res.status === 200) {
         setOpen(false);
         resetForm();
@@ -69,6 +82,9 @@ const authSlice = createSlice({
       state.userInfo = payload.user;
       state.success = true;
       localStorage.setItem("token", payload.token);
+    },
+    [fetchUserInfo.fulfilled]: (state, { payload }) => {
+      state.userInfo = payload;
     }
   },
 });
