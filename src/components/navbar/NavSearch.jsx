@@ -10,6 +10,8 @@ import {
   Card,
   CardMedia,
   Button,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material'
 import { useState } from 'react'
 import Grid from '@mui/material/Unstable_Grid2'
@@ -23,19 +25,14 @@ import { useGetProductsQuery } from '../../api'
 
 const NavSearch = () => {
   const [open, setOpen] = useState(false)
+  const theme = useTheme()
+  const downMd = useMediaQuery(theme.breakpoints.down('md'))
 
-  const { data: products = { data: [] } } = useGetProductsQuery()
   return (
     <>
-      <CustomIconButton
-        onClick={() => setOpen(true)}
-        color="btnNav"
-        icon={<Search />}
-        title="جستجو"
-      />
-      <CustomModal open={open} setOpen={setOpen}>
-        <SearchField />
-        <Grid container spacing={4} sx={{ mt: 3 }}>
+      {/* <CustomModal open={open} setOpen={setOpen}> */}
+      <SearchField downMd={downMd} />
+      {/* <Grid container spacing={4} sx={{ mt: 3 }}>
           <Grid xs={12}>
             <Box
               sx={{
@@ -75,8 +72,8 @@ const NavSearch = () => {
                 />
               </Box>
             ))}
-          </Grid>
-          {/* <Grid xs={12} md={3}>
+          </Grid> */}
+      {/* <Grid xs={12} md={3}>
             <Box
               sx={{
                 display: 'flex',
@@ -99,8 +96,8 @@ const NavSearch = () => {
               </Box>
             ))}
           </Grid> */}
-        </Grid>
-      </CustomModal>
+      {/* </Grid> */}
+      {/* // </CustomModal> */}
     </>
   )
 }

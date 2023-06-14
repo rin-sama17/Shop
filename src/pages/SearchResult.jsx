@@ -22,17 +22,14 @@ const SearchResult = () => {
 
   useEffect(() => {
     dispatch(fetchSearchResult({ query, base }))
-  }, [base])
+  }, [base, query])
 
   const handleChangeBase = () => {
     setBase((prev) => (prev === 'product' ? 'post' : 'product'))
   }
 
   return (
-    <Box sx={{ width: 1, mt: 3 }}>
-      <Stack sx={{ width: 1, flexWrap: 'wrap' }} alignItems="center">
-        <SearchField />
-      </Stack>
+    <Box sx={{ width: 1, mt: 3, minHeight: '100vh' }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', width: 1, my: 3 }}>
         <Typography variant="h5" color="secondary" sx={{ mr: 1 }}>
           نتایج جستجو برای "{query}"
@@ -44,19 +41,29 @@ const SearchResult = () => {
           {base === 'product' ? 'جستجو در پست' : 'جستجو در محصول'}
         </Button>
       </Box>
-      {searchResult.length > 0 ? (
-        searchResult.map((item, index) => (
-          <>
-            {base === 'product' ? (
-              <Product productId={item.id} key={index} />
-            ) : (
-              <Post postId={item.id} key={index} />
-            )}
-          </>
-        ))
-      ) : (
-        <CustomNoRowsOverlay />
-      )}
+      <Grid continer sx={{ width: 1 }}>
+        {searchResult.length > 0 ? (
+          searchResult.map((item, index) => (
+            <>
+              {base === 'product' ? (
+                <Grid
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  sx={{ justifyContent: 'center' }}
+                >
+                  <Product productId={item.id} key={index} />
+                </Grid>
+              ) : (
+                <Post postId={item.id} key={index} />
+              )}
+            </>
+          ))
+        ) : (
+          <CustomNoRowsOverlay />
+        )}
+      </Grid>
     </Box>
   )
 }

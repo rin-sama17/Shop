@@ -47,7 +47,9 @@ const NavContent = ({ setDrawerOpen }) => {
           </Link>
         </Box>
 
-        <Box sx={{ display: 'flex', py: 2 }}>
+        <Box sx={{ display: 'flex', py: 2, alignItems: 'center' }}>
+          <NavSearch />
+
           <Button
             sx={{
               fontSize: { xs: 'none', md: '20px' },
@@ -57,7 +59,6 @@ const NavContent = ({ setDrawerOpen }) => {
           >
             FA
           </Button>
-          <NavSearch />
           <Login />
         </Box>
       </Box>
