@@ -3,7 +3,7 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { userLogin, updateUserInfo, getUserInfo, updateUser } from './services';
+import { userLogin, getUserInfo, updateUser } from './services';
 
 
 const initialState = {
@@ -18,7 +18,7 @@ export const fetchUserInfo = createAsyncThunk(
     try {
       const res = await getUserInfo();
       if (res.status === 200) {
-        return res.data;
+        return res.data.user;
       }
     } catch (error) {
       console.log(error);

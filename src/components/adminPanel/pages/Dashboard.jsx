@@ -13,7 +13,12 @@ const Dashboard = () => {
     initialValues: userInfo,
     // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editUserInfo({ values, resetForm }))
+      const roleIds = values.roles.map((role) => role.id)
+      const updatedUser = {
+        ...values,
+        roles: roleIds,
+      }
+      dispatch(editUserInfo({ values: updatedUser, resetForm }))
     },
   })
 

@@ -4,7 +4,7 @@ const ADMIN_SERVER_URL = "http://localhost:8000/api/admin";
 const token = localStorage.getItem("token");
 const headers = {
     headers: {
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
         Accept: 'application/json'
     }
 };
