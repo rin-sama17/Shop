@@ -72,7 +72,7 @@ const SearchResult = () => {
           {baseBtnContent}
         </Button>
       </Box>
-      <Grid continer sx={{ width: 1 }}>
+      <Grid container sx={{ width: 1 }}>
         {searchResult.length > 0 ? (
           searchResult.map((item, index) => (
             <>
