@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import { fetchSearchResult, selectSearchResults } from '../reducers/searchSlice'
 import { CustomNoRowsOverlay } from '../components/adminPanel/components'
 import { useSelector } from 'react-redux'
+import { Book, Store } from '@mui/icons-material'
 
 const SearchResult = () => {
   const { query } = useParams()
@@ -28,17 +29,47 @@ const SearchResult = () => {
     setBase((prev) => (prev === 'product' ? 'post' : 'product'))
   }
 
+  let baseBtnContent
+  if (base === 'post') {
+    baseBtnContent = (
+      <>
+        <Store />
+        <Typography variant="subtitle2" sx={{ ml: 1 }}>
+          جستجو در محصولات
+        </Typography>
+      </>
+    )
+  } else {
+    baseBtnContent = (
+      <>
+        <Book />
+        <Typography variant="subtitle2" sx={{ ml: 1 }}>
+          جستجو در پست ها
+        </Typography>
+      </>
+    )
+  }
   return (
     <Box sx={{ width: 1, mt: 3, minHeight: '100vh' }}>
-      <Box sx={{ display: 'flex', justifyContent: 'center', width: 1, my: 3 }}>
-        <Typography variant="h5" color="secondary" sx={{ mr: 1 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: 1,
+          my: 3,
+        }}
+      >
+        <Typography variant="h5" color="secondary">
           نتایج جستجو برای "{query}"
         </Typography>
         <Button
           onClick={handleChangeBase}
-          color={base === 'product' ? 'info' : 'warning'}
+          color={base === 'post' ? 'info' : 'warning'}
+          variant="contained"
+          sx={{ width: 190, my: 3 }}
         >
-          {base === 'product' ? 'جستجو در پست' : 'جستجو در محصول'}
+          {baseBtnContent}
         </Button>
       </Box>
       <Grid continer sx={{ width: 1 }}>
