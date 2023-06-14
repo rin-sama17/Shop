@@ -13,7 +13,10 @@ import { useGetPostQuery } from '../../api'
 import PostLoading from '../loading/PostLoading'
 
 const Post = ({ postId }) => {
-  const { data = { post: {} }, isSuccess } = useGetPostQuery(postId)
+  const { data = { post: {} }, isSuccess, isError, error } = useGetPostQuery(
+    postId,
+  )
+  console.log('error: ', isError, error)
   const post = data.post
   if (!isSuccess) {
     return <PostLoading />
