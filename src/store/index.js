@@ -10,6 +10,7 @@ import userReducer from "../reducers/userSlice";
 import authReducer, { fetchUserInfo } from "../reducers/authSlice";
 import searchReducer from "../reducers/searchSlice";
 import sliderReducer from "../reducers/sliderSlice";
+import langReducer from "../reducers/langSlice";
 import { apiSlice } from "../api/index";
 export const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
         slider: sliderReducer,
         product: productReducer,
         agency: agencyReducer,
+        lang: langReducer,
         search: searchReducer,
         category: categoryReducer,
         premission: premissionReducer,

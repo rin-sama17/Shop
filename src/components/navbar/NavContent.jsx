@@ -10,6 +10,7 @@ import { Login } from '../../pages'
 import NavSearch from './NavSearch'
 import { bg } from '../../assets'
 import ShowCtegories from '../categories/ShowCtegories'
+import NavLang from './NavLang'
 
 const buttons = [
   { name: 'نمایندگی' },
@@ -50,15 +51,7 @@ const NavContent = ({ setDrawerOpen }) => {
         <Box sx={{ display: 'flex', py: 2, alignItems: 'center' }}>
           <NavSearch />
 
-          <Button
-            sx={{
-              fontSize: { xs: 'none', md: '20px' },
-              borderRadius: 5,
-              color: 'btnNav.main',
-            }}
-          >
-            FA
-          </Button>
+          <NavLang />
           <Login />
         </Box>
       </Box>

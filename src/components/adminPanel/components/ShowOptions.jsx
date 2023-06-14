@@ -41,23 +41,21 @@ export default function ShowOptions({ options, name }) {
           },
         }}
       >
+        <Typography
+          color="text.secondary"
+          textAlign="center"
+          variant="h6"
+          sx={{ my: 1 }}
+        >
+          {name}
+        </Typography>
+        <Divider />
         {options?.length > 0 ? (
-          <>
-            <Typography
-              color="text.secondary"
-              textAlign="center"
-              variant="h6"
-              sx={{ my: 1 }}
-            >
-              {name}
-            </Typography>
-            <Divider />
-            {options.map((option) => (
-              <MenuItem key={option.id} onClick={handleClose}>
-                {option.name}
-              </MenuItem>
-            ))}
-          </>
+          options.map((option) => (
+            <MenuItem key={option.id} onClick={handleClose}>
+              {option.name}
+            </MenuItem>
+          ))
         ) : (
           <Typography
             color="text.secondary"
