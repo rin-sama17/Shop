@@ -7,7 +7,11 @@ export default function ShowCtegories() {
   const [open, setOpen] = useState(null)
   return (
     <div>
-      <Button sx={{ color: 'btnNav.dark' }} onMouseOver={() => setOpen(true)}>
+      <Button
+        sx={{ color: 'btnNav.dark' }}
+        onMouseOver={() => setOpen(true)}
+        onMouseOut={() => setOpen(false)}
+      >
         <Typography>دسته بندی ها</Typography>
       </Button>
       {open && (
@@ -23,20 +27,29 @@ export default function ShowCtegories() {
             }}
             onClick={() => setOpen(false)}
           >
-            <Card
+            <Box
               sx={{
-                m: '0 auto',
-                width: '50%',
-                p: 2,
-                bgcolor: 'bgcolor.main',
-                maxHeight: '70vh',
-                overflowY: 'scroll',
+                width: 1,
+                position: 'absolute',
+                top: '-33px',
+                pt: '34px',
               }}
               onMouseOver={() => setOpen(true)}
               onMouseOut={() => setOpen(false)}
             >
-              <CategoriesPopover />
-            </Card>
+              <Card
+                sx={{
+                  m: '0 auto',
+                  width: '50%',
+                  p: 2,
+                  bgcolor: 'bgcolor.main',
+                  maxHeight: '70vh',
+                  overflowY: 'scroll',
+                }}
+              >
+                <CategoriesPopover />
+              </Card>
+            </Box>
           </Box>
         </Fade>
       )}
