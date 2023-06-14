@@ -3,6 +3,7 @@ import { GridActionsCellItem } from '@mui/x-data-grid'
 import { useFormik } from 'formik'
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { selectLang } from '../../../reducers/langSlice'
 import { fetchRoles, selectAllRoles } from '../../../reducers/roleSlice'
 
 import {
@@ -31,6 +32,8 @@ const EditUser = ({ user }) => {
 
   const roles = useSelector(selectAllRoles)
   const userRoleIds = useSelector(selectRoleIds)
+  const lang = useSelector(selectLang)
+
   useEffect(() => {
     if (open) {
       console.log(user.roles)
@@ -48,6 +51,7 @@ const EditUser = ({ user }) => {
       const editedUser = {
         ...values,
         roles: userRoleIds,
+        lang,
       }
       console.log(editedUser)
       dispatch(editUser({ values: editedUser, setOpen, resetForm }))

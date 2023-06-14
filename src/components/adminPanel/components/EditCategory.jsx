@@ -8,12 +8,14 @@ import { categoryValidation } from '../../validations/categoryValidation'
 import { CustomModal, CustomForm, CustomIconButton } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
 import { editCategory } from '../../../reducers/categorySlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectLang } from '../../../reducers/langSlice'
 
 const EditCategory = ({ category }) => {
   const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
+  const lang = useSelector(selectLang)
 
   const handelEditCategory = (values, resetForm) => {
     let category
@@ -26,7 +28,7 @@ const EditCategory = ({ category }) => {
   }
 
   const formik = useFormik({
-    initialValues: category,
+    initialValues: { ...category, lang },
     // validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
       handelEditCategory(values, resetForm)

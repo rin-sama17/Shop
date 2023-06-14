@@ -5,18 +5,21 @@ import { CustomForm, CustomModal } from '../../common'
 import { sliderValidation } from '../../validations/sliderValidation'
 import { sliderFieldsData } from '../../fieldsData'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addSlider } from '../../../reducers/sliderSlice'
+import { selectLang } from '../../../reducers/langSlice'
 
 const AddSlider = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
+  const lang = useSelector(selectLang)
 
   const sliderFieldNames = {
     name: '',
     description: '',
     image: null,
     url: '',
+    lang,
   }
   const formik = useFormik({
     initialValues: sliderFieldNames,

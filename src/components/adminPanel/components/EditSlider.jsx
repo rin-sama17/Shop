@@ -3,8 +3,9 @@ import { Button } from '@mui/material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import { useFormik } from 'formik'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { selectLang } from '../../../reducers/langSlice'
 import { editSlider } from '../../../reducers/sliderSlice'
 
 import { CustomForm, CustomModal } from '../../common'
@@ -13,11 +14,13 @@ import { sliderValidation } from '../../validations/sliderValidation'
 
 const EditSlider = ({ slider }) => {
   const [open, setOpen] = useState(false)
+
   const dispatch = useDispatch()
+  const lang = useSelector(selectLang)
 
   console.log(slider)
   const formik = useFormik({
-    initialValues: slider,
+    initialValues: { ...slider, lang },
     // validationSchema: sliderValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(editSlider({ values, setOpen, resetForm }))

@@ -7,7 +7,7 @@ const initialState = {
 
 
 const langSlice = createSlice({
-    name: 'categories',
+    name: 'lang',
     initialState,
     reducers: {
         langSeted: (state, action) => {

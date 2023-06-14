@@ -7,11 +7,14 @@ import { postFieldsData } from '../../fieldsData'
 import { toast } from 'react-toastify'
 
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addPost } from '../../../reducers/postSlice'
+import { selectLang } from '../../../reducers/langSlice'
 
 const AddPost = () => {
   const [open, setOpen] = useState(false)
+
+  const lang = useSelector(selectLang)
 
   const dispatch = useDispatch()
 
@@ -23,6 +26,7 @@ const AddPost = () => {
     tags: '',
     user_id: 1,
     summary: '',
+    lang,
   }
   const formik = useFormik({
     initialValues: postFields,

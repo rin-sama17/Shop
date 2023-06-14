@@ -6,10 +6,13 @@ import { agencyValidation } from '../../validations/agencyValidation'
 import { agencyFieldsData } from '../../fieldsData'
 import { CustomForm, CustomModal } from '../../common'
 import { addAgency } from '../../../reducers/agencySlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectLang } from '../../../reducers/langSlice'
 const AddAgency = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
+
+  const lang = useSelector(selectLang)
 
   const formik = useFormik({
     initialValues: {
@@ -18,6 +21,7 @@ const AddAgency = () => {
       address: '',
       phone: '',
       email: '',
+      lang,
     },
     // validationSchema: agencyValidation,
     onSubmit: (values, { resetForm }) => {

@@ -1,16 +1,18 @@
-import {  Button } from '@mui/material'
+import { Button } from '@mui/material'
 
 import { useFormik } from 'formik'
 import { CustomForm, CustomModal } from '../../common'
 import { productValidation } from '../../validations/productValidation'
 import { productFieldsData } from '../../fieldsData'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../../reducers/productSlice'
+import { selectLang } from '../../../reducers/langSlice'
 
 const AddProduct = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
+  const lang = useSelector(selectLang)
 
   const productFieldNames = {
     name: '',
@@ -21,12 +23,17 @@ const AddProduct = () => {
     image: null,
     category_id: '',
     tags: '',
-    lang: 'fa',
+    lang,
   }
   const formik = useFormik({
     initialValues: productFieldNames,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addProduct({ values, setOpen, resetForm }))
+      const newProduct = {
+        ...values,
+        discount: Number(values.discount),
+      }
+      console.log('values:  ', newProduct)
+      dispatch(addProduct({ values: newProduct, setOpen, resetForm }))
     },
   })
   const fields = productFieldsData(formik)

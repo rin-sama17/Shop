@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { selectLang } from '../../../reducers/langSlice'
 import {
   fetchPremissions,
   selectAllPremissions,
@@ -26,6 +27,7 @@ const AddRole = () => {
   const dispatch = useDispatch()
   const premissions = useSelector(selectAllPremissions)
   const premissionIds = useSelector(selectPremission_id)
+  const lang = useSelector(selectLang)
 
   const handleCheck = (e, premissionId) => {
     if (e.target.checked === true) {
@@ -44,6 +46,7 @@ const AddRole = () => {
     initialValues: {
       name: '',
       description: '',
+      lang,
     },
     // validationSchema: roleValidation,
     onSubmit: (values, { resetForm, setErrors }) => {

@@ -5,13 +5,15 @@ import { useFormik } from 'formik'
 import { userFieldsData } from '../../fieldsData'
 
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addUser } from '../../../reducers/userSlice'
+import { selectLang } from '../../../reducers/langSlice'
 
 const AddUser = () => {
   const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
+  const lang = useSelector(selectLang)
 
   const userFields = {
     name: '',

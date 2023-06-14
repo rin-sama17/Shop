@@ -35,6 +35,7 @@ const EditRole = ({ role }) => {
 
   const rolePremissions = useSelector(selectPremission_id)
   const allPremissions = useSelector(selectAllPremissions)
+  const lang = useSelector(selectLang)
 
   useEffect(() => {
     if (open) {
@@ -45,7 +46,7 @@ const EditRole = ({ role }) => {
   }, [open])
 
   const formik = useFormik({
-    initialValues: role,
+    initialValues: { ...role, lang },
     // validationSchema: roleValidation,
     onSubmit: (values, { resetForm }) => {
       const newRole = {

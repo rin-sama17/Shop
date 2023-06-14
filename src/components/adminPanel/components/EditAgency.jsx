@@ -8,14 +8,16 @@ import { agencyValidation } from '../../validations/agencyValidation'
 import { agencyFieldsData } from '../../fieldsData'
 import { CustomForm, CustomModal } from '../../common'
 import { editAgency } from '../../../reducers/agencySlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectLang } from '../../../reducers/langSlice'
 const EditAgency = ({ agency }) => {
   const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
+  const lang = useSelector(selectLang)
 
   const formik = useFormik({
-    initialValues: agency,
+    initialValues: { ...agency, lang },
     // validationSchema: agencyValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(editAgency({ values, setOpen, resetForm }))

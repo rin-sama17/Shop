@@ -1,8 +1,9 @@
 import { Button } from '@mui/material'
 import { useFormik } from 'formik'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
+import { selectLang } from '../../../reducers/langSlice'
 import { addPremission } from '../../../reducers/premissionSlice'
 
 import { CustomForm, CustomModal } from '../../common'
@@ -12,11 +13,13 @@ import { premissionValidation } from '../../validations/premissionValidation'
 const AddPremission = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
+  const lang = useSelector(selectLang)
 
   const formik = useFormik({
     initialValues: {
       name: '',
       description: '',
+      lang,
     },
     // validationSchema: premissionValidation,
     onSubmit: (values, { resetForm }) => {

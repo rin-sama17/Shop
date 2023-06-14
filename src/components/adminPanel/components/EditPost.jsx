@@ -6,15 +6,18 @@ import { CustomModal, TextEditor, CustomForm } from '../../common'
 import { useState } from 'react'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import { Edit } from '@mui/icons-material'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { editPost } from '../../../reducers/postSlice'
+import { selectLang } from '../../../reducers/langSlice'
 
 const EditPost = ({ post }) => {
   const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
+  const lang = useSelector(selectLang)
+
   const formik = useFormik({
-    initialValues: post,
+    initialValues: { ...post, lang },
     // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(editPost({ values, setOpen, resetForm }))

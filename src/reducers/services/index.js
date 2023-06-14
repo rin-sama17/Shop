@@ -2,6 +2,7 @@ import axios from "axios";
 
 const ADMIN_SERVER_URL = "http://localhost:8000/api/admin";
 const token = localStorage.getItem("token");
+const lang = localStorage.getItem("lang") ? localStorage.getItem("lang") : "fa";
 const headers = {
     headers: {
         authorization: `Bearer ${token}`,
@@ -34,7 +35,7 @@ export const updateCategory = (category) => {
 
 export const removeCategory = (categoryId) => {
     const url = `${ADMIN_SERVER_URL}/categories/delete/${categoryId}`;
-    return axios.delete(url, headers);
+    return axios.delete(url, lang, headers);
 };
 
 
@@ -62,7 +63,7 @@ export const updateProduct = (product, productId) => {
 
 export const removeProduct = (productId) => {
     const url = `${ADMIN_SERVER_URL}/products/delete/${productId}`;
-    return axios.delete(url, headers);
+    return axios.delete(url, lang, headers);
 };
 
 
@@ -94,7 +95,7 @@ export const updatePost = (post, postId) => {
 
 export const removePost = (postId) => {
     const url = `${ADMIN_SERVER_URL}/posts/delete/${postId}`;
-    return axios.delete(url, headers);
+    return axios.delete(url, lang, headers);
 };
 
 
@@ -126,7 +127,7 @@ export const updateAgency = (agency, agencyId) => {
 
 export const removeAgency = (agencyId) => {
     const url = `${ADMIN_SERVER_URL}/agencies/delete/${agencyId}`;
-    return axios.delete(url, headers);
+    return axios.delete(url, lang, headers);
 };
 
 
@@ -190,7 +191,7 @@ export const updateRole = (role) => {
 
 export const removeRole = (roleId) => {
     const url = `${ADMIN_SERVER_URL}/roles/delete/${roleId}`;
-    return axios.delete(url, headers);
+    return axios.delete(url, lang, headers);
 };
 
 
@@ -222,7 +223,7 @@ export const updateUser = (user) => {
 
 export const removeUser = (userId) => {
     const url = `${ADMIN_SERVER_URL}/users/delete/${userId}`;
-    return axios.delete(url, headers);
+    return axios.delete(url, lang, headers);
 };
 
 
@@ -249,7 +250,7 @@ export const updateSlider = (slider, sliderId) => {
 
 export const removeSlider = (sliderId) => {
     const url = `${ADMIN_SERVER_URL}/sliders/delete/${sliderId}`;
-    return axios.delete(url, headers);
+    return axios.delete(url, lang, headers);
 };
 
 

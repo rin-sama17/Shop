@@ -6,12 +6,15 @@ import { nanoid } from '@reduxjs/toolkit'
 import { categoryValidation } from '../../validations/categoryValidation'
 import { CustomForm, CustomModal } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addCategory } from '../../../reducers/categorySlice'
+import { selectLang } from '../../../reducers/langSlice'
 
 const AddCategory = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
+
+  const lang = useSelector(selectLang)
 
   const handleAddNewCategory = (values, resetForm) => {
     let category
@@ -24,7 +27,7 @@ const AddCategory = () => {
   }
 
   const formik = useFormik({
-    initialValues: { name: '', category_id: '' },
+    initialValues: { name: '', category_id: '', lang },
     onSubmit: (values, { resetForm }) => {
       handleAddNewCategory(values, resetForm)
     },

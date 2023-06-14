@@ -6,7 +6,7 @@ import { toRial } from '../../helpers'
 export const productFieldsData = (formik) => {
   const convertPrice = (a, b) => {
     if (typeof a !== 'number') {
-      a = Number(a.split(',').join(''))
+      a = Number(a?.split(',').join(''))
     }
     if (typeof b !== 'number') {
       b = Number(b)
