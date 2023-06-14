@@ -17,10 +17,10 @@ const EditProduct = ({ product }) => {
   const lang = useSelector(selectLang)
 
   const formik = useFormik({
-    initialValues: { ...product.lang },
+    initialValues: product,
     // validationSchema: productValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editProduct({ values, setOpen, resetForm }))
+      dispatch(editProduct({ values: { ...values, lang }, setOpen, resetForm }))
     },
   })
   const fields = productFieldsData(formik)

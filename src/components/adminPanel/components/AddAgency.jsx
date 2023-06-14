@@ -21,11 +21,19 @@ const AddAgency = () => {
       address: '',
       phone: '',
       email: '',
-      lang,
     },
     // validationSchema: agencyValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addAgency({ values, setOpen, resetForm }))
+      dispatch(
+        addAgency({
+          values: {
+            ...values,
+            lang,
+          },
+          setOpen,
+          resetForm,
+        }),
+      )
     },
   })
   const fields = agencyFieldsData(formik)

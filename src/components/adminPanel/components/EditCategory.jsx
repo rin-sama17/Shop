@@ -24,11 +24,13 @@ const EditCategory = ({ category }) => {
     } else {
       category = values
     }
-    dispatch(editCategory({ values: category, setOpen, resetForm }))
+    dispatch(
+      editCategory({ values: { ...category, lang }, setOpen, resetForm }),
+    )
   }
 
   const formik = useFormik({
-    initialValues: { ...category, lang },
+    initialValues: category,
     // validationSchema: categoryValidation,
     onSubmit: (values, { resetForm }) => {
       handelEditCategory(values, resetForm)

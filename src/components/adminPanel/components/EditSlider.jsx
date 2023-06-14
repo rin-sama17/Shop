@@ -20,10 +20,10 @@ const EditSlider = ({ slider }) => {
 
   console.log(slider)
   const formik = useFormik({
-    initialValues: { ...slider, lang },
+    initialValues: slider,
     // validationSchema: sliderValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editSlider({ values, setOpen, resetForm }))
+      dispatch(editSlider({ values: { ...values, lang }, setOpen, resetForm }))
     },
   })
   const fields = sliderFieldsData(formik)

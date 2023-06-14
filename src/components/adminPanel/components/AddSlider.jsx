@@ -19,12 +19,11 @@ const AddSlider = () => {
     description: '',
     image: null,
     url: '',
-    lang,
   }
   const formik = useFormik({
     initialValues: sliderFieldNames,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addSlider({ values, setOpen, resetForm }))
+      dispatch(addSlider({ values: { ...values, lang }, setOpen, resetForm }))
     },
   })
   const fields = sliderFieldsData(formik)

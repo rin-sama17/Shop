@@ -19,11 +19,12 @@ const AddPremission = () => {
     initialValues: {
       name: '',
       description: '',
-      lang,
     },
     // validationSchema: premissionValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(addPremission({ values, setOpen, resetForm }))
+      dispatch(
+        addPremission({ values: { ...values, lang }, setOpen, resetForm }),
+      )
     },
   })
   const fields = premissionFieldsData(formik)

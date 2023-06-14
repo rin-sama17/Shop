@@ -23,11 +23,11 @@ const AddCategory = () => {
     } else {
       category = values
     }
-    dispatch(addCategory({ values: category, setOpen, resetForm }))
+    dispatch(addCategory({ values: { ...category, lang }, setOpen, resetForm }))
   }
 
   const formik = useFormik({
-    initialValues: { name: '', category_id: '', lang },
+    initialValues: { name: '', category_id: '' },
     onSubmit: (values, { resetForm }) => {
       handleAddNewCategory(values, resetForm)
     },

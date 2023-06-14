@@ -4,7 +4,7 @@ import { useFormik } from 'formik'
 import { CustomForm, CustomModal } from '../../common'
 import { productValidation } from '../../validations/productValidation'
 import { productFieldsData } from '../../fieldsData'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../../reducers/productSlice'
 import { selectLang } from '../../../reducers/langSlice'
@@ -23,13 +23,13 @@ const AddProduct = () => {
     image: null,
     category_id: '',
     tags: '',
-    lang,
   }
   const formik = useFormik({
     initialValues: productFieldNames,
     onSubmit: (values, { resetForm }) => {
       const newProduct = {
         ...values,
+        lang,
         discount: Number(values.discount),
       }
       console.log('values:  ', newProduct)

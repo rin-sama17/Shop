@@ -46,13 +46,13 @@ const AddRole = () => {
     initialValues: {
       name: '',
       description: '',
-      lang,
     },
     // validationSchema: roleValidation,
     onSubmit: (values, { resetForm, setErrors }) => {
       const newRole = {
         ...values,
         premissions: premissionIds,
+        lang,
       }
       console.log(newRole)
       dispatch(addRole({ values: newRole, setOpen, resetForm, setErrors }))

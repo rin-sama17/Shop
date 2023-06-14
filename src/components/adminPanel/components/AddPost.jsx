@@ -26,14 +26,13 @@ const AddPost = () => {
     tags: '',
     user_id: 1,
     summary: '',
-    lang,
   }
   const formik = useFormik({
     initialValues: postFields,
     // validationSchema: postValidation,
 
     onSubmit: (values, { resetForm }) => {
-      dispatch(addPost({ values, setOpen, resetForm }))
+      dispatch(addPost({ values: { ...values, lang }, setOpen, resetForm }))
     },
   })
 
