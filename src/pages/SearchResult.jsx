@@ -72,9 +72,9 @@ const SearchResult = () => {
           {baseBtnContent}
         </Button>
       </Box>
-      <Grid container sx={{ width: 1 }}>
-        {searchResult.length > 0 ? (
-          searchResult.map((item, index) => (
+      {searchResult.length > 0 ? (
+        <Grid container sx={{ width: 1 }}>
+          {searchResult.map((item, index) => (
             <>
               {base === 'product' ? (
                 <Grid
@@ -90,11 +90,11 @@ const SearchResult = () => {
                 <Post postId={item.id} key={index} />
               )}
             </>
-          ))
-        ) : (
-          <CustomNoRowsOverlay />
-        )}
-      </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <CustomNoRowsOverlay />
+      )}
     </Box>
   )
 }
