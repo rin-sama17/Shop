@@ -22,7 +22,7 @@ const EditCategory = ({ category }) => {
     } else {
       category = values
     }
-    dispatch(editCategory({ category, setOpen, resetForm }))
+    dispatch(editCategory({ values: category, setOpen, resetForm }))
   }
 
   const formik = useFormik({

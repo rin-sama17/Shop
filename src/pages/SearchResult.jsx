@@ -1,6 +1,6 @@
 import { createSelector } from '@mui/x-data-grid/internals'
 import { useEffect, useMemo, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { useGetProductsQuery } from '../api'
 import Grid from '@mui/material/Unstable_Grid2'
 import { CustomDivider, CustomMassage, SearchField } from '../components/common'
@@ -13,7 +13,6 @@ import { fetchSearchResult, selectSearchResults } from '../reducers/searchSlice'
 import { CustomNoRowsOverlay } from '../components/adminPanel/components'
 import { useSelector } from 'react-redux'
 import { Book, Store } from '@mui/icons-material'
-
 const SearchResult = () => {
   const { query } = useParams()
   const [base, setBase] = useState('product')
