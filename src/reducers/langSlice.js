@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const initialState = {
     lang: localStorage.getItem("lang") ? localStorage.getItem("lang") : "fa",
 };

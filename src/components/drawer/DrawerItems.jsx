@@ -1,8 +1,11 @@
 import { Typography, Button, Box, Divider } from '@mui/material'
 import { tabsData } from '../../constants/tabs.sidebar'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const DrawerItems = ({ setOpen }) => {
+  const { t } = useTranslation()
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       {tabsData.map((tab, index) => (
@@ -24,7 +27,7 @@ const DrawerItems = ({ setOpen }) => {
         >
           {tab.icon}
           <Typography variant="subtitle2" textAlign="left" sx={{ ml: 1 }}>
-            {tab.text}
+            {t(tab.text)}
           </Typography>
         </Button>
       ))}

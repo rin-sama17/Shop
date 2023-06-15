@@ -3,8 +3,11 @@ import Typography from '@mui/material/Typography'
 import { Button, Card, Box } from '@mui/material'
 import CategoriesPopover from './CategoriesPopover'
 import Fade from '@mui/material/Fade'
+import { useTranslation } from 'react-i18next'
 export default function ShowCtegories() {
   const [open, setOpen] = useState(null)
+
+  const { t } = useTranslation()
   return (
     <div>
       <Button
@@ -12,7 +15,7 @@ export default function ShowCtegories() {
         onMouseOver={() => setOpen(true)}
         onMouseOut={() => setOpen(false)}
       >
-        <Typography>دسته بندی ها</Typography>
+        <Typography>{t('دسته بندی ها')}</Typography>
       </Button>
       {open && (
         <Fade in={open}>
@@ -33,13 +36,14 @@ export default function ShowCtegories() {
                 position: 'absolute',
                 top: '-33px',
                 pt: '34px',
+                display: 'flex',
+                justifyContent: 'center',
               }}
               onMouseOver={() => setOpen(true)}
               onMouseOut={() => setOpen(false)}
             >
               <Card
                 sx={{
-                  m: '0 auto',
                   width: '50%',
                   p: 2,
                   bgcolor: 'bgcolor.main',

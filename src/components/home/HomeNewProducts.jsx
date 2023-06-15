@@ -8,6 +8,7 @@ import { Box } from '@mui/material'
 import { useGetProductsQuery } from '../../api'
 import { ProductLoading } from '../loading'
 import { ProductsSlider } from '../products'
+import { useTranslation } from 'react-i18next'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -41,6 +42,7 @@ function a11yProps(index) {
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0)
   const { data: products = { data: [] }, isSuccess } = useGetProductsQuery()
+  const { t } = useTranslation()
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
@@ -55,8 +57,8 @@ export default function BasicTabs() {
           textColor="secondary"
           indicatorColor="secondary"
         >
-          <Tab label="جدیدترین ها" {...a11yProps(0)} />
-          <Tab label="پرفروش ترین ها" {...a11yProps(1)} />
+          <Tab label={t('جدیدترین ها')} {...a11yProps(0)} />
+          <Tab label={t('پرفروش ترین ها')} {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>

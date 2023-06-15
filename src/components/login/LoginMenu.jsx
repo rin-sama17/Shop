@@ -8,12 +8,14 @@ import { Divider, Typography } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { userLogout } from '../../reducers/authSlice'
+import { useTranslation } from 'react-i18next'
 
 const LoginMenu = ({ user }) => {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const open = Boolean(anchorEl)
+  const { t } = useTranslation()
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
@@ -58,10 +60,10 @@ const LoginMenu = ({ user }) => {
         <Divider />
         <MenuItem onClick={handleClose} component={Link} to="/admin-panel">
           <AdminPanelSettings sx={{ mr: 1 }} />
-          پنل ادمین
+          {t('پنل ادمین')}
         </MenuItem>
         <MenuItem onClick={handleLogout} sx={{ color: 'error.main' }}>
-          <Logout sx={{ mr: 1 }} /> خروج از حساب
+          <Logout sx={{ mr: 1 }} /> {t('خروج از حساب')}
         </MenuItem>
       </Menu>
     </div>

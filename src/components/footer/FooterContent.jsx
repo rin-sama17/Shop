@@ -9,6 +9,7 @@ import {
   LocalPhone,
   FmdGood,
 } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
 
 const socials = [
   { icon: <Instagram />, to: 'https://t.me/rin_sama', color: 'primary' },
@@ -18,8 +19,8 @@ const socials = [
 
 const routes = [
   { name: 'فروشگاه', to: '/products' },
-  { name: 'مجله', to: '/posts' },
-  { name: 'نمایندگی', to: '/contracts' },
+  { name: 'وبلاگ', to: '/posts' },
+  { name: 'نمایندگی ها', to: '/contracts' },
   { name: 'درباره ما', to: 'about-us' },
 ]
 
@@ -28,6 +29,8 @@ const contacts = [
   { name: '+21 5539 0048', icon: <LocalPhone /> },
 ]
 const FooterContent = () => {
+  const { t } = useTranslation()
+
   return (
     <Container maxWidth="lg">
       <Grid
@@ -42,7 +45,7 @@ const FooterContent = () => {
       >
         <Grid xs={12} md={4}>
           <Typography variant="h6" sx={{ mb: 2 }}>
-            فروشگاه من
+            {t('فروشگاه من')}
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography
@@ -78,7 +81,7 @@ const FooterContent = () => {
 
         <Grid xs={12} md={3}>
           <Typography variant="h6" sx={{ mb: 2 }}>
-            دسترسی سریع
+            {t('دسترسی سریع')}
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column', pl: 1 }}>
             {routes.map((route, index) => (
@@ -95,7 +98,7 @@ const FooterContent = () => {
                   ':hover': { color: 'primary.main' },
                 }}
               >
-                {route.name}
+                {t(route.name)}
               </Button>
             ))}
           </Box>
@@ -103,7 +106,7 @@ const FooterContent = () => {
 
         <Grid xs={12} md={4}>
           <Typography variant="h6" sx={{ mb: 2 }}>
-            ارتباط با ما
+            {t('تماس با ما')}
           </Typography>
           {contacts.map((contact, index) => (
             <Box key={index} sx={{ display: 'flex', mb: 2 }}>

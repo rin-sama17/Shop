@@ -1,16 +1,12 @@
 import { Box, Button, Divider, Link, Stack, Typography } from '@mui/material'
-import {
-  ShoppingCartOutlined,
-  Search,
-  LanguageOutlined,
-  AppsOutlined,
-} from '@mui/icons-material'
+import { AppsOutlined } from '@mui/icons-material'
 import CustomIconButton from '../common/CustomIconButton'
 import { Login } from '../../pages'
 import NavSearch from './NavSearch'
 import { bg } from '../../assets'
 import ShowCtegories from '../categories/ShowCtegories'
 import NavLang from './NavLang'
+import { useTranslation } from 'react-i18next'
 
 const buttons = [
   { name: 'نمایندگی' },
@@ -19,6 +15,7 @@ const buttons = [
   { name: 'درباره ما' },
 ]
 const NavContent = ({ setDrawerOpen }) => {
+  const { t } = useTranslation()
   return (
     <>
       <Box
@@ -38,12 +35,11 @@ const NavContent = ({ setDrawerOpen }) => {
           <CustomIconButton
             color="btnNav"
             icon={<AppsOutlined />}
-            title="گزینه های بیشتر"
             onClick={() => setDrawerOpen(true)}
           />
           <Link href="/" underline="none">
             <Typography variant="h5" sx={{ ml: 1, color: 'title.light' }}>
-              فروشگاه فرش
+              {t('فروشگاه من')}
             </Typography>
           </Link>
         </Box>
@@ -90,7 +86,7 @@ const NavContent = ({ setDrawerOpen }) => {
           <ShowCtegories />
           {buttons.map((btn, index) => (
             <Button sx={{ color: 'btnNav.dark' }} key={index}>
-              <Typography variant="body1">{btn.name}</Typography>
+              <Typography variant="body1">{t(btn.name)}</Typography>
             </Button>
           ))}
         </Stack>

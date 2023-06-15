@@ -1,14 +1,20 @@
 import Slider from 'react-slick'
 import { Box, Typography, Button, IconButton } from '@mui/material'
 import { Link } from 'react-router-dom'
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
+import {
+  Apartment,
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+} from '@mui/icons-material'
 import { useRef } from 'react'
 import { Agency } from '../agency'
 import { useGetAgenciesQuery } from '../../api'
 import { AgencyLoading } from '../loading'
+import { useTranslation } from 'react-i18next'
 
 const HomeAgencies = () => {
   const { data = { agencies: [] }, isSuccess } = useGetAgenciesQuery()
+  const { t } = useTranslation()
   const agencies = data.agencies
   const slider = useRef(null)
   const settings = {
@@ -26,7 +32,7 @@ const HomeAgencies = () => {
     return (
       <>
         <Typography variant="h6" sx={{ color: 'gray', mt: 3 }} gutterBottom>
-          نمایندگی های ما
+          {t('نمایندگی ها')}
         </Typography>
         <AgencyLoading />
       </>
@@ -35,10 +41,20 @@ const HomeAgencies = () => {
   return (
     <>
       <Typography variant="h6" sx={{ color: 'gray', mt: 3 }} gutterBottom>
-        نمایندگی های ما
+        {t('نمایندگی ها')}
       </Typography>
-      <Button component={Link} to="/agencies" sx={{ mb: 1 }}>
-        مشاهده همه
+
+      <Button
+        component={Link}
+        to="/agencies"
+        color="success"
+        sx={{ width: 240, my: 3, color: 'white' }}
+        variant="contained"
+      >
+        <Apartment />
+        <Typography variant="subtitle2" sx={{ ml: 1 }}>
+          {t('نمایش همه نمایندگی ها')}
+        </Typography>
       </Button>
       <Box
         sx={{

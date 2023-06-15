@@ -12,13 +12,27 @@ import { Container, Box } from '@mui/material'
 import Footer from '../components/footer/Footer'
 import { HelmetProvider, Helmet } from 'react-helmet-async'
 import { bg } from '../assets'
+import { useSelector } from 'react-redux'
+import { selectLang } from '../reducers/langSlice'
+import { useTranslation } from 'react-i18next'
+import '../i18n'
 
 const cacheRTL = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
 })
 
+const emptyCache = createCache({
+  key: 'meaningless-key',
+})
+
 const MainLayout = () => {
+  const { t, i18n } = useTranslation()
+  const lang = useSelector(selectLang)
+  useEffect(() => {
+    console.log(i18n)
+    i18n.changeLanguage(lang)
+  }, [lang])
   return (
     <CacheProvider value={cacheRTL}>
       <ThemeProvider theme={theme}>
@@ -26,7 +40,11 @@ const MainLayout = () => {
           <Helmet>
             <title>فروشگاه فرش</title>
           </Helmet>{' '}
-          <Box>
+          <Box
+            sx={{
+              direction: localStorage.getItem('lang') === 'en' ? 'rtl' : 'ltr',
+            }}
+          >
             <Navbar />
             <Container
               maxWidth="lg"

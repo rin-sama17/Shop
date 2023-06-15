@@ -9,8 +9,11 @@ import { CheckBoxOutlineBlank, Close, Search } from '@mui/icons-material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CustomIconButton from './CustomIconButton'
+import { useTranslation } from 'react-i18next'
+
 const SearchField = ({ downMd }) => {
   const [query, setQuery] = useState('')
+  const { t } = useTranslation()
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
@@ -34,7 +37,7 @@ const SearchField = ({ downMd }) => {
         size={downMd ? 'small' : 'large'}
         fullWidth
         sx={{ color: 'secondary.light' }}
-        placeholder="جستجو"
+        placeholder={t('جستجو')}
         InputProps={{
           style: {
             paddingLeft: 3,
@@ -47,11 +50,7 @@ const SearchField = ({ downMd }) => {
           ),
 
           endAdornment: query.length > 0 && (
-            <CustomIconButton
-              title="انصراف"
-              icon={<Close />}
-              onClick={handleCancle}
-            />
+            <CustomIconButton icon={<Close />} onClick={handleCancle} />
           ),
         }}
       />

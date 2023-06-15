@@ -17,9 +17,11 @@ import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import { AgencyLoading } from '../loading'
 import { useGetAgencyQuery } from '../../api'
+import { useTranslation } from 'react-i18next'
 
 const Agency = ({ agencyId }) => {
   const { data = { agency: [] }, isSuccess } = useGetAgencyQuery(agencyId)
+  const { t } = useTranslation()
   const agency = data.agency
   if (!isSuccess) {
     return <AgencyLoading />
@@ -93,7 +95,7 @@ const Agency = ({ agencyId }) => {
                       color: 'whitesmoke',
                     }}
                   >
-                    شماره تماس:
+                    {t('شماره تماس')}:
                   </Typography>
                   <Typography
                     variant="subtitle1"

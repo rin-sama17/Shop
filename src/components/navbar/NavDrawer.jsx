@@ -2,6 +2,8 @@ import { SwipeableDrawer } from '@mui/material'
 import { DrawerContent } from '../drawer'
 
 const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {
+  const lang = localStorage.getItem('lang')
+
   const toggleDrawer = (open) => (event) => {
     if (
       event &&
@@ -15,7 +17,7 @@ const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {
   }
   return (
     <SwipeableDrawer
-      anchor="left"
+      anchor={lang === 'en' ? 'right' : 'left'}
       open={drawerOpen}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}

@@ -1,8 +1,11 @@
 import { Divider, Box, Typography, Link } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 import { DrawerItems } from '.'
 
 const DrawerContent = ({ setOpen }) => {
+  const { t } = useTranslation()
+
   return (
     <Box
       sx={{
@@ -16,7 +19,7 @@ const DrawerContent = ({ setOpen }) => {
     >
       <Link href="/" underline="none">
         <Typography variant="h5" sx={{ color: 'title.dark' }}>
-          فروشگاه فرش
+          {t('فروشگاه من')}
         </Typography>
       </Link>
       <Divider sx={{ color: 'bgcolor.dark', my: 2 }} />

@@ -3,15 +3,18 @@ import { Typography, Button } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import TextTransition, { presets } from 'react-text-transition'
+import { Store } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
 
 const HomeDescription = () => {
   const [index, setIndex] = useState(0)
+  const { t, i18n } = useTranslation()
   const nameEl = useRef(null)
   const strings = ['محصولات متنوع', 'دسترسی راحت', 'پرداخت ایمن', 'تنوع بالا']
 
   useEffect(() => {
     const typedName = new Typed(nameEl.current, {
-      strings: ['فروشگاه من'],
+      strings: [t('فروشگاه من')],
       typeSpeed: 1,
       backSpeed: 20,
       backDelay: 10,
@@ -23,7 +26,7 @@ const HomeDescription = () => {
       typedName.destroy()
       clearTimeout(intervalId)
     }
-  }, [])
+  }, [t])
 
   return (
     <>
@@ -43,7 +46,7 @@ const HomeDescription = () => {
             textDecorationColor: 'secondary.main',
           }}
         >
-          {strings[index % strings.length]}
+          {t(strings[index % strings.length])}
         </Typography>
       </TextTransition>
 
@@ -65,10 +68,14 @@ const HomeDescription = () => {
       <Button
         component={Link}
         to="/products"
-        color="secondary"
-        sx={{ mt: 4, mb: 2 }}
+        color="warning"
+        sx={{ width: 190, my: 3 }}
+        variant="contained"
       >
-        ورود به فروشگاه من
+        <Store />
+        <Typography variant="subtitle2" sx={{ ml: 1 }}>
+          {t('ورود به فروشگاه')}
+        </Typography>
       </Button>
     </>
   )

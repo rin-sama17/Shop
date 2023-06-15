@@ -13,10 +13,11 @@ import {
   AccountCircleOutlined,
   InfoOutlined,
 } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
 
 const HomeFAB = () => {
   const [open, setOpen] = useState(false)
-
+  const { t } = useTranslation()
   const actions = [
     {
       color: 'warning',
@@ -28,7 +29,7 @@ const HomeFAB = () => {
       color: 'info',
       to: '/product/add',
       icon: <SupportAgentOutlined />,
-      name: 'ارتباط با ما',
+      name: 'تماس با ما',
     },
   ]
   return (
@@ -72,7 +73,7 @@ const HomeFAB = () => {
                 textAlign="center"
                 sx={{ width: 100 }}
               >
-                {action.name}
+                {t(action.name)}
               </Typography>
             }
             tooltipOpen

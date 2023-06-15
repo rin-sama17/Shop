@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material';
 
 
 export const theme = createTheme({
-    direction: "rtl",
+    direction: "ltr",
     typography: {
         fontFamily: "tanha ,wazin"
     },
@@ -65,7 +65,7 @@ export const theme = createTheme({
             light: "#fffc41"
         },
         bgSidebar: {
-            main: "#09bfb0",
+            main: "#09BFB0",
             dark: "#373B72"
         },
         btnNav: {
