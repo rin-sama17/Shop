@@ -17,11 +17,12 @@ const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {
   }
   return (
     <SwipeableDrawer
-      anchor={lang === 'en' ? 'right' : 'left'}
+      anchor={lang === 'en' ? 'left' : 'right'}
       open={drawerOpen}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
       sx={{
+        direction: lang === 'en' ? 'ltr' : 'rtl',
         '& 	.MuiDrawer-paper': {
           width: 300,
         },

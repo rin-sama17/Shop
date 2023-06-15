@@ -26,21 +26,21 @@ const Navbar = () => {
   return (
     <>
       <NavDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
-      {/* <HideOnScroll> */}
-      <Grid
-        container
-        sx={{
-          width: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          position: 'sticky',
-          top: 0,
-          zIndex: 20,
-        }}
-      >
-        <NavContent setDrawerOpen={setDrawerOpen} />
-      </Grid>
-      {/* </HideOnScroll> */}
+      <HideOnScroll>
+        <Grid
+          container
+          sx={{
+            width: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'sticky',
+            top: 0,
+            zIndex: 20,
+          }}
+        >
+          <NavContent setDrawerOpen={setDrawerOpen} />
+        </Grid>
+      </HideOnScroll>
     </>
   )
 }

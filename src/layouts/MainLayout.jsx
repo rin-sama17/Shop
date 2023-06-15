@@ -34,7 +34,7 @@ const MainLayout = () => {
     i18n.changeLanguage(lang)
   }, [lang])
   return (
-    <CacheProvider value={cacheRTL}>
+    <CacheProvider value={emptyCache}>
       <ThemeProvider theme={theme}>
         <HelmetProvider>
           <Helmet>
@@ -42,7 +42,7 @@ const MainLayout = () => {
           </Helmet>{' '}
           <Box
             sx={{
-              direction: localStorage.getItem('lang') === 'en' ? 'rtl' : 'ltr',
+              direction: localStorage.getItem('lang') === 'en' ? 'ltr' : 'rtl',
             }}
           >
             <Navbar />
