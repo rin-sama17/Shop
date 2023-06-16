@@ -7,7 +7,7 @@ import { AdminPanel } from '.'
 import { selectAuth } from '../reducers/authSlice'
 
 const RouteProtection = () => {
-  const { token, success } = useSelector(selectAuth)
+  const { token } = useSelector(selectAuth)
   const { t } = useTranslation()
   useEffect(() => {
     if (!token)

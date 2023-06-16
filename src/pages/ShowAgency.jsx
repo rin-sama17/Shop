@@ -17,7 +17,7 @@ const ShowAgency = () => {
     return <ShowAgencyLoading />
   }
   return (
-    <Grid container sx={{ width: 1, py: 2 }}>
+    <Grid container sx={{ width: 1, mt: 5 }}>
       <Grid xs={12} md={4} sx={{ px: 2 }}>
         <img
           src={`http://localhost:8000/${agency.image}`}

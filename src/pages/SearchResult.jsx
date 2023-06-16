@@ -51,7 +51,7 @@ const SearchResult = () => {
     )
   }
   return (
-    <Box sx={{ width: 1, mt: 3, minHeight: '100vh' }}>
+    <Box sx={{ width: 1, mt: 5, minHeight: '100vh' }}>
       <Box
         sx={{
           display: 'flex',

@@ -18,12 +18,12 @@ const Posts = () => {
     )
   }
   return (
-    <>
+    <Box sx={{ mt: 5 }}>
       <PostsSlider />
       {data.posts.map((post, index) => (
         <Post postId={post.id} key={index} />
       ))}
-    </>
+    </Box>
   )
 }
 export default Posts

@@ -17,38 +17,38 @@ import { SelectCategory, Spinner } from '../common'
 
 import Grid from '@mui/material/Unstable_Grid2'
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  sortItems,
+  selectFiltredProducts,
+  filterProducts,
+  resetProducts,
+} from '../../reducers/filterProductsSlice'
 
-const ProductsFilter = ({ data, setData, isLoading }) => {
+const ProductsFilter = ({ isLoading }) => {
   const { t } = useTranslation()
+
+  const { products } = useSelector(selectFiltredProducts)
   const expensiveProduct = useMemo(() => {
-    const sortedData = data?.slice().sort((a, b) => a.price - b.price)
+    const sortedData = products?.slice().sort((a, b) => a.price - b.price)
     const costlyProduct = sortedData[sortedData.length - 1].price ?? null
     return costlyProduct
-  }, [data])
+  }, [products])
 
   const [value, setValue] = useState([1, expensiveProduct])
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState(null)
+  const [sortBy, setSortBy] = useState(0)
 
-  const handleFilter = () => {
-    const emptyArray = []
-    let filteredProducts = []
+  const dispatch = useDispatch()
 
-    if (category !== '') {
-      filteredProducts =
-        data?.filter((product) => {
-          if (product.category === category) {
-            return value[0] <= product.price && product.price <= value[1]
-          }
-        }) ?? emptyArray
-    } else {
-      filteredProducts =
-        data?.filter(
-          (product) => value[0] <= product.price && product.price <= value[1],
-        ) ?? emptyArray
-    }
+  useEffect(() => {
+    dispatch(sortItems(sortBy))
+  }, [sortBy])
 
-    setData(filteredProducts)
-  }
+  useEffect(() => {
+    dispatch(filterProducts({ category, value }))
+  }, [category, value, sortBy])
+
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
@@ -56,11 +56,9 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
   const handleClear = () => {
     setCategory('')
     setValue([1, expensiveProduct])
+    setSortBy(0)
+    dispatch(resetProducts())
   }
-
-  useEffect(() => {
-    handleFilter()
-  }, [category, value])
 
   if (isLoading) {
     return <Spinner />
@@ -89,6 +87,8 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
           <FormControl fullWidth size="small">
             <InputLabel>{t('مرتب کردن براساس')}</InputLabel>
             <Select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
               input={<OutlinedInput label={t('مرتب کردن براساس')} />}
               MenuProps={{
                 PaperProps: {
@@ -99,9 +99,13 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
                 },
               }}
             >
-              <MenuItem>{t('جدیدترین ها')}</MenuItem>
-              <MenuItem>{t('تخفیف های ویژه')}</MenuItem>
-              <MenuItem>{t('پرفروش ترین ها')}</MenuItem>
+              {['جدیدترین ها', 'تخفیف های ویژه', 'ارزان ترین', 'گرانترین'].map(
+                (option, index) => (
+                  <MenuItem value={index} key={index}>
+                    {t(option)}
+                  </MenuItem>
+                ),
+              )}
             </Select>
           </FormControl>
         </Grid>

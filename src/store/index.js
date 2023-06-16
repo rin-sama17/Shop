@@ -11,7 +11,9 @@ import authReducer, { fetchUserInfo } from "../reducers/authSlice";
 import searchReducer from "../reducers/searchSlice";
 import sliderReducer from "../reducers/sliderSlice";
 import langReducer from "../reducers/langSlice";
+import filtredProductReducer from "../reducers/filterProductsSlice";
 import { apiSlice } from "../api/index";
+
 export const store = configureStore({
     reducer: {
         post: postReducer,
@@ -23,6 +25,7 @@ export const store = configureStore({
         agency: agencyReducer,
         lang: langReducer,
         search: searchReducer,
+        filtredProduct: filtredProductReducer,
         category: categoryReducer,
         premission: premissionReducer,
         [apiSlice.reducerPath]: apiSlice.reducer

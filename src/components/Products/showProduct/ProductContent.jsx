@@ -11,7 +11,7 @@ const ProductContent = ({ product }) => {
         md={4}
         sx={{
           p: 1,
-          mt: 2,
+          mt: 5,
           display: 'flex',
           justifyContent: 'center',
           direction: 'rtl',

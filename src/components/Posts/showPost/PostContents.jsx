@@ -4,7 +4,7 @@ import { TextEditor } from '../../common'
 const PostContent = ({ post }) => {
   console.log(post)
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" sx={{ mt: 5 }}>
       <PostIntroduction post={post} />
       <TextEditor readOnly value={post.description} />
     </Container>
