@@ -3,7 +3,7 @@ import { prefixer } from 'stylis'
 import createCache from '@emotion/cache'
 import rtlPlugin from 'stylis-plugin-rtl'
 import { Outlet } from 'react-router-dom'
-import { theme } from './theme/theme'
+import { useTheme } from './theme/theme'
 import { Navbar } from '../components/navbar'
 import { ThemeProvider } from '@mui/material'
 import { CacheProvider } from '@emotion/react'
@@ -33,18 +33,15 @@ const MainLayout = () => {
     console.log(i18n)
     i18n.changeLanguage(lang)
   }, [lang])
+  const theme = useTheme()
   return (
-    <CacheProvider value={emptyCache}>
+    <CacheProvider value={lang === 'en' ? emptyCache : cacheRTL}>
       <ThemeProvider theme={theme}>
         <HelmetProvider>
           <Helmet>
             <title>فروشگاه فرش</title>
           </Helmet>{' '}
-          <Box
-            sx={{
-              direction: localStorage.getItem('lang') === 'en' ? 'ltr' : 'rtl',
-            }}
-          >
+          <Box sx={{ direction: lang === 'en' && 'ltr' }}>
             <Navbar />
             <Container
               maxWidth="lg"

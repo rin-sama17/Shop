@@ -16,8 +16,8 @@ import { PostLoading } from '../components/loading'
 
 const Agencies = () => {
   const [query, setQuery] = useState('')
-  const { data: agencies = [], isSuccess } = useGetAgenciesQuery()
-
+  const { data = { agencies: [] }, isSuccess } = useGetAgenciesQuery()
+  const agencies = data.agencies
   return (
     <>
       <Paper elevation={5} sx={{ my: 5 }}>

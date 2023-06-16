@@ -1,5 +1,6 @@
-import { Box, Button, Divider, Link, Stack, Typography } from '@mui/material'
+import { Box, Button, Divider, Stack, Typography } from '@mui/material'
 import { AppsOutlined } from '@mui/icons-material'
+import { Link } from 'react-router-dom'
 import CustomIconButton from '../common/CustomIconButton'
 import { Login } from '../../pages'
 import NavSearch from './NavSearch'
@@ -9,10 +10,10 @@ import NavLang from './NavLang'
 import { useTranslation } from 'react-i18next'
 
 const buttons = [
-  { name: 'نمایندگی' },
-  { name: 'وبلاگ' },
-  { name: 'فروشگاه' },
-  { name: 'درباره ما' },
+  { name: 'نمایندگی', to: '/agencies' },
+  { name: 'وبلاگ', to: '/posts' },
+  { name: 'فروشگاه', to: '/products' },
+  { name: 'درباره ما', to: '/about-us' },
 ]
 const NavContent = ({ setDrawerOpen }) => {
   const { t } = useTranslation()
@@ -85,7 +86,12 @@ const NavContent = ({ setDrawerOpen }) => {
         >
           <ShowCtegories />
           {buttons.map((btn, index) => (
-            <Button sx={{ color: 'btnNav.dark' }} key={index}>
+            <Button
+              sx={{ color: 'btnNav.dark' }}
+              key={index}
+              component={Link}
+              to={btn.to}
+            >
               <Typography variant="body1">{t(btn.name)}</Typography>
             </Button>
           ))}

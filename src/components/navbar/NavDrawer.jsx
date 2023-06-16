@@ -1,4 +1,4 @@
-import { SwipeableDrawer } from '@mui/material'
+import { styled, SwipeableDrawer } from '@mui/material'
 import { DrawerContent } from '../drawer'
 
 const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {
@@ -17,12 +17,12 @@ const NavDrawer = ({ drawerOpen, setDrawerOpen }) => {
   }
   return (
     <SwipeableDrawer
-      anchor={lang === 'en' ? 'left' : 'right'}
+      anchor="left"
       open={drawerOpen}
       onClose={toggleDrawer(false)}
       onOpen={toggleDrawer(true)}
       sx={{
-        direction: lang === 'en' ? 'ltr' : 'rtl',
+        direction: lang === 'en' && 'ltr',
         '& 	.MuiDrawer-paper': {
           width: 300,
         },

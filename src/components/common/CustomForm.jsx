@@ -14,7 +14,12 @@ const CustomForm = ({
   imageUploaderProps,
 }) => {
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form
+      onSubmit={formik.handleSubmit}
+      style={{
+        direction: 'ltr !important',
+      }}
+    >
       <Grid
         container
         sx={{

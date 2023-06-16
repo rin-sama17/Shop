@@ -35,7 +35,6 @@ const EditRole = ({ role }) => {
 
   const rolePremissions = useSelector(selectPremission_id)
   const allPremissions = useSelector(selectAllPremissions)
-  const lang = useSelector(selectLang)
 
   useEffect(() => {
     if (open) {
