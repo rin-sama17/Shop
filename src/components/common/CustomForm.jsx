@@ -1,6 +1,7 @@
 import { Button } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { CustomDivider, CustomFields, ImageUploader } from '.'
 
 const CustomForm = ({
@@ -13,6 +14,7 @@ const CustomForm = ({
   imageUploaderName,
   imageUploaderProps,
 }) => {
+  const { t } = useTranslation()
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -39,7 +41,7 @@ const CustomForm = ({
         <Grid xs={12} md={imageUploader ? 9 : 12}>
           <Grid container spacing={2} sx={{ direction: 'ltr' }}>
             {fields.map((field, index) => (
-              <CustomFields {...field} key={index} />
+              <CustomFields {...field} label={t(field.label)} key={index} />
             ))}
             {extraFields?.map((field, index) => (
               <CustomFields {...field} key={index} />

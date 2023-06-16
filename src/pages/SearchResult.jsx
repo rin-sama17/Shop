@@ -13,9 +13,11 @@ import { fetchSearchResult, selectSearchResults } from '../reducers/searchSlice'
 import { CustomNoRowsOverlay } from '../components/adminPanel/components'
 import { useSelector } from 'react-redux'
 import { Book, Store } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
 const SearchResult = () => {
   const { query } = useParams()
   const [base, setBase] = useState('product')
+  const { t } = useTranslation()
 
   const searchResult = useSelector(selectSearchResults)
   const dispatch = useDispatch()
@@ -34,7 +36,7 @@ const SearchResult = () => {
       <>
         <Store />
         <Typography variant="subtitle2" sx={{ ml: 1 }}>
-          جستجو در محصولات
+          {t('جستجو در محصولات')}
         </Typography>
       </>
     )
@@ -43,7 +45,7 @@ const SearchResult = () => {
       <>
         <Book />
         <Typography variant="subtitle2" sx={{ ml: 1 }}>
-          جستجو در پست ها
+          {t('جستجو در پست ها')}
         </Typography>
       </>
     )
@@ -60,7 +62,7 @@ const SearchResult = () => {
         }}
       >
         <Typography variant="h5" color="secondary">
-          نتایج جستجو برای "{query}"
+          {t('نتایج جستجو برای')} "{query}"
         </Typography>
         <Button
           onClick={handleChangeBase}

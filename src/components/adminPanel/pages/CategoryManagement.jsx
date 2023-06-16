@@ -16,8 +16,10 @@ import {
   selectAllCategories,
 } from '../../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const CategoryHewder = ({ parent }) => {
+  const { t } = useTranslation()
   return (
     <Box
       sx={{
@@ -28,7 +30,7 @@ const CategoryHewder = ({ parent }) => {
         m: '0 0 0 auto',
       }}
     >
-      <Typography>نام</Typography>
+      <Typography>{t('نام')}</Typography>
     </Box>
   )
 }
@@ -55,7 +57,6 @@ const ParentCategory = ({ parent, children }) => {
             <CustomIconButton
               icon={<Delete />}
               sx={{ color: 'tomato' }}
-              label="حذف"
               onClick={() => dispatch(deleteCategory(parent.id))}
             />
           </Box>
@@ -94,7 +95,6 @@ const ChildCategory = ({ child }) => {
         <CustomIconButton
           icon={<Delete />}
           sx={{ color: 'tomato' }}
-          label="حذف"
           onClick={() => dispatch(deleteCategory(child.id))}
         />
       </Box>

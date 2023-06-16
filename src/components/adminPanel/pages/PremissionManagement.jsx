@@ -15,18 +15,21 @@ import {
   selectAllPremissions,
 } from '../../../reducers/premissionSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const PremissionManagement = () => {
   const dispatch = useDispatch()
   const premissions = useSelector(selectAllPremissions)
+  const { t } = useTranslation()
+
   useEffect(() => {
     dispatch(fetchPremissions())
   }, [])
 
   const columns = useMemo(
     () => [
-      { field: 'name', headerName: 'نام دسترسی', width: 150 },
-      { field: 'description', headerName: 'توضیحات', width: 150 },
+      { field: 'name', headerName: t('نام دسترسی'), width: 150 },
+      { field: 'description', headerName: t('توضیحات'), width: 150 },
       {
         field: 'actions',
         type: 'actions',
@@ -35,14 +38,13 @@ const PremissionManagement = () => {
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
-            label="حذف"
             onClick={() => dispatch(deletePremission(params.id))}
           />,
           <EditPremission premission={params.row} />,
         ],
       },
     ],
-    [premissions, EditPremission],
+    [premissions, EditPremission, t],
   )
   return (
     <>

@@ -3,6 +3,7 @@ export const loginFieldsData = (formik) => {
     {
       phone: true,
       name: 'phone',
+      label: 'شماره موبایل',
       formik,
       md: 6,
     },

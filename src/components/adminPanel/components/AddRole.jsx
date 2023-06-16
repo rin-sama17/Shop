@@ -20,6 +20,7 @@ import {
 import { CustomForm, CustomModal } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
 import { roleValidation } from '../../validations/roleValidation'
+import AddBtn from './AddBtn'
 
 const AddRole = () => {
   const [open, setOpen] = useState(false)
@@ -74,9 +75,8 @@ const AddRole = () => {
   )
   return (
     <>
-      <Button onClick={() => setOpen(true)} color="secondary">
-        افزودن نقش جدید
-      </Button>
+      <AddBtn setOpen={setOpen} title="افزودن نقش جدید" />
+
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           formik={formik}

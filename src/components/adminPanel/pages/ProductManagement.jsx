@@ -11,21 +11,24 @@ import {
   selectAllProducts,
 } from '../../../reducers/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const ProductManagement = () => {
   const dispatch = useDispatch()
   const products = useSelector(selectAllProducts)
+  const { t } = useTranslation()
+
   useEffect(() => {
     dispatch(fetchProducts())
   }, [])
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: 'شماره', width: 100 },
-      { field: 'name', headerName: 'نام محصول', width: 100 },
-      { field: 'price', headerName: 'قیمت', width: 100 },
-      { field: 'discount', headerName: 'تخفیف(به درصد)', width: 120 },
-      { field: 'remaining', headerName: 'موجودی', width: 100 },
-      { field: 'category_id', headerName: 'دسته بندی', width: 100 },
+      { field: 'id', headerName: t('شماره'), width: 100 },
+      { field: 'name', headerName: t('نام محصول'), width: 100 },
+      { field: 'price', headerName: t('قیمت'), width: 100 },
+      { field: 'discount', headerName: t('تخفیف(به درصد)'), width: 120 },
+      { field: 'remaining', headerName: t('موجودی'), width: 100 },
+      { field: 'category_id', headerName: t('دسته بندی'), width: 100 },
       {
         field: 'actions',
         type: 'actions',
@@ -34,7 +37,6 @@ const ProductManagement = () => {
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
-            label="حذف"
             onClick={() => dispatch(deleteProduct(params.id))}
           />,
           <EditProduct product={params.row} />,

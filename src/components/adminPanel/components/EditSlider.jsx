@@ -32,7 +32,6 @@ const EditSlider = ({ slider }) => {
       <GridActionsCellItem
         icon={<Edit />}
         color="info"
-        label="ویرایش"
         onClick={() => setOpen(true)}
       />
       <CustomModal open={open} setOpen={setOpen}>

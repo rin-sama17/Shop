@@ -17,9 +17,11 @@ import {
 } from '../../../reducers/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRoles } from '../../../reducers/roleSlice'
+import { useTranslation } from 'react-i18next'
 
 const UserManagement = () => {
   const dispatch = useDispatch()
+  const { t } = useTranslation()
   const users = useSelector(selectAllUsers)
   useEffect(() => {
     dispatch(fetchUsers())
@@ -28,17 +30,17 @@ const UserManagement = () => {
 
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: 'شماره', width: 10 },
-      { field: 'firstname', headerName: 'نام', width: 110 },
-      { field: 'lastname', headerName: 'نام خانوادگی', width: 110 },
-      { field: 'email', headerName: 'ایمیل', width: 150 },
-      { field: 'phone', headerName: 'شماره موبایل', width: 110 },
+      { field: 'id', headerName: t('شماره'), width: 10 },
+      { field: 'firstname', headerName: t('نام'), width: 110 },
+      { field: 'lastname', headerName: t('نام خانوادگی'), width: 110 },
+      { field: 'email', headerName: t('ایمیل'), width: 150 },
+      { field: 'phone', headerName: t('شماره موبایل'), width: 110 },
       {
         field: 'roles',
         type: 'actions',
         width: 10,
         getActions: (params) => [
-          <ShowOptions options={params.row.roles} name="نقش ها" />,
+          <ShowOptions options={params.row.roles} name={t('نقش ها')} />,
         ],
       },
       {
@@ -49,7 +51,6 @@ const UserManagement = () => {
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
-            label="حذف"
             onClick={() => dispatch(deleteUser(params.id))}
           />,
           <EditUser user={params.row} />,
@@ -66,7 +67,7 @@ const UserManagement = () => {
         sx={{
           height: 600,
           width: '100%',
-          direction: 'ltr',
+
           mt: '8px',
           overFlowX: 'auto',
           '& .phone': {
@@ -82,6 +83,7 @@ const UserManagement = () => {
               return 'phone'
             }
           }}
+          sx={{ direction: 'rtl' }}
           components={{
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
           }}

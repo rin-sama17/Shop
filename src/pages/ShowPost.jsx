@@ -5,12 +5,10 @@ import { PostContents } from '../components/Posts'
 const ShowPost = () => {
   const { postId } = useParams()
   const { data = { post: {} }, isLoading, isSuccess } = useGetPostQuery(postId)
-  console.log(data)
   let content
   if (isLoading) {
     content = <ShowPostLoading />
   } else if (isSuccess) {
-    console.log('llllll')
     content = <PostContents post={data.post} />
   }
 

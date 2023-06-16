@@ -1,7 +1,10 @@
 import { notFound } from '../../../assets'
 import { Box, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 export default function CustomNoRowsOverlay() {
+  const { t } = useTranslation()
+
   return (
     <Box
       sx={{
@@ -18,7 +21,7 @@ export default function CustomNoRowsOverlay() {
         style={{ height: '200px', width: '200px' }}
       />
       <Typography sx={{ mt: 1 }} color="text.secondary">
-        داده ای برای نمایش وجود ندارد
+        {t('داده ای برای نمایش وجود ندارد')}
       </Typography>
     </Box>
   )

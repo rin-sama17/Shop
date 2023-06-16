@@ -2,8 +2,10 @@ import { Typography, InputAdornment } from '@mui/material'
 
 import { Percent } from '@mui/icons-material'
 import { toRial } from '../../helpers'
+import { useTranslation } from 'react-i18next'
 
 export const productFieldsData = (formik) => {
+  const { t } = useTranslation()
   const convertPrice = (a, b) => {
     if (typeof a !== 'number') {
       a = Number(a?.split(',').join(''))
@@ -24,11 +26,11 @@ export const productFieldsData = (formik) => {
       sm: 4,
       formik,
       name: 'discount',
-      label: 'تخفیف',
+      label: 'تخفیف(به درصد)',
       type: 'number',
       helperText: (
         <Typography variant="caption">
-          قیمت کالا بعد از تخفیف :
+          {t('قیمت کالا بعد از تخفیف')} :
           {formik.errors.discount
             ? formik.errors.discount
             : toRial(
@@ -49,7 +51,7 @@ export const productFieldsData = (formik) => {
       formik,
       name: 'description',
       multiline: true,
-      helperText: 'توضیح مختصری درباره محصول خود ارائه دهید',
+      helperText: t('توضیح مختصری درباره محصول خود ارائه دهید'),
       rows: 4,
       label: 'توضیحات',
     },
@@ -58,7 +60,7 @@ export const productFieldsData = (formik) => {
       formik,
       name: 'remaining',
       label: 'تعداد',
-      helperText: 'موجودی کالا',
+      helperText: t('موجودی کالا'),
       type: 'number',
     },
     {
@@ -72,7 +74,7 @@ export const productFieldsData = (formik) => {
       formik,
       name: 'tags',
       label: 'برچسب ها',
-      helperText: 'برچسب ها را با / از هم جدا کنید',
+      helperText: t('برچسب ها را با / از هم جدا کنید'),
     },
 
     {

@@ -10,10 +10,12 @@ import {
   fetchAgencies,
   selectAllAgencies,
 } from '../../../reducers/agencySlice'
+import { useTranslation } from 'react-i18next'
 
 const AgencyManagement = () => {
   const dispatch = useDispatch()
   const agencies = useSelector(selectAllAgencies)
+  const { t } = useTranslation()
 
   useEffect(() => {
     dispatch(fetchAgencies())
@@ -21,10 +23,10 @@ const AgencyManagement = () => {
 
   const columns = useMemo(
     () => [
-      { field: 'name', headerName: 'نام', width: 100 },
-      { field: 'address', headerName: 'ادرس', width: 150 },
-      { field: 'phone', headerName: 'شماره تلفن', width: 150 },
-      { field: 'email', headerName: 'ایمیل', width: 200 },
+      { field: 'name', headerName: t('نام'), width: 100 },
+      { field: 'address', headerName: t('ادرس'), width: 150 },
+      { field: 'phone', headerName: t('شماره تلفن'), width: 150 },
+      { field: 'email', headerName: t('ایمیل'), width: 200 },
       {
         field: 'actions',
         type: 'actions',
@@ -33,14 +35,13 @@ const AgencyManagement = () => {
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
-            label="حذف"
             onClick={() => dispatch(deleteAgency(params.id))}
           />,
           <EditAgency agency={params.row} />,
         ],
       },
     ],
-    [agencies, EditAgency],
+    [agencies, EditAgency, t],
   )
   return (
     <>

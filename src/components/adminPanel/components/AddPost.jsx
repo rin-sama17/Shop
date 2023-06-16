@@ -10,6 +10,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPost } from '../../../reducers/postSlice'
 import { selectLang } from '../../../reducers/langSlice'
+import AddBtn from './AddBtn'
 
 const AddPost = () => {
   const [open, setOpen] = useState(false)
@@ -39,9 +40,8 @@ const AddPost = () => {
   const fields = postFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
-        ساخت پست جدید
-      </Button>
+      <AddBtn setOpen={setOpen} title="ساخت پست جدید" />
+
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           formik={formik}

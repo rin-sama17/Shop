@@ -6,6 +6,14 @@ body {
   min-height: 100vh;
 }
 
+button {
+  text-transform: none !important;
+}
+
+p {
+  text-transform: none !important;
+}
+
 .zoom {
   width: 100%;
   transition: transform 0.2s; /* Animation */

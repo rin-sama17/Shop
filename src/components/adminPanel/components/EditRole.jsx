@@ -21,6 +21,8 @@ import {
 import { CustomModal, CustomForm } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
 import { roleValidation } from '../../validations/roleValidation'
+import { selectLang } from '../../../reducers/langSlice'
+
 const handleCheck = (dispatch, premissionId) => (e) => {
   if (e.target.checked === true) {
     dispatch(premissionIdAdded(premissionId))
@@ -35,6 +37,7 @@ const EditRole = ({ role }) => {
 
   const rolePremissions = useSelector(selectPremission_id)
   const allPremissions = useSelector(selectAllPremissions)
+  const lang = useSelector(selectLang)
 
   useEffect(() => {
     if (open) {
@@ -74,7 +77,6 @@ const EditRole = ({ role }) => {
       <GridActionsCellItem
         icon={<Edit />}
         color="info"
-        label="ویرایش"
         onClick={() => setOpen(true)}
       />
       <CustomModal open={open} setOpen={setOpen}>

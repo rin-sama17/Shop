@@ -16,7 +16,10 @@ import { Stack } from '@mui/system'
 import { SelectCategory, Spinner } from '../common'
 
 import Grid from '@mui/material/Unstable_Grid2'
+import { useTranslation } from 'react-i18next'
+
 const ProductsFilter = ({ data, setData, isLoading }) => {
+  const { t } = useTranslation()
   const expensiveProduct = useMemo(() => {
     const sortedData = data?.slice().sort((a, b) => a.price - b.price)
     const costlyProduct = sortedData[sortedData.length - 1].price ?? null
@@ -78,15 +81,15 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
           <Stack>
             <SelectCategory value={category} setValue={setCategory} />
             <Button onClick={handleClear} color="error" sx={{ mt: 1 }}>
-              حذف تغییرات
+              {t('حذف تغییرات')}
             </Button>
           </Stack>
         </Grid>
         <Grid xs={12} md={3}>
           <FormControl fullWidth size="small">
-            <InputLabel>مرتب کردن براساس</InputLabel>
+            <InputLabel>{t('مرتب کردن براساس')}</InputLabel>
             <Select
-              input={<OutlinedInput label="مرتب کردن براساس" />}
+              input={<OutlinedInput label={t('مرتب کردن براساس')} />}
               MenuProps={{
                 PaperProps: {
                   style: {
@@ -96,10 +99,9 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
                 },
               }}
             >
-              <MenuItem>تازه ترین</MenuItem>
-              <MenuItem>تخفیف های ویژه</MenuItem>
-
-              <MenuItem>پرفروش ترین</MenuItem>
+              <MenuItem>{t('جدیدترین ها')}</MenuItem>
+              <MenuItem>{t('تخفیف های ویژه')}</MenuItem>
+              <MenuItem>{t('پرفروش ترین ها')}</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -119,12 +121,13 @@ const ProductsFilter = ({ data, setData, isLoading }) => {
               color: 'text.primary',
             }}
           >
-            <Typography variant="caption">ارزان ترین </Typography>
-            <Typography variant="caption">گران ترین </Typography>
+            <Typography variant="caption">{t('ارزان ترین')} </Typography>
+            <Typography variant="caption">{t('گران ترین')} </Typography>
           </Box>
 
           <Typography variant="caption" color="secondary">
-            از {toRial(value[0])} تا {toRial(value[1])} تومان
+            {t('از')} {toRial(value[0])} {t('تا')} {toRial(value[1])}{' '}
+            {t('تومان')}
           </Typography>
         </Grid>
       </Grid>

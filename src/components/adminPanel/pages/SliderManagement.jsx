@@ -13,19 +13,21 @@ import {
 } from '../../../reducers/sliderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { CustomDivider } from '../../common'
+import { useTranslation } from 'react-i18next'
 
 const SliderManagement = () => {
   const dispatch = useDispatch()
   const sliders = useSelector(selectAllSliders)
+  const { t } = useTranslation()
   useEffect(() => {
     dispatch(fetchSliders())
   }, [])
 
   const columns = useMemo(
     () => [
-      { field: 'name', headerName: 'نام', width: 150 },
-      { field: 'description', headerName: 'توضیحات', width: 150 },
-      { field: 'url', headerName: 'لینک', width: 150 },
+      { field: 'name', headerName: t('نام'), width: 150 },
+      { field: 'description', headerName: t('توضیحات'), width: 150 },
+      { field: 'url', headerName: t('لینک'), width: 150 },
       {
         field: 'actions',
         type: 'actions',
@@ -41,7 +43,7 @@ const SliderManagement = () => {
         ],
       },
     ],
-    [sliders, EditSlider],
+    [sliders, EditSlider, t],
   )
   return (
     <>

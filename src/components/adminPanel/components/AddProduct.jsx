@@ -8,6 +8,7 @@ import { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../../reducers/productSlice'
 import { selectLang } from '../../../reducers/langSlice'
+import AddBtn from './AddBtn'
 
 const AddProduct = () => {
   const [open, setOpen] = useState(false)
@@ -39,9 +40,8 @@ const AddProduct = () => {
   const fields = productFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
-        ساخت محصول جدید
-      </Button>
+      <AddBtn setOpen={setOpen} title="افزودن محصول جدید" />
+
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           formik={formik}

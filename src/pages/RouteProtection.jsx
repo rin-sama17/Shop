@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -7,9 +8,12 @@ import { selectAuth } from '../reducers/authSlice'
 
 const RouteProtection = () => {
   const { token, success } = useSelector(selectAuth)
+  const { t } = useTranslation()
   useEffect(() => {
     if (!token)
-      toast.error('شما به این صفحه دسترسی ندارید', { position: 'bottom-left' })
+      toast.error(t('شما به این صفحه دسترسی ندارید'), {
+        position: 'bottom-left',
+      })
   }, [])
   if (!token) {
     return <Navigate to="/" />

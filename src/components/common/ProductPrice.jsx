@@ -1,10 +1,13 @@
 import { Box, Typography, Chip } from '@mui/material'
 import { createSelector } from '@reduxjs/toolkit'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toRial } from '../../helpers'
 import Spinner from './Spinner'
 
 const ProductPrice = ({ price, discount, absolute }) => {
+  const { t } = useTranslation()
+
   let prevPrice
   if (discount > 0) {
     prevPrice = Math.round(price / (1 - discount / 100))
@@ -28,7 +31,7 @@ const ProductPrice = ({ price, discount, absolute }) => {
       >
         {toRial(price)}
         <Typography color="secondary" variant="body2" sx={{ ml: 1 }}>
-          تومان
+          {t('تومان')}
         </Typography>
       </Typography>
       {discount ? (

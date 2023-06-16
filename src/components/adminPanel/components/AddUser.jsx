@@ -8,6 +8,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser } from '../../../reducers/userSlice'
 import { selectLang } from '../../../reducers/langSlice'
+import AddBtn from './AddBtn'
 
 const AddUser = () => {
   const [open, setOpen] = useState(false)
@@ -35,9 +36,8 @@ const AddUser = () => {
   const fields = userFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
-        ساخت ادمین جدید
-      </Button>
+      <AddBtn setOpen={setOpen} title="ساخت ادمین جدید" />
+
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           formik={formik}

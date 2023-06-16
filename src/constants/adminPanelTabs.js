@@ -10,7 +10,7 @@ const tabPanel = (index) => {
 export const tabsData = () => {
     const tabs = [
         { title: 'ویرایش اطلاعات', ...tabPanel(0) },
-        { title: 'مدیریت اسلاید', ...tabPanel(1) },
+        { title: "مدیریت اسلایدر", ...tabPanel(1) },
         { title: 'مدیریت محصولات', ...tabPanel(2) },
         { title: 'مدیریت پست', ...tabPanel(3) },
         { title: 'مدیریت دسته بندی', ...tabPanel(4) },

@@ -8,10 +8,10 @@ import { CustomForm, CustomModal } from '../../common'
 import { addAgency } from '../../../reducers/agencySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectLang } from '../../../reducers/langSlice'
+import AddBtn from './AddBtn'
 const AddAgency = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
-
   const lang = useSelector(selectLang)
 
   const formik = useFormik({
@@ -39,9 +39,7 @@ const AddAgency = () => {
   const fields = agencyFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
-        ساخت نمایندگی جدید
-      </Button>
+      <AddBtn setOpen={setOpen} title="ساخت نمایندگی جدید" />
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           label="ساخت نمایندگی جدید"

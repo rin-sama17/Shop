@@ -1,6 +1,8 @@
 import { Typography, Divider, Box } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const CustomDivider = ({ label, color, ...props }) => {
+  const { t } = useTranslation()
   return (
     <Box
       sx={{
@@ -24,7 +26,7 @@ const CustomDivider = ({ label, color, ...props }) => {
             textAlign: 'center',
           }}
         >
-          {label}
+          {t(label)}
         </Typography>
       </Divider>
     </Box>

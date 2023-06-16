@@ -1,10 +1,7 @@
 import Grid from '@mui/material/Unstable_Grid2'
 import { ProductDetails } from '.'
-import { ShowCategory } from '../../common'
-import { Box, Breadcrumbs, Link, Typography } from '@mui/material'
-import { ArrowLeft } from '@mui/icons-material'
 import ReactImageMagnify from 'react-image-magnify'
-import { c11 } from '../../../assets'
+
 const ProductContent = ({ product }) => {
   return (
     <Grid container spacing={2} sx={{ width: 1, mt: 2 }}>

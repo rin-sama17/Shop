@@ -13,20 +13,22 @@ import {
   selectAllPosts,
 } from '../../../reducers/postSlice'
 import { CustomNoRowsOverlay } from '../components'
+import { useTranslation } from 'react-i18next'
 
 const PostManagement = () => {
   const dispatch = useDispatch()
   const posts = useSelector(selectAllPosts)
+  const { t } = useTranslation()
   useEffect(() => {
     dispatch(fetchPosts())
   }, [])
 
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: 'شماره', width: 100 },
-      { field: 'name', headerName: 'نام پست', width: 150 },
-      { field: 'summary', headerName: 'مقدمه', width: 200 },
-      { field: 'category_id', headerName: 'دسته بندی', width: 100 },
+      { field: 'id', headerName: t('شماره'), width: 100 },
+      { field: 'name', headerName: t('نام پست'), width: 150 },
+      { field: 'summary', headerName: t('مقدمه'), width: 200 },
+      { field: 'category_id', headerName: t('دسته بندی'), width: 100 },
       {
         field: 'actions',
         type: 'actions',
@@ -35,14 +37,13 @@ const PostManagement = () => {
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
-            label="حذف"
             onClick={() => dispatch(deletePost(params.id))}
           />,
           <EditPost post={params.row} />,
         ],
       },
     ],
-    [EditPost, posts],
+    [EditPost, posts, t],
   )
 
   return (

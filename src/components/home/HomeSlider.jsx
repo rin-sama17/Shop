@@ -20,9 +20,10 @@ import Slider from 'react-slick'
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { useGetSlidersQuery } from '../../api'
 import { SliderLoading } from '../loading'
+import { useTranslation } from 'react-i18next'
 
 const HomeSlider = ({ sliders }) => {
-  console.log(sliders)
+  const { t } = useTranslation()
 
   const slider = useRef(null)
   const settings = {
@@ -127,7 +128,7 @@ const HomeSlider = ({ sliders }) => {
                       target="_blank"
                       sx={{ borderRadius: '0  20px  0 20px ', mt: 1 }}
                     >
-                      اطلاعات بیشتر
+                      {t('اطلاعات بیشتر')}
                     </Button>
                   </Grid>
                 </Grid>

@@ -21,9 +21,11 @@ import {
   fetchPremissions,
   selectAllPremissions,
 } from '../../../reducers/premissionSlice'
+import { useTranslation } from 'react-i18next'
 
 const RoleManagement = () => {
   const dispatch = useDispatch()
+  const { t } = useTranslation()
 
   const roles = useSelector(selectAllRoles)
 
@@ -36,12 +38,12 @@ const RoleManagement = () => {
   }
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: 'شماره', width: 10 },
-      { field: 'name', headerName: 'نام', width: 150 },
-      { field: 'description', headerName: 'توضیحات', width: 200 },
+      { field: 'id', headerName: t('شماره'), width: 10 },
+      { field: 'name', headerName: t('نام'), width: 150 },
+      { field: 'description', headerName: t('توضیحات'), width: 200 },
       {
         field: 'status',
-        headerName: 'وضعیت',
+        headerName: t('وضعیت'),
         width: 120,
       },
       {
@@ -49,7 +51,10 @@ const RoleManagement = () => {
         type: 'actions',
         width: 10,
         getActions: (params) => [
-          <ShowOptions options={params.row.premissions} name="دسترسی ها" />,
+          <ShowOptions
+            options={params.row.premissions}
+            name={t('دسترسی ها')}
+          />,
         ],
       },
       {
@@ -60,14 +65,13 @@ const RoleManagement = () => {
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
-            label="حذف"
             onClick={() => handleDelete(params.id)}
           />,
           <EditRole role={params.row} />,
         ],
       },
     ],
-    [roles],
+    [roles, t],
   )
   return (
     <>
@@ -76,12 +80,9 @@ const RoleManagement = () => {
         sx={{
           height: 600,
           width: '100%',
-          direction: 'ltr',
           mt: '8px',
           overFlowX: 'auto',
-          '& .phone': {
-            direction: 'rtl',
-          },
+          direction: 'rtl',
         }}
       >
         <DataGrid

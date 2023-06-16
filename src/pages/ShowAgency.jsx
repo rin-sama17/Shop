@@ -6,11 +6,13 @@ import { ShowAgencyLoading } from '../components/loading'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Typography } from '@mui/material'
 import { useGetAgencyQuery } from '../api'
+import { useTranslation } from 'react-i18next'
 
 const ShowAgency = () => {
   const { agencyId } = useParams()
   const { data = { agency: [] }, isSuccess } = useGetAgencyQuery(agencyId)
   const agency = data.agency
+  const { t } = useTranslation()
   if (!isSuccess) {
     return <ShowAgencyLoading />
   }
@@ -34,7 +36,7 @@ const ShowAgency = () => {
         </Typography>
         <Box sx={{ display: 'flex', mb: 2 }}>
           <Typography variant="caption" color="text.primary" sx={{ mr: 2 }}>
-            ادرس:
+            {t('ادرس')}:
           </Typography>
           <Typography variant="caption" color="text.secondary">
             {agency.address}
@@ -42,20 +44,20 @@ const ShowAgency = () => {
         </Box>
         <Box sx={{ display: 'flex', mb: 2 }}>
           <Typography variant="caption" color="text.primary" sx={{ mr: 2 }}>
-            شماره تماس:
+            {t('شماره تماس')}:
           </Typography>
           <Typography variant="caption" color="text.secondary">
             {agency.phone}
           </Typography>
-        </Box>{' '}
+        </Box>
         <Box sx={{ display: 'flex', mb: 2 }}>
           <Typography variant="caption" color="text.primary" sx={{ mr: 2 }}>
-            ایمیل:
+            {t('ایمیل')}:
           </Typography>
           <Typography variant="caption" color="text.secondary">
             {agency.email}
           </Typography>
-        </Box>{' '}
+        </Box>
       </Grid>
     </Grid>
   )

@@ -1,4 +1,7 @@
+import { useTranslation } from 'react-i18next'
+
 const postFieldsData = (formik) => {
+  const { t } = useTranslation()
   return [
     {
       sm: 8,
@@ -17,7 +20,7 @@ const postFieldsData = (formik) => {
       name: 'tags',
       formik,
       label: 'برچسب ها',
-      helperText: 'برچسب ها را با / از هم جدا کنید',
+      helperText: t('برچسب ها را با / از هم جدا کنید'),
       multiline: true,
     },
     {

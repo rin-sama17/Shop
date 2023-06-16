@@ -1,9 +1,11 @@
 import { Typography, Box, Button } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useGetCategoryQuery } from '../../api'
 import Spinner from './Spinner'
 
 const ShowCategory = ({ categoryId, tags = 'اشپزی/ملاقه' }) => {
+  const { t } = useTranslation()
   const splitedTags = tags && tags.split('/')
   const {
     data = { category: {} },
@@ -24,7 +26,7 @@ const ShowCategory = ({ categoryId, tags = 'اشپزی/ملاقه' }) => {
           sx={{ mr: 1 }}
           gutterBottom
         >
-          دسته بندی:
+          {t('دسته بندی')}:
           <Button
             component={Link}
             to={`/search/${categoryId};name:${category.name}`}
@@ -41,7 +43,7 @@ const ShowCategory = ({ categoryId, tags = 'اشپزی/ملاقه' }) => {
           sx={{ mr: 1, display: 'flex' }}
           gutterBottom
         >
-          تگ ها:
+          {t('تگ ها')}:
           {splitedTags.map((tag, index) => (
             <Box key={index}>
               <Typography
@@ -67,7 +69,7 @@ const ShowCategory = ({ categoryId, tags = 'اشپزی/ملاقه' }) => {
         sx={{ mr: 1, display: 'flex' }}
         gutterBottom
       >
-        تگ ها:
+        {t('تگ ها')}:
         {splitedTags.map((tag, index) => (
           <Box key={index}>
             <Typography

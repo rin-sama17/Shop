@@ -1,10 +1,11 @@
 import { Tab, Tabs, useMediaQuery, useTheme } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { tabsData } from '../../constants/adminPanelTabs'
 
 const AdminPanelTabs = ({ pageNumber, setPageNumber }) => {
   const theme = useTheme()
-
   const isMdDown = useMediaQuery(theme.breakpoints.down('md'))
+  const { t } = useTranslation()
 
   const handlePageNumber = (event, value) => {
     setPageNumber(value)
@@ -38,9 +39,11 @@ const AdminPanelTabs = ({ pageNumber, setPageNumber }) => {
       {tabs.map((tab, index) => (
         <Tab
           key={index}
-          label={tab.title}
+          label={t(tab.title)}
           sx={{
             my: 0.5,
+            textTransform: 'none',
+
             '&.MuiTab-root': {
               minHeight: 50,
             },

@@ -31,6 +31,7 @@ import {
   selectAllCategories,
 } from '../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const fieldColor = {
   '& label.Mui-focused': {
@@ -70,6 +71,7 @@ const CustomFields = ({
 }) => {
   const [value, setValue] = useState()
   const dispatch = useDispatch()
+  const { t } = useTranslation()
 
   if (submit === true) {
     return (
@@ -89,7 +91,7 @@ const CustomFields = ({
           }}
           {...props}
         >
-          {customLabel}
+          {t(customLabel)}
         </Button>
       </Grid>
     )
@@ -127,7 +129,6 @@ const CustomFields = ({
         customInput={TextField}
         fullWidth
         size="small"
-        label="شماره موبایل"
         name={name}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -160,8 +161,8 @@ const CustomFields = ({
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
-        label="قیمت"
-        placeholder="به ریال"
+        label={t('قیمت')}
+        placeholder={t('تومان')}
         displayType="input"
         sx={{ color: 'textBox.main', ...fieldColor }}
         variant="outlined"
@@ -174,7 +175,7 @@ const CustomFields = ({
         variant="outlined"
         size="small"
       >
-        <InputLabel>پسورد</InputLabel>
+        <InputLabel>{t('پسورد')}</InputLabel>
         <OutlinedInput
           name={name}
           value={value}
@@ -193,7 +194,7 @@ const CustomFields = ({
               </IconButton>
             </InputAdornment>
           }
-          label="پسورد"
+          label={t('پسورد')}
           {...props}
         />
       </FormControl>
@@ -207,17 +208,13 @@ const CustomFields = ({
         sx={fieldColor}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
       >
-        <InputLabel id={`category-label`}>
-          {customLabel ? customLabel : 'دسته بندی'}
-        </InputLabel>
+        <InputLabel id={`category-label`}>{t('دسته بندی ها')}</InputLabel>
         <Select
           name={name}
           value={formik.values[`${name}`]}
           onChange={formik.handleChange}
           labelId={`category-label`}
-          input={
-            <OutlinedInput label={customLabel ? customLabel : 'دسته بندی'} />
-          }
+          input={<OutlinedInput label={t('دسته بندی ها')} />}
           MenuProps={{
             PaperProps: {
               style: {

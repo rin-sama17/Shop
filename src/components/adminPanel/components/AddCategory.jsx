@@ -9,6 +9,7 @@ import { categoryFieldsData } from '../../fieldsData'
 import { useDispatch, useSelector } from 'react-redux'
 import { addCategory } from '../../../reducers/categorySlice'
 import { selectLang } from '../../../reducers/langSlice'
+import AddBtn from './AddBtn'
 
 const AddCategory = () => {
   const [open, setOpen] = useState(false)
@@ -36,9 +37,7 @@ const AddCategory = () => {
   const fields = categoryFieldsData(formik)
   return (
     <>
-      <Button onClick={() => setOpen(true)} sx={{ m: 2 }} color="secondary">
-        ساخت دسته بندی جدید
-      </Button>
+      <AddBtn setOpen={setOpen} title="ساخت دسته بندی جدید" />
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           label="ساخت دسته بندی جدید"

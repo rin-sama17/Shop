@@ -13,10 +13,12 @@ import { TransitionGroup } from 'react-transition-group'
 import { Agency } from '../components/agency'
 import { useGetAgenciesQuery } from '../api'
 import { PostLoading } from '../components/loading'
+import { useTranslation } from 'react-i18next'
 
 const Agencies = () => {
   const [query, setQuery] = useState('')
   const { data = { agencies: [] }, isSuccess } = useGetAgenciesQuery()
+  const { t } = useTranslation()
   const agencies = data.agencies
   return (
     <>
@@ -33,18 +35,19 @@ const Agencies = () => {
             }}
           >
             <Typography variant="h6" gutterBottom color="secondary">
-              با خیال راحت خرید کنید
+              {t('با خیال راحت خرید کنید')}
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              نمایندگان فروشگاه فرش 24 ساعته در تلاشند تا رضایت کامل مشتریان خود
-              را جلب کنند
+              {t(
+                'نمایندگان فروشگاه من 24 ساعته در تلاشند تا رضایت کامل مشتریان خود را جلب کنند',
+              )}
             </Typography>
             <Typography
               variant="subtitle1"
               color="text.primary"
               sx={{ display: 'flex', mt: 2 }}
             >
-              تعداد نمایندگی های فعال :
+              {t('تعداد نمایندگی های فعال')}:
               <Typography variant="h5" color="secondary" sx={{ ml: 1 }}>
                 {agencies.length}
               </Typography>
@@ -62,11 +65,11 @@ const Agencies = () => {
             }}
           >
             <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-              جستجو میان نمایندگی ها:
+              {t('جستجو میان نمایندگی ها')}:
             </Typography>
             <TextField
               variant="outlined"
-              placeholder="جستجو"
+              placeholder={t('جستجو')}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               InputProps={{

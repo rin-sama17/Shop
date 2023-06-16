@@ -7,8 +7,10 @@ import {
   ShowCategory,
 } from '../../common'
 import { ReportGmailerrorred } from '@mui/icons-material'
+import { useTranslation } from 'react-i18next'
 
 const ProductDetails = ({ product }) => {
+  const { t } = useTranslation()
   return (
     <Grid xs={12} md={8} sx={{ pl: 2 }}>
       <Card sx={{ p: 2, border: 0 }}>
@@ -18,7 +20,7 @@ const ProductDetails = ({ product }) => {
           sx={{ mr: 1 }}
           gutterBottom
         >
-          {product.name}
+          {t(product.name)}
         </Typography>
         <Box sx={{ px: 2 }}>
           <ShowCategory categoryId={product.category_id} tags={product.tags} />
@@ -26,7 +28,7 @@ const ProductDetails = ({ product }) => {
             <CustomDivider
               label={
                 <>
-                  موجود نیست
+                  {t('موجود نیست')}
                   <CustomIconButton
                     color="warning"
                     icon={<ReportGmailerrorred />}
@@ -42,7 +44,7 @@ const ProductDetails = ({ product }) => {
                 color="text.secondary"
                 gutterBottom
               >
-                {product.remaining} عدد موجود است
+                {product.remaining} {t('عدد موجود است')}
               </Typography>
             </>
           )}{' '}
@@ -54,7 +56,7 @@ const ProductDetails = ({ product }) => {
             sx={{ mr: 1 }}
             gutterBottom
           >
-            توضیحات:
+            {t('توضیحات')}:
           </Typography>
           <Typography variant="subtitle2" sx={{ mr: 1 }} gutterBottom>
             {product.description}
@@ -66,7 +68,7 @@ const ProductDetails = ({ product }) => {
             variant="body1"
             sx={{ mr: 1, display: 'flex', alignItems: 'center' }}
           >
-            قیمت:
+            {t('قیمت')}:
           </Typography>
           <ProductPrice price={product.price} discount={product.discount} />
         </Box>
@@ -76,7 +78,7 @@ const ProductDetails = ({ product }) => {
           variant="contained"
           sx={{ borderRadius: '0  20px  0 20px ', mt: 1 }}
         >
-          تماس بگیرید
+          {t('تماس بگیرید')}
         </Button>
       </Card>
     </Grid>
