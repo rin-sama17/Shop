@@ -73,8 +73,7 @@ export const productFieldsData = (formik) => {
       sm: 5,
       formik,
       name: 'tags',
-      label: 'برچسب ها',
-      helperText: t('برچسب ها را با / از هم جدا کنید'),
+      selectTag: true,
     },
 
     {

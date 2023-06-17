@@ -198,6 +198,30 @@ export const removeRole = (roleId) => {
 
 
 
+export const getAllTags = () => {
+    const url = `${ADMIN_SERVER_URL}/tags`;
+    return axios.get(url, headers);
+};
+
+export const createTag = (tag) => {
+    const url = `${ADMIN_SERVER_URL}/tags/store`;
+    return axios.post(url, tag, headers);
+};
+
+export const updateTag = (tag) => {
+    const url = `${ADMIN_SERVER_URL}/tags/update/${tag.id}`;
+    return axios.put(url, tag, headers);
+};
+
+export const removeTag = (tagId) => {
+    const url = `${ADMIN_SERVER_URL}/tags/delete/${tagId}`;
+    return axios.delete(url, lang, headers);
+};
+
+
+
+
+
 
 
 

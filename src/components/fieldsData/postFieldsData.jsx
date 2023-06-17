@@ -19,9 +19,7 @@ const postFieldsData = (formik) => {
       sm: 12,
       name: 'tags',
       formik,
-      label: 'برچسب ها',
-      helperText: t('برچسب ها را با / از هم جدا کنید'),
-      multiline: true,
+      selectTag: true,
     },
     {
       sm: 12,

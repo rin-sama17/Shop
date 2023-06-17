@@ -27,7 +27,7 @@ export const fetchFilterProduct = createAsyncThunk(
 
 
 const filtredProductSlice = createSlice({
-    name: 'product',
+    name: 'filterProduct',
     initialState,
     reducers: {
         sortItems: (state, action) => {

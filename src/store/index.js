@@ -9,6 +9,7 @@ import roleReducer from "../reducers/roleSlice";
 import userReducer from "../reducers/userSlice";
 import authReducer, { fetchUserInfo } from "../reducers/authSlice";
 import searchReducer from "../reducers/searchSlice";
+import tagReducer from "../reducers/tagSlice";
 import sliderReducer from "../reducers/sliderSlice";
 import langReducer from "../reducers/langSlice";
 import filtredProductReducer from "../reducers/filterProductsSlice";
@@ -25,6 +26,7 @@ export const store = configureStore({
         agency: agencyReducer,
         lang: langReducer,
         search: searchReducer,
+        tag: tagReducer,
         filtredProduct: filtredProductReducer,
         category: categoryReducer,
         premission: premissionReducer,

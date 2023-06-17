@@ -1,4 +1,12 @@
-import { Box, Button, Divider, Stack, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  Divider,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 import { AppsOutlined } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import CustomIconButton from '../common/CustomIconButton'
@@ -16,6 +24,8 @@ const buttons = [
   { name: 'درباره ما', to: '/about-us' },
 ]
 const NavContent = ({ setDrawerOpen }) => {
+  const theme = useTheme()
+  const downMd = useMediaQuery(theme.breakpoints.down('md'))
   const { t } = useTranslation()
   return (
     <>
@@ -26,6 +36,7 @@ const NavContent = ({ setDrawerOpen }) => {
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           width: 1,
+          height: downMd ? 50 : 'auto',
           px: 1,
           display: 'flex',
           justifyContent: 'space-between',
@@ -52,6 +63,7 @@ const NavContent = ({ setDrawerOpen }) => {
           <Login />
         </Box>
       </Box>
+
       <Box
         sx={{
           width: 1,
@@ -75,16 +87,13 @@ const NavContent = ({ setDrawerOpen }) => {
           }
           spacing={2}
           sx={{
-            width: '70%',
+            width: 1,
             m: 'auto',
 
-            display: {
-              xs: 'none',
-              sm: 'flex',
-            },
+            display: 'flex',
           }}
         >
-          <ShowCtegories />
+          {!downMd && <ShowCtegories />}
           {buttons.map((btn, index) => (
             <Button
               sx={{ color: 'btnNav.dark' }}
@@ -92,7 +101,9 @@ const NavContent = ({ setDrawerOpen }) => {
               component={Link}
               to={btn.to}
             >
-              <Typography variant="body1">{t(btn.name)}</Typography>
+              <Typography variant={downMd ? 'caption' : 'body1'}>
+                {t(btn.name)}
+              </Typography>
             </Button>
           ))}
         </Stack>

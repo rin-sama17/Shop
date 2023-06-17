@@ -1,5 +1,5 @@
 import Typed from 'typed.js'
-import { Typography, Button } from '@mui/material'
+import { Typography, Button, useTheme, useMediaQuery } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import TextTransition, { presets } from 'react-text-transition'
@@ -9,6 +9,8 @@ import { useTranslation } from 'react-i18next'
 const HomeDescription = () => {
   const [index, setIndex] = useState(0)
   const { t, i18n } = useTranslation()
+  const theme = useTheme()
+  const downMd = useMediaQuery(theme.breakpoints.down('md'))
   const nameEl = useRef(null)
   const strings = ['محصولات متنوع', 'دسترسی راحت', 'پرداخت ایمن', 'تنوع بالا']
 
@@ -51,7 +53,7 @@ const HomeDescription = () => {
       </TextTransition>
 
       <Typography
-        variant="body2"
+        variant={downMd ? 'caption' : 'body2'}
         sx={{
           width: '60%',
           mt: 2,

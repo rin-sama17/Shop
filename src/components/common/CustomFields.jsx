@@ -12,6 +12,7 @@ import {
   Checkbox,
   Button,
   ListSubheader,
+  ListItemText,
 } from '@mui/material'
 
 import { NumericFormat } from 'react-number-format'
@@ -32,7 +33,18 @@ import {
 } from '../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { tagIdAdded, tagIdDeleted } from '../../reducers/tagSlice'
 
+const ITEM_HEIGHT = 48
+const ITEM_PADDING_TOP = 8
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+}
 const fieldColor = {
   '& label.Mui-focused': {
     color: 'textBox.dark',
@@ -63,6 +75,7 @@ const CustomFields = ({
   category,
   categoryParents,
   textEditor,
+  selectTag,
   xs,
   sm,
   md,
@@ -227,6 +240,64 @@ const CustomFields = ({
           {categories.map((category, index) => (
             <MenuItem value={category.id} key={index}>
               {category.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    )
+  } else if (selectTag) {
+    const tags = [
+      { id: 1, name: 'Oliver Hansen' },
+      { id: 2, name: 'Van Henry' },
+      { id: 3, name: 'April Tucker' },
+      { id: 4, name: 'Ralph Hubbard' },
+      { id: 5, name: 'Omar Alexander' },
+      { id: 6, name: 'Carlos Abbott' },
+      { id: 7, name: 'Miriam Wagner' },
+      { id: 8, name: 'Bradley Wilkerson' },
+      { id: 9, name: 'Virginia Andrews' },
+      { id: 10, name: 'Kelly Snyder' },
+    ]
+    const saveId = (id, canSave) => {
+      if (canSave) {
+        dispatch(tagIdAdded(id))
+      } else {
+        dispatch(tagIdDeleted(id))
+      }
+    }
+    content = (
+      <FormControl
+        fullWidth
+        size="small"
+        sx={fieldColor}
+        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+      >
+        <InputLabel id="select-tag">{t('تگ')}</InputLabel>
+        <Select
+          labelId="select-tag"
+          multiple
+          name={name}
+          value={formik.values[`${name}`]}
+          onChange={formik.handleChange}
+          input={<OutlinedInput label={t('تگ')} />}
+          renderValue={(selected) => selected.join(', ')}
+          MenuProps={MenuProps}
+        >
+          {tags.map((tag, index) => (
+            <MenuItem
+              key={index}
+              value={tag.name}
+              onClick={() =>
+                saveId(
+                  tag.id,
+                  !(formik.values[`${name}`].indexOf(tag.name) > -1),
+                )
+              }
+            >
+              <Checkbox
+                checked={formik.values[`${name}`].indexOf(tag.name) > -1}
+              />
+              <ListItemText primary={tag.name} />
             </MenuItem>
           ))}
         </Select>

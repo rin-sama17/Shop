@@ -12,6 +12,8 @@ export { default as AddProduct } from "./AddProduct";
 export { default as EditProduct } from "./EditProduct";
 export { default as AddPost } from "./AddPost";
 export { default as EditPost } from "./EditPost";
+export { default as AddTag } from "./AddTag";
+export { default as EditTag } from "./EditTag";
 export { default as AddUser } from "./AddUser";
 export { default as EditUser } from "./EditUser";
 export { default as ShowOptions } from "./ShowOptions";

@@ -14,10 +14,11 @@ export const tabsData = () => {
         { title: 'مدیریت محصولات', ...tabPanel(2) },
         { title: 'مدیریت پست', ...tabPanel(3) },
         { title: 'مدیریت دسته بندی', ...tabPanel(4) },
-        { title: 'مدیریت نمایندگی', ...tabPanel(5) },
-        { title: 'مدیریت دسترسی', ...tabPanel(6) },
-        { title: "مدیریت نقش", ...tabPanel(7) },
-        { title: "مدیریت ادمین ها", ...tabPanel(8) },
+        { title: 'مدیریت تگ ها', ...tabPanel(5) },
+        { title: 'مدیریت نمایندگی', ...tabPanel(6) },
+        { title: 'مدیریت دسترسی', ...tabPanel(7) },
+        { title: "مدیریت نقش", ...tabPanel(8) },
+        { title: "مدیریت ادمین ها", ...tabPanel(9) },
     ];
     return tabs;
 };

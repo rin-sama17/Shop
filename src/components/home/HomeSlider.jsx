@@ -11,6 +11,7 @@ import {
   Stack,
   Divider,
   Paper,
+  useTheme,
 } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import LinesEllipsis from 'react-lines-ellipsis'
@@ -24,6 +25,8 @@ import { useTranslation } from 'react-i18next'
 
 const HomeSlider = ({ sliders }) => {
   const { t } = useTranslation()
+  const theme = useTheme()
+  const downMd = useMediaQuery(theme.breakpoints.down('md'))
 
   const slider = useRef(null)
   const settings = {
@@ -54,7 +57,10 @@ const HomeSlider = ({ sliders }) => {
               <img
                 src={`http://localhost:8000/${slide.image}`}
                 alt={slide.name}
-                style={{ height: '40vh', borderRadius: '0 0 20px  20px ' }}
+                style={{
+                  height: downMd ? '30vh' : '40vh',
+                  borderRadius: '0 0 20px  20px ',
+                }}
               />
 
               <CardActionArea
@@ -76,23 +82,35 @@ const HomeSlider = ({ sliders }) => {
                 <Grid
                   container
                   spacing={2}
-                  sx={{ width: 1, display: 'flex', justifyContent: 'center' }}
+                  sx={{
+                    width: 1,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
                 >
                   <Grid
                     xs={4}
                     sx={{
-                      display: { xs: 'none', sm: 'flex' },
+                      display: 'flex',
                       justifyContent: 'center',
                     }}
                   >
-                    <Paper elevation={12} sx={{ borderRadius: 15 }}>
+                    <Paper
+                      elevation={12}
+                      sx={{
+                        width: downMd ? 100 : 200,
+                        height: downMd ? 100 : 200,
+                        borderRadius: '20%',
+                      }}
+                    >
                       <img
                         src={`http://localhost:8000/${slide.image}`}
                         alt={slide.name}
                         style={{
-                          width: 200,
-                          height: 200,
-                          borderRadius: '60px',
+                          width: downMd ? 100 : 200,
+                          height: downMd ? 100 : 200,
+                          borderRadius: '20%',
                         }}
                       />
                     </Paper>
@@ -108,7 +126,11 @@ const HomeSlider = ({ sliders }) => {
                     }}
                   >
                     <Box>
-                      <Typography variant="h6" color="white" sx={{ mb: 1 }}>
+                      <Typography
+                        variant="subtitle1"
+                        color="white"
+                        sx={{ mb: 1 }}
+                      >
                         {slide.name}
                       </Typography>
 
@@ -118,7 +140,10 @@ const HomeSlider = ({ sliders }) => {
                         textAlign="start"
                         color="whitesmoke"
                       >
-                        <LinesEllipsis text={slide.description} maxLine={4} />
+                        <LinesEllipsis
+                          text={slide.description}
+                          maxLine={downMd ? 3 : 4}
+                        />
                       </Typography>
                     </Box>
                     <Button
@@ -126,7 +151,8 @@ const HomeSlider = ({ sliders }) => {
                       component="a"
                       href={slide.url}
                       target="_blank"
-                      sx={{ borderRadius: '0  20px  0 20px ', mt: 1 }}
+                      size="small"
+                      sx={{ borderRadius: '10px  20px  10px 20px ', mt: 1 }}
                     >
                       {t('اطلاعات بیشتر')}
                     </Button>
@@ -137,29 +163,32 @@ const HomeSlider = ({ sliders }) => {
           </Box>
         ))}
       </Slider>
-
-      <Box
-        size="small"
-        sx={{
-          top: '50%',
-          left: 10,
-          position: 'absolute',
-        }}
-        onClick={() => slider.current.slickNext()}
-      >
-        <KeyboardArrowRight sx={{ color: 'white' }} />
-      </Box>
-      <Box
-        size="small"
-        sx={{
-          top: '50%',
-          right: 10,
-          position: 'absolute',
-        }}
-        onClick={() => slider.current.slickPrev()}
-      >
-        <KeyboardArrowLeft sx={{ color: 'white' }} />
-      </Box>
+      {!downMd && (
+        <>
+          <Box
+            size="small"
+            sx={{
+              top: '50%',
+              left: 10,
+              position: 'absolute',
+            }}
+            onClick={() => slider.current.slickNext()}
+          >
+            <KeyboardArrowRight sx={{ color: 'white' }} />
+          </Box>
+          <Box
+            size="small"
+            sx={{
+              top: '50%',
+              right: 10,
+              position: 'absolute',
+            }}
+            onClick={() => slider.current.slickPrev()}
+          >
+            <KeyboardArrowLeft sx={{ color: 'white' }} />
+          </Box>
+        </>
+      )}
     </Box>
   )
 }

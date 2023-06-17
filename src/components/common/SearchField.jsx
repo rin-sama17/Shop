@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import CustomIconButton from './CustomIconButton'
 import { useTranslation } from 'react-i18next'
 
-const SearchField = ({ downMd }) => {
+const SearchField = ({ downMd, setOpen }) => {
   const [query, setQuery] = useState('')
   const { t } = useTranslation()
   const navigate = useNavigate()
@@ -19,6 +19,9 @@ const SearchField = ({ downMd }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     navigate(`/search/${query}`)
+    if (setOpen) {
+      setOpen(false)
+    }
   }
   const handleCancle = () => {
     setQuery('')

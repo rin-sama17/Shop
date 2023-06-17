@@ -1,12 +1,13 @@
 
-import { createTheme } from '@mui/material';
+import { createTheme, responsiveFontSizes } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectLang } from '../../reducers/langSlice';
 
 
 export const useTheme = () => {
     const lang = useSelector(selectLang);
-    return createTheme({
+
+    let theme = createTheme({
         direction: lang === "en" ? "ltr" : "rtl",
         typography: {
             fontFamily: "tanha ,wazin"
@@ -105,4 +106,5 @@ export const useTheme = () => {
             },
         }
     });
+    return responsiveFontSizes(theme);
 };

@@ -15,6 +15,7 @@ import {
   AgencyManagement,
   PremissionManagement,
   UserManagement,
+  TagManagement,
 } from '../components/adminPanel/pages'
 import { useNavigate } from 'react-router-dom'
 
@@ -24,6 +25,7 @@ const pages = [
   <ProductManagement />,
   <PostManagement />,
   <CategoryManagement />,
+  <TagManagement />,
   <AgencyManagement />,
   <PremissionManagement />,
   <RoleManagement />,
