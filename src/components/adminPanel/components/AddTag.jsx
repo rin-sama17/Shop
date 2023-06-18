@@ -33,11 +33,6 @@ const AddTag = () => {
   const handleAddToTemp = (values) => {
     dispatch(tagAdded(values))
   }
-  const handleSubmit = () => {
-    const arrayTags = tempTags.map((tag) => tag.name)
-    dispatch(addTag({ values: { ...arrayTags, lang }, setOpen }))
-    dispatch(tagIdsCleared())
-  }
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -47,6 +42,16 @@ const AddTag = () => {
       handleAddToTemp(values)
     },
   })
+
+  const handleSubmit = () => {
+    const arrayTags = tempTags.map((tag) => tag.name)
+    const singleName = formik.values.name
+    if (singleName && singleName.length > 0) {
+      arrayTags.push(singleName)
+    }
+    dispatch(addTag({ values: { name: [...arrayTags], lang }, setOpen }))
+    dispatch(tagIdsCleared())
+  }
   const fields = tagFieldData(formik)
   const extraFields = [
     {
