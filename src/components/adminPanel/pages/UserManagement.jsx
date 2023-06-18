@@ -83,7 +83,7 @@ const UserManagement = () => {
               return 'phone'
             }
           }}
-          sx={{ direction: 'rtl' }}
+          sx={{ direction: 'rtl', overflowX: 'scroll' }}
           components={{
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
           }}

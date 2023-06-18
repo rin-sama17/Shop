@@ -70,18 +70,16 @@ const AdminPanel = () => {
         <AdminPanelTabs pageNumber={pageNumber} setPageNumber={setPageNumber} />
       </Grid>
       <Grid xs={12} md={9.5} lg={10}>
-        <SwipeableViews index={pageNumber} onChangeIndex={handleSwipeNumber}>
-          {pages.map((page, index) => (
-            <Page
-              key={index}
-              pageNumber={pageNumber}
-              name="adminPanel"
-              index={index}
-            >
-              {page}
-            </Page>
-          ))}
-        </SwipeableViews>
+        {pages.map((page, index) => (
+          <Page
+            key={index}
+            pageNumber={pageNumber}
+            name="adminPanel"
+            index={index}
+          >
+            {page}
+          </Page>
+        ))}
       </Grid>
     </Grid>
   )
