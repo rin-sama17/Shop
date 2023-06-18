@@ -46,10 +46,20 @@ const AddTag = () => {
   const handleSubmit = () => {
     const arrayTags = tempTags.map((tag) => tag.name)
     const singleName = formik.values.name
-    if (singleName && singleName.length > 0) {
+    if (
+      singleName &&
+      singleName.length > 0 &&
+      !singleName.includes(arrayTags)
+    ) {
       arrayTags.push(singleName)
     }
-    dispatch(addTag({ values: { name: [...arrayTags], lang }, setOpen }))
+    const myObject = {}
+
+    arrayTags.forEach((value, index) => {
+      myObject[`name${index + 1}`] = value
+    })
+    console.log(myObject)
+    dispatch(addTag({ values: { ...myObject, lang }, setOpen }))
     dispatch(tagIdsCleared())
   }
   const fields = tagFieldData(formik)

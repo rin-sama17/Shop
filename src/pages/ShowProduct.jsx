@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { ProductContent } from '../components/products'
 import { useGetProductQuery } from '../api'
 import { ShowProductLoading } from '../components/loading'
+import { SimilarProducts } from '../components/products/showProduct'
 
 const ShowProduct = () => {
   const { productId } = useParams()
@@ -9,7 +10,12 @@ const ShowProduct = () => {
   if (!isSuccess) {
     return <ShowProductLoading />
   }
-  return <ProductContent product={data.product} />
+  return (
+    <>
+      <ProductContent product={data.product} />
+      <SimilarProducts product={data.product} />
+    </>
+  )
 }
 
 export default ShowProduct

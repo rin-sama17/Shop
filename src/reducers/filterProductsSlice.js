@@ -60,8 +60,10 @@ const filtredProductSlice = createSlice({
         },
         resetProducts: (state, acrion) => {
             state.sortedProducts = state.products;
-        }
+        },
+
     },
+
     extraReducers: {
         [fetchFilterProduct.fulfilled]: (state, action) => {
             state.isSuccess = true;
@@ -78,7 +80,7 @@ export const selectFiltredProducts = state => state.filtredProduct;
 export const {
     sortItems,
     filterProducts,
-    resetProducts
+    resetProducts,
 } = filtredProductSlice.actions;
 
 export default filtredProductSlice.reducer;
