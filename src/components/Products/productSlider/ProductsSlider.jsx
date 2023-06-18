@@ -43,7 +43,7 @@ function ProductSlider({ products }) {
       >
         {products &&
           products.map((product, index) => (
-            <Box component="dev" key={index}>
+            <Box component="dev" key={index} sx={{ py: 2 }}>
               <Product productId={product.id} />
             </Box>
           ))}

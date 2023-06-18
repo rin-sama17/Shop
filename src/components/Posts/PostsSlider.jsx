@@ -23,7 +23,7 @@ import { useGetPostsQuery } from '../../api'
 const PostsSlider = () => {
   const { data = { posts: [] }, isSuccess } = useGetPostsQuery()
   const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('md'))
+  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
 
   const settings = {
     dots: true,

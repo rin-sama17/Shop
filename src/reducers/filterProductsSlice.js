@@ -66,6 +66,7 @@ const filtredProductSlice = createSlice({
         [fetchFilterProduct.fulfilled]: (state, action) => {
             state.isSuccess = true;
             state.products = action.payload;
+            state.sortedProducts = action.payload;
 
         },
     },

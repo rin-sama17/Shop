@@ -21,6 +21,7 @@ const AddAgency = () => {
       address: '',
       phone: '',
       email: '',
+      description: '',
     },
     // validationSchema: agencyValidation,
     onSubmit: (values, { resetForm }) => {

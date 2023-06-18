@@ -33,9 +33,9 @@ const AddTag = () => {
   const handleAddToTemp = (values) => {
     dispatch(tagAdded(values))
   }
-  const handleSubmit = () => (e) => {
-    e.preventDefault()
-    dispatch(addTag({ values: { ...tempTags, lang }, setOpen }))
+  const handleSubmit = () => {
+    const arrayTags = tempTags.map((tag) => tag.name)
+    dispatch(addTag({ values: { ...arrayTags, lang }, setOpen }))
     dispatch(tagIdsCleared())
   }
   const formik = useFormik({
@@ -52,6 +52,7 @@ const AddTag = () => {
     {
       md: 12,
       submit: true,
+      isBtn: true,
       onClick: () => handleSubmit(),
       customLabel: 'ثبت',
     },

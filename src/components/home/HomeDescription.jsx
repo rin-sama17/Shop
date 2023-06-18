@@ -10,7 +10,7 @@ const HomeDescription = () => {
   const [index, setIndex] = useState(0)
   const { t, i18n } = useTranslation()
   const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('md'))
+  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
   const nameEl = useRef(null)
   const strings = ['محصولات متنوع', 'دسترسی راحت', 'پرداخت ایمن', 'تنوع بالا']
 

@@ -25,7 +25,7 @@ const buttons = [
 ]
 const NavContent = ({ setDrawerOpen }) => {
   const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('md'))
+  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
   const { t } = useTranslation()
   return (
     <>
@@ -82,13 +82,13 @@ const NavContent = ({ setDrawerOpen }) => {
               flexItem
               sx={{
                 bgcolor: 'primary.light',
+                mx: downMd ? '0 !important' : null,
               }}
             />
           }
           spacing={2}
           sx={{
             width: 1,
-            m: 'auto',
 
             display: 'flex',
           }}
@@ -96,7 +96,10 @@ const NavContent = ({ setDrawerOpen }) => {
           {!downMd && <ShowCtegories />}
           {buttons.map((btn, index) => (
             <Button
-              sx={{ color: 'btnNav.dark' }}
+              sx={{
+                color: 'btnNav.dark',
+                mx: downMd ? '0 !important' : null,
+              }}
               key={index}
               component={Link}
               to={btn.to}

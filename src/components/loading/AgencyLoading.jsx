@@ -1,14 +1,24 @@
-import { Skeleton, Box, CardContent, Paper } from '@mui/material'
+import {
+  Skeleton,
+  Box,
+  CardContent,
+  Paper,
+  useTheme,
+  useMediaQuery,
+} from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 
 const AgencyLoading = () => {
+  const theme = useTheme()
+  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
+  const height = downMd ? 10 : 15
   return (
     <Box
       sx={{
         display: 'flex',
         justifyContent: 'center',
         mb: 3,
-        width: '80%',
+        width: downMd ? '95%' : '80%',
         m: '10px auto',
       }}
     >
@@ -16,18 +26,19 @@ const AgencyLoading = () => {
         elevation={8}
         sx={{
           width: 1,
-          borderRadius: 10,
+          borderRadius: '21px',
+          bgcolor: '#068AD2',
         }}
       >
         <Box>
           <Grid container sx={{ justifyContent: 'space-between' }}>
-            <Grid xs={12} sm={4}>
+            <Grid xs={5.5} sm={5} md={4.5}>
               <Skeleton
                 sx={{
-                  height: 200,
-                  width: 250,
-                  borderRadius: 10,
-                  borderRight: 13,
+                  height: downMd ? 100 : 200,
+                  width: downMd ? 130 : 250,
+                  borderRadius: '10%',
+                  borderRight: downMd ? 6 : 13,
                   borderColor: 'gray',
                 }}
                 animation="wave"
@@ -35,31 +46,22 @@ const AgencyLoading = () => {
               />
             </Grid>
             <Grid
-              xs={12}
-              sm={8}
+              xs={6.5}
+              sm={5}
+              md={7.5}
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
+                textAlign: 'left',
                 justifyContent: 'space-between',
                 p: 2,
               }}
             >
-              <Skeleton
-                animation="wave"
-                height={25}
-                width="40%"
-                style={{ marginBottom: 6 }}
-              />
               <Box>
-                <Skeleton animation="wave" height={15} sx={{ mb: 1 }} />
-                <Skeleton animation="wave" height={15} sx={{ mb: 1 }} />
-                <Skeleton animation="wave" height={15} sx={{ mb: 1 }} />
-                <Skeleton
-                  animation="wave"
-                  height={15}
-                  width="80%"
-                  sx={{ mb: 1 }}
-                />
+                <Skeleton animation="wave" sx={{ mb: 1, height }} />
+                <Skeleton animation="wave" sx={{ mb: 1, height }} />
+                <Skeleton animation="wave" sx={{ mb: 1, height }} />
+                <Skeleton animation="wave" width="80%" sx={{ mb: 1, height }} />
               </Box>
             </Grid>
           </Grid>

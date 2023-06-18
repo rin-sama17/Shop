@@ -22,13 +22,14 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { useGetSlidersQuery } from '../../api'
 import { SliderLoading } from '../loading'
 import { useTranslation } from 'react-i18next'
+import { SliderArrows } from '../common'
 
 const HomeSlider = ({ sliders }) => {
   const { t } = useTranslation()
   const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('md'))
-
+  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
   const slider = useRef(null)
+
   const settings = {
     infinite: true,
     slidesToShow: 1,
@@ -48,6 +49,7 @@ const HomeSlider = ({ sliders }) => {
         width: '90%',
         mx: 'auto',
         position: 'relative',
+        direction: 'rtl',
       }}
     >
       <Slider {...settings} ref={slider}>
@@ -163,32 +165,7 @@ const HomeSlider = ({ sliders }) => {
           </Box>
         ))}
       </Slider>
-      {!downMd && (
-        <>
-          <Box
-            size="small"
-            sx={{
-              top: '50%',
-              left: 10,
-              position: 'absolute',
-            }}
-            onClick={() => slider.current.slickNext()}
-          >
-            <KeyboardArrowRight sx={{ color: 'white' }} />
-          </Box>
-          <Box
-            size="small"
-            sx={{
-              top: '50%',
-              right: 10,
-              position: 'absolute',
-            }}
-            onClick={() => slider.current.slickPrev()}
-          >
-            <KeyboardArrowLeft sx={{ color: 'white' }} />
-          </Box>
-        </>
-      )}
+      <SliderArrows slider={slider} />
     </Box>
   )
 }

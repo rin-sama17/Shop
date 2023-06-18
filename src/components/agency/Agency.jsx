@@ -12,6 +12,8 @@ import {
   Fade,
   Collapse,
   CardMedia,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
@@ -21,6 +23,8 @@ import { useTranslation } from 'react-i18next'
 
 const Agency = ({ agencyId }) => {
   const { data = { agency: [] }, isSuccess } = useGetAgencyQuery(agencyId)
+  const theme = useTheme()
+  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
   const { t } = useTranslation()
   const agency = data.agency
   if (!isSuccess) {
@@ -33,7 +37,7 @@ const Agency = ({ agencyId }) => {
         display: 'flex',
         justifyContent: 'center',
         mb: 3,
-        width: '80%',
+        width: downMd ? '95%' : '80%',
         m: '10px auto',
       }}
     >
@@ -41,7 +45,7 @@ const Agency = ({ agencyId }) => {
         elevation={8}
         sx={{
           width: 1,
-          borderRadius: 10,
+          borderRadius: '21px',
           bgcolor: '#068AD2',
         }}
       >
@@ -49,19 +53,19 @@ const Agency = ({ agencyId }) => {
           component={Link}
           to={`/agencies/${agency.id}`}
           sx={{
-            borderRadius: 10,
+            borderRadius: '10%',
           }}
         >
-          <Box sx={{}}>
+          <Box>
             <Grid container sx={{ justifyContent: 'space-between' }}>
-              <Grid xs={12} sm={4}>
+              <Grid xs={5.5} sm={5} md={4.5}>
                 <CardMedia
                   component="img"
                   sx={{
-                    height: 200,
-                    width: 250,
-                    borderRadius: 10,
-                    borderRight: 13,
+                    height: downMd ? 100 : 200,
+                    width: downMd ? 130 : 250,
+                    borderRadius: '10%',
+                    borderRight: downMd ? 6 : 13,
                     borderColor: '#FB9D23',
                   }}
                   alt={agency.name}
@@ -69,8 +73,9 @@ const Agency = ({ agencyId }) => {
                 />
               </Grid>
               <Grid
-                xs={12}
-                sm={8}
+                xs={6.5}
+                sm={5}
+                md={7.5}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -80,17 +85,24 @@ const Agency = ({ agencyId }) => {
                 }}
               >
                 <Box>
-                  <Typography sx={{ color: 'white' }} variant="h6" gutterBottom>
+                  <Typography
+                    sx={{ color: 'white' }}
+                    variant={downMd ? 'subtitle2' : 'h6'}
+                    gutterBottom
+                  >
                     {agency.name} :
                   </Typography>
-                  <Typography variant="subtitle1" sx={{ color: 'whitesmoke' }}>
+                  <Typography
+                    variant={downMd ? 'caption' : 'subtitle1'}
+                    sx={{ color: 'whitesmoke' }}
+                  >
                     {agency.address}
                   </Typography>
                 </Box>
 
                 <Box sx={{ display: 'flex' }}>
                   <Typography
-                    variant="subtitle1"
+                    variant={downMd ? 'caption' : 'subtitle1'}
                     sx={{
                       color: 'whitesmoke',
                     }}
@@ -98,7 +110,7 @@ const Agency = ({ agencyId }) => {
                     {t('شماره تماس')}:
                   </Typography>
                   <Typography
-                    variant="subtitle1"
+                    variant={downMd ? 'caption' : 'subtitle1'}
                     sx={{
                       color: 'whitesmoke',
                       direction: 'rtl',

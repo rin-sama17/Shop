@@ -2,7 +2,7 @@
 import { makeStyles } from '@mui/styles';
 export const useStyles = makeStyles((theme) => ({
     sliderDot: {
-        [theme.breakpoints.down('md')]: {
+        [theme.breakpoints.down('sm')]: {
             display: 'grid !important',
             gap: '1rem',
             gridAutoFlow: 'column',

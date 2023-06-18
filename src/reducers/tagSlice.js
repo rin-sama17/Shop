@@ -87,7 +87,7 @@ const tagSlice = createSlice({
     name: 'tag',
     initialState,
     reducers: {
-        tagAdded: () => (state, action) => {
+        tagAdded: (state, action) => {
             const existingTag = state.tag_id.find(tag => tag.name === action.payload.name);
             console.log(existingTag);
             if (existingTag) {

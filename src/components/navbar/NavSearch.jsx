@@ -5,7 +5,7 @@ import { Search } from '@mui/icons-material'
 
 const NavSearch = () => {
   const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('md'))
+  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
   const [open, setOpen] = useState(false)
 
   useEffect(() => {

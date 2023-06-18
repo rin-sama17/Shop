@@ -4,7 +4,7 @@ import { tabsData } from '../../constants/adminPanelTabs'
 
 const AdminPanelTabs = ({ pageNumber, setPageNumber }) => {
   const theme = useTheme()
-  const isMdDown = useMediaQuery(theme.breakpoints.down('md'))
+  const isMdDown = useMediaQuery(theme.breakpoints.down('sm'))
   const { t } = useTranslation()
 
   const handlePageNumber = (event, value) => {

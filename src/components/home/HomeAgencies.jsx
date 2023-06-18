@@ -1,5 +1,12 @@
 import Slider from 'react-slick'
-import { Box, Typography, Button, IconButton } from '@mui/material'
+import {
+  Box,
+  Typography,
+  Button,
+  IconButton,
+  useTheme,
+  useMediaQuery,
+} from '@mui/material'
 import { Link } from 'react-router-dom'
 import {
   Apartment,
@@ -11,9 +18,13 @@ import { Agency } from '../agency'
 import { useGetAgenciesQuery } from '../../api'
 import { AgencyLoading } from '../loading'
 import { useTranslation } from 'react-i18next'
+import { SliderArrows } from '../common'
 
 const HomeAgencies = () => {
   const { data = { agencies: [] }, isSuccess } = useGetAgenciesQuery()
+  const theme = useTheme()
+  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
+
   const { t } = useTranslation()
   const agencies = data.agencies
   const slider = useRef(null)
@@ -71,31 +82,7 @@ const HomeAgencies = () => {
               </Box>
             ))}
         </Slider>
-
-        <IconButton
-          size="small"
-          sx={{
-            top: '50%',
-            left: 10,
-            position: 'absolute',
-            bgcolor: 'bgBlur.main',
-          }}
-          onClick={() => slider.current.slickNext()}
-        >
-          <KeyboardArrowRight sx={{ color: 'white' }} />
-        </IconButton>
-        <IconButton
-          size="small"
-          sx={{
-            top: '50%',
-            right: 10,
-            position: 'absolute',
-            bgcolor: 'bgBlur.main',
-          }}
-          onClick={() => slider.current.slickPrev()}
-        >
-          <KeyboardArrowLeft sx={{ color: 'white' }} />
-        </IconButton>
+        <SliderArrows slider={slider} />
       </Box>
     </>
   )

@@ -76,6 +76,7 @@ const CustomFields = ({
   categoryParents,
   textEditor,
   selectTag,
+  isBtn,
   xs,
   sm,
   md,
@@ -91,7 +92,7 @@ const CustomFields = ({
       <Grid xs={xs ? xs : 12} sm={sm ? sm : null} md={md ? md : null}>
         <Button
           fullWidth
-          type="submit"
+          type={ isBtn ? "button" : "submit" }
           size="small"
           variant="contained"
           sx={{

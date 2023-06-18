@@ -21,12 +21,22 @@ const agencyFieldsData = (formik) => {
       md: 4,
     },
     {
+      sm: 12,
+      name: 'description',
+      formik,
+      label: 'توضیحات',
+      multiline: true,
+      rows: 3,
+    },
+    {
+      md: 10,
       formik,
       label: 'ادرس',
       name: 'address',
     },
 
     {
+      md: 2,
       submit: true,
       customLabel: 'ثبت',
     },
