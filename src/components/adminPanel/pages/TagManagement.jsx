@@ -39,12 +39,15 @@ const TagManagement = () => {
   return (
     <>
       <AddTag />
-      <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
+      <div style={{ height: 600, width: '100%' }}>
         <DataGrid
           rows={tag}
           columns={columns}
           components={{
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+          sx={{
+            overflowX: 'scroll',
           }}
         />
       </div>

@@ -43,17 +43,20 @@ const ProductManagement = () => {
         ],
       },
     ],
-    [EditProduct, products],
+    [EditProduct, products, t],
   )
   return (
     <>
       <AddProduct />
-      <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
+      <div style={{ height: 600, width: '100%' }}>
         <DataGrid
           rows={products}
           columns={columns}
           components={{
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+          sx={{
+            overflowX: 'scroll',
           }}
         />
       </div>

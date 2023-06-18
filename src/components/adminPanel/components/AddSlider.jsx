@@ -26,6 +26,7 @@ const AddSlider = () => {
         image,
         url,
         type,
+        description: 'just a text',
       }
     } else {
       newSlider = {

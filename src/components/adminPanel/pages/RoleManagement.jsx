@@ -80,9 +80,6 @@ const RoleManagement = () => {
         sx={{
           height: 600,
           width: '100%',
-          mt: '8px',
-          overFlowX: 'auto',
-          direction: 'rtl',
         }}
       >
         <DataGrid
@@ -90,6 +87,9 @@ const RoleManagement = () => {
           rows={roles}
           components={{
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+          sx={{
+            overflowX: 'scroll',
           }}
         />
       </Box>

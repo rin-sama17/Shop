@@ -57,7 +57,7 @@ const UserManagement = () => {
         ],
       },
     ],
-    [EditUser, users],
+    [EditUser, users, t],
   )
 
   return (
@@ -67,8 +67,6 @@ const UserManagement = () => {
         sx={{
           height: 600,
           width: '100%',
-
-          mt: '8px',
           overFlowX: 'auto',
           '& .phone': {
             direction: 'rtl',
@@ -83,7 +81,9 @@ const UserManagement = () => {
               return 'phone'
             }
           }}
-          sx={{ direction: 'rtl', overflowX: 'scroll' }}
+          sx={{
+            overflowX: 'scroll',
+          }}
           components={{
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
           }}

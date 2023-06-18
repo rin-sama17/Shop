@@ -49,12 +49,15 @@ const PostManagement = () => {
   return (
     <>
       <AddPost />
-      <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
+      <div style={{ height: 600, width: '100%' }}>
         <DataGrid
           rows={posts}
           columns={columns}
           components={{
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+          sx={{
+            overflowX: 'scroll',
           }}
         />
       </div>

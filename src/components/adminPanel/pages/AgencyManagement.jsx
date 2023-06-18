@@ -46,12 +46,15 @@ const AgencyManagement = () => {
   return (
     <>
       <AddAgency />
-      <div style={{ height: 600, width: '100%', direction: 'rtl' }}>
+      <div style={{ height: 600, width: '100%' }}>
         <DataGrid
           rows={agencies}
           columns={columns}
           components={{
             NoRowsOverlay: () => <CustomNoRowsOverlay />,
+          }}
+          sx={{
+            overflowX: 'scroll',
           }}
         />
       </div>
