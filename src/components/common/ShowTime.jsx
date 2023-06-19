@@ -13,7 +13,7 @@ const ShowTime = ({ timestamp }) => {
     <Box>
       <Typography variant="caption" color="text.secondary">
         {timeAgo}
-      </Typography>{' '}
+      </Typography>
     </Box>
   )
 }

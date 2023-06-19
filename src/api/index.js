@@ -48,7 +48,9 @@ export const apiSlice = createApi({
       query: (id) => `/agencies/show/${id}`,
     }),
 
-
+    getAuthor: builder.query({
+      query: (id) => `/users/show/${id}`
+    })
   }),
 });
 
@@ -79,4 +81,6 @@ export const {
   useGetAgenciesQuery,
   useGetAgencyQuery,
 
+
+  useGetAuthorQuery
 } = apiSlice;

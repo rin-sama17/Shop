@@ -53,13 +53,8 @@ const AddTag = () => {
     ) {
       arrayTags.push(singleName)
     }
-    const myObject = {}
 
-    arrayTags.forEach((value, index) => {
-      myObject[`name${index + 1}`] = value
-    })
-    console.log(myObject)
-    dispatch(addTag({ values: { ...myObject, lang }, setOpen }))
+    dispatch(addTag({ values: { name: arrayTags, lang }, setOpen }))
     dispatch(tagIdsCleared())
   }
   const fields = tagFieldData(formik)

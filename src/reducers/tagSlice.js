@@ -23,7 +23,7 @@ export const fetchTags = createAsyncThunk(
     async () => {
         try {
             const res = await getAllTags();
-            return res.data.posts;
+            return res.data.tags;
         } catch (error) {
             console.error(error);
         }

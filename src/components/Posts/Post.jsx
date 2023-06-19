@@ -5,7 +5,7 @@ import {
   Typography,
   Paper,
 } from '@mui/material'
-import { ShowTime } from '../common'
+import { ShowTime, ShowAuthor } from '../common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
@@ -58,7 +58,10 @@ const Post = ({ postId }) => {
                     textAlign="left"
                   >
                     {post.name}
-                    <ShowTime timestamp={post.created_at} />
+                    <Box sx={{ display: 'flex' }}>
+                      <ShowTime timestamp={post.created_at} />
+                      <ShowAuthor userId={post.user_id} />
+                    </Box>
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
                     <LinesEllipsis text={post.summary} maxLine={6} />

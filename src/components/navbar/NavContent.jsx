@@ -49,11 +49,14 @@ const NavContent = ({ setDrawerOpen }) => {
             icon={<AppsOutlined />}
             onClick={() => setDrawerOpen(true)}
           />
-          <Link href="/" underline="none">
-            <Typography variant="h5" sx={{ ml: 1, color: 'title.light' }}>
-              {t('فروشگاه من')}
-            </Typography>
-          </Link>
+          <Typography
+            component={Link}
+            to="/"
+            variant="h5"
+            sx={{ ml: 1, color: 'title.light' }}
+          >
+            {t('فروشگاه من')}
+          </Typography>
         </Box>
 
         <Box sx={{ display: 'flex', py: 2, alignItems: 'center' }}>

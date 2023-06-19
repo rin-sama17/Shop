@@ -1,5 +1,6 @@
-import { Divider, Box, Typography, Link } from '@mui/material'
+import { Divider, Box, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 import { DrawerItems } from '.'
 
@@ -17,11 +18,14 @@ const DrawerContent = ({ setOpen }) => {
         height: 1,
       }}
     >
-      <Link href="/" underline="none">
-        <Typography variant="h5" sx={{ color: 'title.dark' }}>
-          {t('فروشگاه من')}
-        </Typography>
-      </Link>
+      <Typography
+        component={Link}
+        to="/"
+        variant="h5"
+        sx={{ ml: 1, color: 'title.dark' }}
+      >
+        {t('فروشگاه من')}
+      </Typography>
       <Divider sx={{ color: 'bgcolor.dark', my: 2 }} />
 
       <DrawerItems setOpen={setOpen} />
