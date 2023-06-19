@@ -14,6 +14,7 @@ import {
 } from '../../../reducers/postSlice'
 import { CustomNoRowsOverlay } from '../components'
 import { useTranslation } from 'react-i18next'
+import ChangeStatue from '../components/ChangeStatue'
 
 const PostManagement = () => {
   const dispatch = useDispatch()
@@ -32,8 +33,9 @@ const PostManagement = () => {
       {
         field: 'actions',
         type: 'actions',
-        width: 80,
+        width: 110,
         getActions: (params) => [
+          <ChangeStatue />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}

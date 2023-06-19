@@ -15,12 +15,12 @@ const postFieldsData = (formik) => {
       name: 'category_id',
       formik,
     },
-    {
-      sm: 12,
-      name: 'tags',
-      formik,
-      selectTag: true,
-    },
+    // {
+    //   sm: 12,
+    //   name: 'tags',
+    //   formik,
+    //   selectTag: true,
+    // },
     {
       sm: 12,
       name: 'summary',

@@ -33,7 +33,6 @@ const AddProduct = () => {
         lang,
         discount: Number(values.discount),
       }
-      console.log('values:  ', newProduct)
       dispatch(addProduct({ values: newProduct, setOpen, resetForm }))
     },
   })

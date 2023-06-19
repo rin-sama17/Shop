@@ -69,12 +69,12 @@ export const productFieldsData = (formik) => {
       formik,
       name: 'category_id',
     },
-    {
-      sm: 5,
-      formik,
-      name: 'tags',
-      selectTag: true,
-    },
+    // {
+    //   sm: 5,
+    //   formik,
+    //   name: 'tags',
+    //   selectTag: true,
+    // },
 
     {
       submit: true,

@@ -36,12 +36,12 @@ export const addPost = createAsyncThunk(
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();
-                toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data.post;
+                toast.success(res.data.data.message, { position: 'bottom-right' });
+                return res.data.data.post;
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message, { position: 'bottom-left' });
+            toast.error(error.response.data.data.message, { position: 'bottom-left' });
         }
     },
 );
@@ -55,12 +55,13 @@ export const editPost = createAsyncThunk(
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();
+                console.log(res);
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.post;
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message, { position: 'bottom-left' });
+            toast.error(error.response.data.data.message, { position: 'bottom-left' });
         }
     },
 );
@@ -87,7 +88,7 @@ const postSlice = createSlice({
     reducers: {},
     extraReducers: {
         [fetchPosts.fulfilled]: postAdaptor.setAll,
-        // [addPost.fulfilled]: postAdaptor.addOne,
+        [addPost.fulfilled]: postAdaptor.addOne,
         [editPost.fulfilled]: postAdaptor.setOne,
         [deletePost.fulfilled]: postAdaptor.removeOne,
     },

@@ -13,29 +13,20 @@ import AddBtn from './AddBtn'
 
 const AddSlider = () => {
   const [open, setOpen] = useState(false)
-  const [type, setType] = useState(0)
   const dispatch = useDispatch()
 
   const lang = useSelector(selectLang)
+  const [type, setType] = useState(0)
   const handleSubmit = (values, resetForm) => {
     const { name, description, image, url } = values
     let newSlider
     if (type === 0) {
       newSlider = {
-        name,
-        image,
-        url,
-        type,
+        ...values,
         description: 'just a text',
       }
     } else {
-      newSlider = {
-        name,
-        description,
-        image,
-        url,
-        type,
-      }
+      newSlider = values
     }
     dispatch(addSlider({ values: { ...newSlider, lang }, setOpen, resetForm }))
   }
@@ -58,7 +49,6 @@ const AddSlider = () => {
     } else {
       setType(0)
     }
-    console.log(event.target.checked)
   }
 
   return (
@@ -83,7 +73,7 @@ const AddSlider = () => {
           color="warning"
           imageUploader
           imageUploaderName="image"
-          imageUploaderProps={{ aspect: type === 0 ? 5 / 3 : 1 / 1 }}
+          imageUploaderProps={{ aspect: type === 0 ? 3 / 1.1 : 1 / 1 }}
         />
       </CustomModal>
     </>

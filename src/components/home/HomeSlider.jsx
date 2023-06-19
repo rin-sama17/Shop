@@ -12,10 +12,11 @@ import {
   Divider,
   Paper,
   useTheme,
+  CardMedia,
 } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import LinesEllipsis from 'react-lines-ellipsis'
-import { Suspense, useRef } from 'react'
+import { Fragment, Suspense, useRef } from 'react'
 import Slider from 'react-slick'
 
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
@@ -29,7 +30,7 @@ const HomeSlider = ({ sliders }) => {
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('sm'))
   const slider = useRef(null)
-
+  console.log(sliders)
   const settings = {
     infinite: true,
     slidesToShow: 1,
@@ -55,113 +56,125 @@ const HomeSlider = ({ sliders }) => {
       <Slider {...settings} ref={slider}>
         {sliders.map((slide, index) => (
           <Box component="div" key={index}>
-            <ImageListItem>
-              <img
-                src={`http://localhost:8000/${slide.image}`}
+            {slide.type === 0 ? (
+              <CardMedia
+                component="img"
+                image={`http://localhost:8000/${slide.image}`}
                 alt={slide.name}
                 style={{
                   height: downMd ? '30vh' : '40vh',
                   borderRadius: '0 0 20px  20px ',
                 }}
               />
+            ) : (
+              <ImageListItem>
+                <img
+                  src={`http://localhost:8000/${slide.image}`}
+                  alt={slide.name}
+                  style={{
+                    height: downMd ? '30vh' : '40vh',
+                    borderRadius: '0 0 20px  20px ',
+                  }}
+                />
 
-              <CardActionArea
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  borderRadius: '0 0 20px  20px ',
-                  justifyContent: 'center',
-                  alignContent: 'flex-end',
-                  flexWrap: 'wrap',
-                  position: 'absolute',
-                  bottom: 0,
-                  bgcolor: 'bgBlur.main',
-                  width: 1,
-                  height: 1,
-                  px: 1,
-                }}
-              >
-                <Grid
-                  container
-                  spacing={2}
+                <CardActionArea
                   sx={{
-                    width: 1,
                     display: 'flex',
+                    flexDirection: 'column',
+                    borderRadius: '0 0 20px  20px ',
                     justifyContent: 'center',
-                    alignItems: 'center',
+                    alignContent: 'flex-end',
+                    flexWrap: 'wrap',
+                    position: 'absolute',
+                    bottom: 0,
+                    bgcolor: 'bgBlur.main',
+                    width: 1,
+                    height: 1,
+                    px: 1,
                   }}
                 >
                   <Grid
-                    xs={4}
+                    container
+                    spacing={2}
                     sx={{
+                      width: 1,
                       display: 'flex',
                       justifyContent: 'center',
+                      alignItems: 'center',
                     }}
                   >
-                    <Paper
-                      elevation={12}
+                    <Grid
+                      xs={4}
                       sx={{
-                        width: downMd ? 100 : 200,
-                        height: downMd ? 100 : 200,
-                        borderRadius: '20%',
+                        display: 'flex',
+                        justifyContent: 'center',
                       }}
                     >
-                      <img
-                        src={`http://localhost:8000/${slide.image}`}
-                        alt={slide.name}
-                        style={{
+                      <Paper
+                        elevation={12}
+                        sx={{
                           width: downMd ? 100 : 200,
                           height: downMd ? 100 : 200,
                           borderRadius: '20%',
                         }}
-                      />
-                    </Paper>
-                  </Grid>
-                  <Grid
-                    xs={7}
-                    sx={{
-                      textAlign: 'end',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-end',
-                    }}
-                  >
-                    <Box>
-                      <Typography
-                        variant="subtitle1"
-                        color="white"
-                        sx={{ mb: 1 }}
                       >
-                        {slide.name}
-                      </Typography>
-
-                      <Typography
-                        variant="caption"
-                        sx={{ direction: 'ltr' }}
-                        textAlign="start"
-                        color="whitesmoke"
-                      >
-                        <LinesEllipsis
-                          text={slide.description}
-                          maxLine={downMd ? 3 : 4}
+                        <img
+                          src={`http://localhost:8000/${slide.image}`}
+                          alt={slide.name}
+                          style={{
+                            width: downMd ? 100 : 200,
+                            height: downMd ? 100 : 200,
+                            borderRadius: '20%',
+                          }}
                         />
-                      </Typography>
-                    </Box>
-                    <Button
-                      variant="contained"
-                      component="a"
-                      href={slide.url}
-                      target="_blank"
-                      size="small"
-                      sx={{ borderRadius: '10px  20px  10px 20px ', mt: 1 }}
+                      </Paper>
+                    </Grid>
+                    <Grid
+                      xs={7}
+                      sx={{
+                        textAlign: 'end',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        alignItems: 'flex-end',
+                      }}
                     >
-                      {t('اطلاعات بیشتر')}
-                    </Button>
+                      <Box>
+                        <Typography
+                          variant="subtitle1"
+                          color="white"
+                          sx={{ mb: 1 }}
+                        >
+                          {slide.name}
+                        </Typography>
+
+                        <Typography
+                          variant="caption"
+                          sx={{ direction: 'ltr' }}
+                          textAlign="start"
+                          color="whitesmoke"
+                        >
+                          <LinesEllipsis
+                            text={slide.description}
+                            maxLine={downMd ? 3 : 4}
+                          />
+                        </Typography>
+                      </Box>
+                      <Button
+                        variant="contained"
+                        component="a"
+                        href={slide.url}
+                        target="_blank"
+                        size="small"
+                        sx={{ borderRadius: '10px  20px  10px 20px ', mt: 1 }}
+                      >
+                        {t('اطلاعات بیشتر')}
+                      </Button>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </CardActionArea>
-            </ImageListItem>
+                </CardActionArea>
+              </ImageListItem>
+            )}
           </Box>
         ))}
       </Slider>

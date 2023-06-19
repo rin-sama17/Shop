@@ -11,10 +11,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addPost } from '../../../reducers/postSlice'
 import { selectLang } from '../../../reducers/langSlice'
 import AddBtn from './AddBtn'
+import { selectAuth } from '../../../reducers/authSlice'
 
 const AddPost = () => {
   const [open, setOpen] = useState(false)
-
+  const { userInfo: user } = useSelector(selectAuth)
   const lang = useSelector(selectLang)
 
   const dispatch = useDispatch()
@@ -25,7 +26,7 @@ const AddPost = () => {
     image: null,
     category_id: '',
     tags: [],
-    user_id: 1,
+    user_id: user.id,
     summary: '',
   }
   const formik = useFormik({
