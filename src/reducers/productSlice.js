@@ -36,7 +36,6 @@ export const addProduct = createAsyncThunk(
             if (res.status === 200) {
                 setOpen(false);
                 resetForm();
-
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.product;
             }
@@ -54,8 +53,10 @@ export const editProduct = createAsyncThunk(
         try {
             const res = await updateProduct(formData, values.id);
             if (res.status === 200) {
-                setOpen(false);
-                resetForm();
+                if (setOpen && resetForm) {
+                    setOpen(false);
+                    resetForm();
+                }
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.product;
             }

@@ -12,6 +12,7 @@ import { useEffect, useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 import {
   deleteRole,
+  editRole,
   fetchRoles,
   selectAllRoles,
   selectPremission_id,
@@ -22,6 +23,7 @@ import {
   selectAllPremissions,
 } from '../../../reducers/premissionSlice'
 import { useTranslation } from 'react-i18next'
+import ChangeStatus from '../components/ChangeStatus'
 
 const RoleManagement = () => {
   const dispatch = useDispatch()
@@ -60,8 +62,9 @@ const RoleManagement = () => {
       {
         field: 'actions',
         type: 'actions',
-        width: 80,
+        width: 110,
         getActions: (params) => [
+          <ChangeStatus item={params.row} editItem={editRole} />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}

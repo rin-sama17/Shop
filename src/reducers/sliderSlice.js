@@ -54,8 +54,10 @@ export const editSlider = createAsyncThunk(
         try {
             const res = await updateSlider(formData, values.id);
             if (res.status === 200) {
-                setOpen(false);
-                resetForm();
+                if (setOpen && resetForm) {
+                    setOpen(false);
+                    resetForm();
+                }
                 toast.success(res.data.message, { position: 'bottom-right' });
                 console.log(res);
                 return res.data.post;

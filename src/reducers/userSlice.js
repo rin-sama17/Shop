@@ -52,8 +52,10 @@ export const editUser = createAsyncThunk(
     try {
       const res = await updateUser(values);
       if (res.status === 200) {
-        setOpen(false);
-        resetForm();
+        if (setOpen && resetForm) {
+          setOpen(false);
+          resetForm();
+        }
         toast.success(res.data.message, { position: 'bottom-right' });
         return res.data.product;
       }

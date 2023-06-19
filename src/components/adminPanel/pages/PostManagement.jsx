@@ -9,12 +9,13 @@ import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   deletePost,
+  editPost,
   fetchPosts,
   selectAllPosts,
 } from '../../../reducers/postSlice'
 import { CustomNoRowsOverlay } from '../components'
 import { useTranslation } from 'react-i18next'
-import ChangeStatue from '../components/ChangeStatue'
+import ChangeStatus from '../components/ChangeStatus'
 
 const PostManagement = () => {
   const dispatch = useDispatch()
@@ -35,7 +36,7 @@ const PostManagement = () => {
         type: 'actions',
         width: 110,
         getActions: (params) => [
-          <ChangeStatue />,
+          <ChangeStatus item={params.row} editItem={editPost} />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}

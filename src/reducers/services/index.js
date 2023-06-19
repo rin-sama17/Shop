@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const ADMIN_SERVER_URL = "http://localhost:8000/api/admin";
 const token = localStorage.getItem("token");
-const lang = localStorage.getItem("lang") ? localStorage.getItem("lang") : "fa";
+const ADMIN_SERVER_URL = "http://localhost:8000/api/admin";
 const headers = {
     headers: {
         authorization: `Bearer ${token}`,

@@ -53,9 +53,10 @@ export const editPost = createAsyncThunk(
         try {
             const res = await updatePost(formData, values.id);
             if (res.status === 200) {
-                setOpen(false);
-                resetForm();
-                console.log(res);
+                if (setOpen && resetForm) {
+                    setOpen(false);
+                    resetForm();
+                }
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.post;
             }

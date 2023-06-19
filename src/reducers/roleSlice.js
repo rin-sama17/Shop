@@ -57,8 +57,10 @@ export const editRole = createAsyncThunk(
         try {
             const res = await updateRole(values);
             if (res.status === 200) {
-                setOpen(false);
-                resetForm();
+                if (setOpen && resetForm) {
+                    setOpen(false);
+                    resetForm();
+                }
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.role;
             }

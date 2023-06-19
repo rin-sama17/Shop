@@ -49,10 +49,13 @@ export const editPremission = createAsyncThunk(
     'premission/editPremission',
     async ({ values, setOpen, resetForm }) => {
         try {
+            console.log(values);
             const res = await updatePremission(values);
             if (res.status === 200) {
-                setOpen(false);
-                resetForm();
+                if (setOpen && resetForm) {
+                    setOpen(false);
+                    resetForm();
+                }
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.premission;
             }

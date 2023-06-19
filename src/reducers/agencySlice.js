@@ -55,8 +55,10 @@ export const editAgency = createAsyncThunk(
         try {
             const res = await updateAgency(formData, values.id);
             if (res.status === 200) {
-                setOpen(false);
-                resetForm();
+                if (setOpen && resetForm) {
+                    setOpen(false);
+                    resetForm();
+                }
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.agency;
             }

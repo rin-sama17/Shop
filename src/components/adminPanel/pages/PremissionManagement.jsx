@@ -11,11 +11,13 @@ import {
 
 import {
   deletePremission,
+  editPremission,
   fetchPremissions,
   selectAllPremissions,
 } from '../../../reducers/premissionSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import ChangeStatus from '../components/ChangeStatus'
 
 const PremissionManagement = () => {
   const dispatch = useDispatch()
@@ -33,8 +35,9 @@ const PremissionManagement = () => {
       {
         field: 'actions',
         type: 'actions',
-        width: 80,
+        width: 110,
         getActions: (params) => [
+          <ChangeStatus item={params.row} editItem={editPremission} />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
