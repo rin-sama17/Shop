@@ -104,7 +104,7 @@ const tagSlice = createSlice({
             state.tag_id.splice(tagIndex, 1);
         },
         tagDeleted: (state, action) => {
-            const tagIndex = state.tag_id.findIndex(tag => tag === action.payload);
+            const tagIndex = state.tag_id.findIndex(tag => tag.name === action.payload);
             state.tag_id.splice(tagIndex, 1);
         },
         tagIdsCleared: (state, action) => {
