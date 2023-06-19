@@ -4,7 +4,7 @@ import { Percent } from '@mui/icons-material'
 import { toRial } from '../../helpers'
 import { useTranslation } from 'react-i18next'
 
-export const productFieldsData = (formik) => {
+export const productFieldsData = (formik, isEdit) => {
   const { t } = useTranslation()
   const convertPrice = (a, b) => {
     if (typeof a !== 'number') {
@@ -69,12 +69,13 @@ export const productFieldsData = (formik) => {
       formik,
       name: 'category_id',
     },
-    // {
-    //   sm: 5,
-    //   formik,
-    //   name: 'tags',
-    //   selectTag: true,
-    // },
+    {
+      sm: 5,
+      formik,
+      display: !isEdit ? 'none' : null,
+      name: 'tags',
+      selectTag: true,
+    },
 
     {
       submit: true,

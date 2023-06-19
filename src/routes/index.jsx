@@ -10,6 +10,7 @@ import {
   SearchResult,
   Agencies,
   ShowAgency,
+  AuthorPage,
 } from '../pages'
 import { CustomMassage } from '../components/common'
 export const router = createBrowserRouter([
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: '/agencies/:agencyId',
         element: <ShowAgency />,
+      },
+      {
+        path: '/author/:userId',
+        element: <AuthorPage />,
       },
     ],
   },

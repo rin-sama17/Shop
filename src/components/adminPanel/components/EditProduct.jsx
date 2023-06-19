@@ -3,27 +3,51 @@ import { CustomForm, CustomModal } from '../../common'
 import { productValidation } from '../../validations/productValidation'
 import { toast } from 'react-toastify'
 import { productFieldsData } from '../../fieldsData'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Edit } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import { editProduct } from '../../../reducers/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectLang } from '../../../reducers/langSlice'
+import {
+  fetchTags,
+  selectTag_id,
+  tagIdsCleared,
+} from '../../../reducers/tagSlice'
 
 const EditProduct = ({ product }) => {
   const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
   const lang = useSelector(selectLang)
+  const tag_ids = useSelector(selectTag_id)
+
+  useEffect(() => {
+    dispatch(fetchTags())
+  }, [])
+
+  useEffect(() => {
+    if (!open) {
+      dispatch(tagIdsCleared())
+    }
+  }, [open])
 
   const formik = useFormik({
-    initialValues: product,
+    initialValues: { ...product, tags: [] },
     // validationSchema: productValidation,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editProduct({ values: { ...values, lang }, setOpen, resetForm }))
+      const editedProduct = { ...values, tags: tag_ids, lang }
+      console.log(editedProduct)
+      dispatch(
+        editProduct({
+          values: editedProduct,
+          setOpen,
+          resetForm,
+        }),
+      )
     },
   })
-  const fields = productFieldsData(formik)
+  const fields = productFieldsData(formik, true)
   return (
     <>
       <GridActionsCellItem

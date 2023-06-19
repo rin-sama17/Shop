@@ -33,7 +33,14 @@ import {
 } from '../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { tagIdAdded, tagIdDeleted } from '../../reducers/tagSlice'
+import {
+  selectAllTags,
+  selectTag_id,
+  tagAdded,
+  tagDeleted,
+  tagIdAdded,
+  tagIdDeleted,
+} from '../../reducers/tagSlice'
 
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
@@ -92,7 +99,7 @@ const CustomFields = ({
       <Grid xs={xs ? xs : 12} sm={sm ? sm : null} md={md ? md : null}>
         <Button
           fullWidth
-          type={ isBtn ? "button" : "submit" }
+          type={isBtn ? 'button' : 'submit'}
           size="small"
           variant="contained"
           sx={{
@@ -247,23 +254,14 @@ const CustomFields = ({
       </FormControl>
     )
   } else if (selectTag) {
-    const tags = [
-      { id: 1, name: 'Oliver Hansen' },
-      { id: 2, name: 'Van Henry' },
-      { id: 3, name: 'April Tucker' },
-      { id: 4, name: 'Ralph Hubbard' },
-      { id: 5, name: 'Omar Alexander' },
-      { id: 6, name: 'Carlos Abbott' },
-      { id: 7, name: 'Miriam Wagner' },
-      { id: 8, name: 'Bradley Wilkerson' },
-      { id: 9, name: 'Virginia Andrews' },
-      { id: 10, name: 'Kelly Snyder' },
-    ]
-    const saveId = (id, canSave) => {
+    const tags = useSelector(selectAllTags)
+    const tempTags = useSelector(selectTag_id)
+
+    const saveId = (tag, canSave) => {
       if (canSave) {
-        dispatch(tagIdAdded(id))
+        dispatch(tagIdAdded(tag))
       } else {
-        dispatch(tagIdDeleted(id))
+        dispatch(tagIdDeleted(tag))
       }
     }
     content = (

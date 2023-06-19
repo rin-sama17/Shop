@@ -15,7 +15,8 @@ import {
 
 const tagAdaptor = createEntityAdapter();
 const initialState = tagAdaptor.getInitialState({
-    tag_id: []
+    tag_id: [],
+    tag_name: []
 });
 
 export const fetchTags = createAsyncThunk(
@@ -104,17 +105,25 @@ const tagSlice = createSlice({
             state.tag_id.splice(tagIndex, 1);
         },
         tagDeleted: (state, action) => {
-            const tagIndex = state.tag_id.findIndex(tag => tag.name === action.payload);
+            const tagIndex = state.tag_id.findIndex(tag => tag === action.payload);
             state.tag_id.splice(tagIndex, 1);
         },
         tagIdsCleared: (state, action) => {
             state.tag_id.splice(0, state.tag_id.length);
+            state.tag_name.splice(0, state.tag_name.length);
         },
         tagsIdFinded: (state, action) => {
             const tagTags = action.payload;
             const tagIds = tagTags?.map(tag => tag.id);
             if (tagIds) {
                 state.tag_id = tagIds;
+            }
+        },
+        tagsNameFinded: (state, action) => {
+            const tagTags = action.payload;
+            const tagNames = tagTags?.map(tag => tag.name);
+            if (tagNames) {
+                state.tag_name = tagNames;
             }
 
         }

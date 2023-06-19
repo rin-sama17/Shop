@@ -23,7 +23,6 @@ const AddProduct = () => {
     remaining: '',
     image: null,
     category_id: '',
-    tags: [],
   }
   const formik = useFormik({
     initialValues: productFieldNames,

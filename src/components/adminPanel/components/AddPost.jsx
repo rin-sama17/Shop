@@ -25,7 +25,6 @@ const AddPost = () => {
     description: '',
     image: null,
     category_id: '',
-    tags: [],
     user_id: user.id,
     summary: '',
   }

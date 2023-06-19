@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-const postFieldsData = (formik) => {
-  const { t } = useTranslation()
+const postFieldsData = (formik, isEdit) => {
   return [
     {
       sm: 8,
@@ -15,12 +14,13 @@ const postFieldsData = (formik) => {
       name: 'category_id',
       formik,
     },
-    // {
-    //   sm: 12,
-    //   name: 'tags',
-    //   formik,
-    //   selectTag: true,
-    // },
+    {
+      sm: 12,
+      name: 'tags',
+      formik,
+      display: !isEdit ? 'none' : null,
+      selectTag: true,
+    },
     {
       sm: 12,
       name: 'summary',

@@ -3,12 +3,13 @@ import { postValidation } from '../../validations/postValidation'
 import { toast } from 'react-toastify'
 import { postFieldsData } from '../../fieldsData'
 import { CustomModal, TextEditor, CustomForm } from '../../common'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import { Edit } from '@mui/icons-material'
 import { useDispatch, useSelector } from 'react-redux'
 import { editPost } from '../../../reducers/postSlice'
 import { selectLang } from '../../../reducers/langSlice'
+import { fetchTags } from '../../../reducers/tagSlice'
 
 const EditPost = ({ post }) => {
   const [open, setOpen] = useState(false)
@@ -16,6 +17,9 @@ const EditPost = ({ post }) => {
   const dispatch = useDispatch()
   const lang = useSelector(selectLang)
 
+  useEffect(() => {
+    dispatch(fetchTags())
+  }, [])
   const formik = useFormik({
     initialValues: post,
     // validationSchema: postValidation,
@@ -24,7 +28,7 @@ const EditPost = ({ post }) => {
     },
   })
 
-  const fields = postFieldsData(formik)
+  const fields = postFieldsData(formik, true)
   return (
     <>
       <GridActionsCellItem
