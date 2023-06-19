@@ -10,6 +10,7 @@ import {
     removePost,
     updatePost,
     convertToForm,
+    getOnePost,
 } from './services';
 
 const postAdaptor = createEntityAdapter();
@@ -20,12 +21,14 @@ export const fetchPosts = createAsyncThunk(
     async () => {
         try {
             const res = await getAllPosts();
-            return res.data.posts;
+            return res.data.data[0];
         } catch (error) {
             console.error(error);
         }
     },
 );
+
+
 
 export const addPost = createAsyncThunk(
     'post/addPost',
@@ -57,12 +60,13 @@ export const editPost = createAsyncThunk(
                     setOpen(false);
                     resetForm();
                 }
+                console.log(res);
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.post;
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.data.message, { position: 'bottom-left' });
+            toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },
 );
@@ -92,6 +96,7 @@ const postSlice = createSlice({
         [addPost.fulfilled]: postAdaptor.addOne,
         [editPost.fulfilled]: postAdaptor.setOne,
         [deletePost.fulfilled]: postAdaptor.removeOne,
+
     },
 });
 

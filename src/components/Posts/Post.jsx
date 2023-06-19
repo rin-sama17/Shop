@@ -31,27 +31,29 @@ const Post = ({ postId }) => {
         m: '10px auto',
       }}
     >
-      <Paper elevation={8} sx={{ width: 1 }}>
+      <Paper
+        elevation={8}
+        sx={{
+          width: 1,
+          borderRadius: '20px',
+        }}
+      >
         <CardActionArea component={Link} to={`/posts/${post.id}`}>
-          <Box
-            sx={{
-              pb: 2,
-            }}
-          >
+          <Box>
             <CardContent>
-              <Grid
-                container
-                spacing={2}
-                sx={{ justifyContent: 'space-between' }}
-              >
+              <Grid container sx={{ justifyContent: 'space-between' }}>
                 <Grid xs={12} sm={4}>
                   <img
                     alt={post.name}
                     src={`http://localhost:8000/${post.image}`}
-                    style={{ margin: 'auto', width: '100%' }}
+                    style={{
+                      margin: 'auto',
+                      width: '100%',
+                      borderRadius: '20px',
+                    }}
                   />
                 </Grid>
-                <Grid xs={12} sm={8}>
+                <Grid xs={12} sm={8} sx={{ p: 2 }}>
                   <Typography
                     color="secondary"
                     variant="subtitle1"

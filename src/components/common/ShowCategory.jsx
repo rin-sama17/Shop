@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom'
 import { useGetCategoryQuery } from '../../api'
 import Spinner from './Spinner'
 
-const ShowCategory = ({ categoryId, tags = 'اشپزی/ملاقه' }) => {
+const ShowCategory = ({ categoryId, tags }) => {
   const { t } = useTranslation()
-  const splitedTags = tags && tags.split('/')
   const {
     data = { category: {} },
     isSuccess,
@@ -44,16 +43,16 @@ const ShowCategory = ({ categoryId, tags = 'اشپزی/ملاقه' }) => {
           gutterBottom
         >
           {t('تگ ها')}:
-          {splitedTags.map((tag, index) => (
+          {tags.map((tag, index) => (
             <Box key={index}>
               <Typography
                 component={Link}
-                to={`/search/${tag}`}
+                to={`/search/${tag.id}`}
                 color="secondary"
                 variant="caption"
                 sx={{ mx: 0.5 }}
               >
-                {tag}
+                {tag.name}
               </Typography>
               /
             </Box>
@@ -70,16 +69,16 @@ const ShowCategory = ({ categoryId, tags = 'اشپزی/ملاقه' }) => {
         gutterBottom
       >
         {t('تگ ها')}:
-        {splitedTags.map((tag, index) => (
+        {tags.map((tag, index) => (
           <Box key={index}>
             <Typography
               component={Link}
-              to={`/search/${tag}`}
+              to={`/search/${tag.id}`}
               color="secondary"
               variant="caption"
               sx={{ mx: 0.5 }}
             >
-              {tag}
+              {tag.name}
             </Typography>
             /
           </Box>

@@ -78,7 +78,7 @@ const PostsSlider = () => {
   }
 
   return (
-    <Box sx={{ mb: 1, width: 1, my: 2 }}>
+    <Box sx={{ width: 1, mb: 2 }}>
       <Slider {...settings}>
         {data.posts.slice(0, 4).map((slide, index) => (
           <Box component="div" key={index}>
@@ -86,7 +86,10 @@ const PostsSlider = () => {
               <img
                 src={`http://localhost:8000/${slide.image}`}
                 alt={slide.name}
-                style={{ height: '60vh', borderRadius: '20px' }}
+                style={{
+                  height: downMd ? '35vh' : '40vh',
+                  borderRadius: '0 0 20px 20px',
+                }}
               />
 
               <CardActionArea
@@ -95,7 +98,7 @@ const PostsSlider = () => {
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'center',
+                  justifyContent: 'flex-start',
                   alignContent: 'flex-end',
                   flexWrap: 'wrap',
                   position: 'absolute',
@@ -103,7 +106,7 @@ const PostsSlider = () => {
                   bgcolor: 'bgBlur.main',
                   width: 1,
                   height: 1,
-                  borderRadius: '20px',
+                  borderRadius: '0 0 20px 20px',
                   px: 1,
                 }}
               >
@@ -113,13 +116,18 @@ const PostsSlider = () => {
                   spacing={2}
                   // direction="row"
                   // divider={<Divider orientation="vertical" flexItem />}
-                  sx={{ width: 1, display: 'flex', justifyContent: 'center' }}
+                  sx={{
+                    width: 1,
+                    display: 'flex',
+                    justifyContent: 'flex-start',
+                    pt: 3,
+                  }}
                 >
                   <Grid
-                    xs={12}
+                    xs={4.5}
                     md={3}
                     sx={{
-                      display: { xs: 'none', sm: 'flex' },
+                      display: 'flex',
                       justifyContent: 'center',
                     }}
                   >
@@ -129,15 +137,19 @@ const PostsSlider = () => {
                         image={`http://localhost:8000/${slide.image}`}
                         alt={slide.name}
                         sx={{
-                          width: 300,
-                          height: 200,
+                          width: downMd ? 150 : 250,
+                          height: downMd ? 100 : 200,
                           borderRadius: 7,
                         }}
                       />
                     </Paper>
                   </Grid>
-                  <Grid xs={12} md={8} sx={{ textAlign: 'end' }}>
-                    <Typography variant="h6" color="white" sx={{ mb: 1 }}>
+                  <Grid xs={6.5} md={8} sx={{ textAlign: 'end' }}>
+                    <Typography
+                      variant={downMd ? 'subtitle2' : 'h6'}
+                      color="white"
+                      sx={{ mb: 1 }}
+                    >
                       {slide.name}
                     </Typography>
 

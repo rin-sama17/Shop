@@ -9,7 +9,7 @@ const ProductContent = ({ product }) => {
       spacing={2}
       sx={{
         width: 1,
-        mt: 2,
+        mx: 'auto',
         justifyContent: 'space-between',
       }}
     >

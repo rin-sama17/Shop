@@ -16,6 +16,7 @@ import {
 import { CustomNoRowsOverlay } from '../components'
 import { useTranslation } from 'react-i18next'
 import ChangeStatus from '../components/ChangeStatus'
+import { fetchTags } from '../../../reducers/tagSlice'
 
 const PostManagement = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,7 @@ const PostManagement = () => {
   const { t } = useTranslation()
   useEffect(() => {
     dispatch(fetchPosts())
+    dispatch(fetchTags())
   }, [])
 
   const columns = useMemo(

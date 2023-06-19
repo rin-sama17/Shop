@@ -38,7 +38,7 @@ const TextEditor = ({ formik, name, readOnly, value }) => {
         })
       }
     }
-  }, [quill])
+  }, [quill, quillRef, toolbarOptions])
   return (
     <Box
       sx={{

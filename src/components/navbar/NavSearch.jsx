@@ -1,4 +1,4 @@
-import { useTheme, useMediaQuery, IconButton } from '@mui/material'
+import { useTheme, useMediaQuery, IconButton, Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { CustomModal, SearchField } from '../common'
 import { Search } from '@mui/icons-material'
@@ -23,7 +23,9 @@ const NavSearch = () => {
           <Search />
         </IconButton>
         <CustomModal open={open} setOpen={setOpen}>
-          <SearchField downMd={downMd} setOpen={setOpen} />
+          <Box sx={{ m: 'auto', width: 'fit-content' }}>
+            <SearchField downMd={downMd} setOpen={setOpen} />
+          </Box>
         </CustomModal>
       </>
     )

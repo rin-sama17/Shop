@@ -98,11 +98,15 @@ const tagSlice = createSlice({
             state.tag_id.push(action.payload);
         },
         tagIdAdded: (state, action) => {
-            state.tag_id.push(action.payload);
+
+            state.tag_id = action.payload;
+
         },
         tagIdDeleted: (state, action) => {
-            const tagIndex = state.tag_id.findIndex(tag => tag === action.payload);
-            state.tag_id.splice(tagIndex, 1);
+            const tagIdIndex = state.tag_id.findIndex(tag => tag === action.payload.id);
+            state.tag_id.splice(tagIdIndex, 1);
+            const tagNameIndex = state.tag_name.findIndex(tag => tag === action.payload.name);
+            state.tag_name.splice(tagNameIndex, 1);
         },
         tagDeleted: (state, action) => {
             const tagIndex = state.tag_id.findIndex(tag => tag === action.payload);
@@ -115,18 +119,13 @@ const tagSlice = createSlice({
         tagsIdFinded: (state, action) => {
             const tagTags = action.payload;
             const tagIds = tagTags?.map(tag => tag.id);
-            if (tagIds) {
-                state.tag_id = tagIds;
-            }
-        },
-        tagsNameFinded: (state, action) => {
-            const tagTags = action.payload;
             const tagNames = tagTags?.map(tag => tag.name);
-            if (tagNames) {
-                state.tag_name = tagNames;
-            }
+            state.tag_id = tagIds;
+            state.tag_name = tagNames;
 
-        }
+        },
+
+
     },
 
     extraReducers: {
@@ -143,5 +142,6 @@ export const {
 } = tagAdaptor.getSelectors((state) => state.tag);
 
 export const selectTag_id = state => state.tag.tag_id;
+export const selectTag_name = state => state.tag.tag_name;
 export const { tagIdDeleted, tagDeleted, tagAdded, tagIdAdded, tagIdsCleared, tagsIdFinded } = tagSlice.actions;
 export default tagSlice.reducer;

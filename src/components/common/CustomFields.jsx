@@ -36,10 +36,12 @@ import { useTranslation } from 'react-i18next'
 import {
   selectAllTags,
   selectTag_id,
+  selectTag_name,
   tagAdded,
   tagDeleted,
   tagIdAdded,
   tagIdDeleted,
+  tagsIdFinded,
 } from '../../reducers/tagSlice'
 
 const ITEM_HEIGHT = 48
@@ -255,14 +257,24 @@ const CustomFields = ({
     )
   } else if (selectTag) {
     const tags = useSelector(selectAllTags)
-    const tempTags = useSelector(selectTag_id)
 
+    const tagName = useSelector(selectTag_id)
     const saveId = (tag, canSave) => {
+      console.log(canSave)
       if (canSave) {
         dispatch(tagIdAdded(tag))
       } else {
-        dispatch(tagIdDeleted(tag))
+        dispatch(tagIdDeleted(tag.id))
       }
+    }
+    const handleChange = (e) => {
+      console.log(e.target.value)
+      dispatch(tagIdAdded(e.target.value))
+    }
+    const handleNames = (tags) => {
+      let names = tags?.map((tag) => tag.name)
+
+      return names.join(', ')
     }
     content = (
       <FormControl
@@ -276,26 +288,15 @@ const CustomFields = ({
           labelId="select-tag"
           multiple
           name={name}
-          value={formik.values[`${name}`]}
-          onChange={formik.handleChange}
+          value={tagName}
+          onChange={handleChange}
           input={<OutlinedInput label={t('تگ')} />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => handleNames(selected)}
           MenuProps={MenuProps}
         >
           {tags.map((tag, index) => (
-            <MenuItem
-              key={index}
-              value={tag.name}
-              onClick={() =>
-                saveId(
-                  tag.id,
-                  !(formik.values[`${name}`].indexOf(tag.name) > -1),
-                )
-              }
-            >
-              <Checkbox
-                checked={formik.values[`${name}`].indexOf(tag.name) > -1}
-              />
+            <MenuItem key={index} value={tag}>
+              <Checkbox checked={tagName.indexOf(tag) > -1} />
               <ListItemText primary={tag.name} />
             </MenuItem>
           ))}

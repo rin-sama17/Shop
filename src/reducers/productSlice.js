@@ -20,7 +20,7 @@ export const fetchProducts = createAsyncThunk(
     async () => {
         try {
             const res = await getAllProducts();
-            return res.data.data;
+            return res.data.data[0];
         } catch (error) {
             console.error(error);
         }
