@@ -28,12 +28,15 @@ const EditPost = ({ post }) => {
     } else {
       dispatch(tagIdsCleared())
     }
-  }, [open, post])
+  }, [open])
   const formik = useFormik({
     initialValues: post,
     // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
+      console.log(tag_id)
       const tagIds = tag_id.map((tag) => tag.id)
+      console.log(tagIds)
+
       dispatch(
         editPost({
           values: { ...values, tags: tagIds, lang },
@@ -43,7 +46,6 @@ const EditPost = ({ post }) => {
       )
     },
   })
-
   const fields = postFieldsData(formik, true)
 
   return (

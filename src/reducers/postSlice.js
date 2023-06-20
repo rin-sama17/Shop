@@ -44,7 +44,7 @@ export const addPost = createAsyncThunk(
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.data.message, { position: 'bottom-left' });
+            toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },
 );
@@ -52,6 +52,7 @@ export const addPost = createAsyncThunk(
 export const editPost = createAsyncThunk(
     'post/editPost',
     async ({ values, setOpen, resetForm }) => {
+        console.log(values);
         const formData = convertToForm(values);
         try {
             const res = await updatePost(formData, values.id);

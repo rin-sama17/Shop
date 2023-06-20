@@ -258,7 +258,9 @@ const CustomFields = ({
   } else if (selectTag) {
     const tags = useSelector(selectAllTags)
 
-    const tagName = useSelector(selectTag_id)
+    const itemTags = useSelector(selectTag_id)
+    const itemTagIds = itemTags.map((tag) => tag.id)
+
     const saveId = (tag, canSave) => {
       console.log(canSave)
       if (canSave) {
@@ -267,10 +269,7 @@ const CustomFields = ({
         dispatch(tagIdDeleted(tag.id))
       }
     }
-    const handleChange = (e) => {
-      console.log(e.target.value)
-      dispatch(tagIdAdded(e.target.value))
-    }
+
     const handleNames = (tags) => {
       let names = tags?.map((tag) => tag.name)
 
@@ -288,15 +287,19 @@ const CustomFields = ({
           labelId="select-tag"
           multiple
           name={name}
-          value={tagName}
-          onChange={handleChange}
+          value={itemTags}
+          // onChange={handleChange}
           input={<OutlinedInput label={t('تگ')} />}
           renderValue={(selected) => handleNames(selected)}
           MenuProps={MenuProps}
         >
           {tags.map((tag, index) => (
-            <MenuItem key={index} value={tag}>
-              <Checkbox checked={tagName.indexOf(tag) > -1} />
+            <MenuItem
+              key={index}
+              value={tag}
+              onClick={() => saveId(tag, !(itemTagIds.indexOf(tag.id) > -1))}
+            >
+              <Checkbox checked={itemTagIds.indexOf(tag.id) > -1} />
               <ListItemText primary={tag.name} />
             </MenuItem>
           ))}

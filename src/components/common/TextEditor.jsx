@@ -1,21 +1,24 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Box, Button, Stack, Paper } from '@mui/material'
 import { useQuill } from 'react-quilljs'
-var toolbarOptions = [
-  [{ font: [] }],
-  [{ header: [1, 2, 3, 4, 5, 6, false] }],
-  ['bold', 'italic', 'underline', 'strike'],
-  [{ color: [] }, { background: [] }],
-  [{ script: 'sub' }, { script: 'super' }],
-  ['blockquote', 'code-block'],
-  [{ list: 'ordered' }, { list: 'bullet' }],
-  [{ indent: '-1' }, { indent: '+1' }, { align: [] }],
-  ['link', 'image', 'video'],
-  ['clean'],
-  [{ direction: 'rtl' }],
-]
 
 const TextEditor = ({ formik, name, readOnly, value }) => {
+  var toolbarOptions = useMemo(
+    () => [
+      [{ font: [] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ color: [] }, { background: [] }],
+      [{ script: 'sub' }, { script: 'super' }],
+      ['blockquote', 'code-block'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ indent: '-1' }, { indent: '+1' }, { align: [] }],
+      ['link', 'image', 'video'],
+      ['clean'],
+      [{ direction: 'rtl' }],
+    ],
+    [],
+  )
   const { quill, quillRef } = useQuill({
     modules: {
       history: {
@@ -38,7 +41,7 @@ const TextEditor = ({ formik, name, readOnly, value }) => {
         })
       }
     }
-  }, [quill, quillRef, toolbarOptions])
+  }, [quill, quillRef])
   return (
     <Box
       sx={{

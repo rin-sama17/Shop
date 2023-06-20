@@ -36,7 +36,8 @@ const EditProduct = ({ product }) => {
     initialValues: { ...product, tags: [] },
     // validationSchema: productValidation,
     onSubmit: (values, { resetForm }) => {
-      const editedProduct = { ...values, tags: tag_ids, lang }
+      const tagIds = tag_ids.map((tag) => tag.id)
+      const editedProduct = { ...values, tags: tagIds, lang }
       console.log(editedProduct)
       dispatch(
         editProduct({

@@ -26,6 +26,7 @@ const AddPost = () => {
     image: null,
     category_id: '',
     user_id: user.id,
+    status: 0,
     summary: '',
   }
   const formik = useFormik({

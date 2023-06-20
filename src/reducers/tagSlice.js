@@ -99,14 +99,14 @@ const tagSlice = createSlice({
         },
         tagIdAdded: (state, action) => {
 
-            state.tag_id = action.payload;
+
+            state.tag_id.push(action.payload);
 
         },
         tagIdDeleted: (state, action) => {
-            const tagIdIndex = state.tag_id.findIndex(tag => tag === action.payload.id);
+            const tagIdIndex = state.tag_id.findIndex(tag => tag.id === action.payload);
             state.tag_id.splice(tagIdIndex, 1);
-            const tagNameIndex = state.tag_name.findIndex(tag => tag === action.payload.name);
-            state.tag_name.splice(tagNameIndex, 1);
+
         },
         tagDeleted: (state, action) => {
             const tagIndex = state.tag_id.findIndex(tag => tag === action.payload);
@@ -117,11 +117,11 @@ const tagSlice = createSlice({
             state.tag_name.splice(0, state.tag_name.length);
         },
         tagsIdFinded: (state, action) => {
-            const tagTags = action.payload;
-            const tagIds = tagTags?.map(tag => tag.id);
-            const tagNames = tagTags?.map(tag => tag.name);
-            state.tag_id = tagIds;
-            state.tag_name = tagNames;
+            if (action.payload.length > 0) {
+
+                state.tag_id = action.payload;
+            }
+
 
         },
 
