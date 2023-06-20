@@ -32,6 +32,7 @@ const PremissionManagement = () => {
     () => [
       { field: 'name', headerName: t('نام دسترسی'), width: 150 },
       { field: 'description', headerName: t('توضیحات'), width: 150 },
+      { field: 'status', headerName: t('وضعیت'), width: 100 },
       {
         field: 'actions',
         type: 'actions',

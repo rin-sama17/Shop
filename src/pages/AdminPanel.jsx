@@ -64,7 +64,7 @@ const AdminPanel = () => {
           textAlign: 'center',
           bgcolor: 'bgSidebar.dark',
           position: 'inherit',
-          height: 'fit-content',
+          height: { xs: 'fit-content', md: '100vh' },
           top: { xs: 0, md: '-37px' },
         }}
       >

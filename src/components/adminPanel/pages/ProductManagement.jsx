@@ -7,11 +7,13 @@ import { AddProduct, CustomNoRowsOverlay, EditProduct } from '../components'
 import { useEffect, useMemo } from 'react'
 import {
   deleteProduct,
+  editProduct,
   fetchProducts,
   selectAllProducts,
 } from '../../../reducers/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import ChangeStatus from '../components/ChangeStatus'
 
 const ProductManagement = () => {
   const dispatch = useDispatch()
@@ -32,8 +34,9 @@ const ProductManagement = () => {
       {
         field: 'actions',
         type: 'actions',
-        width: 80,
+        width: 110,
         getActions: (params) => [
+          <ChangeStatus item={params.row} editItem={editProduct} />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
