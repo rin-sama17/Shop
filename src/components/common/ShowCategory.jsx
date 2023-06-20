@@ -16,7 +16,7 @@ const ShowCategory = ({ categoryId, tags }) => {
 
   if (isLoading) {
     return <Spinner />
-  } else if (isSuccess) {
+  } else if (!isSuccess) {
     return (
       <Box>
         <Typography

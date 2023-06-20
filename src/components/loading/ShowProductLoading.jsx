@@ -13,16 +13,17 @@ const ShowProductLoading = () => {
       }}
     >
       <Grid xs={12} md={4} sx={{ p: 1, minHeight: '50vh' }}>
-        <Skeleton height={30} width="40%" />
         <Skeleton
-          sx={{ my: 2 }}
-          height={200}
           animation="wave"
           variant="rectangular"
+          sx={{
+            height: 430,
+            width: 1,
+          }}
         />
       </Grid>
 
-      <Grid xs={12} md={4} sx={{ p: 1 }}>
+      <Grid xs={12} md={8} sx={{ p: 1 }}>
         <Card
           sx={{
             p: 2,

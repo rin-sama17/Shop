@@ -51,7 +51,7 @@ export const editProduct = createAsyncThunk(
     async ({ values, setOpen, resetForm }) => {
 
         const formData = convertToForm(values);
-        console.log(formData)
+        console.log(formData);
         try {
             const res = await updateProduct(formData, values.id);
             if (res.status === 200) {
@@ -60,7 +60,7 @@ export const editProduct = createAsyncThunk(
                     resetForm();
                 }
                 toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data.post;
+                return res.data;
             }
         } catch (error) {
             console.log(error);
@@ -93,7 +93,15 @@ const productSlice = createSlice({
     extraReducers: {
         [fetchProducts.fulfilled]: productAdaptor.setAll,
         [addProduct.fulfilled]: productAdaptor.addOne,
-        [editProduct.fulfilled]: productAdaptor.setOne,
+        [editProduct.fulfilled]: (state, action) => {
+            const product = action.payload.product;
+            const tags = action.payload.tags;
+            const editedProduct = {
+                ...product,
+                tags
+            };
+            productAdaptor.setOne(state, editedProduct);
+        },
         [deleteProduct.fulfilled]: productAdaptor.removeOne,
     },
 });

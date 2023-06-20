@@ -86,7 +86,7 @@ const Agencies = () => {
           </Grid>
         </Grid>
       </Paper>
-      {!isSuccess ? (
+      {isSuccess ? (
         <PostLoading />
       ) : (
         <TransitionGroup>

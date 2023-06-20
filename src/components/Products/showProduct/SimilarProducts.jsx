@@ -27,7 +27,7 @@ const SimilarProducts = ({ product }) => {
     }),
   })
 
-  if (!isSuccess || similarProducts.length === 0) {
+  if (isSuccess || similarProducts.length === 0) {
     return
   }
   return (

@@ -62,7 +62,7 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        {!isSuccess ? (
+        {isSuccess ? (
           <Box sx={{ width: 0, m: 2 }}>
             <ProductLoading />
           </Box>
@@ -71,7 +71,7 @@ export default function BasicTabs() {
         )}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {!isSuccess ? (
+        {isSuccess ? (
           <Box sx={{ width: 0, m: 2 }}>
             <ProductLoading />
           </Box>

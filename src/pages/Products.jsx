@@ -18,7 +18,7 @@ const Products = () => {
   const { sortedProducts, isSuccess } = useSelector(selectFiltredProducts)
   const dispatch = useDispatch()
 
-  console.log(isSuccess)
+  console.log(!isSuccess)
 
   useEffect(() => {
     dispatch(fetchFilterProduct())

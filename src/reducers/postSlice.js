@@ -63,7 +63,7 @@ export const editPost = createAsyncThunk(
                 }
                 console.log(res);
                 toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data.post;
+                return res.data;
             }
         } catch (error) {
             console.log(error);
@@ -95,7 +95,15 @@ const postSlice = createSlice({
     extraReducers: {
         [fetchPosts.fulfilled]: postAdaptor.setAll,
         [addPost.fulfilled]: postAdaptor.addOne,
-        [editPost.fulfilled]: postAdaptor.setOne,
+        [editPost.fulfilled]: (state, action) => {
+            const post = action.payload.post;
+            const tags = action.payload.tags;
+            const editedPost = {
+                ...post,
+                tags
+            };
+            postAdaptor.setOne(state, editedPost);
+        },
         [deletePost.fulfilled]: postAdaptor.removeOne,
 
     },
