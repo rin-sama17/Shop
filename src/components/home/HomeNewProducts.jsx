@@ -41,7 +41,8 @@ function a11yProps(index) {
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0)
-  const { data: products = { data: [] }, isSuccess } = useGetProductsQuery()
+  const { data = { data: [[]] }, isSuccess } = useGetProductsQuery()
+  const products = data.data[0]
   const { t } = useTranslation()
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -62,21 +63,21 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        {isSuccess ? (
+        {!isSuccess ? (
           <Box sx={{ width: 0, m: 2 }}>
             <ProductLoading />
           </Box>
         ) : (
-          <ProductsSlider products={products.data} />
+          <ProductsSlider products={products} />
         )}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {isSuccess ? (
+        {!isSuccess ? (
           <Box sx={{ width: 0, m: 2 }}>
             <ProductLoading />
           </Box>
         ) : (
-          <ProductsSlider products={products.data} />
+          <ProductsSlider products={products} />
         )}
       </TabPanel>
     </Box>
