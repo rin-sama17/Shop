@@ -18,6 +18,7 @@ export const fetchFilterProduct = createAsyncThunk(
         try {
             const url = "http://localhost:8000/api/products";
             const res = await axios.get(url);
+            console.log("res: aaaaaaaaaa", res);
             return res.data.data[0];
         } catch (error) {
             console.error(error);
@@ -34,6 +35,8 @@ const filtredProductSlice = createSlice({
             const sortBy = action.payload;
             let sortedItems;
             if (sortBy === 0) {
+                console.log("state.products: aaaaaaaaaa", state.products);
+
                 sortedItems = state.products.sort((a, b) => a.created_at.localeCompare(b.created_at));
             } else if (sortBy === 1) {
                 sortedItems = state.products.filter((product) => product.discount);
