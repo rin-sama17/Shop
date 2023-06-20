@@ -31,6 +31,7 @@ export const fetchSliders = createAsyncThunk(
 export const addSlider = createAsyncThunk(
     'slider/addSlider',
     async ({ values, setOpen, resetForm }) => {
+        console.log(values);
         const formData = convertToForm(values);
         try {
             const res = await createSlider(formData);

@@ -10,11 +10,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addSlider } from '../../../reducers/sliderSlice'
 import { selectLang } from '../../../reducers/langSlice'
 import AddBtn from './AddBtn'
+import { useTranslation } from 'react-i18next'
 
 const AddSlider = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
-
+  const { t } = useTranslation()
   const lang = useSelector(selectLang)
   const [type, setType] = useState(0)
   const handleSubmit = (values, resetForm) => {
@@ -22,11 +23,14 @@ const AddSlider = () => {
     let newSlider
     if (type === 0) {
       newSlider = {
-        ...values,
-        description: 'just a text',
+        name,
+        image,
+        url,
+        type,
+        description: 'just e text',
       }
     } else {
-      newSlider = values
+      newSlider = { ...values, type }
     }
     dispatch(addSlider({ values: { ...newSlider, lang }, setOpen, resetForm }))
   }
@@ -64,7 +68,7 @@ const AddSlider = () => {
               onChange={handleChange}
             />
           }
-          label="اسلایدر اینه ای"
+          label={t('اسلایدر اینه ای')}
         />
         <CustomForm
           formik={formik}
