@@ -36,7 +36,7 @@ const ProductManagement = () => {
         type: 'actions',
         width: 110,
         getActions: (params) => [
-          <ChangeStatus item={params.row} editItem={editProduct} />,
+          // <ChangeStatus item={params.row} editItem={editProduct} />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
