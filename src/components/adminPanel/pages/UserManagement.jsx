@@ -30,7 +30,8 @@ const UserManagement = () => {
 
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: t('شماره'), width: 10 },
+      { field: 'id', headerName: t('شماره'), width: 90 },
+
       { field: 'firstname', headerName: t('نام'), width: 110 },
       { field: 'lastname', headerName: t('نام خانوادگی'), width: 110 },
       { field: 'email', headerName: t('ایمیل'), width: 150 },

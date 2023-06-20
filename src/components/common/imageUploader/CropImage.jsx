@@ -3,10 +3,12 @@ import Cropper from 'react-easy-crop'
 import { Slider, Button } from '@mui/material'
 import getCroppedImg from './getCroppedImg'
 import Grid from '@mui/material/Unstable_Grid2'
+import { useTranslation } from 'react-i18next'
 const CropImage = ({ img, setChanges, setOpen, setPhotoURL, aspect }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [rotation, setRotation] = useState(0)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
+  const { t } = useTranslation()
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels)
@@ -62,7 +64,7 @@ const CropImage = ({ img, setChanges, setOpen, setPhotoURL, aspect }) => {
           variant="contained"
           sx={{ bgcolor: 'btnSubmit.main', color: 'btnSubmit.light' }}
         >
-          ثبت تغییرات
+          {t('ثبت تغییرات')}
         </Button>
       </Grid>
     </Grid>

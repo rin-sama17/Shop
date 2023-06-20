@@ -1,11 +1,13 @@
 import * as React from 'react'
 import { MoreVert } from '@mui/icons-material'
 import { IconButton, Menu, Divider, Typography, MenuItem } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 const ITEM_HEIGHT = 48
 
 export default function ShowOptions({ options, name }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const { t } = useTranslation()
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -47,7 +49,7 @@ export default function ShowOptions({ options, name }) {
           variant="h6"
           sx={{ my: 1 }}
         >
-          {name}
+          {t(name)}
         </Typography>
         <Divider />
         {options?.length > 0 ? (
@@ -63,7 +65,7 @@ export default function ShowOptions({ options, name }) {
             variant="h6"
             sx={{ my: 1 }}
           >
-            نقشی وجود ندارد
+            {t('داده ای وجود ندارد')}
           </Typography>
         )}
       </Menu>

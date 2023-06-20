@@ -23,6 +23,7 @@ const AgencyManagement = () => {
 
   const columns = useMemo(
     () => [
+      { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام'), width: 100 },
       { field: 'address', headerName: t('ادرس'), width: 150 },
       { field: 'phone', headerName: t('شماره تلفن'), width: 150 },

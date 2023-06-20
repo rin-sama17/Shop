@@ -25,7 +25,7 @@ const ProductManagement = () => {
   }, [])
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: t('شماره'), width: 100 },
+      { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام محصول'), width: 100 },
       { field: 'price', headerName: t('قیمت'), width: 100 },
       { field: 'discount', headerName: t('تخفیف(به درصد)'), width: 120 },

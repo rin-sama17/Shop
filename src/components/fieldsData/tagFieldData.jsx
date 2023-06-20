@@ -10,7 +10,7 @@ const tagFieldData = (formik) => {
     {
       md: 3,
       submit: true,
-      customLabel: 'ثبت موقت',
+      customLabel: 'ثبت تغییرات',
     },
   ]
 }

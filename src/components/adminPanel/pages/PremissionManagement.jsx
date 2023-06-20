@@ -30,6 +30,7 @@ const PremissionManagement = () => {
 
   const columns = useMemo(
     () => [
+      { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام دسترسی'), width: 150 },
       { field: 'description', headerName: t('توضیحات'), width: 150 },
       { field: 'status', headerName: t('وضعیت'), width: 100 },

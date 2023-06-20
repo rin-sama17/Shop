@@ -25,6 +25,8 @@ const SliderManagement = () => {
 
   const columns = useMemo(
     () => [
+      { field: 'id', headerName: t('شماره'), width: 90 },
+
       { field: 'name', headerName: t('نام'), width: 150 },
       { field: 'description', headerName: t('توضیحات'), width: 150 },
       { field: 'url', headerName: t('لینک'), width: 150 },

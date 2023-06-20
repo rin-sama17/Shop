@@ -8,7 +8,7 @@ const ShowAuthor = ({ userId }) => {
 
   let content
 
-  if (!isSuccess) {
+  if (isError || !isSuccess) {
     content = (
       <Typography variant="caption" color="text.secondary">
         نویسنده ناشناس

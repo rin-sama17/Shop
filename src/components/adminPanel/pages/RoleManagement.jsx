@@ -40,7 +40,7 @@ const RoleManagement = () => {
   }
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: t('شماره'), width: 10 },
+      { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام'), width: 150 },
       { field: 'description', headerName: t('توضیحات'), width: 200 },
       {

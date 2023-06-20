@@ -34,43 +34,41 @@ const Post = ({ postId }) => {
       <Paper
         elevation={8}
         sx={{
-          width: 1,
+          width: { xs: '300px', sm: 1 },
           borderRadius: '20px',
         }}
       >
         <CardActionArea component={Link} to={`/posts/${post.id}`}>
           <Box>
-            <CardContent>
-              <Grid container sx={{ justifyContent: 'space-between' }}>
-                <Grid xs={12} sm={4}>
-                  <img
-                    alt={post.name}
-                    src={`http://localhost:8000/${post.image}`}
-                    style={{
-                      margin: 'auto',
-                      width: '100%',
-                      borderRadius: '20px',
-                    }}
-                  />
-                </Grid>
-                <Grid xs={12} sm={8} sx={{ p: 2 }}>
-                  <Typography
-                    color="secondary"
-                    variant="subtitle1"
-                    textAlign="left"
-                  >
-                    {post.name}
-                    <Box sx={{ display: 'flex' }}>
-                      <ShowTime timestamp={post.created_at} />
-                      <ShowAuthor userId={post.user_id} />
-                    </Box>
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    <LinesEllipsis text={post.summary} maxLine={6} />
-                  </Typography>{' '}
-                </Grid>
+            <Grid container sx={{ justifyContent: 'space-between' }}>
+              <Grid xs={12} sm={4}>
+                <img
+                  alt={post.name}
+                  src={`http://localhost:8000/${post.image}`}
+                  style={{
+                    margin: 'auto',
+                    width: '100%',
+                    borderRadius: '20px',
+                  }}
+                />
               </Grid>
-            </CardContent>{' '}
+              <Grid xs={12} sm={8} sx={{ p: 2 }}>
+                <Typography
+                  color="secondary"
+                  variant="subtitle1"
+                  textAlign="left"
+                >
+                  {post.name}
+                  <Box sx={{ display: 'flex' }}>
+                    {/* <ShowTime timestamp={post.created_at} /> */}
+                    <ShowAuthor userId={post.user_id} />
+                  </Box>
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  <LinesEllipsis text={post.summary} maxLine={6} />
+                </Typography>
+              </Grid>
+            </Grid>
           </Box>
         </CardActionArea>
       </Paper>

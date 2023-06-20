@@ -19,6 +19,7 @@ const TagManagement = () => {
 
   const columns = useMemo(
     () => [
+      { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام تگ'), width: 150 },
       {
         field: 'actions',

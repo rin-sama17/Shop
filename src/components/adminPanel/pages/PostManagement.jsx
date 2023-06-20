@@ -29,7 +29,7 @@ const PostManagement = () => {
 
   const columns = useMemo(
     () => [
-      { field: 'id', headerName: t('شماره'), width: 100 },
+      { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام پست'), width: 150 },
       { field: 'summary', headerName: t('مقدمه'), width: 200 },
       { field: 'category_id', headerName: t('دسته بندی'), width: 100 },

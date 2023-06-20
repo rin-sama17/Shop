@@ -8,7 +8,7 @@ const ShowPost = () => {
   let content
   if (isLoading) {
     content = <ShowPostLoading />
-  } else if (!isSuccess) {
+  } else if (isSuccess) {
     content = <PostContents post={data.post} />
   }
 
