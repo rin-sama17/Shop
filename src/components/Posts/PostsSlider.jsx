@@ -22,6 +22,7 @@ import { useGetPostsQuery } from '../../api'
 
 const PostsSlider = () => {
   const { data = { posts: [] }, isSuccess } = useGetPostsQuery()
+  const posts = data.posts.filter((post) => post.status === 1)
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('sm'))
 
@@ -40,7 +41,7 @@ const PostsSlider = () => {
           }}
         >
           <img
-            src={`http://localhost:8000/${data.posts[i].image}`}
+            src={`http://localhost:8000/${posts[i].image}`}
             alt=""
             style={{
               width: '50px',
@@ -63,7 +64,7 @@ const PostsSlider = () => {
                 mx: 1,
               }}
             >
-              <LinesEllipsis text={data.posts[i].name} maxLine={1} />
+              <LinesEllipsis text={posts[i].name} maxLine={1} />
             </Typography>
           )}
         </Card>
@@ -80,7 +81,7 @@ const PostsSlider = () => {
   return (
     <Box sx={{ width: 1, mb: 2 }}>
       <Slider {...settings}>
-        {data.posts.slice(0, 4).map((slide, index) => (
+        {posts.slice(0, 4).map((slide, index) => (
           <Box component="div" key={index}>
             <ImageListItem>
               <img

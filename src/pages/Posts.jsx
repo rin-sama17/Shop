@@ -6,6 +6,8 @@ import { Box } from '@mui/material'
 
 const Posts = () => {
   const { data = { posts: [] }, isSuccess } = useGetPostsQuery()
+  const posts = data.posts.filter((post) => post.status === 1)
+
   if (!isSuccess) {
     return <PostLoading />
   }
@@ -19,10 +21,16 @@ const Posts = () => {
   }
   return (
     <Box>
-      <PostsSlider />
-      {data.posts.map((post, index) => (
-        <Post postId={post.id} key={index} />
-      ))}
+      {posts.length > 0 ? (
+        <>
+          <PostsSlider />
+          {posts.map((post, index) => (
+            <Post postId={post.id} key={index} />
+          ))}
+        </>
+      ) : (
+        <CustomNoRowsOverlay />
+      )}
     </Box>
   )
 }

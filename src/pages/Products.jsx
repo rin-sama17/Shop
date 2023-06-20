@@ -18,6 +18,10 @@ const Products = () => {
   const { sortedProducts, isSuccess } = useSelector(selectFiltredProducts)
   const dispatch = useDispatch()
 
+  const sortedProductsByStatus = sortedProducts.filter(
+    (product) => product.status === 1,
+  )
+
   console.log(!isSuccess)
 
   useEffect(() => {
@@ -30,12 +34,12 @@ const Products = () => {
   return (
     <Box sx={{ mt: 5 }}>
       <ProductsFilter />
-      {sortedProducts.length === 0 ? (
+      {sortedProductsByStatus.length === 0 ? (
         <CustomNoRowsOverlay />
       ) : (
         <>
           <Grid container spacing={2} sx={{ width: 1 }}>
-            {sortedProducts.map((product, index) => (
+            {sortedProductsByStatus.map((product, index) => (
               <Grid
                 xs={12}
                 sm={6}
