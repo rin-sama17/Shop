@@ -20,6 +20,7 @@ const AddPremission = () => {
     initialValues: {
       name: '',
       description: '',
+      status: 0,
     },
     // validationSchema: premissionValidation,
     onSubmit: (values, { resetForm }) => {
