@@ -49,8 +49,9 @@ export const addProduct = createAsyncThunk(
 export const editProduct = createAsyncThunk(
     'product/editProduct',
     async ({ values, setOpen, resetForm }) => {
-        console.log(values);
+
         const formData = convertToForm(values);
+        console.log(formData)
         try {
             const res = await updateProduct(formData, values.id);
             if (res.status === 200) {
@@ -59,10 +60,11 @@ export const editProduct = createAsyncThunk(
                     resetForm();
                 }
                 toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data.product;
+                return res.data.post;
             }
         } catch (error) {
             console.log(error);
+            console.log(error.response.data.message);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },

@@ -13,6 +13,7 @@ import {
   fetchTags,
   selectTag_id,
   tagIdsCleared,
+  tagsIdFinded,
 } from '../../../reducers/tagSlice'
 
 const EditProduct = ({ product }) => {
@@ -27,7 +28,9 @@ const EditProduct = ({ product }) => {
   }, [])
 
   useEffect(() => {
-    if (!open) {
+    if (open) {
+      dispatch(tagsIdFinded(product.tags))
+    } else {
       dispatch(tagIdsCleared())
     }
   }, [open])
