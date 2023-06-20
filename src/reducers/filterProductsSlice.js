@@ -18,7 +18,7 @@ export const fetchFilterProduct = createAsyncThunk(
         try {
             const url = "http://localhost:8000/api/products";
             const res = await axios.get(url);
-            return res.data.data;
+            return res.data.data[0];
         } catch (error) {
             console.error(error);
         }
