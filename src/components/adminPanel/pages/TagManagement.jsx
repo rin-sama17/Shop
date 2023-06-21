@@ -18,6 +18,8 @@ const TagManagement = () => {
   const dispatch = useDispatch()
   const tag = useSelector(selectAllTags)
   const loading = useSelector(selectTagLoading)
+  const isLoading = Boolean(!(tag.length > 0) && loading)
+
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -47,7 +49,7 @@ const TagManagement = () => {
   return (
     <>
       <AddTag />
-      <CustomDataGrid rows={tag} columns={columns} loading={loading} />
+      <CustomDataGrid rows={tag} columns={columns} loading={isLoading} />
     </>
   )
 }
