@@ -102,10 +102,9 @@ const categorySlice = createSlice({
       const parentIds = parentCategories.map(category => category.id);
       let childCategories = categories.filter(category => parentIds.includes(category.category_id));
       const childIds = childCategories.map(category => category.id);
-      let child2Categories = categories.filter(category => childIds.includes(category.category_id));
-      const child2Ids = child2Categories.map(category => category.id);
 
-      const useAbleCategoriesIds = [...parentIds, ...childIds, ...child2Ids];
+
+      const useAbleCategoriesIds = [...parentIds, ...childIds];
       const filtredCategories = categories.filter(category => useAbleCategoriesIds.includes(category.id));
 
       state.loading = false;
