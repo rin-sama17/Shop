@@ -33,18 +33,14 @@ export const fetchCategories = createAsyncThunk(
 
 export const fetchAdminCategories = createAsyncThunk(
   'categories/fetchAdminCategories',
-  async () => {
+  async (_, { rejectWithValue }) => {
     try {
       const res = await getAdminCategories();
-      if (res.data.message === "forbidden") {
-        return res.data.message;
-      } else {
-
-
-        return res.data.data;
-      }
+      console.log(res);
+      return res.data.data;
     } catch (error) {
       console.error(error);
+      return rejectWithValue(error.response.data);
     }
   },
 );
@@ -116,19 +112,15 @@ const categorySlice = createSlice({
       state.loading = true;
     },
     [fetchAdminCategories.fulfilled]: (state, action) => {
+      state.access = true;
       state.loading = false;
-      console.log(action.payload);
-      if (action.payload == "forbidden") {
-        state.access = false;
-        return categoryAdaptor.setAll(state, []);
-      } else {
-
-
-        state.access = true;
-        categoryAdaptor.setAll(state, categories);
-      }
+      categoryAdaptor.setAll(state, action.payload);
     },
+    [fetchAdminCategories.rejected]: (state, action) => {
+      state.loading = false;
 
+      state.access = false;
+    },
     [fetchCategories.fulfilled]: (state, action) => {
 
       const categories = action.payload;

@@ -18,7 +18,7 @@ export const getAllCategories = () => {
 };
 export const getAdminCategories = () => {
     const url = `${ADMIN_SERVER_URL}/categories`;
-    return axios.get(url);
+    return axios.get(url, headers);
 };
 
 export const getOneCategory = (categoryId) => {

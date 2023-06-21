@@ -1,6 +1,8 @@
 export { default as footerBg } from "./footerBg.jpg";
 export { default as bg } from "./bg.jpg";
 export { default as notFound } from "./notFound.svg";
+export { default as error404 } from "./error404.svg";
+export { default as error403 } from "./error403.svg";
 
 
 

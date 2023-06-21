@@ -20,6 +20,7 @@ import {
 } from '../../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import NoAccessError from '../components/NoAccessError'
 
 const CategoryHewder = ({ parent }) => {
   const { t } = useTranslation()
@@ -143,11 +144,12 @@ const CategoryManagement = () => {
   const havAccess = useSelector(selectCategoryAccess)
   const loading = useSelector(selectCategoryLoading)
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(fetchAdminCategories())
   }, [])
-  if (havAccess) {
-    return null
+  if (!havAccess) {
+    return <NoAccessError />
   }
   if (loading) {
     return <Spinner />
