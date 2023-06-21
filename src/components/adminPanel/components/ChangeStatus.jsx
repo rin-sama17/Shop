@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { CustomIconButton } from '../../common'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import { useDispatch } from 'react-redux'
 
-const ChangeStatus = ({ item, editItem }) => {
+const ChangeStatus = ({ item, editItem, havTag }) => {
   const [show, setShow] = useState(false)
   const dispatch = useDispatch()
-
   useEffect(() => {
     if (item.status === 1) {
       setShow(true)
@@ -15,13 +14,19 @@ const ChangeStatus = ({ item, editItem }) => {
   }, [])
 
   const handleClick = () => {
-    console.log(show)
+    let value
+    if (havTag) {
+      const tagIds = item.tags.map((tag) => tag.id)
+      value = { ...item, tags: tagIds }
+    } else {
+      value = { ...item }
+    }
     if (show) {
       setShow(false)
-      dispatch(editItem({ values: { ...item, status: 0 } }))
+      dispatch(editItem({ values: { ...value, status: 0 } }))
     } else {
       setShow(true)
-      dispatch(editItem({ values: { ...item, status: 1 } }))
+      dispatch(editItem({ values: { ...value, status: 1 } }))
     }
   }
 

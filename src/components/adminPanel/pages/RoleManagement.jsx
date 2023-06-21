@@ -24,6 +24,8 @@ import {
 } from '../../../reducers/premissionSlice'
 import { useTranslation } from 'react-i18next'
 import ChangeStatus from '../components/ChangeStatus'
+import { showStatus } from '../components/ShowStatus'
+import CustomDataGrid from '../components/CustomDataGrid'
 
 const RoleManagement = () => {
   const dispatch = useDispatch()
@@ -46,24 +48,19 @@ const RoleManagement = () => {
       {
         field: 'status',
         headerName: t('وضعیت'),
-        width: 120,
+        width: 90,
+        valueGetter: showStatus,
       },
+
       {
-        field: 'premissions',
+        field: 'actions',
         type: 'actions',
-        width: 10,
+        width: 150,
         getActions: (params) => [
           <ShowOptions
             options={params.row.premissions}
             name={t('دسترسی ها')}
           />,
-        ],
-      },
-      {
-        field: 'actions',
-        type: 'actions',
-        width: 110,
-        getActions: (params) => [
           <ChangeStatus item={params.row} editItem={editRole} />,
           <GridActionsCellItem
             icon={<Delete />}
@@ -79,23 +76,7 @@ const RoleManagement = () => {
   return (
     <>
       <AddRole />
-      <Box
-        sx={{
-          height: 600,
-          width: '100%',
-        }}
-      >
-        <DataGrid
-          columns={columns}
-          rows={roles}
-          components={{
-            NoRowsOverlay: () => <CustomNoRowsOverlay />,
-          }}
-          sx={{
-            overflowX: 'scroll',
-          }}
-        />
-      </Box>
+      <CustomDataGrid rows={roles} columns={columns} />
     </>
   )
 }

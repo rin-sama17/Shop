@@ -7,6 +7,7 @@ import { EditTag, AddTag, CustomNoRowsOverlay } from '../components'
 import { deleteTag, fetchTags, selectAllTags } from '../../../reducers/tagSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import CustomDataGrid from '../components/CustomDataGrid'
 
 const TagManagement = () => {
   const dispatch = useDispatch()
@@ -40,18 +41,7 @@ const TagManagement = () => {
   return (
     <>
       <AddTag />
-      <div style={{ height: 600, width: '100%' }}>
-        <DataGrid
-          rows={tag}
-          columns={columns}
-          components={{
-            NoRowsOverlay: () => <CustomNoRowsOverlay />,
-          }}
-          sx={{
-            overflowX: 'scroll',
-          }}
-        />
-      </div>
+      <CustomDataGrid rows={tag} columns={columns} />
     </>
   )
 }

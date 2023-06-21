@@ -17,6 +17,9 @@ import { CustomNoRowsOverlay } from '../components'
 import { useTranslation } from 'react-i18next'
 import ChangeStatus from '../components/ChangeStatus'
 import { fetchTags } from '../../../reducers/tagSlice'
+import { showCategory } from '../components/ShowCategory'
+import { showStatus } from '../components/ShowStatus'
+import CustomDataGrid from '../components/CustomDataGrid'
 
 const PostManagement = () => {
   const dispatch = useDispatch()
@@ -32,13 +35,23 @@ const PostManagement = () => {
       { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام پست'), width: 150 },
       { field: 'summary', headerName: t('مقدمه'), width: 200 },
-      { field: 'category_id', headerName: t('دسته بندی'), width: 100 },
+      {
+        field: 'category_id',
+        headerName: t('دسته بندی'),
+        width: 100,
+        valueGetter: showCategory,
+      },
+      {
+        field: 'status',
+        headerName: t('وضعیت'),
+        width: 90,
+        valueGetter: showStatus,
+      },
       {
         field: 'actions',
         type: 'actions',
         width: 110,
         getActions: (params) => [
-          <ChangeStatus item={params.row} editItem={editPost} />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
@@ -54,18 +67,7 @@ const PostManagement = () => {
   return (
     <>
       <AddPost />
-      <div style={{ height: 600, width: '100%' }}>
-        <DataGrid
-          rows={posts}
-          columns={columns}
-          components={{
-            NoRowsOverlay: () => <CustomNoRowsOverlay />,
-          }}
-          sx={{
-            overflowX: 'scroll',
-          }}
-        />
-      </div>
+      <CustomDataGrid rows={posts} columns={columns} />
     </>
   )
 }

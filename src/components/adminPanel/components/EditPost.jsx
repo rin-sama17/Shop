@@ -14,6 +14,7 @@ import {
   tagIdsCleared,
   tagsIdFinded,
 } from '../../../reducers/tagSlice'
+import ChangeStatus from './ChangeStatus'
 
 const EditPost = ({ post }) => {
   const [open, setOpen] = useState(false)
@@ -21,6 +22,7 @@ const EditPost = ({ post }) => {
   const dispatch = useDispatch()
   const lang = useSelector(selectLang)
   const tag_id = useSelector(selectTag_id)
+  const tagIds = tag_id.map((tag) => tag.id)
 
   useEffect(() => {
     if (open) {
@@ -33,10 +35,6 @@ const EditPost = ({ post }) => {
     initialValues: post,
     // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
-      console.log(tag_id)
-      const tagIds = tag_id.map((tag) => tag.id)
-      console.log(tagIds)
-
       dispatch(
         editPost({
           values: { ...values, tags: tagIds, lang },
@@ -50,6 +48,7 @@ const EditPost = ({ post }) => {
 
   return (
     <>
+      <ChangeStatus item={{ ...post, lang }} editItem={editPost} havTag />
       <GridActionsCellItem
         icon={<Edit />}
         color="info"

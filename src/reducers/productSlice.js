@@ -60,7 +60,7 @@ export const editProduct = createAsyncThunk(
                     resetForm();
                 }
                 toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data;
+                return res.data.product;
             }
         } catch (error) {
             console.log(error);
@@ -93,15 +93,7 @@ const productSlice = createSlice({
     extraReducers: {
         [fetchProducts.fulfilled]: productAdaptor.setAll,
         [addProduct.fulfilled]: productAdaptor.addOne,
-        [editProduct.fulfilled]: (state, action) => {
-            const product = action.payload.product;
-            const tags = action.payload.tags;
-            const editedProduct = {
-                ...product,
-                tags
-            };
-            productAdaptor.setOne(state, editedProduct);
-        },
+        [editProduct.fulfilled]: productAdaptor.setOne,
         [deleteProduct.fulfilled]: productAdaptor.removeOne,
     },
 });

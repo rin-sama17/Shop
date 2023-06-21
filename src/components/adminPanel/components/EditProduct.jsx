@@ -15,6 +15,7 @@ import {
   tagIdsCleared,
   tagsIdFinded,
 } from '../../../reducers/tagSlice'
+import ChangeStatus from './ChangeStatus'
 
 const EditProduct = ({ product }) => {
   const [open, setOpen] = useState(false)
@@ -22,6 +23,7 @@ const EditProduct = ({ product }) => {
   const dispatch = useDispatch()
   const lang = useSelector(selectLang)
   const tag_ids = useSelector(selectTag_id)
+  const tagIds = tag_ids.map((tag) => tag.id)
 
   useEffect(() => {
     dispatch(fetchTags())
@@ -39,7 +41,6 @@ const EditProduct = ({ product }) => {
     initialValues: { ...product, tags: [] },
     // validationSchema: productValidation,
     onSubmit: (values, { resetForm }) => {
-      const tagIds = tag_ids.map((tag) => tag.id)
       const editedProduct = { ...values, tags: tagIds, lang }
       console.log(editedProduct)
       dispatch(
@@ -54,6 +55,8 @@ const EditProduct = ({ product }) => {
   const fields = productFieldsData(formik, true)
   return (
     <>
+      <ChangeStatus item={{ ...product, lang }} editItem={editProduct} havTag />
+
       <GridActionsCellItem
         icon={<Edit />}
         color="info"

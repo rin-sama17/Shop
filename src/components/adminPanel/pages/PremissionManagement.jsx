@@ -18,6 +18,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import ChangeStatus from '../components/ChangeStatus'
+import CustomDataGrid from '../components/CustomDataGrid'
+import { showStatus } from '../components/ShowStatus'
 
 const PremissionManagement = () => {
   const dispatch = useDispatch()
@@ -33,7 +35,12 @@ const PremissionManagement = () => {
       { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام دسترسی'), width: 150 },
       { field: 'description', headerName: t('توضیحات'), width: 150 },
-      { field: 'status', headerName: t('وضعیت'), width: 100 },
+      {
+        field: 'status',
+        headerName: t('وضعیت'),
+        width: 100,
+        valueGetter: showStatus,
+      },
       {
         field: 'actions',
         type: 'actions',
@@ -54,18 +61,7 @@ const PremissionManagement = () => {
   return (
     <>
       <AddPremission />
-      <div style={{ height: 600, width: '100%' }}>
-        <DataGrid
-          rows={premissions}
-          columns={columns}
-          components={{
-            NoRowsOverlay: () => <CustomNoRowsOverlay />,
-          }}
-          sx={{
-            overflowX: 'scroll',
-          }}
-        />
-      </div>
+      <CustomDataGrid rows={premissions} columns={columns} />
     </>
   )
 }

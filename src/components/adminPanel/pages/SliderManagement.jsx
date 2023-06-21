@@ -14,6 +14,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { CustomDivider } from '../../common'
 import { useTranslation } from 'react-i18next'
+import CustomDataGrid from '../components/CustomDataGrid'
 
 const SliderManagement = () => {
   const dispatch = useDispatch()
@@ -50,18 +51,7 @@ const SliderManagement = () => {
   return (
     <>
       <AddSlider />
-      <div style={{ height: 600, width: '100%' }}>
-        <DataGrid
-          rows={sliders}
-          columns={columns}
-          components={{
-            NoRowsOverlay: () => <CustomNoRowsOverlay />,
-          }}
-          sx={{
-            overflowX: 'scroll',
-          }}
-        />
-      </div>
+      <CustomDataGrid rows={sliders} columns={columns} />
       <CustomDivider label="پیش نمایش" />
       <HomeSlider sliders={sliders} />
     </>

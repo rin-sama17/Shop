@@ -11,6 +11,7 @@ import {
   selectAllAgencies,
 } from '../../../reducers/agencySlice'
 import { useTranslation } from 'react-i18next'
+import CustomDataGrid from '../components/CustomDataGrid'
 
 const AgencyManagement = () => {
   const dispatch = useDispatch()
@@ -47,18 +48,7 @@ const AgencyManagement = () => {
   return (
     <>
       <AddAgency />
-      <div style={{ height: 600, width: '100%' }}>
-        <DataGrid
-          rows={agencies}
-          columns={columns}
-          components={{
-            NoRowsOverlay: () => <CustomNoRowsOverlay />,
-          }}
-          sx={{
-            overflowX: 'scroll',
-          }}
-        />
-      </div>
+      <CustomDataGrid rows={agencies} columns={columns} />
     </>
   )
 }

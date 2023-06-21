@@ -18,6 +18,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRoles } from '../../../reducers/roleSlice'
 import { useTranslation } from 'react-i18next'
+import CustomDataGrid from '../components/CustomDataGrid'
 
 const UserManagement = () => {
   const dispatch = useDispatch()
@@ -36,19 +37,14 @@ const UserManagement = () => {
       { field: 'lastname', headerName: t('نام خانوادگی'), width: 110 },
       { field: 'email', headerName: t('ایمیل'), width: 150 },
       { field: 'phone', headerName: t('شماره موبایل'), width: 110 },
-      {
-        field: 'roles',
-        type: 'actions',
-        width: 10,
-        getActions: (params) => [
-          <ShowOptions options={params.row.roles} name={t('نقش ها')} />,
-        ],
-      },
+
       {
         field: 'actions',
         type: 'actions',
-        width: 80,
+        width: 110,
         getActions: (params) => [
+          <ShowOptions options={params.row.roles} name={t('نقش ها')} />,
+
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
@@ -64,32 +60,7 @@ const UserManagement = () => {
   return (
     <>
       <AddUser />
-      <Box
-        sx={{
-          height: 600,
-          width: '100%',
-          overFlowX: 'auto',
-          '& .phone': {
-            direction: 'rtl',
-          },
-        }}
-      >
-        <DataGrid
-          columns={columns}
-          rows={users}
-          getCellClassName={(params) => {
-            if (params.field === 'phone') {
-              return 'phone'
-            }
-          }}
-          sx={{
-            overflowX: 'scroll',
-          }}
-          components={{
-            NoRowsOverlay: () => <CustomNoRowsOverlay />,
-          }}
-        />
-      </Box>
+      <CustomDataGrid rows={users} columns={columns} />
     </>
   )
 }

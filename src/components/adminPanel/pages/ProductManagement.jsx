@@ -14,6 +14,9 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import ChangeStatus from '../components/ChangeStatus'
+import { showCategory } from '../components/ShowCategory'
+import { showStatus } from '../components/ShowStatus'
+import CustomDataGrid from '../components/CustomDataGrid'
 
 const ProductManagement = () => {
   const dispatch = useDispatch()
@@ -30,13 +33,24 @@ const ProductManagement = () => {
       { field: 'price', headerName: t('قیمت'), width: 100 },
       { field: 'discount', headerName: t('تخفیف(به درصد)'), width: 120 },
       { field: 'remaining', headerName: t('موجودی'), width: 100 },
-      { field: 'category_id', headerName: t('دسته بندی'), width: 100 },
+      {
+        field: 'category_id',
+        headerName: t('دسته بندی'),
+        width: 100,
+        valueGetter: showCategory,
+      },
+      {
+        field: 'status',
+        headerName: t('وضعیت'),
+        width: 90,
+        valueGetter: showStatus,
+      },
+
       {
         field: 'actions',
         type: 'actions',
         width: 110,
         getActions: (params) => [
-          <ChangeStatus item={params.row} editItem={editProduct} />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}
@@ -51,18 +65,7 @@ const ProductManagement = () => {
   return (
     <>
       <AddProduct />
-      <div style={{ height: 600, width: '100%' }}>
-        <DataGrid
-          rows={products}
-          columns={columns}
-          components={{
-            NoRowsOverlay: () => <CustomNoRowsOverlay />,
-          }}
-          sx={{
-            overflowX: 'scroll',
-          }}
-        />
-      </div>
+      <CustomDataGrid rows={products} columns={columns} />
     </>
   )
 }
