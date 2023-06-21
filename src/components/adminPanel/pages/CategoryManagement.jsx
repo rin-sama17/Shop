@@ -12,8 +12,10 @@ import { EditCategory, AddCategory, CustomNoRowsOverlay } from '../components'
 import { CustomIconButton, Spinner } from '../../common'
 import {
   deleteCategory,
+  fetchAdminCategories,
   fetchCategories,
   selectAllCategories,
+  selectCategoryAccess,
   selectCategoryLoading,
 } from '../../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -138,8 +140,15 @@ const FindParents = ({ parent, categories }) => {
 
 const CategoryManagement = () => {
   const categories = useSelector(selectAllCategories)
+  const havAccess = useSelector(selectCategoryAccess)
   const loading = useSelector(selectCategoryLoading)
-
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchAdminCategories())
+  }, [])
+  if (havAccess) {
+    return null
+  }
   if (loading) {
     return <Spinner />
   }

@@ -45,18 +45,17 @@ const PostManagement = () => {
         valueGetter: showCategory,
       },
       {
-        field: 'status',
+        type: 'actions',
         align: 'center',
-        type: 'boolean',
         headerName: t('نمایش'),
-        width: 90,
+        width: 80,
         editable: false,
-        valueGetter: showStatus,
+        getActions: (params) => showStatus(params, editPost),
       },
       {
         field: 'actions',
         type: 'actions',
-        width: 110,
+        width: 80,
         getActions: (params) => [
           <GridActionsCellItem
             icon={<Delete />}

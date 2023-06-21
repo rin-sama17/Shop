@@ -4,6 +4,7 @@ import { AddProduct, EditProduct } from '../components'
 import { useEffect, useMemo } from 'react'
 import {
   deleteProduct,
+  editProduct,
   fetchProducts,
   selectAllProducts,
   selectProductLoading,
@@ -37,18 +38,17 @@ const ProductManagement = () => {
         valueGetter: showCategory,
       },
       {
-        field: 'status',
+        type: 'actions',
         align: 'center',
-        type: 'boolean',
         headerName: t('نمایش'),
-        width: 90,
+        width: 80,
         editable: false,
-        valueGetter: showStatus,
+        getActions: (params) => showStatus(params, editProduct),
       },
       {
         field: 'actions',
         type: 'actions',
-        width: 110,
+        width: 80,
         getActions: (params) => [
           <GridActionsCellItem
             icon={<Delete />}

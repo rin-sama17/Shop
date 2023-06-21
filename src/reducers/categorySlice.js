@@ -6,6 +6,7 @@ import {
 import { toast } from 'react-toastify';
 import {
   createCategory,
+  getAdminCategories,
   getAllCategories,
   removeCategory,
   updateCategory,
@@ -14,6 +15,7 @@ import {
 const categoryAdaptor = createEntityAdapter();
 const initialState = categoryAdaptor.getInitialState({
   useAbleCategories: [],
+  access: false,
   loading: false
 });
 
@@ -23,6 +25,24 @@ export const fetchCategories = createAsyncThunk(
     try {
       const res = await getAllCategories();
       return res.data.data;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+);
+
+export const fetchAdminCategories = createAsyncThunk(
+  'categories/fetchAdminCategories',
+  async () => {
+    try {
+      const res = await getAdminCategories();
+      if (res.data.message === "forbidden") {
+        return res.data.message;
+      } else {
+
+
+        return res.data.data;
+      }
     } catch (error) {
       console.error(error);
     }
@@ -92,9 +112,23 @@ const categorySlice = createSlice({
     }
   },
   extraReducers: {
-    [fetchCategories.pending]: (state, action) => {
+    [fetchAdminCategories.pending]: (state, action) => {
       state.loading = true;
     },
+    [fetchAdminCategories.fulfilled]: (state, action) => {
+      state.loading = false;
+      console.log(action.payload);
+      if (action.payload == "forbidden") {
+        state.access = false;
+        return categoryAdaptor.setAll(state, []);
+      } else {
+
+
+        state.access = true;
+        categoryAdaptor.setAll(state, categories);
+      }
+    },
+
     [fetchCategories.fulfilled]: (state, action) => {
 
       const categories = action.payload;
@@ -107,7 +141,6 @@ const categorySlice = createSlice({
       const useAbleCategoriesIds = [...parentIds, ...childIds];
       const filtredCategories = categories.filter(category => useAbleCategoriesIds.includes(category.id));
 
-      state.loading = false;
       state.useAbleCategories = filtredCategories;
       categoryAdaptor.setAll(state, categories);
     },
@@ -125,6 +158,7 @@ export const {
 export const selectUseAbleCategories = state => state.category.useAbleCategories;
 
 export const selectCategoryLoading = state => state.category.loading;
+export const selectCategoryAccess = state => state.category.access;
 
 export const { getChildren } = categorySlice.actions;
 

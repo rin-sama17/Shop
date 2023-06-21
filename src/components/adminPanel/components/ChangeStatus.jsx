@@ -2,10 +2,12 @@ import { useEffect, useMemo, useState } from 'react'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { CustomIconButton } from '../../common'
 import { GridActionsCellItem } from '@mui/x-data-grid'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectLang } from '../../../reducers/langSlice'
 
-const ChangeStatus = ({ item, editItem, havTag }) => {
+const ChangeStatus = ({ item, editItem }) => {
   const [show, setShow] = useState(false)
+  const lang = useSelector(selectLang)
   const dispatch = useDispatch()
   useEffect(() => {
     if (item.status === 1) {
@@ -15,11 +17,11 @@ const ChangeStatus = ({ item, editItem, havTag }) => {
 
   const handleClick = () => {
     let value
-    if (havTag) {
+    if (item.tags) {
       const tagIds = item.tags?.map((tag) => tag.id) ?? []
-      value = { ...item, tags: tagIds }
+      value = { ...item, lang, tags: tagIds }
     } else {
-      value = { ...item }
+      value = { ...item, lang }
     }
     if (show) {
       setShow(false)

@@ -16,6 +16,10 @@ export const getAllCategories = () => {
     const url = `http://localhost:8000/api/categories`;
     return axios.get(url);
 };
+export const getAdminCategories = () => {
+    const url = `${ADMIN_SERVER_URL}/categories`;
+    return axios.get(url);
+};
 
 export const getOneCategory = (categoryId) => {
     const url = `${ADMIN_SERVER_URL}/categories/show/${categoryId}`;

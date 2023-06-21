@@ -55,8 +55,6 @@ const EditProduct = ({ product }) => {
   const fields = productFieldsData(formik, true)
   return (
     <>
-      <ChangeStatus item={{ ...product, lang }} editItem={editProduct} havTag />
-
       <GridActionsCellItem
         icon={<Edit />}
         color="info"

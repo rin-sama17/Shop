@@ -39,20 +39,18 @@ const PremissionManagement = () => {
       { field: 'name', headerName: t('نام دسترسی'), width: 150 },
       { field: 'description', headerName: t('توضیحات'), width: 150 },
       {
-        field: 'status',
+        type: 'actions',
         align: 'center',
-        type: 'boolean',
         headerName: t('نمایش'),
-        width: 90,
+        width: 80,
         editable: false,
-        valueGetter: showStatus,
+        getActions: (params) => showStatus(params, editPremission),
       },
       {
         field: 'actions',
         type: 'actions',
-        width: 110,
+        width: 80,
         getActions: (params) => [
-          <ChangeStatus item={params.row} editItem={editPremission} />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}

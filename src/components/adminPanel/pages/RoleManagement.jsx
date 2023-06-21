@@ -48,24 +48,22 @@ const RoleManagement = () => {
       { field: 'name', headerName: t('نام'), width: 150 },
       { field: 'description', headerName: t('توضیحات'), width: 200 },
       {
-        field: 'status',
+        type: 'actions',
         align: 'center',
-        type: 'boolean',
         headerName: t('نمایش'),
-        width: 90,
+        width: 80,
         editable: false,
-        valueGetter: showStatus,
+        getActions: (params) => showStatus(params, editRole),
       },
       {
         field: 'actions',
         type: 'actions',
-        width: 150,
+        width: 110,
         getActions: (params) => [
           <ShowOptions
             options={params.row.premissions}
             name={t('دسترسی ها')}
           />,
-          <ChangeStatus item={params.row} editItem={editRole} />,
           <GridActionsCellItem
             icon={<Delete />}
             sx={{ color: 'tomato' }}

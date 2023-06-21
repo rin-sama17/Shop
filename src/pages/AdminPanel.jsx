@@ -72,14 +72,18 @@ const AdminPanel = () => {
       </Grid>
       <Grid xs={12} md={9.5} lg={10}>
         {pages.map((page, index) => (
-          <Page
-            key={index}
-            pageNumber={pageNumber}
-            name="adminPanel"
-            index={index}
-          >
-            {page}
-          </Page>
+          <>
+            {page && (
+              <Page
+                key={index}
+                pageNumber={pageNumber}
+                name="adminPanel"
+                index={index}
+              >
+                {page}
+              </Page>
+            )}
+          </>
         ))}
       </Grid>
     </Grid>
