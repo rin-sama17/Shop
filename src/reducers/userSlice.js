@@ -13,7 +13,8 @@ import {
 
 const userAdaptor = createEntityAdapter();
 const initialState = userAdaptor.getInitialState({
-  roles: []
+  roles: [],
+  loading: false
 });
 
 export const fetchUsers = createAsyncThunk(
@@ -106,7 +107,11 @@ const userSlice = createSlice({
     }
   },
   extraReducers: {
-    [fetchUsers.fulfilled]: userAdaptor.setAll,
+    [fetchUsers.pending]: state => { state.loading = true; },
+    [fetchUsers.fulfilled]: (state, action) => {
+      state.loading = false;
+      userAdaptor.setAll(state, action.payload);
+    },
     [addUser.fulfilled]: userAdaptor.addOne,
     [editUser.fulfilled]: userAdaptor.setOne,
     [deleteUser.fulfilled]: userAdaptor.removeOne,
@@ -119,6 +124,8 @@ export const {
 } = userAdaptor.getSelectors((state) => state.user);
 
 export const selectRoleIds = state => state.user.roles;
+export const selectUserLoading = state => state.user.loading;
+
 export const { roleIdDeleted, roleIdAdded, roleIdsCleared, rolesIdFinded } = userSlice.actions;
 
 export default userSlice.reducer;

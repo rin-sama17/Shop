@@ -9,7 +9,8 @@ import { userLogin, getUserInfo, updateUser } from './services';
 const initialState = {
   userInfo: {},
   token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
-  success: false
+  success: false,
+  loading: false
 };
 
 export const fetchUserInfo = createAsyncThunk(
@@ -82,8 +83,13 @@ const authSlice = createSlice({
       state.success = true;
       localStorage.setItem("token", payload.token);
     },
+    [login.pending]: (state, { payload }) => {
+      state.loading = true;
+    },
     [fetchUserInfo.fulfilled]: (state, { payload }) => {
       state.userInfo = payload;
+      state.loading = false;
+
     }
   },
 });

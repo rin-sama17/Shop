@@ -13,7 +13,9 @@ import {
 } from './services';
 
 const premissionAdaptor = createEntityAdapter();
-const initialState = premissionAdaptor.getInitialState();
+const initialState = premissionAdaptor.getInitialState({
+    loading: false
+});
 
 export const fetchPremissions = createAsyncThunk(
     'premission/fetchPremissions',
@@ -87,7 +89,13 @@ const premissionSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchPremissions.fulfilled]: premissionAdaptor.setAll,
+        [fetchPremissions.pending]: (state, action) => {
+            state.loading = true;
+        },
+        [fetchPremissions.fulfilled]: (state, action) => {
+            state.loading = false;
+            premissionAdaptor.setAll(state, action.payload);
+        },
         [addPremission.fulfilled]: premissionAdaptor.addOne,
         [editPremission.fulfilled]: premissionAdaptor.setOne,
         [deletePremission.fulfilled]: premissionAdaptor.removeOne,
@@ -100,5 +108,7 @@ export const {
     selectIds: selectPremissionIds
 } = premissionAdaptor.getSelectors((state) => state.premission);
 
+
+export const selectPremissionLoading = state => state.premission.loading;
 
 export default premissionSlice.reducer;

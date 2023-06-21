@@ -14,7 +14,9 @@ import {
 } from './services';
 
 const postAdaptor = createEntityAdapter();
-const initialState = postAdaptor.getInitialState();
+const initialState = postAdaptor.getInitialState({
+    loading: false
+});
 
 export const fetchPosts = createAsyncThunk(
     'post/fetchPosts',
@@ -93,11 +95,17 @@ const postSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchPosts.fulfilled]: postAdaptor.setAll,
+        [fetchPosts.pending]: (state) => {
+            state.loading = true;
+        },
+        [fetchPosts.fulfilled]: (state, { payload }) => {
+            state.loading = false;
+            postAdaptor.setAll(state, payload);
+        },
         [addPost.fulfilled]: postAdaptor.addOne,
-        [editPost.fulfilled]: (state, action) => {
-            const post = action.payload.post;
-            const tags = action.payload.tags;
+        [editPost.fulfilled]: (state, { payload }) => {
+            const post = payload.post;
+            const tags = payload.tags;
             const editedPost = {
                 ...post,
                 tags
@@ -114,5 +122,7 @@ export const {
     selectById: selectPostById,
 } = postAdaptor.getSelectors((state) => state.post);
 
+
+export const selectPostLoading = state => state.post.loading;
 
 export default postSlice.reducer;

@@ -9,11 +9,12 @@ import {
   Divider,
 } from '@mui/material'
 import { EditCategory, AddCategory, CustomNoRowsOverlay } from '../components'
-import { CustomIconButton } from '../../common'
+import { CustomIconButton, Spinner } from '../../common'
 import {
   deleteCategory,
   fetchCategories,
   selectAllCategories,
+  selectCategoryLoading,
 } from '../../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -137,6 +138,11 @@ const FindParents = ({ parent, categories }) => {
 
 const CategoryManagement = () => {
   const categories = useSelector(selectAllCategories)
+  const loading = useSelector(selectCategoryLoading)
+
+  if (loading) {
+    return <Spinner />
+  }
 
   return (
     <>

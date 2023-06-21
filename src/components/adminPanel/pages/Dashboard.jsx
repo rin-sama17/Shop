@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { editUserInfo, selectAuth } from '../../../reducers/authSlice'
 import { userFieldsData } from '../../fieldsData'
 import { useFormik } from 'formik'
-import { CustomDivider, CustomForm } from '../../common'
+import { CustomDivider, CustomForm, Spinner } from '../../common'
 import { Chip } from '@mui/material'
 const Dashboard = () => {
-  const { userInfo } = useSelector(selectAuth)
+  const { userInfo, loading } = useSelector(selectAuth)
 
   const dispatch = useDispatch()
   const formik = useFormik({
@@ -22,15 +22,24 @@ const Dashboard = () => {
     },
   })
 
-  const fields = userFieldsData(formik)
+  const fields = useMemo(() => userFieldsData(formik), [
+    userInfo,
+    loading,
+    formik,
+  ])
+
   return (
     <>
-      <CustomForm
-        formik={formik}
-        fields={fields}
-        label="ویرایش اطلاعات"
-        color="success"
-      />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <CustomForm
+          formik={formik}
+          fields={fields}
+          label="ویرایش اطلاعات"
+          color="success"
+        />
+      )}
     </>
   )
 }

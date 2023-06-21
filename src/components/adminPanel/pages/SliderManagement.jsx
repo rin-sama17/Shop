@@ -10,6 +10,7 @@ import {
   deleteSlider,
   fetchSliders,
   selectAllSliders,
+  selectSliderLoading,
 } from '../../../reducers/sliderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { CustomDivider } from '../../common'
@@ -19,6 +20,7 @@ import CustomDataGrid from '../components/CustomDataGrid'
 const SliderManagement = () => {
   const dispatch = useDispatch()
   const sliders = useSelector(selectAllSliders)
+  const loading = useSelector(selectSliderLoading)
   const { t } = useTranslation()
   useEffect(() => {
     dispatch(fetchSliders())
@@ -51,7 +53,7 @@ const SliderManagement = () => {
   return (
     <>
       <AddSlider />
-      <CustomDataGrid rows={sliders} columns={columns} />
+      <CustomDataGrid rows={sliders} columns={columns} loading={loading} />
       <CustomDivider label="پیش نمایش" />
       <HomeSlider sliders={sliders} />
     </>

@@ -14,7 +14,9 @@ import {
 } from './services';
 
 const sliderAdaptor = createEntityAdapter();
-const initialState = sliderAdaptor.getInitialState();
+const initialState = sliderAdaptor.getInitialState({
+    loading: false
+});
 
 export const fetchSliders = createAsyncThunk(
     'slider/fetchSliders',
@@ -91,7 +93,11 @@ const sliderSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchSliders.fulfilled]: sliderAdaptor.setAll,
+        [fetchSliders.pending]: state => { state.loading = true; },
+        [fetchSliders.fulfilled]: (state, action) => {
+            state.loading = false;
+            sliderAdaptor.setAll(state, action.payload);
+        },
         [addSlider.fulfilled]: sliderAdaptor.addOne,
         [editSlider.fulfilled]: sliderAdaptor.setOne,
         [deleteSlider.fulfilled]: sliderAdaptor.removeOne,
@@ -103,5 +109,7 @@ export const {
     selectById: selectSliderById,
 } = sliderAdaptor.getSelectors((state) => state.slider);
 
+
+export const selectSliderLoading = state => state.slider.loading;
 
 export default sliderSlice.reducer;

@@ -8,7 +8,9 @@ import {
 } from './services';
 
 const searchAdaptor = createEntityAdapter();
-const initialState = searchAdaptor.getInitialState();
+const initialState = searchAdaptor.getInitialState({
+    loading: false
+});
 
 
 export const fetchSearchResult = createAsyncThunk(
@@ -33,12 +35,19 @@ const searchSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchSearchResult.fulfilled]: searchAdaptor.setAll,
+        [fetchSearchResult.pending]: state => { state.loading = true; },
+        [fetchSearchResult.fulfilled]: (state, action) => {
+            state.loading = false;
+            searchAdaptor.setAll(state, action.payload);
+        },
     }
 });
 
 export const {
     selectAll: selectSearchResults,
 } = searchAdaptor.getSelectors((state) => state.search);
+
+
+export const selectSearchLoading = state => state.search.loading;
 
 export default searchSlice.reducer;

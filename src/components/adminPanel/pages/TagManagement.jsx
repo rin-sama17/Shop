@@ -4,7 +4,12 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { EditTag, AddTag, CustomNoRowsOverlay } from '../components'
 
-import { deleteTag, fetchTags, selectAllTags } from '../../../reducers/tagSlice'
+import {
+  deleteTag,
+  fetchTags,
+  selectAllTags,
+  selectTagLoading,
+} from '../../../reducers/tagSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import CustomDataGrid from '../components/CustomDataGrid'
@@ -12,6 +17,7 @@ import CustomDataGrid from '../components/CustomDataGrid'
 const TagManagement = () => {
   const dispatch = useDispatch()
   const tag = useSelector(selectAllTags)
+  const loading = useSelector(selectTagLoading)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -41,7 +47,7 @@ const TagManagement = () => {
   return (
     <>
       <AddTag />
-      <CustomDataGrid rows={tag} columns={columns} />
+      <CustomDataGrid rows={tag} columns={columns} loading={loading} />
     </>
   )
 }

@@ -1,19 +1,15 @@
-import { toast } from 'react-toastify'
-import { Button } from '@mui/material'
-import { Link } from 'react-router-dom'
-import { Delete, Edit } from '@mui/icons-material'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-import { AddProduct, CustomNoRowsOverlay, EditProduct } from '../components'
+import { Delete } from '@mui/icons-material'
+import { GridActionsCellItem } from '@mui/x-data-grid'
+import { AddProduct, EditProduct } from '../components'
 import { useEffect, useMemo } from 'react'
 import {
   deleteProduct,
-  editProduct,
   fetchProducts,
   selectAllProducts,
+  selectProductLoading,
 } from '../../../reducers/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import ChangeStatus from '../components/ChangeStatus'
 import { showCategory } from '../components/ShowCategory'
 import { showStatus } from '../components/ShowStatus'
 import CustomDataGrid from '../components/CustomDataGrid'
@@ -21,6 +17,7 @@ import CustomDataGrid from '../components/CustomDataGrid'
 const ProductManagement = () => {
   const dispatch = useDispatch()
   const products = useSelector(selectAllProducts)
+  const loading = useSelector(selectProductLoading)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -41,11 +38,13 @@ const ProductManagement = () => {
       },
       {
         field: 'status',
-        headerName: t('وضعیت'),
+        align: 'center',
+        type: 'boolean',
+        headerName: t('نمایش'),
         width: 90,
+        editable: false,
         valueGetter: showStatus,
       },
-
       {
         field: 'actions',
         type: 'actions',
@@ -65,7 +64,7 @@ const ProductManagement = () => {
   return (
     <>
       <AddProduct />
-      <CustomDataGrid rows={products} columns={columns} />
+      <CustomDataGrid rows={products} columns={columns} loading={loading} />
     </>
   )
 }

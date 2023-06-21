@@ -16,6 +16,7 @@ import {
   fetchRoles,
   selectAllRoles,
   selectPremission_id,
+  selectRoleLoading,
 } from '../../../reducers/roleSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -32,6 +33,7 @@ const RoleManagement = () => {
   const { t } = useTranslation()
 
   const roles = useSelector(selectAllRoles)
+  const loading = useSelector(selectRoleLoading)
 
   useEffect(() => {
     dispatch(fetchPremissions())
@@ -47,11 +49,13 @@ const RoleManagement = () => {
       { field: 'description', headerName: t('توضیحات'), width: 200 },
       {
         field: 'status',
-        headerName: t('وضعیت'),
+        align: 'center',
+        type: 'boolean',
+        headerName: t('نمایش'),
         width: 90,
+        editable: false,
         valueGetter: showStatus,
       },
-
       {
         field: 'actions',
         type: 'actions',
@@ -76,7 +80,7 @@ const RoleManagement = () => {
   return (
     <>
       <AddRole />
-      <CustomDataGrid rows={roles} columns={columns} />
+      <CustomDataGrid rows={roles} columns={columns} loading={loading} />
     </>
   )
 }

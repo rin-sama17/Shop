@@ -27,10 +27,7 @@ import {
 import { PatternFormat } from 'react-number-format'
 import { useEffect } from 'react'
 import TextEditor from './TextEditor'
-import {
-  fetchCategories,
-  selectAllCategories,
-} from '../../reducers/categorySlice'
+import { selectUseAbleCategories } from '../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import {
@@ -121,9 +118,6 @@ const CustomFields = ({
   }
   useEffect(() => {
     setValue(formik.values[`${name}`])
-    if (category) {
-      dispatch(fetchCategories())
-    }
   }, [])
 
   useEffect(() => {
@@ -223,7 +217,7 @@ const CustomFields = ({
       </FormControl>
     )
   } else if (category) {
-    const categories = useSelector(selectAllCategories)
+    const categories = useSelector(selectUseAbleCategories)
     content = (
       <FormControl
         fullWidth

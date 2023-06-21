@@ -12,6 +12,7 @@ import {
   editPost,
   fetchPosts,
   selectAllPosts,
+  selectPostLoading,
 } from '../../../reducers/postSlice'
 import { CustomNoRowsOverlay } from '../components'
 import { useTranslation } from 'react-i18next'
@@ -24,6 +25,8 @@ import CustomDataGrid from '../components/CustomDataGrid'
 const PostManagement = () => {
   const dispatch = useDispatch()
   const posts = useSelector(selectAllPosts)
+  const loading = useSelector(selectPostLoading)
+
   const { t } = useTranslation()
   useEffect(() => {
     dispatch(fetchPosts())
@@ -43,8 +46,11 @@ const PostManagement = () => {
       },
       {
         field: 'status',
-        headerName: t('وضعیت'),
+        align: 'center',
+        type: 'boolean',
+        headerName: t('نمایش'),
         width: 90,
+        editable: false,
         valueGetter: showStatus,
       },
       {
@@ -67,7 +73,7 @@ const PostManagement = () => {
   return (
     <>
       <AddPost />
-      <CustomDataGrid rows={posts} columns={columns} />
+      <CustomDataGrid rows={posts} columns={columns} loading={loading} />
     </>
   )
 }

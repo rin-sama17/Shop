@@ -14,6 +14,7 @@ import {
   deleteUser,
   fetchUsers,
   selectAllUsers,
+  selectUserLoading,
 } from '../../../reducers/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRoles } from '../../../reducers/roleSlice'
@@ -24,6 +25,7 @@ const UserManagement = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const users = useSelector(selectAllUsers)
+  const loading = useSelector(selectUserLoading)
   useEffect(() => {
     dispatch(fetchUsers())
     dispatch(fetchRoles())
@@ -60,7 +62,7 @@ const UserManagement = () => {
   return (
     <>
       <AddUser />
-      <CustomDataGrid rows={users} columns={columns} />
+      <CustomDataGrid rows={users} columns={columns} loading={loading} />
     </>
   )
 }

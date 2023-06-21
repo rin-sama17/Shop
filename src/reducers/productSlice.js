@@ -13,7 +13,9 @@ import {
 } from './services';
 
 const productAdaptor = createEntityAdapter();
-const initialState = productAdaptor.getInitialState();
+const initialState = productAdaptor.getInitialState({
+    loading: false
+});
 
 export const fetchProducts = createAsyncThunk(
     'product/fetchProducts',
@@ -91,7 +93,11 @@ const productSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchProducts.fulfilled]: productAdaptor.setAll,
+        [fetchProducts.pending]: state => { state.loading = true; },
+        [fetchProducts.fulfilled]: (state, action) => {
+            state.loading = false;
+            productAdaptor.setAll(state, action.payload);
+        },
         [addProduct.fulfilled]: productAdaptor.addOne,
         [editProduct.fulfilled]: productAdaptor.setOne,
         [deleteProduct.fulfilled]: productAdaptor.removeOne,
@@ -103,5 +109,6 @@ export const {
     selectById: selectProductById,
 } = productAdaptor.getSelectors((state) => state.product);
 
+export const selectProductLoading = state => state.product.loading;
 
 export default productSlice.reducer;

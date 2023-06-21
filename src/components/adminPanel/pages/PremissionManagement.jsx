@@ -14,6 +14,7 @@ import {
   editPremission,
   fetchPremissions,
   selectAllPremissions,
+  selectPremissionLoading,
 } from '../../../reducers/premissionSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -24,6 +25,8 @@ import { showStatus } from '../components/ShowStatus'
 const PremissionManagement = () => {
   const dispatch = useDispatch()
   const premissions = useSelector(selectAllPremissions)
+  const loading = useSelector(selectPremissionLoading)
+
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -37,8 +40,11 @@ const PremissionManagement = () => {
       { field: 'description', headerName: t('توضیحات'), width: 150 },
       {
         field: 'status',
-        headerName: t('وضعیت'),
-        width: 100,
+        align: 'center',
+        type: 'boolean',
+        headerName: t('نمایش'),
+        width: 90,
+        editable: false,
         valueGetter: showStatus,
       },
       {
@@ -61,7 +67,7 @@ const PremissionManagement = () => {
   return (
     <>
       <AddPremission />
-      <CustomDataGrid rows={premissions} columns={columns} />
+      <CustomDataGrid rows={premissions} columns={columns} loading={loading} />
     </>
   )
 }

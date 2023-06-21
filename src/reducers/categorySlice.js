@@ -13,7 +13,8 @@ import {
 
 const categoryAdaptor = createEntityAdapter();
 const initialState = categoryAdaptor.getInitialState({
-  prents: [],
+  useAbleCategories: [],
+  loading: false
 });
 
 export const fetchCategories = createAsyncThunk(
@@ -91,7 +92,26 @@ const categorySlice = createSlice({
     }
   },
   extraReducers: {
-    [fetchCategories.fulfilled]: categoryAdaptor.setAll,
+    [fetchCategories.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [fetchCategories.fulfilled]: (state, action) => {
+
+      const categories = action.payload;
+      let parentCategories = categories.filter(category => category.category_id === null);
+      const parentIds = parentCategories.map(category => category.id);
+      let childCategories = categories.filter(category => parentIds.includes(category.category_id));
+      const childIds = childCategories.map(category => category.id);
+      let child2Categories = categories.filter(category => childIds.includes(category.category_id));
+      const child2Ids = child2Categories.map(category => category.id);
+
+      const useAbleCategoriesIds = [...parentIds, ...childIds, ...child2Ids];
+      const filtredCategories = categories.filter(category => useAbleCategoriesIds.includes(category.id));
+
+      state.loading = false;
+      state.useAbleCategories = filtredCategories;
+      categoryAdaptor.setAll(state, categories);
+    },
     [addCategory.fulfilled]: categoryAdaptor.addOne,
     [editCategory.fulfilled]: categoryAdaptor.setOne,
     [deleteCategory.fulfilled]: categoryAdaptor.removeOne,
@@ -102,6 +122,10 @@ export const {
   selectAll: selectAllCategories,
   selectById: selectCategoryById,
 } = categoryAdaptor.getSelectors((state) => state.category);
+
+export const selectUseAbleCategories = state => state.category.useAbleCategories;
+
+export const selectCategoryLoading = state => state.category.loading;
 
 export const { getChildren } = categorySlice.actions;
 

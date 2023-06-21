@@ -13,7 +13,9 @@ import {
 } from './services';
 
 const agencyAdaptor = createEntityAdapter();
-const initialState = agencyAdaptor.getInitialState();
+const initialState = agencyAdaptor.getInitialState({
+    loading: false
+});
 
 export const fetchAgencies = createAsyncThunk(
     'agencys/fetchAgencies',
@@ -90,7 +92,13 @@ const agencySlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchAgencies.fulfilled]: agencyAdaptor.setAll,
+        [fetchAgencies.pending]: (state, action) => {
+            state.loading = true;
+        },
+        [fetchAgencies.fulfilled]: (state, action) => {
+            state.loading = false;
+            agencyAdaptor.setAll(state, action.payload);
+        },
         [addAgency.fulfilled]: agencyAdaptor.addOne,
         [editAgency.fulfilled]: agencyAdaptor.setOne,
         [deleteAgency.fulfilled]: agencyAdaptor.removeOne,
@@ -102,5 +110,6 @@ export const {
     selectById: selectAgencyById,
 } = agencyAdaptor.getSelectors((state) => state.agency);
 
+export const selectAgencyLoading = state => state.agency.loading;
 
 export default agencySlice.reducer;

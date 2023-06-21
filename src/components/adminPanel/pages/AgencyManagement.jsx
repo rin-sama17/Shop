@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   deleteAgency,
   fetchAgencies,
+  selectAgencyLoading,
   selectAllAgencies,
 } from '../../../reducers/agencySlice'
 import { useTranslation } from 'react-i18next'
@@ -16,6 +17,7 @@ import CustomDataGrid from '../components/CustomDataGrid'
 const AgencyManagement = () => {
   const dispatch = useDispatch()
   const agencies = useSelector(selectAllAgencies)
+  const loading = useSelector(selectAgencyLoading)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -48,7 +50,7 @@ const AgencyManagement = () => {
   return (
     <>
       <AddAgency />
-      <CustomDataGrid rows={agencies} columns={columns} />
+      <CustomDataGrid rows={agencies} columns={columns} loading={loading} />
     </>
   )
 }
