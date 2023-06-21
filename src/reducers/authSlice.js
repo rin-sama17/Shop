@@ -23,7 +23,6 @@ export const fetchUserInfo = createAsyncThunk(
       }
     } catch (error) {
       console.log(error);
-
     }
   }
 );
