@@ -10,7 +10,7 @@ const SimilarProducts = ({ product }) => {
     const emptyArray = []
 
     return createSelector(
-      (res) => res.data?.data,
+      (res) => res.data?.data[0],
       (res, product) => product,
       (data, product) =>
         data?.filter(
@@ -26,7 +26,7 @@ const SimilarProducts = ({ product }) => {
       similarProducts: selectSimilarProducts(result, product),
     }),
   })
-
+  console.log(similarProducts)
   if (!isSuccess || similarProducts.length === 0) {
     return
   }

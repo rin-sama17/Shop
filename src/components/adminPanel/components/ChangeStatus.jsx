@@ -16,7 +16,7 @@ const ChangeStatus = ({ item, editItem, havTag }) => {
   const handleClick = () => {
     let value
     if (havTag) {
-      const tagIds = item.tags.map((tag) => tag.id)
+      const tagIds = item.tags?.map((tag) => tag.id) ?? []
       value = { ...item, tags: tagIds }
     } else {
       value = { ...item }

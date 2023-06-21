@@ -48,7 +48,6 @@ const EditPost = ({ post }) => {
 
   return (
     <>
-      <ChangeStatus item={{ ...post, lang }} editItem={editPost} havTag />
       <GridActionsCellItem
         icon={<Edit />}
         color="info"
