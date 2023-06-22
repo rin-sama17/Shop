@@ -25,7 +25,6 @@ const ParentCategory = ({ parent, children }) => {
             display: 'flex',
           }}
         >
-          <Divider orientation="vertical" sx={{ ml: 2, bgcolor: 'white' }} />
           <Typography
             sx={{
               ml: 2,
@@ -68,7 +67,6 @@ const ChildCategory = ({ child }) => {
           display: 'flex',
         }}
       >
-        <Divider orientation="vertical" flexItems sx={{ ml: 2 }} />
         <Typography
           variant="subtitle2"
           sx={{
