@@ -1,27 +1,19 @@
 import {
   Box,
-  Card,
   Button,
   Typography,
-  IconButton,
   ImageListItem,
   useMediaQuery,
   CardActionArea,
-  Skeleton,
-  Stack,
-  Divider,
   Paper,
   useTheme,
   CardMedia,
 } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import LinesEllipsis from 'react-lines-ellipsis'
-import { Fragment, Suspense, useRef } from 'react'
+import { useRef } from 'react'
 import Slider from 'react-slick'
 
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
-import { useGetSlidersQuery } from '../../api'
-import { SliderLoading } from '../loading'
 import { useTranslation } from 'react-i18next'
 import { SliderArrows } from '../common'
 
@@ -72,7 +64,7 @@ const HomeSlider = ({ sliders }) => {
                   image={`http://localhost:8000/${slide.image}`}
                   alt={slide.name}
                   sx={{
-                    height: { xs: '20vh', sm: '30vh', md: '40vh' },
+                    height: { xs: '20vh', sm: '30vh', md: '45vh' },
                     borderRadius: '0 0 20px  20px ',
                   }}
                 />
