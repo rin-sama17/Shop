@@ -19,7 +19,6 @@ const EditPremission = ({ premission }) => {
 
   const formik = useFormik({
     initialValues: premission,
-    // validationSchema: premissionValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(
         editPremission({ values: { ...values, lang }, setOpen, resetForm }),

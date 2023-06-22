@@ -57,7 +57,6 @@ const AddRole = () => {
         premissions: premissionIds,
         lang,
       }
-      console.log(newRole)
       dispatch(addRole({ values: newRole, setOpen, resetForm, setErrors }))
     },
   })

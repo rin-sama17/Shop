@@ -18,7 +18,6 @@ const EditAgency = ({ agency }) => {
 
   const formik = useFormik({
     initialValues: agency,
-    // validationSchema: agencyValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(editAgency({ values: { ...values, lang }, setOpen, resetForm }))
     },

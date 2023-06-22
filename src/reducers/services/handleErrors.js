@@ -9,10 +9,8 @@ function convertArrayToValue(obj) {
     return outputObj;
 }
 const handleErrors = (res, setErrors) => {
-    console.log(res.response.data.errors);
-
     const errors = convertArrayToValue(res.response.data.errors);
-    console.log(errors);
+    setErrors(errors);
 };
 
 export default handleErrors;

@@ -2,6 +2,7 @@ import { Typography, Button, Box, Divider } from '@mui/material'
 import { tabsData } from '../../constants/tabs.sidebar'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { DrawerCategories } from './'
 
 const DrawerItems = ({ setOpen }) => {
   const { t } = useTranslation()
@@ -31,6 +32,7 @@ const DrawerItems = ({ setOpen }) => {
           </Typography>
         </Button>
       ))}
+      <DrawerCategories />
     </Box>
   )
 }

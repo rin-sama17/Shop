@@ -46,7 +46,6 @@ const EditUser = ({ user }) => {
 
   const formik = useFormik({
     initialValues: user,
-    // validationSchema: userValidation,
     onSubmit: (values, { resetForm }) => {
       const editedUser = {
         ...values,

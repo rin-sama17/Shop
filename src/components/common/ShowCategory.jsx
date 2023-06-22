@@ -1,24 +1,19 @@
 import { Typography, Box, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useGetCategoryQuery } from '../../api'
+import { selectCategoryById } from '../../reducers/categorySlice'
 import Spinner from './Spinner'
 
 const ShowCategory = ({ categoryId, tags }) => {
+  console.log(categoryId, tags)
   const { t } = useTranslation()
-  const {
-    data = { category: {} },
-    isSuccess,
-    isLoading,
-    isError,
-  } = useGetCategoryQuery(categoryId)
-  const category = data.category
+  const category = useSelector((state) => selectCategoryById(state, categoryId))
 
-  if (isLoading) {
-    return <Spinner />
-  } else if (isSuccess) {
-    return (
-      <Box>
+  return (
+    <Box>
+      {category && (
         <Typography
           color="text.secondary"
           variant="subtitle2"
@@ -28,7 +23,7 @@ const ShowCategory = ({ categoryId, tags }) => {
           {t('دسته بندی')}:
           <Button
             component={Link}
-            to={`/search/${categoryId};name:${category.name}`}
+            to={`/search/${category.name}`}
             color="secondary"
             sx={{ ml: 1 }}
             size="small"
@@ -36,6 +31,8 @@ const ShowCategory = ({ categoryId, tags }) => {
             {category.name}
           </Button>
         </Typography>
+      )}
+      {tags && tags.length > 0 && (
         <Typography
           color="text.secondary"
           variant="caption"
@@ -47,7 +44,7 @@ const ShowCategory = ({ categoryId, tags }) => {
             <Box key={index}>
               <Typography
                 component={Link}
-                to={`/search/${tag.id}`}
+                to={`/search/${tag.name}`}
                 color="secondary"
                 variant="caption"
                 sx={{ mx: 0.5 }}
@@ -58,33 +55,8 @@ const ShowCategory = ({ categoryId, tags }) => {
             </Box>
           ))}
         </Typography>
-      </Box>
-    )
-  } else if (isError) {
-    return (
-      <Typography
-        color="text.secondary"
-        variant="caption"
-        sx={{ mr: 1, display: 'flex' }}
-        gutterBottom
-      >
-        {t('تگ ها')}:
-        {tags.map((tag, index) => (
-          <Box key={index}>
-            <Typography
-              component={Link}
-              to={`/search/${tag.id}`}
-              color="secondary"
-              variant="caption"
-              sx={{ mx: 0.5 }}
-            >
-              {tag.name}
-            </Typography>
-            /
-          </Box>
-        ))}
-      </Typography>
-    )
-  }
+      )}
+    </Box>
+  )
 }
 export default ShowCategory

@@ -25,7 +25,8 @@ const buttons = [
 ]
 const NavContent = ({ setDrawerOpen }) => {
   const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
+  const downSm = useMediaQuery(theme.breakpoints.down('sm'))
+  const downMd = useMediaQuery(theme.breakpoints.down('md'))
   const { t } = useTranslation()
   return (
     <>
@@ -36,7 +37,7 @@ const NavContent = ({ setDrawerOpen }) => {
           backgroundPosition: 'center',
           backgroundSize: 'cover',
           width: 1,
-          height: downMd ? 50 : 'auto',
+          height: downSm ? 50 : 'auto',
           px: 1,
           display: 'flex',
           justifyContent: 'space-between',
@@ -85,7 +86,7 @@ const NavContent = ({ setDrawerOpen }) => {
               flexItem
               sx={{
                 bgcolor: 'primary.light',
-                mx: downMd ? '0 !important' : null,
+                mx: downSm ? '0 !important' : null,
               }}
             />
           }
@@ -101,13 +102,13 @@ const NavContent = ({ setDrawerOpen }) => {
             <Button
               sx={{
                 color: 'btnNav.dark',
-                mx: downMd ? '0 !important' : null,
+                mx: downSm ? '0 !important' : null,
               }}
               key={index}
               component={Link}
               to={btn.to}
             >
-              <Typography variant={downMd ? 'caption' : 'body1'}>
+              <Typography variant={downSm ? 'caption' : 'body1'}>
                 {t(btn.name)}
               </Typography>
             </Button>

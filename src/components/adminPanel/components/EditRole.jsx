@@ -49,7 +49,6 @@ const EditRole = ({ role }) => {
 
   const formik = useFormik({
     initialValues: role,
-    // validationSchema: roleValidation,
     onSubmit: (values, { resetForm }) => {
       const newRole = {
         ...values,

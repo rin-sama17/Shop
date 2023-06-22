@@ -26,7 +26,7 @@ const EditSlider = ({ slider }) => {
   }, [])
   const handleSubmit = (values, resetForm) => {
     let newSlider
-    if (type === 0) {
+    if (type == 0) {
       newSlider = {
         ...values,
         description: 'just a text',
@@ -39,7 +39,6 @@ const EditSlider = ({ slider }) => {
   }
   const formik = useFormik({
     initialValues: slider,
-    // validationSchema: sliderValidation,
     onSubmit: (values, { resetForm }) => {
       handleSubmit(values, resetForm)
     },
@@ -64,7 +63,7 @@ const EditSlider = ({ slider }) => {
           control={
             <Checkbox
               icon={<Wallpaper />}
-              checked={Boolean(type === 1)}
+              checked={Boolean(type == 1)}
               onChange={handleChange}
             />
           }

@@ -18,7 +18,6 @@ const EditTag = ({ tag }) => {
 
   const formik = useFormik({
     initialValues: tag,
-    // validationSchema: tagValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(editTag({ values: { ...values, lang }, setOpen, resetForm }))
     },

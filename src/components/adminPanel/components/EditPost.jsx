@@ -33,7 +33,6 @@ const EditPost = ({ post }) => {
   }, [open])
   const formik = useFormik({
     initialValues: post,
-    // validationSchema: postValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(
         editPost({
