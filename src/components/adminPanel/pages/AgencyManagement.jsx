@@ -20,6 +20,7 @@ const AgencyManagement = () => {
   const dispatch = useDispatch()
   const agencies = useSelector(selectAllAgencies)
   const { loading, access } = useSelector(selectAgencyDetails)
+  const isLoading = Boolean(!(agencies.length > 0) && loading)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -57,7 +58,7 @@ const AgencyManagement = () => {
   return (
     <>
       <AddAgency />
-      <CustomDataGrid rows={agencies} columns={columns} loading={loading} />
+      <CustomDataGrid rows={agencies} columns={columns} loading={isLoading} />
     </>
   )
 }

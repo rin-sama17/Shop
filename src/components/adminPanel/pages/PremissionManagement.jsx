@@ -28,6 +28,7 @@ const PremissionManagement = () => {
   const dispatch = useDispatch()
   const premissions = useSelector(selectAllPremissions)
   const { loading, access } = useSelector(selectPremissionDetails)
+  const isLoading = Boolean(!(premissions.length > 0) && loading)
 
   const { t } = useTranslation()
 
@@ -71,7 +72,11 @@ const PremissionManagement = () => {
   return (
     <>
       <AddPremission />
-      <CustomDataGrid rows={premissions} columns={columns} loading={loading} />
+      <CustomDataGrid
+        rows={premissions}
+        columns={columns}
+        loading={isLoading}
+      />
     </>
   )
 }

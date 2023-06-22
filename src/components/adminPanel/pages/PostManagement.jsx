@@ -28,6 +28,7 @@ const PostManagement = () => {
   const dispatch = useDispatch()
   const posts = useSelector(selectAllPosts)
   const { loading, access } = useSelector(selectPostDetails)
+  const isLoading = Boolean(!(posts.length > 0) && loading)
 
   const { t } = useTranslation()
   useEffect(() => {
@@ -78,7 +79,7 @@ const PostManagement = () => {
   return (
     <>
       <AddPost />
-      <CustomDataGrid rows={posts} columns={columns} loading={loading} />
+      <CustomDataGrid rows={posts} columns={columns} loading={isLoading} />
     </>
   )
 }

@@ -36,6 +36,7 @@ const RoleManagement = () => {
 
   const roles = useSelector(selectAllRoles)
   const { loading, access } = useSelector(selectRoleDetails)
+  const isLoading = Boolean(!(roles.length > 0) && loading)
 
   useEffect(() => {
     dispatch(fetchPremissions())
@@ -84,7 +85,7 @@ const RoleManagement = () => {
   return (
     <>
       <AddRole />
-      <CustomDataGrid rows={roles} columns={columns} loading={loading} />
+      <CustomDataGrid rows={roles} columns={columns} loading={isLoading} />
     </>
   )
 }

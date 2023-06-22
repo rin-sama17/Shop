@@ -23,6 +23,7 @@ const SliderManagement = () => {
   const dispatch = useDispatch()
   const sliders = useSelector(selectAllSliders)
   const { loading, access } = useSelector(selectSliderDetails)
+  const isLoading = Boolean(!(sliders.length > 0) && loading)
   const { t } = useTranslation()
   useEffect(() => {
     dispatch(fetchSliders())
@@ -59,7 +60,7 @@ const SliderManagement = () => {
   return (
     <>
       <AddSlider />
-      <CustomDataGrid rows={sliders} columns={columns} loading={loading} />
+      <CustomDataGrid rows={sliders} columns={columns} loading={isLoading} />
       <CustomDivider label="پیش نمایش" />
       <HomeSlider sliders={sliders} />
     </>

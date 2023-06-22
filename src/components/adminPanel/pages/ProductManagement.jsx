@@ -21,6 +21,7 @@ const ProductManagement = () => {
   const dispatch = useDispatch()
   const products = useSelector(selectAllProducts)
   const { loading, access } = useSelector(selectProductDetails)
+  const isLoading = Boolean(!(products.length > 0) && loading)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -70,7 +71,7 @@ const ProductManagement = () => {
   return (
     <>
       <AddProduct />
-      <CustomDataGrid rows={products} columns={columns} loading={loading} />
+      <CustomDataGrid rows={products} columns={columns} loading={isLoading} />
     </>
   )
 }

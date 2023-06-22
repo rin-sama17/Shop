@@ -28,6 +28,7 @@ const UserManagement = () => {
   const { t } = useTranslation()
   const users = useSelector(selectAllUsers)
   const { loading, access } = useSelector(selectUserDetails)
+  const isLoading = Boolean(!(users.length > 0) && loading)
   useEffect(() => {
     dispatch(fetchUsers())
     dispatch(fetchRoles())
@@ -67,7 +68,7 @@ const UserManagement = () => {
   return (
     <>
       <AddUser />
-      <CustomDataGrid rows={users} columns={columns} loading={loading} />
+      <CustomDataGrid rows={users} columns={columns} loading={isLoading} />
     </>
   )
 }
