@@ -14,18 +14,20 @@ import {
   editPremission,
   fetchPremissions,
   selectAllPremissions,
-  selectPremissionLoading,
+  selectPremissionDetails,
 } from '../../../reducers/premissionSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import ChangeStatus from '../components/ChangeStatus'
+
 import CustomDataGrid from '../components/CustomDataGrid'
+import NoAccessError from '../components/NoAccessError'
 import { showStatus } from '../components/ShowStatus'
 
 const PremissionManagement = () => {
   const dispatch = useDispatch()
   const premissions = useSelector(selectAllPremissions)
-  const loading = useSelector(selectPremissionLoading)
+  const { loading, access } = useSelector(selectPremissionDetails)
 
   const { t } = useTranslation()
 
@@ -62,6 +64,10 @@ const PremissionManagement = () => {
     ],
     [premissions, EditPremission, t],
   )
+
+  if (!loading && !access) {
+    return <NoAccessError />
+  }
   return (
     <>
       <AddPremission />

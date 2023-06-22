@@ -8,16 +8,18 @@ import {
   deleteTag,
   fetchTags,
   selectAllTags,
-  selectTagLoading,
+  selectTagDetails,
 } from '../../../reducers/tagSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+
 import CustomDataGrid from '../components/CustomDataGrid'
+import NoAccessError from '../components/NoAccessError'
 
 const TagManagement = () => {
   const dispatch = useDispatch()
   const tag = useSelector(selectAllTags)
-  const loading = useSelector(selectTagLoading)
+  const { loading, access } = useSelector(selectTagDetails)
   const isLoading = Boolean(!(tag.length > 0) && loading)
 
   const { t } = useTranslation()
@@ -46,6 +48,10 @@ const TagManagement = () => {
     ],
     [tag, EditTag, t],
   )
+
+  if (!loading && !access) {
+    return <NoAccessError />
+  }
   return (
     <>
       <AddTag />

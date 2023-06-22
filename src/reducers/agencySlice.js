@@ -14,17 +14,21 @@ import {
 
 const agencyAdaptor = createEntityAdapter();
 const initialState = agencyAdaptor.getInitialState({
-    loading: false
+    loading: false,
+    access: false
 });
 
 export const fetchAgencies = createAsyncThunk(
     'agencys/fetchAgencies',
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const res = await getAllAgencies();
             return res.data.agencies;
         } catch (error) {
             console.error(error);
+            if (error.response.status === 403) {
+                return rejectWithValue(error.response.data);
+            }
         }
     },
 );
@@ -97,7 +101,12 @@ const agencySlice = createSlice({
         },
         [fetchAgencies.fulfilled]: (state, action) => {
             state.loading = false;
+            state.access = true;
             agencyAdaptor.setAll(state, action.payload);
+        },
+        [fetchAgencies.rejected]: (state, action) => {
+            state.loading = false;
+            state.access = false;
         },
         [addAgency.fulfilled]: agencyAdaptor.addOne,
         [editAgency.fulfilled]: agencyAdaptor.setOne,
@@ -110,6 +119,6 @@ export const {
     selectById: selectAgencyById,
 } = agencyAdaptor.getSelectors((state) => state.agency);
 
-export const selectAgencyLoading = state => state.agency.loading;
+export const selectAgencyDetails = state => state.agency;
 
 export default agencySlice.reducer;

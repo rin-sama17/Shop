@@ -142,17 +142,16 @@ const FindParents = ({ parent, categories }) => {
 const CategoryManagement = () => {
   const categories = useSelector(selectAllCategories)
   const havAccess = useSelector(selectCategoryAccess)
-  const loading = useSelector(selectCategoryLoading)
+  const { loading, access } = useSelector(selectCategoryLoading)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(fetchAdminCategories())
   }, [])
-  if (!havAccess) {
-    return <NoAccessError />
-  }
   if (loading) {
     return <Spinner />
+  } else if (!havAccess) {
+    return <NoAccessError />
   }
 
   return (

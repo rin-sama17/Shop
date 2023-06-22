@@ -7,18 +7,20 @@ import {
   editProduct,
   fetchProducts,
   selectAllProducts,
-  selectProductLoading,
+  selectProductDetails,
 } from '../../../reducers/productSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { showCategory } from '../components/ShowCategory'
 import { showStatus } from '../components/ShowStatus'
+
 import CustomDataGrid from '../components/CustomDataGrid'
+import NoAccessError from '../components/NoAccessError'
 
 const ProductManagement = () => {
   const dispatch = useDispatch()
   const products = useSelector(selectAllProducts)
-  const loading = useSelector(selectProductLoading)
+  const { loading, access } = useSelector(selectProductDetails)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -61,6 +63,10 @@ const ProductManagement = () => {
     ],
     [EditProduct, products, t],
   )
+
+  if (!loading && !access) {
+    return <NoAccessError />
+  }
   return (
     <>
       <AddProduct />

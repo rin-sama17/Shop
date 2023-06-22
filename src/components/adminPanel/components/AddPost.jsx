@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addPost } from '../../../reducers/postSlice'
+import { addPost, selectPostDetails } from '../../../reducers/postSlice'
 import { selectLang } from '../../../reducers/langSlice'
 import AddBtn from './AddBtn'
 import { selectAuth } from '../../../reducers/authSlice'
@@ -16,8 +16,8 @@ import { selectAuth } from '../../../reducers/authSlice'
 const AddPost = () => {
   const [open, setOpen] = useState(false)
   const { userInfo: user } = useSelector(selectAuth)
+  const { access } = useSelector(selectPostDetails)
   const lang = useSelector(selectLang)
-
   const dispatch = useDispatch()
 
   const postFields = {
@@ -41,7 +41,7 @@ const AddPost = () => {
   const fields = postFieldsData(formik)
   return (
     <>
-      <AddBtn setOpen={setOpen} title="ساخت پست جدید" />
+      <AddBtn setOpen={setOpen} title="ساخت پست جدید" access={access} />
 
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm

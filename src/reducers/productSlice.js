@@ -14,17 +14,21 @@ import {
 
 const productAdaptor = createEntityAdapter();
 const initialState = productAdaptor.getInitialState({
-    loading: false
+    loading: false,
+    access: false,
 });
 
 export const fetchProducts = createAsyncThunk(
     'product/fetchProducts',
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const res = await getAllProducts();
             return res.data.data[0];
         } catch (error) {
             console.error(error);
+            if (error.response.status === 403) {
+                return rejectWithValue(error.response.data);
+            }
         }
     },
 );
@@ -95,8 +99,13 @@ const productSlice = createSlice({
     extraReducers: {
         [fetchProducts.pending]: state => { state.loading = true; },
         [fetchProducts.fulfilled]: (state, action) => {
+            state.access = true;
             state.loading = false;
             productAdaptor.setAll(state, action.payload);
+        },
+        [fetchProducts.rejected]: (state, action) => {
+            state.loading = false;
+            state.access = false;
         },
         [addProduct.fulfilled]: productAdaptor.addOne,
         [editProduct.fulfilled]: productAdaptor.setOne,
@@ -109,6 +118,6 @@ export const {
     selectById: selectProductById,
 } = productAdaptor.getSelectors((state) => state.product);
 
-export const selectProductLoading = state => state.product.loading;
+export const selectProductDetails = state => state.product;
 
 export default productSlice.reducer;

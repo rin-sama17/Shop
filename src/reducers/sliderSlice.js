@@ -15,17 +15,21 @@ import {
 
 const sliderAdaptor = createEntityAdapter();
 const initialState = sliderAdaptor.getInitialState({
-    loading: false
+    loading: false,
+    access: false,
 });
 
 export const fetchSliders = createAsyncThunk(
     'slider/fetchSliders',
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const res = await getAllSliders();
             return res.data.data.sliders;
         } catch (error) {
             console.error(error);
+            if (error.response.status === 403) {
+                return rejectWithValue(error.response.data);
+            }
         }
     },
 );
@@ -95,8 +99,13 @@ const sliderSlice = createSlice({
     extraReducers: {
         [fetchSliders.pending]: state => { state.loading = true; },
         [fetchSliders.fulfilled]: (state, action) => {
+            state.access = true;
             state.loading = false;
             sliderAdaptor.setAll(state, action.payload);
+        },
+        [fetchSliders.rejected]: (state, action) => {
+            state.loading = false;
+            state.access = false;
         },
         [addSlider.fulfilled]: sliderAdaptor.addOne,
         [editSlider.fulfilled]: sliderAdaptor.setOne,
@@ -110,6 +119,6 @@ export const {
 } = sliderAdaptor.getSelectors((state) => state.slider);
 
 
-export const selectSliderLoading = state => state.slider.loading;
+export const selectSliderDetails = state => state.slider;
 
 export default sliderSlice.reducer;

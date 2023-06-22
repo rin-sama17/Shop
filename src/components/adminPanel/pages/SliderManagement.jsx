@@ -10,17 +10,19 @@ import {
   deleteSlider,
   fetchSliders,
   selectAllSliders,
-  selectSliderLoading,
+  selectSliderDetails,
 } from '../../../reducers/sliderSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { CustomDivider } from '../../common'
 import { useTranslation } from 'react-i18next'
+
 import CustomDataGrid from '../components/CustomDataGrid'
+import NoAccessError from '../components/NoAccessError'
 
 const SliderManagement = () => {
   const dispatch = useDispatch()
   const sliders = useSelector(selectAllSliders)
-  const loading = useSelector(selectSliderLoading)
+  const { loading, access } = useSelector(selectSliderDetails)
   const { t } = useTranslation()
   useEffect(() => {
     dispatch(fetchSliders())
@@ -50,6 +52,10 @@ const SliderManagement = () => {
     ],
     [sliders, EditSlider, t],
   )
+
+  if (!loading && !access) {
+    return <NoAccessError />
+  }
   return (
     <>
       <AddSlider />

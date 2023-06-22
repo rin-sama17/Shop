@@ -14,17 +14,21 @@ import {
 
 const premissionAdaptor = createEntityAdapter();
 const initialState = premissionAdaptor.getInitialState({
-    loading: false
+    loading: false,
+    access: false,
 });
 
 export const fetchPremissions = createAsyncThunk(
     'premission/fetchPremissions',
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const res = await getAllPremissions();
             return res.data.premission;
         } catch (error) {
             console.error(error);
+            if (error.response.status === 403) {
+                return rejectWithValue(error.response.data);
+            }
         }
     },
 );
@@ -94,7 +98,12 @@ const premissionSlice = createSlice({
         },
         [fetchPremissions.fulfilled]: (state, action) => {
             state.loading = false;
+            state.access = true;
             premissionAdaptor.setAll(state, action.payload);
+        },
+        [fetchPremissions.rejected]: (state, action) => {
+            state.loading = false;
+            state.access = false;
         },
         [addPremission.fulfilled]: premissionAdaptor.addOne,
         [editPremission.fulfilled]: premissionAdaptor.setOne,
@@ -109,6 +118,6 @@ export const {
 } = premissionAdaptor.getSelectors((state) => state.premission);
 
 
-export const selectPremissionLoading = state => state.premission.loading;
+export const selectPremissionDetails = state => state.premission;
 
 export default premissionSlice.reducer;

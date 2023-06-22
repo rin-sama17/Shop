@@ -7,14 +7,17 @@ import { categoryValidation } from '../../validations/categoryValidation'
 import { CustomForm, CustomModal } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
 import { useDispatch, useSelector } from 'react-redux'
-import { addCategory } from '../../../reducers/categorySlice'
+import {
+  addCategory,
+  selectCategoryAccess,
+} from '../../../reducers/categorySlice'
 import { selectLang } from '../../../reducers/langSlice'
 import AddBtn from './AddBtn'
 
 const AddCategory = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
-
+  const { access } = useSelector(selectCategoryAccess)
   const lang = useSelector(selectLang)
 
   const handleAddNewCategory = (values, resetForm) => {
@@ -37,7 +40,7 @@ const AddCategory = () => {
   const fields = categoryFieldsData(formik)
   return (
     <>
-      <AddBtn setOpen={setOpen} title="ساخت دسته بندی جدید" />
+      <AddBtn setOpen={setOpen} title="ساخت دسته بندی جدید" access={access} />
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           label="ساخت دسته بندی جدید"

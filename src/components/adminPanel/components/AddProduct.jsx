@@ -6,13 +6,17 @@ import { productValidation } from '../../validations/productValidation'
 import { productFieldsData } from '../../fieldsData'
 import { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addProduct } from '../../../reducers/productSlice'
+import {
+  addProduct,
+  selectProductDetails,
+} from '../../../reducers/productSlice'
 import { selectLang } from '../../../reducers/langSlice'
 import AddBtn from './AddBtn'
 
 const AddProduct = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
+  const { access } = useSelector(selectProductDetails)
   const lang = useSelector(selectLang)
 
   const productFieldNames = {
@@ -38,7 +42,7 @@ const AddProduct = () => {
   const fields = productFieldsData(formik)
   return (
     <>
-      <AddBtn setOpen={setOpen} title="افزودن محصول جدید" />
+      <AddBtn setOpen={setOpen} title="افزودن محصول جدید" access={access} />
 
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm

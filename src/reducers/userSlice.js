@@ -14,17 +14,21 @@ import {
 const userAdaptor = createEntityAdapter();
 const initialState = userAdaptor.getInitialState({
   roles: [],
-  loading: false
+  access: false,
+  loading: false,
 });
 
 export const fetchUsers = createAsyncThunk(
   'user/fetchUsers',
-  async () => {
+  async (_, { rejectWithValue }) => {
     try {
       const res = await getAllUsers();
       return res.data.data[0];
     } catch (error) {
       console.error(error);
+      if (error.response.status === 403) {
+        return rejectWithValue(error.response.data);
+      }
     }
   },
 );
@@ -109,8 +113,13 @@ const userSlice = createSlice({
   extraReducers: {
     [fetchUsers.pending]: state => { state.loading = true; },
     [fetchUsers.fulfilled]: (state, action) => {
+      state.access = true;
       state.loading = false;
       userAdaptor.setAll(state, action.payload);
+    },
+    [fetchUsers.rejected]: (state, action) => {
+      state.loading = false;
+      state.access = false;
     },
     [addUser.fulfilled]: userAdaptor.addOne,
     [editUser.fulfilled]: userAdaptor.setOne,
@@ -124,7 +133,7 @@ export const {
 } = userAdaptor.getSelectors((state) => state.user);
 
 export const selectRoleIds = state => state.user.roles;
-export const selectUserLoading = state => state.user.loading;
+export const selectUserDetails = state => state.user;
 
 export const { roleIdDeleted, roleIdAdded, roleIdsCleared, rolesIdFinded } = userSlice.actions;
 

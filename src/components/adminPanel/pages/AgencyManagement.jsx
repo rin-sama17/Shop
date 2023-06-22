@@ -8,16 +8,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   deleteAgency,
   fetchAgencies,
-  selectAgencyLoading,
+  selectAgencyDetails,
   selectAllAgencies,
 } from '../../../reducers/agencySlice'
 import { useTranslation } from 'react-i18next'
+
 import CustomDataGrid from '../components/CustomDataGrid'
+import NoAccessError from '../components/NoAccessError'
 
 const AgencyManagement = () => {
   const dispatch = useDispatch()
   const agencies = useSelector(selectAllAgencies)
-  const loading = useSelector(selectAgencyLoading)
+  const { loading, access } = useSelector(selectAgencyDetails)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -47,6 +49,11 @@ const AgencyManagement = () => {
     ],
     [agencies, EditAgency, t],
   )
+
+  if (!loading && !access) {
+    return <NoAccessError />
+  }
+
   return (
     <>
       <AddAgency />

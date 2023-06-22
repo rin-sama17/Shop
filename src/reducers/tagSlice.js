@@ -17,17 +17,21 @@ const tagAdaptor = createEntityAdapter();
 const initialState = tagAdaptor.getInitialState({
     tag_id: [],
     tag_name: [],
-    loading: false
+    loading: false,
+    access: false
 });
 
 export const fetchTags = createAsyncThunk(
     'tag/fetchTags',
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const res = await getAllTags();
             return res.data.tags;
         } catch (error) {
             console.error(error);
+            if (error.response.status === 403) {
+                return rejectWithValue(error.response.data);
+            }
         }
     },
 );
@@ -132,8 +136,13 @@ const tagSlice = createSlice({
     extraReducers: {
         [fetchTags.pending]: state => { state.loading = true; },
         [fetchTags.fulfilled]: (state, action) => {
+            state.access = true;
             state.loading = false;
             tagAdaptor.setAll(state, action.payload);
+        },
+        [fetchTags.rejected]: (state, action) => {
+            state.loading = false;
+            state.access = false;
         },
         [addTag.fulfilled]: tagAdaptor.addOne,
         [editTag.fulfilled]: tagAdaptor.setOne,
@@ -148,7 +157,7 @@ export const {
 
 export const selectTag_id = state => state.tag.tag_id;
 export const selectTag_name = state => state.tag.tag_name;
-export const selectTagLoading = state => state.tag.loading;
+export const selectTagDetails = state => state.tag;
 
 export const { tagIdDeleted, tagDeleted, tagAdded, tagIdAdded, tagIdsCleared, tagsIdFinded } = tagSlice.actions;
 export default tagSlice.reducer;

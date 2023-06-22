@@ -12,7 +12,7 @@ import {
   editPost,
   fetchPosts,
   selectAllPosts,
-  selectPostLoading,
+  selectPostDetails,
 } from '../../../reducers/postSlice'
 import { CustomNoRowsOverlay } from '../components'
 import { useTranslation } from 'react-i18next'
@@ -20,12 +20,14 @@ import ChangeStatus from '../components/ChangeStatus'
 import { fetchTags } from '../../../reducers/tagSlice'
 import { showCategory } from '../components/ShowCategory'
 import { showStatus } from '../components/ShowStatus'
+
 import CustomDataGrid from '../components/CustomDataGrid'
+import NoAccessError from '../components/NoAccessError'
 
 const PostManagement = () => {
   const dispatch = useDispatch()
   const posts = useSelector(selectAllPosts)
-  const loading = useSelector(selectPostLoading)
+  const { loading, access } = useSelector(selectPostDetails)
 
   const { t } = useTranslation()
   useEffect(() => {
@@ -68,6 +70,10 @@ const PostManagement = () => {
     ],
     [EditPost, posts, t],
   )
+
+  if (!loading && !access) {
+    return <NoAccessError />
+  }
 
   return (
     <>

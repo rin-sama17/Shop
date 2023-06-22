@@ -15,17 +15,21 @@ import {
 const roleAdaptor = createEntityAdapter();
 const initialState = roleAdaptor.getInitialState({
     premission_id: [],
-    loading: false
+    loading: false,
+    access: false,
 });
 
 export const fetchRoles = createAsyncThunk(
     'role/fetchRoles',
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const res = await getAllRoles();
             return res.data.data[0];
         } catch (error) {
             console.error(error);
+            if (error.response.status === 403) {
+                return rejectWithValue(error.response.data);
+            }
         }
     },
 );
@@ -115,7 +119,12 @@ const roleSlice = createSlice({
         [fetchRoles.pending]: state => { state.loading = true; },
         [fetchRoles.fulfilled]: (state, action) => {
             state.loading = false;
+            state.access = true;
             roleAdaptor.setAll(state, action.payload);
+        },
+        [fetchRoles.rejected]: (state, action) => {
+            state.loading = false;
+            state.access = false;
         },
         [addRole.fulfilled]: roleAdaptor.addOne,
         [editRole.fulfilled]: roleAdaptor.setOne,
@@ -129,7 +138,7 @@ export const {
 } = roleAdaptor.getSelectors((state) => state.role);
 
 
-export const selectRoleLoading = state => state.role.loading;
+export const selectRoleDetails = state => state.role;
 
 export const selectPremission_id = state => state.role.premission_id;
 export const { premissionIdDeleted, premissionIdAdded, premissionIdsCleared, premissionsIdFinded } = roleSlice.actions;

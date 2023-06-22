@@ -27,7 +27,10 @@ import {
 import { PatternFormat } from 'react-number-format'
 import { useEffect } from 'react'
 import TextEditor from './TextEditor'
-import { selectUseAbleCategories } from '../../reducers/categorySlice'
+import {
+  selectAllCategories,
+  selectUseAbleCategories,
+} from '../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import {
@@ -79,6 +82,7 @@ const CustomFields = ({
   submit,
   checkbox,
   category,
+  addCategory,
   categoryParents,
   textEditor,
   selectTag,
@@ -217,7 +221,16 @@ const CustomFields = ({
       </FormControl>
     )
   } else if (category) {
-    const categories = useSelector(selectUseAbleCategories)
+    const createCategory = useSelector(selectUseAbleCategories)
+    const selectCategory = useSelector(selectAllCategories)
+
+    let categories
+    if (addCategory) {
+      categories = createCategory
+    } else {
+      categories = selectCategory
+    }
+
     content = (
       <FormControl
         fullWidth

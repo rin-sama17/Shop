@@ -40,7 +40,9 @@ export const fetchAdminCategories = createAsyncThunk(
       return res.data.data;
     } catch (error) {
       console.error(error);
-      return rejectWithValue(error.response.data);
+      if (error.response.status === 403) {
+        return rejectWithValue(error.response.data);
+      }
     }
   },
 );
@@ -118,7 +120,6 @@ const categorySlice = createSlice({
     },
     [fetchAdminCategories.rejected]: (state, action) => {
       state.loading = false;
-
       state.access = false;
     },
     [fetchCategories.fulfilled]: (state, action) => {

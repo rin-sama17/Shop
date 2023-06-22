@@ -5,6 +5,7 @@ const categoryFieldsData = (formik) => {
       formik,
       label: 'نام دسته بندی',
       name: 'name',
+      addCategory: true,
     },
     {
       sm: 6,

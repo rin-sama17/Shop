@@ -15,17 +15,21 @@ import {
 
 const postAdaptor = createEntityAdapter();
 const initialState = postAdaptor.getInitialState({
-    loading: false
+    loading: false,
+    access: false
 });
 
 export const fetchPosts = createAsyncThunk(
     'post/fetchPosts',
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const res = await getAllPosts();
             return res.data.data[0];
         } catch (error) {
             console.error(error);
+            if (error.response.status === 403) {
+                return rejectWithValue(error.response.data);
+            }
         }
     },
 );
@@ -100,7 +104,12 @@ const postSlice = createSlice({
         },
         [fetchPosts.fulfilled]: (state, { payload }) => {
             state.loading = false;
+            state.access = true;
             postAdaptor.setAll(state, payload);
+        },
+        [fetchPosts.rejected]: (state, action) => {
+            state.loading = false;
+            state.access = false;
         },
         [addPost.fulfilled]: postAdaptor.addOne,
         [editPost.fulfilled]: (state, { payload }) => {
@@ -123,6 +132,6 @@ export const {
 } = postAdaptor.getSelectors((state) => state.post);
 
 
-export const selectPostLoading = state => state.post.loading;
+export const selectPostDetails = state => state.post;
 
 export default postSlice.reducer;

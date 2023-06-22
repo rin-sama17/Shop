@@ -9,6 +9,7 @@ import {
   tagDeleted,
   tagAdded,
   tagIdsCleared,
+  selectTagDetails,
 } from '../../../reducers/tagSlice'
 
 import { CustomForm, CustomModal } from '../../common'
@@ -20,6 +21,7 @@ const AddTag = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const tempTags = useSelector(selectTag_id)
+  const { access } = useSelector(selectTagDetails)
   const lang = useSelector(selectLang)
 
   useEffect(() => {
@@ -69,7 +71,7 @@ const AddTag = () => {
   ]
   return (
     <>
-      <AddBtn setOpen={setOpen} title="افزودن تگ جدید" />
+      <AddBtn setOpen={setOpen} title="افزودن تگ جدید" access={access} />
 
       <CustomModal open={open} setOpen={setOpen}>
         {tempTags?.map((tag) => (

@@ -16,7 +16,7 @@ import {
   fetchRoles,
   selectAllRoles,
   selectPremission_id,
-  selectRoleLoading,
+  selectRoleDetails,
 } from '../../../reducers/roleSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -26,14 +26,16 @@ import {
 import { useTranslation } from 'react-i18next'
 import ChangeStatus from '../components/ChangeStatus'
 import { showStatus } from '../components/ShowStatus'
+
 import CustomDataGrid from '../components/CustomDataGrid'
+import NoAccessError from '../components/NoAccessError'
 
 const RoleManagement = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
   const roles = useSelector(selectAllRoles)
-  const loading = useSelector(selectRoleLoading)
+  const { loading, access } = useSelector(selectRoleDetails)
 
   useEffect(() => {
     dispatch(fetchPremissions())
@@ -75,6 +77,10 @@ const RoleManagement = () => {
     ],
     [roles, t],
   )
+
+  if (!loading && !access) {
+    return <NoAccessError />
+  }
   return (
     <>
       <AddRole />

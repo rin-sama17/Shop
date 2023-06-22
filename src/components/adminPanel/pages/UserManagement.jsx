@@ -14,18 +14,20 @@ import {
   deleteUser,
   fetchUsers,
   selectAllUsers,
-  selectUserLoading,
+  selectUserDetails,
 } from '../../../reducers/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRoles } from '../../../reducers/roleSlice'
 import { useTranslation } from 'react-i18next'
+
 import CustomDataGrid from '../components/CustomDataGrid'
+import NoAccessError from '../components/NoAccessError'
 
 const UserManagement = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const users = useSelector(selectAllUsers)
-  const loading = useSelector(selectUserLoading)
+  const { loading, access } = useSelector(selectUserDetails)
   useEffect(() => {
     dispatch(fetchUsers())
     dispatch(fetchRoles())
@@ -59,6 +61,9 @@ const UserManagement = () => {
     [EditUser, users, t],
   )
 
+  if (!loading && !access) {
+    return <NoAccessError />
+  }
   return (
     <>
       <AddUser />

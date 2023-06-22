@@ -7,7 +7,7 @@ import { sliderValidation } from '../../validations/sliderValidation'
 import { sliderFieldsData } from '../../fieldsData'
 import { useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addSlider } from '../../../reducers/sliderSlice'
+import { addSlider, selectSliderDetails } from '../../../reducers/sliderSlice'
 import { selectLang } from '../../../reducers/langSlice'
 import AddBtn from './AddBtn'
 import { useTranslation } from 'react-i18next'
@@ -17,9 +17,10 @@ const AddSlider = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
   const lang = useSelector(selectLang)
+  const { access } = useSelector(selectSliderDetails)
   const [type, setType] = useState(0)
   const handleSubmit = (values, resetForm) => {
-    const { name, description, image, url } = values
+    const { name, image, url } = values
     let newSlider
     if (type === 0) {
       newSlider = {
@@ -57,7 +58,7 @@ const AddSlider = () => {
 
   return (
     <>
-      <AddBtn title="ساخت اسلایدر جدید" setOpen={setOpen} />
+      <AddBtn title="ساخت اسلایدر جدید" setOpen={setOpen} access={access} />
 
       <CustomModal open={open} setOpen={setOpen}>
         <FormControlLabel

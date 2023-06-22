@@ -15,6 +15,7 @@ import {
   premissionIdDeleted,
   premissionIdsCleared,
   selectPremission_id,
+  selectRoleDetails,
 } from '../../../reducers/roleSlice'
 
 import { CustomForm, CustomModal } from '../../common'
@@ -28,6 +29,7 @@ const AddRole = () => {
   const dispatch = useDispatch()
   const premissions = useSelector(selectAllPremissions)
   const premissionIds = useSelector(selectPremission_id)
+  const { access } = useSelector(selectRoleDetails)
   const lang = useSelector(selectLang)
 
   const handleCheck = (e, premissionId) => {
@@ -75,7 +77,7 @@ const AddRole = () => {
   )
   return (
     <>
-      <AddBtn setOpen={setOpen} title="افزودن نقش جدید" />
+      <AddBtn setOpen={setOpen} title="افزودن نقش جدید" access={access} />
 
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
