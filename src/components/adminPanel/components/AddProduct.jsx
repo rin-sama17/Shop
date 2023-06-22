@@ -30,6 +30,7 @@ const AddProduct = () => {
   }
   const formik = useFormik({
     initialValues: productFieldNames,
+    validationSchema: productValidation,
     onSubmit: (values, { resetForm }) => {
       const newProduct = {
         ...values,

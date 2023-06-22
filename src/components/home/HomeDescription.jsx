@@ -71,7 +71,7 @@ const HomeDescription = () => {
         component={Link}
         to="/products"
         color="warning"
-        sx={{ width: 190, my: 3 }}
+        sx={{ width: 196, my: 3 }}
         variant="contained"
       >
         <Store />

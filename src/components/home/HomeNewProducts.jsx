@@ -9,6 +9,11 @@ import { useGetProductsQuery } from '../../api'
 import { ProductLoading } from '../loading'
 import { ProductsSlider } from '../products'
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  fetchFilterProduct,
+  selectFiltredProducts,
+} from '../../reducers/filterProductsSlice'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -41,13 +46,19 @@ function a11yProps(index) {
 
 export default function BasicTabs() {
   const [value, setValue] = React.useState(0)
-  const { data = { data: [[]] }, isSuccess } = useGetProductsQuery()
-  const products = data.data[0]
+  const { newProducts, discountedProducts, isSuccess } = useSelector(
+    selectFiltredProducts,
+  )
+  const dispatch = useDispatch()
   const { t } = useTranslation()
+
+  React.useEffect(() => {
+    dispatch(fetchFilterProduct())
+  }, [])
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
-  console.log(products)
+
   return (
     <Box sx={{ width: 1 }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -59,7 +70,7 @@ export default function BasicTabs() {
           indicatorColor="secondary"
         >
           <Tab label={t('جدیدترین ها')} {...a11yProps(0)} />
-          <Tab label={t('پرفروش ترین ها')} {...a11yProps(1)} />
+          <Tab label={t('تخفیف های ویژه')} {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -68,7 +79,7 @@ export default function BasicTabs() {
             <ProductLoading />
           </Box>
         ) : (
-          <ProductsSlider products={products} />
+          <ProductsSlider products={newProducts} />
         )}
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -77,7 +88,7 @@ export default function BasicTabs() {
             <ProductLoading />
           </Box>
         ) : (
-          <ProductsSlider products={products} />
+          <ProductsSlider products={discountedProducts} />
         )}
       </TabPanel>
     </Box>

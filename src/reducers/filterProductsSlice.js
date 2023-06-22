@@ -9,6 +9,8 @@ import axios from 'axios';
 const initialState = {
     products: [],
     sortedProducts: [],
+    newProducts: [],
+    discountedProducts: [],
     isSuccess: false
 };
 
@@ -69,6 +71,12 @@ const filtredProductSlice = createSlice({
             state.isSuccess = true;
             state.products = action.payload;
             state.sortedProducts = action.payload;
+
+            const newProducts = action.payload?.sort((a, b) => a.created_at?.localeCompare(b.created_at)).slice(0, 10);
+            const discountedProducts = action.payload?.filter((p) => p.discount).slice(0, 10);
+
+            state.newProducts = newProducts;
+            state.discountedProducts = discountedProducts;
 
         },
     },

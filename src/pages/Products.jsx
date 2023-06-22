@@ -1,11 +1,9 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Box } from '@mui/material'
 
 import { ProductsFilter, Product } from '../components/products'
-import { CustomMassage, CustomPagination, Spinner } from '../components/common'
 
-import { useGetProductsQuery } from '../api'
 import { ProductsLoding } from '../components/loading'
 import CustomNoRowsOverlay from '../components/adminPanel/components/CustomNoRowsOverlay'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,9 +26,7 @@ const Products = () => {
   return (
     <Box sx={{ mt: 5 }}>
       <ProductsFilter />
-      {sortedProducts.length === 0 ? (
-        <CustomNoRowsOverlay />
-      ) : (
+      {sortedProducts && sortedProducts.length > 0 ? (
         <>
           <Grid container spacing={2} sx={{ width: 1 }}>
             {sortedProducts.map((product, index) => (
@@ -46,19 +42,9 @@ const Products = () => {
             ))}
           </Grid>
         </>
+      ) : (
+        <CustomNoRowsOverlay />
       )}
-      {/* {data.length !== 0 && (
-        <Box
-          sx={{
-            width: 1,
-            my: 1,
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-        >
-          <CustomPagination setData={setData} data={products.data} />
-        </Box>
-      )} */}
     </Box>
   )
 }

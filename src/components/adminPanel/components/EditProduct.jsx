@@ -38,6 +38,7 @@ const EditProduct = ({ product }) => {
   }, [open])
 
   const formik = useFormik({
+    validationSchema: productValidation,
     initialValues: { ...product, tags: [] },
     onSubmit: (values, { resetForm }) => {
       const editedProduct = { ...values, tags: tagIds, lang }

@@ -27,7 +27,6 @@ const AgencyLoading = () => {
         sx={{
           width: 1,
           borderRadius: '21px',
-          bgcolor: '#068AD2',
         }}
       >
         <Box>
