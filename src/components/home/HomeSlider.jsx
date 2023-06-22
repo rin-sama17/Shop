@@ -171,7 +171,7 @@ const HomeSlider = ({ sliders }) => {
           </Box>
         ))}
       </Slider>
-      <SliderArrows slider={slider} />
+      <SliderArrows slider={slider} isHomeSlider />
     </Box>
   )
 }

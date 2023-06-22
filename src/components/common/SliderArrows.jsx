@@ -3,7 +3,7 @@ import { Box, IconButton, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectLang } from '../../reducers/langSlice'
-const SliderArrows = ({ slider }) => {
+const SliderArrows = ({ slider, isHomeSlider }) => {
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('sm'))
   const lang = useSelector(selectLang)
@@ -15,12 +15,14 @@ const SliderArrows = ({ slider }) => {
           <IconButton
             size="small"
             sx={{
-              top: { xs: '50%', md: '84%' },
-              left: { xs: 10, md: 5 },
+              top: isHomeSlider ? { xs: '50%', md: '84%' } : '50%',
+              left: isHomeSlider ? { xs: 10, md: 5 } : 10,
               position: 'absolute',
-              color: 'white',
+              color: 'whitesmoke',
+              bgcolor: isHomeSlider ? 'none' : 'bgBlur.main',
               '&:hover': {
                 bgcolor: 'bgBlur.main',
+                color: 'whitesmoke',
               },
             }}
             onClick={() => slider.current.slickNext()}
@@ -31,13 +33,15 @@ const SliderArrows = ({ slider }) => {
           <IconButton
             size="small"
             sx={{
-              top: { xs: '50%', md: '84%' },
-              right: { xs: 10, md: 'auto' },
-              left: { xs: 'auto', md: 56 },
+              top: isHomeSlider ? { xs: '50%', md: '84%' } : '50%',
+              right: isHomeSlider ? { xs: 10, md: 'auto' } : 10,
+              left: isHomeSlider ? { xs: 'auto', md: 56 } : 'auto',
               position: 'absolute',
-              color: 'white',
+              color: 'whitesmoke',
+              bgcolor: isHomeSlider ? 'none' : 'bgBlur.main',
               '&:hover': {
                 bgcolor: 'bgBlur.main',
+                color: 'whitesmoke',
               },
             }}
             onClick={() => slider.current.slickPrev()}
