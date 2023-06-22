@@ -37,7 +37,7 @@ const Agency = ({ agencyId }) => {
         display: 'flex',
         justifyContent: 'center',
         mb: 3,
-        width: downMd ? '95%' : '80%',
+        width: { xs: '89%', sm: '85%', md: '74%' },
         m: '10px auto',
       }}
     >
@@ -58,12 +58,12 @@ const Agency = ({ agencyId }) => {
         >
           <Box>
             <Grid container sx={{ justifyContent: 'space-between' }}>
-              <Grid xs={5.5} sm={5} md={4.5}>
+              <Grid xs={5.5} sm={5} md={5}>
                 <CardMedia
                   component="img"
                   sx={{
-                    height: downMd ? 100 : 200,
-                    width: downMd ? 130 : 250,
+                    height: { xs: 100, sm: 150, md: 200 },
+                    width: { xs: 130, sm: 190, md: 250 },
                     borderRadius: '10%',
                     borderRight: downMd ? 6 : 13,
                     borderColor: '#FB9D23',
@@ -74,8 +74,8 @@ const Agency = ({ agencyId }) => {
               </Grid>
               <Grid
                 xs={6.5}
-                sm={5}
-                md={7.5}
+                sm={7}
+                md={7}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',

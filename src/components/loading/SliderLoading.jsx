@@ -1,8 +1,6 @@
-import { Skeleton, useMediaQuery, useTheme } from '@mui/material'
+import { Skeleton } from '@mui/material'
 
 const SliderLoading = () => {
-  const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('md'))
   return (
     <Skeleton
       animation="wave"
@@ -10,7 +8,7 @@ const SliderLoading = () => {
       sx={{
         width: '90%',
         m: 'auto',
-        height: downMd ? '30vh' : '40vh',
+        height: { xs: '20vh', sm: '30vh', md: '45vh' },
         borderRadius: '0 0 20px  20px ',
       }}
     />
