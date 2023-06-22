@@ -15,14 +15,17 @@ import { useTranslation } from 'react-i18next'
 const ParentCategory = ({ parent, children }) => {
   return (
     <Accordion>
-      <AccordionSummary expandIcon={<ExpandMore />}>
+      <AccordionSummary
+        sx={{ px: '10px !important' }}
+        expandIcon={<ExpandMore sx={{ color: 'white' }} />}
+      >
         <Box
           sx={{
             width: 1,
             display: 'flex',
           }}
         >
-          <Divider orientation="vertical" sx={{ ml: 2 }} />
+          <Divider orientation="vertical" sx={{ ml: 2, bgcolor: 'white' }} />
           <Typography
             sx={{
               ml: 2,
@@ -93,15 +96,29 @@ const FindParents = ({ parent, categories }) => {
       {children.length > 0 ? (
         <Box
           sx={{
-            width: '90%',
-            m: '0 0 0 auto',
+            width: 1,
+            bgcolor: 'bgSidebar.dark',
+            '& .MuiAccordionSummary-root': {
+              bgcolor: 'bgSidebar.dark',
+            },
+            '& .MuiAccordionDetails-root': {
+              p: '0 !important',
+              bgcolor: 'bgSidebar.dark',
+            },
           }}
         >
-          <ParentCategory parent={parent}>
-            {children.map((child, index) => (
-              <ChildCategory child={child} key={index} />
-            ))}
-          </ParentCategory>
+          <Box
+            sx={{
+              width: '90%',
+              m: '0 0 0 auto',
+            }}
+          >
+            <ParentCategory parent={parent}>
+              {children.map((child, index) => (
+                <ChildCategory child={child} key={index} />
+              ))}
+            </ParentCategory>
+          </Box>
         </Box>
       ) : (
         <ChildCategory child={parent} />

@@ -13,7 +13,6 @@ const DrawerContent = ({ setOpen }) => {
         pt: 2,
         justifyContent: 'left',
         textAlign: 'left',
-        px: 2,
         bgcolor: 'bgSidebar.main',
         height: 1,
       }}
