@@ -12,18 +12,12 @@ import {
   ShowAgency,
   AuthorPage,
 } from '../pages'
-import { CustomMassage } from '../components/common'
+import ErrorElement from './ErrorElement'
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
-    errorElement: (
-      <CustomMassage
-        text="صفحه مورد نظر یافت نشد"
-        btnLabel="برگشت به خانه"
-        to="/"
-      />
-    ),
+    errorElement: <ErrorElement />,
     children: [
       {
         path: '/',
