@@ -12,11 +12,14 @@ import { useSelector } from 'react-redux'
 import { selectAllCategories } from '../../reducers/categorySlice'
 import { useTranslation } from 'react-i18next'
 
-const ParentCategory = ({ parent, children }) => {
+const ParentCategory = ({ parent, children, ligth }) => {
   return (
     <Accordion>
       <AccordionSummary
-        sx={{ px: '10px !important' }}
+        sx={{
+          px: '10px !important',
+          bgcolor: ligth ? 'bgSidebar.main' : 'bgSidebar.dark',
+        }}
         expandIcon={<ExpandMore sx={{ color: 'white' }} />}
       >
         <Box
@@ -96,9 +99,6 @@ const FindParents = ({ parent, categories }) => {
           sx={{
             width: 1,
             bgcolor: 'bgSidebar.dark',
-            '& .MuiAccordionSummary-root': {
-              bgcolor: 'bgSidebar.dark',
-            },
             '& .MuiAccordionDetails-root': {
               p: '0 !important',
               bgcolor: 'bgSidebar.dark',
@@ -131,10 +131,6 @@ const DrawerCategories = () => {
   return (
     <Box
       sx={{
-        '& .MuiAccordionSummary-root': {
-          p: '0 !important',
-          bgcolor: 'bgSidebar.main',
-        },
         '& .MuiAccordionDetails-root': {
           p: '0 !important',
         },
@@ -148,15 +144,15 @@ const DrawerCategories = () => {
         variant="h6"
         sx={{
           m: 1,
-          color: 'whitesmoke',
+          color: 'text.secondary',
         }}
       >
-        {t('دسته بندی')}
+        {t('دسته بندی ها')}
       </Typography>
       {categories.map((layer1, index) => (
         <Box key={index}>
           {layer1.category_id === null && (
-            <ParentCategory parent={layer1}>
+            <ParentCategory parent={layer1} ligth>
               {categories.map((child, index) => (
                 <Fragment key={index}>
                   {child.category_id === layer1.id && (
