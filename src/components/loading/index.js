@@ -5,3 +5,4 @@ export { default as ShowProductLoading } from "./ShowProductLoading";
 export { default as SliderLoading } from "./SliderLoading";
 export { default as AgencyLoading } from "./AgencyLoading";
 export { default as ShowAgencyLoading } from "./ShowAgencyLoading";
+export { default as ProductsLoding } from "./ProductsLoding";
