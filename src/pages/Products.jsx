@@ -21,7 +21,7 @@ const Products = () => {
   useEffect(() => {
     dispatch(fetchFilterProduct())
   }, [])
-  if (isSuccess) {
+  if (!isSuccess) {
     return <ProductsLoding />
   }
 
