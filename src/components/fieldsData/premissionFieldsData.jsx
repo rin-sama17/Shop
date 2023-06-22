@@ -15,7 +15,7 @@ const premissionFieldsData = (formik) => {
     {
       md: 2,
       submit: true,
-      customLabel: 'ثبت',
+      customLabel: 'ثبت تغییرات',
     },
   ]
 }

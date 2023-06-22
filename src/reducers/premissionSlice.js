@@ -14,6 +14,7 @@ import {
 
 const premissionAdaptor = createEntityAdapter();
 const initialState = premissionAdaptor.getInitialState({
+    tempPremission: [],
     loading: false,
     access: false,
 });
@@ -35,12 +36,11 @@ export const fetchPremissions = createAsyncThunk(
 
 export const addPremission = createAsyncThunk(
     'premission/addPremission',
-    async ({ values, setOpen, resetForm }) => {
+    async ({ values, setOpen }) => {
         try {
             const res = await createPremission(values);
             if (res.status === 200) {
                 setOpen(false);
-                resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
                 return res.data.premission;
             }
@@ -91,7 +91,21 @@ export const deletePremission = createAsyncThunk(
 const premissionSlice = createSlice({
     name: 'premission',
     initialState,
-    reducers: {},
+    reducers: {
+        tempPremissionAdded: (state, action) => {
+            const existingPremission = state.tempPremission.find(tempPremission => tempPremission.name === action.payload.name);
+            if (existingPremission) {
+                toast.error("دسترسی نمیتواند تکراری باشد");
+                return;
+            }
+            state.tempPremission.push(action.payload);
+        },
+        tempPremissionDeleted: (state, action) => {
+            const tempPremissionIndex = state.tempPremission.findIndex(tempPremission => tempPremission === action.payload);
+            state.tempPremission.splice(tempPremissionIndex, 1);
+        },
+
+    },
     extraReducers: {
         [fetchPremissions.pending]: (state, action) => {
             state.loading = true;
@@ -105,7 +119,10 @@ const premissionSlice = createSlice({
             state.loading = false;
             state.access = false;
         },
-        [addPremission.fulfilled]: premissionAdaptor.addOne,
+        [addPremission.fulfilled]: (state, action) => {
+            state.tempPremission = [];
+            premissionAdaptor.addOne(state, action.payload);
+        },
         [editPremission.fulfilled]: premissionAdaptor.setOne,
         [deletePremission.fulfilled]: premissionAdaptor.removeOne,
     },
@@ -116,6 +133,8 @@ export const {
     selectById: selectPremissionById,
     selectIds: selectPremissionIds
 } = premissionAdaptor.getSelectors((state) => state.premission);
+
+export const { tempPremissionAdded, tempPremissionDeleted } = premissionSlice.actions;
 
 
 export const selectPremissionDetails = state => state.premission;
