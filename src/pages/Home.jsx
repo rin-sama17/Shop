@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <Grid xs={12}>
-      {isSuccess || sliders.length > 0 ? (
+      {isSuccess && sliders.length > 0 ? (
         <HomeSlider sliders={sliders} />
       ) : (
         <SliderLoading />

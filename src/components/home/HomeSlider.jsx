@@ -30,7 +30,6 @@ const HomeSlider = ({ sliders }) => {
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('sm'))
   const slider = useRef(null)
-  console.log(sliders)
   const settings = {
     infinite: true,
     slidesToShow: 1,
@@ -61,18 +60,19 @@ const HomeSlider = ({ sliders }) => {
                 component="img"
                 image={`http://localhost:8000/${slide.image}`}
                 alt={slide.name}
-                style={{
-                  height: downMd ? '30vh' : '40vh',
+                sx={{
+                  height: { xs: '20vh', sm: '30vh', md: '45vh' },
                   borderRadius: '0 0 20px  20px ',
                 }}
               />
             ) : (
               <ImageListItem>
-                <img
-                  src={`http://localhost:8000/${slide.image}`}
+                <CardMedia
+                  component="img"
+                  image={`http://localhost:8000/${slide.image}`}
                   alt={slide.name}
-                  style={{
-                    height: downMd ? '30vh' : '40vh',
+                  sx={{
+                    height: { xs: '20vh', sm: '30vh', md: '40vh' },
                     borderRadius: '0 0 20px  20px ',
                   }}
                 />
@@ -113,17 +113,18 @@ const HomeSlider = ({ sliders }) => {
                       <Paper
                         elevation={12}
                         sx={{
-                          width: downMd ? 100 : 200,
-                          height: downMd ? 100 : 200,
+                          width: { xs: 100, sm: 150, md: 200 },
+                          height: { xs: 100, sm: 150, md: 200 },
                           borderRadius: '20%',
                         }}
                       >
-                        <img
-                          src={`http://localhost:8000/${slide.image}`}
+                        <CardMedia
+                          component="img"
+                          image={`http://localhost:8000/${slide.image}`}
                           alt={slide.name}
-                          style={{
-                            width: downMd ? 100 : 200,
-                            height: downMd ? 100 : 200,
+                          sx={{
+                            width: { xs: 100, sm: 150, md: 200 },
+                            height: { xs: 100, sm: 150, md: 200 },
                             borderRadius: '20%',
                           }}
                         />
