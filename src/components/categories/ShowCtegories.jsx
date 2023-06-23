@@ -21,6 +21,8 @@ export default function ShowCtegories() {
         <Fade in={open}>
           <Box
             sx={{
+              display: 'flex',
+              justifyContent: 'center',
               position: 'absolute',
               right: '0',
               top: '67px',
@@ -32,7 +34,7 @@ export default function ShowCtegories() {
           >
             <Box
               sx={{
-                width: 1,
+                width: '50%',
                 position: 'absolute',
                 top: '-33px',
                 pt: '34px',
@@ -44,7 +46,7 @@ export default function ShowCtegories() {
             >
               <Card
                 sx={{
-                  width: '50%',
+                  width: 1,
                   p: 2,
                   bgcolor: 'bgcolor.main',
                   maxHeight: '70vh',

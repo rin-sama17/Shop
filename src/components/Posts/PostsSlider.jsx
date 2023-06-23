@@ -17,7 +17,6 @@ import { Link, Link as RouterLink } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import Slider from 'react-slick'
 import Grid from '@mui/material/Unstable_Grid2'
-import { category01, category02, category03 } from '../../assets'
 import { useGetPostsQuery } from '../../api'
 
 const PostsSlider = () => {

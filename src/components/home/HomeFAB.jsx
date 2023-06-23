@@ -21,13 +21,13 @@ const HomeFAB = () => {
   const actions = [
     {
       color: 'warning',
-      to: '/post/add',
+      to: '/about-us',
       icon: <InfoOutlined />,
       name: 'درباره ما',
     },
     {
       color: 'info',
-      to: '/product/add',
+      to: '/contact-us',
       icon: <SupportAgentOutlined />,
       name: 'تماس با ما',
     },

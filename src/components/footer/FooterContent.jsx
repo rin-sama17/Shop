@@ -111,7 +111,9 @@ const FooterContent = () => {
           {contacts.map((contact, index) => (
             <Box key={index} sx={{ display: 'flex', mb: 2 }}>
               {contact.icon}
-              <Typography sx={{ direction: 'rtl', ml: 1, color: 'whtesmoke' }}>
+              <Typography
+                sx={{ direction: 'inherit', ml: 1, color: 'whtesmoke' }}
+              >
                 {contact.name}
               </Typography>
             </Box>

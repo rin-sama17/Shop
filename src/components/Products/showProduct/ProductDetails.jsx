@@ -8,6 +8,7 @@ import {
 } from '../../common'
 import { ReportGmailerrorred } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 const ProductDetails = ({ product }) => {
   const { t } = useTranslation()
@@ -76,6 +77,8 @@ const ProductDetails = ({ product }) => {
         <Button
           fullWidth
           variant="contained"
+          component={Link}
+          to="/contact-us"
           sx={{ borderRadius: '0  20px  0 20px ', mt: 1 }}
         >
           {t('تماس بگیرید')}

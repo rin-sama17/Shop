@@ -10,6 +10,7 @@ import {
   SearchResult,
   Agencies,
   ShowAgency,
+  ContactUs,
   AuthorPage,
 } from '../pages'
 import ErrorElement from './ErrorElement'
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: '/author/:userId',
         element: <AuthorPage />,
+      },
+      {
+        path: '/contact-us',
+        element: <ContactUs />,
       },
     ],
   },
