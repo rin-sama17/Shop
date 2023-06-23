@@ -1,6 +1,6 @@
 import { Post, PostsSlider } from '../components/posts'
 import { useGetPostsQuery } from '../api'
-import { PostLoading } from '../components/loading'
+import { PostLoading, SliderLoading } from '../components/loading'
 import { CustomNoRowsOverlay } from '../components/adminPanel/components'
 import { Box } from '@mui/material'
 
@@ -9,7 +9,14 @@ const Posts = () => {
   const posts = data.posts.filter((post) => post.status === 1)
 
   if (!isSuccess) {
-    return <PostLoading />
+    return (
+      <>
+        <SliderLoading />
+        {[1, 2, 3].map((item) => (
+          <PostLoading key={item} />
+        ))}
+      </>
+    )
   }
 
   if (data.posts.length === 0) {

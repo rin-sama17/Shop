@@ -7,7 +7,7 @@ const PostLoading = () => {
       sx={{
         display: 'flex',
         justifyContent: 'center',
-        mb: 3,
+        mt: 3,
         width: '80%',
         m: '10px auto',
       }}

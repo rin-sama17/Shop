@@ -4,6 +4,7 @@ import {
   CardContent,
   Typography,
   Paper,
+  CardMedia,
 } from '@mui/material'
 import { ShowTime, ShowAuthor } from '../common'
 import Grid from '@mui/material/Unstable_Grid2'
@@ -42,12 +43,14 @@ const Post = ({ postId }) => {
           <Box>
             <Grid container sx={{ justifyContent: 'space-between' }}>
               <Grid xs={12} sm={4}>
-                <img
+                <CardMedia
+                  component="img"
                   alt={post.name}
-                  src={`http://localhost:8000/${post.image}`}
+                  image={`http://localhost:8000/${post.image}`}
                   style={{
                     margin: 'auto',
                     width: '100%',
+                    height: '100%',
                     borderRadius: '20px',
                   }}
                 />

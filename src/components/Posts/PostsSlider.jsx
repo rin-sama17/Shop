@@ -18,6 +18,7 @@ import LinesEllipsis from 'react-lines-ellipsis'
 import Slider from 'react-slick'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useGetPostsQuery } from '../../api'
+import { SliderLoading } from '../loading'
 
 const PostsSlider = () => {
   const { data = { posts: [] }, isSuccess } = useGetPostsQuery()
@@ -33,7 +34,7 @@ const PostsSlider = () => {
         <Card
           sx={{
             bgcolor: 'bgBlur.main',
-            display: 'flex',
+            display: { xs: 'none', sm: 'flex' },
             justifyContent: 'space-between',
             alignItems: 'center',
             borderRadius: 4,
@@ -49,23 +50,20 @@ const PostsSlider = () => {
               borderRadius: '10px',
             }}
           />
-          {downMd ? null : (
-            <Typography
-              variant="subtitle2"
-              color="primary"
-              sx={{
-                display: {
-                  xs: 'none',
-                  sm: 'none',
-                  md: 'block',
-                },
-                direction: 'ltr',
-                mx: 1,
-              }}
-            >
-              <LinesEllipsis text={posts[i].name} maxLine={1} />
-            </Typography>
-          )}
+          <Typography
+            variant="subtitle2"
+            color="primary"
+            sx={{
+              display: {
+                xs: 'none',
+                md: 'block',
+              },
+              direction: 'ltr',
+              mx: 1,
+            }}
+          >
+            <LinesEllipsis text={posts[i].name} maxLine={1} />
+          </Typography>
         </Card>
       )
     },
@@ -74,20 +72,21 @@ const PostsSlider = () => {
   }
 
   if (!isSuccess) {
-    return <Skeleton width="100%" height="90vh" />
+    return <SliderLoading />
   }
 
   return (
-    <Box sx={{ width: 1, mb: 2 }}>
+    <Box sx={{ width: '90%', mb: 3, mx: 'auto' }}>
       <Slider {...settings}>
         {posts.slice(0, 4).map((slide, index) => (
           <Box component="div" key={index}>
             <ImageListItem>
-              <img
-                src={`http://localhost:8000/${slide.image}`}
+              <CardMedia
+                component="img"
+                image={`http://localhost:8000/${slide.image}`}
                 alt={slide.name}
-                style={{
-                  height: downMd ? '35vh' : '40vh',
+                sx={{
+                  height: { xs: '20vh', sm: '30vh', md: '45vh' },
                   borderRadius: '0 0 20px 20px',
                 }}
               />
@@ -111,11 +110,8 @@ const PostsSlider = () => {
                 }}
               >
                 <Grid
-                  // component={Grid}
                   container
                   spacing={2}
-                  // direction="row"
-                  // divider={<Divider orientation="vertical" flexItem />}
                   sx={{
                     width: 1,
                     display: 'flex',
@@ -131,15 +127,22 @@ const PostsSlider = () => {
                       justifyContent: 'center',
                     }}
                   >
-                    <Paper elevation={12} sx={{ borderRadius: 7 }}>
+                    <Paper
+                      elevation={12}
+                      sx={{
+                        borderRadius: 7,
+                        width: { xs: 100, sm: 150, md: 200 },
+                        height: { xs: 50, sm: 100, md: 150 },
+                      }}
+                    >
                       <CardMedia
                         component="img"
                         image={`http://localhost:8000/${slide.image}`}
                         alt={slide.name}
                         sx={{
-                          width: downMd ? 150 : 250,
-                          height: downMd ? 100 : 200,
-                          borderRadius: 7,
+                          width: { xs: 100, sm: 150, md: 200 },
+                          height: { xs: 50, sm: 100, md: 150 },
+                          borderRadius: '10%',
                         }}
                       />
                     </Paper>
@@ -160,7 +163,7 @@ const PostsSlider = () => {
                       color="whitesmoke"
                     >
                       <LinesEllipsis
-                        text={slide.summery}
+                        text={slide.summary}
                         maxLine={downMd ? 3 : 5}
                       />
                     </Typography>

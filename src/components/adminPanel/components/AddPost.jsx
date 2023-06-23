@@ -51,6 +51,7 @@ const AddPost = () => {
           color="warning"
           imageUploader
           imageUploaderName="image"
+          imageUploaderProps={{ aspect: 300 / 225 }}
         />
       </CustomModal>
     </>
