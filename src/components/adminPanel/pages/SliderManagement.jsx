@@ -4,7 +4,12 @@ import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { HomeSlider } from '../../home'
-import { EditSlider, AddSlider, CustomNoRowsOverlay } from '../components'
+import {
+  EditSlider,
+  AddSlider,
+  CustomNoRowsOverlay,
+  ConfirmDelete,
+} from '../components'
 
 import {
   deleteSlider,
@@ -41,12 +46,7 @@ const SliderManagement = () => {
         type: 'actions',
         width: 80,
         getActions: (params) => [
-          <GridActionsCellItem
-            icon={<Delete />}
-            sx={{ color: 'tomato' }}
-            label="حذف"
-            onClick={() => dispatch(deleteSlider(params.id))}
-          />,
+          <ConfirmDelete item={params.row} itemDelete={deleteSlider} />,
           <EditSlider slider={params.row} />,
         ],
       },

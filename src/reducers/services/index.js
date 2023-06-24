@@ -162,7 +162,7 @@ export const updatePremission = (premission) => {
 
 export const removePremission = (premissionId) => {
     const url = `${ADMIN_SERVER_URL}/premissions/delete/${premissionId}`;
-    return axios.post(url, headers);
+    return axios.delete(url, headers);
 };
 
 

@@ -22,7 +22,7 @@ const AddProduct = () => {
   const productFieldNames = {
     name: '',
     price: '',
-    discount: '',
+    discount: 0,
     description: '',
     remaining: '',
     image: null,
@@ -32,6 +32,7 @@ const AddProduct = () => {
     initialValues: productFieldNames,
     validationSchema: productValidation,
     onSubmit: (values, { resetForm }) => {
+      console.log(values)
       const newProduct = {
         ...values,
         lang,

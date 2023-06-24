@@ -57,3 +57,7 @@ a {
 ul {
   padding: 0 !important;
 }
+
+.confirm-delete {
+  background-color: rgba(56, 80, 104, 0.7) !important;
+}

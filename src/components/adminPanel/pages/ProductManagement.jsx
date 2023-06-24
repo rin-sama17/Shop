@@ -1,6 +1,6 @@
 import { Delete } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
-import { AddProduct, EditProduct } from '../components'
+import { AddProduct, ConfirmDelete, EditProduct } from '../components'
 import { useEffect, useMemo } from 'react'
 import {
   deleteProduct,
@@ -53,11 +53,7 @@ const ProductManagement = () => {
         type: 'actions',
         width: 80,
         getActions: (params) => [
-          <GridActionsCellItem
-            icon={<Delete />}
-            sx={{ color: 'tomato' }}
-            onClick={() => dispatch(deleteProduct(params.id))}
-          />,
+          <ConfirmDelete item={params.row} itemDelete={deleteProduct} />,
           <EditProduct product={params.row} />,
         ],
       },

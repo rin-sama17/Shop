@@ -17,4 +17,6 @@ export { default as EditTag } from "./EditTag";
 export { default as AddUser } from "./AddUser";
 export { default as EditUser } from "./EditUser";
 export { default as ShowOptions } from "./ShowOptions";
+export { default as EditUserInfo } from "./EditUserInfo";
+export { default as ConfirmDelete } from "./ConfirmDelete";
 export { default as CustomNoRowsOverlay } from "./CustomNoRowsOverlay";

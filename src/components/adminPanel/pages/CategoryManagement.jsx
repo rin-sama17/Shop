@@ -8,7 +8,12 @@ import {
   AccordionDetails,
   Divider,
 } from '@mui/material'
-import { EditCategory, AddCategory, CustomNoRowsOverlay } from '../components'
+import {
+  EditCategory,
+  AddCategory,
+  CustomNoRowsOverlay,
+  ConfirmDelete,
+} from '../components'
 import { CustomIconButton, Spinner } from '../../common'
 import {
   deleteCategory,
@@ -40,8 +45,6 @@ const CategoryHewder = ({ parent }) => {
 }
 
 const ParentCategory = ({ parent, children }) => {
-  const dispatch = useDispatch()
-
   return (
     <Accordion>
       <AccordionSummary expandIcon={<ExpandMore />}>
@@ -58,11 +61,7 @@ const ParentCategory = ({ parent, children }) => {
           </Box>
           <Box>
             <EditCategory category={parent} />
-            <CustomIconButton
-              icon={<Delete />}
-              sx={{ color: 'tomato' }}
-              onClick={() => dispatch(deleteCategory(parent.id))}
-            />
+            <ConfirmDelete item={parent} itemDelete={deleteCategory} />
           </Box>
         </Box>
       </AccordionSummary>
@@ -75,7 +74,6 @@ const ParentCategory = ({ parent, children }) => {
 }
 
 const ChildCategory = ({ child }) => {
-  const dispatch = useDispatch()
   return (
     <Box
       sx={{
@@ -96,11 +94,7 @@ const ChildCategory = ({ child }) => {
       </Box>
       <Box>
         <EditCategory category={child} />
-        <CustomIconButton
-          icon={<Delete />}
-          sx={{ color: 'tomato' }}
-          onClick={() => dispatch(deleteCategory(child.id))}
-        />
+        <ConfirmDelete item={child} itemDelete={deleteCategory} />
       </Box>
     </Box>
   )

@@ -1,8 +1,6 @@
 import { useEffect, useMemo } from 'react'
-import { Delete } from '@mui/icons-material'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { EditTag, AddTag, CustomNoRowsOverlay } from '../components'
+import { EditTag, AddTag, ConfirmDelete } from '../components'
 
 import {
   deleteTag,
@@ -37,11 +35,7 @@ const TagManagement = () => {
         type: 'actions',
         width: 80,
         getActions: (params) => [
-          <GridActionsCellItem
-            icon={<Delete />}
-            sx={{ color: 'tomato' }}
-            onClick={() => dispatch(deleteTag(params.id))}
-          />,
+          <ConfirmDelete item={params.row} itemDelete={deleteTag} />,
           <EditTag tag={params.row} />,
         ],
       },

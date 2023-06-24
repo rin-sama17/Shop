@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectLang } from '../../../reducers/langSlice'
 
 const ChangeStatus = ({ item, editItem }) => {
+  console.log(item)
   const [show, setShow] = useState(false)
   const lang = useSelector(selectLang)
   const dispatch = useDispatch()
@@ -19,7 +20,11 @@ const ChangeStatus = ({ item, editItem }) => {
     let value
     if (item.tags) {
       const tagIds = item.tags?.map((tag) => tag.id) ?? []
-      value = { ...item, lang, tags: tagIds }
+      if (item.discount === null) {
+        value = { ...item, lang, tags: tagIds, discount: 0 }
+      } else {
+        value = { ...item, lang, tags: tagIds }
+      }
     } else {
       value = { ...item, lang }
     }

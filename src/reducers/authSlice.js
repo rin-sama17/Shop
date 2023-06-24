@@ -52,6 +52,7 @@ export const editUserInfo = createAsyncThunk(
     try {
       const res = await updateUser(values);
       if (res.status === 200) {
+
         resetForm();
         toast.success(res.data.message, { position: 'bottom-right' });
         return res.data.product;
@@ -82,13 +83,18 @@ const authSlice = createSlice({
       state.success = true;
       localStorage.setItem("token", payload.token);
     },
-    [login.pending]: (state, { payload }) => {
+    [login.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchUserInfo.pending]: (state) => {
       state.loading = true;
     },
     [fetchUserInfo.fulfilled]: (state, { payload }) => {
       state.userInfo = payload;
       state.loading = false;
-
+    },
+    [editUserInfo.fulfilled]: (state, { payload }) => {
+      state.userInfo = payload;
     }
   },
 });

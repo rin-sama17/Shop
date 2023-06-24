@@ -4,6 +4,7 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import {
   AddUser,
+  ConfirmDelete,
   CustomNoRowsOverlay,
   EditUser,
   ShowOptions,
@@ -49,12 +50,7 @@ const UserManagement = () => {
         width: 110,
         getActions: (params) => [
           <ShowOptions options={params.row.roles} name={t('نقش ها')} />,
-
-          <GridActionsCellItem
-            icon={<Delete />}
-            sx={{ color: 'tomato' }}
-            onClick={() => dispatch(deleteUser(params.id))}
-          />,
+          <ConfirmDelete item={params.row} itemDelete={deleteUser} />,
           <EditUser user={params.row} />,
         ],
       },

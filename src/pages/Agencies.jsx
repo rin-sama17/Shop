@@ -14,12 +14,22 @@ import { Agency } from '../components/agency'
 import { useGetAgenciesQuery } from '../api'
 import { PostLoading } from '../components/loading'
 import { useTranslation } from 'react-i18next'
+import { CustomNoRowsOverlay } from '../components/adminPanel/components'
 
 const Agencies = () => {
   const [query, setQuery] = useState('')
+  const [filtredAgencies, setFiltredAgencies] = useState([])
   const { data = { agencies: [] }, isSuccess } = useGetAgenciesQuery()
   const { t } = useTranslation()
   const agencies = data.agencies
+
+  useEffect(() => {
+    const filterAgencies = agencies.filter((agency) =>
+      agency.name.toLowerCase().includes(query),
+    )
+    setFiltredAgencies(filterAgencies)
+  }, [query])
+
   return (
     <>
       <Paper elevation={5} sx={{ my: 5 }}>
@@ -86,16 +96,22 @@ const Agencies = () => {
           </Grid>
         </Grid>
       </Paper>
-      {isSuccess ? (
+      {!isSuccess ? (
         <PostLoading />
       ) : (
-        <TransitionGroup>
-          {agencies.map((agency, index) => (
-            <Collapse key={index}>
-              <Agency agencyId={agency.id} />
-            </Collapse>
-          ))}
-        </TransitionGroup>
+        <>
+          {filtredAgencies.length > 0 ? (
+            <TransitionGroup>
+              {filtredAgencies.map((agency, index) => (
+                <Collapse key={index}>
+                  <Agency agencyId={agency.id} />
+                </Collapse>
+              ))}
+            </TransitionGroup>
+          ) : (
+            <CustomNoRowsOverlay />
+          )}
+        </>
       )}
     </>
   )

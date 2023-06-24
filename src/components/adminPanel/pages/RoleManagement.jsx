@@ -4,6 +4,7 @@ import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import {
   AddRole,
+  ConfirmDelete,
   CustomNoRowsOverlay,
   EditRole,
   ShowOptions,
@@ -42,9 +43,6 @@ const RoleManagement = () => {
     dispatch(fetchPremissions())
     dispatch(fetchRoles())
   }, [])
-  const handleDelete = (roleId) => {
-    dispatch(deleteRole(roleId))
-  }
   const columns = useMemo(
     () => [
       { field: 'id', headerName: t('شماره'), width: 90 },
@@ -67,11 +65,7 @@ const RoleManagement = () => {
             options={params.row.premissions}
             name={t('دسترسی ها')}
           />,
-          <GridActionsCellItem
-            icon={<Delete />}
-            sx={{ color: 'tomato' }}
-            onClick={() => handleDelete(params.id)}
-          />,
+          <ConfirmDelete item={params.row} itemDelete={deleteRole} />,
           <EditRole role={params.row} />,
         ],
       },

@@ -3,7 +3,12 @@ import { toast } from 'react-toastify'
 import { Delete } from '@mui/icons-material'
 import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import { EditAgency, AddAgency, CustomNoRowsOverlay } from '../components'
+import {
+  EditAgency,
+  AddAgency,
+  CustomNoRowsOverlay,
+  ConfirmDelete,
+} from '../components'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   deleteAgency,
@@ -12,7 +17,6 @@ import {
   selectAllAgencies,
 } from '../../../reducers/agencySlice'
 import { useTranslation } from 'react-i18next'
-
 import CustomDataGrid from '../components/CustomDataGrid'
 import NoAccessError from '../components/NoAccessError'
 
@@ -39,11 +43,7 @@ const AgencyManagement = () => {
         type: 'actions',
         width: 80,
         getActions: (params) => [
-          <GridActionsCellItem
-            icon={<Delete />}
-            sx={{ color: 'tomato' }}
-            onClick={() => dispatch(deleteAgency(params.id))}
-          />,
+          <ConfirmDelete item={params.row} itemDelete={deleteAgency} />,
           <EditAgency agency={params.row} />,
         ],
       },

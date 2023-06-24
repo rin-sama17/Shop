@@ -1,13 +1,6 @@
 import { useEffect, useMemo } from 'react'
-import { toast } from 'react-toastify'
-import { Delete } from '@mui/icons-material'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
-import {
-  EditPremission,
-  AddPremission,
-  CustomNoRowsOverlay,
-} from '../components'
+import { EditPremission, AddPremission, ConfirmDelete } from '../components'
 
 import {
   deletePremission,
@@ -18,7 +11,6 @@ import {
 } from '../../../reducers/premissionSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import ChangeStatus from '../components/ChangeStatus'
 
 import CustomDataGrid from '../components/CustomDataGrid'
 import NoAccessError from '../components/NoAccessError'
@@ -54,11 +46,7 @@ const PremissionManagement = () => {
         type: 'actions',
         width: 80,
         getActions: (params) => [
-          <GridActionsCellItem
-            icon={<Delete />}
-            sx={{ color: 'tomato' }}
-            onClick={() => dispatch(deletePremission(params.id))}
-          />,
+          <ConfirmDelete item={params.row} itemDelete={deletePremission} />,
           <EditPremission premission={params.row} />,
         ],
       },

@@ -22,7 +22,9 @@ import { useGetAgencyQuery } from '../../api'
 import { useTranslation } from 'react-i18next'
 
 const Agency = ({ agencyId }) => {
-  const { data = { agency: [] }, isSuccess } = useGetAgencyQuery(agencyId)
+  const { data = { agency: {} }, isSuccess, error } = useGetAgencyQuery(
+    agencyId,
+  )
   const theme = useTheme()
   const downMd = useMediaQuery(theme.breakpoints.down('sm'))
   const { t } = useTranslation()

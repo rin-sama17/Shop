@@ -1,8 +1,3 @@
-import { Button } from '@mui/material'
-import { toast } from 'react-toastify'
-import { Delete, Edit } from '@mui/icons-material'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-
 import AddPost from '../components/AddPost'
 import EditPost from '../components/EditPost'
 import { useEffect, useMemo } from 'react'
@@ -14,9 +9,8 @@ import {
   selectAllPosts,
   selectPostDetails,
 } from '../../../reducers/postSlice'
-import { CustomNoRowsOverlay } from '../components'
+import { ConfirmDelete } from '../components'
 import { useTranslation } from 'react-i18next'
-import ChangeStatus from '../components/ChangeStatus'
 import { fetchTags } from '../../../reducers/tagSlice'
 import { showCategory } from '../components/ShowCategory'
 import { showStatus } from '../components/ShowStatus'
@@ -60,11 +54,7 @@ const PostManagement = () => {
         type: 'actions',
         width: 80,
         getActions: (params) => [
-          <GridActionsCellItem
-            icon={<Delete />}
-            sx={{ color: 'tomato' }}
-            onClick={() => dispatch(deletePost(params.id))}
-          />,
+          <ConfirmDelete item={params.row} itemDelete={deletePost} />,
           <EditPost post={params.row} />,
         ],
       },
