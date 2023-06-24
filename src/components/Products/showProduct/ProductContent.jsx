@@ -21,13 +21,6 @@ const ProductContent = ({ product }) => {
           mt: 5,
           display: 'flex',
           justifyContent: 'center',
-          // '&.zoomed-image-container': {
-          //   zIndex: 1,
-          // },
-          // '&.zoomed-image-container': {
-          //   left: '0% !important',
-          //   right: '100% !important',
-          // },
         }}
       >
         <div dir="ltr">

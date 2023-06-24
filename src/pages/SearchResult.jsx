@@ -3,13 +3,22 @@ import { useEffect, useMemo, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useGetProductsQuery } from '../api'
 import Grid from '@mui/material/Unstable_Grid2'
-import { CustomDivider, CustomMassage, SearchField } from '../components/common'
+import {
+  CustomDivider,
+  CustomMassage,
+  SearchField,
+  Spinner,
+} from '../components/common'
 import { Product } from '../components/products'
 import { Post } from '../components/Posts'
 import { Stack } from '@mui/system'
 import { Typography, Box, Button } from '@mui/material'
 import { useDispatch } from 'react-redux'
-import { fetchSearchResult, selectSearchResults } from '../reducers/searchSlice'
+import {
+  fetchSearchResult,
+  selectSearchLoading,
+  selectSearchResults,
+} from '../reducers/searchSlice'
 import { CustomNoRowsOverlay } from '../components/adminPanel/components'
 import { useSelector } from 'react-redux'
 import { Book, Store } from '@mui/icons-material'
@@ -19,6 +28,7 @@ const SearchResult = () => {
   const [base, setBase] = useState('product')
   const { t } = useTranslation()
 
+  const loading = useSelector(selectSearchLoading)
   const searchResult = useSelector(selectSearchResults)
   const dispatch = useDispatch()
 
@@ -73,28 +83,34 @@ const SearchResult = () => {
           {baseBtnContent}
         </Button>
       </Box>
-      {searchResult.length > 0 ? (
-        <Grid container sx={{ width: 1 }}>
-          {searchResult.map((item, index) => (
-            <>
-              {base === 'product' ? (
-                <Grid
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  sx={{ justifyContent: 'center' }}
-                >
-                  <Product productId={item.id} key={index} />
-                </Grid>
-              ) : (
-                <Post postId={item.id} key={index} />
-              )}
-            </>
-          ))}
-        </Grid>
+      {loading ? (
+        <Spinner />
       ) : (
-        <CustomNoRowsOverlay />
+        <>
+          {searchResult.length > 0 ? (
+            <Grid container sx={{ width: 1 }}>
+              {searchResult.map((item, index) => (
+                <>
+                  {base === 'product' ? (
+                    <Grid
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      lg={3}
+                      sx={{ justifyContent: 'center' }}
+                    >
+                      <Product productId={item.id} key={index} />
+                    </Grid>
+                  ) : (
+                    <Post postId={item.id} key={index} />
+                  )}
+                </>
+              ))}
+            </Grid>
+          ) : (
+            <CustomNoRowsOverlay />
+          )}
+        </>
       )}
     </Box>
   )

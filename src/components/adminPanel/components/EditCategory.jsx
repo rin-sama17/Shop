@@ -39,11 +39,12 @@ const EditCategory = ({ category }) => {
   const fields = categoryFieldsData(formik)
   return (
     <>
-      <CustomIconButton
+      <GridActionsCellItem
         icon={<Edit />}
         color="info"
         onClick={() => setOpen(true)}
       />
+
       <CustomModal open={open} setOpen={setOpen}>
         <CustomForm
           label="ویرایش دسته بندی"

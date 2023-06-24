@@ -17,7 +17,7 @@ import AddBtn from './AddBtn'
 const AddCategory = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
-  const { access } = useSelector(selectCategoryAccess)
+  const access = useSelector(selectCategoryAccess)
   const lang = useSelector(selectLang)
 
   const handleAddNewCategory = (values, resetForm) => {

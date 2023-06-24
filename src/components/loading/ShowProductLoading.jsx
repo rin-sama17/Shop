@@ -17,7 +17,7 @@ const ShowProductLoading = () => {
           animation="wave"
           variant="rectangular"
           sx={{
-            height: 430,
+            height: 556,
             width: 1,
           }}
         />
@@ -41,11 +41,6 @@ const ShowProductLoading = () => {
           </Box>
           <Skeleton height={60} width="100%" />
         </Card>
-      </Grid>
-      <Grid xs={12}>
-        <Skeleton animation="wave" height={15} />
-        <Skeleton animation="wave" height={15} />
-        <Skeleton animation="wave" height={15} width="50%" />
       </Grid>
     </Grid>
   )

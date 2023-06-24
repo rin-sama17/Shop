@@ -61,8 +61,12 @@ const SliderManagement = () => {
     <>
       <AddSlider />
       <CustomDataGrid rows={sliders} columns={columns} loading={isLoading} />
-      <CustomDivider label="پیش نمایش" />
-      <HomeSlider sliders={sliders} />
+      {sliders.length > 0 && (
+        <>
+          <CustomDivider label="پیش نمایش" />
+          <HomeSlider sliders={sliders} />
+        </>
+      )}
     </>
   )
 }

@@ -82,10 +82,6 @@ const ChildCategory = ({ child }) => {
         justifyContent: 'space-between',
         m: '0 0 0 auto',
         p: 1,
-        '.MuiSvgIcon-fontSizeMedium': {
-          width: '20px !important',
-          height: '20px !important',
-        },
       }}
     >
       <Box sx={{ display: 'flex' }}>
@@ -104,7 +100,6 @@ const FindParents = ({ parent, categories }) => {
     () => categories.filter((child) => child.category_id === parent.id),
     [categories, parent],
   )
-  console.log(children)
 
   return (
     <>
@@ -114,10 +109,6 @@ const FindParents = ({ parent, categories }) => {
             width: '90%',
             m: '0 0 0 auto',
             my: 1,
-            '.MuiSvgIcon-fontSizeMedium': {
-              width: '20px !important',
-              height: '20px !important',
-            },
           }}
         >
           <ParentCategory parent={parent}>
@@ -136,7 +127,7 @@ const FindParents = ({ parent, categories }) => {
 const CategoryManagement = () => {
   const categories = useSelector(selectAllCategories)
   const havAccess = useSelector(selectCategoryAccess)
-  const { loading, access } = useSelector(selectCategoryLoading)
+  const { loading } = useSelector(selectCategoryLoading)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -144,7 +135,8 @@ const CategoryManagement = () => {
   }, [])
   if (loading) {
     return <Spinner />
-  } else if (!havAccess) {
+  }
+  if (!havAccess) {
     return <NoAccessError />
   }
 
