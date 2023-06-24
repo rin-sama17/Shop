@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import { useFormik } from 'formik'
-import { toast } from 'react-toastify'
 import { Edit } from '@mui/icons-material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 
-import { categoryValidation } from '../../validations/categoryValidation'
-import { CustomModal, CustomForm, CustomIconButton } from '../../common'
+import { CustomModal, CustomForm } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
 import { editCategory } from '../../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'

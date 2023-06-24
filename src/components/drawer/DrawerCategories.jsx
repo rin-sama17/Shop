@@ -1,5 +1,5 @@
 import { Fragment, useMemo } from 'react'
-import { Delete, ExpandMore } from '@mui/icons-material'
+import { ExpandMore } from '@mui/icons-material'
 import {
   Box,
   Accordion,

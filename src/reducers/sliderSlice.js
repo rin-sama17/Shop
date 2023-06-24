@@ -11,6 +11,7 @@ import {
     removeSlider,
     updateSlider,
     convertToForm,
+    handleErrors,
 } from './services';
 
 const sliderAdaptor = createEntityAdapter();
@@ -36,7 +37,7 @@ export const fetchSliders = createAsyncThunk(
 
 export const addSlider = createAsyncThunk(
     'slider/addSlider',
-    async ({ values, setOpen, resetForm }) => {
+    async ({ values, setOpen, resetForm, setErrors }) => {
         console.log(values);
         const formData = convertToForm(values);
         try {
@@ -50,6 +51,7 @@ export const addSlider = createAsyncThunk(
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
+            handleErrors(error, setErrors);
         }
     },
 );

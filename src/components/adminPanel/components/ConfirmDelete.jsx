@@ -1,16 +1,15 @@
 import { Delete } from '@mui/icons-material'
 import { Button, Card, Typography, Box, useTheme, Paper } from '@mui/material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
-import React from 'react'
 import { confirmAlert } from 'react-confirm-alert'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 const ConfirmDelete = ({ itemDelete, item }) => {
   const theme = useTheme()
-  const font = theme.typography.fontFamily
   const dispatch = useDispatch()
   const { t } = useTranslation()
+  const font = theme.typography.fontFamily
   const itemName = item.name ? item.name : item.firstname
 
   const submit = () => {

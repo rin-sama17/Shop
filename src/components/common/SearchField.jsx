@@ -1,11 +1,5 @@
-import {
-  TextField,
-  InputAdornment,
-  Button,
-  Grow,
-  Collapse,
-} from '@mui/material'
-import { CheckBoxOutlineBlank, Close, Search } from '@mui/icons-material'
+import { TextField, InputAdornment } from '@mui/material'
+import { Close, Search } from '@mui/icons-material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import CustomIconButton from './CustomIconButton'

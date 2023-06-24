@@ -1,35 +1,23 @@
-import { toast } from 'react-toastify'
-import { Delete } from '@mui/icons-material'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-
 import {
   AddRole,
   ConfirmDelete,
-  CustomNoRowsOverlay,
   EditRole,
   ShowOptions,
+  CustomDataGrid,
+  NoAccessError,
 } from '../components'
 import { useEffect, useMemo } from 'react'
-import { Box, Typography } from '@mui/material'
 import {
   deleteRole,
   editRole,
   fetchRoles,
   selectAllRoles,
-  selectPremission_id,
   selectRoleDetails,
 } from '../../../reducers/roleSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  fetchPremissions,
-  selectAllPremissions,
-} from '../../../reducers/premissionSlice'
+import { fetchPremissions } from '../../../reducers/premissionSlice'
 import { useTranslation } from 'react-i18next'
-import ChangeStatus from '../components/ChangeStatus'
 import { showStatus } from '../components/ShowStatus'
-
-import CustomDataGrid from '../components/CustomDataGrid'
-import NoAccessError from '../components/NoAccessError'
 
 const RoleManagement = () => {
   const dispatch = useDispatch()

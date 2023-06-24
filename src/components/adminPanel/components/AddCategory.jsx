@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import { useFormik } from 'formik'
-import { Button } from '@mui/material'
-import { nanoid } from '@reduxjs/toolkit'
 
-import { categoryValidation } from '../../validations/categoryValidation'
 import { CustomForm, CustomModal } from '../../common'
 import { categoryFieldsData } from '../../fieldsData'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,23 +17,29 @@ const AddCategory = () => {
   const access = useSelector(selectCategoryAccess)
   const lang = useSelector(selectLang)
 
-  const handleAddNewCategory = (values, resetForm) => {
+  const handleAddNewCategory = (values, resetForm, setErrors) => {
     let category
     if (!values.category_id) {
       category = { name: values.name }
     } else {
       category = values
     }
-    dispatch(addCategory({ values: { ...category, lang }, setOpen, resetForm }))
+    dispatch(
+      addCategory({
+        values: { ...category, lang },
+        setOpen,
+        resetForm,
+        setErrors,
+      }),
+    )
   }
 
   const formik = useFormik({
     initialValues: { name: '', category_id: '' },
-    onSubmit: (values, { resetForm }) => {
-      handleAddNewCategory(values, resetForm)
+    onSubmit: (values, { resetForm, setErrors }) => {
+      handleAddNewCategory(values, resetForm, setErrors)
     },
   })
-  console.log(formik.errors)
   const fields = categoryFieldsData(formik)
   return (
     <>

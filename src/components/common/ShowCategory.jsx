@@ -7,7 +7,6 @@ import { selectCategoryById } from '../../reducers/categorySlice'
 import Spinner from './Spinner'
 
 const ShowCategory = ({ categoryId, tags }) => {
-  console.log(categoryId, tags)
   const { t } = useTranslation()
   const category = useSelector((state) => selectCategoryById(state, categoryId))
 

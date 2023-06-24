@@ -1,10 +1,10 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useGetAgenciesQuery } from '../../api'
+import { useGetAuthorQuery } from '../../api'
 
 const ShowAuthor = ({ userId }) => {
-  const { data, isSuccess, isError } = useGetAgenciesQuery(userId)
+  const { data, isSuccess, isError } = useGetAuthorQuery(userId)
 
   let content
 

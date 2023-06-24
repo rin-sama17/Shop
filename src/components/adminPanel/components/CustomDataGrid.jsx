@@ -1,6 +1,5 @@
 import { useMediaQuery, useTheme } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectLang } from '../../../reducers/langSlice'
 import CustomNoRowsOverlay from './CustomNoRowsOverlay'

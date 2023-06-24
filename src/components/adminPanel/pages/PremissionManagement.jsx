@@ -1,6 +1,12 @@
 import { useEffect, useMemo } from 'react'
 
-import { EditPremission, AddPremission, ConfirmDelete } from '../components'
+import {
+  EditPremission,
+  AddPremission,
+  ConfirmDelete,
+  CustomDataGrid,
+  NoAccessError,
+} from '../components'
 
 import {
   deletePremission,
@@ -12,8 +18,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-import CustomDataGrid from '../components/CustomDataGrid'
-import NoAccessError from '../components/NoAccessError'
 import { showStatus } from '../components/ShowStatus'
 
 const PremissionManagement = () => {

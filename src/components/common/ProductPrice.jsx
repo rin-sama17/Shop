@@ -1,9 +1,6 @@
 import { Box, Typography, Chip } from '@mui/material'
-import { createSelector } from '@reduxjs/toolkit'
-import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toRial } from '../../helpers'
-import Spinner from './Spinner'
 
 const ProductPrice = ({ price, discount, absolute }) => {
   const { t } = useTranslation()

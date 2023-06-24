@@ -1,5 +1,5 @@
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
-import { Box, IconButton, useMediaQuery, useTheme } from '@mui/material'
+import { IconButton, useMediaQuery, useTheme } from '@mui/material'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectLang } from '../../reducers/langSlice'

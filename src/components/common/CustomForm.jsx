@@ -1,6 +1,5 @@
-import { Button } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Fragment, useEffect } from 'react'
+import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CustomDivider, CustomFields, ImageUploader } from '.'
 
@@ -8,7 +7,6 @@ const CustomForm = ({
   fields,
   formik,
   label,
-  color = 'secondary',
   extraFields,
   imageUploader,
   imageUploaderName,

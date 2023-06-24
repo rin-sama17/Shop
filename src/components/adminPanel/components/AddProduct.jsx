@@ -1,10 +1,8 @@
-import { Button } from '@mui/material'
-
+import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { CustomForm, CustomModal } from '../../common'
-import { productValidation } from '../../validations/productValidation'
 import { productFieldsData } from '../../fieldsData'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addProduct,
@@ -12,12 +10,14 @@ import {
 } from '../../../reducers/productSlice'
 import { selectLang } from '../../../reducers/langSlice'
 import AddBtn from './AddBtn'
+import { useTranslation } from 'react-i18next'
 
 const AddProduct = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const { access } = useSelector(selectProductDetails)
   const lang = useSelector(selectLang)
+  const { t } = useTranslation()
 
   const productFieldNames = {
     name: '',
@@ -30,15 +30,22 @@ const AddProduct = () => {
   }
   const formik = useFormik({
     initialValues: productFieldNames,
-    validationSchema: productValidation,
-    onSubmit: (values, { resetForm }) => {
-      console.log(values)
+    validationSchema: Yup.object().shape({
+      discount: Yup.number()
+        .integer()
+        .min(0, t('تخفیف نمیتواند کمتر از صفر باشد'))
+        .max(99, t('تخفیف نمیتواند بیشتر از 99 درصد باشد')),
+      price: Yup.number(),
+    }),
+    onSubmit: (values, { resetForm, setErrors }) => {
       const newProduct = {
         ...values,
         lang,
         discount: Number(values.discount),
       }
-      dispatch(addProduct({ values: newProduct, setOpen, resetForm }))
+      dispatch(
+        addProduct({ values: newProduct, setOpen, resetForm, setErrors }),
+      )
     },
   })
   const fields = productFieldsData(formik)

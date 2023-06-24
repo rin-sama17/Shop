@@ -14,7 +14,6 @@ import {
 
 import { CustomForm, CustomModal } from '../../common'
 import { tagFieldData } from '../../fieldsData'
-import { tagValidation } from '../../validations/tagValidation'
 import AddBtn from './AddBtn'
 
 const AddTag = () => {
@@ -39,7 +38,6 @@ const AddTag = () => {
     initialValues: {
       name: '',
     },
-    validationSchema: tagValidation,
     onSubmit: (values) => {
       handleAddToTemp(values)
     },
@@ -48,6 +46,7 @@ const AddTag = () => {
   const handleSubmit = () => {
     const arrayTags = tempTags.map((tag) => tag.name)
     const singleName = formik.values.name
+    const setErrors = formik.setErrors
     if (
       singleName &&
       singleName.length > 0 &&
@@ -56,7 +55,7 @@ const AddTag = () => {
       arrayTags.push(singleName)
     }
 
-    dispatch(addTag({ values: { name: arrayTags, lang }, setOpen }))
+    dispatch(addTag({ values: { name: arrayTags, lang }, setOpen, setErrors }))
     dispatch(tagIdsCleared())
   }
   const fields = tagFieldData(formik)

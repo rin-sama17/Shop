@@ -11,6 +11,7 @@ import {
     updatePost,
     convertToForm,
     getOnePost,
+    handleErrors,
 } from './services';
 
 const postAdaptor = createEntityAdapter();
@@ -38,7 +39,7 @@ export const fetchPosts = createAsyncThunk(
 
 export const addPost = createAsyncThunk(
     'post/addPost',
-    async ({ values, setOpen, resetForm }) => {
+    async ({ values, setOpen, resetForm, setErrors }) => {
         const formData = convertToForm(values);
         try {
             const res = await createPost(formData);
@@ -51,6 +52,7 @@ export const addPost = createAsyncThunk(
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
+            handleErrors(error, setErrors);
         }
     },
 );

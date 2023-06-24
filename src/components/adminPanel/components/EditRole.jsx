@@ -3,12 +3,7 @@ import { GridActionsCellItem } from '@mui/x-data-grid'
 import { useFormik } from 'formik'
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-toastify'
-import {
-  fetchPremissions,
-  selectAllPremissions,
-  selectPremissionIds,
-} from '../../../reducers/premissionSlice'
+import { selectAllPremissions } from '../../../reducers/premissionSlice'
 
 import {
   editRole,
@@ -20,7 +15,6 @@ import {
 } from '../../../reducers/roleSlice'
 import { CustomModal, CustomForm } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
-import { roleValidation } from '../../validations/roleValidation'
 import { selectLang } from '../../../reducers/langSlice'
 
 const handleCheck = (dispatch, premissionId) => (e) => {
@@ -55,7 +49,6 @@ const EditRole = ({ role }) => {
         premissions: rolePremissions,
         lang,
       }
-      console.log(newRole)
       dispatch(editRole({ values: newRole, setOpen, resetForm }))
     },
   })

@@ -1,16 +1,12 @@
 import {
   Typography,
-  Card,
-  CardContent,
   CardMedia,
-  CardActionArea,
   Fade,
   Paper,
   Box,
   useTheme,
   useMediaQuery,
 } from '@mui/material'
-import Grid from '@mui/material/Unstable_Grid2'
 import { useNavigate } from 'react-router-dom'
 import { useGetProductQuery } from '../../api'
 import { ProductPrice } from '../common'

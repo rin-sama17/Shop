@@ -10,6 +10,7 @@ import {
     createPremission,
     removePremission,
     updatePremission,
+    handleErrors,
 } from './services';
 
 const premissionAdaptor = createEntityAdapter();
@@ -36,17 +37,20 @@ export const fetchPremissions = createAsyncThunk(
 
 export const addPremission = createAsyncThunk(
     'premission/addPremission',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, setErrors }) => {
         try {
             const res = await createPremission(values);
             if (res.status === 200) {
                 setOpen(false);
                 toast.success(res.data.message, { position: 'bottom-right' });
+                console.log(res.data.premission);
+
                 return res.data.premission;
             }
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
+            handleErrors(error, setErrors);
         }
     },
 );

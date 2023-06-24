@@ -1,9 +1,10 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import Cropper from 'react-easy-crop'
-import { Slider, Button } from '@mui/material'
+import { Button } from '@mui/material'
 import getCroppedImg from './getCroppedImg'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useTranslation } from 'react-i18next'
+
 const CropImage = ({ img, setChanges, setOpen, setPhotoURL, aspect }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [rotation, setRotation] = useState(0)

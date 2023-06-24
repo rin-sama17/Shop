@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from 'react'
+import { useState } from 'react'
 import {
   TextField,
   InputAdornment,
@@ -11,18 +11,12 @@ import {
   FormControlLabel,
   Checkbox,
   Button,
-  ListSubheader,
   ListItemText,
 } from '@mui/material'
 
 import { NumericFormat } from 'react-number-format'
 import Grid from '@mui/material/Unstable_Grid2'
-import {
-  Visibility,
-  VisibilityOff,
-  Phone,
-  ExpandMore,
-} from '@mui/icons-material'
+import { Visibility, VisibilityOff, Phone } from '@mui/icons-material'
 
 import { PatternFormat } from 'react-number-format'
 import { useEffect } from 'react'
@@ -36,12 +30,8 @@ import { useTranslation } from 'react-i18next'
 import {
   selectAllTags,
   selectTag_id,
-  selectTag_name,
-  tagAdded,
-  tagDeleted,
   tagIdAdded,
   tagIdDeleted,
-  tagsIdFinded,
 } from '../../reducers/tagSlice'
 
 const ITEM_HEIGHT = 48

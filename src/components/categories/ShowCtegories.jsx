@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import Typography from '@mui/material/Typography'
-import { Button, Card, Box } from '@mui/material'
+import { Button, Card, Box, Fade, Typography } from '@mui/material'
 import CategoriesPopover from './CategoriesPopover'
-import Fade from '@mui/material/Fade'
 import { useTranslation } from 'react-i18next'
+
 export default function ShowCtegories() {
   const [open, setOpen] = useState(null)
 

@@ -1,17 +1,9 @@
-import { createSelector } from '@mui/x-data-grid/internals'
-import { useEffect, useMemo, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import { useGetProductsQuery } from '../api'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import Grid from '@mui/material/Unstable_Grid2'
-import {
-  CustomDivider,
-  CustomMassage,
-  SearchField,
-  Spinner,
-} from '../components/common'
+import { Spinner } from '../components/common'
 import { Product } from '../components/products'
 import { Post } from '../components/Posts'
-import { Stack } from '@mui/system'
 import { Typography, Box, Button } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import {
@@ -23,6 +15,7 @@ import { CustomNoRowsOverlay } from '../components/adminPanel/components'
 import { useSelector } from 'react-redux'
 import { Book, Store } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
+
 const SearchResult = () => {
   const { query } = useParams()
   const [base, setBase] = useState('product')

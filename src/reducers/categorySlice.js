@@ -8,6 +8,7 @@ import {
   createCategory,
   getAdminCategories,
   getAllCategories,
+  handleErrors,
   removeCategory,
   updateCategory,
 } from './services';
@@ -49,7 +50,7 @@ export const fetchAdminCategories = createAsyncThunk(
 
 export const addCategory = createAsyncThunk(
   'categories/addCategory',
-  async ({ values, setOpen, resetForm }) => {
+  async ({ values, setOpen, resetForm, setErrors }) => {
     try {
       const res = await createCategory(values);
       if (res.status === 200) {
@@ -61,6 +62,7 @@ export const addCategory = createAsyncThunk(
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
+      handleErrors(error, setErrors);
     }
   },
 );

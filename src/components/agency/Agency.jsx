@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from 'react'
-
 import Grid from '@mui/material/Unstable_Grid2'
 import {
   CardActionArea,
   Box,
-  CardContent,
   Typography,
   Paper,
-  InputAdornment,
-  TextField,
-  Fade,
-  Collapse,
   CardMedia,
   useTheme,
   useMediaQuery,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
-import LinesEllipsis from 'react-lines-ellipsis'
 import { AgencyLoading } from '../loading'
 import { useGetAgencyQuery } from '../../api'
 import { useTranslation } from 'react-i18next'

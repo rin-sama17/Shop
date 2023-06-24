@@ -16,7 +16,6 @@ import {
 } from '../../../reducers/userSlice'
 import { CustomModal, CustomForm } from '../../common'
 import { userFieldsData } from '../../fieldsData'
-import { userValidation } from '../../validations/userValidation'
 
 const handleCheck = (dispatch, roleId) => (e) => {
   if (e.target.checked === true) {
@@ -36,8 +35,6 @@ const EditUser = ({ user }) => {
 
   useEffect(() => {
     if (open) {
-      console.log(user.roles)
-
       dispatch(rolesIdFinded(user.roles))
     } else {
       dispatch(roleIdsCleared())
@@ -52,7 +49,6 @@ const EditUser = ({ user }) => {
         roles: userRoleIds,
         lang,
       }
-      console.log(editedUser)
       dispatch(editUser({ values: editedUser, setOpen, resetForm }))
     },
   })

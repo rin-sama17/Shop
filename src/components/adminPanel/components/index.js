@@ -20,3 +20,8 @@ export { default as ShowOptions } from "./ShowOptions";
 export { default as EditUserInfo } from "./EditUserInfo";
 export { default as ConfirmDelete } from "./ConfirmDelete";
 export { default as CustomNoRowsOverlay } from "./CustomNoRowsOverlay";
+export { default as CustomDataGrid } from "./CustomDataGrid";
+export { default as ChangeStatus } from "./ChangeStatus";
+export { default as NoAccessError } from "./NoAccessError";
+
+

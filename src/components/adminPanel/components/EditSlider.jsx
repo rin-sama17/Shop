@@ -1,16 +1,14 @@
 import { Edit, Wallpaper } from '@mui/icons-material'
-import { Button, Checkbox, FormControlLabel } from '@mui/material'
+import { Checkbox, FormControlLabel } from '@mui/material'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import { useFormik } from 'formik'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-toastify'
 import { selectLang } from '../../../reducers/langSlice'
 import { editSlider } from '../../../reducers/sliderSlice'
 
 import { CustomForm, CustomModal } from '../../common'
 import { sliderFieldsData } from '../../fieldsData'
-import { sliderValidation } from '../../validations/sliderValidation'
 
 const EditSlider = ({ slider }) => {
   const [open, setOpen] = useState(false)
@@ -21,7 +19,6 @@ const EditSlider = ({ slider }) => {
 
   useEffect(() => {
     const sliderType = slider.type
-    console.log(sliderType)
     return setType(sliderType)
   }, [])
   const handleSubmit = (values, resetForm) => {
@@ -34,7 +31,6 @@ const EditSlider = ({ slider }) => {
     } else {
       newSlider = values
     }
-    console.log(newSlider)
     dispatch(editSlider({ values: { ...newSlider, lang }, setOpen, resetForm }))
   }
   const formik = useFormik({

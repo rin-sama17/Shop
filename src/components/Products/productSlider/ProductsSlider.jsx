@@ -28,9 +28,8 @@ function ProductSlider({ products }) {
     e.preventDefault()
 
     const x = e.pageX - slider.current.offsetLeft
-    const walk = (x - startX) * 3 //scroll-fast
+    const walk = (x - startX) * 3
     slider.current.scrollLeft = scrollLeft - walk
-    // e.target.classList.add(`transform: translate3d(${scrollLeft}, 0px, 0px)`)
   }
   return (
     <dev className="horizontal-scroll ">

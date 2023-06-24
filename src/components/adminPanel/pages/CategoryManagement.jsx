@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from 'react'
-import { Delete, ExpandMore } from '@mui/icons-material'
+import { Fragment, useEffect, useMemo } from 'react'
+import { ExpandMore } from '@mui/icons-material'
 import {
   Box,
   Accordion,
@@ -13,19 +13,18 @@ import {
   AddCategory,
   CustomNoRowsOverlay,
   ConfirmDelete,
+  NoAccessError,
 } from '../components'
-import { CustomIconButton, Spinner } from '../../common'
+import { Spinner } from '../../common'
 import {
   deleteCategory,
   fetchAdminCategories,
-  fetchCategories,
   selectAllCategories,
   selectCategoryAccess,
   selectCategoryLoading,
 } from '../../../reducers/categorySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import NoAccessError from '../components/NoAccessError'
 
 const CategoryHewder = ({ parent }) => {
   const { t } = useTranslation()
@@ -127,7 +126,7 @@ const FindParents = ({ parent, categories }) => {
 const CategoryManagement = () => {
   const categories = useSelector(selectAllCategories)
   const havAccess = useSelector(selectCategoryAccess)
-  const { loading } = useSelector(selectCategoryLoading)
+  const loading = useSelector(selectCategoryLoading)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -151,15 +150,11 @@ const CategoryManagement = () => {
               {layer1.category_id === null && (
                 <ParentCategory parent={layer1}>
                   {categories.map((child, index) => (
-                    <>
+                    <Fragment key={index}>
                       {child.category_id === layer1.id && (
-                        <FindParents
-                          parent={child}
-                          categories={categories}
-                          key={index}
-                        />
+                        <FindParents parent={child} categories={categories} />
                       )}
-                    </>
+                    </Fragment>
                   ))}
                 </ParentCategory>
               )}

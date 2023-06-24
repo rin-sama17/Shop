@@ -1,19 +1,15 @@
 import {
   Box,
   Card,
-  Button,
   Typography,
   ImageListItem,
   useMediaQuery,
   CardActionArea,
-  Skeleton,
-  Stack,
-  Divider,
   Paper,
   CardMedia,
 } from '@mui/material'
 import { useTheme } from '@mui/styles'
-import { Link, Link as RouterLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
 import Slider from 'react-slick'
 import Grid from '@mui/material/Unstable_Grid2'

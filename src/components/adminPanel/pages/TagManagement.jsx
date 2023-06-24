@@ -1,6 +1,12 @@
 import { useEffect, useMemo } from 'react'
 
-import { EditTag, AddTag, ConfirmDelete } from '../components'
+import {
+  EditTag,
+  AddTag,
+  ConfirmDelete,
+  CustomDataGrid,
+  NoAccessError,
+} from '../components'
 
 import {
   deleteTag,
@@ -10,9 +16,6 @@ import {
 } from '../../../reducers/tagSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-
-import CustomDataGrid from '../components/CustomDataGrid'
-import NoAccessError from '../components/NoAccessError'
 
 const TagManagement = () => {
   const dispatch = useDispatch()

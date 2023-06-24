@@ -72,12 +72,13 @@ export const productFieldsData = (formik, isEdit) => {
     {
       sm: 5,
       formik,
-      display: !isEdit ? 'none' : null,
+      display: isEdit ? null : 'none',
       name: 'tags',
       selectTag: true,
     },
 
     {
+      sm: !isEdit ? 5 : 12,
       submit: true,
       customLabel: 'ثبت',
     },

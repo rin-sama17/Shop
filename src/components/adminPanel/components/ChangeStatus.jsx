@@ -1,12 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { CustomIconButton } from '../../common'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectLang } from '../../../reducers/langSlice'
 
 const ChangeStatus = ({ item, editItem }) => {
-  console.log(item)
   const [show, setShow] = useState(false)
   const lang = useSelector(selectLang)
   const dispatch = useDispatch()

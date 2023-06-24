@@ -1,14 +1,8 @@
-import { Button } from '@mui/material'
-import { nanoid } from '@reduxjs/toolkit'
 import { useFormik } from 'formik'
 import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-toastify'
 import { selectLang } from '../../../reducers/langSlice'
-import {
-  fetchPremissions,
-  selectAllPremissions,
-} from '../../../reducers/premissionSlice'
+import { selectAllPremissions } from '../../../reducers/premissionSlice'
 import {
   addRole,
   premissionIdAdded,
@@ -20,7 +14,6 @@ import {
 
 import { CustomForm, CustomModal } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
-import { roleValidation } from '../../validations/roleValidation'
 import AddBtn from './AddBtn'
 
 const AddRole = () => {
@@ -50,7 +43,6 @@ const AddRole = () => {
       name: '',
       description: '',
     },
-    // validationSchema: roleValidation,
     onSubmit: (values, { resetForm, setErrors }) => {
       const newRole = {
         ...values,

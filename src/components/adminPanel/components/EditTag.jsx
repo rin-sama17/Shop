@@ -8,7 +8,6 @@ import { editTag } from '../../../reducers/tagSlice'
 
 import { CustomModal, CustomForm } from '../../common'
 import { tagFieldData } from '../../fieldsData'
-import { tagValidation } from '../../validations/tagValidation.js'
 
 const EditTag = ({ tag }) => {
   const [open, setOpen] = useState(false)

@@ -1,17 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Person } from '@mui/icons-material'
 import { useFormik } from 'formik'
-import { loginValidation } from '../components/validations/loginValidation'
-import {
-  CustomFields,
-  CustomForm,
-  CustomIconButton,
-  CustomModal,
-} from '../components/common'
+import { CustomForm, CustomIconButton, CustomModal } from '../components/common'
 import { loginFieldsData } from '../components/fieldsData/loginFieldsData'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, selectAuth } from '../reducers/authSlice'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import LoginMenu from '../components/login/LoginMenu'
 
 const Login = () => {
@@ -31,7 +25,6 @@ const Login = () => {
   }
   const formik = useFormik({
     initialValues: contactFieldNames,
-    // validationSchema: loginValidation,
     onSubmit: (values, { resetForm }) => {
       dispatch(login({ values, setOpen, resetForm, navigate }))
     },

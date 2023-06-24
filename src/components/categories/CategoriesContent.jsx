@@ -1,11 +1,5 @@
 import { useMemo } from 'react'
-import {
-  Box,
-  AccordionSummary,
-  Typography,
-  AccordionDetails,
-  Divider,
-} from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { selectAllCategories } from '../../reducers/categorySlice'
 import { KeyboardArrowLeft } from '@mui/icons-material'

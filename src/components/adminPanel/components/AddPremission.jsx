@@ -1,8 +1,7 @@
-import { Button, Chip } from '@mui/material'
+import { Chip } from '@mui/material'
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-toastify'
 import { selectLang } from '../../../reducers/langSlice'
 import {
   addPremission,
@@ -13,7 +12,6 @@ import {
 
 import { CustomForm, CustomModal } from '../../common'
 import { premissionFieldsData } from '../../fieldsData'
-import { premissionValidation } from '../../validations/premissionValidation'
 import AddBtn from './AddBtn'
 
 const AddPremission = () => {
@@ -33,9 +31,7 @@ const AddPremission = () => {
     initialValues: {
       name: '',
       description: '',
-      // status: 0,
     },
-    // validationSchema: premissionValidation,
     onSubmit: (values, { resetForm }) => {
       handleAddToTemp(values)
     },
@@ -44,6 +40,7 @@ const AddPremission = () => {
   const handleSubmit = () => {
     const arrayPremissions = tempPremission
     const singlePremission = formik.values
+    const setErrors = formik.setErrors
     if (
       singlePremission &&
       singlePremission.length > 0 &&
@@ -51,11 +48,11 @@ const AddPremission = () => {
     ) {
       arrayPremissions.push(singlePremission)
     }
-    console.log('arrayPremissions', arrayPremissions)
     dispatch(
       addPremission({
         values: { premission: arrayPremissions },
         setOpen,
+        setErrors,
       }),
     )
   }

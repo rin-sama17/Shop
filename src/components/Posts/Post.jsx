@@ -1,12 +1,11 @@
 import {
   CardActionArea,
   Box,
-  CardContent,
   Typography,
   Paper,
   CardMedia,
 } from '@mui/material'
-import { ShowTime, ShowAuthor } from '../common'
+import { ShowAuthor } from '../common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link } from 'react-router-dom'
 import LinesEllipsis from 'react-lines-ellipsis'
@@ -63,7 +62,6 @@ const Post = ({ postId }) => {
                 >
                   {post.name}
                   <Box sx={{ display: 'flex' }}>
-                    {/* <ShowTime timestamp={post.created_at} /> */}
                     <ShowAuthor userId={post.user_id} />
                   </Box>
                 </Typography>

@@ -9,6 +9,7 @@ import {
   createUser,
   removeUser,
   updateUser,
+  handleErrors,
 } from './services';
 
 const userAdaptor = createEntityAdapter();
@@ -35,7 +36,7 @@ export const fetchUsers = createAsyncThunk(
 
 export const addUser = createAsyncThunk(
   'user/addUser',
-  async ({ values, setOpen, resetForm }) => {
+  async ({ values, setOpen, resetForm, setErrors }) => {
     try {
       const res = await createUser(values);
       if (res.status === 200) {
@@ -47,6 +48,7 @@ export const addUser = createAsyncThunk(
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
+      handleErrors(error, setErrors);
     }
   },
 );

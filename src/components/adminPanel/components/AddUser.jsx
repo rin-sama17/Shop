@@ -1,10 +1,8 @@
-import { Button } from '@mui/material'
 import { CustomForm, CustomModal } from '../../common'
 import { useState } from 'react'
 import { useFormik } from 'formik'
 import { userFieldsData } from '../../fieldsData'
 
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser, selectUserDetails } from '../../../reducers/userSlice'
 import { selectLang } from '../../../reducers/langSlice'
@@ -28,9 +26,10 @@ const AddUser = () => {
   }
   const formik = useFormik({
     initialValues: userFields,
-    // validationSchema: userValidation,
-    onSubmit: (values, { resetForm }) => {
-      dispatch(addUser({ values: { ...values, lang }, setOpen, resetForm }))
+    onSubmit: (values, { resetForm, setErrors }) => {
+      dispatch(
+        addUser({ values: { ...values, lang }, setOpen, resetForm, setErrors }),
+      )
     },
   })
 

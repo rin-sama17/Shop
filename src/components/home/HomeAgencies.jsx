@@ -1,18 +1,7 @@
 import Slider from 'react-slick'
-import {
-  Box,
-  Typography,
-  Button,
-  IconButton,
-  useTheme,
-  useMediaQuery,
-} from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import { Link } from 'react-router-dom'
-import {
-  Apartment,
-  KeyboardArrowLeft,
-  KeyboardArrowRight,
-} from '@mui/icons-material'
+import { Apartment } from '@mui/icons-material'
 import { useRef } from 'react'
 import { Agency } from '../agency'
 import { useGetAgenciesQuery } from '../../api'
@@ -22,8 +11,6 @@ import { SliderArrows } from '../common'
 
 const HomeAgencies = () => {
   const { data = { agencies: [] }, isSuccess } = useGetAgenciesQuery()
-  const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
 
   const { t } = useTranslation()
   const agencies = data.agencies

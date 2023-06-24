@@ -1,7 +1,6 @@
+import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { CustomForm, CustomModal } from '../../common'
-import { productValidation } from '../../validations/productValidation'
-import { toast } from 'react-toastify'
 import { productFieldsData } from '../../fieldsData'
 import { useState, useEffect } from 'react'
 import { Edit } from '@mui/icons-material'
@@ -15,11 +14,11 @@ import {
   tagIdsCleared,
   tagsIdFinded,
 } from '../../../reducers/tagSlice'
-import ChangeStatus from './ChangeStatus'
+import { useTranslation } from 'react-i18next'
 
 const EditProduct = ({ product }) => {
   const [open, setOpen] = useState(false)
-
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const lang = useSelector(selectLang)
   const tag_ids = useSelector(selectTag_id)
@@ -38,7 +37,12 @@ const EditProduct = ({ product }) => {
   }, [open])
 
   const formik = useFormik({
-    validationSchema: productValidation,
+    validationSchema: Yup.object().shape({
+      discount: Yup.number()
+        .integer()
+        .min(0, t('تخفیف نمیتواند کمتر از صفر باشد'))
+        .max(99, t('تخفیف نمیتواند بیشتر از 99 درصد باشد')),
+    }),
     initialValues: { ...product, tags: [] },
     onSubmit: (values, { resetForm }) => {
       const editedProduct = { ...values, tags: tagIds, lang }

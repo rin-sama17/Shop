@@ -1,14 +1,12 @@
 import { useEffect, useMemo } from 'react'
-import { toast } from 'react-toastify'
-import { Delete } from '@mui/icons-material'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
 
 import { HomeSlider } from '../../home'
 import {
   EditSlider,
   AddSlider,
-  CustomNoRowsOverlay,
   ConfirmDelete,
+  CustomDataGrid,
+  NoAccessError,
 } from '../components'
 
 import {
@@ -20,9 +18,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { CustomDivider } from '../../common'
 import { useTranslation } from 'react-i18next'
-
-import CustomDataGrid from '../components/CustomDataGrid'
-import NoAccessError from '../components/NoAccessError'
 
 const SliderManagement = () => {
   const dispatch = useDispatch()

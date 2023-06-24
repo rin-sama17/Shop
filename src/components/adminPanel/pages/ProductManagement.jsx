@@ -1,6 +1,10 @@
-import { Delete } from '@mui/icons-material'
-import { GridActionsCellItem } from '@mui/x-data-grid'
-import { AddProduct, ConfirmDelete, EditProduct } from '../components'
+import {
+  AddProduct,
+  ConfirmDelete,
+  EditProduct,
+  CustomDataGrid,
+  NoAccessError,
+} from '../components'
 import { useEffect, useMemo } from 'react'
 import {
   deleteProduct,
@@ -13,9 +17,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { showCategory } from '../components/ShowCategory'
 import { showStatus } from '../components/ShowStatus'
-
-import CustomDataGrid from '../components/CustomDataGrid'
-import NoAccessError from '../components/NoAccessError'
 
 const ProductManagement = () => {
   const dispatch = useDispatch()

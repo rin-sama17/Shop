@@ -38,7 +38,7 @@ export const fetchTags = createAsyncThunk(
 
 export const addTag = createAsyncThunk(
     'tag/addTag',
-    async ({ values, setOpen }) => {
+    async ({ values, setOpen, setErrors }) => {
         try {
             const res = await createTag(values);
             if (res.status === 200) {
@@ -51,6 +51,7 @@ export const addTag = createAsyncThunk(
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
+            handleErrors(error, setErrors);
         }
     },
 );
@@ -122,7 +123,7 @@ const tagSlice = createSlice({
             state.tag_name.splice(0, state.tag_name.length);
         },
         tagsIdFinded: (state, action) => {
-            if (action.payload.length > 0) {
+            if (action.payload?.length > 0) {
 
                 state.tag_id = action.payload;
             }

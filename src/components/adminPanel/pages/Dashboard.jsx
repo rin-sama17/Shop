@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectAuth } from '../../../reducers/authSlice'
 import { Spinner } from '../../common'

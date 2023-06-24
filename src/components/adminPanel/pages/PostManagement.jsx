@@ -1,5 +1,10 @@
-import AddPost from '../components/AddPost'
-import EditPost from '../components/EditPost'
+import {
+  EditPost,
+  AddPost,
+  ConfirmDelete,
+  CustomDataGrid,
+  NoAccessError,
+} from '../components'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -9,14 +14,10 @@ import {
   selectAllPosts,
   selectPostDetails,
 } from '../../../reducers/postSlice'
-import { ConfirmDelete } from '../components'
 import { useTranslation } from 'react-i18next'
 import { fetchTags } from '../../../reducers/tagSlice'
 import { showCategory } from '../components/ShowCategory'
 import { showStatus } from '../components/ShowStatus'
-
-import CustomDataGrid from '../components/CustomDataGrid'
-import NoAccessError from '../components/NoAccessError'
 
 const PostManagement = () => {
   const dispatch = useDispatch()

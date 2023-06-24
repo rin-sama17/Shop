@@ -1,16 +1,12 @@
-import { toast } from 'react-toastify'
-import { Delete } from '@mui/icons-material'
-import { DataGrid, GridActionsCellItem } from '@mui/x-data-grid'
-
 import {
   AddUser,
   ConfirmDelete,
-  CustomNoRowsOverlay,
   EditUser,
   ShowOptions,
+  CustomDataGrid,
+  NoAccessError,
 } from '../components'
 import { useEffect, useMemo } from 'react'
-import { Box, Typography, Button } from '@mui/material'
 import {
   deleteUser,
   fetchUsers,
@@ -20,9 +16,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRoles } from '../../../reducers/roleSlice'
 import { useTranslation } from 'react-i18next'
-
-import CustomDataGrid from '../components/CustomDataGrid'
-import NoAccessError from '../components/NoAccessError'
 
 const UserManagement = () => {
   const dispatch = useDispatch()

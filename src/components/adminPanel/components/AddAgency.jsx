@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { useFormik } from 'formik'
-import { Button } from '@mui/material'
 
-import { agencyValidation } from '../../validations/agencyValidation'
 import { agencyFieldsData } from '../../fieldsData'
 import { CustomForm, CustomModal } from '../../common'
 import { addAgency, selectAgencyDetails } from '../../../reducers/agencySlice'
@@ -24,8 +22,7 @@ const AddAgency = () => {
       email: '',
       description: '',
     },
-    // validationSchema: agencyValidation,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values, { resetForm, setErrors }) => {
       dispatch(
         addAgency({
           values: {
@@ -34,6 +31,7 @@ const AddAgency = () => {
           },
           setOpen,
           resetForm,
+          setErrors,
         }),
       )
     },

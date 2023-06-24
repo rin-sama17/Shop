@@ -1,12 +1,8 @@
-import { Button } from '@mui/material'
-import { CustomForm, CustomModal, TextEditor } from '../../common'
+import { CustomForm, CustomModal } from '../../common'
 import { useState } from 'react'
 import { useFormik } from 'formik'
-import { postValidation } from '../../validations/postValidation'
 import { postFieldsData } from '../../fieldsData'
-import { toast } from 'react-toastify'
 
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPost, selectPostDetails } from '../../../reducers/postSlice'
 import { selectLang } from '../../../reducers/langSlice'
@@ -31,10 +27,11 @@ const AddPost = () => {
   }
   const formik = useFormik({
     initialValues: postFields,
-    // validationSchema: postValidation,
 
-    onSubmit: (values, { resetForm }) => {
-      dispatch(addPost({ values: { ...values, lang }, setOpen, resetForm }))
+    onSubmit: (values, { resetForm, setErrors }) => {
+      dispatch(
+        addPost({ values: { ...values, lang }, setOpen, resetForm, setErrors }),
+      )
     },
   })
 

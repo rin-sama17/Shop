@@ -9,7 +9,8 @@ import {
     getAllAgencies,
     removeAgency,
     updateAgency,
-    convertToForm
+    convertToForm,
+    handleErrors
 } from './services';
 
 const agencyAdaptor = createEntityAdapter();
@@ -35,11 +36,9 @@ export const fetchAgencies = createAsyncThunk(
 
 export const addAgency = createAsyncThunk(
     'agencys/addAgency',
-    async ({ values, setOpen, resetForm }) => {
+    async ({ values, setOpen, resetForm, setErrors }) => {
         const formData = convertToForm(values);
         try {
-
-
             const res = await createAgency(formData);
             if (res.status === 200) {
                 setOpen(false);
@@ -50,6 +49,7 @@ export const addAgency = createAsyncThunk(
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
+            handleErrors(error, setErrors);
         }
     },
 );
