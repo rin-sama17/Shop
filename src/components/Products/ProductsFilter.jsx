@@ -19,7 +19,6 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  sortItems,
   selectFiltredProducts,
   filterProducts,
   resetProducts,
@@ -42,11 +41,7 @@ const ProductsFilter = ({ isLoading }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(sortItems(sortBy))
-  }, [sortBy])
-
-  useEffect(() => {
-    dispatch(filterProducts({ category, value }))
+    dispatch(filterProducts({ category, value, sortBy }))
   }, [category, value, sortBy])
 
   const handleChange = (event, newValue) => {

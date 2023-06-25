@@ -10,9 +10,37 @@ const EditUserInfo = ({ userInfo }) => {
     initialValues: userInfo,
     onSubmit: (values, { resetForm }) => {
       const roleIds = values.roles.map((role) => role.id)
-      const updatedUser = {
-        ...values,
-        roles: roleIds,
+      console.log(values)
+      let updatedUser
+      const {
+        id,
+        firstname,
+        lastname,
+        phone,
+        email,
+        email_verified_at,
+        token,
+        created_at,
+        updated_at,
+      } = values
+      if (!values.password || values.password === '') {
+        updatedUser = {
+          id,
+          firstname,
+          lastname,
+          phone,
+          email,
+          email_verified_at,
+          token,
+          created_at,
+          updated_at,
+          roles: roleIds,
+        }
+      } else {
+        updatedUser = {
+          ...values,
+          roles: roleIds,
+        }
       }
       dispatch(editUserInfo({ values: updatedUser, resetForm }))
     },

@@ -3,7 +3,7 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { userLogin, getUserInfo, updateUser } from './services';
+import { userLogin, getUserInfo, updateUser, userLogout } from './services';
 
 
 const initialState = {
@@ -32,7 +32,6 @@ export const login = createAsyncThunk(
   async ({ values, setOpen, resetForm }) => {
     try {
       const res = await userLogin(values);
-
       if (res.status === 200) {
         setOpen(false);
         resetForm();
@@ -45,6 +44,27 @@ export const login = createAsyncThunk(
     }
   },
 );
+
+
+export const logout = createAsyncThunk(
+  'auth/logout',
+  async (navigate) => {
+    try {
+      const res = await userLogout();
+      console.log(res);
+
+      if (res.status === 200) {
+        navigate("/");
+        toast.success(res.data.message, { position: 'bottom-right' });
+
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message, { position: 'bottom-left' });
+    }
+  },
+);
+
 
 export const editUserInfo = createAsyncThunk(
   'auth/editUserInfo',
@@ -68,12 +88,7 @@ const authSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    userLogout: (state) => {
-      localStorage.removeItem("token");
-      state.userInfo = {};
-      state.token = null;
-      state.success = false;
-    }
+
   },
   extraReducers: {
 
@@ -95,9 +110,14 @@ const authSlice = createSlice({
     },
     [editUserInfo.fulfilled]: (state, { payload }) => {
       state.userInfo = payload;
+    },
+    [logout.fulfilled]: (state, action) => {
+      state.token = null;
+      state.userInfo = {};
+      state.success = false;
+      localStorage.removeItem("token");
     }
   },
 });
-export const { userLogout } = authSlice.actions;
 export const selectAuth = state => state.auth;
 export default authSlice.reducer;

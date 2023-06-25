@@ -24,6 +24,11 @@ const Agencies = () => {
   const agencies = data.agencies
 
   useEffect(() => {
+    if (isSuccess) {
+      setFiltredAgencies(agencies)
+    }
+  }, [isSuccess])
+  useEffect(() => {
     const filterAgencies = agencies.filter((agency) =>
       agency.name.toLowerCase().includes(query),
     )

@@ -4,7 +4,7 @@ import { AdminPanelSettings, Logout, Person } from '@mui/icons-material'
 import { Divider, Typography, Button, Menu, MenuItem } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { userLogout } from '../../reducers/authSlice'
+import { logout } from '../../reducers/authSlice'
 import { useTranslation } from 'react-i18next'
 
 const LoginMenu = ({ user }) => {
@@ -20,9 +20,8 @@ const LoginMenu = ({ user }) => {
     setAnchorEl(null)
   }
   const handleLogout = () => {
-    dispatch(userLogout())
+    dispatch(logout(navigate))
     setAnchorEl(null)
-    navigate('/')
   }
   return (
     <div>

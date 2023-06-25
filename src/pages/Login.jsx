@@ -26,6 +26,7 @@ const Login = () => {
   const formik = useFormik({
     initialValues: contactFieldNames,
     onSubmit: (values, { resetForm }) => {
+      console.log(values)
       dispatch(login({ values, setOpen, resetForm, navigate }))
     },
   })

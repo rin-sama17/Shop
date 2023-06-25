@@ -34,7 +34,16 @@ const SliderManagement = () => {
       { field: 'id', headerName: t('شماره'), width: 90 },
 
       { field: 'name', headerName: t('نام'), width: 150 },
-      { field: 'description', headerName: t('توضیحات'), width: 150 },
+      {
+        field: 'description',
+        headerName: t('توضیحات'),
+        width: 150,
+        valueGetter: (params) => {
+          if (params.row.type == 1) {
+            return params.value
+          }
+        },
+      },
       { field: 'url', headerName: t('لینک'), width: 150 },
       {
         field: 'actions',

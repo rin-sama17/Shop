@@ -66,7 +66,7 @@ export const editAgency = createAsyncThunk(
                     resetForm();
                 }
                 toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data.agency;
+                return res.data.post;
             }
         } catch (error) {
             console.log(error);

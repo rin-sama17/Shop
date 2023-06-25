@@ -287,6 +287,10 @@ export const userLogin = (user) => {
     const url = 'http://localhost:8000/api/login';
     return axios.post(url, user, headers);
 };
+export const userLogout = () => {
+    const url = 'http://localhost:8000/api/logout';
+    return axios.post(url, token, headers);
+};
 
 export const updateUserInfo = (user) => {
     const url = `${ADMIN_SERVER_URL}/user/update/${user.id}`;

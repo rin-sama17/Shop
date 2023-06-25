@@ -58,6 +58,14 @@ const ShowAgency = () => {
             {agency.email}
           </Typography>
         </Box>
+        <Box sx={{ display: 'flex', mb: 2 }}>
+          <Typography variant="caption" color="text.primary" sx={{ mr: 2 }}>
+            {t('توضیحات')}:
+          </Typography>
+          <Typography variant="caption" color="text.secondary">
+            {agency.description}
+          </Typography>
+        </Box>
       </Grid>
     </Grid>
   )
