@@ -51,7 +51,6 @@ export const logout = createAsyncThunk(
   async (navigate) => {
     try {
       const res = await userLogout();
-      console.log(res);
 
       if (res.status === 200) {
         navigate("/");

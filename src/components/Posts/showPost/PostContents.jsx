@@ -2,7 +2,6 @@ import { Container } from '@mui/material'
 import PostIntroduction from './postIntroduction'
 import { TextEditor } from '../../common'
 const PostContent = ({ post }) => {
-  console.log(post)
   return (
     <Container maxWidth="md" sx={{ mt: 5 }}>
       <PostIntroduction post={post} />

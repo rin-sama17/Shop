@@ -11,7 +11,6 @@ const CategoryTabs = ({ pageNumber, setPageNumber, tabs }) => {
   const handlePageNumber = (event, value) => {
     setPageNumber(value)
   }
-  console.log(tabs)
 
   return (
     <Tabs
@@ -35,7 +34,6 @@ const CategoryTabs = ({ pageNumber, setPageNumber, tabs }) => {
       variant="scrollable"
     >
       {tabs.map((parent, index) => {
-        console.log(parent)
         return (
           <Tab
             key={index}

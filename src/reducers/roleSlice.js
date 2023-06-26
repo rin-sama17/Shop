@@ -43,7 +43,6 @@ export const addRole = createAsyncThunk(
                 setOpen(false);
                 resetForm();
                 toast.success(res.data.message, { position: 'bottom-right' });
-                console.log(res);
 
                 return res.data.role;
             }

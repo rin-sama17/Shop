@@ -48,7 +48,6 @@ const EditUserPremissions = ({ user }) => {
         premissions: userPremissions,
         lang,
       }
-      console.log(newUser)
       dispatch(editUser({ values: newUser, setOpen, resetForm }))
     },
   })

@@ -60,7 +60,6 @@ export const addPost = createAsyncThunk(
 export const editPost = createAsyncThunk(
     'post/editPost',
     async ({ values, setOpen, resetForm }) => {
-        console.log(values);
         const formData = convertToForm(values);
         try {
             const res = await updatePost(formData, values.id);
@@ -69,9 +68,8 @@ export const editPost = createAsyncThunk(
                     setOpen(false);
                     resetForm();
                 }
-                console.log(res);
                 toast.success(res.data.message, { position: 'bottom-right' });
-                return res.data;
+                return res.data.post;
             }
         } catch (error) {
             console.log(error);
@@ -114,15 +112,7 @@ const postSlice = createSlice({
             state.access = false;
         },
         [addPost.fulfilled]: postAdaptor.addOne,
-        [editPost.fulfilled]: (state, { payload }) => {
-            const post = payload.post;
-            const tags = payload.tags;
-            const editedPost = {
-                ...post,
-                tags
-            };
-            postAdaptor.setOne(state, editedPost);
-        },
+        [editPost.fulfilled]: postAdaptor.setOne,
         [deletePost.fulfilled]: postAdaptor.removeOne,
 
     },

@@ -17,7 +17,6 @@ const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
   const [photoURL, setPhotoURL] = useState()
 
   useEffect(() => {
-    console.log(formik, name)
     if (formik.values[`${name}`]) {
       setPhotoURL(`http://localhost:8000/${formik.values[`${name}`]}`)
     }
@@ -35,7 +34,6 @@ const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
         setOpen(true)
       }
     }
-    console.log(e.target.files)
     reader.readAsDataURL(e.target.files[0])
   }
 

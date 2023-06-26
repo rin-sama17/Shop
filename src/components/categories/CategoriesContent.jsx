@@ -82,7 +82,6 @@ const FindParents = ({ parent, categories }) => {
 
 const CategoriesContent = ({ parent }) => {
   const categories = useSelector(selectAllCategories)
-  console.log(categories)
   return (
     <Box
       sx={{

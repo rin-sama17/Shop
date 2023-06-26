@@ -59,7 +59,6 @@ export const editProduct = createAsyncThunk(
     async ({ values, setOpen, resetForm }) => {
 
         const formData = convertToForm(values);
-        console.log(formData);
         try {
             const res = await updateProduct(formData, values.id);
             if (res.status === 200) {
@@ -72,7 +71,6 @@ export const editProduct = createAsyncThunk(
             }
         } catch (error) {
             console.log(error);
-            console.log(error.response.data.message);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },

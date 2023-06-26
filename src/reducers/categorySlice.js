@@ -37,7 +37,6 @@ export const fetchAdminCategories = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await getAdminCategories();
-      console.log(res);
       return res.data.data;
     } catch (error) {
       console.error(error);

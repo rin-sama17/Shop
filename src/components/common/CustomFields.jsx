@@ -267,7 +267,6 @@ const CustomFields = ({
     const itemTagIds = itemTags.map((tag) => tag.id)
 
     const saveId = (tag, canSave) => {
-      console.log(canSave)
       if (canSave) {
         dispatch(tagIdAdded(tag))
       } else {

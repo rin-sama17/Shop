@@ -119,7 +119,6 @@ export const getAgency = (agencyId) => {
 
 export const createAgency = (agency) => {
     const url = `${ADMIN_SERVER_URL}/agencies/store`;
-    console.log(agency);
     return axios.post(url, agency, headers);
 };
 

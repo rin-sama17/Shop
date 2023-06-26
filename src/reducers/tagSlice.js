@@ -44,7 +44,6 @@ export const addTag = createAsyncThunk(
             if (res.status === 200) {
                 setOpen(false);
                 toast.success(res.data.message, { position: 'bottom-right' });
-                console.log(res);
 
                 return res.data.tag;
             }
@@ -96,7 +95,6 @@ const tagSlice = createSlice({
     reducers: {
         tagAdded: (state, action) => {
             const existingTag = state.tag_id.find(tag => tag.name === action.payload.name);
-            console.log(existingTag);
             if (existingTag) {
                 toast.error("تگ نمیتواند تکراری باشد");
                 return;

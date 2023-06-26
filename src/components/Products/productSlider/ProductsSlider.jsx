@@ -3,7 +3,6 @@ import { useRef } from 'react'
 import { Box } from '@mui/material'
 import './horizontalSlider.css'
 function ProductSlider({ products }) {
-  console.log(products)
   let isDown = false
   let startX
   let scrollLeft

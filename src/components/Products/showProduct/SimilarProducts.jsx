@@ -26,7 +26,6 @@ const SimilarProducts = ({ product }) => {
       similarProducts: selectSimilarProducts(result, product),
     }),
   })
-  console.log(similarProducts)
   if (!isSuccess || similarProducts.length === 0) {
     return
   }

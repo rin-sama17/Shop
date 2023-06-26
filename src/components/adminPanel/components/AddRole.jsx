@@ -52,7 +52,6 @@ const AddRole = () => {
       dispatch(addRole({ values: newRole, setOpen, resetForm, setErrors }))
     },
   })
-  console.log(formik.errors)
   const fields = roleFieldsData(formik)
   const extraFields = useMemo(
     () =>

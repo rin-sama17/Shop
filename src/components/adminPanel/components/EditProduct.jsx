@@ -46,7 +46,6 @@ const EditProduct = ({ product }) => {
     initialValues: { ...product, tags: [] },
     onSubmit: (values, { resetForm }) => {
       const editedProduct = { ...values, tags: tagIds, lang }
-      console.log(editedProduct)
       dispatch(
         editProduct({
           values: editedProduct,

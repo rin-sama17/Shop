@@ -30,7 +30,6 @@ const MainLayout = () => {
   const { t, i18n } = useTranslation()
   const lang = useSelector(selectLang)
   useEffect(() => {
-    console.log(i18n)
     i18n.changeLanguage(lang)
   }, [lang])
   const theme = useTheme()
