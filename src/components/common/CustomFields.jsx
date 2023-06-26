@@ -186,8 +186,9 @@ const CustomFields = ({
         variant="outlined"
         size="small"
       >
-        <InputLabel>{t('پسورد')}</InputLabel>
+        <InputLabel htmlFor="pwd">{t('پسورد')}</InputLabel>
         <OutlinedInput
+          id="pwd"
           name={name}
           value={value}
           onChange={handleChange}
@@ -206,7 +207,6 @@ const CustomFields = ({
             </InputAdornment>
           }
           label={t('پسورد')}
-          {...props}
         />
       </FormControl>
     )
@@ -228,12 +228,12 @@ const CustomFields = ({
         sx={fieldColor}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
       >
-        <InputLabel id={`category-label`}>{t('دسته بندی ها')}</InputLabel>
+        <InputLabel id="category-label">{t('دسته بندی ها')}</InputLabel>
         <Select
           name={name}
           value={formik.values[`${name}`]}
           onChange={formik.handleChange}
-          labelId={`category-label`}
+          labelId="category-label"
           input={<OutlinedInput label={t('دسته بندی ها')} />}
           MenuProps={{
             PaperProps: {
