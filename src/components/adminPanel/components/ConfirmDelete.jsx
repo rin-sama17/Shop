@@ -5,7 +5,7 @@ import { confirmAlert } from 'react-confirm-alert'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-const ConfirmDelete = ({ itemDelete, item }) => {
+const ConfirmDelete = ({ itemDelete, item, isButton, setOpen }) => {
   const theme = useTheme()
   const dispatch = useDispatch()
   const { t } = useTranslation()
@@ -43,6 +43,9 @@ const ConfirmDelete = ({ itemDelete, item }) => {
                   onClick={() => {
                     dispatch(itemDelete(item.id))
                     onClose()
+                    if (setOpen) {
+                      setOpen(false)
+                    }
                   }}
                 >
                   <Typography variant="subtitle1">{t('بله')}</Typography>
@@ -67,13 +70,29 @@ const ConfirmDelete = ({ itemDelete, item }) => {
     })
   }
   return (
-    <GridActionsCellItem
-      icon={<Delete />}
-      sx={{
-        color: 'tomato',
-      }}
-      onClick={submit}
-    />
+    <>
+      {isButton ? (
+        <Button
+          fullWidth
+          variant="contained"
+          color="error"
+          sx={{
+            heigth: 1,
+          }}
+          onClick={submit}
+        >
+          {t('حذف')}
+        </Button>
+      ) : (
+        <GridActionsCellItem
+          icon={<Delete />}
+          sx={{
+            color: 'tomato',
+          }}
+          onClick={submit}
+        />
+      )}
+    </>
   )
 }
 

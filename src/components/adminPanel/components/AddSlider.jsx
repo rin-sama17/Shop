@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addSlider, selectSliderDetails } from '../../../reducers/sliderSlice'
 import { selectLang } from '../../../reducers/langSlice'
-import AddBtn from './AddBtn'
+import { AddBtn } from '.'
 import { useTranslation } from 'react-i18next'
 
 const AddSlider = () => {

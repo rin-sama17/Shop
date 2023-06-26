@@ -9,7 +9,7 @@ import {
   selectCategoryAccess,
 } from '../../../reducers/categorySlice'
 import { selectLang } from '../../../reducers/langSlice'
-import AddBtn from './AddBtn'
+import { AddBtn } from '.'
 
 const AddCategory = () => {
   const [open, setOpen] = useState(false)

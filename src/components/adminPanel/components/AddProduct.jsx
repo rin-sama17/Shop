@@ -9,7 +9,7 @@ import {
   selectProductDetails,
 } from '../../../reducers/productSlice'
 import { selectLang } from '../../../reducers/langSlice'
-import AddBtn from './AddBtn'
+import { AddBtn } from '.'
 import { useTranslation } from 'react-i18next'
 
 const AddProduct = () => {

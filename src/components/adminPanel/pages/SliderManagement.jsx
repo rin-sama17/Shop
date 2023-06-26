@@ -18,6 +18,8 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { CustomDivider } from '../../common'
 import { useTranslation } from 'react-i18next'
+import HeaderManagement from './HeaderManagement'
+import { Box } from '@mui/system'
 
 const SliderManagement = () => {
   const dispatch = useDispatch()
@@ -25,6 +27,7 @@ const SliderManagement = () => {
   const { loading, access } = useSelector(selectSliderDetails)
   const isLoading = Boolean(!(sliders.length > 0) && loading)
   const { t } = useTranslation()
+
   useEffect(() => {
     dispatch(fetchSliders())
   }, [])
@@ -63,7 +66,10 @@ const SliderManagement = () => {
   }
   return (
     <>
-      <AddSlider />
+      <Box sx={{ display: 'flex' }}>
+        <AddSlider />
+        <HeaderManagement />
+      </Box>
       <CustomDataGrid rows={sliders} columns={columns} loading={isLoading} />
       {sliders.length > 0 && (
         <>

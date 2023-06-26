@@ -42,7 +42,13 @@ const EditPost = ({ post }) => {
     },
   })
   const fields = postFieldsData(formik, true)
-
+  const additionalFields = [
+    { sm: 12, formik, name: 'description', textEditor: true },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
+  ]
   return (
     <>
       <GridActionsCellItem
@@ -54,11 +60,12 @@ const EditPost = ({ post }) => {
         <CustomForm
           formik={formik}
           fields={fields}
+          additionalFields={additionalFields}
           label="ویرایش پست"
           color="success"
           imageUploader
           imageUploaderName="image"
-          imageUploaderProps={{ aspect: 16 / 7 }}
+          imageUploaderProps={{ aspect: 300 / 225 }}
         />
       </CustomModal>
     </>

@@ -23,5 +23,6 @@ export { default as CustomNoRowsOverlay } from "./CustomNoRowsOverlay";
 export { default as CustomDataGrid } from "./CustomDataGrid";
 export { default as ChangeStatus } from "./ChangeStatus";
 export { default as NoAccessError } from "./NoAccessError";
-
-
+export { default as AddBtn } from "./AddBtn";
+export { default as AddHeader } from "./AddHeader";
+export { default as EditHeader } from "./EditHeader";

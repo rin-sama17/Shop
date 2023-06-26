@@ -60,4 +60,5 @@ ul {
 
 .confirm-delete {
   background-color: rgba(56, 80, 104, 0.7) !important;
+  z-index: 1301 !important;
 }

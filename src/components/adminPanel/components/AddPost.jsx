@@ -6,7 +6,7 @@ import { postFieldsData } from '../../fieldsData'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPost, selectPostDetails } from '../../../reducers/postSlice'
 import { selectLang } from '../../../reducers/langSlice'
-import AddBtn from './AddBtn'
+import { AddBtn } from '.'
 import { selectAuth } from '../../../reducers/authSlice'
 
 const AddPost = () => {
@@ -36,6 +36,13 @@ const AddPost = () => {
   })
 
   const fields = postFieldsData(formik)
+  const additionalFields = [
+    { sm: 12, formik, name: 'description', textEditor: true },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
+  ]
   return (
     <>
       <AddBtn setOpen={setOpen} title="ساخت پست جدید" access={access} />
@@ -44,6 +51,7 @@ const AddPost = () => {
         <CustomForm
           formik={formik}
           fields={fields}
+          additionalFields={additionalFields}
           label="افزودن پست جدید"
           color="warning"
           imageUploader

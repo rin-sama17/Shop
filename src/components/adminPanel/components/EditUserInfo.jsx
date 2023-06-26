@@ -10,7 +10,6 @@ const EditUserInfo = ({ userInfo }) => {
     initialValues: userInfo,
     onSubmit: (values, { resetForm }) => {
       const roleIds = values.roles.map((role) => role.id)
-      console.log(values)
       let updatedUser
       const {
         id,

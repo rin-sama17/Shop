@@ -35,6 +35,8 @@ const TextEditor = ({ formik, name, readOnly, value }) => {
       if (formik) {
         quill.on('text-change', () => {
           formik.setFieldValue(name, JSON.stringify(quill.getContents()))
+          console.log(quill.getContents())
+          console.log(JSON.stringify(quill.getContents()))
         })
       }
     }

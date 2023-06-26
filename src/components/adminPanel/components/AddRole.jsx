@@ -14,7 +14,7 @@ import {
 
 import { CustomForm, CustomModal } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
-import AddBtn from './AddBtn'
+import { AddBtn } from '.'
 
 const AddRole = () => {
   const [open, setOpen] = useState(false)

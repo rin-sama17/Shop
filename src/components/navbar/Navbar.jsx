@@ -1,8 +1,8 @@
-import { Container, Slide, useScrollTrigger } from '@mui/material'
+import { Slide, useScrollTrigger } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 
-import { NavContent, NavDrawer } from './'
+import { NavContent, NavDrawer, HeaderPhoto } from './'
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -26,6 +26,7 @@ const Navbar = () => {
   return (
     <>
       <NavDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
+      <HeaderPhoto />
       <HideOnScroll>
         <Grid
           container

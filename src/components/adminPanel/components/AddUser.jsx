@@ -6,7 +6,7 @@ import { userFieldsData } from '../../fieldsData'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser, selectUserDetails } from '../../../reducers/userSlice'
 import { selectLang } from '../../../reducers/langSlice'
-import AddBtn from './AddBtn'
+import { AddBtn } from '.'
 
 const AddUser = () => {
   const [open, setOpen] = useState(false)

@@ -6,7 +6,7 @@ import { CustomForm, CustomModal } from '../../common'
 import { addAgency, selectAgencyDetails } from '../../../reducers/agencySlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectLang } from '../../../reducers/langSlice'
-import AddBtn from './AddBtn'
+import { AddBtn } from '.'
 const AddAgency = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()

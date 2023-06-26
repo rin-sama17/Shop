@@ -16,6 +16,7 @@ import {
 
 const sliderAdaptor = createEntityAdapter();
 const initialState = sliderAdaptor.getInitialState({
+    headerPhoto: null,
     loading: false,
     access: false,
 });
@@ -37,7 +38,7 @@ export const fetchSliders = createAsyncThunk(
 
 export const addSlider = createAsyncThunk(
     'slider/addSlider',
-    async ({ values, setOpen, resetForm, setErrors }) => {
+    async ({ values, setOpen, resetForm, setErrors, isHeader }) => {
         console.log(values);
         const formData = convertToForm(values);
         try {
@@ -46,6 +47,12 @@ export const addSlider = createAsyncThunk(
                 setOpen(false);
                 resetForm();
                 toast.success(res.data.data.message, { position: 'bottom-right' });
+                if (isHeader) {
+                    return {
+                        isHeader,
+                        data: res.data.data.slider
+                    };
+                }
                 return res.data.data.slider;
             }
         } catch (error) {
@@ -101,17 +108,35 @@ const sliderSlice = createSlice({
     extraReducers: {
         [fetchSliders.pending]: state => { state.loading = true; },
         [fetchSliders.fulfilled]: (state, action) => {
+            const sliders = action.payload?.filter(slider => slider.type != 3);
+            const headerPhoto = action.payload?.find(slider => slider.type == 3);
+            sliderAdaptor.setAll(state, sliders);
+            state.headerPhoto = headerPhoto;
+
             state.access = true;
             state.loading = false;
-            sliderAdaptor.setAll(state, action.payload);
         },
         [fetchSliders.rejected]: (state, action) => {
             state.loading = false;
             state.access = false;
         },
-        [addSlider.fulfilled]: sliderAdaptor.addOne,
+        [addSlider.fulfilled]: (state, { payload }) => {
+            if (payload.isHeader) {
+                state.headerPhoto = payload.data;
+            } else {
+                sliderAdaptor.addOne(state, payload);
+            }
+        },
         [editSlider.fulfilled]: sliderAdaptor.setOne,
-        [deleteSlider.fulfilled]: sliderAdaptor.removeOne,
+        [deleteSlider.fulfilled]: (state, action) => {
+            const sliderId = action.payload;
+            const headerPhoto = state.headerPhoto;
+            if (headerPhoto && headerPhoto.id == sliderId) {
+                state.headerPhoto = null;
+            } else {
+                sliderAdaptor.removeOne(state, action.payload);
+            }
+        },
     },
 });
 
@@ -120,6 +145,7 @@ export const {
     selectById: selectSliderById,
 } = sliderAdaptor.getSelectors((state) => state.slider);
 
+export const selectHeaderPhoto = state => state.slider.headerPhoto;
 
 export const selectSliderDetails = state => state.slider;
 

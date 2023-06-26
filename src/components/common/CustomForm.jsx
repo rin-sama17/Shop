@@ -8,6 +8,7 @@ const CustomForm = ({
   formik,
   label,
   extraFields,
+  additionalFields,
   imageUploader,
   imageUploaderName,
   imageUploaderProps,
@@ -26,6 +27,7 @@ const CustomForm = ({
           display: 'flex',
           justifyContent: 'center',
         }}
+        spacing={2}
       >
         <CustomDivider label={label} />
         {imageUploader ? (
@@ -37,7 +39,7 @@ const CustomForm = ({
           />
         ) : null}
         <Grid xs={12} md={imageUploader ? 9 : 12}>
-          <Grid container spacing={2} sx={{ direction: 'ltr' }}>
+          <Grid container sx={{ direction: 'ltr' }}>
             {fields.map((field, index) => (
               <Fragment key={index}>
                 {field.display && field.display === 'none' ? null : (
@@ -50,6 +52,9 @@ const CustomForm = ({
             ))}
           </Grid>
         </Grid>
+        {additionalFields?.map((field, index) => (
+          <CustomFields {...field} key={index} />
+        ))}
       </Grid>
     </form>
   )

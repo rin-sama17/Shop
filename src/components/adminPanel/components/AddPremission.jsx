@@ -12,7 +12,7 @@ import {
 
 import { CustomForm, CustomModal } from '../../common'
 import { premissionFieldsData } from '../../fieldsData'
-import AddBtn from './AddBtn'
+import { AddBtn } from '.'
 
 const AddPremission = () => {
   const [open, setOpen] = useState(false)

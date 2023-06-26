@@ -14,7 +14,7 @@ import {
 
 import { CustomForm, CustomModal } from '../../common'
 import { tagFieldData } from '../../fieldsData'
-import AddBtn from './AddBtn'
+import { AddBtn } from '.'
 
 const AddTag = () => {
   const [open, setOpen] = useState(false)

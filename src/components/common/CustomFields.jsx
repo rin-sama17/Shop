@@ -77,6 +77,8 @@ const CustomFields = ({
   textEditor,
   selectTag,
   isBtn,
+  custom,
+  customContent,
   xs,
   sm,
   md,
@@ -107,6 +109,12 @@ const CustomFields = ({
         >
           {t(customLabel)}
         </Button>
+      </Grid>
+    )
+  } else if (custom === true) {
+    return (
+      <Grid xs={xs ? xs : 12} sm={sm ? sm : null} md={md ? md : null}>
+        {customContent}
       </Grid>
     )
   }
