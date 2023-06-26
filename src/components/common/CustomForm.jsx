@@ -40,7 +40,7 @@ const CustomForm = ({
         ) : null}
         <Grid xs={12} md={imageUploader ? 9 : 12}>
           <Grid container sx={{ direction: 'ltr' }}>
-            {fields.map((field, index) => (
+            {fields?.map((field, index) => (
               <Fragment key={index}>
                 {field.display && field.display === 'none' ? null : (
                   <CustomFields {...field} label={t(field.label)} key={index} />

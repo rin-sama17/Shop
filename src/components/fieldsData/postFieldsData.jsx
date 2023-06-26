@@ -29,6 +29,10 @@ const postFieldsData = (formik, isEdit) => {
       multiline: true,
       rows: 3,
     },
+    {
+      submit: true,
+      customLabel: 'ثبت',
+    },
   ]
 }
 export default postFieldsData

@@ -35,9 +35,6 @@ const HeaderPhoto = () => {
     <Box
       sx={{
         width: 1,
-        position: 'sticky',
-        top: 0,
-        zIndex: 20,
       }}
     >
       <CardMedia

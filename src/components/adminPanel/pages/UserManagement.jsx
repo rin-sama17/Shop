@@ -16,6 +16,9 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchRoles } from '../../../reducers/roleSlice'
 import { useTranslation } from 'react-i18next'
+import { AssignmentIndRounded } from '@mui/icons-material'
+import EditUserPremissions from '../components/EditUserPremissions'
+import { fetchPremissions } from '../../../reducers/premissionSlice'
 
 const UserManagement = () => {
   const dispatch = useDispatch()
@@ -26,6 +29,7 @@ const UserManagement = () => {
   useEffect(() => {
     dispatch(fetchUsers())
     dispatch(fetchRoles())
+    dispatch(fetchPremissions())
   }, [])
 
   const columns = useMemo(
@@ -40,17 +44,21 @@ const UserManagement = () => {
       {
         field: 'actions',
         type: 'actions',
-        width: 110,
+        width: 150,
         getActions: (params) => [
-          <ShowOptions options={params.row.roles} name={t('نقش ها')} />,
+          <ShowOptions
+            options={params.row.roles}
+            name={t('نقش ها')}
+            icon={<AssignmentIndRounded />}
+          />,
           <ConfirmDelete item={params.row} itemDelete={deleteUser} />,
           <EditUser user={params.row} />,
+          <EditUserPremissions user={params.row} />,
         ],
       },
     ],
     [EditUser, users, t],
   )
-
   if (!loading && !access) {
     return <NoAccessError />
   }

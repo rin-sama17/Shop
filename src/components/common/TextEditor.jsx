@@ -1,8 +1,9 @@
 import { useEffect, useMemo } from 'react'
-import { Box } from '@mui/material'
+import { Box, useTheme } from '@mui/material'
 import { useQuill } from 'react-quilljs'
 
 const TextEditor = ({ formik, name, readOnly, value }) => {
+  const theme = useTheme()
   const toolbarOptions = useMemo(
     () => [
       [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -53,7 +54,7 @@ const TextEditor = ({ formik, name, readOnly, value }) => {
         },
       }}
     >
-      <div ref={quillRef} />
+      <div ref={quillRef} style={{ fontFamily: theme.typography.fontFamily }} />
     </Box>
   )
 }

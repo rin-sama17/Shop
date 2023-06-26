@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { MoreVert } from '@mui/icons-material'
 import { Menu, Divider, Typography, MenuItem } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { GridActionsCellItem } from '@mui/x-data-grid'
 
 const ITEM_HEIGHT = 48
 
-export default function ShowOptions({ options, name }) {
+export default function ShowOptions({ options, name, icon }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const { t } = useTranslation()
   const open = Boolean(anchorEl)
@@ -20,7 +19,8 @@ export default function ShowOptions({ options, name }) {
   return (
     <div>
       <GridActionsCellItem
-        icon={<MoreVert />}
+        sx={{ color: 'warning.light' }}
+        icon={icon}
         aria-label="more"
         id="long-button"
         aria-controls={open ? 'long-menu' : undefined}

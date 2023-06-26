@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchPremissions } from '../../../reducers/premissionSlice'
 import { useTranslation } from 'react-i18next'
 import { showStatus } from '../components/ShowStatus'
+import { ExtensionRounded } from '@mui/icons-material'
 
 const RoleManagement = () => {
   const dispatch = useDispatch()
@@ -50,6 +51,7 @@ const RoleManagement = () => {
         width: 110,
         getActions: (params) => [
           <ShowOptions
+            icon={<ExtensionRounded />}
             options={params.row.premissions}
             name={t('دسترسی ها')}
           />,

@@ -14,6 +14,7 @@ import {
 
 const userAdaptor = createEntityAdapter();
 const initialState = userAdaptor.getInitialState({
+  premission_id: [],
   roles: [],
   access: false,
   loading: false,
@@ -93,6 +94,24 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    premissionIdAdded: (state, action) => {
+      state.premission_id.push(action.payload);
+    },
+    premissionIdDeleted: (state, action) => {
+      const premissionIndex = state.premission_id.findIndex(p => p === action.payload);
+      state.premission_id.splice(premissionIndex, 1);
+    },
+    premissionIdsCleared: (state, action) => {
+      state.premission_id.splice(0, state.premission_id.length);
+    },
+    premissionsIdFinded: (state, action) => {
+      const userPremissions = action.payload;
+      const premissionIds = userPremissions?.map(premission => premission.id);
+      if (premissionIds) {
+        state.premission_id = premissionIds;
+      }
+
+    },
     roleIdAdded: (state, action) => {
       state.roles.push(action.payload);
     },
@@ -109,7 +128,6 @@ const userSlice = createSlice({
       if (roleIds) {
         state.roles = roleIds;
       }
-
     }
   },
   extraReducers: {
@@ -135,8 +153,10 @@ export const {
 } = userAdaptor.getSelectors((state) => state.user);
 
 export const selectRoleIds = state => state.user.roles;
+export const selectPremission_id = state => state.user.premission_id;
+
 export const selectUserDetails = state => state.user;
 
-export const { roleIdDeleted, roleIdAdded, roleIdsCleared, rolesIdFinded } = userSlice.actions;
+export const { premissionIdDeleted, premissionIdAdded, premissionIdsCleared, premissionsIdFinded, roleIdDeleted, roleIdAdded, roleIdsCleared, rolesIdFinded } = userSlice.actions;
 
 export default userSlice.reducer;

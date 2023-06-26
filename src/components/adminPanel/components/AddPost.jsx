@@ -38,10 +38,6 @@ const AddPost = () => {
   const fields = postFieldsData(formik)
   const additionalFields = [
     { sm: 12, formik, name: 'description', textEditor: true },
-    {
-      submit: true,
-      customLabel: 'ثبت',
-    },
   ]
   return (
     <>
