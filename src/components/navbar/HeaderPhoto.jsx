@@ -1,23 +1,32 @@
 import { Box, CardMedia } from '@mui/material'
 import { createSelector } from '@reduxjs/toolkit'
-import { useMemo } from 'react'
+import { useMemo, useEffect } from 'react'
 import { useGetSlidersQuery } from '../../api'
+import { useSelector } from 'react-redux'
+import { selectHeaderPhoto } from '../../reducers/sliderSlice'
 
 const HeaderPhoto = () => {
-  const selectHeaderPhoto = useMemo(() => {
+  const canRefetch = useSelector(selectHeaderPhoto)
+  const selectHeader = useMemo(() => {
     return createSelector(
       (res) => res.data?.data.sliders,
       (data) => data?.find((slider) => slider.type == 3) ?? null,
     )
-  }, [])
+  }, [canRefetch])
 
-  const { headerPhoto, isSuccess } = useGetSlidersQuery(undefined, {
+  const { headerPhoto, isSuccess, refetch } = useGetSlidersQuery(undefined, {
     selectFromResult: (res) => ({
       ...res,
-      headerPhoto: selectHeaderPhoto(res),
+      headerPhoto: selectHeader(res),
     }),
   })
-  console.log(headerPhoto)
+
+  useEffect(() => {
+    if (canRefetch !== headerPhoto) {
+      refetch()
+    }
+  }, [canRefetch])
+
   if (!isSuccess || !headerPhoto) {
     return
   }
