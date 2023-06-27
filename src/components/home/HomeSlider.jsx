@@ -48,15 +48,24 @@ const HomeSlider = ({ sliders }) => {
         {sliders.map((slide, index) => (
           <Box component="div" key={index}>
             {slide.type === 0 ? (
-              <CardMedia
-                component="img"
-                image={`http://localhost:8000/${slide.image}`}
-                alt={slide.name}
+              <CardActionArea
+                component="a"
+                href={slide.url}
+                target="_blank"
                 sx={{
-                  height: { xs: '20vh', sm: '30vh', md: '45vh' },
                   borderRadius: '0 0 20px  20px ',
                 }}
-              />
+              >
+                <CardMedia
+                  component="img"
+                  image={`http://localhost:8000/${slide.image}`}
+                  alt={slide.name}
+                  sx={{
+                    height: { xs: '20vh', sm: '30vh', md: '45vh' },
+                    borderRadius: '0 0 20px  20px ',
+                  }}
+                />
+              </CardActionArea>
             ) : (
               <ImageListItem>
                 <CardMedia

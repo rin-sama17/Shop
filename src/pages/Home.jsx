@@ -11,7 +11,7 @@ const Home = () => {
   const selectSliders = useMemo(() => {
     return createSelector(
       (res) => res.data?.data.sliders,
-      (data) => data.filter((slider) => slider.type != 3),
+      (data) => data?.filter((slider) => slider.type != 3),
     )
   }, [])
   const { sliders, isSuccess } = useGetSlidersQuery(undefined, {
