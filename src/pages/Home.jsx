@@ -4,11 +4,22 @@ import { Box } from '@mui/material'
 import { HomeSlider, HomeContent } from '../components/home'
 import { useGetSlidersQuery } from '../api'
 import { SliderLoading } from '../components/loading'
+import { useMemo } from 'react'
+import { createSelector } from '@reduxjs/toolkit'
 
 const Home = () => {
-  const { data = { data: { sliders: [] } }, isSuccess } = useGetSlidersQuery()
-  const sliders = data.data.sliders
-
+  const selectSliders = useMemo(() => {
+    return createSelector(
+      (res) => res.data?.data.sliders,
+      (data) => data.filter((slider) => slider.type != 3),
+    )
+  }, [])
+  const { sliders, isSuccess } = useGetSlidersQuery(undefined, {
+    selectFromResult: (res) => ({
+      ...res,
+      sliders: selectSliders(res),
+    }),
+  })
   return (
     <Grid xs={12}>
       {isSuccess && sliders.length > 0 ? (
