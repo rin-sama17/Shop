@@ -10,7 +10,6 @@ import {
     removePost,
     updatePost,
     convertToForm,
-    getOnePost,
     handleErrors,
 } from './services';
 
