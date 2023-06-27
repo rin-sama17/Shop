@@ -125,7 +125,7 @@ const categorySlice = createSlice({
     },
     [fetchCategories.fulfilled]: (state, action) => {
 
-      const categories = action.payload;
+      const categories = action.payload ?? [];
       let parentCategories = categories.filter(category => category.category_id === null);
       const parentIds = parentCategories.map(category => category.id);
       let childCategories = categories.filter(category => parentIds.includes(category.category_id));

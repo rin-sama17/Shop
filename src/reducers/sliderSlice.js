@@ -64,7 +64,7 @@ export const addSlider = createAsyncThunk(
 
 export const editSlider = createAsyncThunk(
     'slider/editSlider',
-    async ({ values, setOpen, resetForm }) => {
+    async ({ values, setOpen, resetForm, isHeader }) => {
         const formData = convertToForm(values);
         try {
             const res = await updateSlider(formData, values.id);
@@ -74,6 +74,12 @@ export const editSlider = createAsyncThunk(
                     resetForm();
                 }
                 toast.success(res.data.message, { position: 'bottom-right' });
+                if (isHeader) {
+                    return {
+                        isHeader,
+                        data: res.data.post
+                    };
+                }
                 return res.data.post;
             }
         } catch (error) {
@@ -125,7 +131,13 @@ const sliderSlice = createSlice({
                 sliderAdaptor.addOne(state, payload);
             }
         },
-        [editSlider.fulfilled]: sliderAdaptor.setOne,
+        [editSlider.fulfilled]: (state, { payload }) => {
+            if (payload.isHeader) {
+                state.headerPhoto = payload.data;
+            } else {
+                sliderAdaptor.setOne(state, payload);
+            }
+        },
         [deleteSlider.fulfilled]: (state, action) => {
             const sliderId = action.payload;
             const headerPhoto = state.headerPhoto;

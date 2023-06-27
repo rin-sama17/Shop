@@ -33,6 +33,9 @@ const HeaderPhoto = () => {
 
   return (
     <Box
+      component="a"
+      href={headerPhoto.url}
+      target="_blank"
       sx={{
         width: 1,
       }}

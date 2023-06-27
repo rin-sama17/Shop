@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
-import { CustomForm, CustomModal } from '../../common'
-import { AddBtn, AddHeader, EditHeader } from '../components'
-import { useFormik } from 'formik'
-import { useDispatch, useSelector } from 'react-redux'
+import { AddHeader, EditHeader } from '../components'
+import { useSelector } from 'react-redux'
 import { selectHeaderPhoto } from '../../../reducers/sliderSlice'
-
+import { useMemo } from 'react'
 const HeaderManagement = () => {
   const header = useSelector(selectHeaderPhoto)
-
-  return <>{header ? <EditHeader header={header} /> : <AddHeader />}</>
+  const content = useMemo(() => {
+    if (header) {
+      return <EditHeader header={header} />
+    } else {
+      return <AddHeader />
+    }
+  }, [header])
+  return content
 }
 
 export default HeaderManagement

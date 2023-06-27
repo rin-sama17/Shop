@@ -22,7 +22,14 @@ const EditHeader = ({ header }) => {
   const formik = useFormik({
     initialValues: header,
     onSubmit: (values, { resetForm }) => {
-      dispatch(editSlider({ values: { ...values, lang }, setOpen, resetForm }))
+      dispatch(
+        editSlider({
+          values: { ...values, lang },
+          setOpen,
+          resetForm,
+          isHeader: true,
+        }),
+      )
     },
   })
   const fields = headerFieldsData(formik, true)

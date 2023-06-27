@@ -163,7 +163,7 @@ const CustomFields = ({
             </InputAdornment>
           ),
         }}
-        {...props}
+        placeholder="شماره موبایل"
       />
     )
   } else if (price) {
