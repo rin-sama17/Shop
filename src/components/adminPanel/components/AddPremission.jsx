@@ -71,8 +71,9 @@ const AddPremission = () => {
       <AddBtn setOpen={setOpen} title="افزودن دسترسی جدید" access={access} />
 
       <CustomModal open={open} setOpen={setOpen}>
-        {tempPremission?.map((premission) => (
+        {tempPremission?.map((premission, index) => (
           <Chip
+            key={index}
             label={premission.name}
             variant="outlined"
             sx={{ m: 0.4 }}

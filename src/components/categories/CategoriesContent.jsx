@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import { Box, Typography } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { selectAllCategories } from '../../reducers/categorySlice'
@@ -94,11 +94,11 @@ const CategoriesContent = ({ parent }) => {
       }}
     >
       {categories?.map((child, index) => (
-        <>
+        <Fragment key={index}>
           {child.category_id === parent?.id && (
             <FindParents parent={child} categories={categories} key={index} />
           )}
-        </>
+        </Fragment>
       ))}
     </Box>
   )

@@ -73,8 +73,9 @@ const AddTag = () => {
       <AddBtn setOpen={setOpen} title="افزودن تگ جدید" access={access} />
 
       <CustomModal open={open} setOpen={setOpen}>
-        {tempTags?.map((tag) => (
+        {tempTags?.map((tag, index) => (
           <Chip
+            key={index}
             label={tag.name}
             variant="outlined"
             sx={{ m: 0.4 }}

@@ -33,23 +33,21 @@ const CategoryTabs = ({ pageNumber, setPageNumber, tabs }) => {
       allowScrollButtonsMobile
       variant="scrollable"
     >
-      {tabs.map((parent, index) => {
-        return (
-          <Tab
-            key={index}
-            label={parent.name}
-            onMouseEnter={() => setPageNumber(index)}
-            sx={{
-              my: 0.5,
-              color: 'black',
-              '&.MuiTab-root': {
-                minHeight: 50,
-              },
-            }}
-            {...tabPanel(index)}
-          />
-        )
-      })}
+      {tabs.map((parent, index) => (
+        <Tab
+          key={index}
+          label={parent.name}
+          onMouseEnter={() => setPageNumber(index)}
+          sx={{
+            my: 0.5,
+            color: 'black',
+            '&.MuiTab-root': {
+              minHeight: 50,
+            },
+          }}
+          {...tabPanel(index)}
+        />
+      ))}
     </Tabs>
   )
 }

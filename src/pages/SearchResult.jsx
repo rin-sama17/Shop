@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Spinner } from '../components/common'
@@ -83,7 +83,7 @@ const SearchResult = () => {
           {searchResult.length > 0 ? (
             <Grid container sx={{ width: 1 }}>
               {searchResult.map((item, index) => (
-                <>
+                <Fragment key={index}>
                   {base === 'product' ? (
                     <Grid
                       xs={12}
@@ -92,12 +92,12 @@ const SearchResult = () => {
                       lg={3}
                       sx={{ justifyContent: 'center' }}
                     >
-                      <Product productId={item.id} key={index} />
+                      <Product productId={item.id} />
                     </Grid>
                   ) : (
-                    <Post postId={item.id} key={index} />
+                    <Post postId={item.id} />
                   )}
-                </>
+                </Fragment>
               ))}
             </Grid>
           ) : (

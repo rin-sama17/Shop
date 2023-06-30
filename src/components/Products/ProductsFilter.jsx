@@ -31,7 +31,7 @@ const ProductsFilter = ({ isLoading }) => {
   const expensiveProduct = useMemo(() => {
     const sortedData = products?.slice().sort((a, b) => a.price - b.price)
     const costlyProduct = sortedData[sortedData.length - 1].price ?? null
-    return costlyProduct
+    return Number(costlyProduct)
   }, [products])
 
   const [value, setValue] = useState([1, expensiveProduct])
@@ -94,13 +94,17 @@ const ProductsFilter = ({ isLoading }) => {
                 },
               }}
             >
-              {['جدیدترین ها', 'تخفیف های ویژه', 'ارزان ترین', 'گرانترین'].map(
-                (option, index) => (
-                  <MenuItem value={index} key={index}>
-                    {t(option)}
-                  </MenuItem>
-                ),
-              )}
+              {[
+                'تمام محصولات',
+                'جدیدترین ها',
+                'تخفیف های ویژه',
+                'ارزان ترین',
+                'گرانترین',
+              ].map((option, index) => (
+                <MenuItem value={index} key={index}>
+                  {t(option)}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>

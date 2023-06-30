@@ -34,18 +34,21 @@ const filtredProductSlice = createSlice({
     reducers: {
         filterProducts: (state, action) => {
             const { category, value, sortBy } = action.payload;
+            console.log(action.payload);
             let sortedItems;
             if (sortBy === 0) {
-                sortedItems = state.products.sort((a, b) => a.created_at?.localeCompare(b.created_at));
+                sortedItems = state.products;
             } else if (sortBy === 1) {
-                sortedItems = state.products.filter((p) => p.discount);
+                sortedItems = state.products.sort((a, b) => b.created_at?.localeCompare(a.created_at));
             } else if (sortBy === 2) {
-                sortedItems = state.products.sort((a, b) => a.price - b.price);
+                sortedItems = state.products.filter((p) => p.discount);
             } else if (sortBy === 3) {
-                sortedItems = state.products.sort((a, b) => b.price - a.price);
+                sortedItems = state.products.sort((a, b) => Number(a.price) - Number(b.price));
+            } else if (sortBy === 4) {
+                sortedItems = state.products.sort((a, b) => Number(b.price) - Number(a.price));
             }
             const filteredProducts = sortedItems?.filter((product) => {
-                if (value[0] <= product.price && product.price <= value[1]) {
+                if (value[0] <= Number(product.price) && Number(product.price) <= value[1]) {
                     if (category && product.category_id !== category) {
                         return false;
                     }
