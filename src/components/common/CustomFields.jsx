@@ -143,6 +143,23 @@ const CustomFields = ({
   }
   let content
   if (phone) {
+    const lang = localStorage.getItem('lang') || 'fa'
+    const InputProps =
+      lang == 'en'
+        ? {
+            endAdornment: (
+              <InputAdornment position="end">
+                <Phone />
+              </InputAdornment>
+            ),
+          }
+        : {
+            startAdornment: (
+              <InputAdornment position="start">
+                <Phone />
+              </InputAdornment>
+            ),
+          }
     content = (
       <PatternFormat
         customInput={TextField}
@@ -153,17 +170,11 @@ const CustomFields = ({
         onChange={handleChange}
         value={value}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
-        sx={{ direction: 'rtl', ...fieldColor }}
+        sx={{ direction: lang != 'en' ? 'rtl' : 'ltr', ...fieldColor }}
         format="#### ### ####"
         mask="_"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Phone />
-            </InputAdornment>
-          ),
-        }}
-        placeholder="شماره موبایل"
+        InputProps={InputProps}
+        placeholder={t('شماره موبایل')}
       />
     )
   } else if (price) {

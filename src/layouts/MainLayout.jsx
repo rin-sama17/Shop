@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux'
 import { selectLang } from '../reducers/langSlice'
 import { useTranslation } from 'react-i18next'
 import '../i18n'
-
+import { useLocation } from 'react-router-dom'
 const cacheRTL = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
@@ -27,6 +27,8 @@ const emptyCache = createCache({
 })
 
 const MainLayout = () => {
+  const { pathname } = useLocation()
+  console.log(pathname)
   const { t, i18n } = useTranslation()
   const lang = useSelector(selectLang)
   useEffect(() => {
@@ -44,7 +46,12 @@ const MainLayout = () => {
             <Navbar />
             <Container
               maxWidth="lg"
-              sx={{ px: { xs: 0 }, mb: 2, minHeight: '40vh' }}
+              sx={{
+                px: { xs: 0 },
+                mb: 2,
+                minHeight: '40vh',
+                maxWidth: pathname == '/products' ? '100% !important' : 'auto',
+              }}
             >
               <ToastContainer
                 position="bottom-left"

@@ -30,7 +30,7 @@ const ProductsFilter = ({ isLoading }) => {
   const { products } = useSelector(selectFiltredProducts)
   const expensiveProduct = useMemo(() => {
     const sortedData = products?.slice().sort((a, b) => a.price - b.price)
-    const costlyProduct = sortedData[sortedData.length - 1].price ?? null
+    const costlyProduct = sortedData[sortedData?.length - 1].price ?? null
     return Number(costlyProduct)
   }, [products])
 
@@ -60,81 +60,81 @@ const ProductsFilter = ({ isLoading }) => {
   }
 
   return (
-    <Box>
-      <Grid
-        container
-        sx={{
-          width: 1,
-          mb: 2,
-          px: 5,
-        }}
-        spacing={2}
-      >
-        <Grid xs={12} md={3}>
-          <Stack>
-            <SelectCategory value={category} setValue={setCategory} />
-            <Button onClick={handleClear} color="error" sx={{ mt: 1 }}>
-              {t('حذف تغییرات')}
-            </Button>
-          </Stack>
-        </Grid>
-        <Grid xs={12} md={3}>
-          <FormControl fullWidth size="small">
-            <InputLabel>{t('مرتب کردن براساس')}</InputLabel>
-            <Select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              input={<OutlinedInput label={t('مرتب کردن براساس')} />}
-              MenuProps={{
-                PaperProps: {
-                  style: {
-                    maxHeight: 48 * 4.5 + 8,
-                    width: 250,
-                  },
+    <Grid
+      container
+      sx={{
+        width: 1,
+        m: 'auto',
+      }}
+      spacing={2}
+    >
+      <Grid xs={12}>
+        <Button
+          fullWidth
+          variant="contained"
+          onClick={handleClear}
+          color="error"
+          sx={{ my: 1 }}
+        >
+          {t('حذف تغییرات')}
+        </Button>
+        <SelectCategory value={category} setValue={setCategory} />
+      </Grid>
+      <Grid xs={12}>
+        <FormControl fullWidth size="small">
+          <InputLabel>{t('مرتب کردن براساس')}</InputLabel>
+          <Select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            input={<OutlinedInput label={t('مرتب کردن براساس')} />}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  maxHeight: 48 * 4.5 + 8,
+                  width: 250,
                 },
-              }}
-            >
-              {[
-                'تمام محصولات',
-                'جدیدترین ها',
-                'تخفیف های ویژه',
-                'ارزان ترین',
-                'گرانترین',
-              ].map((option, index) => (
-                <MenuItem value={index} key={index}>
-                  {t(option)}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid xs={12} md={6} sx={{ px: 1 }}>
-          <Slider
-            getAriaLabel={() => 'Temperature range'}
-            value={value}
-            max={expensiveProduct}
-            min={1}
-            onChange={handleChange}
-            valueLabelDisplay="auto"
-          />
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              color: 'text.primary',
+              },
             }}
           >
-            <Typography variant="caption">{t('ارزان ترین')} </Typography>
-            <Typography variant="caption">{t('گران ترین')} </Typography>
-          </Box>
-
-          <Typography variant="caption" color="secondary">
-            {t('از')} {toRial(value[0])} {t('تا')} {toRial(value[1])}{' '}
-            {t('تومان')}
-          </Typography>
-        </Grid>
+            {[
+              'تمام محصولات',
+              'جدیدترین ها',
+              'تخفیف های ویژه',
+              'ارزان ترین',
+              'گران ترین',
+            ].map((option, index) => (
+              <MenuItem value={index} key={index}>
+                {t(option)}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </Grid>
-    </Box>
+      <Grid xs={12} sx={{ px: 1 }}>
+        <Slider
+          getAriaLabel={() => 'Temperature range'}
+          value={value}
+          max={expensiveProduct}
+          min={1}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+        />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            color: 'text.primary',
+          }}
+        >
+          <Typography variant="caption">{t('ارزان ترین')} </Typography>
+          <Typography variant="caption">{t('گران ترین')} </Typography>
+        </Box>
+
+        <Typography variant="caption" color="secondary">
+          {t('از')} {toRial(value[0])} {t('تا')} {toRial(value[1])} {t('تومان')}
+        </Typography>
+      </Grid>
+    </Grid>
   )
 }
 export default ProductsFilter

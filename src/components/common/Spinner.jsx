@@ -2,7 +2,7 @@ import { CircularProgress, Box, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 const Spinner = ({ text = '' }) => {
   const { t } = useTranslation()
-  const header = text ? <h4>{text}</h4> : 'در حال بارگذاری'
+  const header = text ? text : 'در حال بارگذاری'
 
   return (
     <Box

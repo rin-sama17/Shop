@@ -142,7 +142,7 @@ const ContactUs = () => {
                       color="text.secondary"
                       sx={{ mr: 2, ml: 1 }}
                     >
-                      {item.name}
+                      {t(item.name)}
                     </Typography>
                   </Box>
                 ) : (
@@ -178,7 +178,7 @@ const ContactUs = () => {
                       color="text.secondary"
                       sx={{ mr: 2, ml: 1 }}
                     >
-                      {item.name}
+                      {t(item.name)}
                     </Typography>
                   </Box>
                 )}

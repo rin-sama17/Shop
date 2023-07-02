@@ -31,11 +31,14 @@ const ShowAgency = () => {
           color="text.primary"
           gutterBottom
           textAlign="left"
+          sx={{
+            mx: 2,
+          }}
         >
           {agency.name}
         </Typography>
         <Box sx={{ display: 'flex', mb: 2 }}>
-          <Typography variant="caption" color="text.primary" sx={{ mr: 2 }}>
+          <Typography variant="caption" color="text.primary" sx={{ mx: 2 }}>
             {t('ادرس')}:
           </Typography>
           <Typography variant="caption" color="text.secondary">
@@ -43,7 +46,7 @@ const ShowAgency = () => {
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', mb: 2 }}>
-          <Typography variant="caption" color="text.primary" sx={{ mr: 2 }}>
+          <Typography variant="caption" color="text.primary" sx={{ mx: 2 }}>
             {t('شماره تماس')}:
           </Typography>
           <Typography variant="caption" color="text.secondary">
@@ -51,7 +54,7 @@ const ShowAgency = () => {
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', mb: 2 }}>
-          <Typography variant="caption" color="text.primary" sx={{ mr: 2 }}>
+          <Typography variant="caption" color="text.primary" sx={{ mx: 2 }}>
             {t('ایمیل')}:
           </Typography>
           <Typography variant="caption" color="text.secondary">
@@ -59,7 +62,7 @@ const ShowAgency = () => {
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', mb: 2 }}>
-          <Typography variant="caption" color="text.primary" sx={{ mr: 2 }}>
+          <Typography variant="caption" color="text.primary" sx={{ mx: 2 }}>
             {t('توضیحات')}:
           </Typography>
           <Typography variant="caption" color="text.secondary">

@@ -23,6 +23,7 @@ const Post = ({ postId }) => {
       sx={{
         display: 'flex',
         justifyContent: 'center',
+        minHeight: 150,
         mb: 3,
         width: '80%',
         m: '10px auto',

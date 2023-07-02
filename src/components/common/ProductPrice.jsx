@@ -1,9 +1,11 @@
-import { Box, Typography, Chip } from '@mui/material'
+import { Box, Typography, Chip, useTheme, useMediaQuery } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { toRial } from '../../helpers'
 
 const ProductPrice = ({ price, discount, absolute }) => {
   const { t } = useTranslation()
+  const theme = useTheme()
+  const isXs = useMediaQuery(theme.breakpoints.only('xs'))
 
   let prevPrice
   if (discount > 0) {
@@ -21,7 +23,7 @@ const ProductPrice = ({ price, discount, absolute }) => {
       }}
     >
       <Typography
-        variant="body1"
+        variant={isXs ? 'subtitle2' : 'body1'}
         color="text.primary"
         textAlign="start"
         sx={{ display: 'flex' }}
@@ -35,13 +37,13 @@ const ProductPrice = ({ price, discount, absolute }) => {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography
             color="text.secondary"
-            variant="subtitle2"
+            variant={isXs ? 'caption' : 'subtitle2'}
             sx={{
               display: 'flex',
               textDecoration: discount === 0 ? null : 'line-through',
               color: discount === 0 ? 'none' : 'gray !important',
               textDecorationColor: 'text.secondary',
-              mr: absolute ? 5 : 0,
+              mr: absolute && !isXs ? 5 : 0,
             }}
           >
             {toRial(prevPrice)}
@@ -56,7 +58,8 @@ const ProductPrice = ({ price, discount, absolute }) => {
             sx={{
               ml: 1,
               bgcolor: 'tomato',
-              top: 0,
+              buttom: isXs ? 0 : 'auto',
+              top: isXs ? 'auto' : 0,
               left: 0,
               position: absolute ? 'absolute' : 'relative',
             }}
