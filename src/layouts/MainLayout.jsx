@@ -11,12 +11,12 @@ import { ToastContainer } from 'react-toastify'
 import { Container, Box } from '@mui/material'
 import Footer from '../components/footer/Footer'
 import { HelmetProvider, Helmet } from 'react-helmet-async'
-import { bg } from '../assets'
 import { useSelector } from 'react-redux'
 import { selectLang } from '../reducers/langSlice'
 import { useTranslation } from 'react-i18next'
 import '../i18n'
 import { useLocation } from 'react-router-dom'
+import { HomeFAB } from '../components/home'
 const cacheRTL = createCache({
   key: 'muirtl',
   stylisPlugins: [prefixer, rtlPlugin],
@@ -65,6 +65,8 @@ const MainLayout = () => {
                 pauseOnHover
               />
               <Outlet />
+
+              <HomeFAB />
             </Container>
             <Footer />
           </Box>

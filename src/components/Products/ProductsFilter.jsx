@@ -74,7 +74,7 @@ const ProductsFilter = ({ isLoading }) => {
           variant="contained"
           onClick={handleClear}
           color="error"
-          sx={{ my: 1 }}
+          sx={{ mb: 2 }}
         >
           {t('حذف تغییرات')}
         </Button>
