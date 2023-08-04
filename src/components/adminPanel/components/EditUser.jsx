@@ -44,9 +44,11 @@ const EditUser = ({ user }) => {
   const formik = useFormik({
     initialValues: user,
     onSubmit: (values, { resetForm }) => {
+      const premissions = values.premissions.map((premission) => premission?.id)
       const editedUser = {
         ...values,
         roles: userRoleIds,
+        premissions,
         lang,
       }
       dispatch(editUser({ values: editedUser, setOpen, resetForm }))
