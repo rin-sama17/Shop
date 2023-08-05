@@ -68,7 +68,6 @@ export const editPost = createAsyncThunk(
                     resetForm();
                 }
                 toast.success(res.data.message, { position: 'bottom-right' });
-                console.log(res);
                 return res.data.post;
             }
         } catch (error) {

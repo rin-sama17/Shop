@@ -18,8 +18,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
-import { showStatus } from '../components/ShowStatus'
-
 const PremissionManagement = () => {
   const dispatch = useDispatch()
   const premissions = useSelector(selectAllPremissions)
@@ -37,14 +35,6 @@ const PremissionManagement = () => {
       { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام دسترسی'), width: 150 },
       { field: 'description', headerName: t('توضیحات'), width: 150 },
-      {
-        type: 'actions',
-        align: 'center',
-        headerName: t('نمایش'),
-        width: 80,
-        editable: false,
-        getActions: (params) => showStatus(params, editPremission),
-      },
       {
         field: 'actions',
         type: 'actions',

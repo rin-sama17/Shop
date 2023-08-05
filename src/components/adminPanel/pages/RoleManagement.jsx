@@ -17,7 +17,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchPremissions } from '../../../reducers/premissionSlice'
 import { useTranslation } from 'react-i18next'
-import { showStatus } from '../components/ShowStatus'
 import { ExtensionRounded } from '@mui/icons-material'
 
 const RoleManagement = () => {
@@ -37,14 +36,6 @@ const RoleManagement = () => {
       { field: 'id', headerName: t('شماره'), width: 90 },
       { field: 'name', headerName: t('نام'), width: 150 },
       { field: 'description', headerName: t('توضیحات'), width: 200 },
-      {
-        type: 'actions',
-        align: 'center',
-        headerName: t('نمایش'),
-        width: 80,
-        editable: false,
-        getActions: (params) => showStatus(params, editRole),
-      },
       {
         field: 'actions',
         type: 'actions',
