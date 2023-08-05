@@ -12,12 +12,7 @@ const Login = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { token, userInfo, success } = useSelector(selectAuth)
-  useEffect(() => {
-    if (token && success) {
-      navigate('/admin-panel')
-    }
-  }, [token, success])
+  const { token, userInfo } = useSelector(selectAuth)
 
   const contactFieldNames = {
     phone: '',

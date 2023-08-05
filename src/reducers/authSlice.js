@@ -29,14 +29,15 @@ export const fetchUserInfo = createAsyncThunk(
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ values, setOpen, resetForm }) => {
+  async ({ values, setOpen, resetForm, navigate }) => {
     try {
       const res = await userLogin(values);
       if (res.status === 200) {
         setOpen(false);
         resetForm();
-        toast.success(res.data.data.message, { position: 'bottom-right' });
-        return res.data.data;
+        const userData = res.data.data;
+        toast.success(userData.message, { position: 'bottom-right' });
+        return { userData, navigate };
       }
     } catch (error) {
       console.log(error);
@@ -92,10 +93,13 @@ const authSlice = createSlice({
   extraReducers: {
 
     [login.fulfilled]: (state, { payload }) => {
-      state.token = payload.token;
-      state.userInfo = payload.user;
+      console.log(payload);
+      state.token = payload.userData.token;
+      state.userInfo = payload.userData.user;
       state.success = true;
+      state.loading = false;
       localStorage.setItem("token", payload.token);
+      payload.navigate("/admin-panel");
     },
     [login.pending]: (state) => {
       state.loading = true;

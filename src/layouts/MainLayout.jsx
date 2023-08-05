@@ -28,13 +28,12 @@ const emptyCache = createCache({
 
 const MainLayout = () => {
   const { pathname } = useLocation()
-  console.log(pathname)
   const { t, i18n } = useTranslation()
   const lang = useSelector(selectLang)
+  const theme = useTheme()
   useEffect(() => {
     i18n.changeLanguage(lang)
   }, [lang])
-  const theme = useTheme()
   return (
     <CacheProvider value={lang === 'en' ? emptyCache : cacheRTL}>
       <ThemeProvider theme={theme}>
