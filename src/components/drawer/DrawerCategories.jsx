@@ -11,8 +11,9 @@ import {
 import { useSelector } from 'react-redux'
 import { selectAllCategories } from '../../reducers/categorySlice'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
-const ParentCategory = ({ parent, children, ligth }) => {
+const ParentCategory = ({ parent, children, ligth, setOpen }) => {
   return (
     <Accordion>
       <AccordionSummary
@@ -28,18 +29,25 @@ const ParentCategory = ({ parent, children, ligth }) => {
             display: 'flex',
           }}
         >
-          <Typography
-            sx={{
-              ml: 2,
-              color: 'btnSidebar.main',
-              '&:hover': {
-                color: 'btnSidebar.light',
-                cursor: 'pointer',
-              },
-            }}
+          <Link
+            to={`/products`}
+            state={{ category: parent.id }}
+            onClick={() => setOpen(false)}
           >
-            {parent.name}
-          </Typography>
+            {' '}
+            <Typography
+              sx={{
+                ml: 2,
+                color: 'btnSidebar.main',
+                '&:hover': {
+                  color: 'btnSidebar.light',
+                  cursor: 'pointer',
+                },
+              }}
+            >
+              {parent.name}{' '}
+            </Typography>
+          </Link>
         </Box>
       </AccordionSummary>
 
@@ -50,7 +58,7 @@ const ParentCategory = ({ parent, children, ligth }) => {
   )
 }
 
-const ChildCategory = ({ child }) => {
+const ChildCategory = ({ child, setOpen }) => {
   return (
     <Box
       sx={{
@@ -70,24 +78,30 @@ const ChildCategory = ({ child }) => {
           display: 'flex',
         }}
       >
-        <Typography
-          variant="subtitle2"
-          sx={{
-            ml: 1,
-            color: 'btnSidebar.main',
-            '&:hover': {
-              color: 'btnSidebar.light',
-              cursor: 'pointer',
-            },
-          }}
+        <Link
+          to={`/products`}
+          state={{ category: child.id }}
+          onClick={() => setOpen(false)}
         >
-          {child.name}
-        </Typography>
+          <Typography
+            variant="subtitle2"
+            sx={{
+              ml: 1,
+              color: 'btnSidebar.main',
+              '&:hover': {
+                color: 'btnSidebar.light',
+                cursor: 'pointer',
+              },
+            }}
+          >
+            {child.name}
+          </Typography>
+        </Link>
       </Box>
     </Box>
   )
 }
-const FindParents = ({ parent, categories }) => {
+const FindParents = ({ parent, categories, setOpen }) => {
   const children = useMemo(
     () => categories.filter((child) => child.category_id === parent.id),
     [categories, parent],
@@ -111,21 +125,21 @@ const FindParents = ({ parent, categories }) => {
               m: '0 0 0 auto',
             }}
           >
-            <ParentCategory parent={parent}>
+            <ParentCategory parent={parent} setOpen={setOpen}>
               {children.map((child, index) => (
-                <ChildCategory child={child} key={index} />
+                <ChildCategory child={child} key={index} setOpen={setOpen} />
               ))}
             </ParentCategory>
           </Box>
         </Box>
       ) : (
-        <ChildCategory child={parent} />
+        <ChildCategory child={parent} setOpen={setOpen} />
       )}
     </>
   )
 }
 
-const DrawerCategories = () => {
+const DrawerCategories = ({ setOpen }) => {
   const categories = useSelector(selectAllCategories)
   const { t } = useTranslation()
   return (
@@ -152,11 +166,15 @@ const DrawerCategories = () => {
       {categories.map((layer1, index) => (
         <Box key={index}>
           {layer1.category_id === null && (
-            <ParentCategory parent={layer1} ligth>
+            <ParentCategory parent={layer1} ligth setOpen={setOpen}>
               {categories.map((child, index) => (
                 <Fragment key={index}>
                   {child.category_id === layer1.id && (
-                    <FindParents parent={child} categories={categories} />
+                    <FindParents
+                      parent={child}
+                      categories={categories}
+                      setOpen={setOpen}
+                    />
                   )}
                 </Fragment>
               ))}

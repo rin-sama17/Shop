@@ -18,6 +18,7 @@ import { SelectCategory, Spinner } from '../common'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import {
   selectFiltredProducts,
   filterProducts,
@@ -26,6 +27,7 @@ import {
 
 const ProductsFilter = ({ isLoading }) => {
   const { t } = useTranslation()
+  const { state } = useLocation()
 
   const { products } = useSelector(selectFiltredProducts)
   const expensiveProduct = useMemo(() => {
@@ -39,6 +41,15 @@ const ProductsFilter = ({ isLoading }) => {
   const [sortBy, setSortBy] = useState(0)
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    const urlCategory = state.category
+    if (urlCategory) {
+      dispatch(filterProducts({ urlCategory, value, sortBy }))
+      setCategory(urlCategory)
+    }
+    console.log(state, urlCategory, category)
+  }, [state.category])
 
   useEffect(() => {
     dispatch(filterProducts({ category, value, sortBy }))

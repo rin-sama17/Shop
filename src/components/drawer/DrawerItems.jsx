@@ -32,7 +32,7 @@ const DrawerItems = ({ setOpen }) => {
           </Typography>
         </Button>
       ))}
-      <DrawerCategories />
+      <DrawerCategories setOpen={setOpen} />
     </Box>
   )
 }

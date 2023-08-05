@@ -9,7 +9,7 @@ import { selectAllCategories } from '../../reducers/categorySlice'
 import CategoriesContent from './CategoriesContent'
 import CategoryTabs from './CategotiesTab'
 
-const CategoriesPopover = () => {
+const CategoriesPopover = ({ setOpen }) => {
   const categories = useSelector(selectAllCategories)
   const [pageNumber, setPageNumber] = useState(0)
   const tabs = categories.filter((c) => c.category_id === null)
@@ -44,7 +44,7 @@ const CategoriesPopover = () => {
             name="categories-tab"
             index={index}
           >
-            <CategoriesContent parent={parent} />
+            <CategoriesContent parent={parent} setOpen={setOpen} />
           </Page>
         ))}
       </Grid>

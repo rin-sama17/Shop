@@ -52,7 +52,7 @@ export default function ShowCtegories() {
                   overflowY: 'scroll',
                 }}
               >
-                <CategoriesPopover />
+                <CategoriesPopover setOpen={setOpen} />
               </Card>
             </Box>
           </Box>
