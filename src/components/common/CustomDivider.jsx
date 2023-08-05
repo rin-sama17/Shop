@@ -6,6 +6,7 @@ const CustomDivider = ({ label, color, ...props }) => {
   return (
     <Box
       sx={{
+        width: 1,
         mt: 2,
         p: 1,
       }}
