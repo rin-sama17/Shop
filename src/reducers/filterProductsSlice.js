@@ -1,5 +1,4 @@
 import {
-    createEntityAdapter,
     createAsyncThunk,
     createSlice,
 } from '@reduxjs/toolkit';
@@ -66,12 +65,14 @@ const filtredProductSlice = createSlice({
 
     extraReducers: {
         [fetchFilterProduct.fulfilled]: (state, action) => {
+            const allProducts = action.payload.filter(p => p.status != 0);
             state.isSuccess = true;
-            state.products = action.payload;
-            state.sortedProducts = action.payload;
 
-            const newProducts = action.payload?.sort((a, b) => a.created_at?.localeCompare(b.created_at)).slice(0, 10);
-            const discountedProducts = action.payload?.filter((p) => p.discount).slice(0, 10);
+            state.products = allProducts;
+            state.sortedProducts = allProducts;
+
+            const newProducts = allProducts?.sort((a, b) => a.created_at?.localeCompare(b.created_at)).slice(0, 10);
+            const discountedProducts = allProducts?.filter((p) => p.discount).slice(0, 10);
 
             state.newProducts = newProducts;
             state.discountedProducts = discountedProducts;

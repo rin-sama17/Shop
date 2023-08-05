@@ -36,8 +36,10 @@ const searchSlice = createSlice({
     extraReducers: {
         [fetchSearchResult.pending]: state => { state.loading = true; },
         [fetchSearchResult.fulfilled]: (state, action) => {
+
+            const filtredResult = action.payload.filter(res => res.status != 0);
             state.loading = false;
-            searchAdaptor.setAll(state, action.payload);
+            searchAdaptor.setAll(state, filtredResult);
         },
     }
 });
