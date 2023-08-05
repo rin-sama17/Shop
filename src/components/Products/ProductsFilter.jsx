@@ -45,10 +45,8 @@ const ProductsFilter = ({ isLoading }) => {
   useEffect(() => {
     const urlCategory = state.category
     if (urlCategory) {
-      dispatch(filterProducts({ urlCategory, value, sortBy }))
       setCategory(urlCategory)
     }
-    console.log(state, urlCategory, category)
   }, [state.category])
 
   useEffect(() => {
