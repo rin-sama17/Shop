@@ -9,7 +9,7 @@ import {
   Select,
   OutlinedInput,
   MenuItem,
-  Stack,
+  Chip,
 } from '@mui/material'
 
 import { toRial } from '../../helpers'
@@ -38,9 +38,16 @@ const ProductsFilter = ({ isLoading }) => {
 
   const [value, setValue] = useState([1, expensiveProduct])
   const [category, setCategory] = useState(null)
+  const [tag, setTag] = useState(null)
   const [sortBy, setSortBy] = useState(0)
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (state?.tag) {
+      setTag(state.tag)
+    }
+  }, [])
 
   useEffect(() => {
     if (state?.category) {
@@ -49,8 +56,8 @@ const ProductsFilter = ({ isLoading }) => {
   }, [state])
 
   useEffect(() => {
-    dispatch(filterProducts({ category, value, sortBy }))
-  }, [category, value, sortBy])
+    dispatch(filterProducts({ category, value, sortBy, tag: tag?.id }))
+  }, [category, value, sortBy, tag, products])
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -142,6 +149,23 @@ const ProductsFilter = ({ isLoading }) => {
           {t('از')} {toRial(value[0])} {t('تا')} {toRial(value[1])} {t('تومان')}
         </Typography>
       </Grid>
+      {tag && (
+        <Box sx={{ display: 'flex', mt: 1 }}>
+          <Typography
+            color="text.secondary"
+            variant="subtitle2"
+            sx={{ mr: 1 }}
+            gutterBottom
+          >
+            {t('جستجو بر اساس تگ')}:
+          </Typography>
+          <Chip
+            label={tag.name}
+            variant="outlined"
+            onDelete={() => setTag(null)}
+          />
+        </Box>
+      )}
     </Grid>
   )
 }

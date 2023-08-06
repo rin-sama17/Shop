@@ -19,9 +19,9 @@ const sliderFieldsData = (formik, type) => {
       sm: 12,
       name: 'description',
       formik,
-      disabled: Boolean(type === 0),
+      disabled: Boolean(type == 0),
       helperText:
-        type === 0 ? t('تنها در اسلایدر اینه ای قابل استفاده است') : null,
+        type == 0 ? t('تنها در اسلایدر اینه ای قابل استفاده است') : null,
 
       label: 'توضیحات',
       multiline: true,

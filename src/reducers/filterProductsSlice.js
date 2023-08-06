@@ -32,7 +32,7 @@ const filtredProductSlice = createSlice({
     initialState,
     reducers: {
         filterProducts: (state, action) => {
-            const { category, value, sortBy } = action.payload;
+            const { category, value, sortBy, tag } = action.payload;
             console.log(action.payload);
             let sortedItems;
             if (sortBy === 0) {
@@ -47,8 +47,13 @@ const filtredProductSlice = createSlice({
                 sortedItems = state.products.sort((a, b) => Number(b.price) - Number(a.price));
             }
             const filteredProducts = sortedItems?.filter((product) => {
+                const productTag_ids = product.tags?.map(tag => tag.id);
+                console.log(productTag_ids, tag);
                 if (value[0] <= Number(product.price) && Number(product.price) <= value[1]) {
                     if (category && product.category_id !== category) {
+                        return false;
+                    }
+                    if (tag && !productTag_ids.includes(tag)) {
                         return false;
                     }
                     return true;

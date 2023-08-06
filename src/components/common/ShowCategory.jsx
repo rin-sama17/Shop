@@ -2,11 +2,9 @@ import { Typography, Box, Button } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { useGetCategoryQuery } from '../../api'
 import { selectCategoryById } from '../../reducers/categorySlice'
-import Spinner from './Spinner'
 
-const ShowCategory = ({ categoryId, tags }) => {
+const ShowCategory = ({ categoryId, tags, isProduct }) => {
   const { t } = useTranslation()
   const category = useSelector((state) => selectCategoryById(state, categoryId))
 
@@ -22,7 +20,8 @@ const ShowCategory = ({ categoryId, tags }) => {
           {t('دسته بندی')}:
           <Button
             component={Link}
-            to={`/search/${category.name}`}
+            to={`/products`}
+            state={{ category: category.id }}
             color="secondary"
             sx={{ ml: 1 }}
             size="small"
@@ -43,7 +42,8 @@ const ShowCategory = ({ categoryId, tags }) => {
             <Box key={index}>
               <Typography
                 component={Link}
-                to={`/search/${tag.name}`}
+                to={`/products`}
+                state={{ tag: { name: tag.name, id: tag.id } }}
                 color="secondary"
                 variant="caption"
                 sx={{ mx: 0.5 }}
