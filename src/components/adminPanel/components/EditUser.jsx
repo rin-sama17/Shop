@@ -9,6 +9,7 @@ import { fetchRoles, selectAllRoles } from '../../../reducers/roleSlice'
 import {
   editUser,
   roleIdAdded,
+  roleIdsAdded,
   roleIdDeleted,
   roleIdsCleared,
   rolesIdFinded,
@@ -16,6 +17,7 @@ import {
 } from '../../../reducers/userSlice'
 import { CustomModal, CustomForm } from '../../common'
 import { userFieldsData } from '../../fieldsData'
+import { selectAll } from './'
 
 const handleCheck = (dispatch, roleId) => (e) => {
   if (e.target.checked === true) {
@@ -30,6 +32,7 @@ const EditUser = ({ user }) => {
   const dispatch = useDispatch()
 
   const roles = useSelector(selectAllRoles)
+  const roleIds = roles.map((role) => role.id)
   const userRoleIds = useSelector(selectRoleIds)
   const lang = useSelector(selectLang)
 
@@ -57,16 +60,26 @@ const EditUser = ({ user }) => {
 
   const fields = userFieldsData(formik)
   const extraFields = useMemo(() => {
-    return roles?.map((role) => ({
+    const selectAllField = selectAll({
+      allItems: roleIds,
+      values: userRoleIds,
+      setFnc: roleIdsAdded,
+      clearFunc: roleIdsCleared,
+    })
+    const roleFields = roles?.map((role) => ({
       xs: 3,
       checkbox: true,
+      checked: Boolean(userRoleIds.includes(role.id)),
+
       formik,
       name: role.name,
       customLabel: role.name,
       defaultChecked: userRoleIds.includes(role.id),
       onChange: handleCheck(dispatch, role.id),
     }))
+    return [selectAllField, ...roleFields]
   }, [roles, userRoleIds])
+
   return (
     <>
       <GridActionsCellItem

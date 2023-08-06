@@ -96,6 +96,10 @@ const roleSlice = createSlice({
     reducers: {
         premissionIdAdded: (state, action) => {
             state.premission_id.push(action.payload);
+
+        },
+        premissionIdsAdded: (state, action) => {
+            state.premission_id = action.payload;
         },
         premissionIdDeleted: (state, action) => {
             const premissionIndex = state.premission_id.findIndex(p => p === action.payload);
@@ -140,5 +144,5 @@ export const {
 export const selectRoleDetails = state => state.role;
 
 export const selectPremission_id = state => state.role.premission_id;
-export const { premissionIdDeleted, premissionIdAdded, premissionIdsCleared, premissionsIdFinded } = roleSlice.actions;
+export const { premissionIdDeleted, premissionIdAdded, premissionIdsCleared, premissionsIdFinded, premissionIdsAdded } = roleSlice.actions;
 export default roleSlice.reducer;

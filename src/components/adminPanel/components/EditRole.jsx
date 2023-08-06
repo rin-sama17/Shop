@@ -8,6 +8,7 @@ import { selectAllPremissions } from '../../../reducers/premissionSlice'
 import {
   editRole,
   premissionIdAdded,
+  premissionIdsAdded,
   premissionIdDeleted,
   premissionIdsCleared,
   premissionsIdFinded,
@@ -16,14 +17,7 @@ import {
 import { CustomModal, CustomForm } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
 import { selectLang } from '../../../reducers/langSlice'
-
-const handleCheck = (dispatch, premissionId) => (e) => {
-  if (e.target.checked === true) {
-    dispatch(premissionIdAdded(premissionId))
-  } else {
-    dispatch(premissionIdDeleted(premissionId))
-  }
-}
+import { selectAll } from '.'
 
 const EditRole = ({ role }) => {
   const [open, setOpen] = useState(false)
@@ -31,7 +25,17 @@ const EditRole = ({ role }) => {
 
   const rolePremissions = useSelector(selectPremission_id)
   const allPremissions = useSelector(selectAllPremissions)
+  const allPremissionIds = allPremissions.map((p) => p.id)
+
   const lang = useSelector(selectLang)
+
+  const handleCheck = (e, premissionId) => {
+    if (e.target.checked === true) {
+      dispatch(premissionIdAdded(premissionId))
+    } else {
+      dispatch(premissionIdDeleted(premissionId))
+    }
+  }
 
   useEffect(() => {
     if (open) {
@@ -53,17 +57,28 @@ const EditRole = ({ role }) => {
     },
   })
   const fields = useMemo(() => roleFieldsData(formik), [formik])
+
   const extraFields = useMemo(() => {
-    return allPremissions?.map((premission) => ({
+    const selectAllField = selectAll({
+      allItems: allPremissionIds,
+      values: rolePremissions,
+      setFnc: premissionIdsAdded,
+      clearFunc: premissionIdsCleared,
+    })
+    const chechBoxs = allPremissions?.map((premission) => ({
       xs: 3,
       checkbox: true,
+      checked: Boolean(rolePremissions.includes(premission.id)),
       formik,
       name: premission.name,
       customLabel: premission.name,
       defaultChecked: rolePremissions.includes(premission.id),
-      onChange: handleCheck(dispatch, premission.id),
+      onChange: (e) => handleCheck(e, premission.id),
     }))
-  }, [rolePremissions, dispatch, open])
+
+    return [selectAllField, ...chechBoxs]
+  }, [allPremissionIds, rolePremissions])
+
   return (
     <>
       <GridActionsCellItem

@@ -89,7 +89,7 @@ const CustomFields = ({
   const [value, setValue] = useState()
   const dispatch = useDispatch()
   const { t } = useTranslation()
-  const fieldValue = async ? formik.values[`${name}`] : value
+  const fieldValue = async ? formik?.values[`${name}`] : value
 
   if (submit === true) {
     return (
@@ -121,19 +121,19 @@ const CustomFields = ({
     )
   }
   useEffect(() => {
-    setValue(formik.values[`${name}`])
+    setValue(formik?.values[`${name}`])
   }, [])
 
   useEffect(() => {
-    if (formik.values[`${name}`] && formik.values[`${name}`] === '') {
+    if (formik?.values[`${name}`] && formik?.values[`${name}`] === '') {
       setValue('')
     }
-  }, [formik.values[`${name}`]])
+  }, [formik?.values[`${name}`]])
   const [showPassword, setShowPassword] = useState(false)
 
   const handleChange = (e) => {
     if (async) {
-      formik.handleChange(e, e.target.value)
+      formik?.handleChange(e, e.target.value)
     } else {
       setValue(e.target.value)
     }
@@ -141,13 +141,13 @@ const CustomFields = ({
   const handleBlur = () => {
     if (phone) {
       const numberedPhone = fieldValue.split(' ').join('')
-      formik.setFieldValue(name, numberedPhone)
+      formik?.setFieldValue(name, numberedPhone)
     } else if (price) {
       const numbredPrice = Number(value.split(',').join(''))
-      formik.setFieldValue(name, numbredPrice)
+      formik?.setFieldValue(name, numbredPrice)
     } else if (!async) {
       {
-        formik.setFieldValue(name, value)
+        formik?.setFieldValue(name, value)
       }
     }
   }
@@ -179,7 +179,7 @@ const CustomFields = ({
         onBlur={handleBlur}
         onChange={handleChange}
         value={fieldValue}
-        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+        error={Boolean(formik?.touched[`${name}`] && formik?.errors[`${name}`])}
         sx={{ direction: lang != 'en' ? 'rtl' : 'ltr', ...fieldColor }}
         format="#### ### ####"
         mask="_"
@@ -197,7 +197,7 @@ const CustomFields = ({
         size="small"
         valueIsNumericString={true}
         name={name}
-        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+        error={Boolean(formik?.touched[`${name}`] && formik?.errors[`${name}`])}
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -222,7 +222,9 @@ const CustomFields = ({
           value={fieldValue}
           onChange={handleChange}
           onBlur={handleBlur}
-          error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+          error={Boolean(
+            formik?.touched[`${name}`] && formik?.errors[`${name}`],
+          )}
           type={showPassword ? 'text' : 'password'}
           size="small"
           endAdornment={
@@ -255,13 +257,13 @@ const CustomFields = ({
         fullWidth
         size="small"
         sx={fieldColor}
-        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+        error={Boolean(formik?.touched[`${name}`] && formik?.errors[`${name}`])}
       >
         <InputLabel id="category-label">{t('دسته بندی ها')}</InputLabel>
         <Select
           name={name}
-          value={formik.values[`${name}`]}
-          onChange={formik.handleChange}
+          value={formik?.values[`${name}`]}
+          onChange={formik?.handleChange}
           labelId="category-label"
           input={<OutlinedInput label={t('دسته بندی ها')} />}
           MenuProps={{
@@ -305,7 +307,7 @@ const CustomFields = ({
         fullWidth
         size="small"
         sx={fieldColor}
-        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+        error={Boolean(formik?.touched[`${name}`] && formik?.errors[`${name}`])}
       >
         <InputLabel id="select-tag">{t('تگ')}</InputLabel>
         <Select
@@ -343,7 +345,7 @@ const CustomFields = ({
       <TextEditor
         formik={formik}
         name={name}
-        value={formik.values[`${name}`]}
+        value={formik?.values[`${name}`]}
       />
     )
   } else {
@@ -353,7 +355,7 @@ const CustomFields = ({
         fullWidth
         size="small"
         name={name}
-        error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
+        error={Boolean(formik?.touched[`${name}`] && formik?.errors[`${name}`])}
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}

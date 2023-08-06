@@ -97,6 +97,9 @@ const userSlice = createSlice({
     premissionIdAdded: (state, action) => {
       state.premission_id.push(action.payload);
     },
+    premissionIdsAdded: (state, action) => {
+      state.premission_id = action.payload;
+    },
     premissionIdDeleted: (state, action) => {
       const premissionIndex = state.premission_id.findIndex(p => p === action.payload);
       state.premission_id.splice(premissionIndex, 1);
@@ -114,6 +117,9 @@ const userSlice = createSlice({
     },
     roleIdAdded: (state, action) => {
       state.roles.push(action.payload);
+    },
+    roleIdsAdded: (state, action) => {
+      state.roles = action.payload;
     },
     roleIdDeleted: (state, action) => {
       const roleIndex = state.roles.findIndex(p => p === action.payload);
@@ -157,6 +163,6 @@ export const selectPremission_id = state => state.user.premission_id;
 
 export const selectUserDetails = state => state.user;
 
-export const { premissionIdDeleted, premissionIdAdded, premissionIdsCleared, premissionsIdFinded, roleIdDeleted, roleIdAdded, roleIdsCleared, rolesIdFinded } = userSlice.actions;
+export const { premissionIdDeleted, premissionIdAdded, premissionIdsAdded, premissionIdsCleared, premissionsIdFinded, roleIdDeleted, roleIdAdded, roleIdsAdded, roleIdsCleared, rolesIdFinded } = userSlice.actions;
 
 export default userSlice.reducer;

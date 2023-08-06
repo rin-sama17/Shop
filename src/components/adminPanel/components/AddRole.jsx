@@ -6,6 +6,7 @@ import { selectAllPremissions } from '../../../reducers/premissionSlice'
 import {
   addRole,
   premissionIdAdded,
+  premissionIdsAdded,
   premissionIdDeleted,
   premissionIdsCleared,
   selectPremission_id,
@@ -14,13 +15,14 @@ import {
 
 import { CustomForm, CustomModal } from '../../common'
 import { roleFieldsData } from '../../fieldsData'
-import { AddBtn } from '.'
+import { AddBtn, selectAll } from '.'
 
 const AddRole = () => {
   const [open, setOpen] = useState(false)
 
   const dispatch = useDispatch()
   const premissions = useSelector(selectAllPremissions)
+  const allPremissionIds = premissions.map((p) => p.id)
   const premissionIds = useSelector(selectPremission_id)
   const { access } = useSelector(selectRoleDetails)
   const lang = useSelector(selectLang)
@@ -53,18 +55,24 @@ const AddRole = () => {
     },
   })
   const fields = roleFieldsData(formik)
-  const extraFields = useMemo(
-    () =>
-      premissions?.map((premission) => ({
-        xs: 3,
-        checkbox: true,
-        formik,
-        name: premission.name,
-        customLabel: premission.name,
-        onChange: (e) => handleCheck(e, premission.id),
-      })),
-    [premissions],
-  )
+  const extraFields = useMemo(() => {
+    const selectAllField = selectAll({
+      allItems: allPremissionIds,
+      values: premissionIds,
+      setFnc: premissionIdsAdded,
+      clearFunc: premissionIdsCleared,
+    })
+    const chechBoxs = premissions?.map((premission) => ({
+      xs: 3,
+      checkbox: true,
+      checked: Boolean(premissionIds.includes(premission.id)),
+      formik,
+      name: premission.name,
+      customLabel: premission.name,
+      onChange: (e) => handleCheck(e, premission.id),
+    }))
+    return [selectAllField, ...chechBoxs]
+  }, [premissions, premissionIds])
   return (
     <>
       <AddBtn setOpen={setOpen} title="افزودن نقش جدید" access={access} />

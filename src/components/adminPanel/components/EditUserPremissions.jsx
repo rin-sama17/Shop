@@ -8,6 +8,7 @@ import { selectAllPremissions } from '../../../reducers/premissionSlice'
 import {
   editUser,
   premissionIdAdded,
+  premissionIdsAdded,
   premissionIdDeleted,
   premissionIdsCleared,
   premissionsIdFinded,
@@ -15,6 +16,7 @@ import {
 } from '../../../reducers/userSlice'
 import { CustomModal, CustomForm } from '../../common'
 import { selectLang } from '../../../reducers/langSlice'
+import { selectAll } from './'
 
 const handleCheck = (dispatch, premissionId) => (e) => {
   if (e.target.checked === true) {
@@ -30,6 +32,7 @@ const EditUserPremissions = ({ user }) => {
 
   const userPremissions = useSelector(selectPremission_id)
   const allPremissions = useSelector(selectAllPremissions)
+  const allPremissionIds = allPremissions.map((p) => p.id)
   const lang = useSelector(selectLang)
 
   useEffect(() => {
@@ -53,10 +56,18 @@ const EditUserPremissions = ({ user }) => {
       dispatch(editUser({ values: newUser, setOpen, resetForm }))
     },
   })
+
   const extraFields = useMemo(() => {
+    const selectAllField = selectAll({
+      allItems: allPremissionIds,
+      values: userPremissions,
+      setFnc: premissionIdsAdded,
+      clearFunc: premissionIdsCleared,
+    })
     const premissionFields = allPremissions?.map((premission) => ({
       xs: 3,
       checkbox: true,
+      checked: Boolean(userPremissions.includes(premission.id)),
       formik,
       name: premission.name,
       customLabel: premission.name,
@@ -64,13 +75,15 @@ const EditUserPremissions = ({ user }) => {
       onChange: handleCheck(dispatch, premission.id),
     }))
     return [
+      selectAllField,
       ...premissionFields,
       {
         submit: true,
         customLabel: 'ثبت',
       },
     ]
-  }, [userPremissions, dispatch, open])
+  }, [allPremissionIds, userPremissions])
+
   return (
     <>
       <GridActionsCellItem

@@ -26,3 +26,4 @@ export { default as NoAccessError } from "./NoAccessError";
 export { default as AddBtn } from "./AddBtn";
 export { default as AddHeader } from "./AddHeader";
 export { default as EditHeader } from "./EditHeader";
+export { default as selectAll } from "./selectAll";

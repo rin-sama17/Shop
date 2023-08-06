@@ -19,8 +19,8 @@ const CustomModal = ({ open, setOpen, width, children, lock }) => {
           width: width ? width : '90%',
           p: 2,
           bgcolor: 'bgcolor.main',
-          maxHeight: '80vh',
-          overflowY: 'scroll',
+          maxHeight: '90vh',
+          overflowY: 'auto',
         }}
       >
         {children}
