@@ -67,6 +67,7 @@ const ProductsFilter = ({ isLoading }) => {
     setCategory('')
     setValue([1, expensiveProduct])
     setSortBy(0)
+    setTag(null)
     dispatch(resetProducts())
   }
 
@@ -150,7 +151,7 @@ const ProductsFilter = ({ isLoading }) => {
         </Typography>
       </Grid>
       {tag && (
-        <Box sx={{ display: 'flex', mt: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
           <Typography
             color="text.secondary"
             variant="subtitle2"
