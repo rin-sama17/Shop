@@ -83,11 +83,13 @@ const CustomFields = ({
   sm,
   md,
   customLabel,
+  async,
   ...props
 }) => {
   const [value, setValue] = useState()
   const dispatch = useDispatch()
   const { t } = useTranslation()
+  const fieldValue = async ? formik.values[`${name}`] : value
 
   if (submit === true) {
     return (
@@ -129,16 +131,29 @@ const CustomFields = ({
   }, [formik.values[`${name}`]])
   const [showPassword, setShowPassword] = useState(false)
 
-  const handleChange = (e) => setValue(e.target.value)
-  const handleBlur = () => {
-    if (phone) {
-      const numberedPhone = value.split(' ').join('')
-      formik.setFieldValue(name, numberedPhone)
-    } else if (price) {
-      const numbredPrice = Number(value.split(',').join(''))
-      formik.setFieldValue(name, numbredPrice)
+  const handleChange = (e) => {
+    if (async) {
+      if (phone) {
+        const numberedPhone = fieldValue.split(' ').join('')
+        formik.setFieldValue(name, numberedPhone)
+      } else {
+        formik.handleChange(e, e.target.value)
+      }
     } else {
-      formik.setFieldValue(name, value)
+      setValue(e.target.value)
+    }
+  }
+  const handleBlur = () => {
+    if (!async) {
+      if (phone) {
+        const numberedPhone = fieldValue.split(' ').join('')
+        formik.setFieldValue(name, numberedPhone)
+      } else if (price) {
+        const numbredPrice = Number(value.split(',').join(''))
+        formik.setFieldValue(name, numbredPrice)
+      } else {
+        formik.setFieldValue(name, value)
+      }
     }
   }
   let content
@@ -168,7 +183,7 @@ const CustomFields = ({
         name={name}
         onBlur={handleBlur}
         onChange={handleChange}
-        value={value}
+        value={fieldValue}
         error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}
         sx={{ direction: lang != 'en' ? 'rtl' : 'ltr', ...fieldColor }}
         format="#### ### ####"
@@ -209,7 +224,7 @@ const CustomFields = ({
         <OutlinedInput
           id="pwd"
           name={name}
-          value={value}
+          value={fieldValue}
           onChange={handleChange}
           onBlur={handleBlur}
           error={Boolean(formik.touched[`${name}`] && formik.errors[`${name}`])}

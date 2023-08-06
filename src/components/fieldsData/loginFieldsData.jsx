@@ -2,6 +2,7 @@ export const loginFieldsData = (formik) => {
   return [
     {
       phone: true,
+      async: true,
       name: 'phone',
 
       formik,
@@ -10,6 +11,8 @@ export const loginFieldsData = (formik) => {
     {
       md: 6,
       pwd: true,
+      async: true,
+
       formik,
       name: 'password',
     },
