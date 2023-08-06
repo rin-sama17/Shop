@@ -4,8 +4,9 @@ import { ShowCategory, ShowTime, ShowAuthor } from '../../common'
 const PostIntroduction = ({ post }) => {
   return (
     <>
-      <Box sx={{ display: 'flex' }}>
+      <Box>
         <ShowAuthor userId={post.user_id} />
+        <ShowCategory categoryId={post.category_id} tags={post.tags} />
       </Box>
       <Typography color="text.primary" variant="h6" sx={{ my: 2 }}>
         {post.name}
