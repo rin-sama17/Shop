@@ -6,7 +6,7 @@ const PostIntroduction = ({ post }) => {
     <>
       <Box>
         <ShowAuthor userId={post.user_id} />
-        <ShowCategory categoryId={post.category_id} tags={post.tags} />
+        <ShowCategory categoryId={post.category_id} tags={post.tags} isPost />
       </Box>
       <Typography color="text.primary" variant="h6" sx={{ my: 2 }}>
         {post.name}

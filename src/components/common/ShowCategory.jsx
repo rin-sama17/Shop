@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { selectCategoryById } from '../../reducers/categorySlice'
 
-const ShowCategory = ({ categoryId, tags, isProduct }) => {
+const ShowCategory = ({ categoryId, tags, isPost }) => {
   const { t } = useTranslation()
   const category = useSelector((state) => selectCategoryById(state, categoryId))
 
@@ -19,7 +19,7 @@ const ShowCategory = ({ categoryId, tags, isProduct }) => {
         >
           {t('دسته بندی')}:
           <Button
-            component={Link}
+            component={isPost ? null : Link}
             to={`/products`}
             state={{ category: category.id }}
             color="secondary"
@@ -41,7 +41,7 @@ const ShowCategory = ({ categoryId, tags, isProduct }) => {
           {tags.map((tag, index) => (
             <Box key={index}>
               <Typography
-                component={Link}
+                component={isPost ? null : Link}
                 to={`/products`}
                 state={{ tag: { name: tag.name, id: tag.id } }}
                 color="secondary"
