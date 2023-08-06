@@ -23,7 +23,7 @@ const DrawerContent = ({ setOpen }) => {
         variant="h5"
         sx={{ ml: 1, color: 'title.dark' }}
       >
-        {t('فروشگاه من')}
+        {t('فرش لبخند')}
       </Typography>
       <Divider sx={{ color: 'bgcolor.dark', my: 2 }} />
 

@@ -56,7 +56,7 @@ const NavContent = ({ setDrawerOpen }) => {
             variant="h5"
             sx={{ ml: 1, color: 'title.light' }}
           >
-            {t('فروشگاه من')}
+            {t('فرش لبخند')}
           </Typography>
         </Box>
 

@@ -54,7 +54,7 @@ const Agencies = () => {
             </Typography>
             <Typography variant="caption" color="text.secondary">
               {t(
-                'نمایندگان فروشگاه من 24 ساعته در تلاشند تا رضایت کامل مشتریان خود را جلب کنند',
+                'نمایندگان فرش لبخند 24 ساعته در تلاشند تا رضایت کامل مشتریان خود را جلب کنند',
               )}
             </Typography>
             <Typography

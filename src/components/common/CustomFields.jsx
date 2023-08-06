@@ -133,25 +133,20 @@ const CustomFields = ({
 
   const handleChange = (e) => {
     if (async) {
-      if (phone) {
-        const numberedPhone = fieldValue.split(' ').join('')
-        formik.setFieldValue(name, numberedPhone)
-      } else {
-        formik.handleChange(e, e.target.value)
-      }
+      formik.handleChange(e, e.target.value)
     } else {
       setValue(e.target.value)
     }
   }
   const handleBlur = () => {
-    if (!async) {
-      if (phone) {
-        const numberedPhone = fieldValue.split(' ').join('')
-        formik.setFieldValue(name, numberedPhone)
-      } else if (price) {
-        const numbredPrice = Number(value.split(',').join(''))
-        formik.setFieldValue(name, numbredPrice)
-      } else {
+    if (phone) {
+      const numberedPhone = fieldValue.split(' ').join('')
+      formik.setFieldValue(name, numberedPhone)
+    } else if (price) {
+      const numbredPrice = Number(value.split(',').join(''))
+      formik.setFieldValue(name, numbredPrice)
+    } else if (!async) {
+      {
         formik.setFieldValue(name, value)
       }
     }
