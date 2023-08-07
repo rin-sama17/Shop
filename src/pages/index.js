@@ -12,5 +12,6 @@ export { default as ShowAgency } from "./ShowAgency";
 export { default as RouteProtection } from "./RouteProtection";
 export { default as AuthorPage } from "./AuthorPage";
 export { default as ContactUs } from "./ContactUs";
+export { default as AboutUs } from "./AboutUs";
 
 

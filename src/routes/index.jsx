@@ -12,6 +12,7 @@ import {
   ShowAgency,
   ContactUs,
   AuthorPage,
+  AboutUs,
 } from '../pages'
 import ErrorElement from './ErrorElement'
 export const router = createBrowserRouter([
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: '/contact-us',
         element: <ContactUs />,
+      },
+      {
+        path: '/about-us',
+        element: <AboutUs />,
       },
     ],
   },

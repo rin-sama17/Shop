@@ -10,6 +10,9 @@ import {
   FmdGood,
 } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
+import { PatternFormat } from 'react-number-format'
+import { useSelector } from 'react-redux'
+import { selectLang } from '../../reducers/langSlice'
 
 const socials = [
   { icon: <Instagram />, to: 'https://t.me/rin_sama', color: 'primary' },
@@ -23,13 +26,9 @@ const routes = [
   { name: 'نمایندگی ها', to: '/agencies' },
   { name: 'درباره ما', to: 'about-us' },
 ]
-
-const contacts = [
-  { name: 'نازی اباد - میدان ابوذر خیابان مدائن پلاک 205', icon: <FmdGood /> },
-  { name: '+21 5539 0048', icon: <LocalPhone /> },
-]
 const FooterContent = () => {
   const { t } = useTranslation()
+  const lang = useSelector(selectLang)
 
   return (
     <Container maxWidth="lg">
@@ -108,16 +107,30 @@ const FooterContent = () => {
           <Typography variant="h6" sx={{ mb: 2 }}>
             {t('تماس با ما')}
           </Typography>
-          {contacts.map((contact, index) => (
-            <Box key={index} sx={{ display: 'flex', mb: 2 }}>
-              {contact.icon}
-              <Typography
-                sx={{ direction: 'inherit', ml: 1, color: 'whtesmoke' }}
-              >
-                {contact.name}
-              </Typography>
-            </Box>
-          ))}
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <FmdGood />
+            <Typography
+              sx={{ direction: 'inherit', ml: 1, color: 'whtesmoke' }}
+            >
+              آران و بیدگل شهرک صنعتی سلیمان صباحی بلوار گارگر فرش لبخند
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <LocalPhone />
+            <Typography
+              sx={{
+                direction: lang != 'en' ? 'rtl' : 'ltr',
+                ml: 1,
+                color: 'whtesmoke',
+              }}
+            >
+              <PatternFormat
+                displayType="text"
+                value={2154750998}
+                format="021 #### ####"
+              />
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
     </Container>

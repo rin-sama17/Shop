@@ -75,12 +75,12 @@ const EditUserPremissions = ({ user }) => {
       onChange: handleCheck(dispatch, premission.id),
     }))
     return [
-      selectAllField,
-      ...premissionFields,
       {
         submit: true,
         customLabel: 'ثبت',
       },
+      selectAllField,
+      ...premissionFields,
     ]
   }, [allPremissionIds, userPremissions])
 

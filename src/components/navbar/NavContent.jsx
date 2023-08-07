@@ -16,7 +16,7 @@ import { bg } from '../../assets'
 import ShowCtegories from '../categories/ShowCtegories'
 import NavLang from './NavLang'
 import { useTranslation } from 'react-i18next'
-
+import { logo } from '../../assets'
 const buttons = [
   { name: 'نمایندگی', to: '/agencies' },
   { name: 'وبلاگ', to: '/posts' },
@@ -53,10 +53,10 @@ const NavContent = ({ setDrawerOpen }) => {
           <Typography
             component={Link}
             to="/"
-            variant="h5"
-            sx={{ ml: 1, color: 'title.light' }}
+            variant="h4"
+            sx={{ ml: 1, color: 'title.light', fontFamily: 'hamta' }}
           >
-            {t('فرش لبخند')}
+            فروشگاه لبخند
           </Typography>
         </Box>
 

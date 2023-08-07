@@ -7,32 +7,32 @@ import { Store } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
 
 const HomeDescription = () => {
-  const [index, setIndex] = useState(0)
+  // const [index, setIndex] = useState(0)
   const { t, i18n } = useTranslation()
-  const theme = useTheme()
-  const downMd = useMediaQuery(theme.breakpoints.down('sm'))
-  const nameEl = useRef(null)
-  const strings = ['محصولات متنوع', 'دسترسی راحت', 'پرداخت ایمن', 'تنوع بالا']
+  // const theme = useTheme()
+  // const downMd = useMediaQuery(theme.breakpoints.down('sm'))
+  // const nameEl = useRef(null)
+  // const strings = ['محصولات متنوع', 'دسترسی راحت', 'پرداخت ایمن', 'تنوع بالا']
 
-  useEffect(() => {
-    const typedName = new Typed(nameEl.current, {
-      strings: [t('فرش لبخند')],
-      typeSpeed: 1,
-      backSpeed: 20,
-      backDelay: 10,
-      showCursor: false,
-    })
+  // useEffect(() => {
+  //   const typedName = new Typed(nameEl.current, {
+  //     strings: [t('فرش لبخند')],
+  //     typeSpeed: 1,
+  //     backSpeed: 20,
+  //     backDelay: 10,
+  //     showCursor: false,
+  //   })
 
-    const intervalId = setInterval(() => setIndex((index) => index + 1), 3000)
-    return () => {
-      typedName.destroy()
-      clearTimeout(intervalId)
-    }
-  }, [t])
+  //   const intervalId = setInterval(() => setIndex((index) => index + 1), 3000)
+  //   return () => {
+  //     typedName.destroy()
+  //     clearTimeout(intervalId)
+  //   }
+  // }, [t])
 
   return (
     <>
-      <Typography
+      {/* <Typography
         variant="h4"
         ref={nameEl}
         color="text.primary"
@@ -65,7 +65,7 @@ const HomeDescription = () => {
         متریال یو ای دیزاین شده استروشگاه من یکلاراول است که با متریال یو ای
         دیزاین شده استروشگاه من یک فروشگاه ساخته شده با ری اکت و لاراول است که
         با متریال یو ای دتریال یو ای eeee
-      </Typography>
+      </Typography> */}
 
       <Button
         component={Link}

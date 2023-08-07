@@ -10,6 +10,17 @@
   font-display: swap;
 }
 @font-face {
+  font-family: 'hamta';
+  src: url('/fonts/Hamta.eot');
+  src: url('/fonts/Hamta.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Hamta.woff2') format('woff2'),
+    url('/fonts/Hamta.woff') format('woff'),
+    url('/fonts/Hamta.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: 'vazir';
   src: url('/fonts/Vazir.eot');
   src: url('/fonts/Vazir.eot?#iefix') format('embedded-opentype'),

@@ -11,15 +11,9 @@ import {
 
 import { useTranslation } from 'react-i18next'
 import Grid from '@mui/material/Unstable_Grid2'
-import { contactUs, eitaa, eitaaActive } from '../assets'
+import { contactUs, eitaaActive } from '../assets'
 import { Fragment } from 'react'
-import {
-  Instagram,
-  Telegram,
-  LinkedIn,
-  LocalPhone,
-  FmdGood,
-} from '@mui/icons-material'
+import { Instagram, Telegram, LinkedIn } from '@mui/icons-material'
 
 const chats = [
   {
@@ -50,10 +44,6 @@ const chats = [
   },
 ]
 
-const contacts = [
-  { name: 'نازی اباد - میدان ابوذر خیابان مدائن پلاک 205', icon: <FmdGood /> },
-  { name: '+21 5539 0048', icon: <LocalPhone /> },
-]
 const ContactUs = () => {
   const { t } = useTranslation()
   return (

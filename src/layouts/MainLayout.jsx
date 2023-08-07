@@ -39,7 +39,7 @@ const MainLayout = () => {
       <ThemeProvider theme={theme}>
         <HelmetProvider>
           <Helmet>
-            <title>فروشگاه فرش</title>
+            <title>فرش لبخند</title>
           </Helmet>{' '}
           <Box sx={{ direction: lang === 'en' && 'ltr' }}>
             <Navbar />

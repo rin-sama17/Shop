@@ -10,7 +10,7 @@ export const useTheme = () => {
     let theme = createTheme({
         direction: lang === "en" ? "ltr" : "rtl",
         typography: {
-            fontFamily: "tanha ,wazin"
+            fontFamily: "vazir, tanha ,wazin, hamta"
         },
         palette: {
             mode: "light",
