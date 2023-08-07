@@ -37,7 +37,7 @@ const AboutUs = () => {
       </Typography>
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
         <Typography color="text.secondary" variant="body1">
-          ادرس:
+          {t('ادرس')}:
         </Typography>
         <Typography sx={{ direction: 'inherit', ml: 1, color: 'whtesmoke' }}>
           آران و بیدگل شهرک صنعتی سلیمان صباحی بلوار گارگر فرش لبخند
@@ -45,7 +45,7 @@ const AboutUs = () => {
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
         <Typography color="text.secondary" variant="body1">
-          شماره تماس:
+          {t('شماره تماس:')}
         </Typography>
         <Typography
           sx={{
@@ -63,7 +63,7 @@ const AboutUs = () => {
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Typography color="text.secondary" variant="body1">
-          شبکه های اجتماعی:
+          {t('شبکه های اجتماعی:')}
         </Typography>
         <Box sx={{ mx: 1 }}>
           {socials.map((social, index) => (

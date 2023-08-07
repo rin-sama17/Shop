@@ -44,7 +44,6 @@ const AddProduct = () => {
         price: String(values.price),
         discount: Number(values.discount),
       }
-      console.log(newProduct)
       dispatch(
         addProduct({ values: newProduct, setOpen, resetForm, setErrors }),
       )

@@ -33,7 +33,6 @@ const filtredProductSlice = createSlice({
     reducers: {
         filterProducts: (state, action) => {
             const { category, value, sortBy, tag } = action.payload;
-            console.log(action.payload);
             let sortedItems;
             if (sortBy === 0) {
                 sortedItems = state.products;
@@ -48,7 +47,6 @@ const filtredProductSlice = createSlice({
             }
             const filteredProducts = sortedItems?.filter((product) => {
                 const productTag_ids = product.tags?.map(tag => tag.id);
-                console.log(productTag_ids, tag);
                 if (value[0] <= Number(product.price) && Number(product.price) <= value[1]) {
                     if (category && product.category_id !== category) {
                         return false;
