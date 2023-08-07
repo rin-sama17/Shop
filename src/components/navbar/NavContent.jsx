@@ -56,7 +56,7 @@ const NavContent = ({ setDrawerOpen }) => {
             variant="h4"
             sx={{ ml: 1, color: 'title.light', fontFamily: 'hamta' }}
           >
-            فروشگاه لبخند
+            فرش لبخند
           </Typography>
         </Box>
 
