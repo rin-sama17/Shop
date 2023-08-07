@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { CustomIconButton } from '../common'
 import { AdminPanelSettings, Logout, Person } from '@mui/icons-material'
-import { Divider, Typography, Button, Menu, MenuItem } from '@mui/material'
+import { Divider, Typography, Menu, MenuItem } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../reducers/authSlice'

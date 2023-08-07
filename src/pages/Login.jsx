@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { login, selectAuth } from '../reducers/authSlice'
 import { useNavigate } from 'react-router-dom'
 import LoginMenu from '../components/login/LoginMenu'
+import { selectLang } from '../reducers/langSlice'
 
 const Login = () => {
   const [open, setOpen] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const lang = useSelector(selectLang)
   const { token, userInfo } = useSelector(selectAuth)
 
   const contactFieldNames = {
@@ -21,7 +23,9 @@ const Login = () => {
   const formik = useFormik({
     initialValues: contactFieldNames,
     onSubmit: (values, { resetForm }) => {
-      dispatch(login({ values, setOpen, resetForm, navigate }))
+      dispatch(
+        login({ values: { ...values, lang }, setOpen, resetForm, navigate }),
+      )
     },
   })
 

@@ -50,7 +50,7 @@ const AddPremission = () => {
     }
     dispatch(
       addPremission({
-        values: { premission: arrayPremissions },
+        values: { premission: arrayPremissions, lang },
         setOpen,
         setErrors,
       }),

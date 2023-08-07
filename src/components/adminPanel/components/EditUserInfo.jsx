@@ -1,11 +1,13 @@
 import React, { useMemo } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { editUserInfo } from '../../../reducers/authSlice'
 import { userFieldsData } from '../../fieldsData'
 import { useFormik } from 'formik'
 import { CustomForm } from '../../common'
+import { selectLang } from '../../../reducers/langSlice'
 const EditUserInfo = ({ userInfo }) => {
   const dispatch = useDispatch()
+  const lang = useSelector(selectLang)
   const formik = useFormik({
     initialValues: userInfo,
     onSubmit: (values, { resetForm }) => {
@@ -38,6 +40,7 @@ const EditUserInfo = ({ userInfo }) => {
       } else {
         updatedUser = {
           ...values,
+          lang,
           roles: roleIds,
         }
       }

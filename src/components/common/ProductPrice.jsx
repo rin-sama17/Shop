@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { toRial } from '../../helpers'
 
 const ProductPrice = ({ price, discount, absolute }) => {
-  console.log('priiiiiiiiiiiiiiiiiiiiice', price, discount, absolute)
   const { t } = useTranslation()
   const theme = useTheme()
   const isXs = useMediaQuery(theme.breakpoints.only('xs'))

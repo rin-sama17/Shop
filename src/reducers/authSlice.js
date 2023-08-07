@@ -30,6 +30,7 @@ export const fetchUserInfo = createAsyncThunk(
 export const login = createAsyncThunk(
   'auth/login',
   async ({ values, setOpen, resetForm, navigate }) => {
+    console.log(values);
     try {
       const res = await userLogin(values);
       if (res.status === 200) {
@@ -93,7 +94,6 @@ const authSlice = createSlice({
   extraReducers: {
 
     [login.fulfilled]: (state, { payload }) => {
-      console.log(payload);
       state.token = payload.userData.token;
       state.userInfo = payload.userData.user;
       state.success = true;
