@@ -43,7 +43,7 @@ const Post = ({ postId }) => {
                 <CardMedia
                   component="img"
                   alt={post.name}
-                  image={`https://api.labkhand-carpet.ir/${post.image}`}
+                  image={`https://labkhand-carpet.ir/${post.image}`}
                   style={{
                     margin: 'auto',
                     width: '100%',

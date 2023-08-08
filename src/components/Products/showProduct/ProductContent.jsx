@@ -29,12 +29,12 @@ const ProductContent = ({ product }) => {
               smallImage: {
                 alt: 'Wristwatch by Versace',
                 isFluidWidth: true,
-                src: `https://api.labkhand-carpet.ir/${product.image}`,
+                src: `https://labkhand-carpet.ir/${product.image}`,
                 sizes:
                   '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px',
               },
               largeImage: {
-                src: `https://api.labkhand-carpet.ir/${product.image}`,
+                src: `https://labkhand-carpet.ir/${product.image}`,
                 width: 1426,
                 height: 2000,
               },

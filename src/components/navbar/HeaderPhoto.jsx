@@ -42,7 +42,7 @@ const HeaderPhoto = () => {
     >
       <CardMedia
         component="img"
-        image={`https://api.labkhand-carpet.ir/${headerPhoto.image}`}
+        image={`https://labkhand-carpet.ir/${headerPhoto.image}`}
         sx={{
           height: { xs: 25, sm: 40, md: 55 },
         }}
