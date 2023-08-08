@@ -13,7 +13,7 @@ const PostIntroduction = ({ post }) => {
       </Typography>
       <img
         alt={post.name}
-        src={`http://localhost:8000/${post.image}`}
+        src={`https://api.labkhand-carpet.ir/${post.image}`}
         style={{ margin: 'auto', width: '100%' }}
       />
       <Typography color="text.secondary" component="p" sx={{ my: 3 }}>
