@@ -18,7 +18,7 @@ const ImageUploader = ({ formik, name, color, width, md, aspect }) => {
 
   useEffect(() => {
     if (formik.values[`${name}`]) {
-      setPhotoURL(`https://labkhand-carpet.ir/${formik.values[`${name}`]}`)
+      setPhotoURL(`https://api.labkhand-carpet.ir/${formik.values[`${name}`]}`)
     }
   }, [])
 

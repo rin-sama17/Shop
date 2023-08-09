@@ -47,7 +47,7 @@ export const addProduct = createAsyncThunk(
                 return res.data.product;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
             handleErrors(error, setErrors);
         }
@@ -70,7 +70,7 @@ export const editProduct = createAsyncThunk(
                 return res.data.product;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },
@@ -86,7 +86,7 @@ export const deleteProduct = createAsyncThunk(
                 return productId;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },

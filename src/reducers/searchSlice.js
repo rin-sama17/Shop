@@ -22,7 +22,7 @@ export const fetchSearchResult = createAsyncThunk(
                 return res.data.product;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
 
     }

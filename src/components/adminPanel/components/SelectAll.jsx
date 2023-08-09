@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux'
 
 const selectAll = ({ allItems, values, setFnc, clearFunc }) => {
-  console.log(allItems, values, setFnc, clearFunc)
   const dispatch = useDispatch()
   const handleCheckAll = (e) => {
     if (e.target.checked === true) {

@@ -48,7 +48,7 @@ export const addTag = createAsyncThunk(
                 return res.data.tag;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
             handleErrors(error, setErrors);
         }
@@ -67,7 +67,7 @@ export const editTag = createAsyncThunk(
                 return res.data.tag;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },
@@ -83,7 +83,7 @@ export const deleteTag = createAsyncThunk(
                 return tagId;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },

@@ -47,7 +47,7 @@ export const addRole = createAsyncThunk(
                 return res.data.role;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
             handleErrors(error, setErrors);
         }
@@ -68,7 +68,7 @@ export const editRole = createAsyncThunk(
                 return res.data.role;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },
@@ -84,7 +84,7 @@ export const deleteRole = createAsyncThunk(
                 return roleId;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },

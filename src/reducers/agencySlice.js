@@ -47,7 +47,7 @@ export const addAgency = createAsyncThunk(
                 return res.data.data.agency;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
             handleErrors(error, setErrors);
         }
@@ -69,7 +69,7 @@ export const editAgency = createAsyncThunk(
                 return res.data.post;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },
@@ -85,7 +85,7 @@ export const deleteAgency = createAsyncThunk(
                 return discountId;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },

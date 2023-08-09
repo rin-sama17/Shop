@@ -22,7 +22,7 @@ export const fetchUserInfo = createAsyncThunk(
         return res.data.user;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 );
@@ -30,7 +30,6 @@ export const fetchUserInfo = createAsyncThunk(
 export const login = createAsyncThunk(
   'auth/login',
   async ({ values, setOpen, resetForm, navigate }) => {
-    console.log(values);
     try {
       const res = await userLogin(values);
       if (res.status === 200) {
@@ -41,7 +40,7 @@ export const login = createAsyncThunk(
         return { userData, navigate };
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
     }
   },
@@ -60,7 +59,7 @@ export const logout = createAsyncThunk(
 
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
     }
   },
@@ -79,7 +78,7 @@ export const editUserInfo = createAsyncThunk(
         return res.data.product;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
     }
   },
@@ -100,7 +99,6 @@ const authSlice = createSlice({
       state.loading = false;
       localStorage.setItem("token", payload.userData.token);
       payload.navigate("/admin-panel");
-      window.location.reload(false);
     },
     [login.pending]: (state) => {
       state.loading = true;

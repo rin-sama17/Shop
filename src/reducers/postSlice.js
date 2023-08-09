@@ -49,7 +49,7 @@ export const addPost = createAsyncThunk(
                 return res.data.data.post;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
             handleErrors(error, setErrors);
         }
@@ -71,7 +71,7 @@ export const editPost = createAsyncThunk(
                 return res.data.post;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },
@@ -87,7 +87,7 @@ export const deletePost = createAsyncThunk(
                 return postId;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },

@@ -47,7 +47,7 @@ export const addUser = createAsyncThunk(
         return res.data.user;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
       handleErrors(error, setErrors);
     }
@@ -68,7 +68,7 @@ export const editUser = createAsyncThunk(
         return res.data.product;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
     }
   },
@@ -84,7 +84,7 @@ export const deleteUser = createAsyncThunk(
         return userId;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
     }
   },

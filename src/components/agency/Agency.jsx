@@ -63,7 +63,7 @@ const Agency = ({ agencyId }) => {
                       borderColor: '#FB9D23',
                     }}
                     alt={agency.name}
-                    image={`https://labkhand-carpet.ir/${agency.image}`}
+                    image={`https://api.labkhand-carpet.ir/${agency.image}`}
                   />
                 </Grid>
                 <Grid

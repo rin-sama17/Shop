@@ -17,6 +17,11 @@ import {
   TagManagement,
 } from '../components/adminPanel/pages'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import { selectAuth } from '../reducers/authSlice'
 
 const pages = [
   <Dashboard />,
@@ -33,6 +38,18 @@ const pages = [
 
 const AdminPanel = () => {
   const [pageNumber, setPageNumber] = useState(0)
+  const navigate = useNavigate()
+  const { token } = useSelector(selectAuth)
+  const { t } = useTranslation()
+  useEffect(() => {
+    if (!token) {
+      navigate('/')
+      toast.error(t('شما به این صفحه دسترسی ندارید'), {
+        position: 'bottom-left',
+      })
+    }
+  }, [])
+
   return (
     <Grid
       container

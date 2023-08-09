@@ -59,7 +59,7 @@ export const addCategory = createAsyncThunk(
         return res.data.category;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
       handleErrors(error, setErrors);
     }
@@ -80,7 +80,7 @@ export const editCategory = createAsyncThunk(
         return res.data.category;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
     }
   },
@@ -96,7 +96,7 @@ export const deleteCategory = createAsyncThunk(
         return categoryId;
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error(error.response.data.message, { position: 'bottom-left' });
     }
   },

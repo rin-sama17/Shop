@@ -55,7 +55,7 @@ export const addSlider = createAsyncThunk(
                 return res.data.data.slider;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
             handleErrors(error, setErrors);
         }
@@ -83,7 +83,7 @@ export const editSlider = createAsyncThunk(
                 return res.data.post;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },
@@ -99,7 +99,7 @@ export const deleteSlider = createAsyncThunk(
                 return sliderId;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },

@@ -47,7 +47,7 @@ export const addPremission = createAsyncThunk(
                 return res.data.premission;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
             handleErrors(error, setErrors);
         }
@@ -68,7 +68,7 @@ export const editPremission = createAsyncThunk(
                 return res.data.premission;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },
@@ -84,7 +84,7 @@ export const deletePremission = createAsyncThunk(
                 return premissionId;
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             toast.error(error.response.data.message, { position: 'bottom-left' });
         }
     },

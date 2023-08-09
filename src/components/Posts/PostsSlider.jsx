@@ -37,7 +37,7 @@ const PostsSlider = () => {
           }}
         >
           <img
-            src={`https://labkhand-carpet.ir/${posts[i].image}`}
+            src={`https://api.labkhand-carpet.ir/${posts[i].image}`}
             alt=""
             style={{
               width: '50px',
@@ -79,7 +79,7 @@ const PostsSlider = () => {
             <ImageListItem>
               <CardMedia
                 component="img"
-                image={`https://labkhand-carpet.ir/${slide.image}`}
+                image={`https://api.labkhand-carpet.ir/${slide.image}`}
                 alt={slide.name}
                 sx={{
                   height: { xs: '20vh', sm: '30vh', md: '45vh' },
@@ -133,7 +133,7 @@ const PostsSlider = () => {
                     >
                       <CardMedia
                         component="img"
-                        image={`https://labkhand-carpet.ir/${slide.image}`}
+                        image={`https://api.labkhand-carpet.ir/${slide.image}`}
                         alt={slide.name}
                         sx={{
                           width: { xs: 100, sm: 150, md: 200 },

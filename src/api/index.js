@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://labkhand-carpet.ir/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://api.labkhand-carpet.ir/api' }),
   tagTypes: ["Sliders"],
   endpoints: (builder) => ({
     getPosts: builder.query({

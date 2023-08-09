@@ -6,7 +6,7 @@ import {
   Products,
   ShowPost,
   ShowProduct,
-  RouteProtection,
+  AdminPanel,
   SearchResult,
   Agencies,
   ShowAgency,
@@ -44,7 +44,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/admin-panel',
-        element: <RouteProtection />,
+        element: <AdminPanel />,
       },
       {
         path: '/search/:query',
