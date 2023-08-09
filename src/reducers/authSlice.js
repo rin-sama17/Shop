@@ -99,6 +99,7 @@ const authSlice = createSlice({
       state.loading = false;
       localStorage.setItem("token", payload.userData.token);
       payload.navigate("/admin-panel");
+      window.location.reload(false);
     },
     [login.pending]: (state) => {
       state.loading = true;
