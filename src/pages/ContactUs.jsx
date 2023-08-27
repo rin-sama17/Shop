@@ -57,7 +57,7 @@ const ContactUs = () => {
         {t('راه های ارتباطی')}
       </Typography>
       <Grid container spacing={2} sx={{ p: 3 }}>
-        <Grid xs={7} md={12}>
+        <Grid xs={12}>
           <Box
             sx={{
               display: 'flex',
@@ -78,7 +78,6 @@ const ContactUs = () => {
         </Grid>
         <Grid
           xs={12}
-          md={12}
           sx={{
             mt: 2,
             display: 'flex',
@@ -92,88 +91,90 @@ const ContactUs = () => {
               justifyContent: 'center',
             }}
           >
-            {chats.map((item, index) => (
-              <Fragment key={index}>
-                {item.image ? (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'flex-end',
-                    }}
-                  >
-                    <CardActionArea
+            <Grid container>
+              {chats.map((item, index) => (
+                <Grid xs={6} md={12} key={index}>
+                  {item.image ? (
+                    <Box
                       sx={{
-                        height: 50,
-                        width: 50,
-                        bgcolor: '#E0E8F6',
                         display: 'flex',
-                        justifyContent: 'center',
                         alignItems: 'center',
-                        transition: 'transform 0.2s ease-in-out',
-                        ':hover': {
-                          transform: 'scale(1.2)',
-                        },
+                        justifyContent: 'flex-end',
                       }}
                     >
-                      <CardMedia
-                        image={item.icon}
-                        alt=""
+                      <CardActionArea
                         sx={{
-                          height: 25,
-                          width: 25,
-                          m: 'auto',
-                          filter: item.filter,
+                          height: 50,
+                          width: 50,
+                          bgcolor: '#E0E8F6',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          transition: 'transform 0.2s ease-in-out',
+                          ':hover': {
+                            transform: 'scale(1.2)',
+                          },
                         }}
-                      />
-                    </CardActionArea>
-                    <Typography
-                      variant="subtitle1"
-                      color="text.secondary"
-                      sx={{ mr: 2, ml: 1 }}
-                    >
-                      {t(item.name)}
-                    </Typography>
-                  </Box>
-                ) : (
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'flex-end',
-                    }}
-                    component="a"
-                    href={item.to}
-                    target="_blank"
-                  >
-                    <CardActionArea
+                      >
+                        <CardMedia
+                          image={item.icon}
+                          alt=""
+                          sx={{
+                            height: 25,
+                            width: 25,
+                            m: 'auto',
+                            filter: item.filter,
+                          }}
+                        />
+                      </CardActionArea>
+                      <Typography
+                        variant="subtitle1"
+                        color="text.secondary"
+                        sx={{ mr: 2, ml: 1 }}
+                      >
+                        {t(item.name)}
+                      </Typography>
+                    </Box>
+                  ) : (
+                    <Box
                       sx={{
-                        height: 50,
-                        width: 50,
-                        bgcolor: '#E0E8F6',
                         display: 'flex',
-                        justifyContent: 'center',
                         alignItems: 'center',
-                        transition: 'transform 0.2s ease-in-out',
-                        color: `${item.color}.main`,
-                        ':hover': {
-                          transform: 'scale(1.2)',
-                        },
+                        justifyContent: 'flex-end',
                       }}
+                      component="a"
+                      href={item.to}
+                      target="_blank"
                     >
-                      {item.icon}
-                    </CardActionArea>
-                    <Typography
-                      variant="subtitle1"
-                      color="text.secondary"
-                      sx={{ mr: 2, ml: 1 }}
-                    >
-                      {t(item.name)}
-                    </Typography>
-                  </Box>
-                )}
-              </Fragment>
-            ))}
+                      <CardActionArea
+                        sx={{
+                          height: 50,
+                          width: 50,
+                          bgcolor: '#E0E8F6',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          transition: 'transform 0.2s ease-in-out',
+                          color: `${item.color}.main`,
+                          ':hover': {
+                            transform: 'scale(1.2)',
+                          },
+                        }}
+                      >
+                        {item.icon}
+                      </CardActionArea>
+                      <Typography
+                        variant="subtitle1"
+                        color="text.secondary"
+                        sx={{ mr: 2, ml: 1 }}
+                      >
+                        {t(item.name)}
+                      </Typography>
+                    </Box>
+                  )}
+                </Grid>
+              ))}
+            </Grid>
           </Box>
         </Grid>
       </Grid>
