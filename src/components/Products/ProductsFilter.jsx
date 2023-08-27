@@ -126,7 +126,7 @@ const ProductsFilter = ({ isLoading }) => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid xs={12} sx={{ px: 1 }}>
+      <Grid xs={12} sx={{ px: 3 }}>
         <Slider
           getAriaLabel={() => 'Temperature range'}
           value={value}
