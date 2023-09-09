@@ -1,18 +1,8 @@
-import {
-  Box,
-  Typography,
-  Divider,
-  IconButton,
-  Button,
-  CardMedia,
-  Card,
-  CardActionArea,
-} from '@mui/material'
+import { Box, Typography, CardMedia, CardActionArea } from '@mui/material'
 
 import { useTranslation } from 'react-i18next'
 import Grid from '@mui/material/Unstable_Grid2'
 import { contactUs, eitaaActive } from '../assets'
-import { Fragment } from 'react'
 import { Instagram, Telegram, LinkedIn } from '@mui/icons-material'
 
 const chats = [
@@ -85,21 +75,22 @@ const ContactUs = () => {
             alignItems: 'center',
           }}
         >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
-            <Grid container>
+          <Box>
+            <Grid
+              container
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
               {chats.map((item, index) => (
-                <Grid xs={6} md={12} key={index}>
+                <Grid xs={6} md={3} key={index}>
                   {item.image ? (
                     <Box
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'flex-end',
+                        justifyContent: { md: 'flex-end', xs: 'flex-start' },
                       }}
                     >
                       <CardActionArea
@@ -140,7 +131,7 @@ const ContactUs = () => {
                       sx={{
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'flex-end',
+                        justifyContent: { md: 'flex-end', xs: 'flex-start' },
                       }}
                       component="a"
                       href={item.to}

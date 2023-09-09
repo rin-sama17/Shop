@@ -1,4 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
+import { Box } from '@mui/material'
 import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CustomDivider, CustomFields, ImageUploader } from '.'
@@ -29,7 +30,9 @@ const CustomForm = ({
         }}
         spacing={2}
       >
-        <CustomDivider label={label} />
+        <Box sx={{ width: 1 }}>
+          <CustomDivider label={label} />
+        </Box>
         {imageUploader ? (
           <ImageUploader
             formik={formik}

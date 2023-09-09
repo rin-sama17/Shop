@@ -20,7 +20,7 @@ const ShowAgency = () => {
     <Grid container sx={{ width: 1, mt: 5 }}>
       <Grid xs={12} md={4} sx={{ px: 2 }}>
         <img
-          src={`https://api.labkhand-carpet.ir/${agency.image}`}
+          src={`http://localhost:8000/${agency.image}`}
           alt={agency.name}
           style={{ width: '100%' }}
         />

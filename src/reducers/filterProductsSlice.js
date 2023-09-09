@@ -17,7 +17,7 @@ export const fetchFilterProduct = createAsyncThunk(
     'filterProduct/fetchProducts',
     async () => {
         try {
-            const url = "https://api.labkhand-carpet.ir/api/products";
+            const url = "http://localhost:8000/api/products";
             const res = await axios.get(url);
             return res.data.data[0];
         } catch (error) {
