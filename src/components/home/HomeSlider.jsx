@@ -58,7 +58,7 @@ const HomeSlider = ({ sliders }) => {
               >
                 <CardMedia
                   component="img"
-                  image={`http://localhost:8000/${slide.image}`}
+                  image={`https://api.labkhand-carpet.ir/${slide.image}`}
                   alt={slide.name}
                   sx={{
                     height: { xs: '20vh', sm: '30vh', md: '45vh' },
@@ -70,7 +70,7 @@ const HomeSlider = ({ sliders }) => {
               <ImageListItem>
                 <CardMedia
                   component="img"
-                  image={`http://localhost:8000/${slide.image}`}
+                  image={`https://api.labkhand-carpet.ir/${slide.image}`}
                   alt={slide.name}
                   sx={{
                     height: { xs: '20vh', sm: '30vh', md: '45vh' },
@@ -121,7 +121,7 @@ const HomeSlider = ({ sliders }) => {
                       >
                         <CardMedia
                           component="img"
-                          image={`http://localhost:8000/${slide.image}`}
+                          image={`https://api.labkhand-carpet.ir/${slide.image}`}
                           alt={slide.name}
                           sx={{
                             width: { xs: 100, sm: 150, md: 200 },

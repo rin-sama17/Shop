@@ -6,6 +6,7 @@ const PostIntroduction = ({ post }) => {
     <>
       <Box>
         <ShowAuthor userId={post.user_id} />
+        <ShowTime timestamp={post.created_at} />
         <ShowCategory categoryId={post.category_id} tags={post.tags} isPost />
       </Box>
       <Typography color="text.primary" variant="h6" sx={{ my: 2 }}>
@@ -13,7 +14,7 @@ const PostIntroduction = ({ post }) => {
       </Typography>
       <img
         alt={post.name}
-        src={`http://localhost:8000/${post.image}`}
+        src={`https://api.labkhand-carpet.ir/${post.image}`}
         style={{ margin: 'auto', width: '100%' }}
       />
       <Typography color="text.secondary" component="p" sx={{ my: 3 }}>

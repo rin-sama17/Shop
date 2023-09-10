@@ -36,14 +36,18 @@ const Post = ({ postId }) => {
           borderRadius: '20px',
         }}
       >
-        <CardActionArea component={Link} to={`/posts/${post.id}`}>
+        <CardActionArea
+          sx={{ height: 1, borderRadius: '20px' }}
+          component={Link}
+          to={`/posts/${post.id}`}
+        >
           <Box>
             <Grid container sx={{ justifyContent: 'space-between' }}>
               <Grid xs={12} sm={4}>
                 <CardMedia
                   component="img"
                   alt={post.name}
-                  image={`http://localhost:8000/${post.image}`}
+                  image={`https://api.labkhand-carpet.ir/${post.image}`}
                   style={{
                     margin: 'auto',
                     width: '100%',

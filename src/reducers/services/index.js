@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const token = localStorage.getItem("token");
-const ADMIN_SERVER_URL = "http://localhost:8000/api/admin";
+const ADMIN_SERVER_URL = "https://api.labkhand-carpet.ir/api/admin";
 const headers = {
     headers: {
         authorization: `Bearer ${token}`,
@@ -13,7 +13,7 @@ export { default as handleErrors } from "./handleErrors";
 export { default as convertToForm } from "./convertToForm";
 
 export const getAllCategories = () => {
-    const url = `http://localhost:8000/api/categories`;
+    const url = `https://api.labkhand-carpet.ir/api/categories`;
     return axios.get(url);
 };
 export const getAdminCategories = () => {
@@ -283,11 +283,11 @@ export const removeSlider = (sliderId) => {
 
 
 export const userLogin = (user) => {
-    const url = 'http://localhost:8000/api/login';
+    const url = 'https://api.labkhand-carpet.ir/api/login';
     return axios.post(url, user, headers);
 };
 export const userLogout = () => {
-    const url = 'http://localhost:8000/api/logout';
+    const url = 'https://api.labkhand-carpet.ir/api/logout';
     return axios.post(url, token, headers);
 };
 
@@ -302,7 +302,7 @@ export const getUserInfo = () => {
 };
 
 export const searchQuery = (query, base) => {
-    const url = `http://localhost:8000/api/search-${base}`;
+    const url = `https://api.labkhand-carpet.ir/api/search-${base}`;
     return axios.get(url, {
         params: {
             search: query

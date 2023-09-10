@@ -5,15 +5,15 @@ import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 import './index.css'
-//react-slick css
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 import 'react-toastify/dist/ReactToastify.css'
 
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
-import 'quill/dist/quill.snow.css'
+import 'react-quill/dist/quill.snow.css'
+
 import { store } from './store'
 import { router } from './routes'
 

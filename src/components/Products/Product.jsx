@@ -40,7 +40,7 @@ const Product = ({ productId }) => {
               component="img"
               sx={{ height, width }}
               alt={data.product.name}
-              image={`http://localhost:8000/${product.image}`}
+              image={`https://api.labkhand-carpet.ir/${product.image}`}
             />
           </Paper>
         </Box>

@@ -315,7 +315,6 @@ const CustomFields = ({
           multiple
           name={name}
           value={itemTags}
-          // onChange={handleChange}
           input={<OutlinedInput label={t('تگ')} />}
           renderValue={(selected) => handleNames(selected)}
           MenuProps={MenuProps}
