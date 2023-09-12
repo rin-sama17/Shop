@@ -41,7 +41,11 @@ const ShowAgency = () => {
           <Typography variant="caption" color="text.primary" sx={{ mx: 2 }}>
             {t('ادرس')}:
           </Typography>
-          <Typography variant="caption" color="text.secondary">
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ whiteSpace: 'break-spaces' }}
+          >
             {agency.address}
           </Typography>
         </Box>
@@ -49,7 +53,11 @@ const ShowAgency = () => {
           <Typography variant="caption" color="text.primary" sx={{ mx: 2 }}>
             {t('شماره تماس')}:
           </Typography>
-          <Typography variant="caption" color="text.secondary">
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ whiteSpace: 'break-spaces' }}
+          >
             {agency.phone}
           </Typography>
         </Box>
@@ -65,7 +73,11 @@ const ShowAgency = () => {
           <Typography variant="caption" color="text.primary" sx={{ mx: 2 }}>
             {t('توضیحات')}:
           </Typography>
-          <Typography variant="caption" color="text.secondary">
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ whiteSpace: 'break-spaces' }}
+          >
             {agency.description}
           </Typography>
         </Box>

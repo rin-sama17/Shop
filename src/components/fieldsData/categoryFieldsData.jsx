@@ -11,7 +11,7 @@ const categoryFieldsData = (formik) => {
       sm: 6,
       formik,
       category: true,
-      categoryParents: true,
+      addCategory: true,
       name: 'category_id',
       customLabel: 'دسته بندی والد (برای ساخت زیرمجموعه)',
     },

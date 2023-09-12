@@ -27,7 +27,7 @@ const Products = () => {
   return (
     <Box sx={{ mt: 5 }}>
       <Grid container sx={{ width: 1, px: 2 }}>
-        <Grid xs={12} md={4} lg={3}>
+        <Grid xs={12} md={4} lg={3} sx={{ position: 'relative' }}>
           <ProductsFilter />
         </Grid>
         <Grid xs={12} md={8} lg={9}>

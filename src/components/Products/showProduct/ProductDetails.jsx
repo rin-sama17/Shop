@@ -5,6 +5,7 @@ import {
   CustomIconButton,
   ProductPrice,
   ShowCategory,
+  ShowTime,
 } from '../../common'
 import { ReportGmailerrorred } from '@mui/icons-material'
 import { useTranslation } from 'react-i18next'
@@ -24,6 +25,7 @@ const ProductDetails = ({ product }) => {
           {t(product.name)}
         </Typography>
         <Box sx={{ px: 2 }}>
+          <ShowTime timestamp={product.created_at} />
           <ShowCategory categoryId={product.category_id} tags={product.tags} />
           {product.remaining === 0 ? (
             <CustomDivider
@@ -59,7 +61,11 @@ const ProductDetails = ({ product }) => {
           >
             {t('توضیحات')}:
           </Typography>
-          <Typography variant="subtitle2" sx={{ mr: 1 }} gutterBottom>
+          <Typography
+            variant="subtitle2"
+            sx={{ mr: 1, whiteSpace: 'break-spaces' }}
+            gutterBottom
+          >
             {product.description}
           </Typography>
         </Box>

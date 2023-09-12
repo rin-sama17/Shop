@@ -17,7 +17,11 @@ const PostIntroduction = ({ post }) => {
         src={`https://api.labkhand-carpet.ir/${post.image}`}
         style={{ margin: 'auto', width: '100%' }}
       />
-      <Typography color="text.secondary" component="p" sx={{ my: 3 }}>
+      <Typography
+        color="text.secondary"
+        component="p"
+        sx={{ my: 3, whiteSpace: 'break-spaces' }}
+      >
         {post.summary}
       </Typography>
     </>

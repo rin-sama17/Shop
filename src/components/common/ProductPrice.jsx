@@ -7,9 +7,9 @@ const ProductPrice = ({ price, discount, absolute }) => {
   const theme = useTheme()
   const isXs = useMediaQuery(theme.breakpoints.only('xs'))
 
-  let prevPrice
+  let discountedPrice = price
   if (discount > 0) {
-    prevPrice = Math.round(price / (1 - discount / 100))
+    discountedPrice = Math.round(price - price * (discount / 100))
   }
   return (
     <Box
@@ -28,7 +28,7 @@ const ProductPrice = ({ price, discount, absolute }) => {
         textAlign="start"
         sx={{ display: 'flex' }}
       >
-        {toRial(price)}
+        {toRial(discountedPrice)}
         <Typography color="secondary" variant="body2" sx={{ ml: 1 }}>
           {t('تومان')}
         </Typography>
@@ -46,7 +46,7 @@ const ProductPrice = ({ price, discount, absolute }) => {
               mr: absolute && !isXs ? 5 : 0,
             }}
           >
-            {toRial(prevPrice)}
+            {toRial(price)}
           </Typography>
           <Chip
             label={

@@ -12,7 +12,6 @@ import {
   tagIdsCleared,
   tagsIdFinded,
 } from '../../../reducers/tagSlice'
-import ChangeStatus from './ChangeStatus'
 
 const EditPost = ({ post }) => {
   const [open, setOpen] = useState(false)

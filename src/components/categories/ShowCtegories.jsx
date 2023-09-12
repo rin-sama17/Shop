@@ -33,7 +33,7 @@ export default function ShowCtegories() {
           >
             <Box
               sx={{
-                width: '50%',
+                width: { md: '60%', lg: '50%' },
                 position: 'absolute',
                 top: '-33px',
                 pt: '34px',

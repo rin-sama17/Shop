@@ -46,7 +46,7 @@ const ContactUs = () => {
       >
         {t('راه های ارتباطی')}
       </Typography>
-      <Grid container spacing={2} sx={{ p: 3 }}>
+      <Grid container spacing={2} sx={{ p: 3, width: 1 }}>
         <Grid xs={12}>
           <Box
             sx={{
@@ -75,98 +75,98 @@ const ContactUs = () => {
             alignItems: 'center',
           }}
         >
-          <Box>
-            <Grid
-              container
-              sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}
-            >
-              {chats.map((item, index) => (
-                <Grid xs={6} md={3} key={index}>
-                  {item.image ? (
-                    <Box
+          <Grid
+            container
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            {chats.map((item, index) => (
+              <Grid xs={6} md={3} key={index}>
+                {item.image ? (
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: { md: 'row', xs: 'column' },
+                      alignItems: 'center',
+                      justifyContent: { md: 'flex-end', xs: 'flex-start' },
+                    }}
+                  >
+                    <CardActionArea
                       sx={{
+                        height: 50,
+                        width: 50,
+                        bgcolor: '#E0E8F6',
                         display: 'flex',
+                        justifyContent: 'center',
                         alignItems: 'center',
-                        justifyContent: { md: 'flex-end', xs: 'flex-start' },
+                        transition: 'transform 0.2s ease-in-out',
+                        ':hover': {
+                          transform: 'scale(1.2)',
+                        },
                       }}
                     >
-                      <CardActionArea
+                      <CardMedia
+                        image={item.icon}
+                        alt=""
                         sx={{
-                          height: 50,
-                          width: 50,
-                          bgcolor: '#E0E8F6',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          transition: 'transform 0.2s ease-in-out',
-                          ':hover': {
-                            transform: 'scale(1.2)',
-                          },
+                          height: 25,
+                          width: 25,
+                          m: 'auto',
+                          filter: item.filter,
                         }}
-                      >
-                        <CardMedia
-                          image={item.icon}
-                          alt=""
-                          sx={{
-                            height: 25,
-                            width: 25,
-                            m: 'auto',
-                            filter: item.filter,
-                          }}
-                        />
-                      </CardActionArea>
-                      <Typography
-                        variant="subtitle1"
-                        color="text.secondary"
-                        sx={{ mr: 2, ml: 1 }}
-                      >
-                        {t(item.name)}
-                      </Typography>
-                    </Box>
-                  ) : (
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: { md: 'flex-end', xs: 'flex-start' },
-                      }}
-                      component="a"
-                      href={item.to}
-                      target="_blank"
+                      />
+                    </CardActionArea>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                      sx={{ mr: { md: 2, xs: 1 }, ml: 1, mt: { md: 0, xs: 1 } }}
                     >
-                      <CardActionArea
-                        sx={{
-                          height: 50,
-                          width: 50,
-                          bgcolor: '#E0E8F6',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          transition: 'transform 0.2s ease-in-out',
-                          color: `${item.color}.main`,
-                          ':hover': {
-                            transform: 'scale(1.2)',
-                          },
-                        }}
-                      >
-                        {item.icon}
-                      </CardActionArea>
-                      <Typography
-                        variant="subtitle1"
-                        color="text.secondary"
-                        sx={{ mr: 2, ml: 1 }}
-                      >
-                        {t(item.name)}
-                      </Typography>
-                    </Box>
-                  )}
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
+                      {t(item.name)}
+                    </Typography>
+                  </Box>
+                ) : (
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: { md: 'row', xs: 'column' },
+                      alignItems: 'center',
+                      justifyContent: { md: 'flex-end', xs: 'flex-start' },
+                    }}
+                    component="a"
+                    href={item.to}
+                    target="_blank"
+                  >
+                    <CardActionArea
+                      sx={{
+                        height: 50,
+                        width: 50,
+                        bgcolor: '#E0E8F6',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        transition: 'transform 0.2s ease-in-out',
+                        color: `${item.color}.main`,
+                        ':hover': {
+                          transform: 'scale(1.2)',
+                        },
+                      }}
+                    >
+                      {item.icon}
+                    </CardActionArea>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                      sx={{ mr: { md: 2, xs: 1 }, ml: 1, mt: { md: 0, xs: 1 } }}
+                    >
+                      {t(item.name)}
+                    </Typography>
+                  </Box>
+                )}
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
     </>

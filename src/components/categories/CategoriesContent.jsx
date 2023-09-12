@@ -3,9 +3,13 @@ import { Fragment, useMemo } from 'react'
 import { Typography, Box } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { selectAllCategories } from '../../reducers/categorySlice'
-import { KeyboardArrowLeft } from '@mui/icons-material'
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { selectLang } from '../../reducers/langSlice'
 const ParentCategory = ({ parent, children, setOpen }) => {
+  const lang = useSelector(selectLang)
+
   return (
     <>
       <Box
@@ -37,8 +41,7 @@ const ParentCategory = ({ parent, children, setOpen }) => {
             {parent.name}
           </Typography>
         </Link>
-
-        <KeyboardArrowLeft />
+        {lang === 'en' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </Box>
 
       {children}
@@ -58,7 +61,7 @@ const ChildCategory = ({ child, setOpen }) => {
         variant="subtitle1"
         sx={{
           mr: 2,
-          width: { md: '40%', lg: '30%' },
+          width: 1,
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
@@ -97,6 +100,8 @@ const FindParents = ({ parent, categories, setOpen }) => {
 
 const CategoriesContent = ({ parent, setOpen }) => {
   const categories = useSelector(selectAllCategories)
+  const lang = useSelector(selectLang)
+  const { t } = useTranslation()
   return (
     <>
       <Box
@@ -124,15 +129,23 @@ const CategoriesContent = ({ parent, setOpen }) => {
               },
             }}
           >
-            مشاهده تمام محصولات در دسته بندی {parent.name}
+            {t('مشاهده تمام محصولات در دسته بندی ')}
+            {parent.name}
           </Typography>
         </Link>
-
-        <KeyboardArrowLeft
-          sx={{
-            color: 'grey',
-          }}
-        />
+        {lang === 'en' ? (
+          <KeyboardArrowRight
+            sx={{
+              color: 'grey',
+            }}
+          />
+        ) : (
+          <KeyboardArrowLeft
+            sx={{
+              color: 'grey',
+            }}
+          />
+        )}
       </Box>
       <Box
         sx={{

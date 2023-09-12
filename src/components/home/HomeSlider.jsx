@@ -50,8 +50,8 @@ const HomeSlider = ({ sliders }) => {
             {slide.type === 0 ? (
               <CardActionArea
                 component="a"
-                href={slide.url}
                 target="_blank"
+                href={slide.url}
                 sx={{
                   borderRadius: '0 0 20px  20px ',
                 }}

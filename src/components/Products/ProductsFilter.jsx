@@ -79,6 +79,8 @@ const ProductsFilter = ({ isLoading }) => {
     <Grid
       container
       sx={{
+        position: 'sticky',
+        top: 155,
         width: 1,
         m: 'auto',
       }}

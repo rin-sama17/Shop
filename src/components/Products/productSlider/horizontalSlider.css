@@ -67,7 +67,14 @@
 
 @media screen and (max-width: 600px) {
   .media-scroller {
-    gap: 4rem;
-    grid-auto-columns: 36vh;
+    gap: 1rem;
+    grid-auto-columns: 20vh;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 600px) {
+  .media-scroller {
+    gap: 2rem;
+    grid-auto-columns: 24vh;
   }
 }
